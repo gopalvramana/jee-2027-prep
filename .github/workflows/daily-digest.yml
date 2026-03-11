@@ -1,5 +1,11 @@
 name: Daily JEE Progress Digest
 
+# Opt into Node 24 for ALL action runners in this workflow
+# (must be at workflow level, not job level, to take effect before
+#  actions/checkout initialises its own runner)
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
 on:
   schedule:
     # 6:00 AM IST = 00:30 UTC  (UTC + 5:30)
@@ -11,8 +17,7 @@ jobs:
   send-digest:
     runs-on: ubuntu-latest
     env:
-      TZ: Asia/Kolkata                    # makes new Date() use IST inside the script
-      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true   # opt into Node 24 for action runners
+      TZ: Asia/Kolkata   # makes new Date() use IST inside the script
 
     steps:
       - name: Checkout repo
