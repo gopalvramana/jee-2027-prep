@@ -19,6 +19,7 @@
       <a href="subjects/physics.html">⚡ Physics</a>
       <a href="subjects/chemistry.html">🧪 Chemistry</a>
       <a href="progress.html">✅ Progress</a>
+      <a href="schedule.html">📋 Schedule</a>
       <a href="settings.html" class="active">⚙ Settings</a>
     </div>
     <button class="nav-toggle" onclick="toggleNav()">☰</button>
@@ -35,6 +36,17 @@
 
 <section class="section">
 <div class="container" style="max-width:680px">
+
+  <!-- SCHEDULE START DATE -->
+  <div class="settings-block">
+    <h2 class="settings-block-title">📅 When did you start?</h2>
+    <p class="settings-block-desc">Set the date you actually began studying. Sessions before this date won't appear as overdue on the dashboard — only sessions from your start date up to today will be flagged if not completed.</p>
+    <div class="start-date-row">
+      <input type="date" id="start-date-input" class="start-date-inp">
+      <button class="gist-btn gist-save-btn" onclick="saveStartDate()">Save</button>
+    </div>
+    <p class="start-date-hint" id="start-date-hint">Not set — defaulting to the schedule's first week.</p>
+  </div>
 
   <!-- WHERE IS DATA STORED -->
   <div class="settings-block">

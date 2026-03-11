@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Schedule — JEE 2027 Prep</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="nav-brand">JEE 2027</div>
+    <div class="nav-links">
+      <a href="index.html">Dashboard</a>
+      <a href="subjects/math.html">📐 Math</a>
+      <a href="subjects/physics.html">⚡ Physics</a>
+      <a href="subjects/chemistry.html">🧪 Chemistry</a>
+      <a href="progress.html">✅ Progress</a>
+      <a href="schedule.html" class="active">📋 Schedule</a>
+      <a href="settings.html">⚙ Settings</a>
+    </div>
+    <button class="nav-toggle" onclick="toggleNav()">☰</button>
+  </div>
+</nav>
+
+<header class="page-hero sched-hero">
+  <div class="page-hero-content">
+    <div class="page-hero-tag">All Phases · March 2026 – April 2027</div>
+    <h1>📋 Schedule</h1>
+    <p>Control exactly which sessions appear on the dashboard — rename topics, move them between weeks, add custom sessions, or remove ones you don't need.</p>
+  </div>
+</header>
+
+<section class="section">
+<div class="container" style="max-width:760px">
+
+  <!-- Top bar -->
+  <div class="sched-topbar">
+    <span class="sched-topbar-title">My Study Schedule</span>
+    <button class="se-btn se-edit-btn" onclick="seShowAdd()">➕ Add Session</button>
+    <button class="se-btn" onclick="resetScheduleToDefault()" style="color:#b91c1c;border-color:#b91c1c" onmouseover="this.style.background='#fef2f2'" onmouseout="this.style.background=''">↺ Reset to Defaults</button>
+  </div>
+
+  <!-- Add session panel (hidden by default) -->
+  <div class="se-add-panel" id="se-add-panel" style="display:none">
+    <div class="se-add-panel-title">Add a new session</div>
+    <div class="se-add-form">
+      <input type="text" id="se-new-name" class="se-add-name" placeholder="Topic name…">
+      <select id="se-new-subj" class="se-sel">
+        <option value="math">📐 Math</option>
+        <option value="phys">⚡ Physics</option>
+        <option value="chem">🧪 Chemistry</option>
+        <option value="p3">🎯 Phase 3</option>
+        <option value="p4">🚀 Phase 4</option>
+      </select>
+      <select id="se-new-month" class="se-sel">
+        <option value="2026-3">March 2026</option>
+        <option value="2026-4">April 2026</option>
+        <option value="2026-5">May 2026</option>
+        <option value="2026-6">June 2026</option>
+        <option value="2026-7">July 2026</option>
+        <option value="2026-8">August 2026</option>
+        <option value="2026-9">September 2026</option>
+        <option value="2026-10">October 2026</option>
+        <option value="2026-11">November 2026</option>
+        <option value="2026-12">December 2026</option>
+        <option value="2027-1">January 2027</option>
+        <option value="2027-2">February 2027</option>
+        <option value="2027-3">March 2027</option>
+        <option value="2027-4">April 2027</option>
+      </select>
+      <select id="se-new-week" class="se-sel">
+        <option value="1">Week 1</option>
+        <option value="2">Week 2</option>
+        <option value="3">Week 3</option>
+        <option value="4">Week 4</option>
+      </select>
+      <button class="se-add-btn-primary" onclick="seAdd()">Add</button>
+      <button class="se-btn se-cancel-btn" onclick="seHideAdd()">Cancel</button>
+    </div>
+  </div>
+
+  <!-- Schedule list -->
+  <div id="sched-container"></div>
+
+</div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-brand">JEE 2027 Prep</div>
+      <div class="footer-links">
+        <a href="index.html">Dashboard</a>
+        <a href="subjects/math.html">Math</a>
+        <a href="subjects/physics.html">Physics</a>
+        <a href="subjects/chemistry.html">Chemistry</a>
+        <a href="progress.html">Progress</a>
+        <a href="schedule.html">Schedule</a>
+        <a href="settings.html">Settings</a>
+      </div>
+      <div class="footer-note">All Phases · March 2026 – April 2027</div>
+    </div>
+  </div>
+</footer>
+
+<div id="toast" class="toast"></div>
+<script src="js/main.js"></script>
+<script>
+// ── Schedule page logic ──────────────────────────────────────────────────────
+// Uses: loadSchedule, saveSchedule, showToast, tcEsc, TC_MONTH, TC_ICON from main.js
+
+const SE_MONTHS = [
+  {y:2026,m:3},{y:2026,m:4},{y:2026,m:5},{y:2026,m:6},
+  {y:2026,m:7},{y:2026,m:8},{y:2026,m:9},{y:2026,m:10},
+  {y:2026,m:11},{y:2026,m:12},
+  {y:2027,m:1},{y:2027,m:2},{y:2027,m:3},{y:2027,m:4},
+];
+
+const SE_PHASES = [
+  { label:'Phase 1 — Foundation Sprint', color:'#1d4ed8',
+    test: s => s.y===2026 && s.m>=3 && s.m<=6 },
+  { label:'Phase 2 — JEE Layer', color:'#0f766e',
+    test: s => s.y===2026 && s.m>=7 && s.m<=10 },
+  { label:'Phase 3 — Attempt 1 Drill', color:'#4f46e5',
+    test: s => (s.y===2026 && s.m>=11) || (s.y===2027 && s.m===1) },
+  { label:'Phase 4 — Attempt 2 Boost', color:'#059669',
+    test: s => s.y===2027 && s.m>=2 },
+];
+
+function seMonthOpts(selY, selM) {
+  return SE_MONTHS.map(o =>
+    `<option value="${o.y}-${o.m}" ${o.y===selY&&o.m===selM?'selected':''}>${TC_MONTH[o.m]} ${o.y}</option>`
+  ).join('');
+}
+function seWeekOpts(selW) {
+  return [1,2,3,4].map(w =>
+    `<option value="${w}" ${w===selW?'selected':''}>Week ${w}</option>`
+  ).join('');
+}
+function seSubjOpts(selS) {
+  return [['math','📐 Math'],['phys','⚡ Physics'],['chem','🧪 Chemistry'],['p3','🎯 Phase 3'],['p4','🚀 Phase 4']]
+    .map(([v,l]) => `<option value="${v}" ${v===selS?'selected':''}>${l}</option>`).join('');
+}
+
+window.renderSchedulePage = function() {
+  const sched = loadSchedule();
+  const container = document.getElementById('sched-container');
+  if (!container) return;
+
+  let html = '';
+
+  for (const phase of SE_PHASES) {
+    const pSess = sched.filter(phase.test);
+    if (!pSess.length) continue;
+
+    // Group by y-m-w
+    const weekMap = {};
+    for (const s of pSess) {
+      const k = `${s.y}-${String(s.m).padStart(2,'0')}-${s.w}`;
+      if (!weekMap[k]) weekMap[k] = { y:s.y, m:s.m, w:s.w, items:[] };
+      weekMap[k].items.push(s);
+    }
+    const weeks = Object.values(weekMap).sort((a,b) =>
+      a.y!==b.y ? a.y-b.y : a.m!==b.m ? a.m-b.m : a.w-b.w
+    );
+
+    html += `<div class="se-phase">
+      <div class="se-phase-hdr" style="color:${phase.color}">
+        ${phase.label}
+        <span class="se-phase-count">${pSess.length} sessions</span>
+      </div>`;
+
+    for (const wk of weeks) {
+      html += `<div class="se-week">
+        <div class="se-week-hdr">${TC_MONTH[wk.m]} ${wk.y} &middot; Week ${wk.w}</div>`;
+      for (const s of wk.items) {
+        const icon = TC_ICON[s.subj] || '●';
+        html += `<div class="se-row" id="serow-${s.id}">
+          <span class="se-row-icon">${icon}</span>
+          <span class="se-row-name">${tcEsc(s.name)}</span>
+          ${s.custom ? '<span class="se-custom-badge">custom</span>' : ''}
+          <div class="se-row-btns">
+            <button class="se-btn se-edit-btn" onclick="seEdit('${s.id}')">Edit</button>
+            <button class="se-btn se-rm-btn" onclick="seRemove('${s.id}')">✕</button>
+          </div>
+        </div>`;
+      }
+      html += `</div>`;
+    }
+    html += `</div>`;
+  }
+
+  // Sessions that don't fit any phase (edge case)
+  const unphased = sched.filter(s => !SE_PHASES.some(p => p.test(s)));
+  if (unphased.length) {
+    html += `<div class="se-phase">
+      <div class="se-phase-hdr" style="color:var(--ink3)">Other Sessions <span class="se-phase-count">${unphased.length}</span></div>`;
+    for (const s of unphased) {
+      html += `<div class="se-row" id="serow-${s.id}">
+        <span class="se-row-icon">${TC_ICON[s.subj]||'●'}</span>
+        <span class="se-row-name">${tcEsc(s.name)}</span>
+        ${s.custom ? '<span class="se-custom-badge">custom</span>' : ''}
+        <div class="se-row-btns">
+          <button class="se-btn se-edit-btn" onclick="seEdit('${s.id}')">Edit</button>
+          <button class="se-btn se-rm-btn" onclick="seRemove('${s.id}')">✕</button>
+        </div>
+      </div>`;
+    }
+    html += `</div>`;
+  }
+
+  container.innerHTML = html || '<p style="color:var(--ink3);padding:1rem 0">No sessions in schedule. Click Reset to Defaults to restore.</p>';
+};
+
+window.seEdit = function(id) {
+  const sched = loadSchedule();
+  const s = sched.find(x => x.id === id);
+  if (!s) return;
+  const row = document.getElementById('serow-' + id);
+  if (!row) return;
+
+  row.innerHTML = `<div class="se-edit-form">
+    <input type="text" class="se-edit-name" value="${tcEsc(s.name)}" placeholder="Topic name">
+    <select class="se-sel se-sel-subj">${seSubjOpts(s.subj)}</select>
+    <select class="se-sel se-sel-month">${seMonthOpts(s.y, s.m)}</select>
+    <select class="se-sel se-sel-week">${seWeekOpts(s.w)}</select>
+    <button class="se-btn se-save-btn" onclick="seSave('${id}')">Save</button>
+    <button class="se-btn se-cancel-btn" onclick="renderSchedulePage()">Cancel</button>
+  </div>`;
+};
+
+window.seSave = function(id) {
+  const row = document.getElementById('serow-' + id);
+  if (!row) return;
+  const name = row.querySelector('.se-edit-name').value.trim();
+  const subj = row.querySelector('.se-sel-subj').value;
+  const [y, m] = row.querySelector('.se-sel-month').value.split('-').map(Number);
+  const w = parseInt(row.querySelector('.se-sel-week').value);
+  if (!name) { showToast('⚠ Name cannot be empty.'); return; }
+
+  const sched = loadSchedule();
+  const idx = sched.findIndex(s => s.id === id);
+  if (idx >= 0) sched[idx] = { ...sched[idx], name, subj, y, m, w };
+  saveSchedule(sched);
+  showToast('✓ Saved.');
+  renderSchedulePage();
+};
+
+window.seRemove = function(id) {
+  const sched = loadSchedule();
+  const s = sched.find(x => x.id === id);
+  if (!confirm(`Remove "${s?.name}" from your schedule?${s?.custom ? '' : '\n\nUse "Reset to Defaults" to restore removed built-in sessions.'}`)) return;
+  saveSchedule(sched.filter(x => x.id !== id));
+  showToast('Removed.');
+  renderSchedulePage();
+};
+
+window.seShowAdd = function() {
+  document.getElementById('se-add-panel').style.display = '';
+  document.getElementById('se-new-name').focus();
+};
+window.seHideAdd = function() {
+  document.getElementById('se-add-panel').style.display = 'none';
+  document.getElementById('se-new-name').value = '';
+};
+
+window.seAdd = function() {
+  const name = document.getElementById('se-new-name').value.trim();
+  const subj = document.getElementById('se-new-subj').value;
+  const [y, m] = document.getElementById('se-new-month').value.split('-').map(Number);
+  const w = parseInt(document.getElementById('se-new-week').value);
+  if (!name) { showToast('⚠ Enter a topic name.'); return; }
+
+  const id = 'custom-' + Date.now();
+  const sched = loadSchedule();
+  sched.push({ id, name, subj, y, m, w, custom: true });
+  saveSchedule(sched);
+  seHideAdd();
+  showToast('✓ Session added.');
+  renderSchedulePage();
+};
+
+// Init
+renderSchedulePage();
+</script>
+</body>
+</html>
