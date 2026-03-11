@@ -50,6 +50,7 @@ function loadProgress() {
 }
 function saveProgress(data) {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+  autoSyncToGist();
 }
 function loadMocks() {
   try { return JSON.parse(localStorage.getItem(MOCK_KEY)) || []; }
@@ -57,6 +58,7 @@ function loadMocks() {
 }
 function saveMocks(list) {
   localStorage.setItem(MOCK_KEY, JSON.stringify(list));
+  autoSyncToGist();
 }
 
 function initProgress() {
@@ -386,6 +388,34 @@ function updateGistStatus() {
   }
   if (idEl)  idEl.textContent = gistId ? gistId : '—';
   if (idRow) idRow.style.display = gistId ? '' : 'none';
+}
+
+// ── Auto-sync to Gist on every progress change ───────────────────────────────
+// Debounced: waits 3 s after the last change before hitting the API.
+// Silent no-op if Gist isn't configured (token or id missing).
+let _autoSyncTimer = null;
+function autoSyncToGist() {
+  const token  = localStorage.getItem(GIST_TOKEN_KEY);
+  const gistId = localStorage.getItem(GIST_ID_KEY);
+  if (!token || !gistId) return;   // Gist not fully linked — skip
+
+  clearTimeout(_autoSyncTimer);
+  _autoSyncTimer = setTimeout(async () => {
+    const body = {
+      description: 'JEE 2027 Prep — Progress Backup',
+      public: false,
+      files: { [GIST_FILENAME]: { content: JSON.stringify(buildGistPayload(), null, 2) } }
+    };
+    try {
+      const res = await fetch(`https://api.github.com/gists/${gistId}`, {
+        method: 'PATCH',
+        headers: { 'Authorization': `token ${token}`, 'Content-Type': 'application/json' },
+        body: JSON.stringify(body)
+      });
+      if (res.ok) showToast('☁ Auto-saved to Gist');
+      // silent fail on error — don't interrupt the user's workflow
+    } catch { /* network error — ignore */ }
+  }, 3000);
 }
 
 // ── Expose for inline handlers
