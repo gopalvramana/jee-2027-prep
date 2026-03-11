@@ -748,6 +748,39 @@ function tcEsc(s) {
   return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 }
 
+// ── Map session ID → subject page anchor ─────────────────────────────────────
+function sessionLink(id) {
+  // Math units
+  if (id.startsWith('m-t'))   return 'subjects/math.html#unit-m1';
+  if (id.startsWith('m-m2'))  return 'subjects/math.html#unit-m2';
+  if (id.startsWith('m-m3'))  return 'subjects/math.html#unit-m3';
+  if (id.startsWith('m-m4'))  return 'subjects/math.html#unit-m4';
+  if (id.startsWith('m-m5'))  return 'subjects/math.html#unit-m5';
+  if (id.startsWith('m-m6'))  return 'subjects/math.html#unit-m6';
+  if (id.startsWith('m-m7'))  return 'subjects/math.html#unit-m7';
+  if (id.startsWith('m-m8'))  return 'subjects/math.html#unit-m8';
+  // Physics — p-s sessions span multiple units by number
+  if (id === 'p-s0a' || id === 'p-s0b')             return 'subjects/physics.html#unit-p0';
+  if (['p-s1','p-s2','p-s3'].includes(id))           return 'subjects/physics.html#unit-p1';
+  if (['p-s4','p-s5','p-s6'].includes(id))           return 'subjects/physics.html#unit-p2';
+  if (['p-s7','p-s8'].includes(id))                  return 'subjects/physics.html#unit-p3';
+  if (['p-s9','p-s10','p-s11'].includes(id))         return 'subjects/physics.html#unit-p4';
+  if (id.startsWith('p-p5'))  return 'subjects/physics.html#unit-p5';
+  if (id.startsWith('p-p6'))  return 'subjects/physics.html#unit-p6';
+  if (id.startsWith('p-p7'))  return 'subjects/physics.html#unit-p7';
+  if (id.startsWith('p-p8'))  return 'subjects/physics.html#unit-p8';
+  // Chemistry — c-s sessions span multiple units by number
+  if (['c-s1','c-s2','c-s3'].includes(id))           return 'subjects/chemistry.html#unit-c1';
+  if (['c-s4','c-s5','c-s6'].includes(id))           return 'subjects/chemistry.html#unit-c2';
+  if (['c-s7','c-s8','c-s9'].includes(id))           return 'subjects/chemistry.html#unit-c3';
+  if (['c-s10','c-s11','c-s12'].includes(id))        return 'subjects/chemistry.html#unit-c4';
+  if (id.startsWith('c-c5'))  return 'subjects/chemistry.html#unit-c5';
+  if (id.startsWith('c-c6'))  return 'subjects/chemistry.html#unit-c6';
+  if (id.startsWith('c-c7'))  return 'subjects/chemistry.html#unit-c7';
+  if (id.startsWith('c-c8'))  return 'subjects/chemistry.html#unit-c8';
+  return null;
+}
+
 function renderTodayCard() {
   const el = document.getElementById('today-card');
   if (!el) return;
@@ -804,10 +837,14 @@ function renderTodayCard() {
     h += `<div class="tc-section tc-overdue-section">
       <div class="tc-section-title overdue-title">⚠ Overdue — tap to mark done</div>`;
     for (const [id, name, subj] of overdueSess) {
+      const link = sessionLink(id);
+      const nameHtml = link
+        ? `<a href="${link}" class="tc-name tc-name-overdue tc-name-link" onclick="event.stopPropagation()">${tcEsc(name)}</a>`
+        : `<span class="tc-name tc-name-overdue">${tcEsc(name)}</span>`;
       h += `<div class="tc-row tc-overdue-row" onclick="tcToggle('${id}')" title="Tap to mark done">
         <span class="tc-status">❌</span>
         <span class="tc-subj">${TC_ICON[subj] || ''}</span>
-        <span class="tc-name tc-name-overdue">${tcEsc(name)}</span>
+        ${nameHtml}
       </div>`;
     }
     h += `</div>`;
@@ -819,10 +856,15 @@ function renderTodayCard() {
       <div class="tc-section-title">This week &middot; Week ${wk}</div>`;
     for (const [id, name, subj] of thisWeekSess) {
       const done = !!prog[id];
+      const link = sessionLink(id);
+      const color = done ? '' : (TC_COLOR[subj] || 'inherit');
+      const nameHtml = link
+        ? `<a href="${link}" class="tc-name tc-name-link${done ? ' tc-done-name' : ''}" style="color:${color}" onclick="event.stopPropagation()">${tcEsc(name)}</a>`
+        : `<span class="tc-name" style="color:${color}">${tcEsc(name)}</span>`;
       h += `<div class="tc-row${done ? ' tc-done-row' : ''}" onclick="tcToggle('${id}')" title="${done ? 'Tap to unmark' : 'Tap to mark done'}">
         <span class="tc-status">${done ? '✅' : '<span class="tc-todo-dot">○</span>'}</span>
         <span class="tc-subj">${TC_ICON[subj] || ''}</span>
-        <span class="tc-name" style="${done ? '' : 'color:' + (TC_COLOR[subj] || 'inherit')}">${tcEsc(name)}</span>
+        ${nameHtml}
       </div>`;
     }
     h += `</div>`;
