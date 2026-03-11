@@ -403,3 +403,416 @@ window.resetProgress = function() {
 if (document.querySelector('.prog-check') || document.getElementById('mock-tbody')) {
   initProgress();
 }
+
+// ── Schedule Start Date ──────────────────────────────────────────────────────
+const START_DATE_KEY = 'jee2027_start_date';
+
+function parseDateLocal(raw) {
+  // Parse YYYY-MM-DD as local midnight (avoids UTC offset shifting the date)
+  const [y, m, d] = raw.split('-').map(Number);
+  return new Date(y, m - 1, d);
+}
+
+function loadStartDate() {
+  // Returns {y, m, w} of the week the user started, or null
+  const raw = localStorage.getItem(START_DATE_KEY);
+  if (!raw) return null;
+  const d = parseDateLocal(raw);
+  if (isNaN(d)) return null;
+  return { y: d.getFullYear(), m: d.getMonth() + 1, w: Math.min(4, Math.ceil(d.getDate() / 7)) };
+}
+
+window.saveStartDate = function() {
+  const val = document.getElementById('start-date-input')?.value;
+  if (!val) { showToast('⚠ Pick a date first.'); return; }
+  localStorage.setItem(START_DATE_KEY, val);
+  updateStartDateUI();
+  showToast('✓ Start date saved.');
+};
+
+function updateStartDateUI() {
+  const inp  = document.getElementById('start-date-input');
+  const hint = document.getElementById('start-date-hint');
+  if (!inp || !hint) return;
+  const raw = localStorage.getItem(START_DATE_KEY);
+  if (raw) {
+    inp.value = raw;
+    const d = parseDateLocal(raw);
+    hint.textContent = '✓ Schedule starts ' + d.toLocaleDateString('en-GB', {day:'numeric',month:'long',year:'numeric'}) + ' — sessions before this date won\'t show as overdue.';
+    hint.className = 'start-date-hint set';
+  } else {
+    const today = new Date();
+    inp.value = today.toISOString().slice(0, 10);
+    hint.textContent = 'Not set — click Save to use today as your start date.';
+    hint.className = 'start-date-hint';
+  }
+}
+
+window.addEventListener('DOMContentLoaded', updateStartDateUI);
+
+// ── Schedule Management ───────────────────────────────────────────────────────
+const SCHEDULE_KEY = 'jee2027_schedule';
+
+function weeklyTargetsToFlat() {
+  const flat = [];
+  for (const slot of WEEKLY_TARGETS) {
+    for (const [id, name, subj] of slot.sessions) {
+      flat.push({ id, name, subj, y: slot.y, m: slot.m, w: slot.w, custom: false });
+    }
+  }
+  return flat;
+}
+
+function loadSchedule() {
+  try {
+    const raw = localStorage.getItem(SCHEDULE_KEY);
+    if (raw) return JSON.parse(raw);
+  } catch {}
+  return weeklyTargetsToFlat();
+}
+
+function saveSchedule(sessions) {
+  localStorage.setItem(SCHEDULE_KEY, JSON.stringify(sessions));
+}
+
+window.resetScheduleToDefault = function() {
+  if (!confirm('Reset to the default schedule? All your customisations — renamed topics, moved sessions, custom additions — will be permanently lost.')) return;
+  localStorage.removeItem(SCHEDULE_KEY);
+  showToast('✓ Schedule reset to defaults.');
+  if (typeof renderSchedulePage === 'function') renderSchedulePage();
+  if (document.getElementById('today-card')) renderTodayCard();
+};
+
+// ── Today's Progress Card ────────────────────────────────────────────────────
+const WEEKLY_TARGETS = [
+  // ── Phase 1 · March 2026 ──────────────────────────────────────────────────
+  {y:2026,m:3,w:1,sessions:[
+    ['m-t1','Trig Ratios & ASTC','math'],
+    ['m-t2','Trig Standard Values','math'],
+    ['p-s0a','Units & Dimensions','phys'],
+    ['p-s0b','Dimensional Analysis','phys'],
+    ['c-s1','Mole Concept','chem'],
+  ]},
+  {y:2026,m:3,w:2,sessions:[
+    ['m-t3','Trig Identities','math'],
+    ['m-t4','Compound Angles','math'],
+    ['p-s1','1D Motion','phys'],
+    ['c-s2','Stoichiometry','chem'],
+  ]},
+  {y:2026,m:3,w:3,sessions:[
+    ['m-t5','Triple/Half Angle Formulas','math'],
+    ['m-t6','Sum-to-Product','math'],
+    ['m-t7','Mixed Trig Practice','math'],
+    ['p-s2','Projectile Motion','phys'],
+    ['c-s3','Concentration Terms','chem'],
+  ]},
+  {y:2026,m:3,w:4,sessions:[
+    ['m-t8','Trig Equations','math'],
+    ['p-s3','Relative Motion','phys'],
+  ]},
+  // ── Phase 1 · April 2026 ──────────────────────────────────────────────────
+  {y:2026,m:4,w:1,sessions:[
+    ['m-t9','Inverse Trig','math'],
+    ['m-t10','Properties of Triangles','math'],
+    ['p-s4','Newton\'s Laws & FBD','phys'],
+    ['c-s4','Bohr Model & Spectra','chem'],
+  ]},
+  {y:2026,m:4,w:2,sessions:[
+    ['m-t11','JEE Problem Drill (Trig)','math'],
+    ['m-t12','Weak Topic Drill','math'],
+    ['p-s5','Friction','phys'],
+    ['c-s5','Quantum Numbers','chem'],
+  ]},
+  {y:2026,m:4,w:3,sessions:[
+    ['m-m2-1','Quadratics — Roots','math'],
+    ['m-m2-2','Quadratic Inequalities','math'],
+    ['p-s6','Pulley Systems','phys'],
+    ['c-s6','Electron Config & Trends','chem'],
+  ]},
+  {y:2026,m:4,w:4,sessions:[
+    ['m-t13','M1 Completion Test','math'],
+    ['m-m2-3','Functions — Domain & Range','math'],
+    ['m-m2-4','Composite & Inverse Functions','math'],
+  ]},
+  // ── Phase 1 · May 2026 ────────────────────────────────────────────────────
+  {y:2026,m:5,w:1,sessions:[
+    ['m-m2-5','Standard Function Graphs','math'],
+    ['m-m2-6','Complex Numbers','math'],
+    ['p-s7','Work-Energy Theorem','phys'],
+    ['c-s7','Ionic & Covalent Bonding','chem'],
+  ]},
+  {y:2026,m:5,w:2,sessions:[
+    ['m-m3-1','Straight Lines','math'],
+    ['m-m3-2','Circles','math'],
+    ['c-s8','VSEPR & Hybridisation','chem'],
+  ]},
+  {y:2026,m:5,w:3,sessions:[
+    ['m-m3-3','Parabola','math'],
+    ['p-s8','Conservation of Energy','phys'],
+    ['c-s9','Polarity & IMF','chem'],
+  ]},
+  {y:2026,m:5,w:4,sessions:[
+    ['m-m3-4','Ellipse & Hyperbola','math'],
+  ]},
+  // ── Phase 1 · June 2026 ───────────────────────────────────────────────────
+  {y:2026,m:6,w:1,sessions:[
+    ['m-m4-1','AP — nth Term & Sum','math'],
+    ['m-m4-2','GP & Infinite Series','math'],
+    ['p-s9','Ohm\'s Law & Circuits','phys'],
+    ['c-s10','Enthalpy & First Law','chem'],
+  ]},
+  {y:2026,m:6,w:2,sessions:[
+    ['m-m4-3','Special Series','math'],
+    ['p-s10','Kirchhoff\'s Laws','phys'],
+    ['c-s11','Hess\'s Law & Bond Energies','chem'],
+  ]},
+  {y:2026,m:6,w:3,sessions:[
+    ['m-m4-4','Binomial Theorem','math'],
+    ['p-s11','Cells & Potentiometer','phys'],
+    ['c-s12','Gibbs Free Energy','chem'],
+  ]},
+  {y:2026,m:6,w:4,sessions:[
+    ['m-m4-5','Permutations & Combinations','math'],
+  ]},
+  // ── Phase 2 · July 2026 ───────────────────────────────────────────────────
+  {y:2026,m:7,w:1,sessions:[
+    ['m-m5-1','Limits & L\'Hôpital','math'],
+    ['m-m5-2','Continuity & Differentiability','math'],
+    ['p-p5-1','Torque & Rotation','phys'],
+    ['c-c5-1','Kp, Kc & Reaction Quotient','chem'],
+  ]},
+  {y:2026,m:7,w:2,sessions:[
+    ['m-m5-3','Product/Quotient/Chain Rule','math'],
+    ['m-m5-4','Implicit & Parametric Diff.','math'],
+    ['p-p5-2','Moment of Inertia','phys'],
+    ['p-p5-3','Angular Momentum','phys'],
+    ['c-c5-2','Le Chatelier\'s Principle','chem'],
+  ]},
+  {y:2026,m:7,w:3,sessions:[
+    ['m-m5-5','Higher Derivatives & MVT','math'],
+    ['p-p5-4','Rolling Without Slipping','phys'],
+    ['c-c5-3','ICE Tables','chem'],
+  ]},
+  // ── Phase 2 · August 2026 ─────────────────────────────────────────────────
+  {y:2026,m:8,w:1,sessions:[
+    ['m-m6-1','Tangents & Normals','math'],
+    ['p-p6-1','Biot-Savart & Ampere\'s Law','phys'],
+    ['c-c6-1','pH & Acids / Bases','chem'],
+  ]},
+  {y:2026,m:8,w:2,sessions:[
+    ['m-m6-2','Maxima & Minima','math'],
+    ['m-m6-3','Increasing/Decreasing Functions','math'],
+    ['p-p6-2','Force on Current Conductor','phys'],
+    ['c-c6-2','Buffer Solutions & Henderson Eq.','chem'],
+  ]},
+  {y:2026,m:8,w:3,sessions:[
+    ['m-m6-4','Rate of Change','math'],
+    ['p-p6-3','Charged Particles in B Field','phys'],
+    ['c-c6-3','Ksp & Common Ion Effect','chem'],
+  ]},
+  {y:2026,m:8,w:4,sessions:[
+    ['p-p6-4','Magnetism of Matter','phys'],
+  ]},
+  // ── Phase 2 · September 2026 ──────────────────────────────────────────────
+  {y:2026,m:9,w:1,sessions:[
+    ['m-m7-1','Indefinite Integration','math'],
+    ['m-m7-2','Substitution Method','math'],
+    ['p-p7-1','Faraday\'s & Lenz\'s Law','phys'],
+    ['c-c7-1','Galvanic Cells & EMF','chem'],
+  ]},
+  {y:2026,m:9,w:2,sessions:[
+    ['m-m7-3','Integration by Parts','math'],
+    ['m-m7-4','Partial Fractions','math'],
+    ['p-p7-2','Self & Mutual Inductance','phys'],
+    ['c-c7-2','Nernst Equation','chem'],
+  ]},
+  {y:2026,m:9,w:3,sessions:[
+    ['m-m7-5','Definite Integration','math'],
+    ['p-p7-3','AC Circuits & Resonance','phys'],
+    ['c-c7-3','Electrolysis & Faraday\'s Laws','chem'],
+  ]},
+  {y:2026,m:9,w:4,sessions:[
+    ['m-m7-6','Area Under Curves','math'],
+    ['m-m7-7','Differential Equations','math'],
+    ['c-c7-4','Conductance & Kohlrausch','chem'],
+  ]},
+  // ── Phase 2 · October 2026 ────────────────────────────────────────────────
+  {y:2026,m:10,w:1,sessions:[
+    ['m-m8-1','Vectors — Magnitude & Addition','math'],
+    ['m-m8-2','Dot & Cross Products','math'],
+    ['p-p8-1','Reflection — Mirrors','phys'],
+    ['c-c8-1','GOC — Electronic Effects','chem'],
+    ['c-c8-2','Reaction Intermediates','chem'],
+  ]},
+  {y:2026,m:10,w:2,sessions:[
+    ['m-m8-3','3D Geometry','math'],
+    ['p-p8-2','Refraction & TIR','phys'],
+    ['c-c8-3','SN1 & SN2 Mechanisms','chem'],
+    ['c-c8-4','Elimination Reactions E1 & E2','chem'],
+  ]},
+  {y:2026,m:10,w:3,sessions:[
+    ['m-m8-4','Matrices','math'],
+    ['m-m8-5','Determinants & Inverse Matrix','math'],
+    ['p-p8-3','Prism & Dispersion','phys'],
+    ['c-c8-5','Addition Reactions','chem'],
+  ]},
+  {y:2026,m:10,w:4,sessions:[
+    ['m-m8-6','Probability','math'],
+    ['p-p8-4','Lenses & Optical Instruments','phys'],
+    ['c-c8-6','Electrophilic Aromatic Sub.','chem'],
+  ]},
+  // ── Phase 3 · November 2026 ───────────────────────────────────────────────
+  {y:2026,m:11,w:1,sessions:[['p3-w1','Calculus Consolidation','p3']]},
+  {y:2026,m:11,w:2,sessions:[['p3-w2','Thermodynamics + Carbonyl Chem','p3']]},
+  {y:2026,m:11,w:3,sessions:[['p3-w3','Formula Drill — All Subjects','p3']]},
+  {y:2026,m:11,w:4,sessions:[
+    ['p3-mock1','Mock Test 1','p3'],
+    ['p3-w4','Gap Analysis — Mock 1','p3'],
+  ]},
+  // ── Phase 3 · December 2026 ───────────────────────────────────────────────
+  {y:2026,m:12,w:1,sessions:[['p3-w5','Targeted Drills on Weak Topics','p3']]},
+  {y:2026,m:12,w:2,sessions:[
+    ['p3-mock2','Mock Test 2','p3'],
+    ['p3-w6','Gap Analysis — Mock 2','p3'],
+  ]},
+  // ── Phase 3 · January 2027 ────────────────────────────────────────────────
+  {y:2027,m:1,w:1,sessions:[['p3-mock3','Mock Test 3 — Pre-Exam Simulation','p3']]},
+  {y:2027,m:1,w:3,sessions:[['p3-attempt1','⭐ Attempt 1 — JEE Main Jan 2027','p3']]},
+  // ── Phase 4 · February 2027 ───────────────────────────────────────────────
+  {y:2027,m:2,w:1,sessions:[['p4-w1','Error Review — Attempt 1 Paper','p4']]},
+  {y:2027,m:2,w:2,sessions:[['p4-w2','Math Weak-Topic Drills','p4']]},
+  {y:2027,m:2,w:3,sessions:[['p4-w3','Physics Weak-Topic Drills','p4']]},
+  {y:2027,m:2,w:4,sessions:[['p4-w4','Chemistry + Inorganic Drills','p4']]},
+  // ── Phase 4 · March 2027 ──────────────────────────────────────────────────
+  {y:2027,m:3,w:2,sessions:[
+    ['p4-mock4','Mock Test 4 — Verify Improvement','p4'],
+    ['p4-w5','Speed Practice Blitz','p4'],
+  ]},
+  {y:2027,m:3,w:4,sessions:[['p4-mock5','Final Mock Test 5','p4']]},
+  // ── Phase 4 · April 2027 ──────────────────────────────────────────────────
+  {y:2027,m:4,w:2,sessions:[['p4-attempt2','⭐⭐ Attempt 2 — JEE Main Apr 2027','p4']]},
+];
+
+const TC_ICON  = {math:'📐', phys:'⚡', chem:'🧪', p3:'🎯', p4:'🚀'};
+const TC_COLOR = {math:'#1d4ed8', phys:'#0f766e', chem:'#b45309', p3:'#4f46e5', p4:'#059669'};
+const TC_MONTH = ['','January','February','March','April','May','June',
+                  'July','August','September','October','November','December'];
+const TC_DAY   = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+
+function tcPhaseLabel(yr, mo) {
+  if (yr === 2026 && mo <= 6)  return '📖 Phase 1 — Foundation Sprint';
+  if (yr === 2026 && mo <= 10) return '⚡ Phase 2 — JEE Layer';
+  if ((yr === 2026 && mo >= 11) || (yr === 2027 && mo === 1)) return '🎯 Phase 3 — Attempt 1 Drill';
+  if (yr === 2027 && mo <= 4)  return '🚀 Phase 4 — Attempt 2 Boost';
+  return 'JEE 2027 Prep';
+}
+
+function tcEsc(s) {
+  return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+}
+
+function renderTodayCard() {
+  const el = document.getElementById('today-card');
+  if (!el) return;
+
+  const now  = new Date();
+  const yr   = now.getFullYear();
+  const mo   = now.getMonth() + 1;
+  const day  = now.getDate();
+  const dow  = now.getDay();
+  const wk   = Math.min(4, Math.ceil(day / 7));
+  const prog = loadProgress();
+
+  const thisWeekSess = [];
+  const overdueSess  = [];
+
+  const start    = loadStartDate(); // {y,m,w} or null
+  const schedule = loadSchedule();  // flat [{id,name,subj,y,m,w,custom}]
+
+  for (const sess of schedule) {
+    // Skip sessions before the user's chosen start date
+    if (start) {
+      const beforeStart = sess.y < start.y
+        || (sess.y === start.y && sess.m < start.m)
+        || (sess.y === start.y && sess.m === start.m && sess.w < start.w);
+      if (beforeStart) continue;
+    }
+    const isPast = sess.y < yr
+      || (sess.y === yr && sess.m < mo)
+      || (sess.y === yr && sess.m === mo && sess.w < wk);
+    const isCurr = sess.y === yr && sess.m === mo && sess.w === wk;
+    if (isCurr)                          thisWeekSess.push([sess.id, sess.name, sess.subj]);
+    else if (isPast && !prog[sess.id])   overdueSess.push([sess.id, sess.name, sess.subj]);
+  }
+
+  const doneCount  = thisWeekSess.filter(s => prog[s[0]]).length;
+  const totalCount = thisWeekSess.length;
+  const overdueN   = overdueSess.length;
+  const allDone    = overdueN === 0 && totalCount > 0 && doneCount === totalCount;
+
+  const dateStr  = `${TC_DAY[dow]}, ${day} ${TC_MONTH[mo]} ${yr}`;
+  const phaseStr = tcPhaseLabel(yr, mo);
+
+  let h = `
+    <div class="tc-header">
+      <div class="tc-date">${dateStr}</div>
+      <div class="tc-right">
+        <div class="tc-phase">${phaseStr}</div>
+        <div class="tc-week-label">Week ${wk} of 4 &middot; ${TC_MONTH[mo]}</div>
+      </div>
+    </div>`;
+
+  // ── overdue section ──
+  if (overdueN > 0) {
+    h += `<div class="tc-section tc-overdue-section">
+      <div class="tc-section-title overdue-title">⚠ Overdue — tap to mark done</div>`;
+    for (const [id, name, subj] of overdueSess) {
+      h += `<div class="tc-row tc-overdue-row" onclick="tcToggle('${id}')" title="Tap to mark done">
+        <span class="tc-status">❌</span>
+        <span class="tc-subj">${TC_ICON[subj] || ''}</span>
+        <span class="tc-name tc-name-overdue">${tcEsc(name)}</span>
+      </div>`;
+    }
+    h += `</div>`;
+  }
+
+  // ── this week section ──
+  if (totalCount > 0) {
+    h += `<div class="tc-section">
+      <div class="tc-section-title">This week &middot; Week ${wk}</div>`;
+    for (const [id, name, subj] of thisWeekSess) {
+      const done = !!prog[id];
+      h += `<div class="tc-row${done ? ' tc-done-row' : ''}" onclick="tcToggle('${id}')" title="${done ? 'Tap to unmark' : 'Tap to mark done'}">
+        <span class="tc-status">${done ? '✅' : '<span class="tc-todo-dot">○</span>'}</span>
+        <span class="tc-subj">${TC_ICON[subj] || ''}</span>
+        <span class="tc-name" style="${done ? '' : 'color:' + (TC_COLOR[subj] || 'inherit')}">${tcEsc(name)}</span>
+      </div>`;
+    }
+    h += `</div>`;
+  } else {
+    h += `<div class="tc-section"><p class="tc-empty">No sessions scheduled for this week.</p></div>`;
+  }
+
+  // ── all-done banner ──
+  if (allDone) {
+    h += `<div class="tc-all-done">🎉 All sessions up to date! You're right on track.</div>`;
+  }
+
+  // ── footer ──
+  h += `<div class="tc-footer">
+    <span class="tc-summary">${doneCount}/${totalCount} done this week</span>
+    ${overdueN > 0 ? `<span class="tc-overdue-badge">${overdueN} overdue</span>` : ''}
+    <a href="progress.html" class="tc-link">View Full Progress →</a>
+  </div>`;
+
+  el.innerHTML = h;
+}
+
+window.tcToggle = function(id) {
+  const prog = loadProgress();
+  if (prog[id]) { delete prog[id]; } else { prog[id] = true; }
+  saveProgress(prog);
+  renderTodayCard();
+};
+
+if (document.getElementById('today-card')) renderTodayCard();
