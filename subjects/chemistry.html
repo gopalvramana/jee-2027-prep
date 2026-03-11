@@ -1,0 +1,915 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chemistry — JEE 2027 Prep</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="nav-brand">JEE 2027</div>
+    <div class="nav-links">
+      <a href="../index.html">Dashboard</a>
+      <a href="math.html">📐 Math</a>
+      <a href="physics.html">⚡ Physics</a>
+      <a href="chemistry.html" class="chem-active">🧪 Chemistry</a>
+      <a href="../progress.html">✅ Progress</a>
+      <a href="../settings.html">⚙ Settings</a>
+    </div>
+    <button class="nav-toggle" onclick="toggleNav()">☰</button>
+  </div>
+</nav>
+
+<header class="page-hero chem-hero">
+  <div class="page-hero-content">
+    <div class="page-hero-tag">All Phases · March 2026 – April 2027</div>
+    <h1>🧪 Chemistry</h1>
+    <p>Phase 1: C1–C4 · Phase 2: C5–C8 · Phase 3/4: Revision &amp; Boost</p>
+    <div class="page-hero-meta">
+      <div class="meta-item"><strong>Target:</strong> 38–48 / 100</div>
+      <div class="meta-item"><strong>Phase 1:</strong> C1–C4 (12 sessions)</div>
+      <div class="meta-item"><strong>Phase 2:</strong> C5–C8 (15 sessions)</div>
+      <div class="meta-item"><strong>JEE weight covered:</strong> ~70–80% of Chemistry</div>
+    </div>
+  </div>
+</header>
+
+<section class="section">
+<div class="container">
+
+<!-- C1 — MOLE CONCEPT -->
+<div class="unit-section chem-unit">
+  <div class="unit-header">
+    <span class="unit-num">C1</span>
+    <span class="unit-title">Mole Concept &amp; Stoichiometry</span>
+    <span class="unit-period">March 2026</span>
+    <span class="unit-weight">7–9% · Foundation of all Phys. Chem</span>
+    <span class="unit-toggle">▼</span>
+  </div>
+  <div class="unit-body">
+    <p style="font-size:.875rem;color:var(--ink3);margin-bottom:1.25rem;">
+      <strong style="color:var(--ink)">Critical unit:</strong> Mole Concept is the foundation of ALL Physical Chemistry. Nothing in Phase 2 chemistry (equilibrium, electrochemistry) works without this unit being fully mastered. Spend extra time here if needed.
+    </p>
+
+    <div class="session-card">
+      <div class="session-head"><span class="session-num">S1</span><span class="session-title">Mole, Atomic Mass &amp; Avogadro's Number</span><span class="session-dur">1.5 hrs</span><span class="session-toggle">▼</span></div>
+      <div class="session-body"><div class="session-body-grid">
+        <div><div class="col-label">Concepts</div><ul class="concepts-list">
+          <li>Atomic mass unit: 1 amu = 1/12 mass of C-12 atom</li>
+          <li>1 mole = 6.022 × 10<sup>23</sup> particles (Avogadro's number N<sub>A</sub>)</li>
+          <li>Molar mass: mass in grams of 1 mole = numerical value of molecular weight</li>
+          <li>n = mass (g) / molar mass (g/mol)</li>
+          <li>Number of particles = n × N<sub>A</sub></li>
+          <li>Gas at STP: 1 mole = 22.4 L (molar volume)</li>
+          <li>Empirical vs molecular formula: find from % composition</li>
+        </ul><div class="study-tip"><strong>Tip:</strong> Keep a table of common molar masses: H=1, C=12, N=14, O=16, Na=23, Cl=35.5, Ca=40. Refer constantly until memorised.</div></div>
+        <div><div class="col-label">Practice Problems</div><ol class="problems-list">
+          <li>Find moles and number of molecules in 44 g of CO₂.</li>
+          <li>Find mass of 3 moles of H₂SO₄.</li>
+          <li>Compound is 40% C, 6.67% H, 53.33% O. Find empirical formula.</li>
+          <li class="jee-q">Find number of atoms in 0.1 mol of Na₂SO₄.</li>
+        </ol></div>
+      </div></div>
+    </div>
+
+    <div class="session-card">
+      <div class="session-head"><span class="session-num">S2</span><span class="session-title">Stoichiometry &amp; Limiting Reagent</span><span class="session-dur">1.5 hrs</span><span class="session-toggle">▼</span></div>
+      <div class="session-body"><div class="session-body-grid">
+        <div><div class="col-label">Concepts</div><ul class="concepts-list">
+          <li>Balanced equation gives mole ratios of reactants and products</li>
+          <li>Stoichiometry: use mole ratios to find mass/moles of products</li>
+          <li>Limiting reagent: reactant consumed first — limits product amount</li>
+          <li>Excess reagent: left over after reaction is complete</li>
+          <li>% yield = (actual yield / theoretical yield) × 100</li>
+          <li>% purity = (pure substance / total mass) × 100</li>
+        </ul><div class="study-tip"><strong>Tip:</strong> For limiting reagent: divide moles of each reactant by its stoichiometric coefficient. The smaller ratio is the limiting reagent.</div></div>
+        <div><div class="col-label">Practice Problems</div><ol class="problems-list">
+          <li>10 g H₂ reacts with 80 g O₂ to form water. Find limiting reagent and mass of water.</li>
+          <li>20 g CaCO₃ heated. Find mass of CO₂ produced (80% yield).</li>
+          <li class="jee-q">N₂ + 3H₂ → 2NH₃. If 28 g N₂ and 9 g H₂ are mixed, find moles of NH₃.</li>
+          <li>5 g impure NaOH requires 200 mL of 0.5M HCl. Find % purity of NaOH.</li>
+        </ol></div>
+      </div></div>
+    </div>
+
+    <div class="session-card">
+      <div class="session-head"><span class="session-num">S3</span><span class="session-title">Concentration Terms &amp; Solutions</span><span class="session-dur">1.5 hrs</span><span class="session-toggle">▼</span></div>
+      <div class="session-body"><div class="session-body-grid">
+        <div><div class="col-label">Concepts</div><ul class="concepts-list">
+          <li>Molarity M = moles of solute / volume of solution (L)</li>
+          <li>Molality m = moles of solute / mass of solvent (kg)</li>
+          <li>Mole fraction: X<sub>A</sub> = n<sub>A</sub> / (n<sub>A</sub> + n<sub>B</sub>)</li>
+          <li>% by mass: (mass of solute / mass of solution) × 100</li>
+          <li>Dilution: M<sub>1</sub>V<sub>1</sub> = M<sub>2</sub>V<sub>2</sub> (moles constant)</li>
+          <li>Molarity changes with temperature (volume changes); Molality does NOT</li>
+        </ul><div class="study-tip"><strong>Tip:</strong> Molarity uses volume of solution (temperature-sensitive). Molality uses mass of solvent (temperature-independent). JEE exploits this distinction.</div></div>
+        <div><div class="col-label">Practice Problems</div><ol class="problems-list">
+          <li>Dissolve 9.8 g H₂SO₄ in 500 mL solution. Find molarity.</li>
+          <li>Find molality of 20% NaOH solution (density 1.22 g/mL).</li>
+          <li class="jee-q">200 mL of 0.5M HCl + 300 mL of 0.2M HCl. Find resulting molarity.</li>
+          <li>Find mole fraction of ethanol in 46 g ethanol + 180 g water.</li>
+        </ol></div>
+      </div></div>
+    </div>
+
+    <h4 style="font-size:.9rem;font-weight:700;margin:1.5rem 0 .5rem;color:var(--chem)">Key Formulas — Mole Concept</h4>
+    <div class="formula-table-wrap"><table class="formula-table">
+      <thead><tr><th>Formula</th><th>Application</th><th>Note</th></tr></thead>
+      <tbody>
+        <tr><td class="formula-cell">n = m / M</td><td>Moles from mass</td><td class="note-cell">m=mass(g), M=molar mass</td></tr>
+        <tr><td class="formula-cell">N = n × N<sub>A</sub></td><td>Number of particles</td><td class="note-cell">N<sub>A</sub> = 6.022×10<sup>23</sup></td></tr>
+        <tr><td class="formula-cell">V = n × 22.4 L (STP)</td><td>Volume of gas at STP</td><td class="note-cell">0°C, 1 atm</td></tr>
+        <tr><td class="formula-cell">M = n / V(L)</td><td>Molarity</td><td class="note-cell">V must be in litres</td></tr>
+        <tr><td class="formula-cell">m = n / W<sub>solvent</sub>(kg)</td><td>Molality</td><td class="note-cell">Temperature-independent</td></tr>
+        <tr><td class="formula-cell">M₁V₁ = M₂V₂</td><td>Dilution calculation</td><td class="note-cell">Moles constant on dilution</td></tr>
+      </tbody>
+    </table></div>
+  </div>
+</div>
+
+<!-- C2 — ATOMIC STRUCTURE -->
+<div class="unit-section chem-unit">
+  <div class="unit-header">
+    <span class="unit-num">C2</span>
+    <span class="unit-title">Atomic Structure</span>
+    <span class="unit-period">April 2026</span>
+    <span class="unit-weight">6–7% of paper</span>
+    <span class="unit-toggle">▼</span>
+  </div>
+  <div class="unit-body">
+    <div class="session-card">
+      <div class="session-head"><span class="session-num">S4</span><span class="session-title">Bohr Model &amp; Atomic Spectra</span><span class="session-dur">1.5 hrs</span><span class="session-toggle">▼</span></div>
+      <div class="session-body"><div class="session-body-grid">
+        <div><div class="col-label">Concepts</div><ul class="concepts-list">
+          <li>Bohr postulates: electrons orbit in fixed energy levels; energy emitted/absorbed when jumping</li>
+          <li>Energy of nth orbit: E<sub>n</sub> = −13.6/n² eV (for hydrogen)</li>
+          <li>Radius of nth orbit: r<sub>n</sub> = 0.529 × n² Å (for hydrogen)</li>
+          <li>Rydberg equation: 1/λ = R<sub>H</sub>(1/n<sub>1</sub>² − 1/n<sub>2</sub>²)</li>
+          <li>Lyman series: UV, n→1; Balmer: visible, n→2; Paschen: IR, n→3</li>
+          <li>de Broglie: λ = h/mv — wave nature of particles</li>
+          <li>Heisenberg uncertainty: Δx·Δp ≥ h/4π</li>
+        </ul><div class="study-tip"><strong>Tip:</strong> Lyman series ends at n=1 (UV), Balmer ends at n=2 (visible). Memorise this — JEE tests it directly.</div></div>
+        <div><div class="col-label">Practice Problems</div><ol class="problems-list">
+          <li>Find energy and radius of 3rd orbit of hydrogen.</li>
+          <li>Electron jumps from n=4 to n=2. Find wavelength of emitted photon. Which series?</li>
+          <li class="jee-q">How many spectral lines are possible when electron falls from n=5 to n=1?</li>
+          <li>Find de Broglie wavelength of electron moving at 2×10⁶ m/s.</li>
+        </ol></div>
+      </div></div>
+    </div>
+    <div class="session-card">
+      <div class="session-head"><span class="session-num">S5</span><span class="session-title">Quantum Numbers &amp; Orbitals</span><span class="session-dur">1.5 hrs</span><span class="session-toggle">▼</span></div>
+      <div class="session-body"><div class="session-body-grid">
+        <div><div class="col-label">Concepts</div><ul class="concepts-list">
+          <li>Principal quantum number n: shell, determines size and energy</li>
+          <li>Azimuthal l: 0 to (n-1), determines subshell shape — s(0), p(1), d(2), f(3)</li>
+          <li>Magnetic m<sub>l</sub>: −l to +l, determines orientation</li>
+          <li>Spin m<sub>s</sub>: +½ or −½, two electrons per orbital</li>
+          <li>Pauli exclusion: no two electrons have all 4 quantum numbers same</li>
+          <li>Max electrons: shell n → 2n²; subshells: s=2, p=6, d=10, f=14</li>
+        </ul><div class="study-tip"><strong>Tip:</strong> Quantum number rules must be memorised perfectly — they appear in almost every Atomic Structure JEE question.</div></div>
+        <div><div class="col-label">Practice Problems</div><ol class="problems-list">
+          <li>Write all possible quantum numbers for electrons in 3d subshell.</li>
+          <li>How many electrons can have n=3, l=1?</li>
+          <li class="jee-q">Which set of quantum numbers is NOT possible: (2,1,0,+½), (3,3,0,+½), (2,0,0,−½)?</li>
+          <li>Find total orbitals and max electrons in n=4 shell.</li>
+        </ol></div>
+      </div></div>
+    </div>
+    <div class="session-card">
+      <div class="session-head"><span class="session-num">S6</span><span class="session-title">Electron Configuration &amp; Periodic Trends</span><span class="session-dur">1.5 hrs</span><span class="session-toggle">▼</span></div>
+      <div class="session-body"><div class="session-body-grid">
+        <div><div class="col-label">Concepts</div><ul class="concepts-list">
+          <li>Aufbau: fill in order 1s&lt;2s&lt;2p&lt;3s&lt;3p&lt;4s&lt;3d&lt;4p&lt;5s&lt;4d...</li>
+          <li>Hund's rule: fill each orbital singly before pairing</li>
+          <li>Exceptions: Cr = [Ar]3d⁵4s¹ and Cu = [Ar]3d¹⁰4s¹</li>
+          <li>Atomic radius: decreases across period, increases down group</li>
+          <li>Ionisation energy: increases across period, decreases down group</li>
+          <li>Electronegativity: F &gt; O &gt; N &gt; Cl &gt; Br &gt; S &gt; C &gt; H</li>
+        </ul><div class="study-tip"><strong>Tip:</strong> Cr and Cu exceptions appear almost every year. Memorise: Cr=[Ar]3d⁵4s¹, Cu=[Ar]3d¹⁰4s¹. Half-filled and fully-filled d are extra stable.</div></div>
+        <div><div class="col-label">Practice Problems</div><ol class="problems-list">
+          <li>Write electron configuration of Fe (Z=26) and Fe²⁺.</li>
+          <li>Arrange in order of increasing atomic radius: Na, Mg, Al, Si.</li>
+          <li class="jee-q">Which has highest 1st ionisation energy: Li, Be, B, N, O?</li>
+          <li>Why does Cr have [Ar]3d⁵4s¹ instead of [Ar]3d⁴4s²?</li>
+        </ol></div>
+      </div></div>
+    </div>
+
+    <h4 style="font-size:.9rem;font-weight:700;margin:1.5rem 0 .5rem;color:var(--chem)">Quick Reference — Atomic Structure</h4>
+    <div class="formula-table-wrap"><table class="formula-table">
+      <thead><tr><th>Concept</th><th>Key Value or Rule</th><th>JEE Note</th></tr></thead>
+      <tbody>
+        <tr><td>H atom ground state energy</td><td class="formula-cell">E₁ = −13.6 eV; E<sub>n</sub> = −13.6/n² eV</td><td class="note-cell">Higher n = less negative = more energy</td></tr>
+        <tr><td>H atom ground state radius</td><td class="formula-cell">r₁ = 0.529 Å; r<sub>n</sub> = 0.529n² Å</td><td class="note-cell">Bohr radius</td></tr>
+        <tr><td>Lyman series</td><td class="formula-cell">Transitions to n=1, UV region</td><td class="note-cell">Highest energy series</td></tr>
+        <tr><td>Balmer series</td><td class="formula-cell">Transitions to n=2, visible light</td><td class="note-cell">Only visible series</td></tr>
+        <tr><td>Cr exception</td><td class="formula-cell">[Ar] 3d⁵ 4s¹</td><td class="note-cell">JEE tests this every year</td></tr>
+        <tr><td>Cu exception</td><td class="formula-cell">[Ar] 3d¹⁰ 4s¹</td><td class="note-cell">JEE tests this every year</td></tr>
+      </tbody>
+    </table></div>
+  </div>
+</div>
+
+<!-- C3 — BONDING -->
+<div class="unit-section chem-unit">
+  <div class="unit-header">
+    <span class="unit-num">C3</span>
+    <span class="unit-title">Chemical Bonding</span>
+    <span class="unit-period">May 2026</span>
+    <span class="unit-weight">5–7% of paper</span>
+    <span class="unit-toggle">▼</span>
+  </div>
+  <div class="unit-body">
+    <div class="session-card">
+      <div class="session-head"><span class="session-num">S7</span><span class="session-title">Ionic &amp; Covalent Bonding, Lewis Structures</span><span class="session-dur">1.5 hrs</span><span class="session-toggle">▼</span></div>
+      <div class="session-body"><div class="session-body-grid">
+        <div><div class="col-label">Concepts</div><ul class="concepts-list">
+          <li>Ionic bond: electron transfer between metal and non-metal</li>
+          <li>Covalent bond: electron sharing between non-metals</li>
+          <li>Bond order: single=1, double=2, triple=3 — higher order = shorter and stronger</li>
+          <li>Formal charge = valence e⁻ − non-bonding e⁻ − ½(bonding e⁻)</li>
+          <li>Lewis structures: satisfy octet rule; exceptions: H (2), Be, B (incomplete octets), P, S (expanded)</li>
+          <li>Resonance: multiple valid Lewis structures — actual structure is average</li>
+        </ul><div class="study-tip"><strong>Tip:</strong> Draw Lewis structure before attempting VSEPR or hybridisation. The structure tells you everything.</div></div>
+        <div><div class="col-label">Practice Problems</div><ol class="problems-list">
+          <li>Draw Lewis structures of SO₂, PCl₅, XeF₄.</li>
+          <li>Find formal charge on each atom in CO₂ and CO.</li>
+          <li class="jee-q">Which has shorter C-O bond: CO, CO₂, or CO₃²⁻? Explain using bond order.</li>
+          <li>Why does BF₃ violate the octet rule? Draw its Lewis structure.</li>
+        </ol></div>
+      </div></div>
+    </div>
+    <div class="session-card">
+      <div class="session-head"><span class="session-num">S8</span><span class="session-title">VSEPR Theory &amp; Hybridisation</span><span class="session-dur">1.5 hrs</span><span class="session-toggle">▼</span></div>
+      <div class="session-body"><div class="session-body-grid">
+        <div><div class="col-label">Concepts</div><ul class="concepts-list">
+          <li>VSEPR: electron pairs repel — geometry minimises repulsion</li>
+          <li>Lone pairs repel more than bonding pairs: LP-LP &gt; LP-BP &gt; BP-BP</li>
+          <li>sp: linear (2 BP, 0 LP) — e.g. CO₂, BeH₂</li>
+          <li>sp²: trigonal planar (3 BP, 0 LP) — e.g. BF₃, SO₃</li>
+          <li>sp³: tetrahedral (4 BP, 0 LP) — e.g. CH₄; bent if lone pairs — H₂O</li>
+          <li>sp³d: trigonal bipyramidal (PCl₅); sp³d²: octahedral (SF₆)</li>
+        </ul><div class="study-tip"><strong>Tip:</strong> Count all electron pairs (bonding + lone) around central atom. Pairs: 2→linear, 3→trigonal, 4→tetrahedral, 5→trig. bipyramidal, 6→octahedral.</div></div>
+        <div><div class="col-label">Practice Problems</div><ol class="problems-list">
+          <li>Predict geometry and hybridisation of NH₃, H₂O, SF₆, PCl₅.</li>
+          <li>Why is bond angle in H₂O (104.5°) less than in NH₃ (107°)?</li>
+          <li class="jee-q">Which is more polar — NF₃ or NH₃? Justify using VSEPR.</li>
+          <li>Predict geometry of XeF₂, XeF₄, XeOF₄.</li>
+        </ol></div>
+      </div></div>
+    </div>
+    <div class="session-card">
+      <div class="session-head"><span class="session-num">S9</span><span class="session-title">Polarity &amp; Intermolecular Forces</span><span class="session-dur">1.5 hrs</span><span class="session-toggle">▼</span></div>
+      <div class="session-body"><div class="session-body-grid">
+        <div><div class="col-label">Concepts</div><ul class="concepts-list">
+          <li>Molecular polarity = vector sum of all bond dipoles</li>
+          <li>CO₂ is non-polar (linear, dipoles cancel); H₂O is polar (bent, dipoles add)</li>
+          <li>Van der Waals: London (all molecules), dipole-dipole (polar), H-bonding</li>
+          <li>H-bond: F-H, O-H, N-H with electronegative atom — stronger than vdW</li>
+          <li>Stronger intermolecular forces → higher boiling point</li>
+          <li>H₂O has anomalously high boiling point due to H-bonding network</li>
+        </ul><div class="study-tip"><strong>Tip:</strong> Symmetrical molecules are non-polar even if bonds are polar — CCl₄, CO₂, BF₃. Asymmetrical with polar bonds → polar.</div></div>
+        <div><div class="col-label">Practice Problems</div><ol class="problems-list">
+          <li>Which is more polar and why: HF or HCl? CCl₄ or CHCl₃?</li>
+          <li>Arrange in order of increasing boiling point: CH₄, NH₃, HF, H₂O.</li>
+          <li class="jee-q">Why does HF have lower boiling point than H₂O despite stronger H-bonds per molecule?</li>
+          <li>Which molecules have H-bonding: CH₃OH, CH₃F, NH₃, HCN?</li>
+        </ol></div>
+      </div></div>
+    </div>
+
+    <h4 style="font-size:.9rem;font-weight:700;margin:1.5rem 0 .5rem;color:var(--chem)">VSEPR Geometry Quick Reference</h4>
+    <div class="formula-table-wrap"><table class="formula-table">
+      <thead><tr><th>Bond Pairs</th><th>Lone Pairs</th><th>Molecular Geometry</th><th>Hybridisation</th><th>Example</th></tr></thead>
+      <tbody>
+        <tr><td>2</td><td>0</td><td>Linear</td><td class="formula-cell">sp</td><td>CO₂, BeCl₂</td></tr>
+        <tr><td>3</td><td>0</td><td>Trigonal Planar</td><td class="formula-cell">sp²</td><td>BF₃, SO₃</td></tr>
+        <tr><td>2</td><td>1</td><td>Bent (V-shape)</td><td class="formula-cell">sp²</td><td>SO₂, O₃</td></tr>
+        <tr><td>4</td><td>0</td><td>Tetrahedral</td><td class="formula-cell">sp³</td><td>CH₄, CCl₄</td></tr>
+        <tr><td>3</td><td>1</td><td>Trigonal Pyramidal</td><td class="formula-cell">sp³</td><td>NH₃, PCl₃</td></tr>
+        <tr><td>2</td><td>2</td><td>Bent (V-shape)</td><td class="formula-cell">sp³</td><td>H₂O, H₂S</td></tr>
+        <tr><td>5</td><td>0</td><td>Trigonal Bipyramidal</td><td class="formula-cell">sp³d</td><td>PCl₅, PF₅</td></tr>
+        <tr><td>4</td><td>1</td><td>See-saw</td><td class="formula-cell">sp³d</td><td>SF₄, IF₄⁺</td></tr>
+        <tr><td>6</td><td>0</td><td>Octahedral</td><td class="formula-cell">sp³d²</td><td>SF₆</td></tr>
+        <tr><td>4</td><td>2</td><td>Square Planar</td><td class="formula-cell">sp³d²</td><td>XeF₄, ICl₄⁻</td></tr>
+      </tbody>
+    </table></div>
+  </div>
+</div>
+
+<!-- C4 — THERMOCHEMISTRY -->
+<div class="unit-section chem-unit">
+  <div class="unit-header">
+    <span class="unit-num">C4</span>
+    <span class="unit-title">Thermochemistry</span>
+    <span class="unit-period">June 2026</span>
+    <span class="unit-weight">5–6% of paper</span>
+    <span class="unit-toggle">▼</span>
+  </div>
+  <div class="unit-body">
+    <div class="session-card">
+      <div class="session-head"><span class="session-num">S10</span><span class="session-title">Enthalpy, Heat &amp; First Law of Thermodynamics</span><span class="session-dur">1.5 hrs</span><span class="session-toggle">▼</span></div>
+      <div class="session-body"><div class="session-body-grid">
+        <div><div class="col-label">Concepts</div><ul class="concepts-list">
+          <li>First Law: ΔU = q + w (internal energy = heat + work)</li>
+          <li>Work at constant pressure: w = −PΔV</li>
+          <li>Enthalpy: ΔH = ΔU + Δn<sub>g</sub>RT (for reactions involving gases)</li>
+          <li>Exothermic: ΔH &lt; 0 (heat released); Endothermic: ΔH &gt; 0 (heat absorbed)</li>
+          <li>Standard enthalpy ΔH° at 298 K, 1 atm</li>
+          <li>ΔH°<sub>f</sub> of any element in standard state = 0</li>
+        </ul><div class="study-tip"><strong>Tip:</strong> Sign convention: q &gt; 0 means heat flows INTO system. ΔH &lt; 0 means reaction releases heat (exothermic).</div></div>
+        <div><div class="col-label">Practice Problems</div><ol class="problems-list">
+          <li>For 2H₂(g) + O₂(g) → 2H₂O(l), ΔH = −572 kJ. Find ΔH for formation of 1 mol H₂O.</li>
+          <li>Find ΔU for a reaction where ΔH = −100 kJ and Δn<sub>g</sub> = 2 at 300 K.</li>
+          <li class="jee-q">Gas expands from 5L to 10L at constant pressure of 2 atm. Find work done by gas.</li>
+          <li>Classify: combustion of CH₄, dissolving NH₄NO₃ in water — exothermic or endothermic?</li>
+        </ol></div>
+      </div></div>
+    </div>
+    <div class="session-card">
+      <div class="session-head"><span class="session-num">S11</span><span class="session-title">Hess's Law &amp; Bond Energies</span><span class="session-dur">1.5 hrs</span><span class="session-toggle">▼</span></div>
+      <div class="session-body"><div class="session-body-grid">
+        <div><div class="col-label">Concepts</div><ul class="concepts-list">
+          <li>Hess's Law: ΔH change for a reaction is same regardless of path taken</li>
+          <li>Reverse a reaction → ΔH changes sign</li>
+          <li>Multiply reaction by n → ΔH multiplied by n</li>
+          <li>Standard ΔH°<sub>rxn</sub> = Σ ΔH°<sub>f</sub>(products) − Σ ΔH°<sub>f</sub>(reactants)</li>
+          <li>Bond energy method: ΔH°<sub>rxn</sub> = Σ(bonds broken) − Σ(bonds formed)</li>
+          <li>Bond breaking: endothermic (+); bond forming: exothermic (−)</li>
+        </ul><div class="study-tip"><strong>Tip:</strong> For Hess's law: write target equation first. Manipulate given equations piece by piece to match it.</div></div>
+        <div><div class="col-label">Practice Problems</div><ol class="problems-list">
+          <li>Using Hess's law: find ΔH for C₂H₂ combustion from given ΔH values for C and H₂ combustion.</li>
+          <li>Using bond energies, find ΔH for H₂ + Cl₂ → 2HCl. (H-H=436, Cl-Cl=242, H-Cl=431 kJ/mol)</li>
+          <li class="jee-q">ΔH°<sub>f</sub>: CO₂=−393, H₂O=−286, C₆H₆=+49 kJ/mol. Find ΔH of combustion of benzene.</li>
+          <li>Find enthalpy of sublimation of carbon using Hess's law.</li>
+        </ol></div>
+      </div></div>
+    </div>
+    <div class="session-card">
+      <div class="session-head"><span class="session-num">S12</span><span class="session-title">Entropy, Gibbs Free Energy &amp; Spontaneity</span><span class="session-dur">1.5 hrs</span><span class="session-toggle">▼</span></div>
+      <div class="session-body"><div class="session-body-grid">
+        <div><div class="col-label">Concepts</div><ul class="concepts-list">
+          <li>Entropy S: measure of disorder — gases &gt; liquids &gt; solids</li>
+          <li>Spontaneous processes increase total entropy of universe</li>
+          <li>ΔS &gt; 0: gas produced, dissolving, heating; ΔS &lt; 0: gas absorbed, crystallisation</li>
+          <li>Gibbs free energy: ΔG = ΔH − TΔS</li>
+          <li>Spontaneous if ΔG &lt; 0; non-spontaneous if ΔG &gt; 0</li>
+          <li>ΔG° = −RT ln K (connects thermodynamics to equilibrium)</li>
+        </ul><div class="study-tip"><strong>Tip:</strong> Entropy: more moles of gas = more disorder = positive ΔS. This is the most frequently tested entropy concept in JEE.</div></div>
+        <div><div class="col-label">Practice Problems</div><ol class="problems-list">
+          <li>Predict sign of ΔS: (a) ice melts (b) 2 gases → 1 gas (c) solid dissolves.</li>
+          <li>ΔH = −200 kJ, ΔS = −100 J/K at 500 K. Find ΔG. Is reaction spontaneous?</li>
+          <li class="jee-q">ΔH = +30 kJ, ΔS = +100 J/K. At what temperature does reaction become spontaneous?</li>
+          <li>For each combination of (+/−) ΔH and ΔS, classify spontaneity at high and low temperatures.</li>
+        </ol></div>
+      </div></div>
+    </div>
+
+    <h4 style="font-size:.9rem;font-weight:700;margin:1.5rem 0 .5rem;color:var(--chem)">Key Formulas — Thermochemistry</h4>
+    <div class="formula-table-wrap"><table class="formula-table">
+      <thead><tr><th>Formula</th><th>Application</th><th>Note</th></tr></thead>
+      <tbody>
+        <tr><td class="formula-cell">ΔU = q + w</td><td>First law of thermodynamics</td><td class="note-cell">w = −PΔV for expansion</td></tr>
+        <tr><td class="formula-cell">ΔH = ΔU + Δn<sub>g</sub>RT</td><td>Relate ΔH and ΔU</td><td class="note-cell">Δn<sub>g</sub> = mol gas products − reactants</td></tr>
+        <tr><td class="formula-cell">ΔH°<sub>rxn</sub> = Σ ΔH°<sub>f</sub>(prod) − Σ ΔH°<sub>f</sub>(react)</td><td>Standard enthalpy from formation values</td><td class="note-cell">ΔH°<sub>f</sub>(element) = 0</td></tr>
+        <tr><td class="formula-cell">ΔH = Σ(broken) − Σ(formed)</td><td>Bond energy method</td><td class="note-cell">Breaking bonds = endothermic</td></tr>
+        <tr><td class="formula-cell">ΔG = ΔH − TΔS</td><td>Gibbs free energy — spontaneity</td><td class="note-cell">ΔG &lt; 0 → spontaneous</td></tr>
+        <tr><td class="formula-cell">ΔG° = −RT ln K</td><td>Connect free energy to equilibrium constant</td><td class="note-cell">ΔG°&lt;0 means K&gt;1</td></tr>
+      </tbody>
+    </table></div>
+  </div>
+</div>
+
+<!-- PHASE 2 DIVIDER -->
+<div class="phase-divider p2-div">
+  <h3>Phase 2 — JEE Layer <span style="font-size:.85rem;font-weight:500;opacity:.75">(July – October 2026)</span></h3>
+  <p style="font-size:.875rem;margin:.25rem 0 0">Equilibrium · Ionic Equilibrium · Electrochemistry · Organic GOC — high-yield topics appearing in nearly every JEE paper.</p>
+</div>
+
+<!-- C5 — CHEMICAL EQUILIBRIUM -->
+<div class="unit-section chem-unit">
+  <div class="unit-header">
+    <span class="unit-num">C5</span>
+    <span class="unit-title">Chemical Equilibrium</span>
+    <span class="unit-period">July 2026</span>
+    <span class="unit-weight">7–9% · High-yield Physical Chem</span>
+    <span class="unit-toggle">▼</span>
+  </div>
+  <div class="unit-body">
+    <div class="session-card">
+      <div class="session-head"><span class="session-num">E1</span><span class="session-title">K<sub>p</sub>, K<sub>c</sub> &amp; Reaction Quotient Q</span><span class="session-dur">1.5 hrs</span><span class="session-toggle">▼</span></div>
+      <div class="session-body"><div class="session-body-grid">
+        <div><div class="col-label">Concepts</div><ul class="concepts-list">
+          <li>Law of mass action: K<sub>c</sub> = [products]^p / [reactants]^r at equilibrium</li>
+          <li>K<sub>p</sub> = K<sub>c</sub>(RT)<sup>Δn<sub>g</sub></sup>; Δn<sub>g</sub> = moles of gaseous products − moles of gaseous reactants</li>
+          <li>Reaction quotient Q: same expression as K but at non-equilibrium concentrations</li>
+          <li>Q &lt; K → reaction proceeds forward; Q &gt; K → proceeds backward; Q = K → at equilibrium</li>
+          <li>K for reverse reaction = 1/K; multiply reaction by n → K<sup>n</sup></li>
+          <li>Kp has no units when standard pressures are used (dimensionless K in thermodynamics)</li>
+        </ul><div class="study-tip"><strong>Tip:</strong> Q tells direction; K tells extent. If Q &lt; K, need more products. If Q &gt; K, need more reactants.</div></div>
+        <div><div class="col-label">Practice Problems</div><ol class="problems-list">
+          <li>N₂ + 3H₂ ⇌ 2NH₃. Write K<sub>c</sub> and K<sub>p</sub>. Find K<sub>p</sub> if K<sub>c</sub>=0.5 at 400 K.</li>
+          <li>2SO₂ + O₂ ⇌ 2SO₃, K<sub>c</sub>=4. [SO₂]=0.4M, [O₂]=0.3M. Find [SO₃] at equilibrium.</li>
+          <li class="jee-q">For PCl₅ ⇌ PCl₃ + Cl₂, K<sub>c</sub>=1.8×10<sup>−7</sup> at 250°C. Find K<sub>p</sub>. (R=0.082)</li>
+          <li>At equilibrium [N₂]=2M, [H₂]=3M, [NH₃]=4M and K<sub>c</sub>=0.148. Find Q and predict direction.</li>
+        </ol></div>
+      </div></div>
+    </div>
+
+    <div class="session-card">
+      <div class="session-head"><span class="session-num">E2</span><span class="session-title">Le Chatelier's Principle — All Effects</span><span class="session-dur">1.5 hrs</span><span class="session-toggle">▼</span></div>
+      <div class="session-body"><div class="session-body-grid">
+        <div><div class="col-label">Concepts</div><ul class="concepts-list">
+          <li>Le Chatelier: equilibrium shifts to oppose any stress applied to the system</li>
+          <li>Concentration: adding reactant → shifts forward; adding product → shifts backward</li>
+          <li>Pressure: increase pressure (decrease V) → shifts to side with fewer gas moles</li>
+          <li>Temperature: exothermic rxn → increase T shifts backward (treat heat as product)</li>
+          <li>Temperature: endothermic rxn → increase T shifts forward</li>
+          <li>Catalyst: speeds up both directions equally — K unchanged, equilibrium reached faster</li>
+        </ul><div class="study-tip"><strong>Tip:</strong> Haber process (N₂+3H₂→2NH₃, exothermic): high P→more NH₃; low T→more NH₃ but slow; catalyst is the practical compromise.</div></div>
+        <div><div class="col-label">Practice Problems</div><ol class="problems-list">
+          <li>N₂+3H₂⇌2NH₃, ΔH=−92kJ. Predict shift when: (a) pressure increased (b) T increased (c) NH₃ removed.</li>
+          <li>CO(g)+H₂O(g)⇌CO₂(g)+H₂(g). Effect of increasing pressure on equilibrium position?</li>
+          <li class="jee-q">PCl₅(g)⇌PCl₃(g)+Cl₂(g). Addition of inert gas at constant total pressure — which way does it shift?</li>
+          <li>Fe₃O₄+4H₂⇌3Fe+4H₂O, endothermic. How do you maximise Fe yield? State all conditions.</li>
+        </ol></div>
+      </div></div>
+    </div>
+
+    <div class="session-card">
+      <div class="session-head"><span class="session-num">E3</span><span class="session-title">Degree of Dissociation &amp; ICE Tables</span><span class="session-dur">1.5 hrs</span><span class="session-toggle">▼</span></div>
+      <div class="session-body"><div class="session-body-grid">
+        <div><div class="col-label">Concepts</div><ul class="concepts-list">
+          <li>Degree of dissociation α: fraction of initial moles that dissociate (0 to 1)</li>
+          <li>ICE table: Initial, Change, Equilibrium — set up from stoichiometry before every numerical</li>
+          <li>PCl₅ ⇌ PCl₃ + Cl₂: initial = a; at eq: (a−x), x, x → K<sub>c</sub> = x²/(V(a−x))</li>
+          <li>K<sub>p</sub> for PCl₅ dissociation: K<sub>p</sub> = α²P/(1−α²) when Δn<sub>g</sub>=1</li>
+          <li>N₂O₄ ⇌ 2NO₂: common JEE numerical — set up ICE with α and total pressure P</li>
+          <li>Higher pressure → smaller α (equilibrium shifts to fewer gas moles side)</li>
+        </ul><div class="study-tip"><strong>Tip:</strong> Always set up ICE table before solving any equilibrium numerical — never skip it even for "simple" problems.</div></div>
+        <div><div class="col-label">Practice Problems</div><ol class="problems-list">
+          <li>PCl₅→PCl₃+Cl₂. Initial 2 mol PCl₅ in 5L. At eq, 0.5 mol PCl₃. Find K<sub>c</sub>.</li>
+          <li>A(g) ⇌ 2B(g), K<sub>p</sub>=4 atm, initial pressure of A = 2 atm. Find equilibrium pressures.</li>
+          <li class="jee-q">N₂O₄(g) ⇌ 2NO₂(g). α=0.5 and total pressure=1 atm at 25°C. Find K<sub>p</sub>.</li>
+          <li>Find degree of dissociation of PCl₅ at 2 atm if K<sub>p</sub>=1.78 atm.</li>
+        </ol></div>
+      </div></div>
+    </div>
+
+    <h4 style="font-size:.9rem;font-weight:700;margin:1.5rem 0 .5rem;color:var(--chem)">Key Formulas — Chemical Equilibrium</h4>
+    <div class="formula-table-wrap"><table class="formula-table">
+      <thead><tr><th>Formula</th><th>Application</th><th>Note</th></tr></thead>
+      <tbody>
+        <tr><td class="formula-cell">K<sub>p</sub> = K<sub>c</sub>(RT)<sup>Δn<sub>g</sub></sup></td><td>Convert K<sub>c</sub> to K<sub>p</sub></td><td class="note-cell">R=0.0821 L·atm/mol·K</td></tr>
+        <tr><td class="formula-cell">ΔG° = −RT ln K</td><td>Free energy and equilibrium</td><td class="note-cell">K&gt;1 → ΔG°&lt;0</td></tr>
+        <tr><td class="formula-cell">K<sub>reverse</sub> = 1/K</td><td>Reverse reaction equilibrium</td><td class="note-cell">Always valid</td></tr>
+        <tr><td class="formula-cell">K<sub>new</sub> = K<sup>n</sup></td><td>Reaction multiplied by n</td><td class="note-cell">Multiply coefficients by n</td></tr>
+      </tbody>
+    </table></div>
+  </div>
+</div>
+
+<!-- C6 — IONIC EQUILIBRIUM -->
+<div class="unit-section chem-unit">
+  <div class="unit-header">
+    <span class="unit-num">C6</span>
+    <span class="unit-title">Ionic Equilibrium</span>
+    <span class="unit-period">August 2026</span>
+    <span class="unit-weight">5–7% · Acid-Base always in JEE</span>
+    <span class="unit-toggle">▼</span>
+  </div>
+  <div class="unit-body">
+    <div class="session-card">
+      <div class="session-head"><span class="session-num">I1</span><span class="session-title">pH Scale, Strong &amp; Weak Acids/Bases</span><span class="session-dur">1.5 hrs</span><span class="session-toggle">▼</span></div>
+      <div class="session-body"><div class="session-body-grid">
+        <div><div class="col-label">Concepts</div><ul class="concepts-list">
+          <li>pH = −log[H⁺]; pOH = −log[OH⁻]; pH + pOH = 14 at 25°C</li>
+          <li>Strong acids (HCl, HNO₃, H₂SO₄): [H⁺] = concentration (fully dissociates)</li>
+          <li>Weak acid Ka: HA ⇌ H⁺ + A⁻; K<sub>a</sub> = [H⁺][A⁻]/[HA]</li>
+          <li>Weak acid: [H⁺] = √(K<sub>a</sub>·C); pH = ½(pK<sub>a</sub> − log C) when α &lt;&lt; 1</li>
+          <li>Ostwald's dilution law: α = √(K<sub>a</sub>/C) — degree of dissociation increases on dilution</li>
+          <li>Lewis acids: electron pair acceptors (BF₃, AlCl₃); Lewis bases: electron donors</li>
+        </ul><div class="study-tip"><strong>Tip:</strong> For weak acid: [H⁺]=√(K<sub>a</sub>C) is valid only when α &lt;&lt; 1. If C is very small or K<sub>a</sub> is large, solve the quadratic exactly.</div></div>
+        <div><div class="col-label">Practice Problems</div><ol class="problems-list">
+          <li>Find pH of 0.01 M HCl and 0.01 M NaOH.</li>
+          <li>Find pH of 0.1 M acetic acid (K<sub>a</sub>=1.8×10⁻⁵).</li>
+          <li class="jee-q">pH of 0.1 M weak monobasic acid is 3. Find K<sub>a</sub> and degree of dissociation.</li>
+          <li>For 0.001 M Ba(OH)₂ solution, find pH. (Ba(OH)₂ is strong, diprotic base)</li>
+        </ol></div>
+      </div></div>
+    </div>
+
+    <div class="session-card">
+      <div class="session-head"><span class="session-num">I2</span><span class="session-title">Buffer Solutions &amp; Henderson Equation</span><span class="session-dur">1.5 hrs</span><span class="session-toggle">▼</span></div>
+      <div class="session-body"><div class="session-body-grid">
+        <div><div class="col-label">Concepts</div><ul class="concepts-list">
+          <li>Buffer: resists pH change — weak acid + its conjugate base (e.g. CH₃COOH / CH₃COO⁻Na⁺)</li>
+          <li>Henderson-Hasselbalch: pH = pK<sub>a</sub> + log([A⁻]/[HA])</li>
+          <li>Best buffer: pH ≈ pK<sub>a</sub>; equal moles acid and conjugate base</li>
+          <li>Basic buffer: weak base + its salt (e.g. NH₄OH/NH₄Cl); pOH = pK<sub>b</sub> + log([salt]/[base])</li>
+          <li>Salt hydrolysis: CH₃COONa in water → basic solution (A⁻ is basic); NH₄Cl → acidic</li>
+          <li>Hydrolysis constant: K<sub>h</sub> = K<sub>w</sub>/K<sub>a</sub> or K<sub>w</sub>/K<sub>b</sub></li>
+        </ul><div class="study-tip"><strong>Tip:</strong> Adding strong acid to buffer: acid reacts with A⁻ → reduce [A⁻], increase [HA]. Recalculate pH from new ratio with Henderson equation.</div></div>
+        <div><div class="col-label">Practice Problems</div><ol class="problems-list">
+          <li>Find pH of buffer: 0.1 mol CH₃COOH + 0.1 mol CH₃COONa in 1L. (K<sub>a</sub>=1.8×10⁻⁵)</li>
+          <li>Find pH change when 0.01 mol HCl is added to 1L of the above buffer.</li>
+          <li class="jee-q">What is pH of 0.1 M NH₄Cl solution? (K<sub>b</sub> of NH₃=1.8×10⁻⁵, K<sub>w</sub>=10⁻¹⁴)</li>
+          <li>An acetic acid/sodium acetate buffer has pH=5.0. Find [A⁻]/[HA] ratio. (pK<sub>a</sub>=4.74)</li>
+        </ol></div>
+      </div></div>
+    </div>
+
+    <div class="session-card">
+      <div class="session-head"><span class="session-num">I3</span><span class="session-title">Solubility Product K<sub>sp</sub> &amp; Common Ion Effect</span><span class="session-dur">1.5 hrs</span><span class="session-toggle">▼</span></div>
+      <div class="session-body"><div class="session-body-grid">
+        <div><div class="col-label">Concepts</div><ul class="concepts-list">
+          <li>K<sub>sp</sub> = [M<sup>n+</sup>]^a [X<sup>m−</sup>]^b for M<sub>a</sub>X<sub>b</sub>(s) ⇌ aM<sup>n+</sup> + bX<sup>m−</sup></li>
+          <li>Solubility s: MX → s, s (K<sub>sp</sub>=s²); MX₂ → s, 2s (K<sub>sp</sub>=4s³)</li>
+          <li>Common ion effect: adding common ion decreases solubility (shifts left)</li>
+          <li>Precipitation: ionic product IP &gt; K<sub>sp</sub> → precipitate forms; IP &lt; K<sub>sp</sub> → remains dissolved</li>
+          <li>Selective precipitation: add precipitating agent slowly to separate ions with different K<sub>sp</sub></li>
+        </ul><div class="study-tip"><strong>Tip:</strong> K<sub>sp</sub> doesn't change with common ion — only solubility changes. Don't confuse "ion product" with K<sub>sp</sub>.</div></div>
+        <div><div class="col-label">Practice Problems</div><ol class="problems-list">
+          <li>Find molar solubility of BaSO₄ in pure water. (K<sub>sp</sub>=1.08×10⁻¹⁰)</li>
+          <li>Find molar solubility of AgCl in 0.1 M NaCl solution. (K<sub>sp</sub>=1.8×10⁻¹⁰)</li>
+          <li class="jee-q">Mg(OH)₂ K<sub>sp</sub>=1.8×10⁻¹¹. Find molar solubility and pH of saturated solution.</li>
+          <li>Will BaSO₄ precipitate when 100 mL of 0.001 M Ba²⁺ is mixed with 100 mL of 0.001 M SO₄²⁻?</li>
+        </ol></div>
+      </div></div>
+    </div>
+
+    <h4 style="font-size:.9rem;font-weight:700;margin:1.5rem 0 .5rem;color:var(--chem)">Key Formulas — Ionic Equilibrium</h4>
+    <div class="formula-table-wrap"><table class="formula-table">
+      <thead><tr><th>Formula</th><th>Application</th><th>Note</th></tr></thead>
+      <tbody>
+        <tr><td class="formula-cell">pH = −log[H⁺]</td><td>pH from [H⁺]</td><td class="note-cell">pOH = 14 − pH at 25°C</td></tr>
+        <tr><td class="formula-cell">[H⁺] = √(K<sub>a</sub>C)</td><td>Weak acid [H⁺]</td><td class="note-cell">Valid when α &lt;&lt; 1</td></tr>
+        <tr><td class="formula-cell">pH = pK<sub>a</sub> + log([A⁻]/[HA])</td><td>Buffer pH (Henderson-Hasselbalch)</td><td class="note-cell">Most useful buffer equation</td></tr>
+        <tr><td class="formula-cell">K<sub>sp</sub> = 4s³ for MX₂</td><td>Molar solubility of AB₂ salts</td><td class="note-cell">s = (K<sub>sp</sub>/4)<sup>1/3</sup></td></tr>
+      </tbody>
+    </table></div>
+  </div>
+</div>
+
+<!-- C7 — ELECTROCHEMISTRY -->
+<div class="unit-section chem-unit">
+  <div class="unit-header">
+    <span class="unit-num">C7</span>
+    <span class="unit-title">Electrochemistry</span>
+    <span class="unit-period">September 2026</span>
+    <span class="unit-weight">6–8% · Very high yield</span>
+    <span class="unit-toggle">▼</span>
+  </div>
+  <div class="unit-body">
+    <div class="session-card">
+      <div class="session-head"><span class="session-num">EC1</span><span class="session-title">Galvanic Cells — EMF &amp; Cell Notation</span><span class="session-dur">1.5 hrs</span><span class="session-toggle">▼</span></div>
+      <div class="session-body"><div class="session-body-grid">
+        <div><div class="col-label">Concepts</div><ul class="concepts-list">
+          <li>Galvanic cell: spontaneous redox reaction converts chemical energy → electrical energy</li>
+          <li>Anode: oxidation (negative electrode); Cathode: reduction (positive electrode)</li>
+          <li>Cell notation: Anode | solution || solution | Cathode (e.g. Zn|Zn²⁺||Cu²⁺|Cu)</li>
+          <li>E°<sub>cell</sub> = E°<sub>cathode</sub> − E°<sub>anode</sub> (both as standard reduction potentials)</li>
+          <li>Standard Hydrogen Electrode (SHE): E° = 0 V (reference electrode)</li>
+          <li>Spontaneous cell: E°<sub>cell</sub> &gt; 0 ↔ ΔG° &lt; 0 ↔ K &gt; 1</li>
+        </ul><div class="study-tip"><strong>Tip:</strong> Always: E°<sub>cell</sub> = E°<sub>red</sub>(cathode) − E°<sub>red</sub>(anode). Never reverse both signs and add — that's the classic JEE mistake.</div></div>
+        <div><div class="col-label">Practice Problems</div><ol class="problems-list">
+          <li>E°(Zn²⁺/Zn)=−0.76V, E°(Cu²⁺/Cu)=+0.34V. Find E°<sub>cell</sub> for Daniel cell.</li>
+          <li>Write cell notation for Daniel cell. Identify anode and cathode reactions.</li>
+          <li class="jee-q">E°(Ag⁺/Ag)=+0.80V, E°(Fe³⁺/Fe²⁺)=+0.77V. Which is better reducing agent? Why?</li>
+          <li>Will Cu displace Ag from AgNO₃? E°(Cu²⁺/Cu)=+0.34V, E°(Ag⁺/Ag)=+0.80V.</li>
+        </ol></div>
+      </div></div>
+    </div>
+
+    <div class="session-card">
+      <div class="session-head"><span class="session-num">EC2</span><span class="session-title">Nernst Equation &amp; Concentration Cells</span><span class="session-dur">1.5 hrs</span><span class="session-toggle">▼</span></div>
+      <div class="session-body"><div class="session-body-grid">
+        <div><div class="col-label">Concepts</div><ul class="concepts-list">
+          <li>Nernst equation: E = E° − (0.0592/n) log Q at 25°C</li>
+          <li>n = number of electrons transferred in the balanced redox equation</li>
+          <li>At equilibrium: E = 0 → log K = nE°/0.0592</li>
+          <li>ΔG = −nFE; ΔG° = −nFE° (F = 96500 C/mol)</li>
+          <li>Concentration cell: both electrodes same metal, different concentrations — E° = 0</li>
+          <li>Concentration cell EMF: E = (0.0592/n) log([high]/[low])</li>
+        </ul><div class="study-tip"><strong>Tip:</strong> 0.0592/n factor is ONLY at 25°C. For other temperatures, use (2.303RT/nF). JEE usually assumes 25°C unless stated.</div></div>
+        <div><div class="col-label">Practice Problems</div><ol class="problems-list">
+          <li>Find EMF of Daniel cell when [Zn²⁺]=0.1M, [Cu²⁺]=1M. (E°=1.10V, n=2)</li>
+          <li>Find equilibrium constant K for Zn + Cu²⁺ → Zn²⁺ + Cu at 25°C. (E°=1.10V)</li>
+          <li class="jee-q">Concentration cell: Cu|Cu²⁺(0.01M)||Cu²⁺(0.1M)|Cu. Find EMF at 25°C.</li>
+          <li>ΔG° = −212 kJ/mol, n=2. Find E° of the cell.</li>
+        </ol></div>
+      </div></div>
+    </div>
+
+    <div class="session-card">
+      <div class="session-head"><span class="session-num">EC3</span><span class="session-title">Electrolysis &amp; Faraday's Laws</span><span class="session-dur">1.5 hrs</span><span class="session-toggle">▼</span></div>
+      <div class="session-body"><div class="session-body-grid">
+        <div><div class="col-label">Concepts</div><ul class="concepts-list">
+          <li>Electrolysis: non-spontaneous redox using external electrical energy</li>
+          <li>Faraday's First Law: mass deposited ∝ charge passed (Q = It)</li>
+          <li>Faraday's Second Law: same charge → deposits equivalent masses of different substances</li>
+          <li>m = (M × I × t) / (n × F); F = 96500 C/mol, n = electrons per ion</li>
+          <li>1 Faraday = 1 mole of electrons = 96500 C</li>
+          <li>During water electrolysis: cathode → H₂; anode → O₂; moles H₂ : O₂ = 2:1</li>
+        </ul><div class="study-tip"><strong>Tip:</strong> Sequence: find charge Q=It → moles of electrons = Q/F → use stoichiometry → mass or volume at STP.</div></div>
+        <div><div class="col-label">Practice Problems</div><ol class="problems-list">
+          <li>Find mass of Cu deposited when 2A flows through CuSO₄ for 30 min. (M<sub>Cu</sub>=63.5)</li>
+          <li>How many Faradays are needed to deposit 1 mole of Al from Al³⁺?</li>
+          <li class="jee-q">5A flows for 1 hr through AgNO₃. Find mass of Ag deposited and volume of O₂ at STP at anode.</li>
+          <li>In electrolysis, 0.5 mol each of Ag⁺ and Cu²⁺ are present. Which deposits more with same charge?</li>
+        </ol></div>
+      </div></div>
+    </div>
+
+    <div class="session-card">
+      <div class="session-head"><span class="session-num">EC4</span><span class="session-title">Conductance &amp; Kohlrausch's Law</span><span class="session-dur">1.5 hrs</span><span class="session-toggle">▼</span></div>
+      <div class="session-body"><div class="session-body-grid">
+        <div><div class="col-label">Concepts</div><ul class="concepts-list">
+          <li>Resistance R = ρ·l/A; Conductance G = 1/R (unit: Siemens S)</li>
+          <li>Specific conductivity κ = G × (l/A); Molar conductivity Λ<sub>m</sub> = κ×1000/C (C in mol/L)</li>
+          <li>Strong electrolytes: Λ<sub>m</sub> slightly increases with dilution (interionic forces decrease)</li>
+          <li>Weak electrolytes: large increase in Λ<sub>m</sub> at high dilution (more dissociation)</li>
+          <li>Kohlrausch's Law: Λ°<sub>m</sub> = Σ λ°(cation) + Σ λ°(anion) — limiting molar conductivity</li>
+          <li>Find K<sub>a</sub> of weak acid from conductance: α = Λ<sub>m</sub>/Λ°<sub>m</sub>; K<sub>a</sub> = Cα²/(1−α)</li>
+        </ul><div class="study-tip"><strong>Tip:</strong> Kohlrausch's law is additive — find Λ°<sub>m</sub> of a weak electrolyte from strong electrolyte data. Classic JEE application.</div></div>
+        <div><div class="col-label">Practice Problems</div><ol class="problems-list">
+          <li>Find Λ°<sub>m</sub>(CH₃COOH) from: Λ°<sub>m</sub>(HCl)=426, Λ°<sub>m</sub>(CH₃COONa)=91, Λ°<sub>m</sub>(NaCl)=126 S·cm²/mol.</li>
+          <li>Conductivity of 0.1 M CH₃COOH = 0.0041 S/m. Λ°<sub>m</sub>=390 S·cm²/mol. Find α and K<sub>a</sub>.</li>
+          <li class="jee-q">Conductance of 0.01 M NaCl = 1.19×10⁻³ S. Cell constant = 1.15 cm⁻¹. Find molar conductivity.</li>
+          <li>Molar conductivity of weak acid increases from 20 to 300 S·cm²/mol on dilution. Find α.</li>
+        </ol></div>
+      </div></div>
+    </div>
+
+    <h4 style="font-size:.9rem;font-weight:700;margin:1.5rem 0 .5rem;color:var(--chem)">Key Formulas — Electrochemistry</h4>
+    <div class="formula-table-wrap"><table class="formula-table">
+      <thead><tr><th>Formula</th><th>Application</th><th>Note</th></tr></thead>
+      <tbody>
+        <tr><td class="formula-cell">E°<sub>cell</sub> = E°<sub>cath</sub> − E°<sub>an</sub></td><td>Standard cell EMF</td><td class="note-cell">Both as reduction potentials</td></tr>
+        <tr><td class="formula-cell">E = E° − (0.0592/n) log Q</td><td>Nernst equation at 25°C</td><td class="note-cell">n = electrons transferred</td></tr>
+        <tr><td class="formula-cell">ΔG° = −nFE°</td><td>Free energy from E°</td><td class="note-cell">F = 96500 C/mol</td></tr>
+        <tr><td class="formula-cell">m = MIt/(nF)</td><td>Faraday's electrolysis mass</td><td class="note-cell">M = molar mass, n = e⁻/ion</td></tr>
+        <tr><td class="formula-cell">log K = nE°/0.0592</td><td>Equilibrium constant from E°</td><td class="note-cell">At 25°C only</td></tr>
+      </tbody>
+    </table></div>
+  </div>
+</div>
+
+<!-- C8 — ORGANIC CHEMISTRY / GOC -->
+<div class="unit-section chem-unit">
+  <div class="unit-header">
+    <span class="unit-num">C8</span>
+    <span class="unit-title">Organic Chemistry — General Organic Chemistry (GOC)</span>
+    <span class="unit-period">October 2026</span>
+    <span class="unit-weight">20–25% · Largest single topic area</span>
+    <span class="unit-toggle">▼</span>
+  </div>
+  <div class="unit-body">
+    <p style="font-size:.875rem;color:var(--ink3);margin-bottom:1.25rem;">
+      <strong style="color:var(--ink)">Organic is the biggest scoring area.</strong> GOC provides the conceptual foundation — electronic effects and reaction mechanisms. Master this unit and all organic reactions in Phase 3 become much easier.
+    </p>
+
+    <div class="session-card">
+      <div class="session-head"><span class="session-num">OC1</span><span class="session-title">GOC — Inductive, Resonance &amp; Hyperconjugation Effects</span><span class="session-dur">2 hrs</span><span class="session-toggle">▼</span></div>
+      <div class="session-body"><div class="session-body-grid">
+        <div><div class="col-label">Concepts</div><ul class="concepts-list">
+          <li>Inductive effect (I): through σ bonds — withdrawal (−I: F, Cl, NO₂, CN) or donation (+I: alkyl)</li>
+          <li>−I effect increases acidity (stabilises carboxylate anion): CF₃COOH &gt;&gt; CH₃COOH</li>
+          <li>Mesomeric/resonance effect (M): delocalisation through π system or lone pairs</li>
+          <li>+M groups (donors): −NH₂, −OH, −OR; −M groups (withdrawers): −NO₂, −CN, −CHO</li>
+          <li>Hyperconjugation: σ C-H electrons delocalize into adjacent π orbital — stabilises carbocations</li>
+          <li>Stability order: resonance &gt; hyperconjugation &gt; inductive effect</li>
+        </ul><div class="study-tip"><strong>Tip:</strong> More −I substituents → more acidic acid. More +I (alkyl groups) → more basic amine/alcohol. Always consider both inductive and resonance together.</div></div>
+        <div><div class="col-label">Practice Problems</div><ol class="problems-list">
+          <li>Arrange in increasing acidity: CH₃COOH, FCH₂COOH, F₂CHCOOH, F₃CCOOH.</li>
+          <li>Compare +M effect: −NH₂ vs −OH. Which is stronger electron donor? Justify.</li>
+          <li class="jee-q">Why is C₂H₅⁺ more stable than CH₃⁺? Explain using hyperconjugation.</li>
+          <li>Explain why phenol is more acidic than cyclohexanol despite both having −OH group.</li>
+        </ol></div>
+      </div></div>
+    </div>
+
+    <div class="session-card">
+      <div class="session-head"><span class="session-num">OC2</span><span class="session-title">Reaction Intermediates — Carbocations, Carbanions &amp; Radicals</span><span class="session-dur">1.5 hrs</span><span class="session-toggle">▼</span></div>
+      <div class="session-body"><div class="session-body-grid">
+        <div><div class="col-label">Concepts</div><ul class="concepts-list">
+          <li>Carbocation (R⁺): sp² hybridised, empty p orbital; stabilised by +I, +M, hyperconjugation</li>
+          <li>Carbocation stability: 3° &gt; 2° &gt; 1° &gt; methyl; allyl ≈ benzyl &gt; 3° (resonance stabilised)</li>
+          <li>Carbanion (R⁻): lone pair; stabilised by −I and −M groups (electron withdrawers)</li>
+          <li>Carbanion stability: methyl &gt; 1° &gt; 2° &gt; 3° — OPPOSITE of carbocation</li>
+          <li>Free radical: odd electron, sp²; stability: 3° &gt; 2° &gt; 1° (same as carbocation)</li>
+          <li>sp-hybridised carbanion (HC≡C⁻) is more stable due to higher s-character</li>
+        </ul><div class="study-tip"><strong>Tip:</strong> Carbocation and radical both follow 3°&gt;2°&gt;1°. Carbanion is OPPOSITE: methyl &gt; 1° &gt; 2° &gt; 3°. Don't confuse them in JEE questions.</div></div>
+        <div><div class="col-label">Practice Problems</div><ol class="problems-list">
+          <li>Arrange in increasing stability: (CH₃)₃C⁺, CH₃⁺, (CH₃)₂CH⁺, CH₃CH₂⁺.</li>
+          <li>Why is allylic carbocation more stable than simple 2° carbocation?</li>
+          <li class="jee-q">Arrange in increasing stability of carbanion: CH₃⁻, (CH₃)₂CH⁻, C₆H₅CH₂⁻, HC≡C⁻.</li>
+          <li>Which intermediate is involved in reaction of 3° alkyl halide with H₂O? Give mechanism type.</li>
+        </ol></div>
+      </div></div>
+    </div>
+
+    <div class="session-card">
+      <div class="session-head"><span class="session-num">OC3</span><span class="session-title">SN1 &amp; SN2 — Mechanism &amp; Stereochemistry</span><span class="session-dur">1.5 hrs</span><span class="session-toggle">▼</span></div>
+      <div class="session-body"><div class="session-body-grid">
+        <div><div class="col-label">Concepts</div><ul class="concepts-list">
+          <li>SN2: bimolecular, one step, backside attack → inversion of configuration (Walden inversion)</li>
+          <li>SN2 favoured by: 1° substrate, strong nucleophile, polar aprotic solvent (DMSO, acetone)</li>
+          <li>SN1: unimolecular, two steps via carbocation → racemisation (mixture of enantiomers)</li>
+          <li>SN1 favoured by: 3° substrate, weak nucleophile, polar protic solvent (water, alcohol)</li>
+          <li>Nucleophilicity vs basicity: in protic solvents, large ions better nucleophiles (I⁻ &gt; F⁻)</li>
+          <li>Leaving group ability: I⁻ &gt; Br⁻ &gt; Cl⁻ &gt; F⁻ (inverse of base strength)</li>
+        </ul><div class="study-tip"><strong>Tip:</strong> 1° → SN2; 3° → SN1; 2° → depends on conditions. Polar aprotic → SN2; polar protic → SN1. This pattern is tested directly in JEE.</div></div>
+        <div><div class="col-label">Practice Problems</div><ol class="problems-list">
+          <li>State mechanism (SN1/SN2) for: (a) CH₃Br + OH⁻ (b) (CH₃)₃CBr + H₂O.</li>
+          <li>What stereochemical outcome is expected in SN2 reaction of (R)-2-bromobutane?</li>
+          <li class="jee-q">Reactivity in SN2: CH₃Cl, C₂H₅Cl, (CH₃)₂CHCl, (CH₃)₃CCl — arrange in decreasing order.</li>
+          <li>Why does neopentyl bromide undergo SN2 very slowly despite being a 1° halide?</li>
+        </ol></div>
+      </div></div>
+    </div>
+
+    <div class="session-card">
+      <div class="session-head"><span class="session-num">OC4</span><span class="session-title">Elimination Reactions — E1 &amp; E2</span><span class="session-dur">1.5 hrs</span><span class="session-toggle">▼</span></div>
+      <div class="session-body"><div class="session-body-grid">
+        <div><div class="col-label">Concepts</div><ul class="concepts-list">
+          <li>Elimination: remove HX from adjacent carbons to form C=C double bond</li>
+          <li>E2: bimolecular, one step, anti-periplanar H and LG required; rate = k[RX][B⁻]</li>
+          <li>E1: unimolecular, two steps via carbocation; rate = k[RX]; favoured by 3° substrate</li>
+          <li>Zaitsev's rule: more substituted (more stable) alkene is major product</li>
+          <li>Hofmann product: bulky base → less substituted alkene (steric hindrance)</li>
+          <li>Competition SN vs E: strong base + high T → E favoured; weak nucleophile + low T → SN</li>
+        </ul><div class="study-tip"><strong>Tip:</strong> t-BuOK (bulky) → Hofmann product; NaOH/KOH (small) → Zaitsev product. Strong base + 3° substrate → E2 predominates.</div></div>
+        <div><div class="col-label">Practice Problems</div><ol class="problems-list">
+          <li>Write products for 2-bromobutane + KOH/ethanol. Identify Zaitsev product.</li>
+          <li>Why does 2-bromobutane + t-BuOK give 1-butene (less substituted) as major product?</li>
+          <li class="jee-q">For 2-bromo-2-methylbutane + KOH: write all possible elimination products. State major one.</li>
+          <li>Draw the E2 transition state and explain the anti-periplanar requirement.</li>
+        </ol></div>
+      </div></div>
+    </div>
+
+    <div class="session-card">
+      <div class="session-head"><span class="session-num">OC5</span><span class="session-title">Addition Reactions — Markovnikov &amp; Anti-Markovnikov</span><span class="session-dur">1.5 hrs</span><span class="session-toggle">▼</span></div>
+      <div class="session-body"><div class="session-body-grid">
+        <div><div class="col-label">Concepts</div><ul class="concepts-list">
+          <li>Electrophilic addition to alkenes: proton adds to C with more H (Markovnikov's rule)</li>
+          <li>Markovnikov: ionic mechanism — forms more stable carbocation intermediate</li>
+          <li>Anti-Markovnikov (HBr + peroxide ROOR): radical mechanism — Br goes to C with more H</li>
+          <li>Halogenation: Br₂/CCl₄ → trans addition (anti-addition) via bromonium ion intermediate</li>
+          <li>Acid-catalysed hydration: H₂O/H⁺ → Markovnikov alcohol via carbocation</li>
+          <li>Hydroboration-oxidation: BH₃ then H₂O₂/NaOH → anti-Markovnikov, syn addition</li>
+        </ul><div class="study-tip"><strong>Tip:</strong> "Anti-Markovnikov" always means peroxide (ROOR) present = radical mechanism. Without peroxide = ionic mechanism = Markovnikov.</div></div>
+        <div><div class="col-label">Practice Problems</div><ol class="problems-list">
+          <li>Predict major products: (a) propene + HBr (b) propene + HBr/ROOR (c) propene + Br₂/CCl₄.</li>
+          <li>What is the product of acid-catalysed hydration of 2-methylpropene?</li>
+          <li class="jee-q">Why does addition of HBr to propene give 2-bromopropane (not 1-bromopropane) without peroxide?</li>
+          <li>What product forms on addition of Cl₂ to (Z)-but-2-ene? What is the stereochemistry?</li>
+        </ol></div>
+      </div></div>
+    </div>
+
+    <div class="session-card">
+      <div class="session-head"><span class="session-num">OC6</span><span class="session-title">Aromaticity &amp; Electrophilic Aromatic Substitution</span><span class="session-dur">1.5 hrs</span><span class="session-toggle">▼</span></div>
+      <div class="session-body"><div class="session-body-grid">
+        <div><div class="col-label">Concepts</div><ul class="concepts-list">
+          <li>Hückel's rule: aromatic if planar, cyclic, fully conjugated, (4n+2) π electrons (n=0,1,2…)</li>
+          <li>Anti-aromatic: 4n π electrons (cyclobutadiene=4, cyclooctatetraene=8)</li>
+          <li>EAS mechanism: arenium ion (σ-complex) intermediate; electrophile attacks ring</li>
+          <li>Activating, ortho/para directors (+M groups): −OH, −NH₂, −OR (electron donors)</li>
+          <li>Deactivating, meta directors (−M only): −NO₂, −CN, −CHO, −COOH, −SO₃H</li>
+          <li>Deactivating but o/p directors: −F, −Cl, −Br, −I (−I deactivates, +M still directs o/p)</li>
+        </ul><div class="study-tip"><strong>Tip:</strong> Halogens deactivate ring but are o/p directors — this JEE trap is worth memorising. The +M lone pair donation overrides −I deactivation for directing.</div></div>
+        <div><div class="col-label">Practice Problems</div><ol class="problems-list">
+          <li>Classify as aromatic/antiaromatic/non-aromatic: benzene, cyclobutadiene, [18]annulene, pyrrole, furan.</li>
+          <li>Nitration of toluene — predict the major product and justify using directing effects.</li>
+          <li class="jee-q">Why do halogens deactivate the ring but direct ortho/para? Explain the apparent contradiction.</li>
+          <li>Predict product of sulfonation of aniline. Is aniline more or less reactive than benzene?</li>
+        </ol></div>
+      </div></div>
+    </div>
+
+    <h4 style="font-size:.9rem;font-weight:700;margin:1.5rem 0 .5rem;color:var(--chem)">Organic Chemistry — Key Summary Table</h4>
+    <div class="formula-table-wrap"><table class="formula-table">
+      <thead><tr><th>Topic</th><th>Key Rule</th><th>JEE Note</th></tr></thead>
+      <tbody>
+        <tr><td>Inductive effect</td><td>More −I substituents → more acidic compound</td><td class="note-cell">−I order: F&gt;Cl&gt;Br&gt;I</td></tr>
+        <tr><td>Carbocation stability</td><td>3° &gt; 2° &gt; 1°; allyl/benzyl ≈ 3°</td><td class="note-cell">Resonance &gt; hyperconjugation</td></tr>
+        <tr><td>SN2</td><td>Backside attack, inversion, 1° halide, aprotic solvent</td><td class="note-cell">Rate = k[RX][Nu]</td></tr>
+        <tr><td>SN1</td><td>Carbocation, racemisation, 3° halide, protic solvent</td><td class="note-cell">Rate = k[RX]</td></tr>
+        <tr><td>Markovnikov</td><td>H adds to C with more H (without peroxide = ionic)</td><td class="note-cell">More stable carbocation path</td></tr>
+        <tr><td>Anti-Markovnikov</td><td>H adds to C with fewer H (with peroxide ROOR = radical)</td><td class="note-cell">Radical mechanism</td></tr>
+        <tr><td>EAS directors</td><td>+M groups: o/p; −M only groups: meta directors</td><td class="note-cell">Halogens: deactivate but o/p</td></tr>
+      </tbody>
+    </table></div>
+  </div>
+</div>
+
+<!-- PHASE 3 DIVIDER -->
+<div class="phase-divider p3-div">
+  <h3>Phase 3 — Attempt 1 Drill <span style="font-size:.85rem;font-weight:500;opacity:.75">(November 2026 – January 2027)</span></h3>
+  <p style="font-size:.875rem;margin:.25rem 0 0">Rapid revision of all 8 units + carbonyl chemistry + mock tests. Target: 6 full mocks before JEE January 2027.</p>
+</div>
+
+<!-- C-P3 -->
+<div class="unit-section chem-unit">
+  <div class="unit-header">
+    <span class="unit-num">C-P3</span>
+    <span class="unit-title">Carbonyl Chemistry + Phase 3 Revision Plan</span>
+    <span class="unit-period">Nov 2026 – Jan 2027</span>
+    <span class="unit-weight">Weekly revision + mock tests</span>
+    <span class="unit-toggle">▼</span>
+  </div>
+  <div class="unit-body">
+    <p style="font-size:.875rem;color:var(--ink3);margin-bottom:1rem;">Complete carbonyl/aldehyde chemistry (high JEE yield) alongside weekly revision of all 8 units with timed mock tests.</p>
+    <div class="formula-table-wrap"><table class="formula-table">
+      <thead><tr><th>Week</th><th>Revision Focus</th><th>New Carbonyl Topic</th><th>Mock Test</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Nov Wk 1</strong></td><td>C1–C4 full revision</td><td>Aldehydes &amp; Ketones: nucleophilic addition, Fehling's/Tollens' tests</td><td>—</td></tr>
+        <tr><td><strong>Nov Wk 2</strong></td><td>C5–C8 full revision</td><td>Carboxylic acids: acidity, esterification, nucleophilic acyl substitution</td><td>—</td></tr>
+        <tr><td><strong>Nov Wk 3</strong></td><td>Error analysis from practice</td><td>Amines: basicity order, Hinsberg test, reactions with HNO₂</td><td>Mock 1 (aim 28–32/100)</td></tr>
+        <tr><td><strong>Dec Wk 1</strong></td><td>Electrochemistry + Ionic Equil deep drill</td><td>Polymers &amp; Biomolecules: classification, biodegradable polymers</td><td>—</td></tr>
+        <tr><td><strong>Dec Wk 2</strong></td><td>Organic mechanisms full drill</td><td>Named reactions: Aldol, Cannizzaro, Clemmensen, Wolff-Kishner</td><td>Mock 2 (aim 30–35/100)</td></tr>
+        <tr><td><strong>Dec Wk 3</strong></td><td>Physical chemistry integration</td><td>Environmental chemistry + surface chemistry concepts</td><td>—</td></tr>
+        <tr><td><strong>Jan Wk 1</strong></td><td>Final revision + weak area focus</td><td>Coordination compounds: nomenclature, isomerism, VBT/CFT basics</td><td>Mock 3 (aim 33–38/100)</td></tr>
+        <tr><td><strong>Jan Wk 2</strong></td><td>JEE Attempt 1 final prep</td><td>Full mock review + strategy</td><td>Mock 4 + JEE Jan Attempt</td></tr>
+      </tbody>
+    </table></div>
+  </div>
+</div>
+
+<!-- PHASE 4 DIVIDER -->
+<div class="phase-divider p4-div">
+  <h3>Phase 4 — Attempt 2 Boost <span style="font-size:.85rem;font-weight:500;opacity:.75">(February – April 2027)</span></h3>
+  <p style="font-size:.875rem;margin:.25rem 0 0">Analyse January attempt errors, target weak topics, add inorganic chemistry, and reach final score target for JEE April 2027.</p>
+</div>
+
+<!-- C-P4 -->
+<div class="unit-section chem-unit">
+  <div class="unit-header">
+    <span class="unit-num">C-P4</span>
+    <span class="unit-title">Gap Analysis + Inorganic Chemistry + Final Push</span>
+    <span class="unit-period">Feb – Apr 2027</span>
+    <span class="unit-weight">Target: 38–48/100 in April attempt</span>
+    <span class="unit-toggle">▼</span>
+  </div>
+  <div class="unit-body">
+    <div class="formula-table-wrap"><table class="formula-table">
+      <thead><tr><th>Week</th><th>Task</th><th>Inorganic Add-on</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Feb Wk 1</strong></td><td>Review Jan 2027 paper — identify wrong/unseen topics</td><td>s-block: Na, K, Mg, Ca — properties and uses</td></tr>
+        <tr><td><strong>Feb Wk 2</strong></td><td>Target bottom 3 scoring topics — intensive drill</td><td>p-block: Group 15 (N, P), Group 16 (O, S) oxoacids</td></tr>
+        <tr><td><strong>Feb Wk 3</strong></td><td>Organic named reactions full revision</td><td>d-block: colour, magnetic properties, oxidation states of transition metals</td></tr>
+        <tr><td><strong>Mar Wk 1</strong></td><td>Physical chemistry — consolidation &amp; speed drills</td><td>Coordination chemistry: isomerism, magnetic moments, CFSE basics</td></tr>
+        <tr><td><strong>Mar Wk 2</strong></td><td>Mock test 5 — full 3 hr attempt</td><td>Qualitative analysis: salt analysis, flame tests, precipitate colours</td></tr>
+        <tr><td><strong>Mar Wk 3–4</strong></td><td>Mock test 6 + formula chapter-wise revision</td><td>Metallurgy: extraction processes (blast furnace, Hall-Héroult)</td></tr>
+        <tr><td><strong>Apr Wk 1–2</strong></td><td>Final 2 mocks + strategy session</td><td>Last-minute: periodic trends, colour of compounds, common reactions</td></tr>
+      </tbody>
+    </table></div>
+    <div class="study-tip" style="margin-top:1rem"><strong>Phase 4 Chemistry Strategy:</strong> Don't learn new organic reactions after March. Focus on: (1) Physical chemistry accuracy — every numerical mark counts. (2) Inorganic factual — 5–7 questions per paper are pure memory. (3) Error pattern analysis — if you keep missing equilibrium numericals, do 15 more, not 2.</div>
+  </div>
+</div>
+
+<!-- TRAPS -->
+<div style="margin-top:3rem">
+  <h3 class="section-title" style="font-size:1.3rem">⚠ Common JEE Traps — Chemistry</h3>
+  <table class="traps-table">
+    <thead><tr><th>Unit</th><th>The Trap</th><th>How to Avoid It</th></tr></thead>
+    <tbody>
+      <tr><td class="trap-unit">Mole Concept</td><td class="trap-bad">Using mass instead of moles in stoichiometry</td><td class="trap-good">Always convert mass → moles first. Ratios in balanced equations are MOLE ratios, not mass ratios.</td></tr>
+      <tr><td class="trap-unit">Mole Concept</td><td class="trap-bad">Confusing Molarity and Molality in temperature-sensitive problems</td><td class="trap-good">Molarity uses volume (changes with T). Molality uses mass of solvent (T-independent). Know when to use which.</td></tr>
+      <tr><td class="trap-unit">Atomic Structure</td><td class="trap-bad">Writing wrong electron config for Cr and Cu</td><td class="trap-good">Memorise: Cr=[Ar]3d⁵4s¹, Cu=[Ar]3d¹⁰4s¹. Half-filled and fully-filled d subshells are extra stable.</td></tr>
+      <tr><td class="trap-unit">Chemical Bonding</td><td class="trap-bad">Calling CO₂ polar because C=O bonds are polar</td><td class="trap-good">CO₂ is LINEAR — the two equal and opposite dipoles cancel exactly. Symmetry makes it non-polar.</td></tr>
+      <tr><td class="trap-unit">Chemical Bonding</td><td class="trap-bad">Confusing bond angle decrease due to lone pairs</td><td class="trap-good">Lone pairs compress angles more than bonding pairs. NH₃ (107°) &lt; CH₄ (109.5°), H₂O (104.5°) &lt; NH₃.</td></tr>
+      <tr><td class="trap-unit">Thermochemistry</td><td class="trap-bad">Getting sign wrong when reversing equations in Hess's law</td><td class="trap-good">When you REVERSE a reaction, the sign of ΔH flips. Write "−ΔH" explicitly. Don't do it mentally.</td></tr>
+      <tr><td class="trap-unit">Thermochemistry</td><td class="trap-bad">Using non-zero ΔH°<sub>f</sub> for elements in standard state</td><td class="trap-good">Standard enthalpy of formation of any element in its standard state = 0. Always. No exceptions.</td></tr>
+    </tbody>
+  </table>
+</div>
+
+</div></section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-brand">JEE 2027 Prep</div>
+      <div class="footer-links">
+        <a href="../index.html">Dashboard</a>
+        <a href="math.html">Math</a>
+        <a href="physics.html">Physics</a>
+        <a href="chemistry.html">Chemistry</a>
+        <a href="../progress.html">Progress</a>
+      </div>
+      <div class="footer-note">All Phases · March 2026 – April 2027</div>
+    </div>
+  </div>
+</footer>
+<script src="../js/main.js"></script>
+</body>
+</html>

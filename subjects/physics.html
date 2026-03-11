@@ -1,0 +1,903 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Physics — JEE 2027 Prep</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="nav-brand">JEE 2027</div>
+    <div class="nav-links">
+      <a href="../index.html">Dashboard</a>
+      <a href="math.html">📐 Math</a>
+      <a href="physics.html" class="phys-active">⚡ Physics</a>
+      <a href="chemistry.html">🧪 Chemistry</a>
+      <a href="../progress.html">✅ Progress</a>
+      <a href="../settings.html">⚙ Settings</a>
+    </div>
+    <button class="nav-toggle" onclick="toggleNav()">☰</button>
+  </div>
+</nav>
+
+<header class="page-hero phys-hero">
+  <div class="page-hero-content">
+    <div class="page-hero-tag">All Phases · March 2026 – April 2027</div>
+    <h1>⚡ Physics</h1>
+    <p>Mechanics · Electricity · Rotation · Magnetism · EMI · Optics · Thermodynamics</p>
+    <div class="page-hero-meta">
+      <div class="meta-item"><strong>Target:</strong> 45–55 / 100</div>
+      <div class="meta-item"><strong>Phase 1:</strong> P0–P4 · Foundation</div>
+      <div class="meta-item"><strong>Phase 2:</strong> P5–P8 · JEE Layer</div>
+      <div class="meta-item"><strong>Electricity weight:</strong> 10–12% (highest)</div>
+    </div>
+  </div>
+</header>
+
+<section class="section">
+<div class="container">
+
+<!-- UNIT P0 -->
+<div class="unit-section indigo-unit">
+  <div class="unit-header">
+    <span class="unit-num">P0</span>
+    <span class="unit-title">Units &amp; Dimensions — Do This First</span>
+    <span class="unit-period">March Week 1</span>
+    <span class="unit-weight">3–5% · Free Marks</span>
+    <span class="unit-toggle">▼</span>
+  </div>
+  <div class="unit-body">
+    <p style="font-size:.875rem;color:var(--ink3);margin-bottom:1.25rem;">
+      <strong style="color:var(--ink)">Why first:</strong> Every Physics formula has dimensions. Dimensional analysis lets you verify formulas, derive relationships, convert units, and directly score 1–2 JEE questions per paper with minimal effort. Highest ROI topic in Physics.
+    </p>
+
+    <!-- S0-A -->
+    <div class="session-card">
+      <div class="session-head">
+        <span class="session-num">S0-A</span>
+        <span class="session-title">Fundamental Units, SI System and Dimensional Formulas</span>
+        <span class="session-dur">1.5 hrs</span>
+        <span class="session-toggle">▼</span>
+      </div>
+      <div class="session-body">
+        <div class="session-body-grid">
+          <div>
+            <div class="col-label">Concepts to Cover</div>
+            <ul class="concepts-list">
+              <li>7 fundamental quantities and SI units: Length (m), Mass (kg), Time (s), Temperature (K), Current (A), Luminous intensity (cd), Amount of substance (mol)</li>
+              <li>Derived quantities: expressed in terms of the 7 base quantities</li>
+              <li>SI prefixes: pico (10<sup>-12</sup>), nano (10<sup>-9</sup>), micro (10<sup>-6</sup>), milli (10<sup>-3</sup>), kilo (10<sup>3</sup>), mega (10<sup>6</sup>), giga (10<sup>9</sup>)</li>
+              <li>Dimensional formula: velocity = [LT<sup>-1</sup>], acceleration = [LT<sup>-2</sup>], force = [MLT<sup>-2</sup>]</li>
+              <li>Energy/Work = [ML<sup>2</sup>T<sup>-2</sup>], Pressure = [ML<sup>-1</sup>T<sup>-2</sup>], Power = [ML<sup>2</sup>T<sup>-3</sup>]</li>
+              <li>Momentum = [MLT<sup>-1</sup>], Torque = [ML<sup>2</sup>T<sup>-2</sup>] (same as energy — JEE trap!)</li>
+              <li>Dimensionless quantities: angle (radian), strain, relative density</li>
+            </ul>
+            <div class="study-tip"><strong>Study Tip:</strong> Always derive dimensional formulas from the definition. Force = mass × acceleration → [M][LT<sup>-2</sup>] = [MLT<sup>-2</sup>]. Derive every time until automatic.</div>
+          </div>
+          <div>
+            <div class="col-label">Practice Problems</div>
+            <ol class="problems-list">
+              <li>Find dimensional formula of: (a) momentum (b) torque (c) surface tension (d) viscosity</li>
+              <li>Gravitational constant G has unit N m²/kg². Find its dimensional formula.</li>
+              <li class="jee-q">Planck constant h appears in E = hν. Find dimensions of h.</li>
+              <li class="jee-q">Which has the same dimensions as energy: Force×velocity, Force×displacement, Force×time, or Pressure×volume?</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- S0-B -->
+    <div class="session-card">
+      <div class="session-head">
+        <span class="session-num">S0-B</span>
+        <span class="session-title">Dimensional Analysis — 3 Uses + Error Analysis</span>
+        <span class="session-dur">1.5 hrs</span>
+        <span class="session-toggle">▼</span>
+      </div>
+      <div class="session-body">
+        <div class="session-body-grid">
+          <div>
+            <div class="col-label">Concepts to Cover</div>
+            <ul class="concepts-list">
+              <li><strong>Use 1 — Check formula:</strong> both sides must have identical dimensions (necessary, not sufficient)</li>
+              <li><strong>Use 2 — Derive formula:</strong> write y = k·a<sup>x</sup>·b<sup>y</sup>·c<sup>z</sup>, match dimensions both sides, solve for x, y, z</li>
+              <li><strong>Use 3 — Unit conversion:</strong> multiply by conversion factor (same dimension ratio = 1)</li>
+              <li>Limitation: cannot find dimensionless constants (π, 2, ½); cannot distinguish Energy from Torque</li>
+              <li>Error in sum/difference: absolute errors ADD — Δ(a+b) = Δa + Δb</li>
+              <li>Error in product/quotient: relative errors ADD — Δ(ab)/ab = Δa/a + Δb/b</li>
+              <li>Error in power: multiply relative error by power — Δ(a<sup>n</sup>)/a<sup>n</sup> = n × Δa/a</li>
+            </ul>
+            <div class="study-tip"><strong>Study Tip:</strong> For derivation: write y = k·a<sup>p</sup>·b<sup>q</sup>·c<sup>r</sup>, equate powers of M, L, T separately. Three equations → three unknowns.</div>
+          </div>
+          <div>
+            <div class="col-label">Practice Problems</div>
+            <ol class="problems-list">
+              <li>Check if v² = u² + 2as is dimensionally correct.</li>
+              <li>Period T of pendulum depends only on L and g. Derive T using dimensional analysis.</li>
+              <li class="jee-q">Force F = av + bt². Find dimensions of a and b.</li>
+              <li>x = a²b/√c. Errors: a=2%, b=3%, c=4%. Find % error in x.</li>
+              <li class="jee-q">Convert 1 joule into ergs using dimensional analysis.</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Dim formula table -->
+    <h4 style="font-size:.9rem;font-weight:700;margin:1.5rem 0 .5rem;color:#3730a3">Dimensional Formula Reference</h4>
+    <div class="formula-table-wrap">
+      <table class="formula-table">
+        <thead><tr><th>Quantity</th><th>Dimensional Formula</th><th>SI Unit</th><th>Quantity</th><th>Dimensional Formula</th><th>SI Unit</th></tr></thead>
+        <tbody>
+          <tr><td>Velocity</td><td class="formula-cell">[LT<sup>-1</sup>]</td><td>m/s</td><td>Force</td><td class="formula-cell">[MLT<sup>-2</sup>]</td><td>N</td></tr>
+          <tr><td>Acceleration</td><td class="formula-cell">[LT<sup>-2</sup>]</td><td>m/s²</td><td>Energy / Work</td><td class="formula-cell">[ML<sup>2</sup>T<sup>-2</sup>]</td><td>J</td></tr>
+          <tr><td>Momentum</td><td class="formula-cell">[MLT<sup>-1</sup>]</td><td>kg·m/s</td><td>Power</td><td class="formula-cell">[ML<sup>2</sup>T<sup>-3</sup>]</td><td>W</td></tr>
+          <tr><td>Torque</td><td class="formula-cell">[ML<sup>2</sup>T<sup>-2</sup>]</td><td>N·m</td><td>Pressure</td><td class="formula-cell">[ML<sup>-1</sup>T<sup>-2</sup>]</td><td>Pa</td></tr>
+          <tr><td>Surface tension</td><td class="formula-cell">[MT<sup>-2</sup>]</td><td>N/m</td><td>Viscosity</td><td class="formula-cell">[ML<sup>-1</sup>T<sup>-1</sup>]</td><td>Pa·s</td></tr>
+          <tr><td>Grav. const G</td><td class="formula-cell">[M<sup>-1</sup>L<sup>3</sup>T<sup>-2</sup>]</td><td>N·m²/kg²</td><td>Planck const h</td><td class="formula-cell">[ML<sup>2</sup>T<sup>-1</sup>]</td><td>J·s</td></tr>
+          <tr><td>Resistance</td><td class="formula-cell">[ML<sup>2</sup>T<sup>-3</sup>A<sup>-2</sup>]</td><td>Ω</td><td>Capacitance</td><td class="formula-cell">[M<sup>-1</sup>L<sup>-2</sup>T<sup>4</sup>A<sup>2</sup>]</td><td>F</td></tr>
+          <tr><td>Magnetic field B</td><td class="formula-cell">[MT<sup>-2</sup>A<sup>-1</sup>]</td><td>T</td><td>Inductance L</td><td class="formula-cell">[ML<sup>2</sup>T<sup>-2</sup>A<sup>-2</sup>]</td><td>H</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="font-size:.78rem;color:var(--ink3);margin-top:.5rem">⚠ JEE Trap: Torque and Energy both have [ML²T⁻²] but are different quantities. Impulse and Momentum both have [MLT⁻¹].</p>
+  </div>
+</div>
+
+<!-- UNIT P1 — KINEMATICS -->
+<div class="unit-section phys-unit">
+  <div class="unit-header">
+    <span class="unit-num">P1</span>
+    <span class="unit-title">Kinematics</span>
+    <span class="unit-period">March 2026</span>
+    <span class="unit-weight">8–10% of paper</span>
+    <span class="unit-toggle">▼</span>
+  </div>
+  <div class="unit-body">
+
+    <div class="session-card">
+      <div class="session-head"><span class="session-num">S1</span><span class="session-title">1D Motion — Equations and Graphs</span><span class="session-dur">1.5 hrs</span><span class="session-toggle">▼</span></div>
+      <div class="session-body">
+        <div class="session-body-grid">
+          <div><div class="col-label">Concepts</div><ul class="concepts-list">
+            <li>Distance vs displacement, speed vs velocity — scalar vs vector</li>
+            <li>Equations of motion: v=u+at, s=ut+½at², v²=u²+2as — derive from definitions</li>
+            <li>Motion under gravity: free fall (a=g downward), vertical throw</li>
+            <li>v-t graph: area = displacement, slope = acceleration</li>
+            <li>s-t graph: slope = velocity — straight = constant v, curve = acceleration</li>
+            <li>Displacement in nth second: s<sub>n</sub> = u + a(2n-1)/2</li>
+            <li>Sign convention: define positive direction first, use consistently</li>
+          </ul><div class="study-tip"><strong>Tip:</strong> Write your positive direction at the top of every solution. Single habit that eliminates sign errors.</div></div>
+          <div><div class="col-label">Practice Problems</div><ol class="problems-list">
+            <li>Ball thrown up at 20 m/s. Find max height and time to return.</li>
+            <li>From trapezoidal v-t graph, find displacement in 0–5s and 5–10s.</li>
+            <li>Two trains 100 m apart, both 10 m/s, one decelerates at 2 m/s². Collision?</li>
+            <li class="jee-q">Particle: a = 2t−4. At t=0, v=3 m/s. Find v when displacement = 0.</li>
+          </ol></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="session-card">
+      <div class="session-head"><span class="session-num">S2</span><span class="session-title">Projectile Motion</span><span class="session-dur">1.5 hrs</span><span class="session-toggle">▼</span></div>
+      <div class="session-body">
+        <div class="session-body-grid">
+          <div><div class="col-label">Concepts</div><ul class="concepts-list">
+            <li>Horizontal and vertical motions are completely independent</li>
+            <li>Horizontal: v<sub>x</sub> = u cosθ constant throughout (zero acceleration)</li>
+            <li>Vertical: v<sub>y</sub> = u sinθ − gt (uniform downward acceleration)</li>
+            <li>Time of flight: T = 2u sinθ / g</li>
+            <li>Max height: H = u² sin²θ / 2g</li>
+            <li>Range: R = u² sin2θ / g — max at θ = 45°</li>
+            <li>Horizontal throw from height h: initial v<sub>y</sub> = 0</li>
+          </ul><div class="study-tip"><strong>Tip:</strong> Draw the trajectory. Label horizontal and vertical components separately. Never mix them — they are independent.</div></div>
+          <div><div class="col-label">Practice Problems</div><ol class="problems-list">
+            <li>Ball projected at 30° with 40 m/s. Find range, max height, time of flight.</li>
+            <li>Ball thrown horizontally at 20 m/s from 80 m height. Find landing point.</li>
+            <li class="jee-q">At what angle should a projectile be thrown so range = 4 × max height?</li>
+            <li>Compare range, time of flight, and max height for 30° and 60°.</li>
+          </ol></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="session-card">
+      <div class="session-head"><span class="session-num">S3</span><span class="session-title">Relative Motion</span><span class="session-dur">1.5 hrs</span><span class="session-toggle">▼</span></div>
+      <div class="session-body">
+        <div class="session-body-grid">
+          <div><div class="col-label">Concepts</div><ul class="concepts-list">
+            <li>Relative velocity: v<sub>AB</sub> = v<sub>A</sub> − v<sub>B</sub></li>
+            <li>1D: overtaking, meeting, separation problems</li>
+            <li>River-boat: swimmer velocity + river current = actual velocity</li>
+            <li>Min time crossing: swim perpendicular to bank</li>
+            <li>Min distance crossing: angle upstream so resultant is perpendicular to bank</li>
+            <li>Rain-man problems: find umbrella angle from vector diagram</li>
+          </ul><div class="study-tip"><strong>Tip:</strong> Always draw the velocity vector diagram for 2D relative motion. Do not attempt mentally.</div></div>
+          <div><div class="col-label">Practice Problems</div><ol class="problems-list">
+            <li>Car A at 60 km/h, Car B at 40 km/h same direction. Time for A to be 1 km ahead?</li>
+            <li>River 200 m wide, current 4 m/s, swimmer 3 m/s. Minimum time to cross?</li>
+            <li class="jee-q">Rain at 10 m/s vertically, man walks east at 5 m/s. Umbrella angle?</li>
+            <li>Two objects approach each other at 30 m/s and 20 m/s, 500 m apart. When do they meet?</li>
+          </ol></div>
+        </div>
+      </div>
+    </div>
+
+    <h4 style="font-size:.9rem;font-weight:700;margin:1.5rem 0 .5rem;color:var(--phys)">Key Formulas — Kinematics</h4>
+    <div class="formula-table-wrap">
+      <table class="formula-table">
+        <thead><tr><th>Formula</th><th>When to Use</th><th>Key Note</th></tr></thead>
+        <tbody>
+          <tr><td class="formula-cell">v = u + at</td><td>Find final velocity after time t</td><td class="note-cell">No displacement term</td></tr>
+          <tr><td class="formula-cell">s = ut + ½at²</td><td>Find displacement when time is given</td><td class="note-cell">Quadratic in t</td></tr>
+          <tr><td class="formula-cell">v² = u² + 2as</td><td>Find velocity when time is NOT known</td><td class="note-cell">No t in equation</td></tr>
+          <tr><td class="formula-cell">s<sub>n</sub> = u + a(2n−1)/2</td><td>Displacement in nth second</td><td class="note-cell">JEE tests directly</td></tr>
+          <tr><td class="formula-cell">R = u²sin2θ/g</td><td>Projectile range on flat ground</td><td class="note-cell">Max at θ = 45°</td></tr>
+          <tr><td class="formula-cell">H = u²sin²θ/2g</td><td>Maximum height of projectile</td><td class="note-cell">Vertical component only</td></tr>
+          <tr><td class="formula-cell">T = 2u sinθ/g</td><td>Total time of flight</td><td class="note-cell">Double the rise time</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- UNIT P2 — NLM -->
+<div class="unit-section phys-unit">
+  <div class="unit-header">
+    <span class="unit-num">P2</span>
+    <span class="unit-title">Laws of Motion</span>
+    <span class="unit-period">April 2026</span>
+    <span class="unit-weight">8–9% of paper</span>
+    <span class="unit-toggle">▼</span>
+  </div>
+  <div class="unit-body">
+    <div class="session-card">
+      <div class="session-head"><span class="session-num">S4</span><span class="session-title">Newton's Laws &amp; Free Body Diagrams</span><span class="session-dur">1.5 hrs</span><span class="session-toggle">▼</span></div>
+      <div class="session-body"><div class="session-body-grid">
+        <div><div class="col-label">Concepts</div><ul class="concepts-list">
+          <li>Newton 1st: object continues in its state unless net external force acts</li>
+          <li>Newton 2nd: F<sub>net</sub> = ma — vector equation, apply per direction separately</li>
+          <li>Newton 3rd: action and reaction are equal, opposite, on DIFFERENT objects</li>
+          <li>FBD: isolate ONE object, draw ALL forces acting ON it only</li>
+          <li>Normal force: always perpendicular to contact surface — not always equal to mg</li>
+          <li>Tension: pulls both ends; same throughout a massless string</li>
+        </ul><div class="study-tip"><strong>Tip:</strong> Draw one FBD per object before writing any equation. Never mix forces from two different objects.</div></div>
+        <div><div class="col-label">Practice Problems</div><ol class="problems-list">
+          <li>5 kg block on frictionless table, force 20 N. Find acceleration.</li>
+          <li>3 kg and 5 kg blocks connected by string, pulled by 40 N. Find tension.</li>
+          <li class="jee-q">Man 70 kg in lift accelerating up at 2 m/s². Find apparent weight.</li>
+          <li>Three blocks A,B,C in contact on frictionless surface. 30 N applied on A. Find force between B and C.</li>
+        </ol></div>
+      </div></div>
+    </div>
+    <div class="session-card">
+      <div class="session-head"><span class="session-num">S5</span><span class="session-title">Friction</span><span class="session-dur">1.5 hrs</span><span class="session-toggle">▼</span></div>
+      <div class="session-body"><div class="session-body-grid">
+        <div><div class="col-label">Concepts</div><ul class="concepts-list">
+          <li>Static friction: self-adjusting from 0 to μ<sub>s</sub>N maximum</li>
+          <li>Kinetic friction: constant — f<sub>k</sub> = μ<sub>k</sub> × N</li>
+          <li>Always: μ<sub>s</sub> &gt; μ<sub>k</sub> — more force to START than SUSTAIN motion</li>
+          <li>Inclined plane: weight along plane = mg sinθ, normal = mg cosθ</li>
+          <li>Sliding condition: tanθ &gt; μ</li>
+          <li>Pseudo force in non-inertial frame: F = −ma<sub>frame</sub></li>
+        </ul><div class="study-tip"><strong>Tip:</strong> On inclines, resolve forces ALONG and PERPENDICULAR to the incline surface — never horizontal/vertical.</div></div>
+        <div><div class="col-label">Practice Problems</div><ol class="problems-list">
+          <li>Block on surface μ<sub>s</sub>=0.4, μ<sub>k</sub>=0.3, m=10 kg. Force to start? Force to sustain?</li>
+          <li>Block on 30° incline, μ=0.4. Will it slide? Find acceleration if yes.</li>
+          <li class="jee-q">Block just starts sliding at θ=45°. Find μ<sub>s</sub>.</li>
+          <li>5 kg block pushed against wall horizontally. μ=0.3. Min force to stop sliding?</li>
+        </ol></div>
+      </div></div>
+    </div>
+    <div class="session-card">
+      <div class="session-head"><span class="session-num">S6</span><span class="session-title">Pulley Systems &amp; Connected Bodies</span><span class="session-dur">1.5 hrs</span><span class="session-toggle">▼</span></div>
+      <div class="session-body"><div class="session-body-grid">
+        <div><div class="col-label">Concepts</div><ul class="concepts-list">
+          <li>Atwood machine: a = (m<sub>1</sub>−m<sub>2</sub>)g/(m<sub>1</sub>+m<sub>2</sub>)</li>
+          <li>Atwood tension: T = 2m<sub>1</sub>m<sub>2</sub>g / (m<sub>1</sub>+m<sub>2</sub>)</li>
+          <li>Inextensible string: magnitudes of accelerations are equal</li>
+          <li>Mass on incline + hanging mass: resolve weight along incline</li>
+          <li>Write F=ma separately for each mass, then combine equations</li>
+        </ul><div class="study-tip"><strong>Tip:</strong> Write F=ma in full for EACH mass separately. Solve simultaneous equations. Never shortcut.</div></div>
+        <div><div class="col-label">Practice Problems</div><ol class="problems-list">
+          <li>Atwood machine m<sub>1</sub>=3 kg, m<sub>2</sub>=5 kg. Find acceleration and tension.</li>
+          <li>4 kg on 30° incline (μ=0.2) connected via pulley to 3 kg hanging. Find acceleration.</li>
+          <li class="jee-q">Three-block pulley system. Find acceleration and tension in each string.</li>
+          <li>Table block (μ=0.3) connected via pulley to hanging block. Min hanging mass to cause motion?</li>
+        </ol></div>
+      </div></div>
+    </div>
+
+    <h4 style="font-size:.9rem;font-weight:700;margin:1.5rem 0 .5rem;color:var(--phys)">Key Formulas — Laws of Motion</h4>
+    <div class="formula-table-wrap"><table class="formula-table">
+      <thead><tr><th>Formula</th><th>Application</th><th>Key Point</th></tr></thead>
+      <tbody>
+        <tr><td class="formula-cell">F<sub>net</sub> = ma</td><td>Find acceleration from net force</td><td class="note-cell">Apply per direction</td></tr>
+        <tr><td class="formula-cell">f<sub>static max</sub> = μ<sub>s</sub>N</td><td>Max static friction before motion starts</td><td class="note-cell">Can be less than this</td></tr>
+        <tr><td class="formula-cell">f<sub>k</sub> = μ<sub>k</sub>N</td><td>Friction during motion</td><td class="note-cell">Constant once moving</td></tr>
+        <tr><td class="formula-cell">a = (m₁−m₂)g/(m₁+m₂)</td><td>Atwood machine acceleration</td><td class="note-cell">Derive, understand</td></tr>
+        <tr><td class="formula-cell">T = 2m₁m₂g/(m₁+m₂)</td><td>Atwood string tension</td><td class="note-cell">Same throughout string</td></tr>
+        <tr><td class="formula-cell">N = mg cosθ</td><td>Normal force on inclined surface</td><td class="note-cell">Always less than mg</td></tr>
+      </tbody>
+    </table></div>
+  </div>
+</div>
+
+<!-- UNIT P3 — WORK ENERGY -->
+<div class="unit-section phys-unit">
+  <div class="unit-header">
+    <span class="unit-num">P3</span>
+    <span class="unit-title">Work, Energy &amp; Power</span>
+    <span class="unit-period">May 2026</span>
+    <span class="unit-weight">7–8% of paper</span>
+    <span class="unit-toggle">▼</span>
+  </div>
+  <div class="unit-body">
+    <div class="session-card">
+      <div class="session-head"><span class="session-num">S7</span><span class="session-title">Work &amp; Work-Energy Theorem</span><span class="session-dur">1.5 hrs</span><span class="session-toggle">▼</span></div>
+      <div class="session-body"><div class="session-body-grid">
+        <div><div class="col-label">Concepts</div><ul class="concepts-list">
+          <li>W = F·d·cosθ — only force component along displacement does work</li>
+          <li>Work by gravity = mgh (path independent — only vertical height matters)</li>
+          <li>Work by normal force = 0 always (perpendicular to displacement)</li>
+          <li>Work by friction = negative (always opposes displacement)</li>
+          <li>Work-Energy Theorem: W<sub>net</sub> = ΔKE = ½mv² − ½mu²</li>
+          <li>Spring: PE = ½kx² stored as elastic potential energy</li>
+        </ul><div class="study-tip"><strong>Tip:</strong> Find work by EACH force separately, then sum for W<sub>net</sub>.</div></div>
+        <div><div class="col-label">Practice Problems</div><ol class="problems-list">
+          <li>Block pulled 5 m on surface (μ=0.3) by 20 N at 30°. Find net work done.</li>
+          <li>Spring k=200 N/m compressed 0.1 m. Find speed of 0.5 kg block when released.</li>
+          <li class="jee-q">From F-x graph, find work done from x=0 to x=6 m.</li>
+          <li>2 kg block slides down 5 m incline (30°, μ=0.2). Find speed at bottom.</li>
+        </ol></div>
+      </div></div>
+    </div>
+    <div class="session-card">
+      <div class="session-head"><span class="session-num">S8</span><span class="session-title">Conservation of Energy &amp; Collisions</span><span class="session-dur">1.5 hrs</span><span class="session-toggle">▼</span></div>
+      <div class="session-body"><div class="session-body-grid">
+        <div><div class="col-label">Concepts</div><ul class="concepts-list">
+          <li>KE + PE = constant (when no friction/non-conservative forces)</li>
+          <li>With friction: KE<sub>f</sub> + PE<sub>f</sub> = KE<sub>i</sub> + PE<sub>i</sub> − |W<sub>friction</sub>|</li>
+          <li>Elastic collision: KE + momentum conserved</li>
+          <li>Inelastic: only momentum conserved; KE lost</li>
+          <li>Perfectly inelastic: objects stick together — max KE loss</li>
+          <li>1D elastic: v<sub>1</sub>=(m<sub>1</sub>−m<sub>2</sub>)u<sub>1</sub>/(m<sub>1</sub>+m<sub>2</sub>), v<sub>2</sub>=2m<sub>1</sub>u<sub>1</sub>/(m<sub>1</sub>+m<sub>2</sub>)</li>
+        </ul><div class="study-tip"><strong>Tip:</strong> Energy conservation is faster than F=ma for height-speed problems. Ask: can I use energy here?</div></div>
+        <div><div class="col-label">Practice Problems</div><ol class="problems-list">
+          <li>Ball dropped from 10 m. Find speed just before hitting ground.</li>
+          <li>Pendulum length L released from 60°. Find speed at lowest point.</li>
+          <li class="jee-q">2 kg ball at 10 m/s collides elastically with stationary 6 kg ball. Final velocities?</li>
+          <li>Ball dropped from h, e=0.8 with floor. Height after 2nd bounce?</li>
+        </ol></div>
+      </div></div>
+    </div>
+
+    <h4 style="font-size:.9rem;font-weight:700;margin:1.5rem 0 .5rem;color:var(--phys)">Key Formulas — Work, Energy &amp; Power</h4>
+    <div class="formula-table-wrap"><table class="formula-table">
+      <thead><tr><th>Formula</th><th>Application</th><th>Note</th></tr></thead>
+      <tbody>
+        <tr><td class="formula-cell">W = F·d·cosθ</td><td>Work done by constant force</td><td class="note-cell">θ = angle F to displacement</td></tr>
+        <tr><td class="formula-cell">W<sub>net</sub> = ½mv² − ½mu²</td><td>Work-energy theorem</td><td class="note-cell">Net work = change in KE</td></tr>
+        <tr><td class="formula-cell">PE<sub>spring</sub> = ½kx²</td><td>Elastic PE in spring</td><td class="note-cell">x = deformation</td></tr>
+        <tr><td class="formula-cell">KE + PE = const</td><td>Conservation of energy (no friction)</td><td class="note-cell">Most powerful tool</td></tr>
+        <tr><td class="formula-cell">P = W/t = Fv</td><td>Power — rate of doing work</td><td class="note-cell">Fv for instantaneous</td></tr>
+        <tr><td class="formula-cell">e = v<sub>sep</sub>/v<sub>approach</sub></td><td>Coefficient of restitution</td><td class="note-cell">e=1 elastic, e=0 inelastic</td></tr>
+      </tbody>
+    </table></div>
+  </div>
+</div>
+
+<!-- UNIT P4 — ELECTRICITY -->
+<div class="unit-section phys-unit">
+  <div class="unit-header">
+    <span class="unit-num">P4</span>
+    <span class="unit-title">Basic Current Electricity</span>
+    <span class="unit-period">June 2026</span>
+    <span class="unit-weight">10–12% · Highest in Physics</span>
+    <span class="unit-toggle">▼</span>
+  </div>
+  <div class="unit-body">
+    <div class="session-card">
+      <div class="session-head"><span class="session-num">S9</span><span class="session-title">Ohm's Law, Resistance &amp; Basic Circuits</span><span class="session-dur">1.5 hrs</span><span class="session-toggle">▼</span></div>
+      <div class="session-body"><div class="session-body-grid">
+        <div><div class="col-label">Concepts</div><ul class="concepts-list">
+          <li>V = IR — Ohm's law for ohmic conductors</li>
+          <li>R = ρL/A — resistance depends on material, length, cross-section</li>
+          <li>Series: R<sub>total</sub> = R<sub>1</sub>+R<sub>2</sub>+R<sub>3</sub> (same current, voltage divides)</li>
+          <li>Parallel: 1/R<sub>total</sub> = 1/R<sub>1</sub>+1/R<sub>2</sub>+1/R<sub>3</sub> (same voltage, current divides)</li>
+          <li>P = VI = I²R = V²/R — know all three forms</li>
+          <li>V<sub>terminal</sub> = ε − Ir (r = internal resistance)</li>
+        </ul><div class="study-tip"><strong>Tip:</strong> Simplify series/parallel first. Only then apply Kirchhoff's laws.</div></div>
+        <div><div class="col-label">Practice Problems</div><ol class="problems-list">
+          <li>Resistors 2Ω, 3Ω, 6Ω in parallel. Find equivalent resistance.</li>
+          <li>Battery ε=12V, r=2Ω, external 10Ω. Find terminal voltage and current.</li>
+          <li class="jee-q">Find equivalent resistance between A and B in ladder network.</li>
+          <li>Three identical bulbs: series vs parallel. Compare brightness and power.</li>
+        </ol></div>
+      </div></div>
+    </div>
+    <div class="session-card">
+      <div class="session-head"><span class="session-num">S10</span><span class="session-title">Kirchhoff's Laws</span><span class="session-dur">1.5 hrs</span><span class="session-toggle">▼</span></div>
+      <div class="session-body"><div class="session-body-grid">
+        <div><div class="col-label">Concepts</div><ul class="concepts-list">
+          <li>KCL: sum of currents into any node = sum out (charge conservation)</li>
+          <li>KVL: sum of all voltage changes around any closed loop = 0 (energy conservation)</li>
+          <li>KVL: crossing resistor in current direction = drop (−IR)</li>
+          <li>KVL: crossing battery from − to + = gain (+ε)</li>
+          <li>Wheatstone bridge balanced: R<sub>1</sub>/R<sub>2</sub> = R<sub>3</sub>/R<sub>4</sub></li>
+        </ul><div class="study-tip"><strong>Tip:</strong> Label all currents with assumed directions FIRST. Wrong assumption gives negative answer — still correct magnitude.</div></div>
+        <div><div class="col-label">Practice Problems</div><ol class="problems-list">
+          <li>Two-loop circuit. Find all branch currents using Kirchhoff's laws.</li>
+          <li>Wheatstone bridge R<sub>1</sub>=2, R<sub>2</sub>=4, R<sub>3</sub>=3Ω. Find R<sub>4</sub> for balance.</li>
+          <li class="jee-q">Find current through galvanometer in unbalanced Wheatstone bridge.</li>
+          <li>Battery with internal r, connected to two parallel external resistors. Find current in each.</li>
+        </ol></div>
+      </div></div>
+    </div>
+    <div class="session-card">
+      <div class="session-head"><span class="session-num">S11</span><span class="session-title">Cells, Metre Bridge &amp; Potentiometer</span><span class="session-dur">1.5 hrs</span><span class="session-toggle">▼</span></div>
+      <div class="session-body"><div class="session-body-grid">
+        <div><div class="col-label">Concepts</div><ul class="concepts-list">
+          <li>Series cells: ε<sub>total</sub> = ε<sub>1</sub>+ε<sub>2</sub>, r<sub>total</sub> = r<sub>1</sub>+r<sub>2</sub></li>
+          <li>Parallel cells (n identical): ε<sub>total</sub> = ε, r<sub>total</sub> = r/n</li>
+          <li>Metre bridge: X = R·l/(100−l)</li>
+          <li>Potentiometer: E<sub>1</sub>/E<sub>2</sub> = l<sub>1</sub>/l<sub>2</sub></li>
+          <li>Potentiometer for internal resistance: r = R(l<sub>1</sub>−l<sub>2</sub>)/l<sub>2</sub></li>
+        </ul><div class="study-tip"><strong>Tip:</strong> Understand the null method principle — at balance, no current through galvanometer, so no loading on unknown EMF.</div></div>
+        <div><div class="col-label">Practice Problems</div><ol class="problems-list">
+          <li>Two cells in series with 3Ω external. Find current.</li>
+          <li>Metre bridge balances at 40 cm with 5Ω in left gap. Find unknown resistance.</li>
+          <li class="jee-q">Potentiometer wire 10 m. 1.02V cell balances at 400 cm. Find EMF balancing at 360 cm.</li>
+          <li>100 W bulb, 5 hrs/day, 30 days. Energy in kWh and cost at ₹5/unit.</li>
+        </ol></div>
+      </div></div>
+    </div>
+
+    <h4 style="font-size:.9rem;font-weight:700;margin:1.5rem 0 .5rem;color:var(--phys)">Key Formulas — Current Electricity</h4>
+    <div class="formula-table-wrap"><table class="formula-table">
+      <thead><tr><th>Formula</th><th>Application</th><th>Note</th></tr></thead>
+      <tbody>
+        <tr><td class="formula-cell">V = IR</td><td>Basic Ohm's law</td><td class="note-cell">Ohmic conductors</td></tr>
+        <tr><td class="formula-cell">R = ρL/A</td><td>Resistance from dimensions</td><td class="note-cell">ρ = resistivity</td></tr>
+        <tr><td class="formula-cell">P = VI = I²R = V²/R</td><td>Power dissipated — 3 forms</td><td class="note-cell">Know all 3</td></tr>
+        <tr><td class="formula-cell">V<sub>term</sub> = ε − Ir</td><td>Terminal voltage of battery</td><td class="note-cell">Always less than ε</td></tr>
+        <tr><td class="formula-cell">R<sub>1</sub>/R<sub>2</sub> = R<sub>3</sub>/R<sub>4</sub></td><td>Wheatstone bridge balance</td><td class="note-cell">Zero galvanometer current</td></tr>
+        <tr><td class="formula-cell">X = Rl/(100−l)</td><td>Metre bridge — unknown resistance</td><td class="note-cell">l = balance length cm</td></tr>
+      </tbody>
+    </table></div>
+  </div>
+</div>
+
+<!-- ═══ PHASE 2 PHYSICS ═══ -->
+<div class="phase-divider p2-div">
+  <div>
+    <h3>Phase 2 — JEE Layer · July – October 2026</h3>
+    <p>Class 12 high-yield Physics: Rotation, Magnetism, EMI, Ray Optics. ~13 hrs/week.</p>
+  </div>
+</div>
+
+<!-- P5 — ROTATIONAL MOTION -->
+<div class="unit-section phys-unit">
+  <div class="unit-header">
+    <span class="unit-num">P5</span>
+    <span class="unit-title">Rotational Motion</span>
+    <span class="unit-period">July 2026</span>
+    <span class="unit-weight">6–8% of paper</span>
+    <span class="unit-toggle">▼</span>
+  </div>
+  <div class="unit-body">
+    <div class="session-card">
+      <div class="session-head"><span class="session-num">R1</span><span class="session-title">Torque, Angular Quantities &amp; Newton's 2nd for Rotation</span><span class="session-dur">1.5 hrs</span><span class="session-toggle">▼</span></div>
+      <div class="session-body"><div class="session-body-grid">
+        <div><div class="col-label">Concepts</div><ul class="concepts-list">
+          <li>Angular displacement θ, angular velocity ω = dθ/dt, angular acceleration α = dω/dt</li>
+          <li>Torque τ = r × F = r F sinθ — rotational analogue of force</li>
+          <li>Newton's 2nd law for rotation: τ_net = Iα</li>
+          <li>Equations of rotational motion: ω = ω₀+αt, θ = ω₀t+½αt², ω² = ω₀²+2αθ</li>
+          <li>Work done by torque: W = τθ; Power = τω</li>
+        </ul><div class="study-tip"><strong>Tip:</strong> Every translational quantity has a rotational analogue: mass→I, force→τ, velocity→ω, acceleration→α. Use the exact same equations.</div></div>
+        <div><div class="col-label">Practice Problems</div><ol class="problems-list">
+          <li>Wheel starts from rest, α=2 rad/s². Find ω and θ after 5 s.</li>
+          <li>Force 10 N acts tangentially on rim of wheel r=0.5 m. Find torque.</li>
+          <li class="jee-q">Disk I=2 kg·m². Starting from rest, torque 4 N·m applied for 5 s. Find final KE.</li>
+          <li>Wheel rotating at 600 rpm brought to rest in 10 s. Find α and angular displacement.</li>
+        </ol></div>
+      </div></div>
+    </div>
+    <div class="session-card">
+      <div class="session-head"><span class="session-num">R2</span><span class="session-title">Moment of Inertia — Standard Bodies &amp; Theorems</span><span class="session-dur">1.5 hrs</span><span class="session-toggle">▼</span></div>
+      <div class="session-body"><div class="session-body-grid">
+        <div><div class="col-label">Concepts</div><ul class="concepts-list">
+          <li>I = Σmᵢrᵢ² — sum of mass×distance² from axis</li>
+          <li>Solid disk: I = ½MR²; Solid sphere: 2/5 MR²; Rod (centre): ML²/12</li>
+          <li>Hollow cylinder: MR²; Hollow sphere: 2/3 MR²</li>
+          <li>Parallel axis theorem: I = I_cm + Md²</li>
+          <li>Perpendicular axis theorem (laminas): Iz = Ix + Iy</li>
+        </ul><div class="study-tip"><strong>Tip:</strong> Memorise only the 3 most common: disk (½MR²), solid sphere (2/5 MR²), rod about centre (ML²/12). Use parallel axis for everything else.</div></div>
+        <div><div class="col-label">Practice Problems</div><ol class="problems-list">
+          <li>Find I of solid disk M=2 kg, R=0.3 m about central axis.</li>
+          <li>Use parallel axis theorem: find I of disk about tangent axis parallel to diameter.</li>
+          <li class="jee-q">I of uniform rod (L=1 m, M=3 kg) about one end?</li>
+          <li>Two disks I₁=2, I₂=3 kg·m² joined together. Find combined I and ω when torque 10 N·m applied for 5 s.</li>
+        </ol></div>
+      </div></div>
+    </div>
+    <div class="session-card">
+      <div class="session-head"><span class="session-num">R3</span><span class="session-title">Angular Momentum &amp; Conservation</span><span class="session-dur">1.5 hrs</span><span class="session-toggle">▼</span></div>
+      <div class="session-body"><div class="session-body-grid">
+        <div><div class="col-label">Concepts</div><ul class="concepts-list">
+          <li>Angular momentum L = Iω (for rigid body); L = r × p (for particle)</li>
+          <li>τ = dL/dt — torque = rate of change of angular momentum</li>
+          <li>Conservation: if τ_net = 0, L = Iω = constant</li>
+          <li>Application: skater pulling in arms → ω increases (I decreases, L constant)</li>
+          <li>Rolling without slipping: v = Rω, KE_total = ½Mv² + ½Iω²</li>
+        </ul><div class="study-tip"><strong>Tip:</strong> Angular momentum conservation is the rotational analogue of linear momentum conservation. Same approach: if no external torque, Iω = constant.</div></div>
+        <div><div class="col-label">Practice Problems</div><ol class="problems-list">
+          <li>Ice skater I=5 kg·m² spinning at 3 rad/s pulls in arms to I=2 kg·m². New ω?</li>
+          <li>Disk I=4 kg·m² rotating 6 rad/s. Ring I=3 drops on it. Final ω?</li>
+          <li class="jee-q">Solid sphere rolls down slope without slipping. Fraction of KE in rotation?</li>
+          <li>Particle of mass 0.1 kg moves at 5 m/s. Angular momentum about point 2 m away (perpendicular)?</li>
+        </ol></div>
+      </div></div>
+    </div>
+
+    <h4 style="font-size:.9rem;font-weight:700;margin:1.5rem 0 .5rem;color:var(--phys)">Key Formulas — Rotational Motion</h4>
+    <div class="formula-table-wrap"><table class="formula-table">
+      <thead><tr><th>Formula</th><th>Rotational Analogue</th><th>Note</th></tr></thead>
+      <tbody>
+        <tr><td class="formula-cell">τ = Iα</td><td>F = ma</td><td class="note-cell">Rotational Newton's 2nd</td></tr>
+        <tr><td class="formula-cell">L = Iω</td><td>p = mv</td><td class="note-cell">Angular momentum</td></tr>
+        <tr><td class="formula-cell">I_disk = ½MR²</td><td>—</td><td class="note-cell">About central axis</td></tr>
+        <tr><td class="formula-cell">I = I_cm + Md²</td><td>—</td><td class="note-cell">Parallel axis theorem</td></tr>
+        <tr><td class="formula-cell">v = Rω</td><td>—</td><td class="note-cell">Rolling without slipping</td></tr>
+      </tbody>
+    </table></div>
+  </div>
+</div>
+
+<!-- P6 — MAGNETISM -->
+<div class="unit-section phys-unit">
+  <div class="unit-header">
+    <span class="unit-num">P6</span>
+    <span class="unit-title">Magnetism</span>
+    <span class="unit-period">August 2026</span>
+    <span class="unit-weight">8–10% of paper</span>
+    <span class="unit-toggle">▼</span>
+  </div>
+  <div class="unit-body">
+    <div class="session-card">
+      <div class="session-head"><span class="session-num">B1</span><span class="session-title">Biot-Savart Law &amp; Ampere's Law</span><span class="session-dur">1.5 hrs</span><span class="session-toggle">▼</span></div>
+      <div class="session-body"><div class="session-body-grid">
+        <div><div class="col-label">Concepts</div><ul class="concepts-list">
+          <li>Biot-Savart: dB = μ₀/(4π) · I dl × r̂/r² — magnetic field from current element</li>
+          <li>B at centre of circular loop: B = μ₀I/2R</li>
+          <li>B on axis of circular loop: B = μ₀IR²/2(R²+x²)^(3/2)</li>
+          <li>Ampere's law: ∮B·dl = μ₀I_enc — for symmetric configurations</li>
+          <li>B inside infinite solenoid: B = μ₀nI (n = turns per unit length)</li>
+          <li>B inside toroid: B = μ₀NI/2πr</li>
+        </ul><div class="study-tip"><strong>Tip:</strong> Biot-Savart for curved wires; Ampere's law for straight wires with high symmetry (solenoid, toroid, infinite wire). Know when to use which.</div></div>
+        <div><div class="col-label">Practice Problems</div><ol class="problems-list">
+          <li>Find B at centre of circular loop R=0.1 m carrying 5 A.</li>
+          <li>Solenoid: 500 turns, 25 cm long, 2 A. Find B inside.</li>
+          <li class="jee-q">Two parallel wires 10 cm apart carry 5 A and 10 A in same direction. Force per unit length?</li>
+          <li>Find B at point P equidistant from two perpendicular wires each carrying 3 A.</li>
+        </ol></div>
+      </div></div>
+    </div>
+    <div class="session-card">
+      <div class="session-head"><span class="session-num">B2</span><span class="session-title">Force on Current &amp; Motion of Charges in B Field</span><span class="session-dur">1.5 hrs</span><span class="session-toggle">▼</span></div>
+      <div class="session-body"><div class="session-body-grid">
+        <div><div class="col-label">Concepts</div><ul class="concepts-list">
+          <li>F on current: F = BIL sinθ (θ = angle between I and B)</li>
+          <li>Lorentz force on charge: F = q(v × B) — magnitude qvB sinθ</li>
+          <li>Circular motion in B field: r = mv/qB; period T = 2πm/qB (independent of v)</li>
+          <li>Velocity selector: qE = qvB → v = E/B</li>
+          <li>Torque on current loop in B: τ = NIAB sinθ = m × B (m = magnetic dipole moment)</li>
+          <li>Galvanometer sensitivity: C = NIAB (couple = deflecting couple)</li>
+        </ul><div class="study-tip"><strong>Tip:</strong> For charged particle in B field: if velocity ⊥ B → circular motion. If velocity ∥ B → no force. If at angle → helical motion.</div></div>
+        <div><div class="col-label">Practice Problems</div><ol class="problems-list">
+          <li>Proton moving at 10⁶ m/s perpendicular to B=0.1 T. Find radius of circular path.</li>
+          <li>Rectangular coil 10×20 cm², 50 turns, 2 A in field B=0.5 T. Find max torque.</li>
+          <li class="jee-q">Electron enters B=0.02 T perpendicular. Radius is 5 cm. Find speed and KE.</li>
+          <li>Wire 50 cm carries 5 A at 30° to field B=0.2 T. Find force on wire.</li>
+        </ol></div>
+      </div></div>
+    </div>
+
+    <h4 style="font-size:.9rem;font-weight:700;margin:1.5rem 0 .5rem;color:var(--phys)">Key Formulas — Magnetism</h4>
+    <div class="formula-table-wrap"><table class="formula-table">
+      <thead><tr><th>Formula</th><th>Application</th><th>Note</th></tr></thead>
+      <tbody>
+        <tr><td class="formula-cell">B = μ₀I/2R</td><td>Centre of circular loop</td><td class="note-cell">μ₀ = 4π×10⁻⁷ T·m/A</td></tr>
+        <tr><td class="formula-cell">B = μ₀nI</td><td>Inside solenoid</td><td class="note-cell">n = turns per metre</td></tr>
+        <tr><td class="formula-cell">F = qvB sinθ</td><td>Lorentz force on charge</td><td class="note-cell">Zero when v ∥ B</td></tr>
+        <tr><td class="formula-cell">r = mv/qB</td><td>Radius of circular orbit in B</td><td class="note-cell">T independent of v</td></tr>
+        <tr><td class="formula-cell">τ = NIAB sinθ</td><td>Torque on current loop</td><td class="note-cell">Max when θ=90°</td></tr>
+      </tbody>
+    </table></div>
+  </div>
+</div>
+
+<!-- P7 — EMI -->
+<div class="unit-section phys-unit">
+  <div class="unit-header">
+    <span class="unit-num">P7</span>
+    <span class="unit-title">Electromagnetic Induction &amp; AC Circuits</span>
+    <span class="unit-period">September 2026</span>
+    <span class="unit-weight">7–8% of paper</span>
+    <span class="unit-toggle">▼</span>
+  </div>
+  <div class="unit-body">
+    <div class="session-card">
+      <div class="session-head"><span class="session-num">E1</span><span class="session-title">Faraday's Law, Lenz's Law &amp; Motional EMF</span><span class="session-dur">1.5 hrs</span><span class="session-toggle">▼</span></div>
+      <div class="session-body"><div class="session-body-grid">
+        <div><div class="col-label">Concepts</div><ul class="concepts-list">
+          <li>Magnetic flux: Φ = BA cosθ</li>
+          <li>Faraday's law: ε = −dΦ/dt (magnitude: rate of flux change)</li>
+          <li>Lenz's law: induced current opposes the change causing it</li>
+          <li>Motional EMF: ε = BLv (conductor of length L moving at velocity v in B)</li>
+          <li>Eddy currents: induced in bulk conductors; cause heating; used in braking</li>
+        </ul><div class="study-tip"><strong>Tip:</strong> Lenz's law: the induced current creates a B field that opposes the change in flux. If flux increases, induced B opposes; if decreases, induced B supplements.</div></div>
+        <div><div class="col-label">Practice Problems</div><ol class="problems-list">
+          <li>Rectangular coil: area 0.1 m², B changes from 0.2 to 0.5 T in 0.1 s. EMF?</li>
+          <li>Rod of length 1 m moves at 5 m/s perpendicular to B=0.4 T. EMF?</li>
+          <li class="jee-q">Circular loop resistance 2Ω, area 0.01 m² in field B=0.1sin(100t) T. Find peak current.</li>
+          <li>Bar magnet pushed into coil: predict direction of induced current using Lenz's law.</li>
+        </ol></div>
+      </div></div>
+    </div>
+    <div class="session-card">
+      <div class="session-head"><span class="session-num">E2</span><span class="session-title">Self &amp; Mutual Inductance</span><span class="session-dur">1.5 hrs</span><span class="session-toggle">▼</span></div>
+      <div class="session-body"><div class="session-body-grid">
+        <div><div class="col-label">Concepts</div><ul class="concepts-list">
+          <li>Self inductance L: ε = −L dI/dt; L = μ₀N²A/l (solenoid)</li>
+          <li>Energy stored in inductor: U = ½LI²</li>
+          <li>Mutual inductance M: ε₂ = −M dI₁/dt; M = k√(L₁L₂), k ≤ 1</li>
+          <li>Transformer: V₁/V₂ = N₁/N₂; ideal transformer: V₁I₁ = V₂I₂</li>
+        </ul><div class="study-tip"><strong>Tip:</strong> Transformer step-up/step-down: more turns on secondary = higher voltage. Current does the opposite (power conservation).</div></div>
+        <div><div class="col-label">Practice Problems</div><ol class="problems-list">
+          <li>Solenoid: 1000 turns, length 50 cm, area 10 cm². Find self-inductance.</li>
+          <li>Energy stored in 2 H inductor carrying 5 A.</li>
+          <li class="jee-q">Transformer: primary 220 V, 100 turns; secondary 2200 V. Number of secondary turns? Primary current if secondary current = 2 A (ideal)?</li>
+          <li>ε = 2 V induced in coil when current in neighbouring coil changes 0.5 A in 0.2 s. Find M.</li>
+        </ol></div>
+      </div></div>
+    </div>
+    <div class="session-card">
+      <div class="session-head"><span class="session-num">E3</span><span class="session-title">AC Circuits — LCR, Resonance &amp; Power Factor</span><span class="session-dur">1.5 hrs</span><span class="session-toggle">▼</span></div>
+      <div class="session-body"><div class="session-body-grid">
+        <div><div class="col-label">Concepts</div><ul class="concepts-list">
+          <li>AC: V = V₀ sinωt; I = I₀ sin(ωt+φ); V_rms = V₀/√2</li>
+          <li>Impedance: Z = √(R²+(X_L−X_C)²)</li>
+          <li>Reactances: X_L = ωL; X_C = 1/ωC</li>
+          <li>Resonance: ω₀ = 1/√(LC), Z = R (minimum), I = maximum</li>
+          <li>Power factor: cos φ = R/Z; P = V_rms I_rms cos φ</li>
+          <li>Pure L or C circuit: power = 0 (current and voltage 90° out of phase)</li>
+        </ul><div class="study-tip"><strong>Tip:</strong> At resonance: X_L = X_C. The circuit behaves as a pure resistor. Power factor = 1. Current is maximum. This is the most important AC result.</div></div>
+        <div><div class="col-label">Practice Problems</div><ol class="problems-list">
+          <li>Series LCR: R=5Ω, L=0.1 H, C=200μF, ω=100 rad/s. Find Z and phase angle.</li>
+          <li>Find resonant frequency of LCR circuit L=2 mH, C=50 μF.</li>
+          <li class="jee-q">Series LCR circuit at resonance: V_R=10 V, V_L=40 V. What is V_C? Find Q-factor.</li>
+          <li>AC circuit: V=200 V_rms, I=5 A_rms, phase angle 60°. Find P consumed.</li>
+        </ol></div>
+      </div></div>
+    </div>
+
+    <h4 style="font-size:.9rem;font-weight:700;margin:1.5rem 0 .5rem;color:var(--phys)">Key Formulas — EMI &amp; AC</h4>
+    <div class="formula-table-wrap"><table class="formula-table">
+      <thead><tr><th>Formula</th><th>Application</th><th>Note</th></tr></thead>
+      <tbody>
+        <tr><td class="formula-cell">ε = −dΦ/dt</td><td>Faraday's law (induced EMF)</td><td class="note-cell">Negative sign = Lenz's law</td></tr>
+        <tr><td class="formula-cell">ε = BLv</td><td>Motional EMF</td><td class="note-cell">Conductor moving in B field</td></tr>
+        <tr><td class="formula-cell">Z = √(R²+(X_L−X_C)²)</td><td>Impedance of LCR series</td><td class="note-cell">At resonance, Z=R (minimum)</td></tr>
+        <tr><td class="formula-cell">ω₀ = 1/√(LC)</td><td>Resonant frequency</td><td class="note-cell">I maximum, cos φ = 1</td></tr>
+        <tr><td class="formula-cell">V₁/V₂ = N₁/N₂</td><td>Transformer voltage ratio</td><td class="note-cell">Ideal: P_in = P_out</td></tr>
+      </tbody>
+    </table></div>
+  </div>
+</div>
+
+<!-- P8 — RAY OPTICS -->
+<div class="unit-section phys-unit">
+  <div class="unit-header">
+    <span class="unit-num">P8</span>
+    <span class="unit-title">Ray Optics</span>
+    <span class="unit-period">October 2026</span>
+    <span class="unit-weight">7–8% of paper</span>
+    <span class="unit-toggle">▼</span>
+  </div>
+  <div class="unit-body">
+    <div class="session-card">
+      <div class="session-head"><span class="session-num">O1</span><span class="session-title">Reflection — Mirrors (Plane &amp; Curved)</span><span class="session-dur">1.5 hrs</span><span class="session-toggle">▼</span></div>
+      <div class="session-body"><div class="session-body-grid">
+        <div><div class="col-label">Concepts</div><ul class="concepts-list">
+          <li>Laws of reflection: angle of incidence = angle of reflection (same plane)</li>
+          <li>Plane mirror: image is virtual, erect, same size, behind mirror</li>
+          <li>Mirror formula: 1/v + 1/u = 1/f; f = R/2</li>
+          <li>Sign convention: distances measured from pole; incident ray direction = positive</li>
+          <li>Magnification: m = −v/u (negative = real, inverted image)</li>
+          <li>Concave mirror: f &lt; 0; Convex: f &gt; 0</li>
+        </ul><div class="study-tip"><strong>Tip:</strong> Sign convention is the most common source of errors in optics. Fix positive direction = incident ray, then ALWAYS apply signs before substituting into formula.</div></div>
+        <div><div class="col-label">Practice Problems</div><ol class="problems-list">
+          <li>Object 30 cm from concave mirror f=20 cm. Find image position and magnification.</li>
+          <li>Convex mirror f=15 cm, object 30 cm in front. Find image.</li>
+          <li class="jee-q">Concave mirror forms real image twice the size of object. If image is 60 cm from mirror, find f.</li>
+          <li>Find the minimum distance between object and real image for a concave mirror of f=20 cm.</li>
+        </ol></div>
+      </div></div>
+    </div>
+    <div class="session-card">
+      <div class="session-head"><span class="session-num">O2</span><span class="session-title">Refraction — Snell's Law, TIR &amp; Lenses</span><span class="session-dur">1.5 hrs</span><span class="session-toggle">▼</span></div>
+      <div class="session-body"><div class="session-body-grid">
+        <div><div class="col-label">Concepts</div><ul class="concepts-list">
+          <li>Snell's law: n₁ sinθ₁ = n₂ sinθ₂</li>
+          <li>TIR: occurs when n₁ &gt; n₂ and θ ≥ θ_c; sinθ_c = n₂/n₁</li>
+          <li>Lens formula: 1/v − 1/u = 1/f (note: different sign convention from mirror!)</li>
+          <li>Lens maker's equation: 1/f = (n−1)(1/R₁ − 1/R₂)</li>
+          <li>Power of lens: P = 1/f (in dioptres, f in metres)</li>
+          <li>Combination: 1/f = 1/f₁ + 1/f₂ (in contact); P = P₁ + P₂</li>
+        </ul><div class="study-tip"><strong>Tip:</strong> Mirror formula and lens formula look similar but use different sign conventions! Lens: 1/v − 1/u = 1/f (note the minus). Mirror: 1/v + 1/u = 1/f (note the plus).</div></div>
+        <div><div class="col-label">Practice Problems</div><ol class="problems-list">
+          <li>Light goes from water (n=1.33) to glass (n=1.5) at 30°. Find refracted angle.</li>
+          <li>Find critical angle for glass-air interface (n_glass=1.5).</li>
+          <li class="jee-q">Convex lens f=20 cm, object at 30 cm. Find image. Then find magnification.</li>
+          <li>Two lenses +5 D and −2 D in contact. Find combined power and focal length.</li>
+        </ol></div>
+      </div></div>
+    </div>
+    <div class="session-card">
+      <div class="session-head"><span class="session-num">O3</span><span class="session-title">Prism, Dispersion &amp; Wave Optics Basics</span><span class="session-dur">1.5 hrs</span><span class="session-toggle">▼</span></div>
+      <div class="session-body"><div class="session-body-grid">
+        <div><div class="col-label">Concepts</div><ul class="concepts-list">
+          <li>Prism deviation: δ = (i₁ + i₂) − A; at minimum deviation: i₁=i₂, r₁=r₂=A/2</li>
+          <li>n = sin((A+δₘ)/2) / sin(A/2)</li>
+          <li>Dispersion: different wavelengths refract different amounts (violet bends most)</li>
+          <li>Young's double slit: fringe width β = λD/d</li>
+          <li>Constructive: path diff = nλ; Destructive: path diff = (2n−1)λ/2</li>
+          <li>Diffraction: single slit first minimum at a sinθ = λ</li>
+        </ul><div class="study-tip"><strong>Tip:</strong> In YDSE: β = λD/d — remember this formula. If wavelength or distance changes, fringe width scales proportionally.</div></div>
+        <div><div class="col-label">Practice Problems</div><ol class="problems-list">
+          <li>Prism A=60°, δₘ=40°. Find refractive index.</li>
+          <li>YDSE: λ=600 nm, D=1.5 m, d=0.5 mm. Find fringe width.</li>
+          <li class="jee-q">In YDSE, 5th bright fringe is at same position as 3rd bright fringe of another wavelength 660 nm. Find first wavelength.</li>
+          <li>Light of wavelength 500 nm incident on slit 0.1 mm wide. Find angle of first diffraction minimum.</li>
+        </ol></div>
+      </div></div>
+    </div>
+
+    <h4 style="font-size:.9rem;font-weight:700;margin:1.5rem 0 .5rem;color:var(--phys)">Key Formulas — Ray Optics</h4>
+    <div class="formula-table-wrap"><table class="formula-table">
+      <thead><tr><th>Formula</th><th>Application</th><th>Note</th></tr></thead>
+      <tbody>
+        <tr><td class="formula-cell">1/v + 1/u = 1/f</td><td>Mirror formula</td><td class="note-cell">Sign convention: incident = +ve</td></tr>
+        <tr><td class="formula-cell">1/v − 1/u = 1/f</td><td>Lens formula</td><td class="note-cell">Note: minus in lens formula!</td></tr>
+        <tr><td class="formula-cell">n₁ sinθ₁ = n₂ sinθ₂</td><td>Snell's law</td><td class="note-cell">sin θ_c = n₂/n₁ for TIR</td></tr>
+        <tr><td class="formula-cell">P = P₁ + P₂</td><td>Lens combination in contact</td><td class="note-cell">P in dioptres = 1/f(m)</td></tr>
+        <tr><td class="formula-cell">β = λD/d</td><td>YDSE fringe width</td><td class="note-cell">λ=wavelength, D=screen dist, d=slit sep</td></tr>
+      </tbody>
+    </table></div>
+  </div>
+</div>
+
+<!-- ═══ PHASE 3 PHYSICS ═══ -->
+<div class="phase-divider p3-div">
+  <div>
+    <h3>Phase 3 — Attempt 1 Drill · November 2026 – January 2027</h3>
+    <p>Add Thermodynamics (new topic). Run mock tests every 10 days. No other new topics.</p>
+  </div>
+</div>
+
+<div class="unit-section phys-unit" style="border-color:#6d28d9">
+  <div class="unit-header">
+    <span class="unit-num" style="background:#6d28d9">P-P3</span>
+    <span class="unit-title">Thermodynamics &amp; Revision</span>
+    <span class="unit-period">November 2026</span>
+    <span class="unit-weight">5–6% · Quick ROI topic</span>
+    <span class="unit-toggle">▼</span>
+  </div>
+  <div class="unit-body">
+    <div class="session-card">
+      <div class="session-head"><span class="session-num">TH1</span><span class="session-title">Thermodynamics — Laws, PV Diagrams &amp; Carnot Cycle</span><span class="session-dur">3 hrs (2 sessions)</span><span class="session-toggle">▼</span></div>
+      <div class="session-body"><div class="session-body-grid">
+        <div><div class="col-label">Concepts</div><ul class="concepts-list">
+          <li>Zeroth law: thermal equilibrium defines temperature</li>
+          <li>First law: ΔU = Q − W; W = ∫PdV</li>
+          <li>Isothermal: T constant, W = nRT ln(V₂/V₁)</li>
+          <li>Adiabatic: no heat exchange, PV^γ = const, TV^(γ-1) = const</li>
+          <li>Isochoric: V constant, W=0, Q=ΔU; Isobaric: P constant, W=PΔV</li>
+          <li>Carnot efficiency: η = 1 − T_L/T_H (ideal maximum)</li>
+          <li>Entropy: ΔS = Q_rev/T; irreversible processes increase total entropy</li>
+        </ul><div class="study-tip"><strong>Tip:</strong> For PV diagram questions: area under curve = work done BY gas. Work done ON gas = negative of this. Clockwise cycle = positive net work.</div></div>
+        <div><div class="col-label">Practice Problems</div><ol class="problems-list">
+          <li>1 mol ideal gas expands isothermally at 300 K from 1L to 4L. Find W and Q.</li>
+          <li>Gas: ΔU=200 J, W=150 J done by gas. Find Q absorbed.</li>
+          <li class="jee-q">Carnot engine: hot reservoir 600 K, cold 300 K. Find efficiency. If 1000 J absorbed, find W and heat rejected.</li>
+          <li>Gas expanded adiabatically. Does it cool down or warm up? Explain using ΔU = Q − W.</li>
+        </ol></div>
+      </div></div>
+    </div>
+    <div style="padding:1rem;background:var(--bg);border-radius:var(--radius);font-size:.875rem;color:var(--ink2);margin-top:1rem">
+      <p style="margin-bottom:.75rem"><strong>Phase 3 Physics Revision Plan:</strong></p>
+      <p style="margin-bottom:.5rem"><strong>Nov Wk 3:</strong> Formula drill — Mechanics (P1–P3), Electricity (P4), Rotation (P5). Speed recall.</p>
+      <p style="margin-bottom:.5rem"><strong>Nov Wk 4:</strong> First full mock test. Focus on numericals — attempt all 10 in Physics section first.</p>
+      <p style="margin-bottom:.5rem"><strong>Dec Wk 1–2:</strong> Weak topic drills from mock. Magnetism and Optics are most commonly weak.</p>
+      <p style="color:var(--phys);font-weight:600">Target: 45+ in Physics per mock test by January 2027.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ PHASE 4 PHYSICS ═══ -->
+<div class="phase-divider p4-div">
+  <div>
+    <h3>Phase 4 — Attempt 2 Boost · February – April 2027</h3>
+    <p>Analyse Attempt 1 Physics errors. Intensify Electricity (highest weightage). Add Modern Physics if bandwidth allows.</p>
+  </div>
+</div>
+
+<div class="unit-section phys-unit" style="border-color:#059669">
+  <div class="unit-header">
+    <span class="unit-num" style="background:#059669">P-P4</span>
+    <span class="unit-title">Gap Analysis + Modern Physics (Optional)</span>
+    <span class="unit-period">February – April 2027</span>
+    <span class="unit-weight">Focus on Electricity + weak areas</span>
+    <span class="unit-toggle">▼</span>
+  </div>
+  <div class="unit-body">
+    <div style="padding:1rem;background:var(--bg);border-radius:var(--radius);font-size:.875rem;color:var(--ink2)">
+      <p style="margin-bottom:.75rem"><strong>Step 1 (Feb Wk 1):</strong> List every Physics topic you lost marks on in Attempt 1. Prioritise: Electricity &gt; Optics &gt; Magnetism (by JEE weightage).</p>
+      <p style="margin-bottom:.75rem"><strong>Step 2 (Feb Wk 2–3):</strong> Drill each weak topic — 20 questions per topic with error log.</p>
+      <p style="margin-bottom:.75rem"><strong>Optional New Topic — Modern Physics (Feb Wk 4):</strong> Photoelectric effect, nuclear physics, semiconductors. Easy 3–4 marks with minimal prep.</p>
+      <div style="background:#dcfce7;border-radius:8px;padding:.75rem;margin-top:.5rem">
+        <p style="color:#166534;font-weight:600;font-size:.82rem">Modern Physics quick summary: E=hν (photon energy), E_max = hν−φ (photoelectric), m_defect × c² = binding energy, half-life T₁/₂ = 0.693/λ. These 4 formulas cover ~80% of Modern Physics JEE questions.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- COMMON TRAPS -->
+<div style="margin-top:3rem">
+  <h3 class="section-title" style="font-size:1.3rem">⚠ Common JEE Traps — Physics Phase 1</h3>
+  <table class="traps-table">
+    <thead><tr><th>Unit</th><th>The Trap</th><th>How to Avoid It</th></tr></thead>
+    <tbody>
+      <tr><td class="trap-unit">Units &amp; Dims</td><td class="trap-bad">Calling a formula "correct" just because it is dimensionally consistent</td><td class="trap-good">Dimensional correctness is necessary but NOT sufficient. A formula can pass the dimension test and still be wrong.</td></tr>
+      <tr><td class="trap-unit">Units &amp; Dims</td><td class="trap-bad">Using % error in x = a³ as 3% when error in a is 3%</td><td class="trap-good">In x = aⁿ, percentage error in x = n × percentage error in a. Write the multiplier explicitly.</td></tr>
+      <tr><td class="trap-unit">Kinematics</td><td class="trap-bad">Applying v=u+at when acceleration is NOT constant</td><td class="trap-good">Equations of motion ONLY work for uniform (constant) acceleration. Variable a → use calculus or graphs.</td></tr>
+      <tr><td class="trap-unit">Kinematics</td><td class="trap-bad">Mixing horizontal and vertical in projectile motion</td><td class="trap-good">Write horizontal and vertical equations on separate lines. Never combine them.</td></tr>
+      <tr><td class="trap-unit">NLM</td><td class="trap-bad">Drawing friction in the wrong direction on FBD</td><td class="trap-good">Ask: which way would object tend to move WITHOUT friction? Friction opposes that tendency.</td></tr>
+      <tr><td class="trap-unit">NLM</td><td class="trap-bad">Assuming normal force = mg on inclines or in accelerating frames</td><td class="trap-good">Derive normal force from FBD every single time. It is NOT always mg.</td></tr>
+      <tr><td class="trap-unit">Work-Energy</td><td class="trap-bad">Using KE + PE = constant when friction is present</td><td class="trap-good">With friction: KE<sub>f</sub> + PE<sub>f</sub> = KE<sub>i</sub> + PE<sub>i</sub> − |W<sub>friction</sub>|. Subtract energy lost to friction.</td></tr>
+      <tr><td class="trap-unit">Electricity</td><td class="trap-bad">Using R = R<sub>1</sub> + R<sub>2</sub> for parallel resistors</td><td class="trap-good">Parallel: 1/R = 1/R<sub>1</sub> + 1/R<sub>2</sub>. Write this formula before substituting numbers — every time.</td></tr>
+      <tr><td class="trap-unit">Electricity</td><td class="trap-bad">Wrong sign when crossing a battery in KVL</td><td class="trap-good">Fix a direction. Crossing from − to + terminal of battery = GAIN (+ε). Crossing + to − = drop (−ε).</td></tr>
+    </tbody>
+  </table>
+</div>
+
+</div><!-- /container -->
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-brand">JEE 2027 Prep</div>
+      <div class="footer-links">
+        <a href="../index.html">Dashboard</a>
+        <a href="math.html">Math</a>
+        <a href="physics.html">Physics</a>
+        <a href="chemistry.html">Chemistry</a>
+        <a href="../progress.html">Progress</a>
+      </div>
+      <div class="footer-note">All Phases · March 2026 – April 2027</div>
+    </div>
+  </div>
+</footer>
+
+<script src="../js/main.js"></script>
+</body>
+</html>

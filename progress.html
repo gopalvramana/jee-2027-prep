@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Progress Tracker — JEE 2027 Prep</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4/dist/chart.umd.min.js"></script>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="nav-brand">JEE 2027</div>
+    <div class="nav-links">
+      <a href="index.html">Dashboard</a>
+      <a href="subjects/math.html">📐 Math</a>
+      <a href="subjects/physics.html">⚡ Physics</a>
+      <a href="subjects/chemistry.html">🧪 Chemistry</a>
+      <a href="progress.html" class="prog-active">✅ Progress</a>
+      <a href="settings.html">⚙ Settings</a>
+    </div>
+    <button class="nav-toggle" onclick="toggleNav()">☰</button>
+  </div>
+</nav>
+
+<header class="page-hero prog-hero">
+  <div class="page-hero-content">
+    <div class="page-hero-tag">All Phases · March 2026 – April 2027</div>
+    <h1>✅ Progress Tracker</h1>
+    <p>Track every session, log mock test scores, and export your data. Auto-saved to your browser — use Export to back up and restore across devices.</p>
+    <div class="page-hero-meta">
+      <div class="meta-item"><strong>Completed:</strong> <span id="total-done">0</span> / <span id="total-sessions">0</span> sessions</div>
+      <div class="meta-item"><strong>Overall:</strong> <span id="total-pct">0%</span></div>
+      <div class="meta-item"><strong>Storage:</strong> Browser localStorage + JSON export</div>
+    </div>
+  </div>
+</header>
+
+<section class="section">
+<div class="container">
+
+  <!-- SUMMARY CARDS -->
+  <div class="prog-summary-grid">
+    <div class="prog-summary-card">
+      <div class="prog-summary-num" id="total-done" style="color:var(--green)">0</div>
+      <div class="prog-summary-label">Sessions Done</div>
+    </div>
+    <div class="prog-summary-card">
+      <div class="prog-summary-num" id="total-pct" style="color:var(--math)">0%</div>
+      <div class="prog-summary-label">Overall Progress</div>
+    </div>
+    <div class="prog-summary-card">
+      <div class="prog-summary-num" id="total-sessions" style="color:var(--ink3)">0</div>
+      <div class="prog-summary-label">Total Sessions</div>
+    </div>
+  </div>
+
+  <!-- ACTION BAR -->
+  <div class="action-bar">
+    <button class="save-btn" onclick="saveAllProgress()">💾 Save Progress</button>
+    <button class="export-btn" onclick="exportProgress()">📤 Export JSON</button>
+    <label class="import-label">
+      📥 Import JSON
+      <input type="file" accept=".json" onchange="importProgress(this)" style="display:none">
+    </label>
+    <button class="reset-btn" onclick="resetProgress()">🗑 Reset All</button>
+    <a href="settings.html" class="gist-btn" style="text-decoration:none;padding:.4rem .9rem">⚙ Backup Settings</a>
+  </div>
+
+  <!-- ══════════ MATHEMATICS ══════════ -->
+  <div class="prog-subject prog-math">
+    <div class="prog-subject-title">
+      <span>📐 Mathematics</span>
+      <span style="font-size:.8rem;font-weight:400;color:var(--ink3)" data-subject-label="math">0 sessions (0%)</span>
+    </div>
+    <div class="prog-bar-wrap"><div class="prog-bar" data-subject-bar="math" style="width:0%"></div></div>
+    <div style="overflow-x:auto">
+
+    <!-- PHASE 1 -->
+    <div class="phase-table-header p1-header">Phase 1 — Foundation · March–June 2026</div>
+    <table class="prog-table">
+      <thead><tr><th>✓</th><th>ID</th><th>Topic</th><th>Target</th><th>Score</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr class="unit-row"><td colspan="6" class="unit-row-label">M1 · Trigonometry</td></tr>
+        <tr><td><input class="prog-check" type="checkbox" data-id="m-t1" data-subject="math"></td><td class="mono sid">T1</td><td>Trig Ratios, Quadrants &amp; ASTC Rule</td><td class="tw">Mar Wk 1</td><td><input class="prog-score" type="text" placeholder="/ 4" data-id="m-t1"></td><td><input class="prog-notes" type="text" placeholder="Notes…" data-id="m-t1"></td></tr>
+        <tr><td><input class="prog-check" type="checkbox" data-id="m-t2" data-subject="math"></td><td class="mono sid">T2</td><td>Standard Values &amp; Exact Values Table</td><td class="tw">Mar Wk 1</td><td><input class="prog-score" type="text" placeholder="/ 4" data-id="m-t2"></td><td><input class="prog-notes" type="text" placeholder="Notes…" data-id="m-t2"></td></tr>
+        <tr><td><input class="prog-check" type="checkbox" data-id="m-t3" data-subject="math"></td><td class="mono sid">T3</td><td>Fundamental Identities</td><td class="tw">Mar Wk 2</td><td><input class="prog-score" type="text" placeholder="/ 4" data-id="m-t3"></td><td><input class="prog-notes" type="text" placeholder="Notes…" data-id="m-t3"></td></tr>
+        <tr><td><input class="prog-check" type="checkbox" data-id="m-t4" data-subject="math"></td><td class="mono sid">T4</td><td>Compound &amp; Double Angle Formulas</td><td class="tw">Mar Wk 2</td><td><input class="prog-score" type="text" placeholder="/ 4" data-id="m-t4"></td><td><input class="prog-notes" type="text" placeholder="Notes…" data-id="m-t4"></td></tr>
+        <tr><td><input class="prog-check" type="checkbox" data-id="m-t5" data-subject="math"></td><td class="mono sid">T5</td><td>Triple Angle &amp; Half Angle Formulas</td><td class="tw">Mar Wk 3</td><td><input class="prog-score" type="text" placeholder="/ 4" data-id="m-t5"></td><td><input class="prog-notes" type="text" placeholder="Notes…" data-id="m-t5"></td></tr>
+        <tr><td><input class="prog-check" type="checkbox" data-id="m-t6" data-subject="math"></td><td class="mono sid">T6</td><td>Sum-to-Product &amp; Product-to-Sum</td><td class="tw">Mar Wk 3</td><td><input class="prog-score" type="text" placeholder="/ 4" data-id="m-t6"></td><td><input class="prog-notes" type="text" placeholder="Notes…" data-id="m-t6"></td></tr>
+        <tr><td><input class="prog-check" type="checkbox" data-id="m-t7" data-subject="math"></td><td class="mono sid">T7</td><td>Review &amp; Mixed Practice</td><td class="tw">Mar Wk 3</td><td><input class="prog-score" type="text" placeholder="/ 10" data-id="m-t7"></td><td><input class="prog-notes" type="text" placeholder="Notes…" data-id="m-t7"></td></tr>
+        <tr><td><input class="prog-check" type="checkbox" data-id="m-t8" data-subject="math"></td><td class="mono sid">T8</td><td>Trigonometric Equations — General Solutions</td><td class="tw">Mar Wk 4</td><td><input class="prog-score" type="text" placeholder="/ 4" data-id="m-t8"></td><td><input class="prog-notes" type="text" placeholder="Notes…" data-id="m-t8"></td></tr>
+        <tr><td><input class="prog-check" type="checkbox" data-id="m-t9" data-subject="math"></td><td class="mono sid">T9</td><td>Inverse Trigonometry</td><td class="tw">Apr Wk 1</td><td><input class="prog-score" type="text" placeholder="/ 4" data-id="m-t9"></td><td><input class="prog-notes" type="text" placeholder="Notes…" data-id="m-t9"></td></tr>
+        <tr><td><input class="prog-check" type="checkbox" data-id="m-t10" data-subject="math"></td><td class="mono sid">T10</td><td>Properties of Triangles</td><td class="tw">Apr Wk 1</td><td><input class="prog-score" type="text" placeholder="/ 4" data-id="m-t10"></td><td><input class="prog-notes" type="text" placeholder="Notes…" data-id="m-t10"></td></tr>
+        <tr><td><input class="prog-check" type="checkbox" data-id="m-t11" data-subject="math"></td><td class="mono sid">T11</td><td>JEE Problem Drill (15 Qs)</td><td class="tw">Apr Wk 2</td><td><input class="prog-score" type="text" placeholder="/ 15" data-id="m-t11"></td><td><input class="prog-notes" type="text" placeholder="Notes…" data-id="m-t11"></td></tr>
+        <tr><td><input class="prog-check" type="checkbox" data-id="m-t12" data-subject="math"></td><td class="mono sid">T12</td><td>Weak Topic Drill</td><td class="tw">Apr Wk 2</td><td><input class="prog-score" type="text" placeholder="/ 10" data-id="m-t12"></td><td><input class="prog-notes" type="text" placeholder="Notes…" data-id="m-t12"></td></tr>
+        <tr class="test-row"><td><input class="prog-check" type="checkbox" data-id="m-t13" data-subject="math"></td><td class="mono sid" style="color:var(--math)">T13</td><td><strong>Completion Test — 20 JEE Qs (Target: 12+/20)</strong></td><td class="tw" style="color:var(--math)">End Apr</td><td><input class="prog-score" type="text" placeholder="/ 20" data-id="m-t13"></td><td><input class="prog-notes" type="text" placeholder="Pass: 12+/20" data-id="m-t13"></td></tr>
+        <tr class="unit-row"><td colspan="6" class="unit-row-label">M2 · Quadratics &amp; Functions</td></tr>
+        <tr><td><input class="prog-check" type="checkbox" data-id="m-m2-1" data-subject="math"></td><td class="mono sid">Q1</td><td>Quadratic Equations — Roots &amp; Discriminant</td><td class="tw">Apr Wk 3</td><td><input class="prog-score" type="text" placeholder="/ 4" data-id="m-m2-1"></td><td><input class="prog-notes" type="text" placeholder="Notes…" data-id="m-m2-1"></td></tr>
+        <tr><td><input class="prog-check" type="checkbox" data-id="m-m2-2" data-subject="math"></td><td class="mono sid">Q2</td><td>Sum, Product &amp; Quadratic Inequalities</td><td class="tw">Apr Wk 3</td><td><input class="prog-score" type="text" placeholder="/ 4" data-id="m-m2-2"></td><td><input class="prog-notes" type="text" placeholder="Notes…" data-id="m-m2-2"></td></tr>
+        <tr><td><input class="prog-check" type="checkbox" data-id="m-m2-3" data-subject="math"></td><td class="mono sid">Q3</td><td>Functions — Domain, Range &amp; Types</td><td class="tw">Apr Wk 4</td><td><input class="prog-score" type="text" placeholder="/ 4" data-id="m-m2-3"></td><td><input class="prog-notes" type="text" placeholder="Notes…" data-id="m-m2-3"></td></tr>
+        <tr><td><input class="prog-check" type="checkbox" data-id="m-m2-4" data-subject="math"></td><td class="mono sid">Q4</td><td>Composite &amp; Inverse Functions</td><td class="tw">Apr Wk 4</td><td><input class="prog-score" type="text" placeholder="/ 4" data-id="m-m2-4"></td><td><input class="prog-notes" type="text" placeholder="Notes…" data-id="m-m2-4"></td></tr>
+        <tr><td><input class="prog-check" type="checkbox" data-id="m-m2-5" data-subject="math"></td><td class="mono sid">Q5</td><td>Graphs of Standard Functions</td><td class="tw">May Wk 1</td><td><input class="prog-score" type="text" placeholder="/ 4" data-id="m-m2-5"></td><td><input class="prog-notes" type="text" placeholder="Notes…" data-id="m-m2-5"></td></tr>
+        <tr><td><input class="prog-check" type="checkbox" data-id="m-m2-6" data-subject="math"></td><td class="mono sid">Q6</td><td>Complex Numbers &amp; Argand Plane</td><td class="tw">May Wk 1</td><td><input class="prog-score" type="text" placeholder="/ 4" data-id="m-m2-6"></td><td><input class="prog-notes" type="text" placeholder="Notes…" data-id="m-m2-6"></td></tr>
+        <tr class="unit-row"><td colspan="6" class="unit-row-label">M3 · Coordinate Geometry</td></tr>
+        <tr><td><input class="prog-check" type="checkbox" data-id="m-m3-1" data-subject="math"></td><td class="mono sid">G1</td><td>Straight Lines — Slope, Distance, Angle</td><td class="tw">May Wk 2</td><td><input class="prog-score" type="text" placeholder="/ 4" data-id="m-m3-1"></td><td><input class="prog-notes" type="text" placeholder="Notes…" data-id="m-m3-1"></td></tr>
+        <tr><td><input class="prog-check" type="checkbox" data-id="m-m3-2" data-subject="math"></td><td class="mono sid">G2</td><td>Circles — Equation, Tangent, Chord</td><td class="tw">May Wk 2</td><td><input class="prog-score" type="text" placeholder="/ 4" data-id="m-m3-2"></td><td><input class="prog-notes" type="text" placeholder="Notes…" data-id="m-m3-2"></td></tr>
+        <tr><td><input class="prog-check" type="checkbox" data-id="m-m3-3" data-subject="math"></td><td class="mono sid">G3</td><td>Parabola — Standard Form, Focus, Directrix</td><td class="tw">May Wk 3</td><td><input class="prog-score" type="text" placeholder="/ 4" data-id="m-m3-3"></td><td><input class="prog-notes" type="text" placeholder="Notes…" data-id="m-m3-3"></td></tr>
+        <tr><td><input class="prog-check" type="checkbox" data-id="m-m3-4" data-subject="math"></td><td class="mono sid">G4</td><td>Ellipse &amp; Hyperbola Basics</td><td class="tw">May Wk 4</td><td><input class="prog-score" type="text" placeholder="/ 4" data-id="m-m3-4"></td><td><input class="prog-notes" type="text" placeholder="Notes…" data-id="m-m3-4"></td></tr>
+        <tr class="unit-row"><td colspan="6" class="unit-row-label">M4 · Sequences &amp; Series</td></tr>
+        <tr><td><input class="prog-check" type="checkbox" data-id="m-m4-1" data-subject="math"></td><td class="mono sid">S1</td><td>AP — nth Term, Sum, Applications</td><td class="tw">Jun Wk 1</td><td><input class="prog-score" type="text" placeholder="/ 4" data-id="m-m4-1"></td><td><input class="prog-notes" type="text" placeholder="Notes…" data-id="m-m4-1"></td></tr>
+        <tr><td><input class="prog-check" type="checkbox" data-id="m-m4-2" data-subject="math"></td><td class="mono sid">S2</td><td>GP — nth Term, Sum, Infinite GP</td><td class="tw">Jun Wk 1</td><td><input class="prog-score" type="text" placeholder="/ 4" data-id="m-m4-2"></td><td><input class="prog-notes" type="text" placeholder="Notes…" data-id="m-m4-2"></td></tr>
+        <tr><td><input class="prog-check" type="checkbox" data-id="m-m4-3" data-subject="math"></td><td class="mono sid">S3</td><td>Special Series — Σn, Σn², Σn³, AGP</td><td class="tw">Jun Wk 2</td><td><input class="prog-score" type="text" placeholder="/ 4" data-id="m-m4-3"></td><td><input class="prog-notes" type="text" placeholder="Notes…" data-id="m-m4-3"></td></tr>
+        <tr><td><input class="prog-check" type="checkbox" data-id="m-m4-4" data-subject="math"></td><td class="mono sid">S4</td><td>Binomial Theorem</td><td class="tw">Jun Wk 3</td><td><input class="prog-score" type="text" placeholder="/ 4" data-id="m-m4-4"></td><td><input class="prog-notes" type="text" placeholder="Notes…" data-id="m-m4-4"></td></tr>
+        <tr><td><input class="prog-check" type="checkbox" data-id="m-m4-5" data-subject="math"></td><td class="mono sid">S5</td><td>Permutations &amp; Combinations</td><td class="tw">Jun Wk 4</td><td><input class="prog-score" type="text" placeholder="/ 4" data-id="m-m4-5"></td><td><input class="prog-notes" type="text" placeholder="Notes…" data-id="m-m4-5"></td></tr>
+      </tbody>
+    </table>
+
+    <!-- PHASE 2 MATH -->
+    <div class="phase-table-header p2-header">Phase 2 — JEE Layer · July–October 2026</div>
+    <table class="prog-table">
+      <thead><tr><th>✓</th><th>ID</th><th>Topic</th><th>Target</th><th>Score</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr class="unit-row"><td colspan="6" class="unit-row-label">M5 · Limits &amp; Differentiation</td></tr>
+        <tr><td><input class="prog-check" type="checkbox" data-id="m-m5-1" data-subject="math"></td><td class="mono sid">D1</td><td>Limits — Standard Forms &amp; L'Hôpital</td><td class="tw">Jul Wk 1</td><td><input class="prog-score" type="text" placeholder="/ 4" data-id="m-m5-1"></td><td><input class="prog-notes" type="text" placeholder="Notes…" data-id="m-m5-1"></td></tr>
+        <tr><td><input class="prog-check" type="checkbox" data-id="m-m5-2" data-subject="math"></td><td class="mono sid">D2</td><td>Continuity &amp; Differentiability</td><td class="tw">Jul Wk 1</td><td><input class="prog-score" type="text" placeholder="/ 4" data-id="m-m5-2"></td><td><input class="prog-notes" type="text" placeholder="Notes…" data-id="m-m5-2"></td></tr>
+        <tr><td><input class="prog-check" type="checkbox" data-id="m-m5-3" data-subject="math"></td><td class="mono sid">D3</td><td>Derivatives — Product, Quotient, Chain Rule</td><td class="tw">Jul Wk 2</td><td><input class="prog-score" type="text" placeholder="/ 4" data-id="m-m5-3"></td><td><input class="prog-notes" type="text" placeholder="Notes…" data-id="m-m5-3"></td></tr>
+        <tr><td><input class="prog-check" type="checkbox" data-id="m-m5-4" data-subject="math"></td><td class="mono sid">D4</td><td>Implicit &amp; Parametric Differentiation</td><td class="tw">Jul Wk 2</td><td><input class="prog-score" type="text" placeholder="/ 4" data-id="m-m5-4"></td><td><input class="prog-notes" type="text" placeholder="Notes…" data-id="m-m5-4"></td></tr>
+        <tr><td><input class="prog-check" type="checkbox" data-id="m-m5-5" data-subject="math"></td><td class="mono sid">D5</td><td>Higher Order Derivatives &amp; Rolle's / MVT</td><td class="tw">Jul Wk 3</td><td><input class="prog-score" type="text" placeholder="/ 4" data-id="m-m5-5"></td><td><input class="prog-notes" type="text" placeholder="Notes…" data-id="m-m5-5"></td></tr>
+        <tr class="unit-row"><td colspan="6" class="unit-row-label">M6 · Applications of Derivatives</td></tr>
+        <tr><td><input class="prog-check" type="checkbox" data-id="m-m6-1" data-subject="math"></td><td class="mono sid">A1</td><td>Tangents &amp; Normals</td><td class="tw">Aug Wk 1</td><td><input class="prog-score" type="text" placeholder="/ 4" data-id="m-m6-1"></td><td><input class="prog-notes" type="text" placeholder="Notes…" data-id="m-m6-1"></td></tr>
+        <tr><td><input class="prog-check" type="checkbox" data-id="m-m6-2" data-subject="math"></td><td class="mono sid">A2</td><td>Maxima &amp; Minima — First &amp; Second Derivative</td><td class="tw">Aug Wk 2</td><td><input class="prog-score" type="text" placeholder="/ 4" data-id="m-m6-2"></td><td><input class="prog-notes" type="text" placeholder="Notes…" data-id="m-m6-2"></td></tr>
+        <tr><td><input class="prog-check" type="checkbox" data-id="m-m6-3" data-subject="math"></td><td class="mono sid">A3</td><td>Increasing / Decreasing Functions</td><td class="tw">Aug Wk 2</td><td><input class="prog-score" type="text" placeholder="/ 4" data-id="m-m6-3"></td><td><input class="prog-notes" type="text" placeholder="Notes…" data-id="m-m6-3"></td></tr>
+        <tr><td><input class="prog-check" type="checkbox" data-id="m-m6-4" data-subject="math"></td><td class="mono sid">A4</td><td>Rate of Change &amp; Approximation</td><td class="tw">Aug Wk 3</td><td><input class="prog-score" type="text" placeholder="/ 4" data-id="m-m6-4"></td><td><input class="prog-notes" type="text" placeholder="Notes…" data-id="m-m6-4"></td></tr>
+        <tr class="unit-row"><td colspan="6" class="unit-row-label">M7 · Integration</td></tr>
+        <tr><td><input class="prog-check" type="checkbox" data-id="m-m7-1" data-subject="math"></td><td class="mono sid">I1</td><td>Indefinite Integration — Standard Forms</td><td class="tw">Sep Wk 1</td><td><input class="prog-score" type="text" placeholder="/ 4" data-id="m-m7-1"></td><td><input class="prog-notes" type="text" placeholder="Notes…" data-id="m-m7-1"></td></tr>
+        <tr><td><input class="prog-check" type="checkbox" data-id="m-m7-2" data-subject="math"></td><td class="mono sid">I2</td><td>Substitution Method</td><td class="tw">Sep Wk 1</td><td><input class="prog-score" type="text" placeholder="/ 4" data-id="m-m7-2"></td><td><input class="prog-notes" type="text" placeholder="Notes…" data-id="m-m7-2"></td></tr>
+        <tr><td><input class="prog-check" type="checkbox" data-id="m-m7-3" data-subject="math"></td><td class="mono sid">I3</td><td>Integration by Parts</td><td class="tw">Sep Wk 2</td><td><input class="prog-score" type="text" placeholder="/ 4" data-id="m-m7-3"></td><td><input class="prog-notes" type="text" placeholder="Notes…" data-id="m-m7-3"></td></tr>
+        <tr><td><input class="prog-check" type="checkbox" data-id="m-m7-4" data-subject="math"></td><td class="mono sid">I4</td><td>Partial Fractions</td><td class="tw">Sep Wk 2</td><td><input class="prog-score" type="text" placeholder="/ 4" data-id="m-m7-4"></td><td><input class="prog-notes" type="text" placeholder="Notes…" data-id="m-m7-4"></td></tr>
+        <tr><td><input class="prog-check" type="checkbox" data-id="m-m7-5" data-subject="math"></td><td class="mono sid">I5</td><td>Definite Integration — Properties</td><td class="tw">Sep Wk 3</td><td><input class="prog-score" type="text" placeholder="/ 4" data-id="m-m7-5"></td><td><input class="prog-notes" type="text" placeholder="Notes…" data-id="m-m7-5"></td></tr>
+        <tr><td><input class="prog-check" type="checkbox" data-id="m-m7-6" data-subject="math"></td><td class="mono sid">I6</td><td>Area Under Curves</td><td class="tw">Sep Wk 4</td><td><input class="prog-score" type="text" placeholder="/ 4" data-id="m-m7-6"></td><td><input class="prog-notes" type="text" placeholder="Notes…" data-id="m-m7-6"></td></tr>
+        <tr><td><input class="prog-check" type="checkbox" data-id="m-m7-7" data-subject="math"></td><td class="mono sid">I7</td><td>Differential Equations — Variables Separable</td><td class="tw">Sep Wk 4</td><td><input class="prog-score" type="text" placeholder="/ 4" data-id="m-m7-7"></td><td><input class="prog-notes" type="text" placeholder="Notes…" data-id="m-m7-7"></td></tr>
+        <tr class="unit-row"><td colspan="6" class="unit-row-label">M8 · Vectors &amp; Matrices</td></tr>
+        <tr><td><input class="prog-check" type="checkbox" data-id="m-m8-1" data-subject="math"></td><td class="mono sid">V1</td><td>Vectors — Magnitude, Direction, Addition</td><td class="tw">Oct Wk 1</td><td><input class="prog-score" type="text" placeholder="/ 4" data-id="m-m8-1"></td><td><input class="prog-notes" type="text" placeholder="Notes…" data-id="m-m8-1"></td></tr>
+        <tr><td><input class="prog-check" type="checkbox" data-id="m-m8-2" data-subject="math"></td><td class="mono sid">V2</td><td>Dot &amp; Cross Products</td><td class="tw">Oct Wk 1</td><td><input class="prog-score" type="text" placeholder="/ 4" data-id="m-m8-2"></td><td><input class="prog-notes" type="text" placeholder="Notes…" data-id="m-m8-2"></td></tr>
+        <tr><td><input class="prog-check" type="checkbox" data-id="m-m8-3" data-subject="math"></td><td class="mono sid">V3</td><td>3D Geometry — Lines &amp; Planes</td><td class="tw">Oct Wk 2</td><td><input class="prog-score" type="text" placeholder="/ 4" data-id="m-m8-3"></td><td><input class="prog-notes" type="text" placeholder="Notes…" data-id="m-m8-3"></td></tr>
+        <tr><td><input class="prog-check" type="checkbox" data-id="m-m8-4" data-subject="math"></td><td class="mono sid">V4</td><td>Matrices — Types, Operations</td><td class="tw">Oct Wk 3</td><td><input class="prog-score" type="text" placeholder="/ 4" data-id="m-m8-4"></td><td><input class="prog-notes" type="text" placeholder="Notes…" data-id="m-m8-4"></td></tr>
+        <tr><td><input class="prog-check" type="checkbox" data-id="m-m8-5" data-subject="math"></td><td class="mono sid">V5</td><td>Determinants &amp; Inverse Matrix</td><td class="tw">Oct Wk 3</td><td><input class="prog-score" type="text" placeholder="/ 4" data-id="m-m8-5"></td><td><input class="prog-notes" type="text" placeholder="Notes…" data-id="m-m8-5"></td></tr>
+        <tr><td><input class="prog-check" type="checkbox" data-id="m-m8-6" data-subject="math"></td><td class="mono sid">V6</td><td>Probability — Classical &amp; Conditional</td><td class="tw">Oct Wk 4</td><td><input class="prog-score" type="text" placeholder="/ 4" data-id="m-m8-6"></td><td><input class="prog-notes" type="text" placeholder="Notes…" data-id="m-m8-6"></td></tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+
+  <!-- ══════════ PHYSICS ══════════ -->
+  <div class="prog-subject prog-phys">
+    <div class="prog-subject-title">
+      <span>⚡ Physics</span>
+      <span style="font-size:.8rem;font-weight:400;color:var(--ink3)" data-subject-label="phys">0 sessions (0%)</span>
+    </div>
+    <div class="prog-bar-wrap"><div class="prog-bar" data-subject-bar="phys" style="width:0%;background:var(--phys)"></div></div>
+    <div style="overflow-x:auto">
+
+    <div class="phase-table-header p1-header">Phase 1 — Foundation · March–June 2026</div>
+    <table class="prog-table">
+      <thead><tr><th>✓</th><th>ID</th><th>Topic</th><th>Target</th><th>Score</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr class="unit-row" style="background:#eef2ff"><td colspan="6" class="unit-row-label" style="color:#3730a3">P0 · Units &amp; Dimensions (prerequisite)</td></tr>
+        <tr style="background:#f5f3ff"><td><input class="prog-check" type="checkbox" data-id="p-s0a" data-subject="phys"></td><td class="mono sid" style="color:#3730a3">S0-A</td><td>Fundamental Units &amp; Dimensional Formulas</td><td class="tw">Mar Wk 1</td><td><input class="prog-score" type="text" placeholder="/ 4" data-id="p-s0a"></td><td><input class="prog-notes" type="text" placeholder="Notes…" data-id="p-s0a"></td></tr>
+        <tr style="background:#f5f3ff"><td><input class="prog-check" type="checkbox" data-id="p-s0b" data-subject="phys"></td><td class="mono sid" style="color:#3730a3">S0-B</td><td>Dimensional Analysis &amp; Error Analysis</td><td class="tw">Mar Wk 1</td><td><input class="prog-score" type="text" placeholder="/ 5" data-id="p-s0b"></td><td><input class="prog-notes" type="text" placeholder="Notes…" data-id="p-s0b"></td></tr>
+        <tr class="unit-row"><td colspan="6" class="unit-row-label">P1 · Kinematics</td></tr>
+        <tr><td><input class="prog-check" type="checkbox" data-id="p-s1" data-subject="phys"></td><td class="mono sid">S1</td><td>1D Motion — Equations and Graphs</td><td class="tw">Mar Wk 2</td><td><input class="prog-score" type="text" placeholder="/ 4" data-id="p-s1"></td><td><input class="prog-notes" type="text" placeholder="Notes…" data-id="p-s1"></td></tr>
+        <tr><td><input class="prog-check" type="checkbox" data-id="p-s2" data-subject="phys"></td><td class="mono sid">S2</td><td>Projectile Motion</td><td class="tw">Mar Wk 3</td><td><input class="prog-score" type="text" placeholder="/ 4" data-id="p-s2"></td><td><input class="prog-notes" type="text" placeholder="Notes…" data-id="p-s2"></td></tr>
+        <tr><td><input class="prog-check" type="checkbox" data-id="p-s3" data-subject="phys"></td><td class="mono sid">S3</td><td>Relative Motion</td><td class="tw">Mar Wk 4</td><td><input class="prog-score" type="text" placeholder="/ 4" data-id="p-s3"></td><td><input class="prog-notes" type="text" placeholder="Notes…" data-id="p-s3"></td></tr>
+        <tr class="unit-row"><td colspan="6" class="unit-row-label">P2 · Laws of Motion</td></tr>
+        <tr><td><input class="prog-check" type="checkbox" data-id="p-s4" data-subject="phys"></td><td class="mono sid">S4</td><td>Newton's Laws &amp; Free Body Diagrams</td><td class="tw">Apr Wk 1</td><td><input class="prog-score" type="text" placeholder="/ 4" data-id="p-s4"></td><td><input class="prog-notes" type="text" placeholder="Notes…" data-id="p-s4"></td></tr>
+        <tr><td><input class="prog-check" type="checkbox" data-id="p-s5" data-subject="phys"></td><td class="mono sid">S5</td><td>Friction</td><td class="tw">Apr Wk 2</td><td><input class="prog-score" type="text" placeholder="/ 4" data-id="p-s5"></td><td><input class="prog-notes" type="text" placeholder="Notes…" data-id="p-s5"></td></tr>
+        <tr><td><input class="prog-check" type="checkbox" data-id="p-s6" data-subject="phys"></td><td class="mono sid">S6</td><td>Pulley Systems &amp; Connected Bodies</td><td class="tw">Apr Wk 3</td><td><input class="prog-score" type="text" placeholder="/ 4" data-id="p-s6"></td><td><input class="prog-notes" type="text" placeholder="Notes…" data-id="p-s6"></td></tr>
+        <tr class="unit-row"><td colspan="6" class="unit-row-label">P3 · Work, Energy &amp; Power</td></tr>
+        <tr><td><input class="prog-check" type="checkbox" data-id="p-s7" data-subject="phys"></td><td class="mono sid">S7</td><td>Work &amp; Work-Energy Theorem</td><td class="tw">May Wk 1</td><td><input class="prog-score" type="text" placeholder="/ 4" data-id="p-s7"></td><td><input class="prog-notes" type="text" placeholder="Notes…" data-id="p-s7"></td></tr>
+        <tr><td><input class="prog-check" type="checkbox" data-id="p-s8" data-subject="phys"></td><td class="mono sid">S8</td><td>Conservation of Energy &amp; Collisions</td><td class="tw">May Wk 3</td><td><input class="prog-score" type="text" placeholder="/ 4" data-id="p-s8"></td><td><input class="prog-notes" type="text" placeholder="Notes…" data-id="p-s8"></td></tr>
+        <tr class="unit-row"><td colspan="6" class="unit-row-label">P4 · Current Electricity</td></tr>
+        <tr><td><input class="prog-check" type="checkbox" data-id="p-s9" data-subject="phys"></td><td class="mono sid">S9</td><td>Ohm's Law, Resistance &amp; Basic Circuits</td><td class="tw">Jun Wk 1</td><td><input class="prog-score" type="text" placeholder="/ 4" data-id="p-s9"></td><td><input class="prog-notes" type="text" placeholder="Notes…" data-id="p-s9"></td></tr>
+        <tr><td><input class="prog-check" type="checkbox" data-id="p-s10" data-subject="phys"></td><td class="mono sid">S10</td><td>Kirchhoff's Laws</td><td class="tw">Jun Wk 2</td><td><input class="prog-score" type="text" placeholder="/ 4" data-id="p-s10"></td><td><input class="prog-notes" type="text" placeholder="Notes…" data-id="p-s10"></td></tr>
+        <tr><td><input class="prog-check" type="checkbox" data-id="p-s11" data-subject="phys"></td><td class="mono sid">S11</td><td>Cells, Metre Bridge &amp; Potentiometer</td><td class="tw">Jun Wk 3</td><td><input class="prog-score" type="text" placeholder="/ 4" data-id="p-s11"></td><td><input class="prog-notes" type="text" placeholder="Notes…" data-id="p-s11"></td></tr>
+      </tbody>
+    </table>
+
+    <div class="phase-table-header p2-header">Phase 2 — JEE Layer · July–October 2026</div>
+    <table class="prog-table">
+      <thead><tr><th>✓</th><th>ID</th><th>Topic</th><th>Target</th><th>Score</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr class="unit-row"><td colspan="6" class="unit-row-label">P5 · Rotational Motion</td></tr>
+        <tr><td><input class="prog-check" type="checkbox" data-id="p-p5-1" data-subject="phys"></td><td class="mono sid">R1</td><td>Torque, Angular Acceleration &amp; Newton's 2nd for Rotation</td><td class="tw">Jul Wk 1</td><td><input class="prog-score" type="text" placeholder="/ 4" data-id="p-p5-1"></td><td><input class="prog-notes" type="text" placeholder="Notes…" data-id="p-p5-1"></td></tr>
+        <tr><td><input class="prog-check" type="checkbox" data-id="p-p5-2" data-subject="phys"></td><td class="mono sid">R2</td><td>Moment of Inertia — Standard Bodies</td><td class="tw">Jul Wk 2</td><td><input class="prog-score" type="text" placeholder="/ 4" data-id="p-p5-2"></td><td><input class="prog-notes" type="text" placeholder="Notes…" data-id="p-p5-2"></td></tr>
+        <tr><td><input class="prog-check" type="checkbox" data-id="p-p5-3" data-subject="phys"></td><td class="mono sid">R3</td><td>Angular Momentum &amp; Conservation</td><td class="tw">Jul Wk 2</td><td><input class="prog-score" type="text" placeholder="/ 4" data-id="p-p5-3"></td><td><input class="prog-notes" type="text" placeholder="Notes…" data-id="p-p5-3"></td></tr>
+        <tr><td><input class="prog-check" type="checkbox" data-id="p-p5-4" data-subject="phys"></td><td class="mono sid">R4</td><td>Rolling Without Slipping</td><td class="tw">Jul Wk 3</td><td><input class="prog-score" type="text" placeholder="/ 4" data-id="p-p5-4"></td><td><input class="prog-notes" type="text" placeholder="Notes…" data-id="p-p5-4"></td></tr>
+        <tr class="unit-row"><td colspan="6" class="unit-row-label">P6 · Magnetism</td></tr>
+        <tr><td><input class="prog-check" type="checkbox" data-id="p-p6-1" data-subject="phys"></td><td class="mono sid">B1</td><td>Biot-Savart Law &amp; Ampere's Law</td><td class="tw">Aug Wk 1</td><td><input class="prog-score" type="text" placeholder="/ 4" data-id="p-p6-1"></td><td><input class="prog-notes" type="text" placeholder="Notes…" data-id="p-p6-1"></td></tr>
+        <tr><td><input class="prog-check" type="checkbox" data-id="p-p6-2" data-subject="phys"></td><td class="mono sid">B2</td><td>Force on Current-Carrying Conductor</td><td class="tw">Aug Wk 2</td><td><input class="prog-score" type="text" placeholder="/ 4" data-id="p-p6-2"></td><td><input class="prog-notes" type="text" placeholder="Notes…" data-id="p-p6-2"></td></tr>
+        <tr><td><input class="prog-check" type="checkbox" data-id="p-p6-3" data-subject="phys"></td><td class="mono sid">B3</td><td>Motion of Charged Particles in B Field</td><td class="tw">Aug Wk 3</td><td><input class="prog-score" type="text" placeholder="/ 4" data-id="p-p6-3"></td><td><input class="prog-notes" type="text" placeholder="Notes…" data-id="p-p6-3"></td></tr>
+        <tr><td><input class="prog-check" type="checkbox" data-id="p-p6-4" data-subject="phys"></td><td class="mono sid">B4</td><td>Magnetism of Matter — Para/Dia/Ferro</td><td class="tw">Aug Wk 4</td><td><input class="prog-score" type="text" placeholder="/ 4" data-id="p-p6-4"></td><td><input class="prog-notes" type="text" placeholder="Notes…" data-id="p-p6-4"></td></tr>
+        <tr class="unit-row"><td colspan="6" class="unit-row-label">P7 · Electromagnetic Induction</td></tr>
+        <tr><td><input class="prog-check" type="checkbox" data-id="p-p7-1" data-subject="phys"></td><td class="mono sid">E1</td><td>Faraday's Law &amp; Lenz's Law</td><td class="tw">Sep Wk 1</td><td><input class="prog-score" type="text" placeholder="/ 4" data-id="p-p7-1"></td><td><input class="prog-notes" type="text" placeholder="Notes…" data-id="p-p7-1"></td></tr>
+        <tr><td><input class="prog-check" type="checkbox" data-id="p-p7-2" data-subject="phys"></td><td class="mono sid">E2</td><td>Self &amp; Mutual Inductance</td><td class="tw">Sep Wk 2</td><td><input class="prog-score" type="text" placeholder="/ 4" data-id="p-p7-2"></td><td><input class="prog-notes" type="text" placeholder="Notes…" data-id="p-p7-2"></td></tr>
+        <tr><td><input class="prog-check" type="checkbox" data-id="p-p7-3" data-subject="phys"></td><td class="mono sid">E3</td><td>AC Circuits — LCR, Resonance, Power Factor</td><td class="tw">Sep Wk 3</td><td><input class="prog-score" type="text" placeholder="/ 4" data-id="p-p7-3"></td><td><input class="prog-notes" type="text" placeholder="Notes…" data-id="p-p7-3"></td></tr>
+        <tr class="unit-row"><td colspan="6" class="unit-row-label">P8 · Ray Optics</td></tr>
+        <tr><td><input class="prog-check" type="checkbox" data-id="p-p8-1" data-subject="phys"></td><td class="mono sid">O1</td><td>Reflection — Plane &amp; Curved Mirrors</td><td class="tw">Oct Wk 1</td><td><input class="prog-score" type="text" placeholder="/ 4" data-id="p-p8-1"></td><td><input class="prog-notes" type="text" placeholder="Notes…" data-id="p-p8-1"></td></tr>
+        <tr><td><input class="prog-check" type="checkbox" data-id="p-p8-2" data-subject="phys"></td><td class="mono sid">O2</td><td>Refraction at Plane Surfaces &amp; TIR</td><td class="tw">Oct Wk 2</td><td><input class="prog-score" type="text" placeholder="/ 4" data-id="p-p8-2"></td><td><input class="prog-notes" type="text" placeholder="Notes…" data-id="p-p8-2"></td></tr>
+        <tr><td><input class="prog-check" type="checkbox" data-id="p-p8-3" data-subject="phys"></td><td class="mono sid">O3</td><td>Prism &amp; Dispersion</td><td class="tw">Oct Wk 3</td><td><input class="prog-score" type="text" placeholder="/ 4" data-id="p-p8-3"></td><td><input class="prog-notes" type="text" placeholder="Notes…" data-id="p-p8-3"></td></tr>
+        <tr><td><input class="prog-check" type="checkbox" data-id="p-p8-4" data-subject="phys"></td><td class="mono sid">O4</td><td>Lenses — Power, Combination, Optical Instruments</td><td class="tw">Oct Wk 4</td><td><input class="prog-score" type="text" placeholder="/ 4" data-id="p-p8-4"></td><td><input class="prog-notes" type="text" placeholder="Notes…" data-id="p-p8-4"></td></tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+
+  <!-- ══════════ CHEMISTRY ══════════ -->
+  <div class="prog-subject prog-chem">
+    <div class="prog-subject-title">
+      <span>🧪 Chemistry</span>
+      <span style="font-size:.8rem;font-weight:400;color:var(--ink3)" data-subject-label="chem">0 sessions (0%)</span>
+    </div>
+    <div class="prog-bar-wrap"><div class="prog-bar" data-subject-bar="chem" style="width:0%;background:var(--chem)"></div></div>
+    <div style="overflow-x:auto">
+
+    <div class="phase-table-header p1-header">Phase 1 — Foundation · March–June 2026</div>
+    <table class="prog-table">
+      <thead><tr><th>✓</th><th>ID</th><th>Topic</th><th>Target</th><th>Score</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr class="unit-row"><td colspan="6" class="unit-row-label">C1 · Mole Concept &amp; Stoichiometry</td></tr>
+        <tr><td><input class="prog-check" type="checkbox" data-id="c-s1" data-subject="chem"></td><td class="mono sid">C1</td><td>Mole, Atomic Mass &amp; Avogadro's Number</td><td class="tw">Mar Wk 1</td><td><input class="prog-score" type="text" placeholder="/ 4" data-id="c-s1"></td><td><input class="prog-notes" type="text" placeholder="Notes…" data-id="c-s1"></td></tr>
+        <tr><td><input class="prog-check" type="checkbox" data-id="c-s2" data-subject="chem"></td><td class="mono sid">C2</td><td>Stoichiometry &amp; Limiting Reagent</td><td class="tw">Mar Wk 2</td><td><input class="prog-score" type="text" placeholder="/ 4" data-id="c-s2"></td><td><input class="prog-notes" type="text" placeholder="Notes…" data-id="c-s2"></td></tr>
+        <tr><td><input class="prog-check" type="checkbox" data-id="c-s3" data-subject="chem"></td><td class="mono sid">C3</td><td>Concentration Terms &amp; Solutions</td><td class="tw">Mar Wk 3</td><td><input class="prog-score" type="text" placeholder="/ 4" data-id="c-s3"></td><td><input class="prog-notes" type="text" placeholder="Notes…" data-id="c-s3"></td></tr>
+        <tr class="unit-row"><td colspan="6" class="unit-row-label">C2 · Atomic Structure</td></tr>
+        <tr><td><input class="prog-check" type="checkbox" data-id="c-s4" data-subject="chem"></td><td class="mono sid">C4</td><td>Bohr Model &amp; Atomic Spectra</td><td class="tw">Apr Wk 1</td><td><input class="prog-score" type="text" placeholder="/ 4" data-id="c-s4"></td><td><input class="prog-notes" type="text" placeholder="Notes…" data-id="c-s4"></td></tr>
+        <tr><td><input class="prog-check" type="checkbox" data-id="c-s5" data-subject="chem"></td><td class="mono sid">C5</td><td>Quantum Numbers &amp; Orbitals</td><td class="tw">Apr Wk 2</td><td><input class="prog-score" type="text" placeholder="/ 4" data-id="c-s5"></td><td><input class="prog-notes" type="text" placeholder="Notes…" data-id="c-s5"></td></tr>
+        <tr><td><input class="prog-check" type="checkbox" data-id="c-s6" data-subject="chem"></td><td class="mono sid">C6</td><td>Electron Configuration &amp; Periodic Trends</td><td class="tw">Apr Wk 3</td><td><input class="prog-score" type="text" placeholder="/ 4" data-id="c-s6"></td><td><input class="prog-notes" type="text" placeholder="Notes…" data-id="c-s6"></td></tr>
+        <tr class="unit-row"><td colspan="6" class="unit-row-label">C3 · Chemical Bonding</td></tr>
+        <tr><td><input class="prog-check" type="checkbox" data-id="c-s7" data-subject="chem"></td><td class="mono sid">C7</td><td>Ionic &amp; Covalent Bonding, Lewis Structures</td><td class="tw">May Wk 1</td><td><input class="prog-score" type="text" placeholder="/ 4" data-id="c-s7"></td><td><input class="prog-notes" type="text" placeholder="Notes…" data-id="c-s7"></td></tr>
+        <tr><td><input class="prog-check" type="checkbox" data-id="c-s8" data-subject="chem"></td><td class="mono sid">C8</td><td>VSEPR Theory &amp; Hybridisation</td><td class="tw">May Wk 2</td><td><input class="prog-score" type="text" placeholder="/ 4" data-id="c-s8"></td><td><input class="prog-notes" type="text" placeholder="Notes…" data-id="c-s8"></td></tr>
+        <tr><td><input class="prog-check" type="checkbox" data-id="c-s9" data-subject="chem"></td><td class="mono sid">C9</td><td>Polarity &amp; Intermolecular Forces</td><td class="tw">May Wk 3</td><td><input class="prog-score" type="text" placeholder="/ 4" data-id="c-s9"></td><td><input class="prog-notes" type="text" placeholder="Notes…" data-id="c-s9"></td></tr>
+        <tr class="unit-row"><td colspan="6" class="unit-row-label">C4 · Thermochemistry</td></tr>
+        <tr><td><input class="prog-check" type="checkbox" data-id="c-s10" data-subject="chem"></td><td class="mono sid">C10</td><td>Enthalpy, Heat &amp; First Law</td><td class="tw">Jun Wk 1</td><td><input class="prog-score" type="text" placeholder="/ 4" data-id="c-s10"></td><td><input class="prog-notes" type="text" placeholder="Notes…" data-id="c-s10"></td></tr>
+        <tr><td><input class="prog-check" type="checkbox" data-id="c-s11" data-subject="chem"></td><td class="mono sid">C11</td><td>Hess's Law &amp; Bond Energies</td><td class="tw">Jun Wk 2</td><td><input class="prog-score" type="text" placeholder="/ 4" data-id="c-s11"></td><td><input class="prog-notes" type="text" placeholder="Notes…" data-id="c-s11"></td></tr>
+        <tr><td><input class="prog-check" type="checkbox" data-id="c-s12" data-subject="chem"></td><td class="mono sid">C12</td><td>Entropy, Gibbs Free Energy &amp; Spontaneity</td><td class="tw">Jun Wk 3</td><td><input class="prog-score" type="text" placeholder="/ 4" data-id="c-s12"></td><td><input class="prog-notes" type="text" placeholder="Notes…" data-id="c-s12"></td></tr>
+      </tbody>
+    </table>
+
+    <div class="phase-table-header p2-header">Phase 2 — JEE Layer · July–October 2026</div>
+    <table class="prog-table">
+      <thead><tr><th>✓</th><th>ID</th><th>Topic</th><th>Target</th><th>Score</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr class="unit-row"><td colspan="6" class="unit-row-label">C5 · Chemical Equilibrium</td></tr>
+        <tr><td><input class="prog-check" type="checkbox" data-id="c-c5-1" data-subject="chem"></td><td class="mono sid">E1</td><td>Kp, Kc &amp; Reaction Quotient Q</td><td class="tw">Jul Wk 1</td><td><input class="prog-score" type="text" placeholder="/ 4" data-id="c-c5-1"></td><td><input class="prog-notes" type="text" placeholder="Notes…" data-id="c-c5-1"></td></tr>
+        <tr><td><input class="prog-check" type="checkbox" data-id="c-c5-2" data-subject="chem"></td><td class="mono sid">E2</td><td>Le Chatelier's Principle — All Effects</td><td class="tw">Jul Wk 2</td><td><input class="prog-score" type="text" placeholder="/ 4" data-id="c-c5-2"></td><td><input class="prog-notes" type="text" placeholder="Notes…" data-id="c-c5-2"></td></tr>
+        <tr><td><input class="prog-check" type="checkbox" data-id="c-c5-3" data-subject="chem"></td><td class="mono sid">E3</td><td>Degree of Dissociation &amp; ICE Tables</td><td class="tw">Jul Wk 3</td><td><input class="prog-score" type="text" placeholder="/ 4" data-id="c-c5-3"></td><td><input class="prog-notes" type="text" placeholder="Notes…" data-id="c-c5-3"></td></tr>
+        <tr class="unit-row"><td colspan="6" class="unit-row-label">C6 · Ionic Equilibrium</td></tr>
+        <tr><td><input class="prog-check" type="checkbox" data-id="c-c6-1" data-subject="chem"></td><td class="mono sid">I1</td><td>pH Scale, Strong &amp; Weak Acids/Bases</td><td class="tw">Aug Wk 1</td><td><input class="prog-score" type="text" placeholder="/ 4" data-id="c-c6-1"></td><td><input class="prog-notes" type="text" placeholder="Notes…" data-id="c-c6-1"></td></tr>
+        <tr><td><input class="prog-check" type="checkbox" data-id="c-c6-2" data-subject="chem"></td><td class="mono sid">I2</td><td>Buffer Solutions &amp; Henderson Equation</td><td class="tw">Aug Wk 2</td><td><input class="prog-score" type="text" placeholder="/ 4" data-id="c-c6-2"></td><td><input class="prog-notes" type="text" placeholder="Notes…" data-id="c-c6-2"></td></tr>
+        <tr><td><input class="prog-check" type="checkbox" data-id="c-c6-3" data-subject="chem"></td><td class="mono sid">I3</td><td>Solubility Product Ksp &amp; Common Ion Effect</td><td class="tw">Aug Wk 3</td><td><input class="prog-score" type="text" placeholder="/ 4" data-id="c-c6-3"></td><td><input class="prog-notes" type="text" placeholder="Notes…" data-id="c-c6-3"></td></tr>
+        <tr class="unit-row"><td colspan="6" class="unit-row-label">C7 · Electrochemistry</td></tr>
+        <tr><td><input class="prog-check" type="checkbox" data-id="c-c7-1" data-subject="chem"></td><td class="mono sid">EC1</td><td>Galvanic Cells — EMF &amp; Cell Notation</td><td class="tw">Sep Wk 1</td><td><input class="prog-score" type="text" placeholder="/ 4" data-id="c-c7-1"></td><td><input class="prog-notes" type="text" placeholder="Notes…" data-id="c-c7-1"></td></tr>
+        <tr><td><input class="prog-check" type="checkbox" data-id="c-c7-2" data-subject="chem"></td><td class="mono sid">EC2</td><td>Nernst Equation &amp; Concentration Cells</td><td class="tw">Sep Wk 2</td><td><input class="prog-score" type="text" placeholder="/ 4" data-id="c-c7-2"></td><td><input class="prog-notes" type="text" placeholder="Notes…" data-id="c-c7-2"></td></tr>
+        <tr><td><input class="prog-check" type="checkbox" data-id="c-c7-3" data-subject="chem"></td><td class="mono sid">EC3</td><td>Electrolysis &amp; Faraday's Laws</td><td class="tw">Sep Wk 3</td><td><input class="prog-score" type="text" placeholder="/ 4" data-id="c-c7-3"></td><td><input class="prog-notes" type="text" placeholder="Notes…" data-id="c-c7-3"></td></tr>
+        <tr><td><input class="prog-check" type="checkbox" data-id="c-c7-4" data-subject="chem"></td><td class="mono sid">EC4</td><td>Conductance &amp; Kohlrausch's Law</td><td class="tw">Sep Wk 4</td><td><input class="prog-score" type="text" placeholder="/ 4" data-id="c-c7-4"></td><td><input class="prog-notes" type="text" placeholder="Notes…" data-id="c-c7-4"></td></tr>
+        <tr class="unit-row"><td colspan="6" class="unit-row-label">C8 · Organic Chemistry &amp; GOC</td></tr>
+        <tr><td><input class="prog-check" type="checkbox" data-id="c-c8-1" data-subject="chem"></td><td class="mono sid">OC1</td><td>GOC — Inductive, Resonance, Hyperconjugation</td><td class="tw">Oct Wk 1</td><td><input class="prog-score" type="text" placeholder="/ 4" data-id="c-c8-1"></td><td><input class="prog-notes" type="text" placeholder="Notes…" data-id="c-c8-1"></td></tr>
+        <tr><td><input class="prog-check" type="checkbox" data-id="c-c8-2" data-subject="chem"></td><td class="mono sid">OC2</td><td>Reaction Intermediates — Carbocations, Carbanions</td><td class="tw">Oct Wk 1</td><td><input class="prog-score" type="text" placeholder="/ 4" data-id="c-c8-2"></td><td><input class="prog-notes" type="text" placeholder="Notes…" data-id="c-c8-2"></td></tr>
+        <tr><td><input class="prog-check" type="checkbox" data-id="c-c8-3" data-subject="chem"></td><td class="mono sid">OC3</td><td>SN1 &amp; SN2 — Mechanism, Stereochemistry</td><td class="tw">Oct Wk 2</td><td><input class="prog-score" type="text" placeholder="/ 4" data-id="c-c8-3"></td><td><input class="prog-notes" type="text" placeholder="Notes…" data-id="c-c8-3"></td></tr>
+        <tr><td><input class="prog-check" type="checkbox" data-id="c-c8-4" data-subject="chem"></td><td class="mono sid">OC4</td><td>Elimination Reactions — E1 &amp; E2</td><td class="tw">Oct Wk 2</td><td><input class="prog-score" type="text" placeholder="/ 4" data-id="c-c8-4"></td><td><input class="prog-notes" type="text" placeholder="Notes…" data-id="c-c8-4"></td></tr>
+        <tr><td><input class="prog-check" type="checkbox" data-id="c-c8-5" data-subject="chem"></td><td class="mono sid">OC5</td><td>Addition Reactions — Markovnikov, Anti-Markovnikov</td><td class="tw">Oct Wk 3</td><td><input class="prog-score" type="text" placeholder="/ 4" data-id="c-c8-5"></td><td><input class="prog-notes" type="text" placeholder="Notes…" data-id="c-c8-5"></td></tr>
+        <tr><td><input class="prog-check" type="checkbox" data-id="c-c8-6" data-subject="chem"></td><td class="mono sid">OC6</td><td>Aromaticity &amp; Electrophilic Aromatic Substitution</td><td class="tw">Oct Wk 4</td><td><input class="prog-score" type="text" placeholder="/ 4" data-id="c-c8-6"></td><td><input class="prog-notes" type="text" placeholder="Notes…" data-id="c-c8-6"></td></tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+
+  <!-- ══════════ PHASE 3 — DRILL & ATTEMPT 1 ══════════ -->
+  <div class="prog-subject" style="border-color:#4f46e5">
+    <div class="prog-subject-title" style="color:#4f46e5">
+      <span>🎯 Phase 3 — Attempt 1 Drill · Nov 2026 – Jan 2027</span>
+      <span style="font-size:.8rem;font-weight:400;color:var(--ink3)" data-subject-label="p3">0 checkpoints (0%)</span>
+    </div>
+    <div class="prog-bar-wrap"><div class="prog-bar" data-subject-bar="p3" style="width:0%;background:#4f46e5"></div></div>
+    <div style="overflow-x:auto">
+    <table class="prog-table">
+      <thead><tr><th>✓</th><th>Week</th><th>Objective</th><th>Target Date</th><th>Mock Score</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr><td><input class="prog-check" type="checkbox" data-id="p3-w1" data-subject="p3"></td><td class="mono sid">Wk 1</td><td>Calculus Consolidation — Area under curve, past JEE Qs</td><td class="tw">Nov 1–7</td><td><input class="prog-score" type="text" placeholder="—" data-id="p3-w1"></td><td><input class="prog-notes" type="text" placeholder="Notes…" data-id="p3-w1"></td></tr>
+        <tr><td><input class="prog-check" type="checkbox" data-id="p3-w2" data-subject="p3"></td><td class="mono sid">Wk 2</td><td>Thermodynamics (Physics) + Carbonyl Compounds (Chem)</td><td class="tw">Nov 8–14</td><td><input class="prog-score" type="text" placeholder="—" data-id="p3-w2"></td><td><input class="prog-notes" type="text" placeholder="Notes…" data-id="p3-w2"></td></tr>
+        <tr><td><input class="prog-check" type="checkbox" data-id="p3-w3" data-subject="p3"></td><td class="mono sid">Wk 3</td><td>Formula Drill — all 3 subjects, speed flash review</td><td class="tw">Nov 15–21</td><td><input class="prog-score" type="text" placeholder="—" data-id="p3-w3"></td><td><input class="prog-notes" type="text" placeholder="Notes…" data-id="p3-w3"></td></tr>
+        <tr style="background:#eff0ff"><td><input class="prog-check" type="checkbox" data-id="p3-mock1" data-subject="p3"></td><td class="mono sid" style="color:#4f46e5;font-weight:700">Mock 1</td><td><strong>Full 3-Hour Mock Test — Log score in Mock Test Log below</strong></td><td class="tw" style="color:#4f46e5">Nov 22</td><td><input class="prog-score" type="text" placeholder="/ 300" data-id="p3-mock1"></td><td><input class="prog-notes" type="text" placeholder="Weak areas…" data-id="p3-mock1"></td></tr>
+        <tr><td><input class="prog-check" type="checkbox" data-id="p3-w4" data-subject="p3"></td><td class="mono sid">Wk 5</td><td>Gap Analysis from Mock 1 — list top 5 weak topics</td><td class="tw">Nov 23–30</td><td><input class="prog-score" type="text" placeholder="—" data-id="p3-w4"></td><td><input class="prog-notes" type="text" placeholder="Weak topics…" data-id="p3-w4"></td></tr>
+        <tr><td><input class="prog-check" type="checkbox" data-id="p3-w5" data-subject="p3"></td><td class="mono sid">Wk 6</td><td>Targeted drills on weak topics + Numerical practice</td><td class="tw">Dec 1–7</td><td><input class="prog-score" type="text" placeholder="—" data-id="p3-w5"></td><td><input class="prog-notes" type="text" placeholder="Notes…" data-id="p3-w5"></td></tr>
+        <tr style="background:#eff0ff"><td><input class="prog-check" type="checkbox" data-id="p3-mock2" data-subject="p3"></td><td class="mono sid" style="color:#4f46e5;font-weight:700">Mock 2</td><td><strong>Full 3-Hour Mock Test</strong></td><td class="tw" style="color:#4f46e5">Dec 10</td><td><input class="prog-score" type="text" placeholder="/ 300" data-id="p3-mock2"></td><td><input class="prog-notes" type="text" placeholder="Weak areas…" data-id="p3-mock2"></td></tr>
+        <tr><td><input class="prog-check" type="checkbox" data-id="p3-w6" data-subject="p3"></td><td class="mono sid">Wk 8</td><td>Gap Analysis Mock 2 + Speed Practice — 2.5 min/question drill</td><td class="tw">Dec 11–21</td><td><input class="prog-score" type="text" placeholder="—" data-id="p3-w6"></td><td><input class="prog-notes" type="text" placeholder="Notes…" data-id="p3-w6"></td></tr>
+        <tr style="background:#eff0ff"><td><input class="prog-check" type="checkbox" data-id="p3-mock3" data-subject="p3"></td><td class="mono sid" style="color:#4f46e5;font-weight:700">Mock 3</td><td><strong>Full 3-Hour Mock Test (final pre-exam simulation)</strong></td><td class="tw" style="color:#4f46e5">Jan 5</td><td><input class="prog-score" type="text" placeholder="/ 300" data-id="p3-mock3"></td><td><input class="prog-notes" type="text" placeholder="Weak areas…" data-id="p3-mock3"></td></tr>
+        <tr style="background:#fef3c7"><td><input class="prog-check" type="checkbox" data-id="p3-attempt1" data-subject="p3"></td><td class="mono sid" style="color:#b45309;font-weight:700">⭐</td><td><strong>ATTEMPT 1 — JEE Main January 2027 · Target: 120–135</strong></td><td class="tw" style="color:#b45309">Jan 2027</td><td><input class="prog-score" type="text" placeholder="Actual score" data-id="p3-attempt1"></td><td><input class="prog-notes" type="text" placeholder="Overall impression…" data-id="p3-attempt1"></td></tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+
+  <!-- ══════════ PHASE 4 — GAP ANALYSIS & ATTEMPT 2 ══════════ -->
+  <div class="prog-subject" style="border-color:#059669">
+    <div class="prog-subject-title" style="color:#059669">
+      <span>🚀 Phase 4 — Attempt 2 Boost · Feb – Apr 2027</span>
+      <span style="font-size:.8rem;font-weight:400;color:var(--ink3)" data-subject-label="p4">0 checkpoints (0%)</span>
+    </div>
+    <div class="prog-bar-wrap"><div class="prog-bar" data-subject-bar="p4" style="width:0%;background:#059669"></div></div>
+    <div style="overflow-x:auto">
+    <table class="prog-table">
+      <thead><tr><th>✓</th><th>Week</th><th>Objective</th><th>Target Date</th><th>Score/Rating</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr><td><input class="prog-check" type="checkbox" data-id="p4-w1" data-subject="p4"></td><td class="mono sid">Wk 1</td><td>Full paper error review — categorise every wrong answer by topic</td><td class="tw">Feb 1–7</td><td><input class="prog-score" type="text" placeholder="—" data-id="p4-w1"></td><td><input class="prog-notes" type="text" placeholder="Top 5 weak topics…" data-id="p4-w1"></td></tr>
+        <tr><td><input class="prog-check" type="checkbox" data-id="p4-w2" data-subject="p4"></td><td class="mono sid">Wk 2</td><td>Math weak-topic targeted drills (from gap analysis)</td><td class="tw">Feb 8–14</td><td><input class="prog-score" type="text" placeholder="—" data-id="p4-w2"></td><td><input class="prog-notes" type="text" placeholder="Topics covered…" data-id="p4-w2"></td></tr>
+        <tr><td><input class="prog-check" type="checkbox" data-id="p4-w3" data-subject="p4"></td><td class="mono sid">Wk 3</td><td>Physics weak-topic targeted drills</td><td class="tw">Feb 15–21</td><td><input class="prog-score" type="text" placeholder="—" data-id="p4-w3"></td><td><input class="prog-notes" type="text" placeholder="Topics covered…" data-id="p4-w3"></td></tr>
+        <tr><td><input class="prog-check" type="checkbox" data-id="p4-w4" data-subject="p4"></td><td class="mono sid">Wk 4</td><td>Chemistry weak-topic drills + Selective Inorganic review</td><td class="tw">Feb 22–28</td><td><input class="prog-score" type="text" placeholder="—" data-id="p4-w4"></td><td><input class="prog-notes" type="text" placeholder="Topics covered…" data-id="p4-w4"></td></tr>
+        <tr style="background:#f0fdf4"><td><input class="prog-check" type="checkbox" data-id="p4-mock4" data-subject="p4"></td><td class="mono sid" style="color:#059669;font-weight:700">Mock 4</td><td><strong>Full 3-Hour Mock Test — verify improvement from Attempt 1</strong></td><td class="tw" style="color:#059669">Mar 8</td><td><input class="prog-score" type="text" placeholder="/ 300" data-id="p4-mock4"></td><td><input class="prog-notes" type="text" placeholder="Improvement vs Attempt 1?" data-id="p4-mock4"></td></tr>
+        <tr><td><input class="prog-check" type="checkbox" data-id="p4-w5" data-subject="p4"></td><td class="mono sid">Wk 6</td><td>Speed practice — numericals blitz, all 10 per subject in 30 min</td><td class="tw">Mar 9–20</td><td><input class="prog-score" type="text" placeholder="—" data-id="p4-w5"></td><td><input class="prog-notes" type="text" placeholder="Notes…" data-id="p4-w5"></td></tr>
+        <tr style="background:#f0fdf4"><td><input class="prog-check" type="checkbox" data-id="p4-mock5" data-subject="p4"></td><td class="mono sid" style="color:#059669;font-weight:700">Mock 5</td><td><strong>Final full mock — simulate exam conditions exactly</strong></td><td class="tw" style="color:#059669">Mar 28</td><td><input class="prog-score" type="text" placeholder="/ 300" data-id="p4-mock5"></td><td><input class="prog-notes" type="text" placeholder="Weak areas…" data-id="p4-mock5"></td></tr>
+        <tr style="background:#fef9c3"><td><input class="prog-check" type="checkbox" data-id="p4-attempt2" data-subject="p4"></td><td class="mono sid" style="color:#92400e;font-weight:700">⭐⭐</td><td><strong>ATTEMPT 2 — JEE Main April 2027 · Target: 135–155 · BEST OF 2 COUNTS</strong></td><td class="tw" style="color:#92400e">Apr 2027</td><td><input class="prog-score" type="text" placeholder="Actual score" data-id="p4-attempt2"></td><td><input class="prog-notes" type="text" placeholder="Final score and DASA application…" data-id="p4-attempt2"></td></tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+
+  <!-- ══════════ MOCK TEST LOG ══════════ -->
+  <div style="margin-top:3rem">
+    <h2 class="section-title" style="font-size:1.4rem">📊 Mock Test Log</h2>
+    <p style="color:var(--ink3);font-size:.875rem;margin-bottom:1.5rem">Log every mock test here. Scores are plotted automatically in the chart below.</p>
+
+    <!-- Add form -->
+    <div class="mock-form">
+      <div class="mock-form-row">
+        <div class="mock-field">
+          <label>Date</label>
+          <input type="date" id="mock-date">
+        </div>
+        <div class="mock-field">
+          <label>Attempt/Label</label>
+          <input type="text" id="mock-attempt" placeholder="e.g. Mock 1, Attempt 1">
+        </div>
+        <div class="mock-field">
+          <label class="math-label">Math /100</label>
+          <input type="number" id="mock-math" min="0" max="100" placeholder="0">
+        </div>
+        <div class="mock-field">
+          <label class="phys-label">Physics /100</label>
+          <input type="number" id="mock-phys" min="0" max="100" placeholder="0">
+        </div>
+        <div class="mock-field">
+          <label class="chem-label">Chemistry /100</label>
+          <input type="number" id="mock-chem" min="0" max="100" placeholder="0">
+        </div>
+        <div class="mock-field" style="flex:2">
+          <label>Notes</label>
+          <input type="text" id="mock-notes" placeholder="What went well / what to fix…">
+        </div>
+        <div class="mock-field" style="align-self:flex-end">
+          <button class="save-btn" onclick="addMockEntry()">+ Add</button>
+        </div>
+      </div>
+    </div>
+
+    <div style="overflow-x:auto;margin-top:1rem">
+    <table class="prog-table mock-log-table">
+      <thead>
+        <tr>
+          <th>Date</th><th>Label</th>
+          <th class="math-col">Math /100</th>
+          <th class="phys-col">Physics /100</th>
+          <th class="chem-col">Chem /100</th>
+          <th>Total /300</th>
+          <th>Notes</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody id="mock-tbody"></tbody>
+    </table>
+    </div>
+  </div>
+
+  <!-- ══════════ SCORE CHART ══════════ -->
+  <div style="margin-top:3rem">
+    <h2 class="section-title" style="font-size:1.4rem">📈 Score Trend</h2>
+    <p style="color:var(--ink3);font-size:.875rem;margin-bottom:1.5rem">Chart updates automatically when you add mock test entries above.</p>
+    <div class="chart-container">
+      <canvas id="score-chart"></canvas>
+    </div>
+    <div id="chart-empty" style="text-align:center;padding:3rem 1rem;color:var(--ink3);font-size:.875rem;display:none">
+      No mock test data yet — add your first mock test above to see the trend chart.
+    </div>
+  </div>
+
+  <!-- Bottom actions -->
+  <div class="action-bar" style="margin-top:3rem">
+    <button class="save-btn" onclick="saveAllProgress()">💾 Save Progress</button>
+    <button class="export-btn" onclick="exportProgress()">📤 Export JSON</button>
+    <label class="import-label">
+      📥 Import JSON
+      <input type="file" accept=".json" onchange="importProgress(this)" style="display:none">
+    </label>
+    <button class="reset-btn" onclick="resetProgress()">🗑 Reset All</button>
+  </div>
+
+</div>
+</section>
+
+<div class="toast" id="toast"></div>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-brand">JEE 2027 Prep</div>
+      <div class="footer-links">
+        <a href="index.html">Dashboard</a>
+        <a href="subjects/math.html">Math</a>
+        <a href="subjects/physics.html">Physics</a>
+        <a href="subjects/chemistry.html">Chemistry</a>
+        <a href="progress.html">Progress</a>
+      </div>
+      <div class="footer-note">Progress saved locally · Export JSON to back up · Two attempts · Best of 2</div>
+    </div>
+  </div>
+</footer>
+<script src="js/main.js"></script>
+</body>
+</html>

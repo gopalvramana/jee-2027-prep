@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Settings — JEE 2027 Prep</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="nav-brand">JEE 2027</div>
+    <div class="nav-links">
+      <a href="index.html">Dashboard</a>
+      <a href="subjects/math.html">📐 Math</a>
+      <a href="subjects/physics.html">⚡ Physics</a>
+      <a href="subjects/chemistry.html">🧪 Chemistry</a>
+      <a href="progress.html">✅ Progress</a>
+      <a href="settings.html" class="active">⚙ Settings</a>
+    </div>
+    <button class="nav-toggle" onclick="toggleNav()">☰</button>
+  </div>
+</nav>
+
+<header class="page-hero settings-hero">
+  <div class="page-hero-content">
+    <div class="page-hero-tag">Data &amp; Backup</div>
+    <h1>⚙ Settings</h1>
+    <p>Manage how your progress is saved and backed up across devices.</p>
+  </div>
+</header>
+
+<section class="section">
+<div class="container" style="max-width:680px">
+
+  <!-- WHERE IS DATA STORED -->
+  <div class="settings-block">
+    <h2 class="settings-block-title">Where is my progress stored?</h2>
+    <p class="settings-block-desc">Your progress is saved automatically in this browser's storage every time you tick a checkbox. It stays there even when you close the browser or restart your computer — as long as you don't clear your browser data.</p>
+    <div class="storage-info-row">
+      <div class="storage-info-item">
+        <div class="storage-info-icon">💾</div>
+        <div>
+          <div class="storage-info-label">Auto-save</div>
+          <div class="storage-info-note">Every checkbox tick saves instantly</div>
+        </div>
+      </div>
+      <div class="storage-info-item">
+        <div class="storage-info-icon">🔒</div>
+        <div>
+          <div class="storage-info-label">Private</div>
+          <div class="storage-info-note">Stored only on your device</div>
+        </div>
+      </div>
+      <div class="storage-info-item">
+        <div class="storage-info-icon">⚠</div>
+        <div>
+          <div class="storage-info-label">Risk</div>
+          <div class="storage-info-note">Lost if you clear browser data</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BACKUP OPTIONS -->
+  <div class="settings-block">
+    <h2 class="settings-block-title">Back up your progress</h2>
+    <p class="settings-block-desc">Two ways to protect your data and access it from other devices:</p>
+
+    <!-- JSON BACKUP -->
+    <div class="backup-option">
+      <div class="backup-option-header">
+        <span class="backup-option-icon">📁</span>
+        <div>
+          <div class="backup-option-title">Save a backup file</div>
+          <div class="backup-option-sub">Download a file to your computer — good for a quick one-off backup or moving to a new device.</div>
+        </div>
+      </div>
+      <div class="backup-option-actions">
+        <button class="export-btn" onclick="exportProgress()">📤 Download Backup</button>
+        <label class="import-label">
+          📥 Restore from File
+          <input type="file" accept=".json" onchange="importProgress(this)" style="display:none">
+        </label>
+      </div>
+    </div>
+
+    <!-- GITHUB BACKUP -->
+    <div class="backup-option">
+      <div class="backup-option-header">
+        <span class="backup-option-icon">☁</span>
+        <div>
+          <div class="backup-option-title">Sync to GitHub <span id="gist-status" class="gist-status" style="vertical-align:middle;margin-left:.4rem">Not configured</span></div>
+          <div class="backup-option-sub">Saves to a private file in your GitHub account. Once set up, one click to sync or restore from any device — no cables, no email, no USB.</div>
+        </div>
+      </div>
+
+      <div class="gist-setup-steps">
+        <div class="gist-step">
+          <span class="gist-step-num">1</span>
+          <span>Create a free GitHub account at <strong>github.com</strong> if you don't have one.</span>
+        </div>
+        <div class="gist-step">
+          <span class="gist-step-num">2</span>
+          <span>Go to <strong>github.com/settings/tokens</strong> → "Generate new token (classic)" → give it any name → tick only the <strong>gist</strong> checkbox → click Generate → copy the token.</span>
+        </div>
+        <div class="gist-step">
+          <span class="gist-step-num">3</span>
+          <span>Paste the token below, click <strong>Save Token</strong>, then click <strong>↑ Sync Now</strong>.</span>
+        </div>
+      </div>
+
+      <div class="gist-token-row" style="margin-top:1rem">
+        <input type="password" id="gist-token-input" class="gist-token-inp" placeholder="Paste your GitHub token here…">
+        <button class="gist-btn gist-save-btn" onclick="saveGistToken()">Save Token</button>
+      </div>
+      <div class="gist-actions">
+        <button class="gist-btn gist-sync-btn" onclick="syncToGist()">↑ Sync Now</button>
+        <button class="gist-btn gist-load-btn" onclick="loadFromGist()">↓ Restore from GitHub</button>
+        <button class="gist-btn gist-clear-btn" onclick="clearGistLink()">Unlink</button>
+      </div>
+      <div id="gist-id-row" class="gist-id-row" style="display:none">
+        Backup ID: <code id="gist-id-display" class="gist-id-code"></code>
+        <span class="gist-id-hint">— you don't need to do anything with this</span>
+      </div>
+
+      <div class="gist-new-device-tip">
+        <strong>Using a new device?</strong> Save the same token above → click "↓ Restore from GitHub" — it finds your backup automatically.
+      </div>
+    </div>
+  </div>
+
+  <!-- DANGER ZONE -->
+  <div class="settings-block settings-danger">
+    <h2 class="settings-block-title">Reset</h2>
+    <p class="settings-block-desc">Permanently delete all saved progress and mock test data from this browser. This cannot be undone — export a backup first if needed.</p>
+    <button class="reset-btn" onclick="resetProgress()">🗑 Reset All Progress</button>
+  </div>
+
+</div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-brand">JEE 2027 Prep</div>
+      <div class="footer-links">
+        <a href="index.html">Dashboard</a>
+        <a href="subjects/math.html">Math</a>
+        <a href="subjects/physics.html">Physics</a>
+        <a href="subjects/chemistry.html">Chemistry</a>
+        <a href="progress.html">Progress</a>
+        <a href="settings.html">Settings</a>
+      </div>
+      <div class="footer-note">All Phases · March 2026 – April 2027</div>
+    </div>
+  </div>
+</footer>
+
+<div id="toast" class="toast"></div>
+<script src="js/main.js"></script>
+</body>
+</html>
