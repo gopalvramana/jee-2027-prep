@@ -1,11 +1,5 @@
 name: Daily JEE Progress Digest
 
-# Opt into Node 24 for ALL action runners in this workflow
-# (must be at workflow level, not job level, to take effect before
-#  actions/checkout initialises its own runner)
-env:
-  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
-
 on:
   schedule:
     # 6:00 AM IST = 00:30 UTC  (UTC + 5:30)
@@ -20,18 +14,18 @@ jobs:
       TZ: Asia/Kolkata   # makes new Date() use IST inside the script
 
     steps:
-      - name: Checkout repo
-        uses: actions/checkout@v4
-
-      - name: Set up Node.js 24
-        uses: actions/setup-node@v4
-        with:
-          node-version: '24'
-
-      - name: Send daily digest email
+      - name: Download script and send digest
         env:
           GIST_TOKEN:      ${{ secrets.GIST_TOKEN }}
           GIST_ID:         ${{ secrets.GIST_ID }}
           RESEND_API_KEY:  ${{ secrets.RESEND_API_KEY }}
           DIGEST_TO_EMAIL: ${{ secrets.DIGEST_TO_EMAIL }}
-        run: node scripts/send-digest.js
+        run: |
+          # Download send-digest.js directly from this repo via GitHub API
+          # (uses the auto-provided GITHUB_TOKEN — no checkout action needed)
+          curl -sf \
+            -H "Authorization: Bearer ${{ github.token }}" \
+            -H "Accept: application/vnd.github.v3.raw" \
+            "https://api.github.com/repos/${{ github.repository }}/contents/scripts/send-digest.js" \
+            -o send-digest.js
+          node send-digest.js
