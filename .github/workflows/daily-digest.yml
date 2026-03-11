@@ -2,8 +2,9 @@ name: Daily JEE Progress Digest
 
 on:
   schedule:
-    # 6:00 AM IST = 00:30 UTC  (UTC + 5:30)
-    - cron: '30 0 * * *'
+    # 5:30 PM CDT (UTC-5) = 22:30 UTC  — Mar–Nov (daylight saving)
+    # Note: during CST (UTC-6, Nov–Mar) this fires at 4:30 PM CT instead
+    - cron: '30 22 * * *'
   # Allow a one-click manual run from the GitHub Actions tab
   workflow_dispatch:
 
@@ -11,7 +12,7 @@ jobs:
   send-digest:
     runs-on: ubuntu-latest
     env:
-      TZ: Asia/Kolkata   # makes new Date() use IST inside the script
+      TZ: America/Chicago   # US Central — date display matches recipient's timezone
 
     steps:
       - name: Download script and send digest
