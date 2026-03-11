@@ -16,10 +16,11 @@ jobs:
     steps:
       - name: Download script and send digest
         env:
-          GIST_TOKEN:      ${{ secrets.GIST_TOKEN }}
-          GIST_ID:         ${{ secrets.GIST_ID }}
-          RESEND_API_KEY:  ${{ secrets.RESEND_API_KEY }}
-          DIGEST_TO_EMAIL: ${{ secrets.DIGEST_TO_EMAIL }}
+          GIST_TOKEN:         ${{ secrets.GIST_TOKEN }}
+          GIST_ID:            ${{ secrets.GIST_ID }}
+          GMAIL_USER:         ${{ secrets.GMAIL_USER }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+          DIGEST_TO_EMAIL:    ${{ secrets.DIGEST_TO_EMAIL }}
         run: |
           # Download send-digest.js directly from this repo via GitHub API
           # (uses the auto-provided GITHUB_TOKEN — no checkout action needed)
@@ -28,4 +29,5 @@ jobs:
             -H "Accept: application/vnd.github.v3.raw" \
             "https://api.github.com/repos/${{ github.repository }}/contents/scripts/send-digest.js" \
             -o send-digest.js
+          npm install --silent nodemailer
           node send-digest.js

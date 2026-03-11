@@ -1,27 +1,33 @@
 #!/usr/bin/env node
 // scripts/send-digest.js
-// Reads progress from GitHub Gist → builds HTML email → sends via Resend.
+// Reads progress from GitHub Gist → builds HTML email → sends via Gmail SMTP.
 // Run by GitHub Actions daily; can also be run locally with env vars set.
 //
 // Required env vars:
-//   GIST_TOKEN       — GitHub personal access token (gist scope)
-//   GIST_ID          — ID of the jee2027-progress.json Gist
-//   RESEND_API_KEY   — API key from resend.com (free tier)
-//   DIGEST_TO_EMAIL  — Email address to send the digest to
+//   GIST_TOKEN          — GitHub personal access token (gist scope)
+//   GIST_ID             — ID of the jee2027-progress.json Gist
+//   GMAIL_USER          — Your Gmail address (e.g. you@gmail.com)
+//   GMAIL_APP_PASSWORD  — 16-char Gmail App Password (not your login password)
+//   DIGEST_TO_EMAIL     — Comma-separated recipients e.g. "a@x.com,b@y.com"
 //
 // Optional:
-//   TZ               — Timezone for date display (default: Asia/Kolkata)
+//   TZ                  — Timezone for date display (default: Asia/Kolkata)
 
 'use strict';
 
-const GIST_TOKEN     = process.env.GIST_TOKEN;
-const GIST_ID        = process.env.GIST_ID;
-const RESEND_API_KEY = process.env.RESEND_API_KEY;
-const TO_EMAIL       = process.env.DIGEST_TO_EMAIL;
-const GIST_FILENAME  = 'jee2027-progress.json';
+const nodemailer = require('nodemailer');
+
+const GIST_TOKEN   = process.env.GIST_TOKEN;
+const GIST_ID      = process.env.GIST_ID;
+const GMAIL_USER   = process.env.GMAIL_USER;
+const GMAIL_PASS   = process.env.GMAIL_APP_PASSWORD;
+// Support comma-separated list: "a@x.com, b@school.edu"
+const TO_ADDRESSES = (process.env.DIGEST_TO_EMAIL || '')
+  .split(',').map(e => e.trim()).filter(Boolean);
+const GIST_FILENAME = 'jee2027-progress.json';
 
 // ── Validate env ──────────────────────────────────────────────────────────────
-const missing = ['GIST_TOKEN','GIST_ID','RESEND_API_KEY','DIGEST_TO_EMAIL']
+const missing = ['GIST_TOKEN','GIST_ID','GMAIL_USER','GMAIL_APP_PASSWORD','DIGEST_TO_EMAIL']
   .filter(k => !process.env[k]);
 if (missing.length) {
   console.error('Missing required env vars:', missing.join(', '));
@@ -286,26 +292,18 @@ function buildEmail(payload) {
   return { subject, html };
 }
 
-// ── Send via Resend ───────────────────────────────────────────────────────────
+// ── Send via Gmail SMTP ───────────────────────────────────────────────────────
 async function sendEmail(subject, html) {
-  const res = await fetch('https://api.resend.com/emails', {
-    method:  'POST',
-    headers: {
-      'Authorization': `Bearer ${RESEND_API_KEY}`,
-      'Content-Type':  'application/json',
-    },
-    body: JSON.stringify({
-      from:    'JEE 2027 Digest <onboarding@resend.dev>',
-      to:      [TO_EMAIL],
-      subject,
-      html,
-    }),
+  const transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: { user: GMAIL_USER, pass: GMAIL_PASS },
   });
-  if (!res.ok) {
-    const text = await res.text();
-    throw new Error(`Resend API error ${res.status}: ${text}`);
-  }
-  return res.json();
+  await transporter.sendMail({
+    from:    `JEE 2027 Digest <${GMAIL_USER}>`,
+    to:      TO_ADDRESSES,   // array — nodemailer sends to all recipients
+    subject,
+    html,
+  });
 }
 
 // ── Main ──────────────────────────────────────────────────────────────────────
@@ -317,9 +315,10 @@ async function main() {
 
   const { subject, html } = buildEmail(payload);
   console.log(`  Subject          : ${subject}`);
+  console.log(`  Recipients       : ${TO_ADDRESSES.join(', ')}`);
 
-  const result = await sendEmail(subject, html);
-  console.log(`  ✓ Sent — Resend ID: ${result.id}`);
+  await sendEmail(subject, html);
+  console.log(`  ✓ Sent to ${TO_ADDRESSES.length} recipient(s)`);
 }
 
 main().catch(err => {
