@@ -11,16 +11,17 @@ jobs:
   send-digest:
     runs-on: ubuntu-latest
     env:
-      TZ: Asia/Kolkata   # makes new Date() use IST inside the script
+      TZ: Asia/Kolkata                    # makes new Date() use IST inside the script
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true   # opt into Node 24 for action runners
 
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
 
-      - name: Set up Node.js 20
+      - name: Set up Node.js 24
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '24'
 
       - name: Send daily digest email
         env:
