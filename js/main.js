@@ -32,6 +32,13 @@ document.addEventListener('click', e => {
   }
 });
 
+function toggleCS(hdr) {
+  const body = hdr.nextElementSibling;
+  const tog  = hdr.querySelector('.unit-cs-toggle');
+  body.classList.toggle('open');
+  tog.classList.toggle('open');
+}
+
 // ── Open first unit by default ──────────────────────────────────────────────
 window.addEventListener('DOMContentLoaded', () => {
   const firstUnit = document.querySelector('.unit-body');

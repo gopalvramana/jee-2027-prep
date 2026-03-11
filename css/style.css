@@ -488,6 +488,26 @@ a { color: inherit; text-decoration: none; }
 .indigo-unit .session-head:hover { background: #eef2ff; }
 .indigo-unit .formula-table th { background: #eef2ff; color: #3730a3; border-color: #3730a3; }
 
+/* ── UNIT CHEATSHEET (collapsible formula/reference) ── */
+.unit-cs-wrap {
+  margin-top: 1.25rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+.unit-cs-hdr {
+  display: flex; align-items: center; gap: .75rem;
+  padding: .75rem 1.25rem; cursor: pointer; user-select: none;
+  background: var(--bg); transition: background .2s;
+}
+.unit-cs-hdr:hover { background: #e8edf5; }
+.unit-cs-icon { font-size: 1rem; }
+.unit-cs-label { flex: 1; font-weight: 600; font-size: .88rem; color: var(--ink2); }
+.unit-cs-toggle { font-size: .8rem; color: var(--ink3); transition: transform .3s; }
+.unit-cs-toggle.open { transform: rotate(180deg); }
+.unit-cs-body { display: none; padding: 1rem 1.25rem; background: var(--white); }
+.unit-cs-body.open { display: block; }
+
 /* ── TRAPS TABLE ── */
 .traps-table { width: 100%; border-collapse: collapse; font-size: .84rem; margin-top: 1rem; }
 .traps-table th { padding: .65rem 1rem; text-align: left; font-size: .75rem; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; background: #fee2e2; color: var(--red); border-bottom: 2px solid var(--red); }

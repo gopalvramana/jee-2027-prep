@@ -130,22 +130,29 @@
       </div>
     </div>
 
-    <!-- Dim formula table -->
-    <h4 style="font-size:.9rem;font-weight:700;margin:1.5rem 0 .5rem;color:#3730a3">Dimensional Formula Reference</h4>
-    <div class="formula-table-wrap">
-      <table class="formula-table">
-        <thead><tr><th>Quantity</th><th>Dimensional Formula</th><th>SI Unit</th><th>Quantity</th><th>Dimensional Formula</th><th>SI Unit</th></tr></thead>
-        <tbody>
-          <tr><td>Velocity</td><td class="formula-cell">[LT<sup>-1</sup>]</td><td>m/s</td><td>Force</td><td class="formula-cell">[MLT<sup>-2</sup>]</td><td>N</td></tr>
-          <tr><td>Acceleration</td><td class="formula-cell">[LT<sup>-2</sup>]</td><td>m/s²</td><td>Energy / Work</td><td class="formula-cell">[ML<sup>2</sup>T<sup>-2</sup>]</td><td>J</td></tr>
-          <tr><td>Momentum</td><td class="formula-cell">[MLT<sup>-1</sup>]</td><td>kg·m/s</td><td>Power</td><td class="formula-cell">[ML<sup>2</sup>T<sup>-3</sup>]</td><td>W</td></tr>
-          <tr><td>Torque</td><td class="formula-cell">[ML<sup>2</sup>T<sup>-2</sup>]</td><td>N·m</td><td>Pressure</td><td class="formula-cell">[ML<sup>-1</sup>T<sup>-2</sup>]</td><td>Pa</td></tr>
-          <tr><td>Surface tension</td><td class="formula-cell">[MT<sup>-2</sup>]</td><td>N/m</td><td>Viscosity</td><td class="formula-cell">[ML<sup>-1</sup>T<sup>-1</sup>]</td><td>Pa·s</td></tr>
-          <tr><td>Grav. const G</td><td class="formula-cell">[M<sup>-1</sup>L<sup>3</sup>T<sup>-2</sup>]</td><td>N·m²/kg²</td><td>Planck const h</td><td class="formula-cell">[ML<sup>2</sup>T<sup>-1</sup>]</td><td>J·s</td></tr>
-          <tr><td>Resistance</td><td class="formula-cell">[ML<sup>2</sup>T<sup>-3</sup>A<sup>-2</sup>]</td><td>Ω</td><td>Capacitance</td><td class="formula-cell">[M<sup>-1</sup>L<sup>-2</sup>T<sup>4</sup>A<sup>2</sup>]</td><td>F</td></tr>
-          <tr><td>Magnetic field B</td><td class="formula-cell">[MT<sup>-2</sup>A<sup>-1</sup>]</td><td>T</td><td>Inductance L</td><td class="formula-cell">[ML<sup>2</sup>T<sup>-2</sup>A<sup>-2</sup>]</td><td>H</td></tr>
-        </tbody>
-      </table>
+    <div class="unit-cs-wrap">
+      <div class="unit-cs-hdr" onclick="toggleCS(this)">
+        <span class="unit-cs-icon">📐</span>
+        <span class="unit-cs-label">Key Formulas &amp; Cheatsheet</span>
+        <span class="unit-cs-toggle">▼</span>
+      </div>
+      <div class="unit-cs-body">
+        <div class="formula-table-wrap">
+          <table class="formula-table">
+            <thead><tr><th>Quantity</th><th>Dimensional Formula</th><th>SI Unit</th><th>Quantity</th><th>Dimensional Formula</th><th>SI Unit</th></tr></thead>
+            <tbody>
+              <tr><td>Velocity</td><td class="formula-cell">[LT<sup>-1</sup>]</td><td>m/s</td><td>Force</td><td class="formula-cell">[MLT<sup>-2</sup>]</td><td>N</td></tr>
+              <tr><td>Acceleration</td><td class="formula-cell">[LT<sup>-2</sup>]</td><td>m/s²</td><td>Energy / Work</td><td class="formula-cell">[ML<sup>2</sup>T<sup>-2</sup>]</td><td>J</td></tr>
+              <tr><td>Momentum</td><td class="formula-cell">[MLT<sup>-1</sup>]</td><td>kg·m/s</td><td>Power</td><td class="formula-cell">[ML<sup>2</sup>T<sup>-3</sup>]</td><td>W</td></tr>
+              <tr><td>Torque</td><td class="formula-cell">[ML<sup>2</sup>T<sup>-2</sup>]</td><td>N·m</td><td>Pressure</td><td class="formula-cell">[ML<sup>-1</sup>T<sup>-2</sup>]</td><td>Pa</td></tr>
+              <tr><td>Surface tension</td><td class="formula-cell">[MT<sup>-2</sup>]</td><td>N/m</td><td>Viscosity</td><td class="formula-cell">[ML<sup>-1</sup>T<sup>-1</sup>]</td><td>Pa·s</td></tr>
+              <tr><td>Grav. const G</td><td class="formula-cell">[M<sup>-1</sup>L<sup>3</sup>T<sup>-2</sup>]</td><td>N·m²/kg²</td><td>Planck const h</td><td class="formula-cell">[ML<sup>2</sup>T<sup>-1</sup>]</td><td>J·s</td></tr>
+              <tr><td>Resistance</td><td class="formula-cell">[ML<sup>2</sup>T<sup>-3</sup>A<sup>-2</sup>]</td><td>Ω</td><td>Capacitance</td><td class="formula-cell">[M<sup>-1</sup>L<sup>-2</sup>T<sup>4</sup>A<sup>2</sup>]</td><td>F</td></tr>
+              <tr><td>Magnetic field B</td><td class="formula-cell">[MT<sup>-2</sup>A<sup>-1</sup>]</td><td>T</td><td>Inductance L</td><td class="formula-cell">[ML<sup>2</sup>T<sup>-2</sup>A<sup>-2</sup>]</td><td>H</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
     <p style="font-size:.78rem;color:var(--ink3);margin-top:.5rem">⚠ JEE Trap: Torque and Energy both have [ML²T⁻²] but are different quantities. Impulse and Momentum both have [MLT⁻¹].</p>
   </div>
@@ -230,20 +237,29 @@
       </div>
     </div>
 
-    <h4 style="font-size:.9rem;font-weight:700;margin:1.5rem 0 .5rem;color:var(--phys)">Key Formulas — Kinematics</h4>
-    <div class="formula-table-wrap">
-      <table class="formula-table">
-        <thead><tr><th>Formula</th><th>When to Use</th><th>Key Note</th></tr></thead>
-        <tbody>
-          <tr><td class="formula-cell">v = u + at</td><td>Find final velocity after time t</td><td class="note-cell">No displacement term</td></tr>
-          <tr><td class="formula-cell">s = ut + ½at²</td><td>Find displacement when time is given</td><td class="note-cell">Quadratic in t</td></tr>
-          <tr><td class="formula-cell">v² = u² + 2as</td><td>Find velocity when time is NOT known</td><td class="note-cell">No t in equation</td></tr>
-          <tr><td class="formula-cell">s<sub>n</sub> = u + a(2n−1)/2</td><td>Displacement in nth second</td><td class="note-cell">JEE tests directly</td></tr>
-          <tr><td class="formula-cell">R = u²sin2θ/g</td><td>Projectile range on flat ground</td><td class="note-cell">Max at θ = 45°</td></tr>
-          <tr><td class="formula-cell">H = u²sin²θ/2g</td><td>Maximum height of projectile</td><td class="note-cell">Vertical component only</td></tr>
-          <tr><td class="formula-cell">T = 2u sinθ/g</td><td>Total time of flight</td><td class="note-cell">Double the rise time</td></tr>
-        </tbody>
-      </table>
+    <div class="unit-cs-wrap">
+      <div class="unit-cs-hdr" onclick="toggleCS(this)">
+        <span class="unit-cs-icon">📐</span>
+        <span class="unit-cs-label">Key Formulas &amp; Cheatsheet</span>
+        <span class="unit-cs-toggle">▼</span>
+      </div>
+      <div class="unit-cs-body">
+        <div class="formula-table-wrap">
+          <table class="formula-table">
+            <thead><tr><th>Formula</th><th>Name / Category</th><th>JEE Note</th></tr></thead>
+            <tbody>
+              <tr><td class="formula-cell">v = u + at</td><td>Equation of motion 1</td><td class="note-cell">a = constant</td></tr>
+              <tr><td class="formula-cell">s = ut + ½at²</td><td>Equation of motion 2</td><td class="note-cell"></td></tr>
+              <tr><td class="formula-cell">v² = u² + 2as</td><td>Equation of motion 3</td><td class="note-cell">No time variable</td></tr>
+              <tr><td class="formula-cell">s<sub>n</sub> = u + a(2n−1)/2</td><td>nth second displacement</td><td class="note-cell">JEE favourite</td></tr>
+              <tr><td class="formula-cell">R = u²sin 2θ / g</td><td>Projectile range</td><td class="note-cell">Max at θ = 45°</td></tr>
+              <tr><td class="formula-cell">H = u²sin²θ / 2g</td><td>Max height</td><td class="note-cell"></td></tr>
+              <tr><td class="formula-cell">T = 2u sin θ / g</td><td>Time of flight</td><td class="note-cell"></td></tr>
+              <tr><td class="formula-cell">v<sub>rel</sub> = v<sub>A</sub> − v<sub>B</sub></td><td>Relative velocity</td><td class="note-cell"></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
   </div>
 </div>
@@ -315,18 +331,29 @@
       </div></div>
     </div>
 
-    <h4 style="font-size:.9rem;font-weight:700;margin:1.5rem 0 .5rem;color:var(--phys)">Key Formulas — Laws of Motion</h4>
-    <div class="formula-table-wrap"><table class="formula-table">
-      <thead><tr><th>Formula</th><th>Application</th><th>Key Point</th></tr></thead>
-      <tbody>
-        <tr><td class="formula-cell">F<sub>net</sub> = ma</td><td>Find acceleration from net force</td><td class="note-cell">Apply per direction</td></tr>
-        <tr><td class="formula-cell">f<sub>static max</sub> = μ<sub>s</sub>N</td><td>Max static friction before motion starts</td><td class="note-cell">Can be less than this</td></tr>
-        <tr><td class="formula-cell">f<sub>k</sub> = μ<sub>k</sub>N</td><td>Friction during motion</td><td class="note-cell">Constant once moving</td></tr>
-        <tr><td class="formula-cell">a = (m₁−m₂)g/(m₁+m₂)</td><td>Atwood machine acceleration</td><td class="note-cell">Derive, understand</td></tr>
-        <tr><td class="formula-cell">T = 2m₁m₂g/(m₁+m₂)</td><td>Atwood string tension</td><td class="note-cell">Same throughout string</td></tr>
-        <tr><td class="formula-cell">N = mg cosθ</td><td>Normal force on inclined surface</td><td class="note-cell">Always less than mg</td></tr>
-      </tbody>
-    </table></div>
+    <div class="unit-cs-wrap">
+      <div class="unit-cs-hdr" onclick="toggleCS(this)">
+        <span class="unit-cs-icon">📐</span>
+        <span class="unit-cs-label">Key Formulas &amp; Cheatsheet</span>
+        <span class="unit-cs-toggle">▼</span>
+      </div>
+      <div class="unit-cs-body">
+        <div class="formula-table-wrap">
+          <table class="formula-table">
+            <thead><tr><th>Formula</th><th>Name / Category</th><th>JEE Note</th></tr></thead>
+            <tbody>
+              <tr><td class="formula-cell">F<sub>net</sub> = ma</td><td>Newton's 2nd law</td><td class="note-cell">Net external force</td></tr>
+              <tr><td class="formula-cell">f<sub>s</sub> ≤ μ<sub>s</sub>N</td><td>Static friction</td><td class="note-cell">≤ not =</td></tr>
+              <tr><td class="formula-cell">f<sub>k</sub> = μ<sub>k</sub>N</td><td>Kinetic friction</td><td class="note-cell">μ<sub>k</sub> &lt; μ<sub>s</sub></td></tr>
+              <tr><td class="formula-cell">N = mg cos θ</td><td>Normal on incline</td><td class="note-cell">θ from horizontal</td></tr>
+              <tr><td class="formula-cell">a = g sin θ</td><td>Frictionless incline</td><td class="note-cell"></td></tr>
+              <tr><td class="formula-cell">T = 2m₁m₂g / (m₁+m₂)</td><td>Atwood machine tension</td><td class="note-cell"></td></tr>
+              <tr><td class="formula-cell">a = F / (m₁+m₂)</td><td>Connected blocks</td><td class="note-cell">Common acceleration</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -379,18 +406,30 @@
       </div></div>
     </div>
 
-    <h4 style="font-size:.9rem;font-weight:700;margin:1.5rem 0 .5rem;color:var(--phys)">Key Formulas — Work, Energy &amp; Power</h4>
-    <div class="formula-table-wrap"><table class="formula-table">
-      <thead><tr><th>Formula</th><th>Application</th><th>Note</th></tr></thead>
-      <tbody>
-        <tr><td class="formula-cell">W = F·d·cosθ</td><td>Work done by constant force</td><td class="note-cell">θ = angle F to displacement</td></tr>
-        <tr><td class="formula-cell">W<sub>net</sub> = ½mv² − ½mu²</td><td>Work-energy theorem</td><td class="note-cell">Net work = change in KE</td></tr>
-        <tr><td class="formula-cell">PE<sub>spring</sub> = ½kx²</td><td>Elastic PE in spring</td><td class="note-cell">x = deformation</td></tr>
-        <tr><td class="formula-cell">KE + PE = const</td><td>Conservation of energy (no friction)</td><td class="note-cell">Most powerful tool</td></tr>
-        <tr><td class="formula-cell">P = W/t = Fv</td><td>Power — rate of doing work</td><td class="note-cell">Fv for instantaneous</td></tr>
-        <tr><td class="formula-cell">e = v<sub>sep</sub>/v<sub>approach</sub></td><td>Coefficient of restitution</td><td class="note-cell">e=1 elastic, e=0 inelastic</td></tr>
-      </tbody>
-    </table></div>
+    <div class="unit-cs-wrap">
+      <div class="unit-cs-hdr" onclick="toggleCS(this)">
+        <span class="unit-cs-icon">📐</span>
+        <span class="unit-cs-label">Key Formulas &amp; Cheatsheet</span>
+        <span class="unit-cs-toggle">▼</span>
+      </div>
+      <div class="unit-cs-body">
+        <div class="formula-table-wrap">
+          <table class="formula-table">
+            <thead><tr><th>Formula</th><th>Name / Category</th><th>JEE Note</th></tr></thead>
+            <tbody>
+              <tr><td class="formula-cell">W = Fd cos θ</td><td>Work done</td><td class="note-cell">θ between F and d</td></tr>
+              <tr><td class="formula-cell">KE = ½mv²</td><td>Kinetic energy</td><td class="note-cell"></td></tr>
+              <tr><td class="formula-cell">PE = mgh</td><td>Gravitational PE</td><td class="note-cell">h from reference</td></tr>
+              <tr><td class="formula-cell">W<sub>net</sub> = ΔKE</td><td>Work-Energy theorem</td><td class="note-cell">Core theorem</td></tr>
+              <tr><td class="formula-cell">KE + PE = constant</td><td>Conservation of energy</td><td class="note-cell">Conservative forces only</td></tr>
+              <tr><td class="formula-cell">P = W/t = Fv</td><td>Power</td><td class="note-cell">Average power</td></tr>
+              <tr><td class="formula-cell">e = v<sub>sep</sub> / v<sub>app</sub></td><td>Coefficient of restitution</td><td class="note-cell">e=1 elastic, e=0 inelastic</td></tr>
+              <tr><td class="formula-cell">Impulse = FΔt = Δp</td><td>Impulse-momentum</td><td class="note-cell"></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -460,18 +499,30 @@
       </div></div>
     </div>
 
-    <h4 style="font-size:.9rem;font-weight:700;margin:1.5rem 0 .5rem;color:var(--phys)">Key Formulas — Current Electricity</h4>
-    <div class="formula-table-wrap"><table class="formula-table">
-      <thead><tr><th>Formula</th><th>Application</th><th>Note</th></tr></thead>
-      <tbody>
-        <tr><td class="formula-cell">V = IR</td><td>Basic Ohm's law</td><td class="note-cell">Ohmic conductors</td></tr>
-        <tr><td class="formula-cell">R = ρL/A</td><td>Resistance from dimensions</td><td class="note-cell">ρ = resistivity</td></tr>
-        <tr><td class="formula-cell">P = VI = I²R = V²/R</td><td>Power dissipated — 3 forms</td><td class="note-cell">Know all 3</td></tr>
-        <tr><td class="formula-cell">V<sub>term</sub> = ε − Ir</td><td>Terminal voltage of battery</td><td class="note-cell">Always less than ε</td></tr>
-        <tr><td class="formula-cell">R<sub>1</sub>/R<sub>2</sub> = R<sub>3</sub>/R<sub>4</sub></td><td>Wheatstone bridge balance</td><td class="note-cell">Zero galvanometer current</td></tr>
-        <tr><td class="formula-cell">X = Rl/(100−l)</td><td>Metre bridge — unknown resistance</td><td class="note-cell">l = balance length cm</td></tr>
-      </tbody>
-    </table></div>
+    <div class="unit-cs-wrap">
+      <div class="unit-cs-hdr" onclick="toggleCS(this)">
+        <span class="unit-cs-icon">📐</span>
+        <span class="unit-cs-label">Key Formulas &amp; Cheatsheet</span>
+        <span class="unit-cs-toggle">▼</span>
+      </div>
+      <div class="unit-cs-body">
+        <div class="formula-table-wrap">
+          <table class="formula-table">
+            <thead><tr><th>Formula</th><th>Name / Category</th><th>JEE Note</th></tr></thead>
+            <tbody>
+              <tr><td class="formula-cell">V = IR</td><td>Ohm's law</td><td class="note-cell"></td></tr>
+              <tr><td class="formula-cell">R = ρL/A</td><td>Resistance formula</td><td class="note-cell">ρ = resistivity</td></tr>
+              <tr><td class="formula-cell">P = VI = I²R = V²/R</td><td>Power (3 forms)</td><td class="note-cell"></td></tr>
+              <tr><td class="formula-cell">R<sub>s</sub> = R₁ + R₂ + ...</td><td>Series combination</td><td class="note-cell"></td></tr>
+              <tr><td class="formula-cell">1/R<sub>p</sub> = 1/R₁ + 1/R₂ + ...</td><td>Parallel combination</td><td class="note-cell"></td></tr>
+              <tr><td class="formula-cell">ΣV = 0 (closed loop)</td><td>KVL</td><td class="note-cell">Kirchhoff's Voltage Law</td></tr>
+              <tr><td class="formula-cell">ΣI = 0 (junction)</td><td>KCL</td><td class="note-cell">Kirchhoff's Current Law</td></tr>
+              <tr><td class="formula-cell">E = V + Ir</td><td>EMF equation</td><td class="note-cell">r = internal resistance</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -548,17 +599,30 @@
       </div></div>
     </div>
 
-    <h4 style="font-size:.9rem;font-weight:700;margin:1.5rem 0 .5rem;color:var(--phys)">Key Formulas — Rotational Motion</h4>
-    <div class="formula-table-wrap"><table class="formula-table">
-      <thead><tr><th>Formula</th><th>Rotational Analogue</th><th>Note</th></tr></thead>
-      <tbody>
-        <tr><td class="formula-cell">τ = Iα</td><td>F = ma</td><td class="note-cell">Rotational Newton's 2nd</td></tr>
-        <tr><td class="formula-cell">L = Iω</td><td>p = mv</td><td class="note-cell">Angular momentum</td></tr>
-        <tr><td class="formula-cell">I_disk = ½MR²</td><td>—</td><td class="note-cell">About central axis</td></tr>
-        <tr><td class="formula-cell">I = I_cm + Md²</td><td>—</td><td class="note-cell">Parallel axis theorem</td></tr>
-        <tr><td class="formula-cell">v = Rω</td><td>—</td><td class="note-cell">Rolling without slipping</td></tr>
-      </tbody>
-    </table></div>
+    <div class="unit-cs-wrap">
+      <div class="unit-cs-hdr" onclick="toggleCS(this)">
+        <span class="unit-cs-icon">📐</span>
+        <span class="unit-cs-label">Key Formulas &amp; Cheatsheet</span>
+        <span class="unit-cs-toggle">▼</span>
+      </div>
+      <div class="unit-cs-body">
+        <div class="formula-table-wrap">
+          <table class="formula-table">
+            <thead><tr><th>Formula</th><th>Name / Category</th><th>JEE Note</th></tr></thead>
+            <tbody>
+              <tr><td class="formula-cell">τ = Iα</td><td>Rotational 2nd law</td><td class="note-cell">Analogue of F = ma</td></tr>
+              <tr><td class="formula-cell">L = Iω</td><td>Angular momentum</td><td class="note-cell">Conserved if τ<sub>ext</sub>=0</td></tr>
+              <tr><td class="formula-cell">KE<sub>rot</sub> = ½Iω²</td><td>Rotational KE</td><td class="note-cell"></td></tr>
+              <tr><td class="formula-cell">I = Σmr²</td><td>MOI (point masses)</td><td class="note-cell"></td></tr>
+              <tr><td class="formula-cell">I = I<sub>cm</sub> + Md²</td><td>Parallel axis theorem</td><td class="note-cell">d = distance from CM</td></tr>
+              <tr><td class="formula-cell">I<sub>z</sub> = I<sub>x</sub> + I<sub>y</sub></td><td>Perpendicular axis theorem</td><td class="note-cell">Thin lamina only</td></tr>
+              <tr><td class="formula-cell">v<sub>cm</sub> = Rω</td><td>Rolling condition</td><td class="note-cell">No slipping</td></tr>
+              <tr><td class="formula-cell">KE<sub>rolling</sub> = ½mv² + ½Iω²</td><td>Rolling total KE</td><td class="note-cell"></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -611,17 +675,29 @@
       </div></div>
     </div>
 
-    <h4 style="font-size:.9rem;font-weight:700;margin:1.5rem 0 .5rem;color:var(--phys)">Key Formulas — Magnetism</h4>
-    <div class="formula-table-wrap"><table class="formula-table">
-      <thead><tr><th>Formula</th><th>Application</th><th>Note</th></tr></thead>
-      <tbody>
-        <tr><td class="formula-cell">B = μ₀I/2R</td><td>Centre of circular loop</td><td class="note-cell">μ₀ = 4π×10⁻⁷ T·m/A</td></tr>
-        <tr><td class="formula-cell">B = μ₀nI</td><td>Inside solenoid</td><td class="note-cell">n = turns per metre</td></tr>
-        <tr><td class="formula-cell">F = qvB sinθ</td><td>Lorentz force on charge</td><td class="note-cell">Zero when v ∥ B</td></tr>
-        <tr><td class="formula-cell">r = mv/qB</td><td>Radius of circular orbit in B</td><td class="note-cell">T independent of v</td></tr>
-        <tr><td class="formula-cell">τ = NIAB sinθ</td><td>Torque on current loop</td><td class="note-cell">Max when θ=90°</td></tr>
-      </tbody>
-    </table></div>
+    <div class="unit-cs-wrap">
+      <div class="unit-cs-hdr" onclick="toggleCS(this)">
+        <span class="unit-cs-icon">📐</span>
+        <span class="unit-cs-label">Key Formulas &amp; Cheatsheet</span>
+        <span class="unit-cs-toggle">▼</span>
+      </div>
+      <div class="unit-cs-body">
+        <div class="formula-table-wrap">
+          <table class="formula-table">
+            <thead><tr><th>Formula</th><th>Name / Category</th><th>JEE Note</th></tr></thead>
+            <tbody>
+              <tr><td class="formula-cell">F = qvB sin θ</td><td>Lorentz force</td><td class="note-cell">On moving charge</td></tr>
+              <tr><td class="formula-cell">F = BIL sin θ</td><td>Force on current wire</td><td class="note-cell"></td></tr>
+              <tr><td class="formula-cell">r = mv / qB</td><td>Circular orbit radius</td><td class="note-cell">In uniform B</td></tr>
+              <tr><td class="formula-cell">B = μ₀I / 2πr</td><td>Long straight wire</td><td class="note-cell">Biot-Savart result</td></tr>
+              <tr><td class="formula-cell">B = μ₀I / 2R</td><td>Center of circular loop</td><td class="note-cell"></td></tr>
+              <tr><td class="formula-cell">B = μ₀nI</td><td>Inside solenoid</td><td class="note-cell">n = turns per metre</td></tr>
+              <tr><td class="formula-cell">τ = NIAB sin θ</td><td>Torque on current loop</td><td class="note-cell"></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -690,17 +766,31 @@
       </div></div>
     </div>
 
-    <h4 style="font-size:.9rem;font-weight:700;margin:1.5rem 0 .5rem;color:var(--phys)">Key Formulas — EMI &amp; AC</h4>
-    <div class="formula-table-wrap"><table class="formula-table">
-      <thead><tr><th>Formula</th><th>Application</th><th>Note</th></tr></thead>
-      <tbody>
-        <tr><td class="formula-cell">ε = −dΦ/dt</td><td>Faraday's law (induced EMF)</td><td class="note-cell">Negative sign = Lenz's law</td></tr>
-        <tr><td class="formula-cell">ε = BLv</td><td>Motional EMF</td><td class="note-cell">Conductor moving in B field</td></tr>
-        <tr><td class="formula-cell">Z = √(R²+(X_L−X_C)²)</td><td>Impedance of LCR series</td><td class="note-cell">At resonance, Z=R (minimum)</td></tr>
-        <tr><td class="formula-cell">ω₀ = 1/√(LC)</td><td>Resonant frequency</td><td class="note-cell">I maximum, cos φ = 1</td></tr>
-        <tr><td class="formula-cell">V₁/V₂ = N₁/N₂</td><td>Transformer voltage ratio</td><td class="note-cell">Ideal: P_in = P_out</td></tr>
-      </tbody>
-    </table></div>
+    <div class="unit-cs-wrap">
+      <div class="unit-cs-hdr" onclick="toggleCS(this)">
+        <span class="unit-cs-icon">📐</span>
+        <span class="unit-cs-label">Key Formulas &amp; Cheatsheet</span>
+        <span class="unit-cs-toggle">▼</span>
+      </div>
+      <div class="unit-cs-body">
+        <div class="formula-table-wrap">
+          <table class="formula-table">
+            <thead><tr><th>Formula</th><th>Name / Category</th><th>JEE Note</th></tr></thead>
+            <tbody>
+              <tr><td class="formula-cell">ε = −dΦ/dt</td><td>Faraday's law</td><td class="note-cell">Negative sign = Lenz's law</td></tr>
+              <tr><td class="formula-cell">Φ = BA cos θ</td><td>Magnetic flux</td><td class="note-cell"></td></tr>
+              <tr><td class="formula-cell">ε = BLv</td><td>Motional EMF</td><td class="note-cell">Conductor moving in B</td></tr>
+              <tr><td class="formula-cell">X<sub>L</sub> = ωL</td><td>Inductive reactance</td><td class="note-cell">Increases with frequency</td></tr>
+              <tr><td class="formula-cell">X<sub>C</sub> = 1/ωC</td><td>Capacitive reactance</td><td class="note-cell">Decreases with frequency</td></tr>
+              <tr><td class="formula-cell">Z = √[R² + (X<sub>L</sub>−X<sub>C</sub>)²]</td><td>Impedance</td><td class="note-cell"></td></tr>
+              <tr><td class="formula-cell">ω₀ = 1/√(LC)</td><td>Resonant frequency</td><td class="note-cell">X<sub>L</sub> = X<sub>C</sub>, Z = R</td></tr>
+              <tr><td class="formula-cell">Power factor = cos φ = R/Z</td><td>AC power factor</td><td class="note-cell"></td></tr>
+              <tr><td class="formula-cell">V<sub>rms</sub> = V₀/√2</td><td>RMS voltage</td><td class="note-cell">I<sub>rms</sub> = I₀/√2</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -772,17 +862,31 @@
       </div></div>
     </div>
 
-    <h4 style="font-size:.9rem;font-weight:700;margin:1.5rem 0 .5rem;color:var(--phys)">Key Formulas — Ray Optics</h4>
-    <div class="formula-table-wrap"><table class="formula-table">
-      <thead><tr><th>Formula</th><th>Application</th><th>Note</th></tr></thead>
-      <tbody>
-        <tr><td class="formula-cell">1/v + 1/u = 1/f</td><td>Mirror formula</td><td class="note-cell">Sign convention: incident = +ve</td></tr>
-        <tr><td class="formula-cell">1/v − 1/u = 1/f</td><td>Lens formula</td><td class="note-cell">Note: minus in lens formula!</td></tr>
-        <tr><td class="formula-cell">n₁ sinθ₁ = n₂ sinθ₂</td><td>Snell's law</td><td class="note-cell">sin θ_c = n₂/n₁ for TIR</td></tr>
-        <tr><td class="formula-cell">P = P₁ + P₂</td><td>Lens combination in contact</td><td class="note-cell">P in dioptres = 1/f(m)</td></tr>
-        <tr><td class="formula-cell">β = λD/d</td><td>YDSE fringe width</td><td class="note-cell">λ=wavelength, D=screen dist, d=slit sep</td></tr>
-      </tbody>
-    </table></div>
+    <div class="unit-cs-wrap">
+      <div class="unit-cs-hdr" onclick="toggleCS(this)">
+        <span class="unit-cs-icon">📐</span>
+        <span class="unit-cs-label">Key Formulas &amp; Cheatsheet</span>
+        <span class="unit-cs-toggle">▼</span>
+      </div>
+      <div class="unit-cs-body">
+        <div class="formula-table-wrap">
+          <table class="formula-table">
+            <thead><tr><th>Formula</th><th>Name / Category</th><th>JEE Note</th></tr></thead>
+            <tbody>
+              <tr><td class="formula-cell">1/v + 1/u = 2/R = 1/f</td><td>Mirror formula</td><td class="note-cell">u negative (real object)</td></tr>
+              <tr><td class="formula-cell">1/v − 1/u = 1/f</td><td>Lens formula</td><td class="note-cell"></td></tr>
+              <tr><td class="formula-cell">m = −v/u</td><td>Mirror magnification</td><td class="note-cell"></td></tr>
+              <tr><td class="formula-cell">m = v/u</td><td>Lens magnification</td><td class="note-cell"></td></tr>
+              <tr><td class="formula-cell">n₁ sin θ₁ = n₂ sin θ₂</td><td>Snell's law</td><td class="note-cell"></td></tr>
+              <tr><td class="formula-cell">sin θ<sub>c</sub> = n₂/n₁</td><td>Critical angle</td><td class="note-cell">TIR when θ &gt; θ<sub>c</sub></td></tr>
+              <tr><td class="formula-cell">P = 1/f (f in metres)</td><td>Power of lens</td><td class="note-cell">Unit: dioptre</td></tr>
+              <tr><td class="formula-cell">P = P₁ + P₂</td><td>Lenses in contact</td><td class="note-cell"></td></tr>
+              <tr><td class="formula-cell">1/f = (n−1)[1/R₁ − 1/R₂]</td><td>Lens maker's equation</td><td class="note-cell"></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
