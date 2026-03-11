@@ -283,7 +283,14 @@ const GIST_ID_KEY    = 'jee2027_gist_id';
 const GIST_FILENAME  = 'jee2027-progress.json';
 
 function buildGistPayload() {
-  return { version: 2, exported: new Date().toISOString(), sessions: loadProgress(), mocks: loadMocks() };
+  return {
+    version: 3,
+    exported:  new Date().toISOString(),
+    sessions:  loadProgress(),
+    mocks:     loadMocks(),
+    schedule:  loadSchedule(),                               // custom or default flat array
+    startDate: localStorage.getItem(START_DATE_KEY) || null  // so digest knows overdue boundary
+  };
 }
 
 async function findGistByFilename(token) {
