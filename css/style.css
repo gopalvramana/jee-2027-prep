@@ -247,6 +247,15 @@ a { color: inherit; text-decoration: none; }
   .ps-arrow { display: none; }
 }
 
+/* ── MONTH TABLE — collapsible header ── */
+.month-tbl-hdr { display:flex; align-items:flex-start; justify-content:space-between; cursor:pointer; user-select:none; gap:1rem; }
+.month-tbl-hdr:hover .section-title { opacity:.75; }
+.month-tbl-hdr .section-sub { margin-top:.25rem; margin-bottom:0; }
+.month-tbl-arrow { font-size:.85rem; color:var(--ink3); flex-shrink:0; transition:transform .3s; padding-top:.35rem; }
+.month-tbl-arrow.open { transform:rotate(0deg); }
+.month-tbl-arrow:not(.open) { transform:rotate(-90deg); }
+.month-tbl-body:not(.open) { display:none; }
+
 /* ── MONTH TABLE ── */
 .month-table-wrap { overflow-x: auto; }
 .month-table { width: 100%; border-collapse: collapse; font-size: .875rem; }

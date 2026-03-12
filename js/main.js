@@ -32,6 +32,14 @@ document.addEventListener('click', e => {
   }
 });
 
+// ── Month-by-Month table toggle ─────────────────────────────────────────────
+function toggleMonthTable(hdr) {
+  const body  = hdr.nextElementSibling;
+  const arrow = hdr.querySelector('.month-tbl-arrow');
+  body.classList.toggle('open');
+  arrow.classList.toggle('open');
+}
+
 function toggleCS(hdr) {
   const body = hdr.nextElementSibling;
   const tog  = hdr.querySelector('.unit-cs-toggle');

@@ -104,8 +104,14 @@
 <!-- MONTH TABLE -->
 <section class="section alt-bg">
   <div class="container">
-    <h2 class="section-title">Month-by-Month Topics</h2>
-    <p class="section-sub">All 3 subjects in parallel — what to study each month</p>
+    <div class="month-tbl-hdr" onclick="toggleMonthTable(this)">
+      <div>
+        <h2 class="section-title" style="margin-bottom:0">Month-by-Month Topics</h2>
+        <p class="section-sub">All 3 subjects in parallel — what to study each month</p>
+      </div>
+      <span class="month-tbl-arrow open">▼</span>
+    </div>
+    <div class="month-tbl-body open">
     <div class="month-table-wrap">
       <table class="month-table">
         <thead>
@@ -172,6 +178,7 @@
         </tbody>
       </table>
     </div>
+    </div><!-- /month-tbl-body -->
   </div>
 </section>
 
