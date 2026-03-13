@@ -247,16 +247,18 @@ a { color: inherit; text-decoration: none; }
   .ps-arrow { display: none; }
 }
 
-/* ── DASHBOARD TILES (Today + Phase 1/2/3) ── */
+/* ── DASHBOARD TILES (Today full-width + Phase 1/2/3 row) ── */
 .dash-tiles-section { padding: 1.25rem 0 1.5rem; background: var(--white); border-bottom: 1px solid var(--line); }
-.dash-tiles { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 1rem; align-items: stretch; }
+.dash-tiles { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem; }
+
+/* Today tile spans all 3 columns on its own row */
+.dt-today { grid-column: 1 / -1; }
+.dt-today-label { font-size: .65rem; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--ink3); margin-bottom: .6rem; }
+#today-card { max-width: 480px; }
 
 .dash-tile { border: 1px solid var(--line); border-radius: var(--radius); padding: 1.1rem 1.25rem; background: var(--white); }
 
-/* Today tile */
-.dt-today-label { font-size: .65rem; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--ink3); margin-bottom: .6rem; }
-
-/* Phase tiles — flex column so Phase 4 note pins to bottom */
+/* Phase tiles — 3 equal columns, flex column so Phase 4 note pins to bottom */
 .dt-phase { border-top: 3px solid transparent; display: flex; flex-direction: column; }
 .dt-p1 { border-top-color: var(--math); }
 .dt-p2 { border-top-color: var(--phys); }
@@ -273,7 +275,7 @@ a { color: inherit; text-decoration: none; }
 .dt-phase-topics { font-size: .72rem; color: var(--ink2); line-height: 1.7; flex: 1; }
 .dt-phase-p4 { font-size: .67rem; color: var(--ink3); margin-top: 1rem; padding-top: .6rem; border-top: 1px solid var(--line); font-style: italic; }
 
-@media (max-width: 960px) { .dash-tiles { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 860px) { .dash-tiles { grid-template-columns: 1fr 1fr; } .dt-today { grid-column: 1 / -1; } }
 @media (max-width: 560px) { .dash-tiles { grid-template-columns: 1fr; } }
 
 /* ── MONTH TABLE — collapsible header ── */
