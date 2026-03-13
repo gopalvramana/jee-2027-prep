@@ -247,19 +247,33 @@ a { color: inherit; text-decoration: none; }
   .ps-arrow { display: none; }
 }
 
-/* ── DASHBOARD TILES (Today full-width + Phase 1/2/3 row) ── */
+/* ── DASHBOARD TILES (4 equal tiles, one row) ── */
 .dash-tiles-section { padding: 1.25rem 0 1.5rem; background: var(--white); border-bottom: 1px solid var(--line); }
-.dash-tiles { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem; }
-
-/* Today tile spans all 3 columns on its own row */
-.dt-today { grid-column: 1 / -1; }
-.dt-today-label { font-size: .65rem; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--ink3); margin-bottom: .6rem; }
-#today-card { max-width: 480px; }
+.dash-tiles { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; align-items: stretch; }
 
 .dash-tile { border: 1px solid var(--line); border-radius: var(--radius); padding: 1.1rem 1.25rem; background: var(--white); }
 
-/* Phase tiles — 3 equal columns, flex column so Phase 4 note pins to bottom */
-.dt-phase { border-top: 3px solid transparent; display: flex; flex-direction: column; }
+/* Today tile */
+.dt-today { border-top: 3px solid #334155; }
+.dt-today-label { font-size: .62rem; font-weight: 700; text-transform: uppercase; letter-spacing: .09em; color: var(--ink3); margin-bottom: .6rem; }
+
+/* Compact today-card inside the dashboard tile — strip inner card chrome, tighten padding */
+.dt-today #today-card { border: none; border-radius: 0; background: none; }
+.dt-today .tc-header { padding: 0 0 .5rem; background: none; border-bottom: 1px solid var(--line); gap: .2rem; border-radius: 0; }
+.dt-today .tc-date { font-size: .72rem; }
+.dt-today .tc-phase { font-size: .84rem; }
+.dt-today .tc-week-label { font-size: .68rem; margin-top: 0; }
+.dt-today .tc-section { padding: .45rem 0; }
+.dt-today .tc-section-title { font-size: .6rem; margin-bottom: .3rem; }
+.dt-today .tc-row { padding: .15rem 0; font-size: .78rem; gap: .35rem; }
+.dt-today .tc-status { font-size: .85rem; min-width: 1.2rem; }
+.dt-today .tc-subj { font-size: .78rem; }
+.dt-today .tc-footer { padding: .4rem 0 0; gap: .5rem; flex-wrap: wrap; border-top: 1px solid var(--line); }
+.dt-today .tc-summary { font-size: .7rem; }
+.dt-today .tc-link { font-size: .7rem; }
+
+/* Phase tiles — flex column, space-between fills the full height gracefully */
+.dt-phase { border-top: 3px solid transparent; display: flex; flex-direction: column; justify-content: space-between; }
 .dt-p1 { border-top-color: var(--math); }
 .dt-p2 { border-top-color: var(--phys); }
 .dt-p3 { border-top-color: #6d28d9; }
@@ -271,11 +285,11 @@ a { color: inherit; text-decoration: none; }
 
 .dt-phase-name { font-size: .95rem; font-weight: 600; color: var(--ink); margin-bottom: .25rem; }
 .dt-phase-period { font-size: .7rem; font-family: 'JetBrains Mono', monospace; color: var(--ink3); margin-bottom: .1rem; }
-.dt-phase-hrs { font-size: .68rem; color: var(--ink3); margin-bottom: .75rem; }
-.dt-phase-topics { font-size: .72rem; color: var(--ink2); line-height: 1.7; flex: 1; }
-.dt-phase-p4 { font-size: .67rem; color: var(--ink3); margin-top: 1rem; padding-top: .6rem; border-top: 1px solid var(--line); font-style: italic; }
+.dt-phase-hrs { font-size: .68rem; color: var(--ink3); margin-bottom: .5rem; }
+.dt-phase-topics { font-size: .72rem; color: var(--ink2); line-height: 1.8; }
+.dt-phase-p4 { font-size: .67rem; color: var(--ink3); padding-top: .6rem; border-top: 1px solid var(--line); font-style: italic; }
 
-@media (max-width: 860px) { .dash-tiles { grid-template-columns: 1fr 1fr; } .dt-today { grid-column: 1 / -1; } }
+@media (max-width: 860px) { .dash-tiles { grid-template-columns: 1fr 1fr; } }
 @media (max-width: 560px) { .dash-tiles { grid-template-columns: 1fr; } }
 
 /* ── MONTH TABLE — collapsible header ── */
