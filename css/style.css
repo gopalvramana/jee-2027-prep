@@ -583,6 +583,113 @@ a { color: inherit; text-decoration: none; }
 .formula-explain-derive { font-size: .77rem; color: var(--ink3); line-height: 1.5; }
 @media (max-width: 640px) { .formula-explain-grid { grid-template-columns: 1fr; } }
 
+/* ── DIFFICULTY TABLE ── */
+.diff-section {
+  background: var(--white);
+  border: 1.5px solid var(--line);
+  border-radius: var(--radius);
+  margin-bottom: 2rem;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+.diff-section-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 1rem 1.5rem; cursor: pointer;
+  background: var(--white);
+  border-bottom: 1px solid var(--line);
+  user-select: none;
+}
+.diff-section-header:hover { background: var(--bg); }
+.diff-section-header h2 { font-size: 1.05rem; font-weight: 700; color: var(--ink); }
+.diff-section-header p { font-size: .8rem; color: var(--ink3); margin-top: .15rem; }
+.diff-section-toggle { font-size: 1rem; color: var(--ink3); transition: transform .25s; }
+.diff-section-toggle.open { transform: rotate(180deg); }
+.diff-section-body { padding: 1.5rem; }
+
+/* summary pills */
+.diff-summary {
+  display: grid; grid-template-columns: repeat(3,1fr); gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+.diff-pill {
+  border-radius: var(--radius); padding: 1rem 1.25rem;
+  display: flex; flex-direction: column; gap: .25rem;
+}
+.diff-pill.easy   { background: #f0fdf4; border: 1.5px solid #86efac; }
+.diff-pill.mod    { background: #fffbeb; border: 1.5px solid #fcd34d; }
+.diff-pill.hard   { background: #fff1f2; border: 1.5px solid #fca5a5; }
+.diff-pill-label  { font-size: .7rem; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; }
+.diff-pill.easy  .diff-pill-label { color: #15803d; }
+.diff-pill.mod   .diff-pill-label { color: #b45309; }
+.diff-pill.hard  .diff-pill-label { color: #b91c1c; }
+.diff-pill-marks  { font-family: 'JetBrains Mono', monospace; font-size: 1.5rem; font-weight: 700; line-height: 1; }
+.diff-pill.easy  .diff-pill-marks { color: #15803d; }
+.diff-pill.mod   .diff-pill-marks { color: #b45309; }
+.diff-pill.hard  .diff-pill-marks { color: #b91c1c; }
+.diff-pill-sub    { font-size: .75rem; color: var(--ink3); }
+.diff-pill-strat  { font-size: .73rem; font-style: italic; margin-top: .15rem; }
+.diff-pill.easy  .diff-pill-strat { color: #15803d; }
+.diff-pill.mod   .diff-pill-strat { color: #b45309; }
+.diff-pill.hard  .diff-pill-strat { color: #b91c1c; }
+
+/* main table */
+.diff-table { width: 100%; border-collapse: collapse; font-size: .84rem; }
+.diff-table thead th {
+  padding: .6rem 1rem; text-align: left;
+  font-size: .72rem; font-weight: 700; text-transform: uppercase;
+  letter-spacing: .06em; color: var(--ink3);
+  background: var(--bg); border-bottom: 2px solid var(--line);
+  white-space: nowrap;
+}
+.diff-table tbody td {
+  padding: .65rem 1rem; border-bottom: 1px solid var(--line);
+  vertical-align: middle;
+}
+.diff-table tbody tr:last-child td { border-bottom: none; }
+.diff-table tbody tr:hover td { background: var(--bg); }
+
+/* difficulty badge in table */
+.diff-badge {
+  display: inline-block; padding: .18rem .65rem; border-radius: 999px;
+  font-size: .7rem; font-weight: 700; text-transform: uppercase; letter-spacing: .05em;
+  white-space: nowrap;
+}
+.diff-badge.easy { background: #dcfce7; color: #15803d; }
+.diff-badge.mod  { background: #fef3c7; color: #b45309; }
+.diff-badge.hard { background: #fee2e2; color: #b91c1c; }
+
+/* marks bar in table */
+.diff-marks-wrap { display: flex; align-items: center; gap: .6rem; }
+.diff-marks-num  { font-family: 'JetBrains Mono', monospace; font-weight: 600; font-size: .9rem; white-space: nowrap; }
+.diff-bar-bg { flex: 1; height: 5px; background: var(--line); border-radius: 999px; min-width: 40px; }
+.diff-bar-fg { height: 100%; border-radius: 999px; }
+.easy .diff-bar-fg, .diff-bar-fg.easy { background: #16a34a; }
+.mod  .diff-bar-fg, .diff-bar-fg.mod  { background: #d97706; }
+.hard .diff-bar-fg, .diff-bar-fg.hard { background: #dc2626; }
+
+/* unit link in table */
+.diff-unit-link {
+  display: inline-block; font-family: 'JetBrains Mono', monospace;
+  font-size: .75rem; font-weight: 600; color: var(--phys);
+  background: var(--phys-l); border-radius: 4px;
+  padding: .1rem .4rem; margin-left: .35rem;
+  text-decoration: none;
+}
+.diff-unit-link:hover { background: var(--phys-m); }
+
+/* realistic score row */
+.diff-table tfoot td {
+  padding: .75rem 1rem; background: var(--bg);
+  font-weight: 700; font-size: .85rem;
+  border-top: 2px solid var(--line);
+}
+
+@media (max-width: 700px) {
+  .diff-summary { grid-template-columns: 1fr; }
+  .diff-table thead th:nth-child(4),
+  .diff-table tbody td:nth-child(4) { display: none; }
+}
+
 /* ── TRAPS TABLE ── */
 .traps-table { width: 100%; border-collapse: collapse; font-size: .84rem; margin-top: 1rem; }
 .traps-table th { padding: .65rem 1rem; text-align: left; font-size: .75rem; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; background: #fee2e2; color: var(--red); border-bottom: 2px solid var(--red); }

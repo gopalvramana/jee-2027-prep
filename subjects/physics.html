@@ -41,6 +41,344 @@
   </div>
 </header>
 
+<!-- ── DIFFICULTY TABLE ── -->
+<section class="section" style="padding-top:2.5rem;padding-bottom:1rem;">
+<div class="container">
+<div class="diff-section">
+
+  <!-- header / toggle -->
+  <div class="diff-section-header" onclick="this.nextElementSibling.classList.toggle('hidden');this.querySelector('.diff-section-toggle').classList.toggle('open')">
+    <div>
+      <h2>⚡ Physics — Topic Difficulty & Marks Breakdown</h2>
+      <p>All 15 topics ranked by difficulty · Total paper = 100 marks · Based on JEE Main past papers</p>
+    </div>
+    <span class="diff-section-toggle open">▼</span>
+  </div>
+
+  <!-- body -->
+  <div class="diff-section-body">
+
+    <!-- summary pills -->
+    <div class="diff-summary">
+      <div class="diff-pill easy">
+        <span class="diff-pill-label">🟢 Easy</span>
+        <span class="diff-pill-marks">~20 marks</span>
+        <span class="diff-pill-sub">5 topics · formula plug-in</span>
+        <span class="diff-pill-strat">Memorise formulas → guaranteed marks</span>
+      </div>
+      <div class="diff-pill mod">
+        <span class="diff-pill-label">🟡 Moderate</span>
+        <span class="diff-pill-marks">~38 marks</span>
+        <span class="diff-pill-sub">6 topics · need understanding</span>
+        <span class="diff-pill-strat">Practice 30+ problems per topic</span>
+      </div>
+      <div class="diff-pill hard">
+        <span class="diff-pill-label">🔴 Hard</span>
+        <span class="diff-pill-marks">~42 marks</span>
+        <span class="diff-pill-sub">4 topics · conceptual depth</span>
+        <span class="diff-pill-strat">Target 50 % here; don't lose easy marks</span>
+      </div>
+    </div>
+
+    <!-- main table -->
+    <div style="overflow-x:auto;">
+    <table class="diff-table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Topic</th>
+          <th>Unit</th>
+          <th>Difficulty</th>
+          <th>JEE Weight</th>
+          <th>Marks (of 100)</th>
+          <th>Formulas to Know</th>
+          <th>Strategy</th>
+        </tr>
+      </thead>
+      <tbody>
+
+        <!-- ── EASY ── -->
+        <tr>
+          <td style="color:var(--ink3);font-size:.8rem;">1</td>
+          <td><strong>Units &amp; Dimensions</strong></td>
+          <td><a class="diff-unit-link" href="#unit-p0">P0</a></td>
+          <td><span class="diff-badge easy">Easy</span></td>
+          <td>3–5%</td>
+          <td>
+            <div class="diff-marks-wrap">
+              <span class="diff-marks-num">4</span>
+              <div class="diff-bar-bg"><div class="diff-bar-fg easy" style="width:40%"></div></div>
+            </div>
+          </td>
+          <td>8 formulas</td>
+          <td>Dimensional analysis — <strong>never skip</strong>. 1–2 direct questions every paper.</td>
+        </tr>
+        <tr>
+          <td style="color:var(--ink3);font-size:.8rem;">2</td>
+          <td><strong>Kinematics — 1D Motion</strong></td>
+          <td><a class="diff-unit-link" href="#unit-p1">P1</a></td>
+          <td><span class="diff-badge easy">Easy</span></td>
+          <td>3–4%</td>
+          <td>
+            <div class="diff-marks-wrap">
+              <span class="diff-marks-num">4</span>
+              <div class="diff-bar-bg"><div class="diff-bar-fg easy" style="width:40%"></div></div>
+            </div>
+          </td>
+          <td>5 formulas</td>
+          <td>v = u + at family. Solve 20 sums → full marks possible.</td>
+        </tr>
+        <tr>
+          <td style="color:var(--ink3);font-size:.8rem;">3</td>
+          <td><strong>Work, Energy &amp; Power</strong></td>
+          <td><a class="diff-unit-link" href="#unit-p3">P3</a></td>
+          <td><span class="diff-badge easy">Easy</span></td>
+          <td>4–5%</td>
+          <td>
+            <div class="diff-marks-wrap">
+              <span class="diff-marks-num">4</span>
+              <div class="diff-bar-bg"><div class="diff-bar-fg easy" style="width:40%"></div></div>
+            </div>
+          </td>
+          <td>6 formulas</td>
+          <td>Energy conservation problems. Very scoring with basic practice.</td>
+        </tr>
+        <tr>
+          <td style="color:var(--ink3);font-size:.8rem;">4</td>
+          <td><strong>Ray Optics</strong></td>
+          <td><a class="diff-unit-link" href="#unit-p8">P8</a></td>
+          <td><span class="diff-badge easy">Easy</span></td>
+          <td>4–6%</td>
+          <td>
+            <div class="diff-marks-wrap">
+              <span class="diff-marks-num">4</span>
+              <div class="diff-bar-bg"><div class="diff-bar-fg easy" style="width:40%"></div></div>
+            </div>
+          </td>
+          <td>8 formulas</td>
+          <td>Mirror/lens formula + sign convention. Predictable question types.</td>
+        </tr>
+        <tr>
+          <td style="color:var(--ink3);font-size:.8rem;">5</td>
+          <td><strong>Current Electricity — Basics</strong></td>
+          <td><a class="diff-unit-link" href="#unit-p4">P4</a></td>
+          <td><span class="diff-badge easy">Easy</span></td>
+          <td>3–4%</td>
+          <td>
+            <div class="diff-marks-wrap">
+              <span class="diff-marks-num">4</span>
+              <div class="diff-bar-bg"><div class="diff-bar-fg easy" style="width:40%"></div></div>
+            </div>
+          </td>
+          <td>5 formulas</td>
+          <td>Ohm's law, series/parallel resistors. Direct formula application.</td>
+        </tr>
+
+        <!-- ── MODERATE ── -->
+        <tr>
+          <td style="color:var(--ink3);font-size:.8rem;">6</td>
+          <td><strong>Laws of Motion</strong></td>
+          <td><a class="diff-unit-link" href="#unit-p2">P2</a></td>
+          <td><span class="diff-badge mod">Moderate</span></td>
+          <td>6–8%</td>
+          <td>
+            <div class="diff-marks-wrap">
+              <span class="diff-marks-num">7</span>
+              <div class="diff-bar-bg"><div class="diff-bar-fg mod" style="width:70%"></div></div>
+            </div>
+          </td>
+          <td>7 formulas</td>
+          <td>FBD is the key skill. Draw the diagram first — every time.</td>
+        </tr>
+        <tr>
+          <td style="color:var(--ink3);font-size:.8rem;">7</td>
+          <td><strong>Kinematics — 2D &amp; Projectiles</strong></td>
+          <td><a class="diff-unit-link" href="#unit-p1">P1</a></td>
+          <td><span class="diff-badge mod">Moderate</span></td>
+          <td>3–5%</td>
+          <td>
+            <div class="diff-marks-wrap">
+              <span class="diff-marks-num">5</span>
+              <div class="diff-bar-bg"><div class="diff-bar-fg mod" style="width:50%"></div></div>
+            </div>
+          </td>
+          <td>6 formulas</td>
+          <td>Resolve into components. Range/height formulas must be memorised.</td>
+        </tr>
+        <tr>
+          <td style="color:var(--ink3);font-size:.8rem;">8</td>
+          <td><strong>Electricity — Advanced Circuits</strong></td>
+          <td><a class="diff-unit-link" href="#unit-p4">P4</a></td>
+          <td><span class="diff-badge mod">Moderate</span></td>
+          <td>5–7%</td>
+          <td>
+            <div class="diff-marks-wrap">
+              <span class="diff-marks-num">6</span>
+              <div class="diff-bar-bg"><div class="diff-bar-fg mod" style="width:60%"></div></div>
+            </div>
+          </td>
+          <td>5 formulas</td>
+          <td>Kirchhoff's laws + Wheatstone bridge. Practice multi-loop circuits.</td>
+        </tr>
+        <tr>
+          <td style="color:var(--ink3);font-size:.8rem;">9</td>
+          <td><strong>Thermodynamics</strong></td>
+          <td><span style="font-size:.75rem;color:var(--ink3);font-style:italic;">Phase 2</span></td>
+          <td><span class="diff-badge mod">Moderate</span></td>
+          <td>6–8%</td>
+          <td>
+            <div class="diff-marks-wrap">
+              <span class="diff-marks-num">8</span>
+              <div class="diff-bar-bg"><div class="diff-bar-fg mod" style="width:80%"></div></div>
+            </div>
+          </td>
+          <td>10 formulas</td>
+          <td>PV diagrams + laws. Conceptual MCQs are common — understand not just memorise.</td>
+        </tr>
+        <tr>
+          <td style="color:var(--ink3);font-size:.8rem;">10</td>
+          <td><strong>Magnetism</strong></td>
+          <td><a class="diff-unit-link" href="#unit-p6">P6</a></td>
+          <td><span class="diff-badge mod">Moderate</span></td>
+          <td>5–7%</td>
+          <td>
+            <div class="diff-marks-wrap">
+              <span class="diff-marks-num">6</span>
+              <div class="diff-bar-bg"><div class="diff-bar-fg mod" style="width:60%"></div></div>
+            </div>
+          </td>
+          <td>8 formulas</td>
+          <td>Biot-Savart + Ampere's law. Direction using right-hand rule is tested heavily.</td>
+        </tr>
+        <tr>
+          <td style="color:var(--ink3);font-size:.8rem;">11</td>
+          <td><strong>EMI &amp; AC Circuits</strong></td>
+          <td><a class="diff-unit-link" href="#unit-p7">P7</a></td>
+          <td><span class="diff-badge mod">Moderate</span></td>
+          <td>5–6%</td>
+          <td>
+            <div class="diff-marks-wrap">
+              <span class="diff-marks-num">6</span>
+              <div class="diff-bar-bg"><div class="diff-bar-fg mod" style="width:60%"></div></div>
+            </div>
+          </td>
+          <td>9 formulas</td>
+          <td>Faraday's law + LCR circuits. Resonance frequency is a favourite question.</td>
+        </tr>
+
+        <!-- ── HARD ── -->
+        <tr>
+          <td style="color:var(--ink3);font-size:.8rem;">12</td>
+          <td><strong>Rotational Motion</strong></td>
+          <td><a class="diff-unit-link" href="#unit-p5">P5</a></td>
+          <td><span class="diff-badge hard">Hard</span></td>
+          <td>6–8%</td>
+          <td>
+            <div class="diff-marks-wrap">
+              <span class="diff-marks-num">8</span>
+              <div class="diff-bar-bg"><div class="diff-bar-fg hard" style="width:80%"></div></div>
+            </div>
+          </td>
+          <td>10 formulas</td>
+          <td>MOI of standard shapes must be memorised. Rolling motion = most common trap.</td>
+        </tr>
+        <tr>
+          <td style="color:var(--ink3);font-size:.8rem;">13</td>
+          <td><strong>SHM &amp; Waves</strong></td>
+          <td><span style="font-size:.75rem;color:var(--ink3);font-style:italic;">Add soon</span></td>
+          <td><span class="diff-badge hard">Hard</span></td>
+          <td>7–9%</td>
+          <td>
+            <div class="diff-marks-wrap">
+              <span class="diff-marks-num">10</span>
+              <div class="diff-bar-bg"><div class="diff-bar-fg hard" style="width:100%"></div></div>
+            </div>
+          </td>
+          <td>12 formulas</td>
+          <td>x = A sin(ωt + φ) — understand phase. Doppler effect is a sure question.</td>
+        </tr>
+        <tr>
+          <td style="color:var(--ink3);font-size:.8rem;">14</td>
+          <td><strong>Modern Physics</strong></td>
+          <td><span style="font-size:.75rem;color:var(--ink3);font-style:italic;">Add soon</span></td>
+          <td><span class="diff-badge hard">Hard</span></td>
+          <td>9–11%</td>
+          <td>
+            <div class="diff-marks-wrap">
+              <span class="diff-marks-num">12</span>
+              <div class="diff-bar-bg"><div class="diff-bar-fg hard" style="width:100%"></div></div>
+            </div>
+          </td>
+          <td>9 formulas</td>
+          <td>Photoelectric + Bohr model + nuclear decay. High marks if practised well.</td>
+        </tr>
+        <tr>
+          <td style="color:var(--ink3);font-size:.8rem;">15</td>
+          <td><strong>Wave Optics</strong></td>
+          <td><span style="font-size:.75rem;color:var(--ink3);font-style:italic;">Add soon</span></td>
+          <td><span class="diff-badge hard">Hard</span></td>
+          <td>4–5%</td>
+          <td>
+            <div class="diff-marks-wrap">
+              <span class="diff-marks-num">6</span>
+              <div class="diff-bar-bg"><div class="diff-bar-fg hard" style="width:60%"></div></div>
+            </div>
+          </td>
+          <td>6 formulas</td>
+          <td>YDSE fringe formula is predictable. Attempt after Ray Optics is solid.</td>
+        </tr>
+
+      </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="5" style="text-align:right;font-size:.82rem;color:var(--ink3);">Total paper</td>
+          <td>
+            <div class="diff-marks-wrap">
+              <span class="diff-marks-num" style="font-size:1rem;">100 marks</span>
+            </div>
+          </td>
+          <td>95 formulas</td>
+          <td style="font-size:.8rem;color:var(--ink3);">Realistic target with this site: <strong style="color:var(--phys)">55–65 / 100</strong></td>
+        </tr>
+        <tr>
+          <td colspan="5" style="text-align:right;font-size:.82rem;color:var(--ink3);">Realistic score (Easy fully done)</td>
+          <td>
+            <div class="diff-marks-wrap">
+              <span class="diff-marks-num" style="font-size:1rem;color:#15803d;">~20</span>
+            </div>
+          </td>
+          <td></td>
+          <td style="font-size:.8rem;color:#15803d;">Guaranteed if all Easy formulas memorised</td>
+        </tr>
+        <tr>
+          <td colspan="5" style="text-align:right;font-size:.82rem;color:var(--ink3);">+Moderate (50 % accuracy)</td>
+          <td>
+            <div class="diff-marks-wrap">
+              <span class="diff-marks-num" style="font-size:1rem;color:#b45309;">+19</span>
+            </div>
+          </td>
+          <td></td>
+          <td style="font-size:.8rem;color:#b45309;">= ~39 marks total so far</td>
+        </tr>
+        <tr>
+          <td colspan="5" style="text-align:right;font-size:.82rem;color:var(--ink3);">+Hard (35 % accuracy)</td>
+          <td>
+            <div class="diff-marks-wrap">
+              <span class="diff-marks-num" style="font-size:1rem;color:#b91c1c;">+15</span>
+            </div>
+          </td>
+          <td></td>
+          <td style="font-size:.8rem;color:#b91c1c;">= <strong>~54 marks total</strong> — hits your target ✅</td>
+        </tr>
+      </tfoot>
+    </table>
+    </div>
+
+  </div><!-- /diff-section-body -->
+</div><!-- /diff-section -->
+</div>
+</section>
+
 <section class="section">
 <div class="container">
 
