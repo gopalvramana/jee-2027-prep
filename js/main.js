@@ -66,6 +66,7 @@ function loadProgress() {
 function saveProgress(data) {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
   autoSyncToGist();
+  window.pushToFirestore?.();
 }
 function loadMocks() {
   try { return JSON.parse(localStorage.getItem(MOCK_KEY)) || []; }
@@ -74,6 +75,7 @@ function loadMocks() {
 function saveMocks(list) {
   localStorage.setItem(MOCK_KEY, JSON.stringify(list));
   autoSyncToGist();
+  window.pushToFirestore?.();
 }
 
 function initProgress() {
@@ -525,6 +527,7 @@ function loadSchedule() {
 
 function saveSchedule(sessions) {
   localStorage.setItem(SCHEDULE_KEY, JSON.stringify(sessions));
+  window.pushToFirestore?.();
 }
 
 window.resetScheduleToDefault = function() {
