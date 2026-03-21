@@ -153,6 +153,53 @@
             </tbody>
           </table>
         </div>
+        <div class="formula-explain-hdr">How to Read &amp; Use Dimensional Formulas</div>
+        <div class="formula-explain-grid">
+          <div class="formula-explain-card">
+            <div class="formula-explain-eq">[LT⁻¹] → Velocity</div>
+            <div class="formula-explain-name">Reading the notation</div>
+            <div class="formula-explain-vars">
+              <span class="formula-explain-var"><b>M</b> = mass dimension</span>
+              <span class="formula-explain-var"><b>L</b> = length dimension</span>
+              <span class="formula-explain-var"><b>T</b> = time dimension</span>
+              <span class="formula-explain-var"><b>A</b> = current dimension</span>
+              <span class="formula-explain-var"><b>T⁻¹</b> means "per time" = 1/T</span>
+            </div>
+            <div class="formula-explain-use"><strong>How to read:</strong> [LT⁻¹] = L/T = distance÷time = m/s. The superscript is the power of that base quantity.</div>
+            <div class="formula-explain-derive"><strong>From definition:</strong> velocity = displacement/time → [L]/[T] = [LT⁻¹]</div>
+          </div>
+          <div class="formula-explain-card">
+            <div class="formula-explain-eq">[MLT⁻²] → Force</div>
+            <div class="formula-explain-name">How to derive — from F = ma</div>
+            <div class="formula-explain-vars">
+              <span class="formula-explain-var"><b>M</b> = mass (kg)</span>
+              <span class="formula-explain-var"><b>L</b> = acceleration has length</span>
+              <span class="formula-explain-var"><b>T⁻²</b> = per time² (1/T²)</span>
+            </div>
+            <div class="formula-explain-use"><strong>Method:</strong> F = ma → [force] = [mass][acceleration] = [M][LT⁻²] = [MLT⁻²]</div>
+            <div class="formula-explain-derive"><strong>Always derive from the definition</strong> — never memorise blindly. Derive every time until automatic.</div>
+          </div>
+          <div class="formula-explain-card">
+            <div class="formula-explain-eq">[ML²T⁻²] → Energy &amp; Torque</div>
+            <div class="formula-explain-name">JEE Trap — Same dimensions, different quantities</div>
+            <div class="formula-explain-vars">
+              <span class="formula-explain-var"><b>Work</b> = F × d → [MLT⁻²][L] = [ML²T⁻²]</span>
+              <span class="formula-explain-var"><b>Torque</b> = r × F → [L][MLT⁻²] = [ML²T⁻²]</span>
+            </div>
+            <div class="formula-explain-use"><strong>Trap:</strong> Energy and Torque have IDENTICAL dimensions but are completely different physical quantities. Dimensional analysis cannot tell them apart.</div>
+            <div class="formula-explain-derive"><strong>Rule:</strong> Dimensional correctness is necessary but NOT sufficient to prove a formula is correct.</div>
+          </div>
+          <div class="formula-explain-card">
+            <div class="formula-explain-eq">% error in xⁿ = n × (% error in x)</div>
+            <div class="formula-explain-name">Error in Derived Quantities</div>
+            <div class="formula-explain-vars">
+              <span class="formula-explain-var"><b>n</b> = power/exponent of the quantity</span>
+              <span class="formula-explain-var"><b>% error</b> = (Δx/x) × 100</span>
+            </div>
+            <div class="formula-explain-use"><strong>Product/quotient:</strong> relative (%) errors add. <strong>Sum/difference:</strong> absolute errors add. <strong>Power:</strong> multiply relative error by the power.</div>
+            <div class="formula-explain-derive"><strong>Example:</strong> x = a²b/√c, errors 2%, 3%, 4% → % error in x = 2×2 + 3 + ½×4 = 11%</div>
+          </div>
+        </div>
       </div>
     </div>
     <p style="font-size:.78rem;color:var(--ink3);margin-top:.5rem">⚠ JEE Trap: Torque and Energy both have [ML²T⁻²] but are different quantities. Impulse and Momentum both have [MLT⁻¹].</p>
@@ -260,6 +307,102 @@
             </tbody>
           </table>
         </div>
+        <div class="formula-explain-hdr">Formula Breakdown — What Each Variable Means</div>
+        <div class="formula-explain-grid">
+          <div class="formula-explain-card">
+            <div class="formula-explain-eq">v = u + at</div>
+            <div class="formula-explain-name">Equation of Motion 1 — no displacement</div>
+            <div class="formula-explain-vars">
+              <span class="formula-explain-var"><b>v</b> = final velocity (m/s)</span>
+              <span class="formula-explain-var"><b>u</b> = initial velocity (m/s)</span>
+              <span class="formula-explain-var"><b>a</b> = acceleration, must be constant (m/s²)</span>
+              <span class="formula-explain-var"><b>t</b> = time elapsed (s)</span>
+            </div>
+            <div class="formula-explain-use"><strong>Use when:</strong> know u, a, t → want v. No displacement (s) involved.</div>
+            <div class="formula-explain-derive"><strong>From:</strong> a = (v−u)/t → rearrange → v = u + at</div>
+          </div>
+          <div class="formula-explain-card">
+            <div class="formula-explain-eq">s = ut + ½at²</div>
+            <div class="formula-explain-name">Equation of Motion 2 — no final velocity</div>
+            <div class="formula-explain-vars">
+              <span class="formula-explain-var"><b>s</b> = displacement (m) — can be negative</span>
+              <span class="formula-explain-var"><b>u</b> = initial velocity (m/s)</span>
+              <span class="formula-explain-var"><b>a</b> = acceleration (m/s²)</span>
+              <span class="formula-explain-var"><b>t</b> = time (s)</span>
+            </div>
+            <div class="formula-explain-use"><strong>Use when:</strong> know u, a, t → want displacement. No final velocity (v) needed.</div>
+            <div class="formula-explain-derive"><strong>From:</strong> Area under v-t graph = rectangle (ut) + triangle (½·t·at)</div>
+          </div>
+          <div class="formula-explain-card">
+            <div class="formula-explain-eq">v² = u² + 2as</div>
+            <div class="formula-explain-name">Equation of Motion 3 — no time</div>
+            <div class="formula-explain-vars">
+              <span class="formula-explain-var"><b>v</b> = final velocity (m/s)</span>
+              <span class="formula-explain-var"><b>u</b> = initial velocity (m/s)</span>
+              <span class="formula-explain-var"><b>a</b> = acceleration (m/s²)</span>
+              <span class="formula-explain-var"><b>s</b> = displacement (m)</span>
+            </div>
+            <div class="formula-explain-use"><strong>Use when:</strong> time (t) is not given or not needed. Directly links velocity and displacement.</div>
+            <div class="formula-explain-derive"><strong>From:</strong> Eliminate t between equations 1 and 2</div>
+          </div>
+          <div class="formula-explain-card">
+            <div class="formula-explain-eq">sₙ = u + a(2n−1)/2</div>
+            <div class="formula-explain-name">Distance in the nth Second only</div>
+            <div class="formula-explain-vars">
+              <span class="formula-explain-var"><b>sₙ</b> = distance covered ONLY in the nth second (m)</span>
+              <span class="formula-explain-var"><b>u</b> = initial velocity (m/s)</span>
+              <span class="formula-explain-var"><b>a</b> = acceleration (m/s²)</span>
+              <span class="formula-explain-var"><b>n</b> = the nth second (integer)</span>
+            </div>
+            <div class="formula-explain-use"><strong>Use when:</strong> asked "how far in the 3rd second?" — NOT total distance up to that second.</div>
+            <div class="formula-explain-derive"><strong>From:</strong> sₙ = s(up to n) − s(up to n−1)</div>
+          </div>
+          <div class="formula-explain-card">
+            <div class="formula-explain-eq">R = u²sin2θ / g</div>
+            <div class="formula-explain-name">Projectile Horizontal Range</div>
+            <div class="formula-explain-vars">
+              <span class="formula-explain-var"><b>R</b> = horizontal range (m)</span>
+              <span class="formula-explain-var"><b>u</b> = launch speed (m/s)</span>
+              <span class="formula-explain-var"><b>θ</b> = launch angle from horizontal</span>
+              <span class="formula-explain-var"><b>g</b> = 10 m/s²</span>
+            </div>
+            <div class="formula-explain-use"><strong>Max range at θ = 45°.</strong> Complementary angles (30° and 60°) give the same range.</div>
+            <div class="formula-explain-derive"><strong>From:</strong> R = u cosθ × T = ucosθ × 2usinθ/g = u²sin2θ/g</div>
+          </div>
+          <div class="formula-explain-card">
+            <div class="formula-explain-eq">H = u²sin²θ / 2g</div>
+            <div class="formula-explain-name">Projectile Maximum Height</div>
+            <div class="formula-explain-vars">
+              <span class="formula-explain-var"><b>H</b> = maximum height reached (m)</span>
+              <span class="formula-explain-var"><b>u sinθ</b> = vertical component of initial velocity</span>
+              <span class="formula-explain-var"><b>g</b> = 10 m/s²</span>
+            </div>
+            <div class="formula-explain-use"><strong>At max height:</strong> vertical velocity = 0. Substitute v=0 in v² = u² − 2gH.</div>
+            <div class="formula-explain-derive"><strong>From:</strong> 0 = (usinθ)² − 2gH → H = u²sin²θ/2g</div>
+          </div>
+          <div class="formula-explain-card">
+            <div class="formula-explain-eq">T = 2u sinθ / g</div>
+            <div class="formula-explain-name">Projectile Time of Flight</div>
+            <div class="formula-explain-vars">
+              <span class="formula-explain-var"><b>T</b> = total time in air (s)</span>
+              <span class="formula-explain-var"><b>u sinθ</b> = vertical launch velocity</span>
+              <span class="formula-explain-var"><b>g</b> = 10 m/s²</span>
+            </div>
+            <div class="formula-explain-use"><strong>T = 2 × (time to reach max height).</strong> Descent time = ascent time (symmetric).</div>
+            <div class="formula-explain-derive"><strong>From:</strong> vertical displacement = 0 at landing → 0 = usinθ·T − ½gT² → T = 2usinθ/g</div>
+          </div>
+          <div class="formula-explain-card">
+            <div class="formula-explain-eq">v_AB = v_A − v_B</div>
+            <div class="formula-explain-name">Relative Velocity</div>
+            <div class="formula-explain-vars">
+              <span class="formula-explain-var"><b>v_AB</b> = velocity of A as seen from B</span>
+              <span class="formula-explain-var"><b>v_A</b> = velocity of A in ground frame</span>
+              <span class="formula-explain-var"><b>v_B</b> = velocity of B in ground frame</span>
+            </div>
+            <div class="formula-explain-use"><strong>Same direction:</strong> |v_A − v_B|. <strong>Opposite directions:</strong> v_A + v_B. Draw vector diagram for 2D problems.</div>
+            <div class="formula-explain-derive"><strong>Applications:</strong> overtaking, collision time, river-boat crossing, rain-man angle</div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -353,6 +496,76 @@
             </tbody>
           </table>
         </div>
+        <div class="formula-explain-hdr">Formula Breakdown — What Each Variable Means</div>
+        <div class="formula-explain-grid">
+          <div class="formula-explain-card">
+            <div class="formula-explain-eq">F_net = ma</div>
+            <div class="formula-explain-name">Newton's 2nd Law</div>
+            <div class="formula-explain-vars">
+              <span class="formula-explain-var"><b>F_net</b> = net external force on the object (N)</span>
+              <span class="formula-explain-var"><b>m</b> = mass of the object (kg)</span>
+              <span class="formula-explain-var"><b>a</b> = acceleration produced (m/s²)</span>
+            </div>
+            <div class="formula-explain-use"><strong>Vector equation:</strong> apply separately in x and y directions. Always draw FBD first — list ALL forces acting ON the object only.</div>
+            <div class="formula-explain-derive"><strong>Newton's 3rd law:</strong> action and reaction are equal and opposite, but act on DIFFERENT objects — never add them in the same FBD.</div>
+          </div>
+          <div class="formula-explain-card">
+            <div class="formula-explain-eq">f_s ≤ μ_s N</div>
+            <div class="formula-explain-name">Static Friction (before motion)</div>
+            <div class="formula-explain-vars">
+              <span class="formula-explain-var"><b>f_s</b> = static friction force (N)</span>
+              <span class="formula-explain-var"><b>μ_s</b> = coefficient of static friction (no unit)</span>
+              <span class="formula-explain-var"><b>N</b> = normal force at contact surface (N)</span>
+            </div>
+            <div class="formula-explain-use"><strong>Key:</strong> f_s ≤ μ_sN (not equal). Static friction self-adjusts from 0 up to μ_sN. Once f_applied exceeds μ_sN, object starts moving.</div>
+            <div class="formula-explain-derive"><strong>Always:</strong> μ_s &gt; μ_k — it takes more force to START sliding than to SUSTAIN it.</div>
+          </div>
+          <div class="formula-explain-card">
+            <div class="formula-explain-eq">f_k = μ_k N</div>
+            <div class="formula-explain-name">Kinetic Friction (during motion)</div>
+            <div class="formula-explain-vars">
+              <span class="formula-explain-var"><b>f_k</b> = kinetic (sliding) friction force (N)</span>
+              <span class="formula-explain-var"><b>μ_k</b> = coefficient of kinetic friction</span>
+              <span class="formula-explain-var"><b>N</b> = normal force (N)</span>
+            </div>
+            <div class="formula-explain-use"><strong>Constant value</strong> — does not change with speed. Always opposes the direction of motion.</div>
+            <div class="formula-explain-derive"><strong>On incline:</strong> direction of f_k is along the incline (up if sliding down, down if sliding up).</div>
+          </div>
+          <div class="formula-explain-card">
+            <div class="formula-explain-eq">N = mg cosθ</div>
+            <div class="formula-explain-name">Normal Force on Inclined Plane</div>
+            <div class="formula-explain-vars">
+              <span class="formula-explain-var"><b>N</b> = normal force perpendicular to surface (N)</span>
+              <span class="formula-explain-var"><b>m</b> = mass (kg)</span>
+              <span class="formula-explain-var"><b>g</b> = 10 m/s²</span>
+              <span class="formula-explain-var"><b>θ</b> = angle of incline from horizontal</span>
+            </div>
+            <div class="formula-explain-use"><strong>JEE trap:</strong> N ≠ mg on inclines or in accelerating frames (lifts). Always derive N from FBD perpendicular to surface.</div>
+            <div class="formula-explain-derive"><strong>Weight along incline</strong> = mg sinθ (this causes sliding). <strong>Sliding condition:</strong> tanθ &gt; μ</div>
+          </div>
+          <div class="formula-explain-card">
+            <div class="formula-explain-eq">T = 2m₁m₂g / (m₁+m₂)</div>
+            <div class="formula-explain-name">Atwood Machine — String Tension</div>
+            <div class="formula-explain-vars">
+              <span class="formula-explain-var"><b>T</b> = tension in the string (N)</span>
+              <span class="formula-explain-var"><b>m₁, m₂</b> = two hanging masses (kg)</span>
+              <span class="formula-explain-var"><b>g</b> = 10 m/s²</span>
+            </div>
+            <div class="formula-explain-use"><strong>Acceleration:</strong> a = (m₁−m₂)g/(m₁+m₂). Heavier mass goes down. Tension is the same throughout a massless string.</div>
+            <div class="formula-explain-derive"><strong>Method:</strong> Write F=ma for EACH mass separately → solve simultaneous equations. Never memorise — derive it.</div>
+          </div>
+          <div class="formula-explain-card">
+            <div class="formula-explain-eq">a = F / (m₁+m₂)</div>
+            <div class="formula-explain-name">Connected Blocks — Common Acceleration</div>
+            <div class="formula-explain-vars">
+              <span class="formula-explain-var"><b>a</b> = common acceleration of system (m/s²)</span>
+              <span class="formula-explain-var"><b>F</b> = total external force on system (N)</span>
+              <span class="formula-explain-var"><b>m₁+m₂</b> = total mass of system (kg)</span>
+            </div>
+            <div class="formula-explain-use"><strong>Valid when:</strong> string is inextensible — all blocks have the same acceleration magnitude.</div>
+            <div class="formula-explain-derive"><strong>Tension between blocks:</strong> isolate one block, apply F=ma to find tension. Never assume T = F.</div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -428,6 +641,89 @@
               <tr><td class="formula-cell">Impulse = FΔt = Δp</td><td>Impulse-momentum</td><td class="note-cell"></td></tr>
             </tbody>
           </table>
+        </div>
+        <div class="formula-explain-hdr">Formula Breakdown — What Each Variable Means</div>
+        <div class="formula-explain-grid">
+          <div class="formula-explain-card">
+            <div class="formula-explain-eq">W = F d cosθ</div>
+            <div class="formula-explain-name">Work Done by a Force</div>
+            <div class="formula-explain-vars">
+              <span class="formula-explain-var"><b>W</b> = work done (J = N·m)</span>
+              <span class="formula-explain-var"><b>F</b> = magnitude of force (N)</span>
+              <span class="formula-explain-var"><b>d</b> = magnitude of displacement (m)</span>
+              <span class="formula-explain-var"><b>θ</b> = angle between F and displacement direction</span>
+            </div>
+            <div class="formula-explain-use"><strong>Only the component of F along displacement does work.</strong> Normal force, centripetal force: W = 0 (perpendicular to motion). Friction: W negative (opposes motion).</div>
+            <div class="formula-explain-derive"><strong>Variable force:</strong> W = area under F-x graph. Work can be positive, negative, or zero.</div>
+          </div>
+          <div class="formula-explain-card">
+            <div class="formula-explain-eq">KE = ½mv²</div>
+            <div class="formula-explain-name">Kinetic Energy</div>
+            <div class="formula-explain-vars">
+              <span class="formula-explain-var"><b>KE</b> = kinetic energy (J)</span>
+              <span class="formula-explain-var"><b>m</b> = mass of object (kg)</span>
+              <span class="formula-explain-var"><b>v</b> = speed (m/s) — use magnitude, always ≥ 0</span>
+            </div>
+            <div class="formula-explain-use"><strong>KE always ≥ 0.</strong> Doubles when speed increases by √2. Quadruples when speed doubles.</div>
+            <div class="formula-explain-derive"><strong>Also:</strong> KE = p²/2m where p = mv = momentum. Useful when momentum is given.</div>
+          </div>
+          <div class="formula-explain-card">
+            <div class="formula-explain-eq">W_net = ΔKE = ½mv² − ½mu²</div>
+            <div class="formula-explain-name">Work-Energy Theorem</div>
+            <div class="formula-explain-vars">
+              <span class="formula-explain-var"><b>W_net</b> = net work done by ALL forces (J)</span>
+              <span class="formula-explain-var"><b>v</b> = final speed (m/s)</span>
+              <span class="formula-explain-var"><b>u</b> = initial speed (m/s)</span>
+            </div>
+            <div class="formula-explain-use"><strong>Core theorem:</strong> net work = change in KE. Works even with variable forces. Often faster than F=ma approach.</div>
+            <div class="formula-explain-derive"><strong>Strategy:</strong> find work by each force separately (W_gravity + W_friction + W_applied), sum them → equals ΔKE.</div>
+          </div>
+          <div class="formula-explain-card">
+            <div class="formula-explain-eq">KE + PE = constant</div>
+            <div class="formula-explain-name">Conservation of Mechanical Energy</div>
+            <div class="formula-explain-vars">
+              <span class="formula-explain-var"><b>KE</b> = ½mv² at any point</span>
+              <span class="formula-explain-var"><b>PE_gravity</b> = mgh (h from reference level)</span>
+              <span class="formula-explain-var"><b>PE_spring</b> = ½kx² (x = compression/extension)</span>
+            </div>
+            <div class="formula-explain-use"><strong>Only valid</strong> when no friction or other non-conservative forces. With friction: KE_f + PE_f = KE_i + PE_i − |W_friction|.</div>
+            <div class="formula-explain-derive"><strong>Fastest approach</strong> for height↔speed problems: set ½mv₁² + mgh₁ = ½mv₂² + mgh₂</div>
+          </div>
+          <div class="formula-explain-card">
+            <div class="formula-explain-eq">P = W/t = Fv</div>
+            <div class="formula-explain-name">Power</div>
+            <div class="formula-explain-vars">
+              <span class="formula-explain-var"><b>P</b> = power (W = J/s)</span>
+              <span class="formula-explain-var"><b>W</b> = work done (J)</span>
+              <span class="formula-explain-var"><b>t</b> = time taken (s)</span>
+              <span class="formula-explain-var"><b>F</b> = force (N), <b>v</b> = velocity (m/s)</span>
+            </div>
+            <div class="formula-explain-use"><strong>Use Fv form</strong> when force and velocity are simultaneously known (e.g., engine pulling vehicle at constant speed).</div>
+            <div class="formula-explain-derive"><strong>Energy units:</strong> 1 kWh = 3.6 × 10⁶ J. Cost problems: energy (kWh) × rate per kWh = cost.</div>
+          </div>
+          <div class="formula-explain-card">
+            <div class="formula-explain-eq">e = v_sep / v_app</div>
+            <div class="formula-explain-name">Coefficient of Restitution</div>
+            <div class="formula-explain-vars">
+              <span class="formula-explain-var"><b>e</b> = coefficient of restitution (0 ≤ e ≤ 1)</span>
+              <span class="formula-explain-var"><b>v_sep</b> = relative speed of separation after collision</span>
+              <span class="formula-explain-var"><b>v_app</b> = relative speed of approach before collision</span>
+            </div>
+            <div class="formula-explain-use"><strong>e = 1:</strong> perfectly elastic (KE conserved). <strong>e = 0:</strong> perfectly inelastic (stick together). <strong>0 &lt; e &lt; 1:</strong> partial.</div>
+            <div class="formula-explain-derive"><strong>Always:</strong> linear momentum is conserved in ALL collisions. Use both momentum conservation + e equation.</div>
+          </div>
+          <div class="formula-explain-card">
+            <div class="formula-explain-eq">Impulse = FΔt = Δp</div>
+            <div class="formula-explain-name">Impulse-Momentum Theorem</div>
+            <div class="formula-explain-vars">
+              <span class="formula-explain-var"><b>Impulse</b> = change in momentum (N·s = kg·m/s)</span>
+              <span class="formula-explain-var"><b>F</b> = average force during impact (N)</span>
+              <span class="formula-explain-var"><b>Δt</b> = duration of impact (s)</span>
+              <span class="formula-explain-var"><b>Δp</b> = m(v − u) = change in momentum</span>
+            </div>
+            <div class="formula-explain-use"><strong>Use for:</strong> collisions, explosions, impacts where force acts for a very short time. Impulse = area under F-t graph.</div>
+            <div class="formula-explain-derive"><strong>N·s = kg·m/s</strong> — impulse and momentum have the same units.</div>
+          </div>
         </div>
       </div>
     </div>
@@ -521,6 +817,77 @@
               <tr><td class="formula-cell">E = V + Ir</td><td>EMF equation</td><td class="note-cell">r = internal resistance</td></tr>
             </tbody>
           </table>
+        </div>
+        <div class="formula-explain-hdr">Formula Breakdown — What Each Variable Means</div>
+        <div class="formula-explain-grid">
+          <div class="formula-explain-card">
+            <div class="formula-explain-eq">V = IR</div>
+            <div class="formula-explain-name">Ohm's Law</div>
+            <div class="formula-explain-vars">
+              <span class="formula-explain-var"><b>V</b> = voltage (potential difference) across element (V)</span>
+              <span class="formula-explain-var"><b>I</b> = current through element (A)</span>
+              <span class="formula-explain-var"><b>R</b> = resistance of element (Ω)</span>
+            </div>
+            <div class="formula-explain-use"><strong>Valid for ohmic conductors</strong> at constant temperature. V-I graph is a straight line through origin with slope = R.</div>
+            <div class="formula-explain-derive"><strong>Forms:</strong> I = V/R (find current); R = V/I (find resistance from graph or given values).</div>
+          </div>
+          <div class="formula-explain-card">
+            <div class="formula-explain-eq">R = ρL/A</div>
+            <div class="formula-explain-name">Resistance of a Conductor</div>
+            <div class="formula-explain-vars">
+              <span class="formula-explain-var"><b>R</b> = resistance (Ω)</span>
+              <span class="formula-explain-var"><b>ρ</b> = resistivity — material property (Ω·m)</span>
+              <span class="formula-explain-var"><b>L</b> = length of conductor (m)</span>
+              <span class="formula-explain-var"><b>A</b> = cross-sectional area (m²)</span>
+            </div>
+            <div class="formula-explain-use"><strong>Double length → R doubles.</strong> Double radius → A quadruples → R becomes ¼. Stretching a wire increases R significantly.</div>
+            <div class="formula-explain-derive"><strong>Temperature effect:</strong> R = R₀(1 + αΔT) — resistance increases with temperature for metals.</div>
+          </div>
+          <div class="formula-explain-card">
+            <div class="formula-explain-eq">P = VI = I²R = V²/R</div>
+            <div class="formula-explain-name">Power Dissipated (3 Forms)</div>
+            <div class="formula-explain-vars">
+              <span class="formula-explain-var"><b>P</b> = electrical power (W)</span>
+              <span class="formula-explain-var"><b>V</b> = voltage across element (V)</span>
+              <span class="formula-explain-var"><b>I</b> = current (A)</span>
+              <span class="formula-explain-var"><b>R</b> = resistance (Ω)</span>
+            </div>
+            <div class="formula-explain-use"><strong>Use I²R</strong> when same current flows (series circuit). <strong>Use V²/R</strong> when same voltage (parallel circuit).</div>
+            <div class="formula-explain-derive"><strong>JEE trick:</strong> Bulbs in series → same I → brighter bulb has higher R. Bulbs in parallel → same V → brighter bulb has lower R.</div>
+          </div>
+          <div class="formula-explain-card">
+            <div class="formula-explain-eq">ΣV = 0 (KVL)</div>
+            <div class="formula-explain-name">Kirchhoff's Voltage Law</div>
+            <div class="formula-explain-vars">
+              <span class="formula-explain-var">Sum of all EMFs and voltage drops around any closed loop = 0</span>
+              <span class="formula-explain-var"><b>−IR</b> = voltage drop crossing a resistor in current direction</span>
+              <span class="formula-explain-var"><b>+ε</b> = voltage gain crossing battery from − to +</span>
+            </div>
+            <div class="formula-explain-use"><strong>Based on energy conservation.</strong> Choose any loop direction, go all the way around, sum to zero.</div>
+            <div class="formula-explain-derive"><strong>Tip:</strong> Assume current directions first. A negative answer means actual direction is opposite — magnitude is still correct.</div>
+          </div>
+          <div class="formula-explain-card">
+            <div class="formula-explain-eq">ΣI = 0 (KCL)</div>
+            <div class="formula-explain-name">Kirchhoff's Current Law</div>
+            <div class="formula-explain-vars">
+              <span class="formula-explain-var">Sum of currents entering any junction = sum leaving it</span>
+              <span class="formula-explain-var"><b>Based on</b> conservation of electric charge</span>
+            </div>
+            <div class="formula-explain-use"><strong>At every node/junction:</strong> charge cannot accumulate. Currents in = currents out.</div>
+            <div class="formula-explain-derive"><strong>Strategy:</strong> label unknown currents I₁, I₂… at each branch. Apply KCL at junctions + KVL in loops. Solve simultaneously.</div>
+          </div>
+          <div class="formula-explain-card">
+            <div class="formula-explain-eq">E = V + Ir</div>
+            <div class="formula-explain-name">EMF and Terminal Voltage</div>
+            <div class="formula-explain-vars">
+              <span class="formula-explain-var"><b>E</b> = EMF of battery — open circuit voltage (V)</span>
+              <span class="formula-explain-var"><b>V</b> = terminal voltage across battery terminals (V)</span>
+              <span class="formula-explain-var"><b>I</b> = current drawn from battery (A)</span>
+              <span class="formula-explain-var"><b>r</b> = internal resistance of battery (Ω)</span>
+            </div>
+            <div class="formula-explain-use"><strong>V &lt; E when discharging</strong> (internal drop = Ir). At open circuit: V = E. More current drawn → more voltage lost internally.</div>
+            <div class="formula-explain-derive"><strong>Charging a battery:</strong> V_terminal = E + Ir (terminal voltage exceeds EMF during charging).</div>
+          </div>
         </div>
       </div>
     </div>
@@ -622,6 +989,75 @@
             </tbody>
           </table>
         </div>
+        <div class="formula-explain-hdr">Formula Breakdown — What Each Variable Means</div>
+        <div class="formula-explain-grid">
+          <div class="formula-explain-card">
+            <div class="formula-explain-eq">τ = Iα</div>
+            <div class="formula-explain-name">Rotational Newton's 2nd Law</div>
+            <div class="formula-explain-vars">
+              <span class="formula-explain-var"><b>τ</b> = net torque about the axis (N·m)</span>
+              <span class="formula-explain-var"><b>I</b> = moment of inertia about same axis (kg·m²)</span>
+              <span class="formula-explain-var"><b>α</b> = angular acceleration (rad/s²)</span>
+            </div>
+            <div class="formula-explain-use"><strong>Exact rotational analogue of F = ma.</strong> Torque plays the role of force; I plays the role of mass; α plays the role of linear acceleration.</div>
+            <div class="formula-explain-derive"><strong>Torque:</strong> τ = r × F = rF sinθ, where θ is angle between position vector r and force F.</div>
+          </div>
+          <div class="formula-explain-card">
+            <div class="formula-explain-eq">L = Iω</div>
+            <div class="formula-explain-name">Angular Momentum</div>
+            <div class="formula-explain-vars">
+              <span class="formula-explain-var"><b>L</b> = angular momentum (kg·m²/s)</span>
+              <span class="formula-explain-var"><b>I</b> = moment of inertia (kg·m²)</span>
+              <span class="formula-explain-var"><b>ω</b> = angular velocity (rad/s)</span>
+            </div>
+            <div class="formula-explain-use"><strong>Conserved when τ_ext = 0.</strong> If I decreases → ω increases (skater pulls arms in). I₁ω₁ = I₂ω₂.</div>
+            <div class="formula-explain-derive"><strong>For a particle:</strong> L = r × p = mvr sinθ. <strong>τ = dL/dt</strong> — torque = rate of change of angular momentum.</div>
+          </div>
+          <div class="formula-explain-card">
+            <div class="formula-explain-eq">KE_rot = ½Iω²</div>
+            <div class="formula-explain-name">Rotational Kinetic Energy</div>
+            <div class="formula-explain-vars">
+              <span class="formula-explain-var"><b>KE_rot</b> = rotational kinetic energy (J)</span>
+              <span class="formula-explain-var"><b>I</b> = moment of inertia (kg·m²)</span>
+              <span class="formula-explain-var"><b>ω</b> = angular speed (rad/s)</span>
+            </div>
+            <div class="formula-explain-use"><strong>Analogue of ½mv².</strong> Rotational equations of motion are identical to linear ones: ω=ω₀+αt, θ=ω₀t+½αt², ω²=ω₀²+2αθ.</div>
+            <div class="formula-explain-derive"><strong>Work by torque:</strong> W = τθ. <strong>Power:</strong> P = τω.</div>
+          </div>
+          <div class="formula-explain-card">
+            <div class="formula-explain-eq">I = I_cm + Md²</div>
+            <div class="formula-explain-name">Parallel Axis Theorem</div>
+            <div class="formula-explain-vars">
+              <span class="formula-explain-var"><b>I</b> = MOI about any axis (kg·m²)</span>
+              <span class="formula-explain-var"><b>I_cm</b> = MOI about parallel axis through CM (kg·m²)</span>
+              <span class="formula-explain-var"><b>M</b> = total mass of object (kg)</span>
+              <span class="formula-explain-var"><b>d</b> = perpendicular distance between the two axes (m)</span>
+            </div>
+            <div class="formula-explain-use"><strong>I is always minimum about the CM axis.</strong> Any other parallel axis gives I = I_cm + Md² (always larger).</div>
+            <div class="formula-explain-derive"><strong>Must memorise:</strong> Disk = ½MR², Solid sphere = 2/5 MR², Rod (centre) = ML²/12. Use theorem for all other axes.</div>
+          </div>
+          <div class="formula-explain-card">
+            <div class="formula-explain-eq">I_z = I_x + I_y</div>
+            <div class="formula-explain-name">Perpendicular Axis Theorem</div>
+            <div class="formula-explain-vars">
+              <span class="formula-explain-var"><b>I_z</b> = MOI about axis perpendicular to lamina (kg·m²)</span>
+              <span class="formula-explain-var"><b>I_x, I_y</b> = MOI about two perpendicular axes in plane of lamina</span>
+            </div>
+            <div class="formula-explain-use"><strong>Only for thin flat laminas (2D objects).</strong> Cannot apply to 3D objects like spheres or cylinders.</div>
+            <div class="formula-explain-derive"><strong>Example:</strong> Disk: I_z = ½MR² (about centre, perpendicular). I_x = I_y = ¼MR² (by symmetry).</div>
+          </div>
+          <div class="formula-explain-card">
+            <div class="formula-explain-eq">v_cm = Rω (Rolling condition)</div>
+            <div class="formula-explain-name">Rolling Without Slipping</div>
+            <div class="formula-explain-vars">
+              <span class="formula-explain-var"><b>v_cm</b> = velocity of centre of mass (m/s)</span>
+              <span class="formula-explain-var"><b>R</b> = radius of the rolling object (m)</span>
+              <span class="formula-explain-var"><b>ω</b> = angular velocity (rad/s)</span>
+            </div>
+            <div class="formula-explain-use"><strong>Contact point has zero velocity.</strong> Total KE = ½mv² + ½Iω². For solid sphere rolling: KE_rot/KE_total = 2/7.</div>
+            <div class="formula-explain-derive"><strong>Using energy conservation:</strong> mgh = ½mv² + ½Iω² = ½mv²(1 + I/mR²)</div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -696,6 +1132,86 @@
               <tr><td class="formula-cell">τ = NIAB sin θ</td><td>Torque on current loop</td><td class="note-cell"></td></tr>
             </tbody>
           </table>
+        </div>
+        <div class="formula-explain-hdr">Formula Breakdown — What Each Variable Means</div>
+        <div class="formula-explain-grid">
+          <div class="formula-explain-card">
+            <div class="formula-explain-eq">F = qvB sinθ</div>
+            <div class="formula-explain-name">Lorentz Force on Moving Charge</div>
+            <div class="formula-explain-vars">
+              <span class="formula-explain-var"><b>F</b> = magnetic force on charge (N)</span>
+              <span class="formula-explain-var"><b>q</b> = charge of particle (C) — sign matters</span>
+              <span class="formula-explain-var"><b>v</b> = speed of the charge (m/s)</span>
+              <span class="formula-explain-var"><b>B</b> = magnetic field strength (T)</span>
+              <span class="formula-explain-var"><b>θ</b> = angle between velocity v and B field</span>
+            </div>
+            <div class="formula-explain-use"><strong>v ∥ B (θ=0°):</strong> F = 0 — no force. <strong>v ⊥ B (θ=90°):</strong> F = qvB — maximum, causes circular motion.</div>
+            <div class="formula-explain-derive"><strong>Direction:</strong> Right-hand rule for positive charges. Reverse for electrons.</div>
+          </div>
+          <div class="formula-explain-card">
+            <div class="formula-explain-eq">F = BIL sinθ</div>
+            <div class="formula-explain-name">Force on a Current-Carrying Wire</div>
+            <div class="formula-explain-vars">
+              <span class="formula-explain-var"><b>F</b> = force on the wire segment (N)</span>
+              <span class="formula-explain-var"><b>B</b> = magnetic field (T)</span>
+              <span class="formula-explain-var"><b>I</b> = current in the wire (A)</span>
+              <span class="formula-explain-var"><b>L</b> = length of wire in the field (m)</span>
+              <span class="formula-explain-var"><b>θ</b> = angle between current direction and B</span>
+            </div>
+            <div class="formula-explain-use"><strong>Wire parallel to B:</strong> F = 0. <strong>Wire perpendicular to B:</strong> F = BIL (maximum).</div>
+            <div class="formula-explain-derive"><strong>Two parallel wires:</strong> force per unit length = μ₀I₁I₂/2πd. Same direction currents attract; opposite directions repel.</div>
+          </div>
+          <div class="formula-explain-card">
+            <div class="formula-explain-eq">r = mv / qB</div>
+            <div class="formula-explain-name">Radius of Circular Orbit in Magnetic Field</div>
+            <div class="formula-explain-vars">
+              <span class="formula-explain-var"><b>r</b> = radius of circular path (m)</span>
+              <span class="formula-explain-var"><b>m</b> = mass of charged particle (kg)</span>
+              <span class="formula-explain-var"><b>v</b> = speed (m/s)</span>
+              <span class="formula-explain-var"><b>q</b> = charge magnitude (C)</span>
+              <span class="formula-explain-var"><b>B</b> = magnetic field (T)</span>
+            </div>
+            <div class="formula-explain-use"><strong>Time period T = 2πm/qB — independent of speed!</strong> This is the cyclotron principle: faster particles make larger circles but take the same time.</div>
+            <div class="formula-explain-derive"><strong>From:</strong> magnetic force = centripetal force → qvB = mv²/r → r = mv/qB</div>
+          </div>
+          <div class="formula-explain-card">
+            <div class="formula-explain-eq">B = μ₀I / 2πr</div>
+            <div class="formula-explain-name">Field from Long Straight Wire</div>
+            <div class="formula-explain-vars">
+              <span class="formula-explain-var"><b>B</b> = magnetic field at perpendicular distance r (T)</span>
+              <span class="formula-explain-var"><b>μ₀</b> = 4π × 10⁻⁷ T·m/A (permeability of free space)</span>
+              <span class="formula-explain-var"><b>I</b> = current in wire (A)</span>
+              <span class="formula-explain-var"><b>r</b> = perpendicular distance from wire (m)</span>
+            </div>
+            <div class="formula-explain-use"><strong>B ∝ 1/r</strong> — field decreases as you move away. Field lines are concentric circles around the wire.</div>
+            <div class="formula-explain-derive"><strong>Direction:</strong> Right-hand thumb along current → fingers curl in direction of B field circles.</div>
+          </div>
+          <div class="formula-explain-card">
+            <div class="formula-explain-eq">B = μ₀nI</div>
+            <div class="formula-explain-name">Field Inside a Solenoid</div>
+            <div class="formula-explain-vars">
+              <span class="formula-explain-var"><b>B</b> = uniform field inside solenoid (T)</span>
+              <span class="formula-explain-var"><b>μ₀</b> = 4π × 10⁻⁷ T·m/A</span>
+              <span class="formula-explain-var"><b>n</b> = number of turns per unit length = N/L (turns/m)</span>
+              <span class="formula-explain-var"><b>I</b> = current through solenoid (A)</span>
+            </div>
+            <div class="formula-explain-use"><strong>Field is uniform inside</strong> (independent of position). Field outside is approximately zero for long solenoid.</div>
+            <div class="formula-explain-derive"><strong>At centre of circular loop:</strong> B = μ₀I/2R. <strong>Toroid:</strong> B = μ₀NI/2πr.</div>
+          </div>
+          <div class="formula-explain-card">
+            <div class="formula-explain-eq">τ = NIAB sinθ</div>
+            <div class="formula-explain-name">Torque on Current Loop in Magnetic Field</div>
+            <div class="formula-explain-vars">
+              <span class="formula-explain-var"><b>τ</b> = torque tending to rotate the coil (N·m)</span>
+              <span class="formula-explain-var"><b>N</b> = number of turns in coil</span>
+              <span class="formula-explain-var"><b>I</b> = current through coil (A)</span>
+              <span class="formula-explain-var"><b>A</b> = area of coil (m²)</span>
+              <span class="formula-explain-var"><b>B</b> = magnetic field (T)</span>
+              <span class="formula-explain-var"><b>θ</b> = angle between coil plane and B (not normal!)</span>
+            </div>
+            <div class="formula-explain-use"><strong>Max torque when coil plane is parallel to B (θ = 90°).</strong> Zero torque when coil plane is perpendicular to B (θ = 0°).</div>
+            <div class="formula-explain-derive"><strong>Application:</strong> electric motor, galvanometer (deflection ∝ I). Magnetic dipole moment m = NIA.</div>
+          </div>
         </div>
       </div>
     </div>
@@ -789,6 +1305,78 @@
               <tr><td class="formula-cell">V<sub>rms</sub> = V₀/√2</td><td>RMS voltage</td><td class="note-cell">I<sub>rms</sub> = I₀/√2</td></tr>
             </tbody>
           </table>
+        </div>
+        <div class="formula-explain-hdr">Formula Breakdown — What Each Variable Means</div>
+        <div class="formula-explain-grid">
+          <div class="formula-explain-card">
+            <div class="formula-explain-eq">ε = −dΦ/dt</div>
+            <div class="formula-explain-name">Faraday's Law of Electromagnetic Induction</div>
+            <div class="formula-explain-vars">
+              <span class="formula-explain-var"><b>ε</b> = induced EMF (V)</span>
+              <span class="formula-explain-var"><b>Φ</b> = magnetic flux through the loop (Wb = T·m²)</span>
+              <span class="formula-explain-var"><b>dΦ/dt</b> = rate of change of flux</span>
+            </div>
+            <div class="formula-explain-use"><strong>Negative sign = Lenz's law:</strong> induced EMF opposes the change that caused it. For N turns: ε = −N dΦ/dt.</div>
+            <div class="formula-explain-derive"><strong>Change flux by:</strong> changing B (field strength), changing A (area), or changing θ (orientation of loop). All three induce EMF.</div>
+          </div>
+          <div class="formula-explain-card">
+            <div class="formula-explain-eq">Φ = BA cosθ</div>
+            <div class="formula-explain-name">Magnetic Flux</div>
+            <div class="formula-explain-vars">
+              <span class="formula-explain-var"><b>Φ</b> = magnetic flux (Wb = T·m²)</span>
+              <span class="formula-explain-var"><b>B</b> = magnetic field strength (T)</span>
+              <span class="formula-explain-var"><b>A</b> = area of the loop (m²)</span>
+              <span class="formula-explain-var"><b>θ</b> = angle between B and the normal to loop surface</span>
+            </div>
+            <div class="formula-explain-use"><strong>Max flux when B ⊥ loop plane (θ = 0°).</strong> Zero flux when B ∥ loop plane (θ = 90°).</div>
+            <div class="formula-explain-derive"><strong>Lenz's law direction:</strong> if flux into page increases → induced current creates field out of page (to oppose increase).</div>
+          </div>
+          <div class="formula-explain-card">
+            <div class="formula-explain-eq">ε = BLv</div>
+            <div class="formula-explain-name">Motional EMF</div>
+            <div class="formula-explain-vars">
+              <span class="formula-explain-var"><b>ε</b> = induced EMF (V)</span>
+              <span class="formula-explain-var"><b>B</b> = magnetic field perpendicular to motion (T)</span>
+              <span class="formula-explain-var"><b>L</b> = length of moving conductor (m)</span>
+              <span class="formula-explain-var"><b>v</b> = velocity of conductor perpendicular to B (m/s)</span>
+            </div>
+            <div class="formula-explain-use"><strong>Current if circuit is closed:</strong> I = BLv/R where R = circuit resistance. Power dissipated = B²L²v²/R.</div>
+            <div class="formula-explain-derive"><strong>From:</strong> Moving conductor → free electrons experience Lorentz force → charge separation → EMF = BLv</div>
+          </div>
+          <div class="formula-explain-card">
+            <div class="formula-explain-eq">Z = √[R² + (X_L − X_C)²]</div>
+            <div class="formula-explain-name">Impedance of Series LCR Circuit</div>
+            <div class="formula-explain-vars">
+              <span class="formula-explain-var"><b>Z</b> = total impedance (Ω) — AC equivalent of resistance</span>
+              <span class="formula-explain-var"><b>R</b> = resistance (Ω)</span>
+              <span class="formula-explain-var"><b>X_L</b> = ωL = inductive reactance (Ω)</span>
+              <span class="formula-explain-var"><b>X_C</b> = 1/ωC = capacitive reactance (Ω)</span>
+            </div>
+            <div class="formula-explain-use"><strong>At resonance:</strong> X_L = X_C → Z = R (minimum impedance → maximum current).</div>
+            <div class="formula-explain-derive"><strong>Phase angle:</strong> tanφ = (X_L − X_C)/R. <strong>Current:</strong> I_peak = V_peak/Z.</div>
+          </div>
+          <div class="formula-explain-card">
+            <div class="formula-explain-eq">ω₀ = 1/√(LC)</div>
+            <div class="formula-explain-name">Resonant Angular Frequency</div>
+            <div class="formula-explain-vars">
+              <span class="formula-explain-var"><b>ω₀</b> = resonant angular frequency (rad/s)</span>
+              <span class="formula-explain-var"><b>L</b> = inductance (H)</span>
+              <span class="formula-explain-var"><b>C</b> = capacitance (F)</span>
+            </div>
+            <div class="formula-explain-use"><strong>At ω₀:</strong> X_L = X_C, Z = R, power factor = 1, I is maximum and in phase with V. Circuit behaves as pure resistor.</div>
+            <div class="formula-explain-derive"><strong>In Hz:</strong> f₀ = 1/(2π√LC). <strong>Q-factor</strong> (sharpness of resonance) = ω₀L/R = 1/(ω₀CR).</div>
+          </div>
+          <div class="formula-explain-card">
+            <div class="formula-explain-eq">V_rms = V₀/√2</div>
+            <div class="formula-explain-name">RMS Voltage (and Current)</div>
+            <div class="formula-explain-vars">
+              <span class="formula-explain-var"><b>V_rms</b> = root mean square voltage (V)</span>
+              <span class="formula-explain-var"><b>V₀</b> = peak voltage amplitude (V)</span>
+              <span class="formula-explain-var"><b>Similarly:</b> I_rms = I₀/√2</span>
+            </div>
+            <div class="formula-explain-use"><strong>Indian mains = 230 V AC means V_rms = 230 V</strong> → V₀ = 230√2 ≈ 325 V peak. Always use rms values in power calculations.</div>
+            <div class="formula-explain-derive"><strong>Average power:</strong> P = V_rms × I_rms × cosφ. NOT peak values. Pure L or C: P = 0 (cosφ = 0).</div>
+          </div>
         </div>
       </div>
     </div>
@@ -886,6 +1474,93 @@
             </tbody>
           </table>
         </div>
+        <div class="formula-explain-hdr">Formula Breakdown — What Each Variable Means</div>
+        <div class="formula-explain-grid">
+          <div class="formula-explain-card">
+            <div class="formula-explain-eq">1/v + 1/u = 1/f</div>
+            <div class="formula-explain-name">Mirror Formula (Curved Mirrors)</div>
+            <div class="formula-explain-vars">
+              <span class="formula-explain-var"><b>v</b> = image distance from mirror pole (m)</span>
+              <span class="formula-explain-var"><b>u</b> = object distance from mirror pole (m)</span>
+              <span class="formula-explain-var"><b>f</b> = focal length (m) — f = R/2</span>
+              <span class="formula-explain-var"><b>Sign:</b> distances in front of mirror = negative (New Cartesian)</span>
+            </div>
+            <div class="formula-explain-use"><strong>Real object always u &lt; 0.</strong> Concave mirror: f &lt; 0. Convex mirror: f &gt; 0. Real image: v &lt; 0. Virtual image: v &gt; 0.</div>
+            <div class="formula-explain-derive"><strong>JEE trap:</strong> Mirror formula has PLUS (1/v + 1/u). Lens formula has MINUS (1/v − 1/u). Never confuse them.</div>
+          </div>
+          <div class="formula-explain-card">
+            <div class="formula-explain-eq">1/v − 1/u = 1/f</div>
+            <div class="formula-explain-name">Lens Formula</div>
+            <div class="formula-explain-vars">
+              <span class="formula-explain-var"><b>v</b> = image distance from optical centre (m)</span>
+              <span class="formula-explain-var"><b>u</b> = object distance from optical centre (m)</span>
+              <span class="formula-explain-var"><b>f</b> = focal length (m)</span>
+              <span class="formula-explain-var"><b>Convex lens:</b> f &gt; 0, <b>Concave lens:</b> f &lt; 0</span>
+            </div>
+            <div class="formula-explain-use"><strong>Real object always u &lt; 0.</strong> Real image (on opposite side): v &gt; 0. Virtual image (same side): v &lt; 0.</div>
+            <div class="formula-explain-derive"><strong>Note the MINUS:</strong> 1/v − 1/u = 1/f (lens) vs 1/v + 1/u = 1/f (mirror). The sign difference is a very common JEE trap.</div>
+          </div>
+          <div class="formula-explain-card">
+            <div class="formula-explain-eq">m = −v/u (mirror), m = v/u (lens)</div>
+            <div class="formula-explain-name">Linear Magnification</div>
+            <div class="formula-explain-vars">
+              <span class="formula-explain-var"><b>m</b> = image height / object height</span>
+              <span class="formula-explain-var"><b>|m| &gt; 1</b> = magnified image</span>
+              <span class="formula-explain-var"><b>|m| &lt; 1</b> = diminished image</span>
+              <span class="formula-explain-var"><b>m &lt; 0</b> = inverted (real image in most cases)</span>
+              <span class="formula-explain-var"><b>m &gt; 0</b> = erect (virtual image)</span>
+            </div>
+            <div class="formula-explain-use"><strong>Sign of m:</strong> tells you orientation (erect/inverted). <strong>|m|:</strong> tells you size ratio.</div>
+            <div class="formula-explain-derive"><strong>Mirror:</strong> m = −v/u (extra negative sign). <strong>Lens:</strong> m = v/u (no extra sign). Different formulas for same concept!</div>
+          </div>
+          <div class="formula-explain-card">
+            <div class="formula-explain-eq">n₁ sinθ₁ = n₂ sinθ₂</div>
+            <div class="formula-explain-name">Snell's Law of Refraction</div>
+            <div class="formula-explain-vars">
+              <span class="formula-explain-var"><b>n₁</b> = refractive index of first medium</span>
+              <span class="formula-explain-var"><b>n₂</b> = refractive index of second medium</span>
+              <span class="formula-explain-var"><b>θ₁</b> = angle of incidence (from normal, not surface)</span>
+              <span class="formula-explain-var"><b>θ₂</b> = angle of refraction (from normal)</span>
+            </div>
+            <div class="formula-explain-use"><strong>Going from rarer to denser (n increases):</strong> ray bends toward normal (θ decreases). n_air ≈ 1, n_water ≈ 1.33, n_glass ≈ 1.5.</div>
+            <div class="formula-explain-derive"><strong>Refractive index:</strong> n = c/v = speed of light in vacuum / speed in medium.</div>
+          </div>
+          <div class="formula-explain-card">
+            <div class="formula-explain-eq">sinθ_c = n₂/n₁</div>
+            <div class="formula-explain-name">Critical Angle for Total Internal Reflection</div>
+            <div class="formula-explain-vars">
+              <span class="formula-explain-var"><b>θ_c</b> = critical angle</span>
+              <span class="formula-explain-var"><b>n₁</b> = denser medium (light travels FROM here)</span>
+              <span class="formula-explain-var"><b>n₂</b> = rarer medium (usually air, n₂ = 1)</span>
+            </div>
+            <div class="formula-explain-use"><strong>TIR occurs ONLY when:</strong> (1) light goes from denser→rarer medium AND (2) angle of incidence ≥ θ_c.</div>
+            <div class="formula-explain-derive"><strong>Glass-air:</strong> sinθ_c = 1/1.5 = 2/3 → θ_c ≈ 42°. Applications: optical fibre, diamond sparkle, periscope.</div>
+          </div>
+          <div class="formula-explain-card">
+            <div class="formula-explain-eq">P = 1/f, P_total = P₁ + P₂</div>
+            <div class="formula-explain-name">Power of Lens and Combination</div>
+            <div class="formula-explain-vars">
+              <span class="formula-explain-var"><b>P</b> = power of lens (Dioptres, D)</span>
+              <span class="formula-explain-var"><b>f</b> = focal length in metres (m)</span>
+              <span class="formula-explain-var"><b>Convex (converging):</b> P &gt; 0</span>
+              <span class="formula-explain-var"><b>Concave (diverging):</b> P &lt; 0</span>
+            </div>
+            <div class="formula-explain-use"><strong>Lenses in contact:</strong> P_total = P₁ + P₂ (much simpler than combining focal lengths).</div>
+            <div class="formula-explain-derive"><strong>Defect correction:</strong> a −4D myopic eye needs a −4D (concave) corrective lens. For hyperopia: +ve lens needed.</div>
+          </div>
+          <div class="formula-explain-card">
+            <div class="formula-explain-eq">1/f = (n−1)(1/R₁ − 1/R₂)</div>
+            <div class="formula-explain-name">Lens Maker's Equation</div>
+            <div class="formula-explain-vars">
+              <span class="formula-explain-var"><b>f</b> = focal length of lens (m)</span>
+              <span class="formula-explain-var"><b>n</b> = refractive index of lens material</span>
+              <span class="formula-explain-var"><b>R₁</b> = radius of curvature of first surface (m)</span>
+              <span class="formula-explain-var"><b>R₂</b> = radius of curvature of second surface (m)</span>
+            </div>
+            <div class="formula-explain-use"><strong>Sign of R:</strong> positive if centre of curvature is on transmission side, negative if on incidence side (Cartesian).</div>
+            <div class="formula-explain-derive"><strong>f depends on:</strong> the material (n) AND the shape (R₁, R₂). Changing medium changes f — used in underwater optics problems.</div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -928,6 +1603,93 @@
         </ol></div>
       </div></div>
     </div>
+    <div class="unit-cs-wrap">
+      <div class="unit-cs-hdr" onclick="toggleCS(this)">
+        <span class="unit-cs-icon">📐</span>
+        <span class="unit-cs-label">Key Formulas &amp; Cheatsheet</span>
+        <span class="unit-cs-toggle">▼</span>
+      </div>
+      <div class="unit-cs-body">
+        <div class="formula-table-wrap">
+          <table class="formula-table">
+            <thead><tr><th>Formula</th><th>Name / Category</th><th>JEE Note</th></tr></thead>
+            <tbody>
+              <tr><td class="formula-cell">ΔU = Q − W</td><td>First Law of Thermodynamics</td><td class="note-cell">W = work done BY gas</td></tr>
+              <tr><td class="formula-cell">W = PΔV</td><td>Work done (isobaric)</td><td class="note-cell">Constant pressure</td></tr>
+              <tr><td class="formula-cell">W = nRT ln(V₂/V₁)</td><td>Work done (isothermal)</td><td class="note-cell">Constant temperature</td></tr>
+              <tr><td class="formula-cell">PV^γ = constant</td><td>Adiabatic process</td><td class="note-cell">No heat exchange, Q = 0</td></tr>
+              <tr><td class="formula-cell">η = 1 − T_L/T_H</td><td>Carnot efficiency</td><td class="note-cell">T in Kelvin</td></tr>
+              <tr><td class="formula-cell">PV = nRT</td><td>Ideal gas equation</td><td class="note-cell">R = 8.314 J/mol·K</td></tr>
+              <tr><td class="formula-cell">KE_avg = (3/2)kT</td><td>Average KE per molecule</td><td class="note-cell">k = Boltzmann constant</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="formula-explain-hdr">Formula Breakdown — What Each Variable Means</div>
+        <div class="formula-explain-grid">
+          <div class="formula-explain-card">
+            <div class="formula-explain-eq">ΔU = Q − W</div>
+            <div class="formula-explain-name">First Law of Thermodynamics</div>
+            <div class="formula-explain-vars">
+              <span class="formula-explain-var"><b>ΔU</b> = change in internal energy of gas (J)</span>
+              <span class="formula-explain-var"><b>Q</b> = heat added TO the gas (J) — positive when absorbed</span>
+              <span class="formula-explain-var"><b>W</b> = work done BY the gas (J) — positive when gas expands</span>
+            </div>
+            <div class="formula-explain-use"><strong>Energy conservation for thermodynamic system.</strong> Heat added = increase in internal energy + work done by gas.</div>
+            <div class="formula-explain-derive"><strong>Sign convention:</strong> Q &gt; 0 (heat in), W &gt; 0 (gas expands, does work on surroundings), ΔU = Q − W.</div>
+          </div>
+          <div class="formula-explain-card">
+            <div class="formula-explain-eq">4 Processes at a glance</div>
+            <div class="formula-explain-name">Isothermal, Adiabatic, Isochoric, Isobaric</div>
+            <div class="formula-explain-vars">
+              <span class="formula-explain-var"><b>Isothermal:</b> T = const → ΔU = 0 → Q = W</span>
+              <span class="formula-explain-var"><b>Adiabatic:</b> Q = 0 → ΔU = −W (gas cools on expansion)</span>
+              <span class="formula-explain-var"><b>Isochoric:</b> V = const → W = 0 → ΔU = Q</span>
+              <span class="formula-explain-var"><b>Isobaric:</b> P = const → W = PΔV</span>
+            </div>
+            <div class="formula-explain-use"><strong>PV diagram:</strong> area under curve = work done BY gas. Clockwise cycle = positive net work. Anticlockwise = negative.</div>
+            <div class="formula-explain-derive"><strong>Adiabatic:</strong> PV^γ = const, TV^(γ−1) = const, TP^(1−γ)/γ = const. For air: γ = 7/5 = 1.4.</div>
+          </div>
+          <div class="formula-explain-card">
+            <div class="formula-explain-eq">W = nRT ln(V₂/V₁)</div>
+            <div class="formula-explain-name">Work in Isothermal Process</div>
+            <div class="formula-explain-vars">
+              <span class="formula-explain-var"><b>W</b> = work done by gas (J)</span>
+              <span class="formula-explain-var"><b>n</b> = number of moles of gas</span>
+              <span class="formula-explain-var"><b>R</b> = 8.314 J/mol·K (gas constant)</span>
+              <span class="formula-explain-var"><b>T</b> = absolute temperature (K)</span>
+              <span class="formula-explain-var"><b>V₂/V₁</b> = ratio of final to initial volume</span>
+            </div>
+            <div class="formula-explain-use"><strong>Since T constant → ΔU = 0 → Q = W.</strong> All heat absorbed goes into doing work.</div>
+            <div class="formula-explain-derive"><strong>From:</strong> W = ∫PdV = ∫(nRT/V)dV = nRT ln(V₂/V₁)</div>
+          </div>
+          <div class="formula-explain-card">
+            <div class="formula-explain-eq">η = 1 − T_L/T_H</div>
+            <div class="formula-explain-name">Carnot Engine Efficiency</div>
+            <div class="formula-explain-vars">
+              <span class="formula-explain-var"><b>η</b> = efficiency (0 to 1, or 0% to 100%)</span>
+              <span class="formula-explain-var"><b>T_H</b> = temperature of hot reservoir (K)</span>
+              <span class="formula-explain-var"><b>T_L</b> = temperature of cold reservoir (K)</span>
+            </div>
+            <div class="formula-explain-use"><strong>Maximum possible efficiency</strong> for any heat engine operating between T_H and T_L. No real engine can exceed Carnot efficiency.</div>
+            <div class="formula-explain-derive"><strong>Work output:</strong> W = Q_H × η. <strong>Heat rejected:</strong> Q_L = Q_H − W = Q_H × T_L/T_H.</div>
+          </div>
+          <div class="formula-explain-card">
+            <div class="formula-explain-eq">PV = nRT</div>
+            <div class="formula-explain-name">Ideal Gas Equation</div>
+            <div class="formula-explain-vars">
+              <span class="formula-explain-var"><b>P</b> = pressure (Pa = N/m²)</span>
+              <span class="formula-explain-var"><b>V</b> = volume (m³)</span>
+              <span class="formula-explain-var"><b>n</b> = number of moles</span>
+              <span class="formula-explain-var"><b>R</b> = 8.314 J/mol·K</span>
+              <span class="formula-explain-var"><b>T</b> = absolute temperature (K) — NOT Celsius!</span>
+            </div>
+            <div class="formula-explain-use"><strong>Always use T in Kelvin:</strong> T(K) = T(°C) + 273. At STP: P = 1 atm = 10⁵ Pa, T = 273 K.</div>
+            <div class="formula-explain-derive"><strong>Combined gas law:</strong> P₁V₁/T₁ = P₂V₂/T₂ (for fixed n). Internal energy: U = (f/2)nRT where f = degrees of freedom.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div style="padding:1rem;background:var(--bg);border-radius:var(--radius);font-size:.875rem;color:var(--ink2);margin-top:1rem">
       <p style="margin-bottom:.75rem"><strong>Phase 3 Physics Revision Plan:</strong></p>
       <p style="margin-bottom:.5rem"><strong>Nov Wk 3:</strong> Formula drill — Mechanics (P1–P3), Electricity (P4), Rotation (P5). Speed recall.</p>
