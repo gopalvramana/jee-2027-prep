@@ -41,6 +41,327 @@
   </div>
 </header>
 
+<!-- ── MATH DIFFICULTY TABLE ── -->
+<section class="section" style="padding-top:2.5rem;padding-bottom:1rem;">
+<div class="container">
+<div class="diff-section">
+
+  <div class="diff-section-header" onclick="this.nextElementSibling.classList.toggle('hidden');this.querySelector('.diff-section-toggle').classList.toggle('open')">
+    <div>
+      <h2>📐 Mathematics — Topic Difficulty &amp; Marks Breakdown</h2>
+      <p>14 topics ranked by difficulty · Total paper = 100 marks · Based on JEE Main past papers</p>
+    </div>
+    <span class="diff-section-toggle open">▼</span>
+  </div>
+
+  <div class="diff-section-body">
+
+    <!-- summary pills -->
+    <div class="diff-summary">
+      <div class="diff-pill easy">
+        <span class="diff-pill-label">🟢 Easy</span>
+        <span class="diff-pill-marks">~22 marks</span>
+        <span class="diff-pill-sub">4 topics · direct formula use</span>
+        <span class="diff-pill-strat">Score these first — no excuse to drop them</span>
+      </div>
+      <div class="diff-pill mod">
+        <span class="diff-pill-label">🟡 Moderate</span>
+        <span class="diff-pill-marks">~40 marks</span>
+        <span class="diff-pill-sub">6 topics · concept + practice</span>
+        <span class="diff-pill-strat">Biggest opportunity — 30+ problems each</span>
+      </div>
+      <div class="diff-pill hard">
+        <span class="diff-pill-label">🔴 Hard</span>
+        <span class="diff-pill-marks">~38 marks</span>
+        <span class="diff-pill-sub">4 topics · deep conceptual</span>
+        <span class="diff-pill-strat">Target 40–50 % here; calculus is key</span>
+      </div>
+    </div>
+
+    <!-- main table -->
+    <div style="overflow-x:auto;">
+    <table class="diff-table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Topic</th>
+          <th>Unit</th>
+          <th>Difficulty</th>
+          <th>JEE Weight</th>
+          <th>Marks (of 100)</th>
+          <th>Formulas to Know</th>
+          <th>Strategy</th>
+        </tr>
+      </thead>
+      <tbody>
+
+        <!-- ── EASY ── -->
+        <tr>
+          <td style="color:var(--ink3);font-size:.8rem;">1</td>
+          <td><strong>Trigonometry — Ratios &amp; Identities</strong></td>
+          <td><a class="diff-unit-link" href="#unit-m1">M1</a></td>
+          <td><span class="diff-badge easy">Easy</span></td>
+          <td>5–7%</td>
+          <td>
+            <div class="diff-marks-wrap">
+              <span class="diff-marks-num">6</span>
+              <div class="diff-bar-bg"><div class="diff-bar-fg easy" style="width:60%"></div></div>
+            </div>
+          </td>
+          <td>12 formulas</td>
+          <td>sin²+cos²=1 family + compound angles. Memorise all 12 identities cold — 2 guaranteed questions.</td>
+        </tr>
+        <tr>
+          <td style="color:var(--ink3);font-size:.8rem;">2</td>
+          <td><strong>Sequences &amp; Series</strong></td>
+          <td><a class="diff-unit-link" href="#unit-m4">M4</a></td>
+          <td><span class="diff-badge easy">Easy</span></td>
+          <td>4–5%</td>
+          <td>
+            <div class="diff-marks-wrap">
+              <span class="diff-marks-num">4</span>
+              <div class="diff-bar-bg"><div class="diff-bar-fg easy" style="width:40%"></div></div>
+            </div>
+          </td>
+          <td>6 formulas</td>
+          <td>AP/GP sum formulas. nth term questions are direct plug-in — never skip this topic.</td>
+        </tr>
+        <tr>
+          <td style="color:var(--ink3);font-size:.8rem;">3</td>
+          <td><strong>Permutations &amp; Combinations</strong></td>
+          <td><a class="diff-unit-link" href="#unit-m4">M4</a></td>
+          <td><span class="diff-badge easy">Easy</span></td>
+          <td>4–5%</td>
+          <td>
+            <div class="diff-marks-wrap">
+              <span class="diff-marks-num">4</span>
+              <div class="diff-bar-bg"><div class="diff-bar-fg easy" style="width:40%"></div></div>
+            </div>
+          </td>
+          <td>4 formulas</td>
+          <td>nPr, nCr, basic counting. JEE asks 1–2 straightforward problems every paper.</td>
+        </tr>
+        <tr>
+          <td style="color:var(--ink3);font-size:.8rem;">4</td>
+          <td><strong>Straight Lines &amp; Circles</strong></td>
+          <td><a class="diff-unit-link" href="#unit-m3">M3</a></td>
+          <td><span class="diff-badge easy">Easy</span></td>
+          <td>4–6%</td>
+          <td>
+            <div class="diff-marks-wrap">
+              <span class="diff-marks-num">8</span>
+              <div class="diff-bar-bg"><div class="diff-bar-fg easy" style="width:80%"></div></div>
+            </div>
+          </td>
+          <td>8 formulas</td>
+          <td>Distance, slope, circle equation. Very predictable question types — high scoring.</td>
+        </tr>
+
+        <!-- ── MODERATE ── -->
+        <tr>
+          <td style="color:var(--ink3);font-size:.8rem;">5</td>
+          <td><strong>Quadratics &amp; Complex Numbers</strong></td>
+          <td><a class="diff-unit-link" href="#unit-m2">M2</a></td>
+          <td><span class="diff-badge mod">Moderate</span></td>
+          <td>5–7%</td>
+          <td>
+            <div class="diff-marks-wrap">
+              <span class="diff-marks-num">6</span>
+              <div class="diff-bar-bg"><div class="diff-bar-fg mod" style="width:60%"></div></div>
+            </div>
+          </td>
+          <td>7 formulas</td>
+          <td>Discriminant + nature of roots. Complex numbers: Argand plane and modulus questions repeat often.</td>
+        </tr>
+        <tr>
+          <td style="color:var(--ink3);font-size:.8rem;">6</td>
+          <td><strong>Functions &amp; Domain/Range</strong></td>
+          <td><a class="diff-unit-link" href="#unit-m2">M2</a></td>
+          <td><span class="diff-badge mod">Moderate</span></td>
+          <td>4–5%</td>
+          <td>
+            <div class="diff-marks-wrap">
+              <span class="diff-marks-num">5</span>
+              <div class="diff-bar-bg"><div class="diff-bar-fg mod" style="width:50%"></div></div>
+            </div>
+          </td>
+          <td>5 concepts</td>
+          <td>Even/odd, composite, inverse functions. Graph-based MCQs — sketch functions by hand.</td>
+        </tr>
+        <tr>
+          <td style="color:var(--ink3);font-size:.8rem;">7</td>
+          <td><strong>Conic Sections (Parabola, Ellipse, Hyperbola)</strong></td>
+          <td><a class="diff-unit-link" href="#unit-m3">M3</a></td>
+          <td><span class="diff-badge mod">Moderate</span></td>
+          <td>6–8%</td>
+          <td>
+            <div class="diff-marks-wrap">
+              <span class="diff-marks-num">7</span>
+              <div class="diff-bar-bg"><div class="diff-bar-fg mod" style="width:70%"></div></div>
+            </div>
+          </td>
+          <td>9 formulas</td>
+          <td>Focus-directrix + standard forms. Tangent/normal to conic is a very common JEE question type.</td>
+        </tr>
+        <tr>
+          <td style="color:var(--ink3);font-size:.8rem;">8</td>
+          <td><strong>Limits &amp; Continuity</strong></td>
+          <td><a class="diff-unit-link" href="#unit-m5">M5</a></td>
+          <td><span class="diff-badge mod">Moderate</span></td>
+          <td>4–6%</td>
+          <td>
+            <div class="diff-marks-wrap">
+              <span class="diff-marks-num">6</span>
+              <div class="diff-bar-bg"><div class="diff-bar-fg mod" style="width:60%"></div></div>
+            </div>
+          </td>
+          <td>8 formulas</td>
+          <td>L'Hôpital + standard limits. 0/0 form is the most common trap — know all indeterminate forms.</td>
+        </tr>
+        <tr>
+          <td style="color:var(--ink3);font-size:.8rem;">9</td>
+          <td><strong>Vectors &amp; 3D Geometry</strong></td>
+          <td><a class="diff-unit-link" href="#unit-m8">M8</a></td>
+          <td><span class="diff-badge mod">Moderate</span></td>
+          <td>6–8%</td>
+          <td>
+            <div class="diff-marks-wrap">
+              <span class="diff-marks-num">8</span>
+              <div class="diff-bar-bg"><div class="diff-bar-fg mod" style="width:80%"></div></div>
+            </div>
+          </td>
+          <td>10 formulas</td>
+          <td>Dot/cross product + line/plane equations. 3D distance and angle questions are frequent.</td>
+        </tr>
+        <tr>
+          <td style="color:var(--ink3);font-size:.8rem;">10</td>
+          <td><strong>Matrices &amp; Determinants</strong></td>
+          <td><a class="diff-unit-link" href="#unit-m8">M8</a></td>
+          <td><span class="diff-badge mod">Moderate</span></td>
+          <td>4–6%</td>
+          <td>
+            <div class="diff-marks-wrap">
+              <span class="diff-marks-num">5</span>
+              <div class="diff-bar-bg"><div class="diff-bar-fg mod" style="width:50%"></div></div>
+            </div>
+          </td>
+          <td>6 formulas</td>
+          <td>Adjoint, inverse, Cramer's rule. 2×2 and 3×3 determinant problems are always on the paper.</td>
+        </tr>
+
+        <!-- ── HARD ── -->
+        <tr>
+          <td style="color:var(--ink3);font-size:.8rem;">11</td>
+          <td><strong>Differentiation &amp; Applications</strong></td>
+          <td><a class="diff-unit-link" href="#unit-m5">M5</a> <a class="diff-unit-link" href="#unit-m6">M6</a></td>
+          <td><span class="diff-badge hard">Hard</span></td>
+          <td>7–9%</td>
+          <td>
+            <div class="diff-marks-wrap">
+              <span class="diff-marks-num">9</span>
+              <div class="diff-bar-bg"><div class="diff-bar-fg hard" style="width:90%"></div></div>
+            </div>
+          </td>
+          <td>10 formulas</td>
+          <td>Chain/product/quotient rule + maxima/minima. Rate of change numericals are in Section B every paper.</td>
+        </tr>
+        <tr>
+          <td style="color:var(--ink3);font-size:.8rem;">12</td>
+          <td><strong>Integration &amp; Area Under Curves</strong></td>
+          <td><a class="diff-unit-link" href="#unit-m7">M7</a></td>
+          <td><span class="diff-badge hard">Hard</span></td>
+          <td>8–10%</td>
+          <td>
+            <div class="diff-marks-wrap">
+              <span class="diff-marks-num">10</span>
+              <div class="diff-bar-bg"><div class="diff-bar-fg hard" style="width:100%"></div></div>
+            </div>
+          </td>
+          <td>12 formulas</td>
+          <td>Highest weighted topic in JEE Math. Integration by parts + definite integrals — practice daily.</td>
+        </tr>
+        <tr>
+          <td style="color:var(--ink3);font-size:.8rem;">13</td>
+          <td><strong>Differential Equations</strong></td>
+          <td><a class="diff-unit-link" href="#unit-m7">M7</a></td>
+          <td><span class="diff-badge hard">Hard</span></td>
+          <td>4–5%</td>
+          <td>
+            <div class="diff-marks-wrap">
+              <span class="diff-marks-num">5</span>
+              <div class="diff-bar-bg"><div class="diff-bar-fg hard" style="width:50%"></div></div>
+            </div>
+          </td>
+          <td>5 methods</td>
+          <td>Variable separable + linear DE. Only 1–2 questions but they're 4 marks each — don't skip.</td>
+        </tr>
+        <tr>
+          <td style="color:var(--ink3);font-size:.8rem;">14</td>
+          <td><strong>Probability &amp; Statistics</strong></td>
+          <td><a class="diff-unit-link" href="#unit-m8">M8</a></td>
+          <td><span class="diff-badge hard">Hard</span></td>
+          <td>4–6%</td>
+          <td>
+            <div class="diff-marks-wrap">
+              <span class="diff-marks-num">7</span>
+              <div class="diff-bar-bg"><div class="diff-bar-fg hard" style="width:70%"></div></div>
+            </div>
+          </td>
+          <td>6 formulas</td>
+          <td>Bayes' theorem + binomial distribution. Conditional probability questions are a consistent JEE favourite.</td>
+        </tr>
+
+      </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="5" style="text-align:right;font-size:.82rem;color:var(--ink3);">Total paper</td>
+          <td>
+            <div class="diff-marks-wrap">
+              <span class="diff-marks-num" style="font-size:1rem;">100 marks</span>
+            </div>
+          </td>
+          <td>108 formulas</td>
+          <td style="font-size:.8rem;color:var(--ink3);">Realistic target with this site: <strong style="color:var(--math)">50–62 / 100</strong></td>
+        </tr>
+        <tr>
+          <td colspan="5" style="text-align:right;font-size:.82rem;color:var(--ink3);">Easy fully done</td>
+          <td>
+            <div class="diff-marks-wrap">
+              <span class="diff-marks-num" style="font-size:1rem;color:#15803d;">~22</span>
+            </div>
+          </td>
+          <td></td>
+          <td style="font-size:.8rem;color:#15803d;">Trig + Series + P&amp;C + Lines/Circles — guaranteed with formula drills</td>
+        </tr>
+        <tr>
+          <td colspan="5" style="text-align:right;font-size:.82rem;color:var(--ink3);">+Moderate (55 % accuracy)</td>
+          <td>
+            <div class="diff-marks-wrap">
+              <span class="diff-marks-num" style="font-size:1rem;color:#b45309;">+22</span>
+            </div>
+          </td>
+          <td></td>
+          <td style="font-size:.8rem;color:#b45309;">= ~44 marks total</td>
+        </tr>
+        <tr>
+          <td colspan="5" style="text-align:right;font-size:.82rem;color:var(--ink3);">+Hard (35 % accuracy)</td>
+          <td>
+            <div class="diff-marks-wrap">
+              <span class="diff-marks-num" style="font-size:1rem;color:#b91c1c;">+13</span>
+            </div>
+          </td>
+          <td></td>
+          <td style="font-size:.8rem;color:#b91c1c;">= <strong>~57 marks total</strong> — comfortably above target ✅</td>
+        </tr>
+      </tfoot>
+    </table>
+    </div>
+
+  </div>
+</div>
+</div>
+</section>
+
 <section class="section">
 <div class="container">
 
