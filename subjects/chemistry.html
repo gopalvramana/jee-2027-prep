@@ -41,6 +41,342 @@
   </div>
 </header>
 
+<!-- ── CHEMISTRY DIFFICULTY TABLE ── -->
+<section class="section" style="padding-top:2.5rem;padding-bottom:1rem;">
+<div class="container">
+<div class="diff-section">
+
+  <div class="diff-section-header" onclick="this.nextElementSibling.classList.toggle('hidden');this.querySelector('.diff-section-toggle').classList.toggle('open')">
+    <div>
+      <h2>🧪 Chemistry — Topic Difficulty &amp; Marks Breakdown</h2>
+      <p>15 topics ranked by difficulty · Total paper = 100 marks · Based on JEE Main past papers</p>
+    </div>
+    <span class="diff-section-toggle open">▼</span>
+  </div>
+
+  <div class="diff-section-body">
+
+    <!-- summary pills -->
+    <div class="diff-summary">
+      <div class="diff-pill easy">
+        <span class="diff-pill-label">🟢 Easy</span>
+        <span class="diff-pill-marks">~18 marks</span>
+        <span class="diff-pill-sub">5 topics · theory + basic formulas</span>
+        <span class="diff-pill-strat">1–2 days per topic → secure marks</span>
+      </div>
+      <div class="diff-pill mod">
+        <span class="diff-pill-label">🟡 Moderate</span>
+        <span class="diff-pill-marks">~42 marks</span>
+        <span class="diff-pill-sub">6 topics · conceptual + reactions</span>
+        <span class="diff-pill-strat">Biggest scoring opportunity in Chem</span>
+      </div>
+      <div class="diff-pill hard">
+        <span class="diff-pill-label">🔴 Hard</span>
+        <span class="diff-pill-marks">~40 marks</span>
+        <span class="diff-pill-sub">4 topics · mechanisms + numericals</span>
+        <span class="diff-pill-strat">Target 40–50 % here; don't skip GOC</span>
+      </div>
+    </div>
+
+    <!-- main table -->
+    <div style="overflow-x:auto;">
+    <table class="diff-table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Topic</th>
+          <th>Unit</th>
+          <th>Difficulty</th>
+          <th>JEE Weight</th>
+          <th>Marks (of 100)</th>
+          <th>Key Count</th>
+          <th>Strategy</th>
+        </tr>
+      </thead>
+      <tbody>
+
+        <!-- ── EASY ── -->
+        <tr>
+          <td style="color:var(--ink3);font-size:.8rem;">1</td>
+          <td><strong>Mole Concept &amp; Stoichiometry</strong></td>
+          <td><a class="diff-unit-link" href="#unit-c1" style="color:var(--chem);background:var(--chem-l);">C1</a></td>
+          <td><span class="diff-badge easy">Easy</span></td>
+          <td>5–7%</td>
+          <td>
+            <div class="diff-marks-wrap">
+              <span class="diff-marks-num">6</span>
+              <div class="diff-bar-bg"><div class="diff-bar-fg easy" style="width:60%"></div></div>
+            </div>
+          </td>
+          <td>8 formulas</td>
+          <td>Mole = mass/M. Limiting reagent questions repeat every year — drill them.</td>
+        </tr>
+        <tr>
+          <td style="color:var(--ink3);font-size:.8rem;">2</td>
+          <td><strong>Atomic Structure</strong></td>
+          <td><a class="diff-unit-link" href="#unit-c2" style="color:var(--chem);background:var(--chem-l);">C2</a></td>
+          <td><span class="diff-badge easy">Easy</span></td>
+          <td>4–5%</td>
+          <td>
+            <div class="diff-marks-wrap">
+              <span class="diff-marks-num">4</span>
+              <div class="diff-bar-bg"><div class="diff-bar-fg easy" style="width:40%"></div></div>
+            </div>
+          </td>
+          <td>7 formulas</td>
+          <td>Bohr model + quantum numbers. Rydberg formula is frequently tested.</td>
+        </tr>
+        <tr>
+          <td style="color:var(--ink3);font-size:.8rem;">3</td>
+          <td><strong>s-Block Elements</strong></td>
+          <td><span style="font-size:.75rem;color:var(--ink3);font-style:italic;">Inorganic</span></td>
+          <td><span class="diff-badge easy">Easy</span></td>
+          <td>3–4%</td>
+          <td>
+            <div class="diff-marks-wrap">
+              <span class="diff-marks-num">4</span>
+              <div class="diff-bar-bg"><div class="diff-bar-fg easy" style="width:40%"></div></div>
+            </div>
+          </td>
+          <td>Facts-based</td>
+          <td>Alkali &amp; alkaline earth metals — properties and anomalous behaviour of Li/Be.</td>
+        </tr>
+        <tr>
+          <td style="color:var(--ink3);font-size:.8rem;">4</td>
+          <td><strong>Biomolecules &amp; Polymers</strong></td>
+          <td><span style="font-size:.75rem;color:var(--ink3);font-style:italic;">Phase 4</span></td>
+          <td><span class="diff-badge easy">Easy</span></td>
+          <td>3–4%</td>
+          <td>
+            <div class="diff-marks-wrap">
+              <span class="diff-marks-num">3</span>
+              <div class="diff-bar-bg"><div class="diff-bar-fg easy" style="width:30%"></div></div>
+            </div>
+          </td>
+          <td>Pure theory</td>
+          <td>Memory-based. 1 question almost guaranteed — spend 1 day, get 4 marks.</td>
+        </tr>
+        <tr>
+          <td style="color:var(--ink3);font-size:.8rem;">5</td>
+          <td><strong>Nuclear Chemistry &amp; Radioactivity</strong></td>
+          <td><span style="font-size:.75rem;color:var(--ink3);font-style:italic;">Phase 4</span></td>
+          <td><span class="diff-badge easy">Easy</span></td>
+          <td>2–3%</td>
+          <td>
+            <div class="diff-marks-wrap">
+              <span class="diff-marks-num">1</span>
+              <div class="diff-bar-bg"><div class="diff-bar-fg easy" style="width:10%"></div></div>
+            </div>
+          </td>
+          <td>4 formulas</td>
+          <td>Half-life formula t½ = 0.693/λ. Short topic, high ROI.</td>
+        </tr>
+
+        <!-- ── MODERATE ── -->
+        <tr>
+          <td style="color:var(--ink3);font-size:.8rem;">6</td>
+          <td><strong>Chemical Bonding</strong></td>
+          <td><a class="diff-unit-link" href="#unit-c3" style="color:var(--chem);background:var(--chem-l);">C3</a></td>
+          <td><span class="diff-badge mod">Moderate</span></td>
+          <td>5–6%</td>
+          <td>
+            <div class="diff-marks-wrap">
+              <span class="diff-marks-num">6</span>
+              <div class="diff-bar-bg"><div class="diff-bar-fg mod" style="width:60%"></div></div>
+            </div>
+          </td>
+          <td>5 concepts</td>
+          <td>VSEPR shapes + hybridisation must be instant recall. Bond angle traps in MCQs.</td>
+        </tr>
+        <tr>
+          <td style="color:var(--ink3);font-size:.8rem;">7</td>
+          <td><strong>Thermochemistry</strong></td>
+          <td><a class="diff-unit-link" href="#unit-c4" style="color:var(--chem);background:var(--chem-l);">C4</a></td>
+          <td><span class="diff-badge mod">Moderate</span></td>
+          <td>5–7%</td>
+          <td>
+            <div class="diff-marks-wrap">
+              <span class="diff-marks-num">6</span>
+              <div class="diff-bar-bg"><div class="diff-bar-fg mod" style="width:60%"></div></div>
+            </div>
+          </td>
+          <td>6 formulas</td>
+          <td>Hess's law + Born-Haber cycle. Sign convention (endo vs exo) is the common trap.</td>
+        </tr>
+        <tr>
+          <td style="color:var(--ink3);font-size:.8rem;">8</td>
+          <td><strong>Chemical Equilibrium</strong></td>
+          <td><a class="diff-unit-link" href="#unit-c5" style="color:var(--chem);background:var(--chem-l);">C5</a></td>
+          <td><span class="diff-badge mod">Moderate</span></td>
+          <td>5–6%</td>
+          <td>
+            <div class="diff-marks-wrap">
+              <span class="diff-marks-num">5</span>
+              <div class="diff-bar-bg"><div class="diff-bar-fg mod" style="width:50%"></div></div>
+            </div>
+          </td>
+          <td>7 formulas</td>
+          <td>Kc, Kp, Le Chatelier's principle. ICE table method is non-negotiable.</td>
+        </tr>
+        <tr>
+          <td style="color:var(--ink3);font-size:.8rem;">9</td>
+          <td><strong>Electrochemistry</strong></td>
+          <td><a class="diff-unit-link" href="#unit-c7" style="color:var(--chem);background:var(--chem-l);">C7</a></td>
+          <td><span class="diff-badge mod">Moderate</span></td>
+          <td>5–6%</td>
+          <td>
+            <div class="diff-marks-wrap">
+              <span class="diff-marks-num">5</span>
+              <div class="diff-bar-bg"><div class="diff-bar-fg mod" style="width:50%"></div></div>
+            </div>
+          </td>
+          <td>8 formulas</td>
+          <td>Nernst equation + cell EMF. Faraday's laws numerical is a favourite.</td>
+        </tr>
+        <tr>
+          <td style="color:var(--ink3);font-size:.8rem;">10</td>
+          <td><strong>p-Block Elements</strong></td>
+          <td><span style="font-size:.75rem;color:var(--ink3);font-style:italic;">Inorganic</span></td>
+          <td><span class="diff-badge mod">Moderate</span></td>
+          <td>6–8%</td>
+          <td>
+            <div class="diff-marks-wrap">
+              <span class="diff-marks-num">7</span>
+              <div class="diff-bar-bg"><div class="diff-bar-fg mod" style="width:70%"></div></div>
+            </div>
+          </td>
+          <td>Theory heavy</td>
+          <td>Groups 13–18 reactions and structures. Oxoacids of S, N, P — draw and memorise.</td>
+        </tr>
+        <tr>
+          <td style="color:var(--ink3);font-size:.8rem;">11</td>
+          <td><strong>d-Block + Coordination Compounds</strong></td>
+          <td><span style="font-size:.75rem;color:var(--ink3);font-style:italic;">Inorganic</span></td>
+          <td><span class="diff-badge mod">Moderate</span></td>
+          <td>6–8%</td>
+          <td>
+            <div class="diff-marks-wrap">
+              <span class="diff-marks-num">7</span>
+              <div class="diff-bar-bg"><div class="diff-bar-fg mod" style="width:70%"></div></div>
+            </div>
+          </td>
+          <td>IUPAC + CFT</td>
+          <td>Crystal field theory + isomerism types. IUPAC naming of complexes is always tested.</td>
+        </tr>
+
+        <!-- ── HARD ── -->
+        <tr>
+          <td style="color:var(--ink3);font-size:.8rem;">12</td>
+          <td><strong>GOC — General Organic Chemistry</strong></td>
+          <td><a class="diff-unit-link" href="#unit-c8" style="color:var(--chem);background:var(--chem-l);">C8</a></td>
+          <td><span class="diff-badge hard">Hard</span></td>
+          <td>6–8%</td>
+          <td>
+            <div class="diff-marks-wrap">
+              <span class="diff-marks-num">8</span>
+              <div class="diff-bar-bg"><div class="diff-bar-fg hard" style="width:80%"></div></div>
+            </div>
+          </td>
+          <td>Mechanisms</td>
+          <td>Inductive, resonance, hyperconjugation effects. Foundation for ALL organic — don't skip.</td>
+        </tr>
+        <tr>
+          <td style="color:var(--ink3);font-size:.8rem;">13</td>
+          <td><strong>Ionic Equilibrium</strong></td>
+          <td><a class="diff-unit-link" href="#unit-c6" style="color:var(--chem);background:var(--chem-l);">C6</a></td>
+          <td><span class="diff-badge hard">Hard</span></td>
+          <td>5–7%</td>
+          <td>
+            <div class="diff-marks-wrap">
+              <span class="diff-marks-num">7</span>
+              <div class="diff-bar-bg"><div class="diff-bar-fg hard" style="width:70%"></div></div>
+            </div>
+          </td>
+          <td>8 formulas</td>
+          <td>pH + buffer + solubility product. Numericals require log tables — practice daily.</td>
+        </tr>
+        <tr>
+          <td style="color:var(--ink3);font-size:.8rem;">14</td>
+          <td><strong>Chemical Kinetics</strong></td>
+          <td><span style="font-size:.75rem;color:var(--ink3);font-style:italic;">Phase 3</span></td>
+          <td><span class="diff-badge hard">Hard</span></td>
+          <td>5–6%</td>
+          <td>
+            <div class="diff-marks-wrap">
+              <span class="diff-marks-num">6</span>
+              <div class="diff-bar-bg"><div class="diff-bar-fg hard" style="width:60%"></div></div>
+            </div>
+          </td>
+          <td>6 formulas</td>
+          <td>Rate law + Arrhenius equation. Order-of-reaction derivation questions are tricky.</td>
+        </tr>
+        <tr>
+          <td style="color:var(--ink3);font-size:.8rem;">15</td>
+          <td><strong>Carbonyl &amp; Named Reactions (Organic)</strong></td>
+          <td><span style="font-size:.75rem;color:var(--ink3);font-style:italic;">Phase 3</span></td>
+          <td><span class="diff-badge hard">Hard</span></td>
+          <td>5–7%</td>
+          <td>
+            <div class="diff-marks-wrap">
+              <span class="diff-marks-num">7</span>
+              <div class="diff-bar-bg"><div class="diff-bar-fg hard" style="width:70%"></div></div>
+            </div>
+          </td>
+          <td>30+ reactions</td>
+          <td>Aldol, Cannizzaro, Reimer-Tiemann — make a reaction chart and revise weekly.</td>
+        </tr>
+
+      </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="5" style="text-align:right;font-size:.82rem;color:var(--ink3);">Total paper</td>
+          <td>
+            <div class="diff-marks-wrap">
+              <span class="diff-marks-num" style="font-size:1rem;">100 marks</span>
+            </div>
+          </td>
+          <td>95+ items</td>
+          <td style="font-size:.8rem;color:var(--ink3);">Realistic target with this site: <strong style="color:var(--chem)">48–60 / 100</strong></td>
+        </tr>
+        <tr>
+          <td colspan="5" style="text-align:right;font-size:.82rem;color:var(--ink3);">Easy fully done</td>
+          <td>
+            <div class="diff-marks-wrap">
+              <span class="diff-marks-num" style="font-size:1rem;color:#15803d;">~18</span>
+            </div>
+          </td>
+          <td></td>
+          <td style="font-size:.8rem;color:#15803d;">Guaranteed with 1 week of focused study</td>
+        </tr>
+        <tr>
+          <td colspan="5" style="text-align:right;font-size:.82rem;color:var(--ink3);">+Moderate (55 % accuracy)</td>
+          <td>
+            <div class="diff-marks-wrap">
+              <span class="diff-marks-num" style="font-size:1rem;color:#b45309;">+23</span>
+            </div>
+          </td>
+          <td></td>
+          <td style="font-size:.8rem;color:#b45309;">= ~41 marks total</td>
+        </tr>
+        <tr>
+          <td colspan="5" style="text-align:right;font-size:.82rem;color:var(--ink3);">+Hard (30 % accuracy)</td>
+          <td>
+            <div class="diff-marks-wrap">
+              <span class="diff-marks-num" style="font-size:1rem;color:#b91c1c;">+12</span>
+            </div>
+          </td>
+          <td></td>
+          <td style="font-size:.8rem;color:#b91c1c;">= <strong>~53 marks total</strong> — above target ✅</td>
+        </tr>
+      </tfoot>
+    </table>
+    </div>
+
+  </div>
+</div>
+</div>
+</section>
+
 <section class="section">
 <div class="container">
 
