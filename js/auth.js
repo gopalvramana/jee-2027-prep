@@ -30,9 +30,23 @@ async function _syncFromFirestore(uid) {
     const snap = await _fsDoc(uid).get();
     if (snap.exists) {
       const d = snap.data();
-      if (d.sessions     !== undefined) localStorage.setItem('jee2027_progress',      JSON.stringify(d.sessions));
+
+      // MERGE sessions: combine Firestore + local, keeping any session marked done in either.
+      // This prevents data loss if a pushToFirestore failed on a previous visit.
+      if (d.sessions !== undefined) {
+        const local  = JSON.parse(localStorage.getItem('jee2027_progress') || '{}');
+        const merged = { ...d.sessions };
+        for (const [id, localVal] of Object.entries(local)) {
+          if (localVal?.done && !merged[id]?.done) {
+            merged[id] = { ...(merged[id] || {}), ...localVal };
+          }
+        }
+        localStorage.setItem('jee2027_progress', JSON.stringify(merged));
+      }
+
       if (d.mocks        !== undefined) localStorage.setItem('jee2027_mocks',          JSON.stringify(d.mocks));
-      if (d.schedule     !== undefined) localStorage.setItem('jee2027_schedule',       JSON.stringify(d.schedule));
+      if (d.schedule     !== undefined && d.schedule !== null)
+                                         localStorage.setItem('jee2027_schedule',       JSON.stringify(d.schedule));
       if (d.startDate    !== undefined) localStorage.setItem('jee2027_start_date',     d.startDate);
       if (d.notifyEmails !== undefined) localStorage.setItem('jee2027_notify_emails',  JSON.stringify(d.notifyEmails));
     }
@@ -66,6 +80,8 @@ window.pushToFirestore = async function() {
     await _fsDoc(user.uid).set(payload, { merge: true });
   } catch (e) {
     console.warn('[Auth] Firestore push failed:', e.message);
+    // Retry once after 3 seconds on failure
+    setTimeout(() => window.pushToFirestore(), 3000);
   }
 };
 
@@ -151,6 +167,7 @@ window._auth.onAuthStateChanged(async function(user) {
       (document.querySelector('.prog-check') || document.getElementById('mock-tbody'))) initProgress();
   if (typeof updateStartDateUI === 'function') updateStartDateUI();
 
-  // Push to Firestore on login — main.js has already seeded schedule into localStorage
-  setTimeout(() => window.pushToFirestore(), 500);
+  // Push to Firestore on login — syncs schedule + any local-only progress
+  // Delayed to let main.js finish seeding localStorage first
+  setTimeout(() => window.pushToFirestore(), 1500);
 });
