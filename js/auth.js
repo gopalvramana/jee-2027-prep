@@ -151,12 +151,6 @@ window._auth.onAuthStateChanged(async function(user) {
       (document.querySelector('.prog-check') || document.getElementById('mock-tbody'))) initProgress();
   if (typeof updateStartDateUI === 'function') updateStartDateUI();
 
-  // Push schedule + sessions to Firestore on login so digest always has real data.
-  // Seed localStorage with the default schedule first if it hasn't been saved yet.
-  setTimeout(() => {
-    if (!localStorage.getItem('jee2027_schedule') && typeof weeklyTargetsToFlat === 'function') {
-      localStorage.setItem('jee2027_schedule', JSON.stringify(weeklyTargetsToFlat()));
-    }
-    window.pushToFirestore();
-  }, 2000);
+  // Push to Firestore on login — main.js has already seeded schedule into localStorage
+  setTimeout(() => window.pushToFirestore(), 500);
 });

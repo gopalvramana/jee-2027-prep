@@ -530,6 +530,11 @@ function saveSchedule(sessions) {
   window.pushToFirestore?.();
 }
 
+// Always ensure default schedule is in localStorage so Firestore sync has real data
+if (!localStorage.getItem(SCHEDULE_KEY)) {
+  localStorage.setItem(SCHEDULE_KEY, JSON.stringify(weeklyTargetsToFlat()));
+}
+
 window.resetScheduleToDefault = function() {
   if (!confirm('Reset to the default schedule? All your customisations — renamed topics, moved sessions, custom additions — will be permanently lost.')) return;
   localStorage.removeItem(SCHEDULE_KEY);
