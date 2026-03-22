@@ -67,29 +67,19 @@ function phaseLabel(y, m) {
 
 // ── Fetch all Firestore users ─────────────────────────────────────────────────
 async function fetchAllUserProgress() {
-  const snapshot = await db.collectionGroup('data').where(
-    admin.firestore.FieldPath.documentId(), '==', 'progress'
-  ).get();
+  const usersSnap = await db.collection('users').get();
+  const results   = [];
 
-  // fallback: iterate users collection directly
-  if (snapshot.empty) {
-    const usersSnap = await db.collection('users').get();
-    const results = [];
-    for (const userDoc of usersSnap.docs) {
-      const progSnap = await db
-        .collection('users').doc(userDoc.id)
-        .collection('data').doc('progress').get();
-      if (progSnap.exists) {
-        results.push({ uid: userDoc.id, data: progSnap.data() });
-      }
+  for (const userDoc of usersSnap.docs) {
+    const progSnap = await db
+      .collection('users').doc(userDoc.id)
+      .collection('data').doc('progress').get();
+    if (progSnap.exists) {
+      results.push({ uid: userDoc.id, data: progSnap.data() });
     }
-    return results;
   }
 
-  return snapshot.docs.map(doc => ({
-    uid:  doc.ref.parent.parent.id,
-    data: doc.data(),
-  }));
+  return results;
 }
 
 // ── Get user email from Firebase Auth ─────────────────────────────────────────
