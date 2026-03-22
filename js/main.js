@@ -539,10 +539,6 @@ function saveSchedule(sessions) {
   window.pushToFirestore?.();
 }
 
-// Always ensure default schedule is in localStorage so Firestore sync has real data
-if (!localStorage.getItem(SCHEDULE_KEY)) {
-  localStorage.setItem(SCHEDULE_KEY, JSON.stringify(weeklyTargetsToFlat()));
-}
 
 window.resetScheduleToDefault = function() {
   if (!confirm('Reset to the default schedule? All your customisations — renamed topics, moved sessions, custom additions — will be permanently lost.')) return;
@@ -761,6 +757,12 @@ const WEEKLY_TARGETS = [
   // ── Phase 4 · April 2027 ──────────────────────────────────────────────────
   {y:2027,m:4,w:2,sessions:[['p4-attempt2','⭐⭐ Attempt 2 — JEE Main Apr 2027','p4']]},
 ];
+
+// Seed default schedule into localStorage AFTER WEEKLY_TARGETS is initialised
+// (must be here — seeding above caused TDZ ReferenceError on WEEKLY_TARGETS)
+if (!localStorage.getItem(SCHEDULE_KEY)) {
+  localStorage.setItem(SCHEDULE_KEY, JSON.stringify(weeklyTargetsToFlat()));
+}
 
 const TC_ICON  = {math:'📐', phys:'⚡', chem:'🧪', p3:'🎯', p4:'🚀'};
 const TC_COLOR = {math:'#1d4ed8', phys:'#0f766e', chem:'#b45309', p3:'#4f46e5', p4:'#059669'};
