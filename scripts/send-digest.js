@@ -317,14 +317,18 @@ async function main() {
     const { email, name } = userInfo;
     const { subject, html } = buildEmail(name, data);
 
+    // Primary email + any extra notify emails stored in Firestore
+    const extraEmails = Array.isArray(data.notifyEmails) ? data.notifyEmails : [];
+    const allRecipients = [email, ...extraEmails].filter(Boolean);
+
     try {
       await transporter.sendMail({
         from:    `JEE 2027 Digest <${process.env.GMAIL_USER}>`,
-        to:      email,
+        to:      allRecipients,
         subject,
         html,
       });
-      console.log(`  [sent] ${email} — ${subject}`);
+      console.log(`  [sent] ${allRecipients.join(', ')} — ${subject}`);
       sent++;
     } catch (err) {
       console.error(`  [error] ${email} — ${err.message}`);

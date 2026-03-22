@@ -30,10 +30,11 @@ async function _syncFromFirestore(uid) {
     const snap = await _fsDoc(uid).get();
     if (snap.exists) {
       const d = snap.data();
-      if (d.sessions  !== undefined) localStorage.setItem('jee2027_progress',    JSON.stringify(d.sessions));
-      if (d.mocks     !== undefined) localStorage.setItem('jee2027_mocks',        JSON.stringify(d.mocks));
-      if (d.schedule  !== undefined) localStorage.setItem('jee2027_schedule',     JSON.stringify(d.schedule));
-      if (d.startDate !== undefined) localStorage.setItem('jee2027_start_date',   d.startDate);
+      if (d.sessions     !== undefined) localStorage.setItem('jee2027_progress',      JSON.stringify(d.sessions));
+      if (d.mocks        !== undefined) localStorage.setItem('jee2027_mocks',          JSON.stringify(d.mocks));
+      if (d.schedule     !== undefined) localStorage.setItem('jee2027_schedule',       JSON.stringify(d.schedule));
+      if (d.startDate    !== undefined) localStorage.setItem('jee2027_start_date',     d.startDate);
+      if (d.notifyEmails !== undefined) localStorage.setItem('jee2027_notify_emails',  JSON.stringify(d.notifyEmails));
     }
   } catch (e) {
     console.warn('[Auth] Firestore pull failed (offline?):', e.message);
@@ -45,11 +46,13 @@ window.pushToFirestore = async function() {
   const user = window._auth.currentUser;
   if (!user) return;
   try {
-    const sessions  = JSON.parse(localStorage.getItem('jee2027_progress')   || '{}');
-    const mocks     = JSON.parse(localStorage.getItem('jee2027_mocks')      || '[]');
-    const rawSched  = localStorage.getItem('jee2027_schedule');
-    const schedule  = rawSched ? JSON.parse(rawSched) : null;
-    const startDate = localStorage.getItem('jee2027_start_date') || null;
+    const sessions     = JSON.parse(localStorage.getItem('jee2027_progress')      || '{}');
+    const mocks        = JSON.parse(localStorage.getItem('jee2027_mocks')         || '[]');
+    const rawSched     = localStorage.getItem('jee2027_schedule');
+    const schedule     = rawSched ? JSON.parse(rawSched) : null;
+    const startDate    = localStorage.getItem('jee2027_start_date') || null;
+    const rawNotify    = localStorage.getItem('jee2027_notify_emails');
+    const notifyEmails = rawNotify ? JSON.parse(rawNotify) : null;
 
     const payload = {
       sessions,
@@ -57,7 +60,8 @@ window.pushToFirestore = async function() {
       startDate,
       updatedAt: firebase.firestore.FieldValue.serverTimestamp()
     };
-    if (schedule !== null) payload.schedule = schedule;
+    if (schedule     !== null) payload.schedule     = schedule;
+    if (notifyEmails !== null) payload.notifyEmails = notifyEmails;
 
     await _fsDoc(user.uid).set(payload, { merge: true });
   } catch (e) {
@@ -126,6 +130,9 @@ window._auth.onAuthStateChanged(async function(user) {
 
   // Render user chip
   _renderUserChip(user);
+
+  // Notify settings page that auth is ready
+  window.dispatchEvent(new Event('authReady'));
 
   // Re-trigger any page-level renderers that ran before data arrived
   if (typeof renderTodayCard === 'function'  && document.getElementById('today-card'))  renderTodayCard();

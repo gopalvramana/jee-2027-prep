@@ -145,6 +145,25 @@
     </div>
   </div>
 
+  <!-- DIGEST EMAIL NOTIFICATIONS -->
+  <div class="settings-block">
+    <h2 class="settings-block-title">📧 Daily Digest Recipients</h2>
+    <p class="settings-block-desc">Your daily progress email is always sent to your login email. Add extra addresses below — e.g. a parent's email or a second inbox. Up to 3 additional recipients.</p>
+
+    <div class="notify-primary-row">
+      <span class="notify-primary-label">Primary (your login)</span>
+      <span class="notify-primary-email" id="notify-primary-email">—</span>
+    </div>
+
+    <div id="notify-extra-list" class="notify-extra-list"></div>
+
+    <div class="notify-add-row" id="notify-add-row">
+      <input type="email" id="notify-email-input" class="gist-token-inp" placeholder="Add email address…" style="flex:1">
+      <button class="gist-btn gist-save-btn" onclick="notifyAddEmail()">Add</button>
+    </div>
+    <p class="start-date-hint" id="notify-hint"></p>
+  </div>
+
   <!-- DANGER ZONE -->
   <div class="settings-block settings-danger">
     <h2 class="settings-block-title">Reset</h2>
@@ -179,5 +198,85 @@
 <script src="js/firebase-init.js"></script>
 <script src="js/auth.js"></script>
 <script src="js/main.js"></script>
+<script>
+// ── Digest email notifications ────────────────────────────────────────────────
+const MAX_EXTRA = 3;
+
+function _getNotifyEmails() {
+  return JSON.parse(localStorage.getItem('jee2027_notify_emails') || '[]');
+}
+function _saveNotifyEmails(arr) {
+  localStorage.setItem('jee2027_notify_emails', JSON.stringify(arr));
+  if (typeof window.pushToFirestore === 'function') window.pushToFirestore();
+}
+
+function notifyRender() {
+  // Show primary email from Firebase Auth
+  const user = window._auth && window._auth.currentUser;
+  if (user) {
+    document.getElementById('notify-primary-email').textContent = user.email;
+  }
+
+  const emails = _getNotifyEmails();
+  const list   = document.getElementById('notify-extra-list');
+  const addRow = document.getElementById('notify-add-row');
+
+  list.innerHTML = emails.map((em, i) => `
+    <div class="notify-extra-item">
+      <span class="notify-extra-email">${em}</span>
+      <button class="notify-remove-btn" onclick="notifyRemoveEmail(${i})" title="Remove">✕</button>
+    </div>
+  `).join('');
+
+  // Hide add row when limit reached
+  addRow.style.display = emails.length >= MAX_EXTRA ? 'none' : 'flex';
+
+  const hint = document.getElementById('notify-hint');
+  hint.textContent = emails.length >= MAX_EXTRA
+    ? `Maximum ${MAX_EXTRA} additional recipients reached.`
+    : emails.length === 0
+      ? 'No extra recipients added yet.'
+      : `${emails.length} extra recipient${emails.length > 1 ? 's' : ''} added.`;
+}
+
+function notifyAddEmail() {
+  const input  = document.getElementById('notify-email-input');
+  const email  = input.value.trim().toLowerCase();
+  const emails = _getNotifyEmails();
+
+  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    showToast('Enter a valid email address.'); return;
+  }
+  const primaryEmail = window._auth?.currentUser?.email?.toLowerCase();
+  if (email === primaryEmail) {
+    showToast('This is already your primary email.'); return;
+  }
+  if (emails.includes(email)) {
+    showToast('Already added.'); return;
+  }
+  if (emails.length >= MAX_EXTRA) {
+    showToast(`Maximum ${MAX_EXTRA} extra recipients allowed.`); return;
+  }
+
+  emails.push(email);
+  _saveNotifyEmails(emails);
+  input.value = '';
+  notifyRender();
+  showToast('Email added — digest will be sent here daily.');
+}
+
+function notifyRemoveEmail(idx) {
+  const emails = _getNotifyEmails();
+  emails.splice(idx, 1);
+  _saveNotifyEmails(emails);
+  notifyRender();
+  showToast('Removed.');
+}
+
+// Init after auth resolves
+window.addEventListener('authReady', notifyRender);
+// Fallback if authReady already fired
+if (window._auth && window._auth.currentUser) notifyRender();
+</script>
 </body>
 </html>
