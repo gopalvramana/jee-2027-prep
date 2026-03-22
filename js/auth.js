@@ -37,8 +37,10 @@ async function _syncFromFirestore(uid) {
         const local  = JSON.parse(localStorage.getItem('jee2027_progress') || '{}');
         const merged = { ...d.sessions };
         for (const [id, localVal] of Object.entries(local)) {
-          if (localVal?.done && !merged[id]?.done) {
-            merged[id] = { ...(merged[id] || {}), ...localVal };
+          const localDone = localVal === true || localVal?.done;
+          const mergedDone = merged[id] === true || merged[id]?.done;
+          if (localDone && !mergedDone) {
+            merged[id] = { done: true, score: localVal?.score || '', notes: localVal?.notes || '' };
           }
         }
         localStorage.setItem('jee2027_progress', JSON.stringify(merged));

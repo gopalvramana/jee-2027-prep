@@ -60,8 +60,17 @@ const STORAGE_KEY   = 'jee2027_progress';
 const MOCK_KEY      = 'jee2027_mocks';
 
 function loadProgress() {
-  try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {}; }
-  catch { return {}; }
+  try {
+    const raw = JSON.parse(localStorage.getItem(STORAGE_KEY)) || {};
+    // Normalise legacy format: some entries stored as plain `true` instead of {done:true}
+    const out = {};
+    for (const [id, val] of Object.entries(raw)) {
+      out[id] = (val === true || val === false)
+        ? { done: !!val, score: '', notes: '' }
+        : val;
+    }
+    return out;
+  } catch { return {}; }
 }
 function saveProgress(data) {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
