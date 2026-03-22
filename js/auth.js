@@ -150,4 +150,8 @@ window._auth.onAuthStateChanged(async function(user) {
   if (typeof initProgress === 'function' &&
       (document.querySelector('.prog-check') || document.getElementById('mock-tbody'))) initProgress();
   if (typeof updateStartDateUI === 'function') updateStartDateUI();
+
+  // Push schedule + sessions to Firestore on login so digest always has real data
+  // Small delay to let page-level JS populate localStorage first
+  setTimeout(() => window.pushToFirestore(), 2000);
 });
