@@ -123,6 +123,16 @@ window._auth.onAuthStateChanged(async function(user) {
     return;
   }
 
+  // Ensure parent user document exists (needed for server-side digest query)
+  try {
+    const userDocRef = window._db.collection('users').doc(user.uid);
+    await userDocRef.set({
+      email:     user.email,
+      name:      user.displayName || user.email.split('@')[0],
+      updatedAt: firebase.firestore.FieldValue.serverTimestamp(),
+    }, { merge: true });
+  } catch(e) { console.warn('[Auth] user doc write failed:', e.message); }
+
   // Pull cloud data into localStorage first, then reveal page
   await _syncFromFirestore(user.uid);
 

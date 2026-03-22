@@ -67,15 +67,28 @@ function phaseLabel(y, m) {
 
 // ── Fetch all Firestore users ─────────────────────────────────────────────────
 async function fetchAllUserProgress() {
-  const usersSnap = await db.collection('users').get();
-  const results   = [];
+  // collectionGroup finds all 'data' subcollections across all users.
+  // We filter to docs that have 'updatedAt' — only progress docs have this field.
+  const snap    = await db.collectionGroup('data').where('updatedAt', '!=', null).get();
+  const results = [];
 
-  for (const userDoc of usersSnap.docs) {
-    const progSnap = await db
-      .collection('users').doc(userDoc.id)
-      .collection('data').doc('progress').get();
-    if (progSnap.exists) {
-      results.push({ uid: userDoc.id, data: progSnap.data() });
+  for (const doc of snap.docs) {
+    // path is: users/{uid}/data/progress  → parent.parent.id = uid
+    const uid = doc.ref.parent.parent && doc.ref.parent.parent.id;
+    if (uid) results.push({ uid, data: doc.data() });
+  }
+
+  // Fallback: if collectionGroup returns nothing, iterate users directly
+  if (results.length === 0) {
+    console.log('  collectionGroup returned 0 — trying direct users scan…');
+    const usersSnap = await db.collection('users').get();
+    for (const userDoc of usersSnap.docs) {
+      const progSnap = await db
+        .collection('users').doc(userDoc.id)
+        .collection('data').doc('progress').get();
+      if (progSnap.exists) {
+        results.push({ uid: userDoc.id, data: progSnap.data() });
+      }
     }
   }
 
