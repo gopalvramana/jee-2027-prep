@@ -8,220 +8,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../css/style.css">
-<style>
-/* ── Topic deep-dive page — scoped styles ───────────────────────────────── */
-.topic-wrap { max-width: 920px; margin: 0 auto; padding: 0 1.25rem; }
-.topic-meta-bar {
-  display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1rem;
-  font-size: .82rem;
-}
-.topic-meta-pill {
-  background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.22);
-  padding: .3rem .85rem; border-radius: 999px;
-  color: rgba(255,255,255,.92);
-}
-.topic-meta-pill strong { color: white; }
-
-/* TOC */
-.topic-toc {
-  background: var(--white); border: 1px solid var(--line);
-  border-left: 4px solid var(--phys);
-  border-radius: var(--radius);
-  padding: 1rem 1.25rem; margin: 2rem 0;
-}
-.topic-toc-title {
-  font-size: .75rem; font-weight: 700; text-transform: uppercase;
-  letter-spacing: .08em; color: var(--phys); margin-bottom: .6rem;
-}
-.topic-toc ol { columns: 2; column-gap: 1.5rem; padding-left: 1.2rem; font-size: .88rem; line-height: 1.85; }
-.topic-toc ol li { break-inside: avoid; }
-.topic-toc a { color: var(--ink2); text-decoration: none; }
-.topic-toc a:hover { color: var(--phys); text-decoration: underline; }
-@media (max-width: 640px) { .topic-toc ol { columns: 1; } }
-
-/* Section heading */
-.topic-section { margin: 2.5rem 0; }
-.topic-section h2 {
-  font-family: 'DM Serif Display', serif;
-  font-size: 1.55rem; color: var(--ink);
-  margin-bottom: .25rem;
-  border-bottom: 2px solid var(--phys-m); padding-bottom: .35rem;
-}
-.topic-section h2 .sec-num {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: .85rem; color: var(--phys);
-  background: var(--phys-l); padding: .15rem .55rem;
-  border-radius: 6px; margin-right: .65rem; vertical-align: middle;
-  font-weight: 700;
-}
-.topic-section h3 {
-  font-size: 1.1rem; color: var(--ink); margin: 1.5rem 0 .5rem;
-  font-family: 'DM Sans', sans-serif; font-weight: 700;
-}
-.topic-section h4 {
-  font-size: .95rem; color: var(--ink2); margin: 1.2rem 0 .4rem;
-  font-weight: 700;
-}
-.topic-section p { font-size: .92rem; line-height: 1.7; color: var(--ink2); margin-bottom: .85rem; }
-.topic-section ul, .topic-section ol { font-size: .92rem; line-height: 1.7; color: var(--ink2); margin: .5rem 0 1rem 1.4rem; }
-.topic-section ul li, .topic-section ol li { margin-bottom: .35rem; }
-.topic-section strong { color: var(--ink); }
-.topic-section em { color: var(--phys); font-style: normal; font-weight: 600; }
-
-/* Callouts */
-.callout {
-  border-radius: 8px; padding: .85rem 1.1rem; margin: 1rem 0;
-  font-size: .88rem; line-height: 1.65;
-}
-.callout-title { font-weight: 700; margin-bottom: .25rem; font-size: .9rem; }
-.callout.info    { background: #f0fdfa; border-left: 4px solid var(--phys);   color: var(--ink2); }
-.callout.info    .callout-title { color: var(--phys); }
-.callout.warn    { background: #fffbeb; border-left: 4px solid var(--amber);  color: var(--ink2); }
-.callout.warn    .callout-title { color: var(--amber); }
-.callout.danger  { background: #fef2f2; border-left: 4px solid var(--red);    color: var(--ink2); }
-.callout.danger  .callout-title { color: var(--red); }
-.callout.success { background: #f0fdf4; border-left: 4px solid var(--green);  color: var(--ink2); }
-.callout.success .callout-title { color: var(--green); }
-
-/* Equation block */
-.eq-block {
-  background: var(--bg); border: 1px solid var(--line);
-  border-radius: 8px; padding: .9rem 1.1rem; margin: 1rem 0;
-  font-family: 'JetBrains Mono', monospace;
-  font-size: .95rem; color: var(--ink);
-  text-align: center;
-}
-.eq-block .eq-label {
-  display: block; font-family: 'DM Sans', sans-serif;
-  font-size: .72rem; color: var(--ink3); margin-top: .35rem;
-  text-transform: uppercase; letter-spacing: .05em; font-weight: 600;
-}
-
-/* Inline math */
-.m { font-family: 'JetBrains Mono', monospace; font-size: .92em; color: var(--ink); }
-
-/* Diagram */
-.diagram {
-  background: var(--white); border: 1px solid var(--line);
-  border-radius: var(--radius); padding: 1rem;
-  text-align: center; margin: 1.25rem 0;
-}
-.diagram svg { max-width: 100%; height: auto; }
-.diagram-cap {
-  font-size: .8rem; color: var(--ink3); margin-top: .5rem;
-  font-style: italic;
-}
-
-/* Worked example card */
-.example-card {
-  border: 1px solid var(--line); border-radius: var(--radius);
-  margin: 1rem 0; overflow: hidden; background: var(--white);
-}
-.example-head {
-  display: flex; align-items: center; gap: .65rem;
-  padding: .8rem 1.1rem;
-  border-bottom: 1px solid var(--line);
-  font-weight: 700; font-size: .92rem; color: var(--ink);
-  background: var(--bg);
-}
-.example-badge {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: .68rem; font-weight: 700; padding: .15rem .55rem;
-  border-radius: 999px; text-transform: uppercase; letter-spacing: .05em;
-}
-.badge-easy { background: #dcfce7; color: #15803d; }
-.badge-mod  { background: #fef3c7; color: #b45309; }
-.badge-hard { background: #fee2e2; color: #b91c1c; }
-.badge-pyq  { background: #ede9fe; color: #6d28d9; }
-.example-body { padding: 1rem 1.25rem; font-size: .9rem; color: var(--ink2); line-height: 1.7; }
-.example-body .step-label {
-  display: block; font-size: .72rem; font-weight: 700; text-transform: uppercase;
-  letter-spacing: .07em; color: var(--phys); margin: .85rem 0 .3rem;
-}
-.example-body .answer {
-  display: inline-block; margin-top: .5rem;
-  background: var(--phys-l); border-left: 3px solid var(--phys);
-  padding: .45rem .85rem; border-radius: 4px;
-  font-family: 'JetBrains Mono', monospace; font-size: .9rem;
-  color: var(--ink); font-weight: 700;
-}
-
-/* PYQ list */
-.pyq-grid { display: grid; gap: .85rem; margin-top: 1rem; }
-.pyq-card {
-  border: 1px solid var(--line); border-radius: var(--radius);
-  padding: .9rem 1.1rem; background: var(--white);
-}
-.pyq-tag {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: .68rem; font-weight: 700; color: #6d28d9;
-  background: #ede9fe; padding: .15rem .55rem; border-radius: 999px;
-  margin-right: .5rem; text-transform: uppercase; letter-spacing: .04em;
-}
-.pyq-q { font-size: .9rem; color: var(--ink); line-height: 1.65; margin: .4rem 0; }
-.pyq-ans-toggle {
-  font-size: .78rem; color: var(--phys); cursor: pointer;
-  font-weight: 600; user-select: none;
-}
-.pyq-ans-toggle:hover { text-decoration: underline; }
-.pyq-ans { display: none; margin-top: .5rem; font-size: .85rem; color: var(--ink2); line-height: 1.7; }
-.pyq-ans.open { display: block; }
-.pyq-ans .answer-final {
-  display: inline-block; margin-top: .4rem;
-  background: var(--phys-l); border-left: 3px solid var(--phys);
-  padding: .35rem .7rem; border-radius: 4px;
-  font-family: 'JetBrains Mono', monospace; font-weight: 700;
-  color: var(--ink);
-}
-
-/* Mistake list */
-.mistake-list { display: grid; gap: .65rem; margin: 1rem 0; }
-.mistake-item {
-  display: grid; grid-template-columns: auto 1fr; gap: .7rem;
-  background: var(--bg); padding: .75rem 1rem; border-radius: 8px;
-  font-size: .88rem; color: var(--ink2); line-height: 1.6;
-  border-left: 3px solid var(--red);
-}
-.mistake-item .mistake-icon { font-size: 1.1rem; }
-.mistake-item strong { color: var(--red); }
-
-/* Cheat card */
-.cheat-card {
-  background: linear-gradient(135deg, #134e4a 0%, #0f766e 100%);
-  color: white; border-radius: var(--radius);
-  padding: 1.5rem 1.75rem; margin: 2rem 0;
-}
-.cheat-card h3 { color: white; margin-top: 0; font-family: 'DM Serif Display', serif; font-size: 1.25rem; }
-.cheat-card ul { color: rgba(255,255,255,.9); margin-left: 1.2rem; line-height: 1.8; font-size: .9rem; }
-.cheat-card code { background: rgba(255,255,255,.15); padding: .1rem .4rem; border-radius: 4px; font-size: .85em; }
-
-/* Step-by-step boxes */
-.method-box {
-  background: var(--phys-l); border: 1px solid var(--phys-m);
-  border-radius: var(--radius); padding: 1rem 1.25rem; margin: 1rem 0;
-}
-.method-box .method-title {
-  font-weight: 700; color: var(--phys); margin-bottom: .5rem;
-  font-size: .92rem;
-}
-.method-box ol { margin-left: 1.4rem; }
-
-/* Two-column compare */
-.compare-grid {
-  display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1rem 0;
-}
-.compare-cell {
-  background: var(--bg); border-radius: 8px; padding: .85rem 1rem;
-  font-size: .87rem; color: var(--ink2); line-height: 1.6;
-}
-.compare-cell strong { color: var(--ink); display: block; margin-bottom: .35rem; font-size: .92rem; }
-@media (max-width: 640px) { .compare-grid { grid-template-columns: 1fr; } }
-
-/* Section anchor offset for sticky-ish nav */
-.topic-section { scroll-margin-top: 1rem; }
-</style>
 </head>
-<body>
+<body class="topic-phys">
 
 <nav class="nav">
   <div class="nav-inner">
@@ -420,6 +208,87 @@
     </div>
     <p>For the rocket equation: thrust <span class="m">= v<sub>rel</sub> · |dm/dt|</span>. JEE Advanced occasionally tests this.</p>
 
+    <!-- ── Interactive: F = ma vs F = dp/dt ─────────────────────────── -->
+    <div class="explainer" id="ex-second-law">
+      <div class="explainer-title">
+        <span class="explainer-title-tag">Interactive</span>
+        🎮 When does F = ma actually work?
+      </div>
+      <div class="explainer-tabs" data-tabs="second-law">
+        <button class="explainer-tab active" type="button" data-target="ex-2l-const">Constant mass (F = ma works)</button>
+        <button class="explainer-tab" type="button" data-target="ex-2l-var">Variable mass (F = ma breaks)</button>
+      </div>
+
+      <div class="explainer-panel active" id="ex-2l-const">
+        <div class="explainer-panel-title">Scenario 1: Constant mass</div>
+        <div class="callout danger" style="margin-top:0">
+          <strong>Setup:</strong> A 5 kg block on a frictionless table is pushed by a constant horizontal force of 20 N. Mass is fixed.
+        </div>
+        <div class="explainer-stage">
+          <div class="explainer-stage-row">
+            <div class="explainer-emoji-block">📦 m = 5 kg</div>
+            <div style="font-size:1.5rem; color:var(--topic-accent);">→</div>
+            <div style="font-family:'JetBrains Mono',monospace; font-weight:700; color:var(--red);">F = 20 N</div>
+          </div>
+          <div class="explainer-stage-cap">No mass leaves the block · dm/dt = 0</div>
+        </div>
+        <p><strong>Newton's full law:</strong> <span class="m">F = dp/dt = m·(dv/dt) + v·(dm/dt)</span>. Since <span class="m">dm/dt = 0</span>, the second term vanishes.</p>
+        <div class="explainer-eq right">
+          <span class="explainer-eq-icon">✓</span>
+          <span>F = m·(dv/dt) = ma — works perfectly · a = F/m = 4 m/s²</span>
+        </div>
+        <div class="callout success">
+          <div class="callout-title">The takeaway</div>
+          <strong>F = ma</strong> is the constant-mass shortcut for Newton's real law, <span class="m">F = dp/dt</span>. 99% of JEE problems live here.
+        </div>
+      </div>
+
+      <div class="explainer-panel" id="ex-2l-var">
+        <div class="explainer-panel-title">Scenario 2: Variable mass</div>
+        <div class="callout danger" style="margin-top:0">
+          <strong>Setup:</strong> A 1000 kg rocket ejects 10 kg/s of exhaust at 2000 m/s (relative velocity). No external forces (<span class="m">F<sub>ext</sub> = 0</span>).
+        </div>
+        <div class="explainer-stage">
+          <div class="explainer-stage-row">
+            <div class="explainer-emoji-block">🚀 m(t)</div>
+            <div class="explainer-puffs"><span>💨</span><span style="opacity:.7">💨</span><span style="opacity:.4">💨</span></div>
+          </div>
+          <div class="explainer-stage-cap">Mass leaving = 10 kg/s · The rocket gets lighter every second</div>
+        </div>
+        <div class="callout danger">
+          <div class="callout-title">The problem</div>
+          If you use <span class="m">F = m·(dv/dt)</span>, which mass do you plug in? The original 1000 kg? The decreasing m(t)? Neither captures the missing physics.
+        </div>
+        <div class="explainer-eq wrong">
+          <span class="explainer-eq-icon">✗</span>
+          <span>F = m·(dv/dt) — WRONG (ignores mass leaving)</span>
+        </div>
+        <div class="explainer-eq right">
+          <span class="explainer-eq-icon">✓</span>
+          <span>F = m·(dv/dt) + v·(dm/dt) — CORRECT</span>
+        </div>
+        <div class="explainer-source-grid">
+          <div class="explainer-source-cell">
+            <div class="src-eq">m·(dv/dt)</div>
+            <div class="src-desc">Force accelerating the rocket body itself.</div>
+          </div>
+          <div class="explainer-source-cell">
+            <div class="src-eq">v·(dm/dt)</div>
+            <div class="src-desc">Momentum leaving with the exhaust.</div>
+          </div>
+        </div>
+        <div class="callout success">
+          <div class="callout-title">The insight</div>
+          Momentum changes for <strong>two independent reasons</strong>: the rocket accelerates (<span class="m">dv/dt</span>) <em>and</em> mass leaves (<span class="m">dm/dt</span>). You must account for both.
+        </div>
+      </div>
+
+      <div class="callout info" style="margin-top:1rem">
+        <div class="callout-title">Key insight</div>
+        Newton's 2nd Law is fundamentally about momentum: <span class="m">F = dp/dt</span>. Expanding <span class="m">p = mv</span> with calculus gives <em>two</em> terms. If mass is constant, one vanishes. If mass changes, both matter.
+      </div>
+    </div>
+
     <h3>Impulse — the time integral of force</h3>
     <p>Integrating the second law over time gives the <strong>impulse–momentum theorem</strong>:</p>
     <div class="eq-block">
@@ -548,6 +417,111 @@
     </div>
 
     <h3>FBD examples — three setups every JEE student must know</h3>
+
+    <!-- ── Interactive: FBD scenario switcher ────────────────────────── -->
+    <div class="explainer" id="ex-fbd">
+      <div class="explainer-title">
+        <span class="explainer-title-tag">Interactive</span>
+        🎮 Pick a setup &amp; see the FBD
+      </div>
+      <div class="explainer-tabs" data-tabs="fbd">
+        <button class="explainer-tab active" type="button" data-target="ex-fbd-floor">📦 On the floor</button>
+        <button class="explainer-tab" type="button" data-target="ex-fbd-incline">⛰ On an incline</button>
+        <button class="explainer-tab" type="button" data-target="ex-fbd-hang">🪢 Hanging</button>
+      </div>
+
+      <div class="explainer-panel active" id="ex-fbd-floor">
+        <div class="explainer-panel-title">Block at rest on a horizontal floor</div>
+        <div class="explainer-stage">
+          <svg viewBox="0 0 280 220" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="FBD block on floor">
+            <line x1="20" y1="170" x2="260" y2="170" stroke="#64748b" stroke-width="1.5"/>
+            <rect x="105" y="120" width="70" height="50" fill="#0f766e" opacity=".25" stroke="#0f766e" stroke-width="1.5"/>
+            <text x="140" y="150" font-family="DM Sans" font-size="13" font-weight="600" text-anchor="middle" fill="#0f172a">m</text>
+            <line x1="140" y1="120" x2="140" y2="60" stroke="#0f766e" stroke-width="2.5" marker-end="url(#fbdArr1)"/>
+            <text x="156" y="80" font-family="JetBrains Mono" font-size="13" fill="#0f766e" font-weight="700">N</text>
+            <line x1="140" y1="170" x2="140" y2="210" stroke="#b91c1c" stroke-width="2.5" marker-end="url(#fbdArr2)"/>
+            <text x="156" y="200" font-family="JetBrains Mono" font-size="13" fill="#b91c1c" font-weight="700">mg</text>
+            <defs>
+              <marker id="fbdArr1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#0f766e"/></marker>
+              <marker id="fbdArr2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#b91c1c"/></marker>
+            </defs>
+          </svg>
+        </div>
+        <div class="explainer-source-grid">
+          <div class="explainer-source-cell"><div class="src-eq">N (up)</div><div class="src-desc">Normal force from floor — perpendicular to surface.</div></div>
+          <div class="explainer-source-cell"><div class="src-eq">mg (down)</div><div class="src-desc">Gravity — always vertical, magnitude m·g.</div></div>
+        </div>
+        <div class="explainer-eq right">
+          <span class="explainer-eq-icon">✓</span>
+          <span>ΣF<sub>y</sub> = 0 → N − mg = 0 → N = mg</span>
+        </div>
+      </div>
+
+      <div class="explainer-panel" id="ex-fbd-incline">
+        <div class="explainer-panel-title">Block on a frictionless incline (angle θ)</div>
+        <div class="explainer-stage">
+          <svg viewBox="0 0 320 240" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="FBD block on incline">
+            <polygon points="40,200 290,200 290,80" fill="#e2e8f0" stroke="#64748b" stroke-width="1.5"/>
+            <text x="275" y="190" font-family="JetBrains Mono" font-size="11" fill="#0f172a">θ</text>
+            <g transform="translate(180,140) rotate(-25.6)">
+              <rect x="-26" y="-20" width="52" height="40" fill="#0f766e" opacity=".25" stroke="#0f766e" stroke-width="1.5"/>
+              <text x="0" y="5" font-family="DM Sans" font-size="12" font-weight="600" text-anchor="middle" fill="#0f172a">m</text>
+              <line x1="0" y1="-20" x2="0" y2="-58" stroke="#0f766e" stroke-width="2.5" marker-end="url(#fbdArrI1)"/>
+              <text x="14" y="-50" font-family="JetBrains Mono" font-size="11" fill="#0f766e" font-weight="700">N</text>
+              <line x1="0" y1="20" x2="50" y2="20" stroke="#b91c1c" stroke-width="2.5" marker-end="url(#fbdArrI2)"/>
+              <text x="60" y="22" font-family="JetBrains Mono" font-size="10" fill="#b91c1c" font-weight="700">mg sinθ</text>
+            </g>
+            <line x1="180" y1="155" x2="180" y2="220" stroke="#b91c1c" stroke-width="2" stroke-dasharray="3 2" opacity=".55" marker-end="url(#fbdArrI2)"/>
+            <text x="194" y="210" font-family="JetBrains Mono" font-size="10" fill="#b91c1c" opacity=".7">mg</text>
+            <defs>
+              <marker id="fbdArrI1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#0f766e"/></marker>
+              <marker id="fbdArrI2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#b91c1c"/></marker>
+            </defs>
+          </svg>
+        </div>
+        <div class="explainer-source-grid">
+          <div class="explainer-source-cell"><div class="src-eq">N = mg cosθ</div><div class="src-desc">Perpendicular to slope — only the cosθ component of gravity presses into the surface.</div></div>
+          <div class="explainer-source-cell"><div class="src-eq">mg sinθ</div><div class="src-desc">Component along the slope — drives the block down. No friction here.</div></div>
+        </div>
+        <div class="explainer-eq right">
+          <span class="explainer-eq-icon">✓</span>
+          <span>Along slope: mg sinθ = ma → a = g sinθ (mass cancels)</span>
+        </div>
+      </div>
+
+      <div class="explainer-panel" id="ex-fbd-hang">
+        <div class="explainer-panel-title">Block hanging from a string in equilibrium</div>
+        <div class="explainer-stage">
+          <svg viewBox="0 0 280 240" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="FBD hanging block">
+            <line x1="50" y1="40" x2="230" y2="40" stroke="#64748b" stroke-width="2"/>
+            <line x1="140" y1="40" x2="140" y2="120" stroke="#0f172a" stroke-width="1.5"/>
+            <rect x="105" y="120" width="70" height="55" fill="#0f766e" opacity=".25" stroke="#0f766e" stroke-width="1.5"/>
+            <text x="140" y="155" font-family="DM Sans" font-size="13" font-weight="600" text-anchor="middle" fill="#0f172a">m</text>
+            <line x1="140" y1="120" x2="140" y2="65" stroke="#0f766e" stroke-width="2.5" marker-end="url(#fbdArrH1)"/>
+            <text x="156" y="90" font-family="JetBrains Mono" font-size="13" fill="#0f766e" font-weight="700">T</text>
+            <line x1="140" y1="175" x2="140" y2="220" stroke="#b91c1c" stroke-width="2.5" marker-end="url(#fbdArrH2)"/>
+            <text x="156" y="210" font-family="JetBrains Mono" font-size="13" fill="#b91c1c" font-weight="700">mg</text>
+            <defs>
+              <marker id="fbdArrH1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#0f766e"/></marker>
+              <marker id="fbdArrH2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#b91c1c"/></marker>
+            </defs>
+          </svg>
+        </div>
+        <div class="explainer-source-grid">
+          <div class="explainer-source-cell"><div class="src-eq">T (up)</div><div class="src-desc">String tension — pulls the block upward toward the support.</div></div>
+          <div class="explainer-source-cell"><div class="src-eq">mg (down)</div><div class="src-desc">Gravity — acts on every mass everywhere.</div></div>
+        </div>
+        <div class="explainer-eq right">
+          <span class="explainer-eq-icon">✓</span>
+          <span>Static: ΣF<sub>y</sub> = 0 → T = mg</span>
+        </div>
+      </div>
+
+      <div class="callout info" style="margin-top:1rem">
+        <div class="callout-title">Notice the pattern</div>
+        Every FBD has the same skeleton: <strong>gravity (always)</strong> + the surface/string forces. The math is just <span class="m">ΣF = ma</span> projected onto smart axes. Once you can draw the FBD, the algebra is automatic.
+      </div>
+    </div>
 
     <div class="diagram">
       <svg viewBox="0 0 720 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="FBD examples">
@@ -819,6 +793,73 @@
       <div class="compare-cell">
         <strong>Constant velocity (a = 0)</strong>
         <span class="m">N = mg</span>. Same as standing on solid ground.
+      </div>
+    </div>
+
+    <!-- ── Interactive: Apparent weight in a lift ─────────────────────── -->
+    <div class="explainer" id="ex-lift">
+      <div class="explainer-title">
+        <span class="explainer-title-tag">Interactive</span>
+        🎮 Apparent weight — drag the slider
+      </div>
+      <p style="font-size:.88rem; color:var(--ink2); margin: 0 0 .5rem;">A person stands on a bathroom scale inside a lift. Move the lift's acceleration slider to see how the scale reading changes in real time.</p>
+
+      <div class="explainer-slider-row">
+        <label for="lift-mass">Person's mass (kg)</label>
+        <input type="range" id="lift-mass" min="40" max="100" value="70" step="5">
+        <span class="val" id="lift-mass-val">70</span>
+      </div>
+      <div class="explainer-slider-row">
+        <label for="lift-a">Lift acceleration (m/s²)</label>
+        <input type="range" id="lift-a" min="-10" max="10" value="0" step="0.5">
+        <span class="val" id="lift-a-val">0.0</span>
+      </div>
+
+      <div class="explainer-stage">
+        <svg id="lift-svg" viewBox="0 0 360 230" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Lift apparent weight visualization">
+          <!-- Lift box -->
+          <rect x="80" y="20" width="200" height="190" fill="none" stroke="#0f172a" stroke-width="2" rx="4"/>
+          <line x1="80" y1="40" x2="280" y2="40" stroke="#0f172a" stroke-width="1" stroke-dasharray="3 2" opacity=".4"/>
+          <!-- Person body -->
+          <circle cx="180" cy="90" r="14" fill="#fef3c7" stroke="#0f172a" stroke-width="1.5"/>
+          <rect x="170" y="105" width="20" height="40" fill="#0f766e" opacity=".3" stroke="#0f766e" stroke-width="1.5" rx="2"/>
+          <line x1="170" y1="115" x2="155" y2="135" stroke="#0f172a" stroke-width="2" stroke-linecap="round"/>
+          <line x1="190" y1="115" x2="205" y2="135" stroke="#0f172a" stroke-width="2" stroke-linecap="round"/>
+          <line x1="174" y1="145" x2="170" y2="170" stroke="#0f172a" stroke-width="2" stroke-linecap="round"/>
+          <line x1="186" y1="145" x2="190" y2="170" stroke="#0f172a" stroke-width="2" stroke-linecap="round"/>
+          <!-- Scale -->
+          <rect x="150" y="170" width="60" height="18" fill="#cbd5e1" stroke="#0f172a" stroke-width="1.5" rx="3"/>
+          <text x="180" y="183" font-family="JetBrains Mono" font-size="10" font-weight="700" text-anchor="middle" fill="#0f172a" id="lift-scale-text">700</text>
+          <!-- Acceleration arrow -->
+          <g id="lift-arrow" opacity="0">
+            <line x1="305" y1="115" x2="305" y2="55" stroke="#b91c1c" stroke-width="3" marker-end="url(#liftArrM)" id="lift-arrow-line"/>
+            <text x="316" y="90" font-family="JetBrains Mono" font-size="11" font-weight="700" fill="#b91c1c" id="lift-arrow-label">a</text>
+          </g>
+          <text x="180" y="220" font-family="DM Sans" font-size="10" text-anchor="middle" fill="#64748b" id="lift-status">At rest · scale reads true weight</text>
+          <defs>
+            <marker id="liftArrM" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#b91c1c"/></marker>
+          </defs>
+        </svg>
+      </div>
+
+      <div class="explainer-readout-grid">
+        <div class="explainer-readout">
+          <div class="lbl">True weight (mg)</div>
+          <div class="num" id="lift-mg">700 N</div>
+        </div>
+        <div class="explainer-readout">
+          <div class="lbl">Apparent (scale reads)</div>
+          <div class="num" id="lift-N">700 N</div>
+        </div>
+        <div class="explainer-readout feel">
+          <div class="lbl">How it feels</div>
+          <div class="num" id="lift-feel">✓ Normal</div>
+        </div>
+      </div>
+
+      <div class="callout info" style="margin-top:1rem">
+        <div class="callout-title">The formula</div>
+        <span class="m">N = m(g + a)</span> — with <span class="m">a</span> positive when the lift accelerates <em>up</em>, negative when down. At free-fall (<span class="m">a = −g</span>) the scale reads zero — apparent weightlessness.
       </div>
     </div>
 
@@ -1219,10 +1260,9 @@
       </ul>
     </div>
 
-    <div style="text-align:center; margin-top:2rem;">
-      <a href="../subjects/physics.html" style="display:inline-block; padding:.7rem 1.4rem; background:var(--phys); color:white; border-radius:8px; font-weight:700; text-decoration:none;">← Back to Physics overview</a>
-      &nbsp;
-      <a href="../progress.html" style="display:inline-block; padding:.7rem 1.4rem; background:var(--bg); color:var(--ink); border:1px solid var(--line); border-radius:8px; font-weight:700; text-decoration:none;">Mark sessions complete →</a>
+    <div class="topic-cta-row">
+      <a href="../subjects/physics.html" class="btn-primary">← Back to Physics overview</a>
+      <a href="../progress.html" class="btn-secondary">Mark sessions complete →</a>
     </div>
   </div>
 
@@ -1247,5 +1287,87 @@
 
 <div id="toast" class="toast"></div>
 <script src="../js/main.js?v=2"></script>
+<script>
+// ── Interactive explainer wiring (page-local) ────────────────────────────────
+(function () {
+  // Tab switchers — one set per .explainer-tabs[data-tabs]
+  document.querySelectorAll('.explainer-tabs').forEach(group => {
+    group.addEventListener('click', e => {
+      const btn = e.target.closest('.explainer-tab');
+      if (!btn) return;
+      const targetId = btn.dataset.target;
+      group.querySelectorAll('.explainer-tab').forEach(b => b.classList.toggle('active', b === btn));
+      const explainer = group.closest('.explainer');
+      explainer.querySelectorAll('.explainer-panel').forEach(p => {
+        p.classList.toggle('active', p.id === targetId);
+      });
+    });
+  });
+
+  // Lift slider
+  const massSlider = document.getElementById('lift-mass');
+  const accSlider  = document.getElementById('lift-a');
+  if (massSlider && accSlider) {
+    const G = 10;
+    const mVal     = document.getElementById('lift-mass-val');
+    const aVal     = document.getElementById('lift-a-val');
+    const mgEl     = document.getElementById('lift-mg');
+    const NEl      = document.getElementById('lift-N');
+    const feelEl   = document.getElementById('lift-feel');
+    const arrow    = document.getElementById('lift-arrow');
+    const arrowLn  = document.getElementById('lift-arrow-line');
+    const arrowLab = document.getElementById('lift-arrow-label');
+    const statusEl = document.getElementById('lift-status');
+    const scaleTxt = document.getElementById('lift-scale-text');
+
+    function update() {
+      const m = +massSlider.value;
+      const a = +accSlider.value;
+      mVal.textContent = m;
+      aVal.textContent = a.toFixed(1);
+
+      const mg = m * G;
+      const N  = Math.max(0, m * (G + a));
+      mgEl.textContent = mg + ' N';
+      NEl.textContent  = N.toFixed(0) + ' N';
+      scaleTxt.textContent = N.toFixed(0);
+
+      let feel, status;
+      if (a <= -G + 0.05) {
+        feel = '🪶 Weightless';
+        status = 'Free-fall · apparent weight = 0';
+      } else if (a >= G - 0.05) {
+        feel = '🚀 Crushed';
+        status = 'Hard upward thrust · feels ~2× heavier';
+      } else if (a > 0.5) {
+        feel = '⬆ Heavier';
+        status = 'Lift accelerating up · scale reads more than mg';
+      } else if (a < -0.5) {
+        feel = '⬇ Lighter';
+        status = 'Lift accelerating down · scale reads less than mg';
+      } else {
+        feel = '✓ Normal';
+        status = 'At rest or constant velocity · scale reads true weight';
+      }
+      feelEl.textContent = feel;
+      statusEl.textContent = status;
+
+      // Arrow visibility & direction
+      if (Math.abs(a) > 0.1) {
+        arrow.setAttribute('opacity', '1');
+        const upward = a > 0;
+        arrowLn.setAttribute('y1', upward ? '115' : '55');
+        arrowLn.setAttribute('y2', upward ? '55'  : '115');
+        arrowLab.textContent = upward ? `a = ${a.toFixed(1)}` : `a = ${a.toFixed(1)}`;
+      } else {
+        arrow.setAttribute('opacity', '0');
+      }
+    }
+    massSlider.addEventListener('input', update);
+    accSlider.addEventListener('input', update);
+    update();
+  }
+})();
+</script>
 </body>
 </html>

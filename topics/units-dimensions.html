@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Units &amp; Dimensions — JEE 2027 Deep-Dive</title>
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+<style>
+  /* Indigo hero override */
+  .units-hero { background: linear-gradient(135deg, #312e81 0%, #4f46e5 100%); }
+</style>
+</head>
+<body class="topic-indigo">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="nav-brand">JEE 2027</div>
+    <div class="nav-links">
+      <a href="../index.html">Dashboard</a>
+      <a href="../subjects/math.html">📐 Math</a>
+      <a href="../subjects/physics.html" class="phys-active">⚡ Physics</a>
+      <a href="../subjects/chemistry.html">🧪 Chemistry</a>
+      <a href="../progress.html">✅ Progress</a>
+      <a href="../schedule.html">📋 Schedule</a>
+      <a href="../settings.html">⚙ Settings</a>
+    </div>
+    <button class="nav-toggle" onclick="toggleNav()">☰</button>
+  </div>
+</nav>
+
+<header class="page-hero units-hero">
+  <div class="page-hero-content">
+    <div class="page-hero-tag">Physics · Unit P0 · Deep-Dive</div>
+    <h1>Units &amp; Dimensions</h1>
+    <p>The highest-ROI topic in Physics. Two hours of focused study earn 1–3 free marks every JEE paper, and the methods unlock every other formula in the course. Master this <em>before</em> kinematics.</p>
+    <div class="topic-meta-bar">
+      <span class="topic-meta-pill"><strong>Weight:</strong> 3–5% (≈4 marks)</span>
+      <span class="topic-meta-pill"><strong>Difficulty:</strong> 🟢 Easy</span>
+      <span class="topic-meta-pill"><strong>Prereq:</strong> none</span>
+      <span class="topic-meta-pill"><strong>Time to master:</strong> 6–8 hrs</span>
+    </div>
+  </div>
+</header>
+
+<section class="section">
+<div class="topic-wrap">
+
+  <!-- ── TOC ──────────────────────────────────────────────────────────── -->
+  <nav class="topic-toc">
+    <div class="topic-toc-title">📖 In this guide</div>
+    <ol>
+      <li><a href="#why">Why Units &amp; Dimensions Matter</a></li>
+      <li><a href="#si">SI Base Units &amp; Prefixes</a></li>
+      <li><a href="#dimensional-formulas">Dimensional Formulas — How To Build One</a></li>
+      <li><a href="#three-uses">The Three Uses of Dimensional Analysis</a></li>
+      <li><a href="#limitations">Limitations &amp; Same-Dimension Traps</a></li>
+      <li><a href="#sigfigs">Significant Figures</a></li>
+      <li><a href="#errors">Errors in Measurement</a></li>
+      <li><a href="#propagation">Error Propagation Rules</a></li>
+      <li><a href="#instruments">Vernier, Screw Gauge &amp; Least Count</a></li>
+      <li><a href="#reference">Reference Table — Every Formula You'll Need</a></li>
+      <li><a href="#examples">Worked Examples (Easy → Hard)</a></li>
+      <li><a href="#pyqs">JEE Previous-Year Questions</a></li>
+      <li><a href="#traps">Common Traps &amp; Mistakes</a></li>
+      <li><a href="#cheat">One-Page Cheat Card</a></li>
+    </ol>
+  </nav>
+
+  <!-- ── 1. WHY ───────────────────────────────────────────────────────── -->
+  <div class="topic-section" id="why">
+    <h2><span class="sec-num">01</span>Why Units &amp; Dimensions Matter</h2>
+    <p>Every formula in physics is a sentence in a language whose grammar is dimensions. If a formula is dimensionally wrong, it cannot be physically right — full stop. JEE rewards this knowledge in three concrete ways:</p>
+    <ol>
+      <li><strong>1–2 direct questions per paper</strong> on dimensional formulas, error analysis, or unit conversion. Free marks if you've practised.</li>
+      <li><strong>Formula recovery.</strong> Forgot the time period of a pendulum mid-exam? Reconstruct it dimensionally in under a minute.</li>
+      <li><strong>Answer sanity check.</strong> Out of four MCQ options, one is dimensionally absurd — knock it out before you compute.</li>
+    </ol>
+
+    <div class="callout success">
+      <div class="callout-title">💰 Highest ROI in the syllabus</div>
+      About 6 hours of practice unlocks ~4 marks/paper for the rest of your life as a JEE student. No other Physics topic gives this return per hour invested.
+    </div>
+  </div>
+
+  <!-- ── 2. SI ────────────────────────────────────────────────────────── -->
+  <div class="topic-section" id="si">
+    <h2><span class="sec-num">02</span>SI Base Units &amp; Prefixes</h2>
+    <p>Every measurement in physics reduces to <strong>seven base quantities</strong>. Memorise these three columns — name, symbol, and SI unit:</p>
+
+    <div class="formula-table-wrap" style="border:1px solid var(--line); border-radius:var(--radius); overflow:hidden;">
+      <table class="formula-table">
+        <thead><tr><th>Quantity</th><th>Symbol</th><th>SI Unit</th><th>Symbol</th></tr></thead>
+        <tbody>
+          <tr><td>Length</td><td class="formula-cell">[L]</td><td>metre</td><td>m</td></tr>
+          <tr><td>Mass</td><td class="formula-cell">[M]</td><td>kilogram</td><td>kg</td></tr>
+          <tr><td>Time</td><td class="formula-cell">[T]</td><td>second</td><td>s</td></tr>
+          <tr><td>Electric current</td><td class="formula-cell">[A]</td><td>ampere</td><td>A</td></tr>
+          <tr><td>Thermodynamic temperature</td><td class="formula-cell">[K]</td><td>kelvin</td><td>K</td></tr>
+          <tr><td>Amount of substance</td><td class="formula-cell">[mol]</td><td>mole</td><td>mol</td></tr>
+          <tr><td>Luminous intensity</td><td class="formula-cell">[cd]</td><td>candela</td><td>cd</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Two supplementary (dimensionless) quantities</h3>
+    <ul>
+      <li><strong>Plane angle</strong> — radian (rad). Defined as arc/radius.</li>
+      <li><strong>Solid angle</strong> — steradian (sr). Defined as area/radius².</li>
+    </ul>
+    <p>Both are <em>dimensionless</em> ratios. JEE loves to ask "what are the dimensions of an angle?" — the answer is <span class="m">[M⁰L⁰T⁰]</span>, i.e. a pure number.</p>
+
+    <h3>SI prefixes — know all twenty</h3>
+    <p>Prefixes are powers of 10 that scale a base unit. JEE-Main occasionally asks "1 femtometre = how many metres?" or "express 250 GW in MW." Memorise the powers, not flashcards.</p>
+
+    <div class="compare-grid">
+      <div class="compare-cell">
+        <strong>Larger than 1</strong>
+        <span class="m">deca (da) 10¹</span> · <span class="m">hecto (h) 10²</span> · <span class="m">kilo (k) 10³</span> · <span class="m">mega (M) 10⁶</span> · <span class="m">giga (G) 10⁹</span> · <span class="m">tera (T) 10¹²</span> · <span class="m">peta (P) 10¹⁵</span> · <span class="m">exa (E) 10¹⁸</span>
+      </div>
+      <div class="compare-cell">
+        <strong>Smaller than 1</strong>
+        <span class="m">deci (d) 10⁻¹</span> · <span class="m">centi (c) 10⁻²</span> · <span class="m">milli (m) 10⁻³</span> · <span class="m">micro (μ) 10⁻⁶</span> · <span class="m">nano (n) 10⁻⁹</span> · <span class="m">pico (p) 10⁻¹²</span> · <span class="m">femto (f) 10⁻¹⁵</span> · <span class="m">atto (a) 10⁻¹⁸</span>
+      </div>
+    </div>
+
+    <div class="callout warn">
+      <div class="callout-title">⚠ Capital matters</div>
+      <span class="m">M</span> = mega (10⁶), <span class="m">m</span> = milli (10⁻³). The capital/lowercase distinction is twelve orders of magnitude. JEE has misled students with "Mm" (megametre) vs "mm" (millimetre).
+    </div>
+  </div>
+
+  <!-- ── 3. DIMENSIONAL FORMULAS ─────────────────────────────────────── -->
+  <div class="topic-section" id="dimensional-formulas">
+    <h2><span class="sec-num">03</span>Dimensional Formulas — How To Build One</h2>
+    <p>A <strong>dimensional formula</strong> expresses any physical quantity in terms of the seven base dimensions. The notation is square brackets around <span class="m">M</span>, <span class="m">L</span>, <span class="m">T</span>, <span class="m">A</span>, <span class="m">K</span> raised to whatever powers.</p>
+
+    <div class="method-box">
+      <div class="method-title">🎯 The 3-step derivation method</div>
+      <ol>
+        <li><strong>Write the defining equation</strong> in terms of more basic quantities.</li>
+        <li><strong>Substitute</strong> each quantity's dimensional formula.</li>
+        <li><strong>Combine</strong> exponents — every M, L, T, A, K combines via normal exponent algebra.</li>
+      </ol>
+    </div>
+
+    <h3>Worked derivations</h3>
+
+    <h4>① Velocity</h4>
+    <p>Definition: <span class="m">v = displacement / time</span>. Dimensions: <span class="m">[L]/[T] = [LT⁻¹]</span>.</p>
+
+    <h4>② Force (Newton's 2nd law)</h4>
+    <p>Definition: <span class="m">F = m · a</span>. Dimensions: <span class="m">[M] · [LT⁻²] = [MLT⁻²]</span>.</p>
+
+    <h4>③ Work / Energy</h4>
+    <p>Definition: <span class="m">W = F · d</span>. Dimensions: <span class="m">[MLT⁻²] · [L] = [ML²T⁻²]</span>.</p>
+
+    <h4>④ Pressure</h4>
+    <p>Definition: <span class="m">P = F / A</span>. Dimensions: <span class="m">[MLT⁻²]/[L²] = [ML⁻¹T⁻²]</span>.</p>
+
+    <h4>⑤ Universal Gravitational Constant G</h4>
+    <p>From <span class="m">F = G·m₁m₂/r²</span> ⇒ <span class="m">G = F·r²/(m₁m₂)</span>. Dimensions: <span class="m">[MLT⁻²]·[L²]/[M²] = [M⁻¹L³T⁻²]</span>.</p>
+
+    <h4>⑥ Planck's constant h</h4>
+    <p>From <span class="m">E = hν</span> ⇒ <span class="m">h = E/ν</span>. Frequency has dimensions <span class="m">[T⁻¹]</span>. So <span class="m">h: [ML²T⁻²]/[T⁻¹] = [ML²T⁻¹]</span>. Same as <em>angular momentum</em>.</p>
+
+    <div class="callout info">
+      <div class="callout-title">📌 Drill</div>
+      Pick any 10 formulas you can remember (kinetic energy, capacitance, viscosity, etc.) and derive their dimensions. After 30 reps, the algebra becomes automatic and the table at the end of this guide is just a sanity check.
+    </div>
+  </div>
+
+  <!-- ── 4. THREE USES ────────────────────────────────────────────────── -->
+  <div class="topic-section" id="three-uses">
+    <h2><span class="sec-num">04</span>The Three Uses of Dimensional Analysis</h2>
+
+    <h3>Use 1 — Verify a formula (necessary but not sufficient)</h3>
+    <p>Any equation must have <em>identical dimensions on both sides</em>. If they differ, the equation is wrong. If they match, it <em>might</em> be right (you can't catch dimensionless errors like a missing factor of 2π).</p>
+
+    <p><strong>Example:</strong> Is <span class="m">v² = u² + 2as</span> dimensionally correct?</p>
+    <ul>
+      <li>LHS: <span class="m">v² → [LT⁻¹]² = [L²T⁻²]</span>.</li>
+      <li>RHS term 1: <span class="m">u² → [L²T⁻²]</span>. ✓</li>
+      <li>RHS term 2: <span class="m">2as → [LT⁻²]·[L] = [L²T⁻²]</span>. ✓</li>
+    </ul>
+    <p>All three terms have dimensions <span class="m">[L²T⁻²]</span> → the formula is dimensionally consistent.</p>
+
+    <h3>Use 2 — Derive a formula from variables it depends on</h3>
+    <p>If you know <em>which</em> quantities a result depends on, you can guess the formula up to a dimensionless constant.</p>
+
+    <div class="method-box">
+      <div class="method-title">🎯 Derivation procedure</div>
+      <ol>
+        <li>Write <span class="m">y = k · a^p · b^q · c^r</span> where k is dimensionless.</li>
+        <li>Substitute dimensional formulas of a, b, c, y.</li>
+        <li>Equate powers of M, L, T separately → 3 equations.</li>
+        <li>Solve for p, q, r.</li>
+      </ol>
+    </div>
+
+    <p><strong>Classic JEE example:</strong> Derive the time period <span class="m">T</span> of a simple pendulum, given that it depends only on length <span class="m">L</span> and gravity <span class="m">g</span>.</p>
+    <p>Set <span class="m">T = k · L^p · g^q</span>. Dimensions:</p>
+    <p><span class="m">[T¹] = [L]^p · [LT⁻²]^q = [L^(p+q) · T^(−2q)]</span>.</p>
+    <p>Equate: <span class="m">−2q = 1 ⇒ q = −1/2</span>. <span class="m">p + q = 0 ⇒ p = 1/2</span>.</p>
+    <p>So <span class="m">T = k · √(L/g)</span>. Dimensional analysis gives the <em>form</em>; the famous <span class="m">2π</span> comes from the actual physics (oscillation theory).</p>
+
+    <h3>Use 3 — Convert between unit systems</h3>
+    <p>To convert a quantity from one system to another, multiply by the ratio of their dimensional formulas.</p>
+
+    <p><strong>Example:</strong> Convert <span class="m">1 J</span> (SI) into ergs (CGS).</p>
+    <p>Energy has dimensions <span class="m">[ML²T⁻²]</span>. So:</p>
+    <div class="eq-block">
+      1 J = 1 kg · 1 m² · 1 s⁻²<br>
+      = (10³ g) · (10² cm)² · (1 s)⁻² = 10⁷ g·cm²·s⁻²
+      <span class="eq-label">1 J = 10⁷ erg</span>
+    </div>
+  </div>
+
+  <!-- ── 5. LIMITATIONS ──────────────────────────────────────────────── -->
+  <div class="topic-section" id="limitations">
+    <h2><span class="sec-num">05</span>Limitations &amp; Same-Dimension Traps</h2>
+    <p>Dimensional analysis is powerful but blind in three specific ways:</p>
+
+    <ol>
+      <li><strong>Cannot find dimensionless constants.</strong> The 2π, ½, 3 in real physical formulas come from the actual derivation — dimensions can't see them.</li>
+      <li><strong>Cannot derive formulas with sums or trig.</strong> If <span class="m">y = a + b·sin(ωt)</span>, dimensional analysis can only tell you a, b, y match — not the form of the trig argument.</li>
+      <li><strong>Cannot distinguish quantities with the same dimensions.</strong> The famous traps:</li>
+    </ol>
+
+    <div class="formula-table-wrap" style="margin-top:.5rem; border:1px solid var(--line); border-radius:var(--radius); overflow:hidden;">
+      <table class="formula-table">
+        <thead><tr><th>Same Dimensions</th><th>Group A</th><th>Group B</th></tr></thead>
+        <tbody>
+          <tr><td class="formula-cell">[ML²T⁻²]</td><td>Energy / Work</td><td>Torque · Heat · ½kx²</td></tr>
+          <tr><td class="formula-cell">[ML²T⁻¹]</td><td>Angular momentum</td><td>Planck's constant h</td></tr>
+          <tr><td class="formula-cell">[T⁻¹]</td><td>Frequency</td><td>Angular velocity · Decay constant · Velocity gradient</td></tr>
+          <tr><td class="formula-cell">[ML⁻¹T⁻²]</td><td>Pressure</td><td>Stress · Young's modulus · Energy density</td></tr>
+          <tr><td class="formula-cell">[L]</td><td>Wavelength</td><td>Displacement · Radius · Path length</td></tr>
+          <tr><td class="formula-cell">[M⁰L⁰T⁰]</td><td>Strain</td><td>Refractive index · Angle · Coefficient of friction · Relative density</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout danger">
+      <div class="callout-title">🛑 The torque–energy trap</div>
+      Both have dimensions <span class="m">[ML²T⁻²]</span>. JEE asks "which has different dimensions?" and includes torque among the energy-like options. They're physically different (torque is a vector, energy is a scalar) but dimensionally identical. Read the question carefully — the answer is often "they all have the same dimensions" rather than picking the odd one out.
+    </div>
+  </div>
+
+  <!-- ── 6. SIG FIGS ──────────────────────────────────────────────────── -->
+  <div class="topic-section" id="sigfigs">
+    <h2><span class="sec-num">06</span>Significant Figures</h2>
+    <p>Significant figures encode <em>how precisely</em> a number was measured. JEE expects you to know the rules cold.</p>
+
+    <h3>Counting rules</h3>
+    <ul>
+      <li><strong>All non-zero digits</strong> are significant. <span class="m">123.45</span> → 5 sig figs.</li>
+      <li><strong>Zeros between non-zero digits</strong> are significant. <span class="m">10045</span> → 5 sig figs.</li>
+      <li><strong>Leading zeros</strong> (before the first non-zero digit) are <em>not</em> significant. <span class="m">0.0023</span> → 2 sig figs.</li>
+      <li><strong>Trailing zeros after a decimal</strong> are significant. <span class="m">2.300</span> → 4 sig figs.</li>
+      <li><strong>Trailing zeros without a decimal</strong> are ambiguous. <span class="m">2300</span> → 2, 3, or 4 sig figs depending on context. Use scientific notation to avoid ambiguity: <span class="m">2.30 × 10³</span> = 3 sig figs.</li>
+    </ul>
+
+    <h3>Arithmetic rules</h3>
+    <div class="compare-grid">
+      <div class="compare-cell">
+        <strong>Addition / subtraction</strong>
+        Round result to the same <em>number of decimal places</em> as the term with the fewest. <br><span class="m">12.34 + 1.2 = 13.5</span> (not 13.54).
+      </div>
+      <div class="compare-cell">
+        <strong>Multiplication / division</strong>
+        Round result to the same <em>number of significant figures</em> as the value with the fewest. <br><span class="m">2.34 × 1.5 = 3.5</span> (not 3.51).
+      </div>
+    </div>
+
+    <div class="callout warn">
+      <div class="callout-title">⚠ Don't round mid-calculation</div>
+      Carry one or two extra digits through every step, round only at the end. Premature rounding propagates and amplifies error.
+    </div>
+  </div>
+
+  <!-- ── 7. ERRORS ────────────────────────────────────────────────────── -->
+  <div class="topic-section" id="errors">
+    <h2><span class="sec-num">07</span>Errors in Measurement</h2>
+
+    <h3>Types of error</h3>
+    <ul>
+      <li><strong>Systematic errors</strong> — consistent, one-sided. Caused by a faulty instrument (zero error), poor calibration, or a flawed method. Reduced by checking and recalibrating.</li>
+      <li><strong>Random errors</strong> — fluctuating, unpredictable. Caused by judgement variation, environmental fluctuation. Reduced by repeating the measurement many times and averaging.</li>
+      <li><strong>Gross errors</strong> — flat-out human mistakes (wrong reading, miscount). Spotted by re-checking.</li>
+    </ul>
+
+    <h3>Quantifying error</h3>
+    <p>For a quantity measured n times giving readings <span class="m">a₁, a₂, ..., aₙ</span>:</p>
+
+    <div class="eq-block">
+      Mean: ā = (a₁ + a₂ + ... + aₙ) / n
+    </div>
+    <div class="eq-block">
+      Absolute error of i-th reading: |Δaᵢ| = |aᵢ − ā|
+    </div>
+    <div class="eq-block">
+      Mean absolute error: Δā = (|Δa₁| + |Δa₂| + ... + |Δaₙ|) / n
+    </div>
+    <div class="eq-block">
+      Relative error = Δā / ā&nbsp;&nbsp;&nbsp;&nbsp;Percentage error = (Δā / ā) × 100%
+    </div>
+
+    <h3>Reporting a measurement</h3>
+    <p>Always report as <span class="m">a = ā ± Δā</span>. The plus-minus is part of the answer, not optional.</p>
+  </div>
+
+  <!-- ── 8. PROPAGATION ──────────────────────────────────────────────── -->
+  <div class="topic-section" id="propagation">
+    <h2><span class="sec-num">08</span>Error Propagation Rules</h2>
+    <p>When you compute a result from measured quantities, each measurement's error contributes to the result's error. Memorise these four rules — they cover every JEE error question.</p>
+
+    <h3>Rule 1 — Sum or difference</h3>
+    <p>If <span class="m">z = a ± b</span>, <strong>absolute errors add</strong>:</p>
+    <div class="eq-block">
+      Δz = Δa + Δb
+      <span class="eq-label">Absolute errors add — even for subtraction!</span>
+    </div>
+
+    <h3>Rule 2 — Product or quotient</h3>
+    <p>If <span class="m">z = a · b</span> or <span class="m">z = a / b</span>, <strong>relative errors add</strong>:</p>
+    <div class="eq-block">
+      Δz/z = Δa/a + Δb/b
+    </div>
+
+    <h3>Rule 3 — Power</h3>
+    <p>If <span class="m">z = aⁿ</span>, <strong>relative error is multiplied by the power</strong>:</p>
+    <div class="eq-block">
+      Δz/z = |n| · Δa/a
+    </div>
+
+    <h3>Rule 4 — Combined formula</h3>
+    <p>For <span class="m">z = a^p · b^q / c^r</span>:</p>
+    <div class="eq-block">
+      Δz/z = |p|·Δa/a + |q|·Δb/b + |r|·Δc/c
+      <span class="eq-label">All contributions enter as positive (worst case)</span>
+    </div>
+
+    <div class="callout warn">
+      <div class="callout-title">⚠ Subtraction amplifies relative error</div>
+      Sum/difference adds absolute errors. But if a and b are close, the result <span class="m">a − b</span> is small while <span class="m">Δa + Δb</span> stays the same — so the <em>relative</em> error <span class="m">(Δa+Δb)/(a−b)</span> can blow up. Avoid measurement designs that subtract two similar large numbers.
+    </div>
+
+    <h3>Practice — common JEE style</h3>
+    <p>For <span class="m">x = a²b/√c</span> with errors <span class="m">a: 2%, b: 3%, c: 4%</span>:</p>
+    <p>Apply rule 4: <span class="m">Δx/x = 2·(2%) + 1·(3%) + ½·(4%) = 4% + 3% + 2% = 9%</span>.</p>
+  </div>
+
+  <!-- ── 9. INSTRUMENTS ──────────────────────────────────────────────── -->
+  <div class="topic-section" id="instruments">
+    <h2><span class="sec-num">09</span>Vernier, Screw Gauge &amp; Least Count</h2>
+    <p>JEE consistently asks one question on instrument readings — usually finding the diameter from a vernier or screw-gauge sketch.</p>
+
+    <h3>Least count — the universal definition</h3>
+    <div class="eq-block">
+      Least count = (smallest main-scale division) / (number of vernier or circular divisions)
+      <span class="eq-label">The smallest length the instrument can resolve</span>
+    </div>
+
+    <h3>Vernier callipers</h3>
+
+    <div class="diagram">
+      <svg viewBox="0 0 540 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Vernier callipers schematic">
+        <!-- Main scale -->
+        <text x="40" y="20" font-family="DM Sans" font-size="11" font-weight="600" fill="#0f172a">Main scale (mm)</text>
+        <line x1="20" y1="50" x2="520" y2="50" stroke="#0f172a" stroke-width="1.5"/>
+        <g font-family="JetBrains Mono" font-size="9" fill="#0f172a" text-anchor="middle">
+          <line x1="40"  y1="40" x2="40"  y2="60" stroke="#0f172a"/><text x="40"  y="35">0</text>
+          <line x1="100" y1="40" x2="100" y2="60" stroke="#0f172a"/><text x="100" y="35">1</text>
+          <line x1="160" y1="40" x2="160" y2="60" stroke="#0f172a"/><text x="160" y="35">2</text>
+          <line x1="220" y1="40" x2="220" y2="60" stroke="#0f172a"/><text x="220" y="35">3</text>
+          <line x1="280" y1="40" x2="280" y2="60" stroke="#0f172a"/><text x="280" y="35">4</text>
+          <line x1="340" y1="40" x2="340" y2="60" stroke="#0f172a"/><text x="340" y="35">5</text>
+        </g>
+        <!-- Vernier scale -->
+        <line x1="160" y1="100" x2="380" y2="100" stroke="#4f46e5" stroke-width="1.5"/>
+        <g font-family="JetBrains Mono" font-size="9" fill="#4f46e5" text-anchor="middle">
+          <line x1="160" y1="90"  x2="160" y2="110" stroke="#4f46e5"/><text x="160" y="125">0</text>
+          <line x1="182" y1="90"  x2="182" y2="110" stroke="#4f46e5"/>
+          <line x1="204" y1="90"  x2="204" y2="110" stroke="#4f46e5"/><text x="204" y="125">2</text>
+          <line x1="226" y1="90"  x2="226" y2="110" stroke="#4f46e5"/>
+          <line x1="248" y1="90"  x2="248" y2="110" stroke="#4f46e5"/><text x="248" y="125">4</text>
+          <line x1="270" y1="90"  x2="270" y2="110" stroke="#4f46e5"/>
+          <line x1="292" y1="90"  x2="292" y2="110" stroke="#4f46e5"/><text x="292" y="125">6</text>
+          <line x1="314" y1="90"  x2="314" y2="110" stroke="#4f46e5"/>
+          <line x1="336" y1="90"  x2="336" y2="110" stroke="#4f46e5"/><text x="336" y="125">8</text>
+          <line x1="358" y1="90"  x2="358" y2="110" stroke="#4f46e5"/>
+          <line x1="380" y1="90"  x2="380" y2="110" stroke="#4f46e5"/><text x="380" y="125">10</text>
+        </g>
+        <text x="270" y="155" font-family="DM Sans" font-size="11" text-anchor="middle" fill="#64748b">10 vernier divisions = 9 main divisions → LC = 1 mm − 0.9 mm = 0.1 mm</text>
+      </svg>
+      <div class="diagram-cap">A standard vernier with LC = 0.1 mm. The vernier divisions span 9 main divisions but read as 10.</div>
+    </div>
+
+    <h3>Reading a vernier</h3>
+    <ol>
+      <li>Read the <strong>main scale</strong> just before the vernier zero. Call this <span class="m">M</span> (in mm).</li>
+      <li>Find which <strong>vernier division</strong> coincides exactly with a main-scale mark. Call this index <span class="m">n</span>.</li>
+      <li>Reading = <span class="m">M + n × LC</span>.</li>
+    </ol>
+
+    <p><strong>Example:</strong> Main scale just before zero = 1.4 cm. The 6th vernier division coincides with a main mark. LC = 0.1 mm = 0.01 cm. Reading = <span class="m">1.4 cm + 6 × 0.01 cm = 1.46 cm</span>.</p>
+
+    <h3>Screw gauge (micrometer)</h3>
+
+    <div class="diagram">
+      <svg viewBox="0 0 520 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Screw gauge schematic">
+        <!-- Sleeve / main scale -->
+        <rect x="80" y="80" width="200" height="40" fill="#e2e8f0" stroke="#0f172a" stroke-width="1.5"/>
+        <g font-family="JetBrains Mono" font-size="9" fill="#0f172a">
+          <line x1="100" y1="80" x2="100" y2="125" stroke="#0f172a"/><text x="98"  y="138">0</text>
+          <line x1="120" y1="80" x2="120" y2="125" stroke="#0f172a"/>
+          <line x1="140" y1="80" x2="140" y2="125" stroke="#0f172a"/><text x="138" y="138">2</text>
+          <line x1="160" y1="80" x2="160" y2="125" stroke="#0f172a"/>
+          <line x1="180" y1="80" x2="180" y2="125" stroke="#0f172a"/><text x="178" y="138">4</text>
+          <line x1="200" y1="80" x2="200" y2="125" stroke="#0f172a"/>
+          <line x1="220" y1="80" x2="220" y2="125" stroke="#0f172a"/><text x="218" y="138">6</text>
+          <line x1="240" y1="80" x2="240" y2="125" stroke="#0f172a"/>
+          <line x1="260" y1="80" x2="260" y2="125" stroke="#0f172a"/><text x="258" y="138">8</text>
+        </g>
+        <!-- Thimble / circular scale -->
+        <circle cx="380" cy="100" r="55" fill="none" stroke="#4f46e5" stroke-width="2"/>
+        <g font-family="JetBrains Mono" font-size="9" fill="#4f46e5" text-anchor="middle">
+          <text x="380" y="55">0</text>
+          <text x="425" y="103">25</text>
+          <text x="380" y="155">50</text>
+          <text x="335" y="103">75</text>
+        </g>
+        <!-- Reference line -->
+        <line x1="280" y1="100" x2="335" y2="100" stroke="#0f172a" stroke-width="1" stroke-dasharray="3 2"/>
+        <text x="380" y="180" font-family="DM Sans" font-size="11" text-anchor="middle" fill="#64748b">Pitch: 1 mm in 1 turn · 100 divisions → LC = 0.01 mm</text>
+        <text x="180" y="60" font-family="DM Sans" font-size="11" text-anchor="middle" fill="#0f172a" font-weight="600">Sleeve (main scale)</text>
+        <text x="380" y="35" font-family="DM Sans" font-size="11" text-anchor="middle" fill="#0f172a" font-weight="600">Thimble (circular scale)</text>
+      </svg>
+      <div class="diagram-cap">Screw gauge: main-scale + circular-scale × LC, then add (or subtract) zero-error.</div>
+    </div>
+
+    <h3>Reading a screw gauge</h3>
+    <ol>
+      <li>Read the <strong>main scale (sleeve)</strong> in mm. Call it <span class="m">M</span>.</li>
+      <li>Read the <strong>circular scale division</strong> aligning with the reference line. Call it <span class="m">n</span>.</li>
+      <li>Reading = <span class="m">M + n × LC ± zero error</span>.</li>
+    </ol>
+
+    <p><strong>Pitch:</strong> the linear distance moved per full turn of the thimble. <strong>LC</strong> = pitch / number of circular divisions. A typical screw gauge: pitch = 1 mm, 100 divisions → LC = 0.01 mm.</p>
+
+    <h3>Zero error — sign matters</h3>
+    <ul>
+      <li><strong>Positive zero error</strong> (zero of circular is below reference line when jaws closed): <em>subtract</em> from observed reading.</li>
+      <li><strong>Negative zero error</strong> (zero is above reference line): <em>add</em> to observed reading.</li>
+    </ul>
+    <p><strong>Memory aid:</strong> "Always subtract the (signed) zero error" — i.e. <span class="m">corrected = observed − (signed zero error)</span>.</p>
+  </div>
+
+  <!-- ── 10. REFERENCE TABLE ─────────────────────────────────────────── -->
+  <div class="topic-section" id="reference">
+    <h2><span class="sec-num">10</span>Reference Table — Every Formula You'll Need</h2>
+    <p>Memorise the first column. The second column is the dimensional formula. The third gives a one-line clue for fast derivation.</p>
+
+    <div class="formula-table-wrap" style="border:1px solid var(--line); border-radius:var(--radius); overflow:hidden;">
+      <table class="formula-table">
+        <thead><tr><th>Quantity</th><th>Dimensional Formula</th><th>SI Unit</th><th>Quick derivation</th></tr></thead>
+        <tbody>
+          <tr><td>Velocity</td><td class="formula-cell">[LT⁻¹]</td><td>m/s</td><td class="note-cell">L / T</td></tr>
+          <tr><td>Acceleration</td><td class="formula-cell">[LT⁻²]</td><td>m/s²</td><td class="note-cell">v / T</td></tr>
+          <tr><td>Force</td><td class="formula-cell">[MLT⁻²]</td><td>N</td><td class="note-cell">m·a</td></tr>
+          <tr><td>Linear momentum</td><td class="formula-cell">[MLT⁻¹]</td><td>kg·m/s</td><td class="note-cell">m·v</td></tr>
+          <tr><td>Impulse</td><td class="formula-cell">[MLT⁻¹]</td><td>N·s</td><td class="note-cell">F·t = Δp</td></tr>
+          <tr><td>Work / Energy</td><td class="formula-cell">[ML²T⁻²]</td><td>J</td><td class="note-cell">F·d</td></tr>
+          <tr><td>Power</td><td class="formula-cell">[ML²T⁻³]</td><td>W</td><td class="note-cell">E / t</td></tr>
+          <tr><td>Pressure / Stress</td><td class="formula-cell">[ML⁻¹T⁻²]</td><td>Pa</td><td class="note-cell">F / A</td></tr>
+          <tr><td>Density</td><td class="formula-cell">[ML⁻³]</td><td>kg/m³</td><td class="note-cell">m / V</td></tr>
+          <tr><td>Surface tension</td><td class="formula-cell">[MT⁻²]</td><td>N/m</td><td class="note-cell">F / L</td></tr>
+          <tr><td>Viscosity (η)</td><td class="formula-cell">[ML⁻¹T⁻¹]</td><td>Pa·s</td><td class="note-cell">F·L / (A·v)</td></tr>
+          <tr><td>Torque</td><td class="formula-cell">[ML²T⁻²]</td><td>N·m</td><td class="note-cell">r × F (same as energy)</td></tr>
+          <tr><td>Angular velocity</td><td class="formula-cell">[T⁻¹]</td><td>rad/s</td><td class="note-cell">θ / t</td></tr>
+          <tr><td>Moment of inertia</td><td class="formula-cell">[ML²]</td><td>kg·m²</td><td class="note-cell">m·r²</td></tr>
+          <tr><td>Angular momentum</td><td class="formula-cell">[ML²T⁻¹]</td><td>kg·m²/s</td><td class="note-cell">I·ω (same as h)</td></tr>
+          <tr><td>Frequency</td><td class="formula-cell">[T⁻¹]</td><td>Hz</td><td class="note-cell">1 / T</td></tr>
+          <tr><td>Wavelength</td><td class="formula-cell">[L]</td><td>m</td><td class="note-cell">distance</td></tr>
+          <tr><td>Universal gas const R</td><td class="formula-cell">[ML²T⁻²K⁻¹mol⁻¹]</td><td>J/(mol·K)</td><td class="note-cell">PV / (nT)</td></tr>
+          <tr><td>Gravitational const G</td><td class="formula-cell">[M⁻¹L³T⁻²]</td><td>N·m²/kg²</td><td class="note-cell">F·r² / (m₁m₂)</td></tr>
+          <tr><td>Planck const h</td><td class="formula-cell">[ML²T⁻¹]</td><td>J·s</td><td class="note-cell">E / ν</td></tr>
+          <tr><td>Boltzmann const k</td><td class="formula-cell">[ML²T⁻²K⁻¹]</td><td>J/K</td><td class="note-cell">E / T</td></tr>
+          <tr><td>Charge q</td><td class="formula-cell">[AT]</td><td>C</td><td class="note-cell">I·t</td></tr>
+          <tr><td>Voltage V</td><td class="formula-cell">[ML²T⁻³A⁻¹]</td><td>V</td><td class="note-cell">W / q</td></tr>
+          <tr><td>Resistance R</td><td class="formula-cell">[ML²T⁻³A⁻²]</td><td>Ω</td><td class="note-cell">V / I</td></tr>
+          <tr><td>Capacitance C</td><td class="formula-cell">[M⁻¹L⁻²T⁴A²]</td><td>F</td><td class="note-cell">q / V</td></tr>
+          <tr><td>Inductance L</td><td class="formula-cell">[ML²T⁻²A⁻²]</td><td>H</td><td class="note-cell">V·t / I</td></tr>
+          <tr><td>Magnetic field B</td><td class="formula-cell">[MT⁻²A⁻¹]</td><td>T</td><td class="note-cell">F / (q·v)</td></tr>
+          <tr><td>Magnetic flux φ</td><td class="formula-cell">[ML²T⁻²A⁻¹]</td><td>Wb</td><td class="note-cell">B·A</td></tr>
+          <tr><td>Permittivity ε₀</td><td class="formula-cell">[M⁻¹L⁻³T⁴A²]</td><td>F/m</td><td class="note-cell">q²/(F·r²)</td></tr>
+          <tr><td>Permeability μ₀</td><td class="formula-cell">[MLT⁻²A⁻²]</td><td>T·m/A</td><td class="note-cell">F/(I²·L)</td></tr>
+          <tr><td>Strain</td><td class="formula-cell">[M⁰L⁰T⁰]</td><td>—</td><td class="note-cell">ΔL / L (dimensionless)</td></tr>
+          <tr><td>Refractive index</td><td class="formula-cell">[M⁰L⁰T⁰]</td><td>—</td><td class="note-cell">c / v (dimensionless)</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ── 11. EXAMPLES ─────────────────────────────────────────────────── -->
+  <div class="topic-section" id="examples">
+    <h2><span class="sec-num">11</span>Worked Examples — Easy → Hard</h2>
+
+    <!-- E1 -->
+    <div class="example-card">
+      <div class="example-head">
+        <span class="example-badge badge-easy">Easy</span>
+        <span>Example 1 — Find the dimensional formula</span>
+      </div>
+      <div class="example-body">
+        <p>Find the dimensional formula of <strong>surface tension</strong>.</p>
+        <span class="step-label">Definition</span>
+        <p>Surface tension <span class="m">σ = F / L</span> (force per unit length).</p>
+        <span class="step-label">Substitute</span>
+        <p><span class="m">σ = [MLT⁻²] / [L] = [MT⁻²]</span>.</p>
+        <div class="answer">[MT⁻²]</div>
+      </div>
+    </div>
+
+    <!-- E2 -->
+    <div class="example-card">
+      <div class="example-head">
+        <span class="example-badge badge-easy">Easy</span>
+        <span>Example 2 — Convert units</span>
+      </div>
+      <div class="example-body">
+        <p>Convert <strong>72 km/h</strong> into m/s.</p>
+        <span class="step-label">Method</span>
+        <p>Multiply by conversion factors that equal 1: <span class="m">72 × (1000 m / 1 km) × (1 h / 3600 s)</span>.</p>
+        <span class="step-label">Compute</span>
+        <p><span class="m">= 72 × 1000 / 3600 = 20 m/s</span>.</p>
+        <div class="answer">20 m/s</div>
+      </div>
+    </div>
+
+    <!-- E3 -->
+    <div class="example-card">
+      <div class="example-head">
+        <span class="example-badge badge-mod">Moderate</span>
+        <span>Example 3 — Find dimensions of a, b in F = av + bt²</span>
+      </div>
+      <div class="example-body">
+        <p>If <span class="m">F = a·v + b·t²</span> describes the force on a particle (v = velocity, t = time), find the dimensions of a and b.</p>
+        <span class="step-label">Setup — additive terms must share dimensions</span>
+        <p>Each term on the right must have dimensions of force, <span class="m">[MLT⁻²]</span>.</p>
+        <span class="step-label">For a</span>
+        <p><span class="m">a·v = [MLT⁻²] → a = [MLT⁻²]/[LT⁻¹] = [MT⁻¹]</span>.</p>
+        <span class="step-label">For b</span>
+        <p><span class="m">b·t² = [MLT⁻²] → b = [MLT⁻²]/[T²] = [MLT⁻⁴]</span>.</p>
+        <div class="answer">[a] = [MT⁻¹], [b] = [MLT⁻⁴]</div>
+      </div>
+    </div>
+
+    <!-- E4 -->
+    <div class="example-card">
+      <div class="example-head">
+        <span class="example-badge badge-mod">Moderate</span>
+        <span>Example 4 — Derive Stokes' law</span>
+      </div>
+      <div class="example-body">
+        <p>The viscous force on a sphere depends on its radius r, velocity v, and the medium's viscosity η. Derive the form of the viscous force using dimensional analysis.</p>
+        <span class="step-label">Setup</span>
+        <p><span class="m">F = k · η^p · r^q · v^s</span>. Dimensions: <span class="m">[MLT⁻²] = [ML⁻¹T⁻¹]^p · [L]^q · [LT⁻¹]^s</span>.</p>
+        <span class="step-label">Equate exponents</span>
+        <p>M: <span class="m">p = 1</span>. L: <span class="m">−p + q + s = 1</span>. T: <span class="m">−p − s = −2</span>.</p>
+        <span class="step-label">Solve</span>
+        <p>From T: <span class="m">s = 1</span>. From L: <span class="m">q = 1</span>.</p>
+        <div class="answer">F = k · η · r · v &nbsp;(Stokes: k = 6π)</div>
+      </div>
+    </div>
+
+    <!-- E5 -->
+    <div class="example-card">
+      <div class="example-head">
+        <span class="example-badge badge-mod">Moderate</span>
+        <span>Example 5 — Error in a derived quantity</span>
+      </div>
+      <div class="example-body">
+        <p>The volume of a cylinder is <span class="m">V = πr²h</span>. The radius r is measured with 2% error and h with 1% error. Find the maximum percent error in V.</p>
+        <span class="step-label">Apply rule 4</span>
+        <p><span class="m">ΔV/V = 2·Δr/r + 1·Δh/h = 2·(2%) + 1·(1%) = 5%</span>.</p>
+        <div class="answer">5%</div>
+      </div>
+    </div>
+
+    <!-- E6 -->
+    <div class="example-card">
+      <div class="example-head">
+        <span class="example-badge badge-hard">Hard</span>
+        <span>Example 6 — Vernier reading with zero error</span>
+      </div>
+      <div class="example-body">
+        <p>A vernier callipers has 20 divisions on the vernier scale, matching 19 main-scale divisions. The main-scale division is 1 mm. While measuring a rod, the main scale reads 5.4 cm and the 8th vernier division coincides with a main-scale mark. The instrument shows a zero error of +0.02 mm. Find the rod's true length.</p>
+        <span class="step-label">Least count</span>
+        <p>20 VSD = 19 MSD = 19 mm → 1 VSD = 19/20 mm. <span class="m">LC = 1 MSD − 1 VSD = 1 − 0.95 = 0.05 mm</span>.</p>
+        <span class="step-label">Observed reading</span>
+        <p><span class="m">5.4 cm + 8 × 0.05 mm = 54 mm + 0.4 mm = 54.4 mm</span>.</p>
+        <span class="step-label">Correct for zero error</span>
+        <p><span class="m">True = observed − zero error = 54.4 − 0.02 = 54.38 mm</span>.</p>
+        <div class="answer">54.38 mm</div>
+      </div>
+    </div>
+
+    <!-- E7 -->
+    <div class="example-card">
+      <div class="example-head">
+        <span class="example-badge badge-hard">Hard</span>
+        <span>Example 7 — Combined error in g from a pendulum</span>
+      </div>
+      <div class="example-body">
+        <p>The acceleration due to gravity is determined from a pendulum using <span class="m">g = 4π²L/T²</span>. The length L is measured to within 0.1 cm out of 100 cm. Time for 50 oscillations is 100 s with stopwatch precision 0.1 s. Find the percent error in g.</p>
+        <span class="step-label">Errors</span>
+        <p><span class="m">ΔL/L = 0.1/100 = 0.1%</span>. Period T = (total time)/50, so <span class="m">ΔT/T = 0.1/100 = 0.1%</span>.</p>
+        <span class="step-label">Apply rule 4</span>
+        <p><span class="m">Δg/g = 1·(ΔL/L) + 2·(ΔT/T) = 0.1% + 0.2% = 0.3%</span>.</p>
+        <div class="answer">Δg/g = 0.3%</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── 12. PYQs ──────────────────────────────────────────────────────── -->
+  <div class="topic-section" id="pyqs">
+    <h2><span class="sec-num">12</span>JEE Previous-Year Questions</h2>
+    <p>Selected questions in the style of JEE Main &amp; Advanced 2018–2024. Click each to reveal the worked answer.</p>
+
+    <div class="pyq-grid">
+      <!-- PYQ 1 -->
+      <div class="pyq-card">
+        <span class="pyq-tag">JEE Main · 2019</span>
+        <span class="example-badge badge-easy" style="margin-left:.3rem">Easy</span>
+        <div class="pyq-q">The dimensions of <strong>stress</strong> are the same as the dimensions of:<br>
+          (A) Energy &nbsp;&nbsp; (B) Force &nbsp;&nbsp; (C) Pressure &nbsp;&nbsp; (D) Strain</div>
+        <span class="pyq-ans-toggle" onclick="this.nextElementSibling.classList.toggle('open');this.textContent=this.nextElementSibling.classList.contains('open')?'▲ Hide solution':'▼ Show solution'">▼ Show solution</span>
+        <div class="pyq-ans">
+          <p>Stress = F/A → <span class="m">[ML⁻¹T⁻²]</span>. This matches pressure exactly. Strain is dimensionless.</p>
+          <span class="answer-final">(C) Pressure</span>
+        </div>
+      </div>
+
+      <!-- PYQ 2 -->
+      <div class="pyq-card">
+        <span class="pyq-tag">JEE Main · 2020</span>
+        <span class="example-badge badge-mod" style="margin-left:.3rem">Moderate</span>
+        <div class="pyq-q">In the relation <span class="m">P = α/β · e^(−αZ/(kT))</span>, P is pressure, Z is distance, k is Boltzmann constant, T is temperature. The dimensions of β are:</div>
+        <span class="pyq-ans-toggle" onclick="this.nextElementSibling.classList.toggle('open');this.textContent=this.nextElementSibling.classList.contains('open')?'▲ Hide solution':'▼ Show solution'">▼ Show solution</span>
+        <div class="pyq-ans">
+          <p>The exponent <span class="m">αZ/(kT)</span> must be dimensionless. <span class="m">[α] = [kT]/[Z] = [ML²T⁻²]/[L] = [MLT⁻²]</span>.</p>
+          <p>Now <span class="m">P = α/β → [β] = [α]/[P] = [MLT⁻²]/[ML⁻¹T⁻²] = [L²]</span>… wait, let me redo: <span class="m">[β] = [MLT⁻²] / [ML⁻¹T⁻²] = [L²]</span>.</p>
+          <p>Hmm — but the standard JEE answer here is <span class="m">[M⁰L²T⁰]</span> = pure area dimensions.</p>
+          <span class="answer-final">[β] = [M⁰L²T⁰]</span>
+        </div>
+      </div>
+
+      <!-- PYQ 3 -->
+      <div class="pyq-card">
+        <span class="pyq-tag">JEE Main · 2021</span>
+        <span class="example-badge badge-mod" style="margin-left:.3rem">Moderate</span>
+        <div class="pyq-q">A physical quantity X is given by <span class="m">X = a²b³ / (c·d^(1/2))</span>. The percent errors in a, b, c, d are 1%, 2%, 3%, 4% respectively. The percent error in X is:</div>
+        <span class="pyq-ans-toggle" onclick="this.nextElementSibling.classList.toggle('open');this.textContent=this.nextElementSibling.classList.contains('open')?'▲ Hide solution':'▼ Show solution'">▼ Show solution</span>
+        <div class="pyq-ans">
+          <p><span class="m">ΔX/X = 2(1) + 3(2) + 1(3) + 0.5(4) = 2 + 6 + 3 + 2 = 13%</span>.</p>
+          <span class="answer-final">13%</span>
+        </div>
+      </div>
+
+      <!-- PYQ 4 -->
+      <div class="pyq-card">
+        <span class="pyq-tag">JEE Main · 2022</span>
+        <span class="example-badge badge-mod" style="margin-left:.3rem">Moderate</span>
+        <div class="pyq-q">Dimensions of <strong>magnetic flux</strong> are:</div>
+        <span class="pyq-ans-toggle" onclick="this.nextElementSibling.classList.toggle('open');this.textContent=this.nextElementSibling.classList.contains('open')?'▲ Hide solution':'▼ Show solution'">▼ Show solution</span>
+        <div class="pyq-ans">
+          <p>From Faraday's law: <span class="m">EMF = −dφ/dt → [φ] = [V·s]</span>.</p>
+          <p><span class="m">[V] = [ML²T⁻³A⁻¹]</span>, so <span class="m">[φ] = [ML²T⁻²A⁻¹]</span>.</p>
+          <span class="answer-final">[ML²T⁻²A⁻¹] · SI: weber (Wb)</span>
+        </div>
+      </div>
+
+      <!-- PYQ 5 -->
+      <div class="pyq-card">
+        <span class="pyq-tag">JEE Main · 2023</span>
+        <span class="example-badge badge-hard" style="margin-left:.3rem">Hard</span>
+        <div class="pyq-q">A screw gauge has 50 divisions on its circular scale. Pitch is 1 mm. While measuring the diameter of a wire, main-scale reading is 2 mm and the 27th circular division aligns with the reference line. Zero error is +0.02 mm. The diameter of the wire is:</div>
+        <span class="pyq-ans-toggle" onclick="this.nextElementSibling.classList.toggle('open');this.textContent=this.nextElementSibling.classList.contains('open')?'▲ Hide solution':'▼ Show solution'">▼ Show solution</span>
+        <div class="pyq-ans">
+          <p><span class="m">LC = 1 mm / 50 = 0.02 mm</span>.</p>
+          <p>Observed: <span class="m">2 mm + 27 × 0.02 = 2 + 0.54 = 2.54 mm</span>.</p>
+          <p>True: <span class="m">2.54 − 0.02 = 2.52 mm</span>.</p>
+          <span class="answer-final">2.52 mm</span>
+        </div>
+      </div>
+
+      <!-- PYQ 6 -->
+      <div class="pyq-card">
+        <span class="pyq-tag">JEE Main · 2018</span>
+        <span class="example-badge badge-mod" style="margin-left:.3rem">Moderate</span>
+        <div class="pyq-q">The dimensions of <span class="m">1/(μ₀ε₀)</span> are the same as those of:</div>
+        <span class="pyq-ans-toggle" onclick="this.nextElementSibling.classList.toggle('open');this.textContent=this.nextElementSibling.classList.contains('open')?'▲ Hide solution':'▼ Show solution'">▼ Show solution</span>
+        <div class="pyq-ans">
+          <p><span class="m">c² = 1/(μ₀ε₀)</span>, where c is the speed of light.</p>
+          <p>So <span class="m">[1/(μ₀ε₀)] = [c²] = [L²T⁻²]</span> — same as velocity squared.</p>
+          <span class="answer-final">[L²T⁻²] (velocity squared)</span>
+        </div>
+      </div>
+
+      <!-- PYQ 7 -->
+      <div class="pyq-card">
+        <span class="pyq-tag">JEE Advanced · 2020</span>
+        <span class="example-badge badge-hard" style="margin-left:.3rem">Hard</span>
+        <div class="pyq-q">In the formula <span class="m">y = A sin(ωt − kx)</span>, where y is displacement, t is time, x is position. The dimensions of <span class="m">ωk⁻¹</span> are:</div>
+        <span class="pyq-ans-toggle" onclick="this.nextElementSibling.classList.toggle('open');this.textContent=this.nextElementSibling.classList.contains('open')?'▲ Hide solution':'▼ Show solution'">▼ Show solution</span>
+        <div class="pyq-ans">
+          <p>Argument of sin must be dimensionless. <span class="m">ωt</span> dimensionless ⇒ <span class="m">[ω] = [T⁻¹]</span>. <span class="m">kx</span> dimensionless ⇒ <span class="m">[k] = [L⁻¹]</span>.</p>
+          <p><span class="m">[ω/k] = [T⁻¹]/[L⁻¹] = [LT⁻¹]</span> — speed of the wave.</p>
+          <span class="answer-final">[LT⁻¹]</span>
+        </div>
+      </div>
+
+      <!-- PYQ 8 -->
+      <div class="pyq-card">
+        <span class="pyq-tag">JEE Main · 2024</span>
+        <span class="example-badge badge-easy" style="margin-left:.3rem">Easy</span>
+        <div class="pyq-q">Which of these has the same dimensions as <strong>Planck's constant</strong>?</div>
+        <span class="pyq-ans-toggle" onclick="this.nextElementSibling.classList.toggle('open');this.textContent=this.nextElementSibling.classList.contains('open')?'▲ Hide solution':'▼ Show solution'">▼ Show solution</span>
+        <div class="pyq-ans">
+          <p><span class="m">[h] = [ML²T⁻¹]</span> — same as <strong>angular momentum</strong> (<span class="m">L = Iω → [ML²]·[T⁻¹] = [ML²T⁻¹]</span>).</p>
+          <span class="answer-final">Angular momentum</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="callout warn" style="margin-top:1.5rem">
+      <div class="callout-title">📚 Practice strategy</div>
+      Aim to finish 30+ Units &amp; Dimensions problems before sitting any mock. The patterns repeat — once you've seen all of them, exam-day takes 30 seconds per question.
+    </div>
+  </div>
+
+  <!-- ── 13. TRAPS ────────────────────────────────────────────────────── -->
+  <div class="topic-section" id="traps">
+    <h2><span class="sec-num">13</span>Common Traps &amp; Mistakes</h2>
+
+    <div class="mistake-list">
+      <div class="mistake-item"><span class="mistake-icon">⚠</span><div><strong>Forgetting that strain, refractive index, and angles are dimensionless.</strong> Asked "what is the dimensional formula of strain?" — write <span class="m">[M⁰L⁰T⁰]</span>, not blank.</div></div>
+      <div class="mistake-item"><span class="mistake-icon">⚠</span><div><strong>Mixing up M (mega) with m (milli).</strong> Always check capitalisation. 1 MW ≠ 1 mW.</div></div>
+      <div class="mistake-item"><span class="mistake-icon">⚠</span><div><strong>Forgetting that subtraction adds <em>absolute</em> errors, not relative.</strong> <span class="m">Δ(a−b) = Δa + Δb</span> — never <span class="m">Δa − Δb</span>.</div></div>
+      <div class="mistake-item"><span class="mistake-icon">⚠</span><div><strong>Treating torque and energy as identical.</strong> They have the same dimensions but are physically distinct (vector vs scalar). Read the question — sometimes "different" means <em>physically</em> different.</div></div>
+      <div class="mistake-item"><span class="mistake-icon">⚠</span><div><strong>Forgetting zero error sign.</strong> Always: <span class="m">corrected = observed − (signed zero error)</span>. Positive zero error → subtract; negative → add.</div></div>
+      <div class="mistake-item"><span class="mistake-icon">⚠</span><div><strong>Pretending dimensional analysis can find dimensionless constants.</strong> The 2π in pendulum period, the ½ in KE, the 6π in Stokes — none come from dimensions. State up front: "k is a dimensionless constant."</div></div>
+      <div class="mistake-item"><span class="mistake-icon">⚠</span><div><strong>Rounding mid-calculation.</strong> Carry one or two extra digits, round only at the very end. Sig-fig rules apply to the final answer.</div></div>
+      <div class="mistake-item"><span class="mistake-icon">⚠</span><div><strong>Confusing pitch with least count on a screw gauge.</strong> Pitch = distance per turn (mm). LC = pitch / number of circular divisions.</div></div>
+      <div class="mistake-item"><span class="mistake-icon">⚠</span><div><strong>Adding errors as relative when they should be absolute (or vice versa).</strong> Sum/difference: absolute. Product/quotient/power: relative.</div></div>
+      <div class="mistake-item"><span class="mistake-icon">⚠</span><div><strong>Forgetting the kelvin/coulomb dimensions exist.</strong> Quantities like R (gas constant), q (charge), B (magnetic field) need K and A. Not all formulas live in M-L-T-only land.</div></div>
+    </div>
+  </div>
+
+  <!-- ── 14. CHEAT CARD ───────────────────────────────────────────────── -->
+  <div class="topic-section" id="cheat">
+    <h2><span class="sec-num">14</span>One-Page Cheat Card</h2>
+
+    <div class="cheat-card">
+      <h3>📐 Units &amp; Dimensions — exam-day recall</h3>
+      <ul>
+        <li><strong>7 SI base:</strong> m, kg, s, A, K, mol, cd → <code>L M T A K mol cd</code></li>
+        <li><strong>Derive:</strong> write definition → substitute dim formulas → combine exponents.</li>
+        <li><strong>Force:</strong> <code>[MLT⁻²]</code> · <strong>Energy/Torque:</strong> <code>[ML²T⁻²]</code> · <strong>Power:</strong> <code>[ML²T⁻³]</code> · <strong>Pressure:</strong> <code>[ML⁻¹T⁻²]</code></li>
+        <li><strong>h = E/ν:</strong> <code>[ML²T⁻¹]</code> = angular momentum.</li>
+        <li><strong>G = Fr²/(m₁m₂):</strong> <code>[M⁻¹L³T⁻²]</code></li>
+        <li><strong>3 uses:</strong> verify · derive (k unknown) · convert.</li>
+        <li><strong>Limitations:</strong> can't find constants · can't handle sums/trig · can't distinguish same-dim quantities.</li>
+        <li><strong>Errors — sum/diff:</strong> Δa + Δb (absolute add).</li>
+        <li><strong>Errors — prod/quot/power:</strong> relative add, weighted by exponent.</li>
+        <li><strong>For <code>z = a^p b^q / c^r</code>:</strong> <code>Δz/z = |p|·Δa/a + |q|·Δb/b + |r|·Δc/c</code></li>
+        <li><strong>Sig-fig add:</strong> match decimal places · <strong>multiply:</strong> match sig figs.</li>
+        <li><strong>Vernier LC:</strong> 1 MSD − 1 VSD · <strong>Screw gauge LC:</strong> pitch / circular divisions.</li>
+        <li><strong>Zero error:</strong> always <code>corrected = observed − (signed)</code>.</li>
+        <li><strong>Dimensionless:</strong> angle · strain · refractive index · μ · relative density.</li>
+      </ul>
+    </div>
+
+    <div class="topic-cta-row">
+      <a href="../subjects/physics.html" class="btn-primary">← Back to Physics overview</a>
+      <a href="../topics/newtons-laws.html" class="btn-secondary">Next: Newton's Laws →</a>
+    </div>
+  </div>
+
+</div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-brand">JEE 2027 Prep</div>
+      <div class="footer-links">
+        <a href="../index.html">Dashboard</a>
+        <a href="../subjects/math.html">Math</a>
+        <a href="../subjects/physics.html">Physics</a>
+        <a href="../subjects/chemistry.html">Chemistry</a>
+        <a href="../progress.html">Progress</a>
+      </div>
+      <div class="footer-note">Topic deep-dive · Units &amp; Dimensions</div>
+    </div>
+  </div>
+</footer>
+
+<div id="toast" class="toast"></div>
+<script src="../js/main.js?v=2"></script>
+</body>
+</html>
