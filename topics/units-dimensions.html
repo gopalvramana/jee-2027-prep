@@ -170,6 +170,40 @@
       <div class="callout-title">📌 Drill</div>
       Pick any 10 formulas you can remember (kinetic energy, capacitance, viscosity, etc.) and derive their dimensions. After 30 reps, the algebra becomes automatic and the table at the end of this guide is just a sanity check.
     </div>
+
+    <!-- ── Interactive: Derive any dimensional formula ──────────────── -->
+    <div class="explainer" id="ex-dim-derive">
+      <div class="explainer-title">
+        <span class="explainer-title-tag">Interactive</span>
+        🎮 Derive any dimensional formula
+      </div>
+      <p style="font-size:.88rem; color:var(--ink2); margin-bottom:.6rem">Pick a physical quantity. The page walks through the substitution and exponent algebra for you.</p>
+      <select class="explainer-select" id="dim-pick" aria-label="Choose a quantity">
+        <option value="velocity">Velocity (v)</option>
+        <option value="acceleration">Acceleration (a)</option>
+        <option value="momentum">Linear momentum (p)</option>
+        <option value="force" selected>Force (F)</option>
+        <option value="energy">Energy / Work (E)</option>
+        <option value="power">Power (P)</option>
+        <option value="pressure">Pressure (P)</option>
+        <option value="surface-tension">Surface tension (σ)</option>
+        <option value="viscosity">Viscosity (η)</option>
+        <option value="grav-const">Gravitational constant (G)</option>
+        <option value="planck">Planck's constant (h)</option>
+        <option value="resistance">Electrical resistance (R)</option>
+        <option value="capacitance">Capacitance (C)</option>
+        <option value="magnetic-flux">Magnetic flux (φ)</option>
+      </select>
+      <div class="explainer-stage" id="dim-stage" style="text-align:left">
+        <div id="dim-name" style="font-weight:700; font-size:1rem; color:var(--ink); margin-bottom:.5rem">Force (F)</div>
+        <div id="dim-def" style="font-size:.88rem; color:var(--ink3); margin-bottom:.65rem">Defining equation: <span class="m" id="dim-def-eq">F = m · a</span></div>
+        <div class="explainer-step-list" id="dim-steps"></div>
+        <div class="explainer-final" id="dim-final-wrap">
+          <span class="lbl-prefix">Final dimensional formula</span>
+          <span id="dim-final">[MLT⁻²]</span>
+        </div>
+      </div>
+    </div>
   </div>
 
   <!-- ── 4. THREE USES ────────────────────────────────────────────────── -->
@@ -351,6 +385,63 @@
     <h3>Practice — common JEE style</h3>
     <p>For <span class="m">x = a²b/√c</span> with errors <span class="m">a: 2%, b: 3%, c: 4%</span>:</p>
     <p>Apply rule 4: <span class="m">Δx/x = 2·(2%) + 1·(3%) + ½·(4%) = 4% + 3% + 2% = 9%</span>.</p>
+
+    <!-- ── Interactive: Error propagation calculator ─────────────────── -->
+    <div class="explainer" id="ex-error-prop">
+      <div class="explainer-title">
+        <span class="explainer-title-tag">Interactive</span>
+        🎮 Error-propagation calculator
+      </div>
+      <p style="font-size:.88rem; color:var(--ink2); margin-bottom:.6rem">For <span class="m">z = a^p · b^q / c^r</span>, set the exponents and the percent errors of each measurement. The total error in z updates live.</p>
+
+      <h4 style="font-size:.85rem; color:var(--ink2); margin: 1rem 0 .35rem">Exponents</h4>
+      <div class="explainer-slider-row">
+        <label for="ep-p">p (power of a)</label>
+        <input type="range" id="ep-p" min="0" max="4" value="2" step="0.5">
+        <span class="val" id="ep-p-val">2</span>
+      </div>
+      <div class="explainer-slider-row">
+        <label for="ep-q">q (power of b)</label>
+        <input type="range" id="ep-q" min="0" max="4" value="1" step="0.5">
+        <span class="val" id="ep-q-val">1</span>
+      </div>
+      <div class="explainer-slider-row">
+        <label for="ep-r">r (power of c)</label>
+        <input type="range" id="ep-r" min="0" max="4" value="0.5" step="0.5">
+        <span class="val" id="ep-r-val">0.5</span>
+      </div>
+
+      <h4 style="font-size:.85rem; color:var(--ink2); margin: 1rem 0 .35rem">Measurement errors (%)</h4>
+      <div class="explainer-slider-row">
+        <label for="ep-da">Δa / a</label>
+        <input type="range" id="ep-da" min="0" max="10" value="2" step="0.5">
+        <span class="val" id="ep-da-val">2.0%</span>
+      </div>
+      <div class="explainer-slider-row">
+        <label for="ep-db">Δb / b</label>
+        <input type="range" id="ep-db" min="0" max="10" value="3" step="0.5">
+        <span class="val" id="ep-db-val">3.0%</span>
+      </div>
+      <div class="explainer-slider-row">
+        <label for="ep-dc">Δc / c</label>
+        <input type="range" id="ep-dc" min="0" max="10" value="4" step="0.5">
+        <span class="val" id="ep-dc-val">4.0%</span>
+      </div>
+
+      <div class="explainer-formula-live" id="ep-formula">Δz/z = 2·(2.0%) + 1·(3.0%) + 0.5·(4.0%) = 9.0%</div>
+
+      <div class="explainer-readout-grid">
+        <div class="explainer-readout"><div class="lbl">From a (p · Δa/a)</div><div class="num" id="ep-cont-a">4.0%</div></div>
+        <div class="explainer-readout"><div class="lbl">From b (q · Δb/b)</div><div class="num" id="ep-cont-b">3.0%</div></div>
+        <div class="explainer-readout"><div class="lbl">From c (r · Δc/c)</div><div class="num" id="ep-cont-c">2.0%</div></div>
+        <div class="explainer-readout feel"><div class="lbl">Total Δz/z</div><div class="num" id="ep-total">9.0%</div></div>
+      </div>
+
+      <div class="callout info" style="margin-top:1rem">
+        <div class="callout-title">Try this</div>
+        Drop r to 0 and watch the c contribution vanish. Crank q to 4 and see how a single high exponent dominates. <strong>The largest exponent always commands the biggest share of the error.</strong>
+      </div>
+    </div>
   </div>
 
   <!-- ── 9. INSTRUMENTS ──────────────────────────────────────────────── -->
@@ -450,6 +541,60 @@
     </ol>
 
     <p><strong>Pitch:</strong> the linear distance moved per full turn of the thimble. <strong>LC</strong> = pitch / number of circular divisions. A typical screw gauge: pitch = 1 mm, 100 divisions → LC = 0.01 mm.</p>
+
+    <!-- ── Interactive: Read a vernier callipers ────────────────────── -->
+    <div class="explainer" id="ex-vernier">
+      <div class="explainer-title">
+        <span class="explainer-title-tag">Interactive</span>
+        🎮 Read a vernier callipers
+      </div>
+      <p style="font-size:.88rem; color:var(--ink2); margin-bottom:.6rem">Drag the slider to change the rod's true length. The page reads the main scale and finds the coinciding vernier division — the same procedure you'd use in the lab.</p>
+
+      <div class="explainer-slider-row">
+        <label for="vern-len">Rod length (cm)</label>
+        <input type="range" id="vern-len" min="100" max="500" value="246" step="1">
+        <span class="val" id="vern-len-val">2.46</span>
+      </div>
+
+      <div class="explainer-stage">
+        <svg id="vern-svg" viewBox="0 0 540 170" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Vernier reading visualization">
+          <!-- Main scale -->
+          <text x="40" y="22" font-family="DM Sans" font-size="11" font-weight="600" fill="#0f172a">Main scale (cm)</text>
+          <line x1="40" y1="55" x2="500" y2="55" stroke="#0f172a" stroke-width="1.5"/>
+          <g id="vern-main-ticks" font-family="JetBrains Mono" font-size="9" fill="#0f172a" text-anchor="middle"></g>
+
+          <!-- Vernier scale (translates with slider) -->
+          <g id="vern-vernier" transform="translate(0,0)">
+            <line x1="40" y1="100" x2="220" y2="100" stroke="#4f46e5" stroke-width="1.5"/>
+            <g id="vern-v-ticks" font-family="JetBrains Mono" font-size="9" fill="#4f46e5" text-anchor="middle"></g>
+            <!-- coincidence marker -->
+            <circle id="vern-marker" cx="40" cy="100" r="5" fill="#4f46e5" opacity=".25"/>
+          </g>
+
+          <text x="270" y="160" font-family="DM Sans" font-size="11" text-anchor="middle" fill="#64748b" id="vern-cap">LC = 0.1 mm · 10 vernier divisions = 9 main divisions</text>
+        </svg>
+      </div>
+
+      <div class="explainer-readout-grid">
+        <div class="explainer-readout">
+          <div class="lbl">Main scale (M)</div>
+          <div class="num" id="vern-M">2.4 cm</div>
+        </div>
+        <div class="explainer-readout">
+          <div class="lbl">Vernier coincidence (n)</div>
+          <div class="num" id="vern-n">6</div>
+        </div>
+        <div class="explainer-readout feel">
+          <div class="lbl">Total reading</div>
+          <div class="num" id="vern-total">2.46 cm</div>
+        </div>
+      </div>
+
+      <div class="callout info" style="margin-top:1rem">
+        <div class="callout-title">Reading rule</div>
+        <strong>Total = M + n × LC</strong>. The main scale gives you the integer mm just before the vernier zero; the vernier division that <em>coincides</em> with a main mark gives you the fractional part.
+      </div>
+    </div>
 
     <h3>Zero error — sign matters</h3>
     <ul>
@@ -812,5 +957,133 @@
 
 <div id="toast" class="toast"></div>
 <script src="../js/main.js?v=2"></script>
+<script>
+// ── Interactive explainer wiring (page-local) ────────────────────────────────
+(function () {
+  // ─── 1. Dimensional formula derivation ────────────────────────────────
+  const DERIVATIONS = {
+    velocity:        { name:'Velocity (v)',                def:'v = displacement / time',           steps:['[v] = [L] / [T]','Combine: subtract exponent of T'],                                                                                                  final:'[L T⁻¹]' },
+    acceleration:    { name:'Acceleration (a)',            def:'a = velocity / time',               steps:['[a] = [L T⁻¹] / [T]','Subtract exponent of T'],                                                                                                       final:'[L T⁻²]' },
+    momentum:        { name:'Linear momentum (p)',         def:'p = m · v',                         steps:['[p] = [M] · [L T⁻¹]','Multiply'],                                                                                                                       final:'[M L T⁻¹]' },
+    force:           { name:'Force (F)',                   def:'F = m · a',                         steps:['[F] = [M] · [L T⁻²]','Multiply'],                                                                                                                       final:'[M L T⁻²]' },
+    energy:          { name:'Energy / Work (E)',           def:'W = F · d',                         steps:['[W] = [M L T⁻²] · [L]','Add exponents of L'],                                                                                                           final:'[M L² T⁻²]' },
+    power:           { name:'Power (P)',                   def:'P = E / t',                         steps:['[P] = [M L² T⁻²] / [T]','Subtract exponent of T'],                                                                                                      final:'[M L² T⁻³]' },
+    pressure:        { name:'Pressure (P)',                def:'P = F / A',                         steps:['[P] = [M L T⁻²] / [L²]','Subtract exponent of L'],                                                                                                      final:'[M L⁻¹ T⁻²]' },
+    'surface-tension':{name:'Surface tension (σ)',         def:'σ = F / L',                         steps:['[σ] = [M L T⁻²] / [L]','Subtract exponent of L'],                                                                                                       final:'[M T⁻²]' },
+    viscosity:       { name:'Viscosity (η)',               def:'η = F / (A · velocity-gradient)',   steps:['[F] / ([L²] · [T⁻¹])','= [M L T⁻²] / [L² T⁻¹]','Combine'],                                                                                                final:'[M L⁻¹ T⁻¹]' },
+    'grav-const':    { name:"Gravitational constant (G)",  def:'G = F · r² / (m₁ · m₂)',            steps:['[G] = [M L T⁻²] · [L²] / [M²]','= [M L³ T⁻²] / [M²]','Subtract exponents of M'],                                                                          final:'[M⁻¹ L³ T⁻²]' },
+    planck:          { name:"Planck's constant (h)",       def:'h = E / ν',                         steps:['[h] = [M L² T⁻²] / [T⁻¹]','Subtract exponent of T (note: dividing by T⁻¹ = multiplying by T)'],                                                          final:'[M L² T⁻¹]' },
+    resistance:      { name:'Electrical resistance (R)',   def:'R = V / I = (W/q) / I = W / (I·q)', steps:['[V] = [M L² T⁻³ A⁻¹]','[R] = [V] / [A]'],                                                                                                                final:'[M L² T⁻³ A⁻²]' },
+    capacitance:     { name:'Capacitance (C)',             def:'C = q / V',                         steps:['[q] = [A T]','[C] = [A T] / [M L² T⁻³ A⁻¹]','Combine'],                                                                                                   final:'[M⁻¹ L⁻² T⁴ A²]' },
+    'magnetic-flux': { name:'Magnetic flux (φ)',           def:'φ = B · A &nbsp;or&nbsp; ε = −dφ/dt',steps:['From Faraday: [φ] = [V] · [T]','= [M L² T⁻³ A⁻¹] · [T]'],                                                                                                final:'[M L² T⁻² A⁻¹]' },
+  };
+  const dimPick   = document.getElementById('dim-pick');
+  const dimName   = document.getElementById('dim-name');
+  const dimDef    = document.getElementById('dim-def-eq');
+  const dimSteps  = document.getElementById('dim-steps');
+  const dimFinal  = document.getElementById('dim-final');
+  if (dimPick) {
+    function renderDerivation() {
+      const d = DERIVATIONS[dimPick.value];
+      if (!d) return;
+      dimName.textContent = d.name;
+      dimDef.innerHTML = d.def;
+      dimSteps.innerHTML = d.steps.map((s, i) =>
+        `<div class="explainer-step"><span class="explainer-step-num">${i+1}</span><span class="explainer-step-eq">${s}</span></div>`
+      ).join('');
+      dimFinal.innerHTML = d.final;
+    }
+    dimPick.addEventListener('change', renderDerivation);
+    renderDerivation();
+  }
+
+  // ─── 2. Error propagation calculator ──────────────────────────────────
+  const ep = id => document.getElementById(id);
+  const epP  = ep('ep-p'), epQ = ep('ep-q'), epR = ep('ep-r');
+  const epDA = ep('ep-da'), epDB = ep('ep-db'), epDC = ep('ep-dc');
+  if (epP && epDA) {
+    function fmt(n) { return Number(n).toFixed(n % 1 === 0 ? 0 : 1); }
+    function updateError() {
+      const p = +epP.value, q = +epQ.value, r = +epR.value;
+      const da = +epDA.value, db = +epDB.value, dc = +epDC.value;
+
+      ep('ep-p-val').textContent  = fmt(p);
+      ep('ep-q-val').textContent  = fmt(q);
+      ep('ep-r-val').textContent  = fmt(r);
+      ep('ep-da-val').textContent = fmt(da) + '%';
+      ep('ep-db-val').textContent = fmt(db) + '%';
+      ep('ep-dc-val').textContent = fmt(dc) + '%';
+
+      const cA = p * da, cB = q * db, cC = r * dc;
+      const total = cA + cB + cC;
+
+      ep('ep-cont-a').textContent = cA.toFixed(1) + '%';
+      ep('ep-cont-b').textContent = cB.toFixed(1) + '%';
+      ep('ep-cont-c').textContent = cC.toFixed(1) + '%';
+      ep('ep-total').textContent  = total.toFixed(1) + '%';
+      ep('ep-formula').textContent = `Δz/z = ${fmt(p)}·(${fmt(da)}%) + ${fmt(q)}·(${fmt(db)}%) + ${fmt(r)}·(${fmt(dc)}%) = ${total.toFixed(1)}%`;
+    }
+    [epP, epQ, epR, epDA, epDB, epDC].forEach(s => s.addEventListener('input', updateError));
+    updateError();
+  }
+
+  // ─── 3. Vernier callipers reading ─────────────────────────────────────
+  const vLen = document.getElementById('vern-len');
+  if (vLen) {
+    // Build main and vernier ticks once
+    const mainTicks = document.getElementById('vern-main-ticks');
+    const vTicks    = document.getElementById('vern-v-ticks');
+    const main_x0 = 40, mainStep = 8.6; // pixels per mm
+    const v_x0 = 40, vStep = mainStep * 0.9; // 10 vernier divs over 9 main divs
+
+    let mainHTML = '';
+    for (let i = 0; i <= 50; i++) {
+      const x = main_x0 + i * mainStep;
+      const isCm = i % 10 === 0;
+      mainHTML += `<line x1="${x}" y1="${isCm?44:48}" x2="${x}" y2="${isCm?66:62}" stroke="#0f172a" stroke-width="${isCm?1.4:1}"/>`;
+      if (isCm) mainHTML += `<text x="${x}" y="40" fill="#0f172a">${i/10}</text>`;
+    }
+    mainTicks.innerHTML = mainHTML;
+
+    let vHTML = '';
+    for (let i = 0; i <= 10; i++) {
+      const x = v_x0 + i * vStep;
+      vHTML += `<line x1="${x}" y1="92" x2="${x}" y2="108" stroke="#4f46e5" stroke-width="1"/>`;
+      if (i % 5 === 0) vHTML += `<text x="${x}" y="125" fill="#4f46e5">${i}</text>`;
+    }
+    vTicks.innerHTML = vHTML;
+
+    const vGroup  = document.getElementById('vern-vernier');
+    const marker  = document.getElementById('vern-marker');
+    const valEl   = document.getElementById('vern-len-val');
+    const MEl     = document.getElementById('vern-M');
+    const nEl     = document.getElementById('vern-n');
+    const totalEl = document.getElementById('vern-total');
+
+    function updateVernier() {
+      const cm100 = +vLen.value;        // 100 → 5.00 cm in 0.01 cm
+      const cm    = cm100 / 100;
+      const mm    = cm * 10;
+      const Mmm   = Math.floor(mm * 10) / 10; // truncated to 0.1 mm
+      // Main scale reading: integer mm just before the vernier zero
+      const Mint = Math.floor(mm);
+      const n    = Math.round((mm - Mint) * 10) % 10; // 0..9
+
+      valEl.textContent = cm.toFixed(2);
+      MEl.textContent  = (Mint / 10).toFixed(1) + ' cm';
+      nEl.textContent  = String(n);
+      totalEl.textContent = ((Mint + n / 10) / 10).toFixed(2) + ' cm';
+
+      // Translate vernier so its zero sits at the rod's tip on the main scale
+      const tx = Mint * mainStep + n * (mainStep - vStep);
+      vGroup.setAttribute('transform', `translate(${tx},0)`);
+      // Marker on the coinciding division (n)
+      marker.setAttribute('cx', String(v_x0 + n * vStep));
+    }
+    vLen.addEventListener('input', updateVernier);
+    updateVernier();
+  }
+})();
+</script>
 </body>
 </html>
