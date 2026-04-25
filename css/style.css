@@ -73,33 +73,6 @@ a { color: inherit; text-decoration: none; }
 .nav-links a.prog-active  { color: var(--green); background: #f0fdf4; }
 .nav-toggle { display: none; background: none; border: none; font-size: 1.25rem; cursor: pointer; }
 
-/* ── NAV USER CHIP (injected by auth.js) ── */
-.nav-user-chip {
-  display: flex; align-items: center; gap: .45rem;
-  margin-left: auto;
-  background: var(--bg); border: 1px solid var(--line);
-  border-radius: 999px; padding: .25rem .65rem .25rem .3rem;
-  white-space: nowrap;
-}
-.nav-user-avatar {
-  width: 26px; height: 26px; border-radius: 50%;
-  background: var(--math); color: white;
-  font-size: .75rem; font-weight: 700;
-  display: flex; align-items: center; justify-content: center;
-  flex-shrink: 0;
-}
-.nav-user-name {
-  font-size: .8rem; font-weight: 600; color: var(--ink2);
-  max-width: 120px; overflow: hidden; text-overflow: ellipsis;
-}
-.nav-logout-btn {
-  background: none; border: none; cursor: pointer;
-  font-size: .75rem; color: var(--ink3); padding: .1rem .3rem;
-  border-radius: 4px; white-space: nowrap;
-  transition: background .15s, color .15s;
-}
-.nav-logout-btn:hover { background: #fee2e2; color: var(--red); }
-
 /* ── HERO ── */
 .hero {
   background: var(--ink);
@@ -944,31 +917,6 @@ a { color: inherit; text-decoration: none; }
 }
 .settings-danger { border-color: #fecaca; background: #fff5f5; }
 .settings-danger .settings-block-title { color: #b91c1c; }
-
-/* Digest email notifications */
-.notify-primary-row {
-  display: flex; align-items: center; gap: .75rem;
-  background: #f8fafc; border: 1px solid #e2e8f0;
-  border-radius: 8px; padding: .6rem 1rem; margin-bottom: 1rem;
-}
-.notify-primary-label {
-  font-size: .75rem; font-weight: 600; text-transform: uppercase;
-  letter-spacing: .06em; color: #64748b; white-space: nowrap;
-}
-.notify-primary-email { font-size: .9rem; color: #1e293b; font-weight: 500; }
-.notify-extra-list { display: flex; flex-direction: column; gap: .4rem; margin-bottom: .75rem; }
-.notify-extra-item {
-  display: flex; align-items: center; gap: .75rem;
-  background: #f1f5f9; border-radius: 8px; padding: .5rem .85rem;
-}
-.notify-extra-email { flex: 1; font-size: .9rem; color: #334155; }
-.notify-remove-btn {
-  background: none; border: none; cursor: pointer;
-  color: #94a3b8; font-size: .85rem; padding: .2rem .4rem;
-  border-radius: 4px; transition: color .15s, background .15s;
-}
-.notify-remove-btn:hover { color: #dc2626; background: #fee2e2; }
-.notify-add-row { display: flex; gap: .5rem; margin-bottom: .5rem; }
 
 .storage-info-row {
   display: flex;
