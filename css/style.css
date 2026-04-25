@@ -1475,18 +1475,33 @@ a { color: inherit; text-decoration: none; }
 
 .topic-wrap { max-width: 920px; margin: 0 auto; padding: 0 1.25rem; }
 
-.topic-meta-bar { display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1rem; font-size: .82rem; }
+/* Hero on topic pages — tighter than the subject-overview hero */
+body[class*="topic-"] .page-hero { padding: 2.25rem 1.5rem 1.75rem; }
+body[class*="topic-"] .page-hero h1 { margin-bottom: .5rem; font-size: clamp(1.6rem, 3.6vw, 2.4rem); }
+body[class*="topic-"] .page-hero p { font-size: .92rem; opacity: .85; }
+/* Topic-page main section — pull content close to the hero */
+body[class*="topic-"] .section { padding-top: 1.75rem; padding-bottom: 2.5rem; }
+@media (max-width: 640px) {
+  body[class*="topic-"] .page-hero { padding: 1.5rem 1.25rem 1.25rem; }
+  body[class*="topic-"] .section   { padding-top: 1.25rem; }
+}
+
+.topic-meta-bar {
+  display: flex; gap: .5rem; flex-wrap: wrap;
+  margin-top: 1rem; font-size: .78rem;
+}
 .topic-meta-pill {
   background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.22);
-  padding: .3rem .85rem; border-radius: 999px; color: rgba(255,255,255,.92);
+  padding: .22rem .7rem; border-radius: 999px; color: rgba(255,255,255,.92);
+  white-space: nowrap;
 }
-.topic-meta-pill strong { color: white; }
+.topic-meta-pill strong { color: white; font-weight: 600; }
 
 .topic-toc {
   background: var(--white); border: 1px solid var(--line);
   border-left: 4px solid var(--topic-accent);
   border-radius: var(--radius);
-  padding: 1rem 1.25rem; margin: 2rem 0;
+  padding: 1rem 1.25rem; margin: 0 0 2rem;
 }
 .topic-toc-title {
   font-size: .75rem; font-weight: 700; text-transform: uppercase;
@@ -1498,11 +1513,13 @@ a { color: inherit; text-decoration: none; }
 .topic-toc a:hover { color: var(--topic-accent); text-decoration: underline; }
 @media (max-width: 640px) { .topic-toc ol { columns: 1; } }
 
-.topic-section { margin: 2.5rem 0; scroll-margin-top: 1rem; }
+.topic-section { margin: 2rem 0; scroll-margin-top: 1rem; }
+.topic-section:first-of-type { margin-top: 0; }
 .topic-section h2 {
   font-family: 'DM Serif Display', serif;
-  font-size: 1.55rem; color: var(--ink); margin-bottom: .25rem;
-  border-bottom: 2px solid var(--topic-accent-m); padding-bottom: .35rem;
+  font-size: clamp(1.3rem, 2.8vw, 1.55rem); color: var(--ink); margin-bottom: .35rem;
+  border-bottom: 2px solid var(--topic-accent-m); padding-bottom: .4rem;
+  line-height: 1.2;
 }
 .topic-section h2 .sec-num {
   font-family: 'JetBrains Mono', monospace;
@@ -1813,4 +1830,63 @@ a { color: inherit; text-decoration: none; }
 .explainer-readout.feel .num {
   color: var(--topic-accent); font-size: .92rem;
   font-family: 'DM Sans', sans-serif;
+}
+
+/* Select dropdown inside explainer */
+.explainer-select {
+  width: 100%; max-width: 320px;
+  padding: .55rem .85rem;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: .9rem; font-weight: 600;
+  color: var(--ink); background: var(--white);
+  cursor: pointer;
+  margin-bottom: 1rem;
+}
+.explainer-select:focus {
+  outline: 2px solid var(--topic-accent);
+  outline-offset: 1px;
+  border-color: var(--topic-accent);
+}
+
+/* Derivation step row */
+.explainer-step-list { margin: .5rem 0; }
+.explainer-step {
+  display: grid; grid-template-columns: auto 1fr;
+  gap: .65rem; align-items: center;
+  background: var(--bg); border-left: 3px solid var(--topic-accent);
+  border-radius: 4px; padding: .55rem .8rem;
+  margin: .4rem 0;
+  font-size: .88rem; color: var(--ink2); line-height: 1.55;
+}
+.explainer-step-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: .7rem; font-weight: 700;
+  background: var(--topic-accent); color: white;
+  width: 22px; height: 22px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.explainer-step-eq { font-family: 'JetBrains Mono', monospace; color: var(--ink); }
+.explainer-final {
+  background: var(--topic-accent-l); border: 1px solid var(--topic-accent-m);
+  border-radius: 6px; padding: .65rem 1rem; margin-top: .65rem;
+  text-align: center;
+  font-family: 'JetBrains Mono', monospace; font-weight: 700;
+  font-size: 1rem; color: var(--ink);
+}
+.explainer-final .lbl-prefix {
+  display: block; font-family: 'DM Sans', sans-serif;
+  font-size: .68rem; font-weight: 700; text-transform: uppercase;
+  letter-spacing: .07em; color: var(--topic-accent); margin-bottom: .15rem;
+}
+
+/* Live formula readout (used in error-prop calculator) */
+.explainer-formula-live {
+  font-family: 'JetBrains Mono', monospace;
+  background: var(--bg); border: 1px solid var(--line);
+  padding: .75rem 1rem; border-radius: 8px;
+  margin-top: 1rem; font-size: .88rem; color: var(--ink);
+  overflow-x: auto; white-space: nowrap;
 }
