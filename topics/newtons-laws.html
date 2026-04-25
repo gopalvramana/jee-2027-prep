@@ -1,0 +1,1251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Newton's Laws of Motion — JEE 2027 Deep-Dive</title>
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+<style>
+/* ── Topic deep-dive page — scoped styles ───────────────────────────────── */
+.topic-wrap { max-width: 920px; margin: 0 auto; padding: 0 1.25rem; }
+.topic-meta-bar {
+  display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1rem;
+  font-size: .82rem;
+}
+.topic-meta-pill {
+  background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.22);
+  padding: .3rem .85rem; border-radius: 999px;
+  color: rgba(255,255,255,.92);
+}
+.topic-meta-pill strong { color: white; }
+
+/* TOC */
+.topic-toc {
+  background: var(--white); border: 1px solid var(--line);
+  border-left: 4px solid var(--phys);
+  border-radius: var(--radius);
+  padding: 1rem 1.25rem; margin: 2rem 0;
+}
+.topic-toc-title {
+  font-size: .75rem; font-weight: 700; text-transform: uppercase;
+  letter-spacing: .08em; color: var(--phys); margin-bottom: .6rem;
+}
+.topic-toc ol { columns: 2; column-gap: 1.5rem; padding-left: 1.2rem; font-size: .88rem; line-height: 1.85; }
+.topic-toc ol li { break-inside: avoid; }
+.topic-toc a { color: var(--ink2); text-decoration: none; }
+.topic-toc a:hover { color: var(--phys); text-decoration: underline; }
+@media (max-width: 640px) { .topic-toc ol { columns: 1; } }
+
+/* Section heading */
+.topic-section { margin: 2.5rem 0; }
+.topic-section h2 {
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.55rem; color: var(--ink);
+  margin-bottom: .25rem;
+  border-bottom: 2px solid var(--phys-m); padding-bottom: .35rem;
+}
+.topic-section h2 .sec-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: .85rem; color: var(--phys);
+  background: var(--phys-l); padding: .15rem .55rem;
+  border-radius: 6px; margin-right: .65rem; vertical-align: middle;
+  font-weight: 700;
+}
+.topic-section h3 {
+  font-size: 1.1rem; color: var(--ink); margin: 1.5rem 0 .5rem;
+  font-family: 'DM Sans', sans-serif; font-weight: 700;
+}
+.topic-section h4 {
+  font-size: .95rem; color: var(--ink2); margin: 1.2rem 0 .4rem;
+  font-weight: 700;
+}
+.topic-section p { font-size: .92rem; line-height: 1.7; color: var(--ink2); margin-bottom: .85rem; }
+.topic-section ul, .topic-section ol { font-size: .92rem; line-height: 1.7; color: var(--ink2); margin: .5rem 0 1rem 1.4rem; }
+.topic-section ul li, .topic-section ol li { margin-bottom: .35rem; }
+.topic-section strong { color: var(--ink); }
+.topic-section em { color: var(--phys); font-style: normal; font-weight: 600; }
+
+/* Callouts */
+.callout {
+  border-radius: 8px; padding: .85rem 1.1rem; margin: 1rem 0;
+  font-size: .88rem; line-height: 1.65;
+}
+.callout-title { font-weight: 700; margin-bottom: .25rem; font-size: .9rem; }
+.callout.info    { background: #f0fdfa; border-left: 4px solid var(--phys);   color: var(--ink2); }
+.callout.info    .callout-title { color: var(--phys); }
+.callout.warn    { background: #fffbeb; border-left: 4px solid var(--amber);  color: var(--ink2); }
+.callout.warn    .callout-title { color: var(--amber); }
+.callout.danger  { background: #fef2f2; border-left: 4px solid var(--red);    color: var(--ink2); }
+.callout.danger  .callout-title { color: var(--red); }
+.callout.success { background: #f0fdf4; border-left: 4px solid var(--green);  color: var(--ink2); }
+.callout.success .callout-title { color: var(--green); }
+
+/* Equation block */
+.eq-block {
+  background: var(--bg); border: 1px solid var(--line);
+  border-radius: 8px; padding: .9rem 1.1rem; margin: 1rem 0;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: .95rem; color: var(--ink);
+  text-align: center;
+}
+.eq-block .eq-label {
+  display: block; font-family: 'DM Sans', sans-serif;
+  font-size: .72rem; color: var(--ink3); margin-top: .35rem;
+  text-transform: uppercase; letter-spacing: .05em; font-weight: 600;
+}
+
+/* Inline math */
+.m { font-family: 'JetBrains Mono', monospace; font-size: .92em; color: var(--ink); }
+
+/* Diagram */
+.diagram {
+  background: var(--white); border: 1px solid var(--line);
+  border-radius: var(--radius); padding: 1rem;
+  text-align: center; margin: 1.25rem 0;
+}
+.diagram svg { max-width: 100%; height: auto; }
+.diagram-cap {
+  font-size: .8rem; color: var(--ink3); margin-top: .5rem;
+  font-style: italic;
+}
+
+/* Worked example card */
+.example-card {
+  border: 1px solid var(--line); border-radius: var(--radius);
+  margin: 1rem 0; overflow: hidden; background: var(--white);
+}
+.example-head {
+  display: flex; align-items: center; gap: .65rem;
+  padding: .8rem 1.1rem;
+  border-bottom: 1px solid var(--line);
+  font-weight: 700; font-size: .92rem; color: var(--ink);
+  background: var(--bg);
+}
+.example-badge {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: .68rem; font-weight: 700; padding: .15rem .55rem;
+  border-radius: 999px; text-transform: uppercase; letter-spacing: .05em;
+}
+.badge-easy { background: #dcfce7; color: #15803d; }
+.badge-mod  { background: #fef3c7; color: #b45309; }
+.badge-hard { background: #fee2e2; color: #b91c1c; }
+.badge-pyq  { background: #ede9fe; color: #6d28d9; }
+.example-body { padding: 1rem 1.25rem; font-size: .9rem; color: var(--ink2); line-height: 1.7; }
+.example-body .step-label {
+  display: block; font-size: .72rem; font-weight: 700; text-transform: uppercase;
+  letter-spacing: .07em; color: var(--phys); margin: .85rem 0 .3rem;
+}
+.example-body .answer {
+  display: inline-block; margin-top: .5rem;
+  background: var(--phys-l); border-left: 3px solid var(--phys);
+  padding: .45rem .85rem; border-radius: 4px;
+  font-family: 'JetBrains Mono', monospace; font-size: .9rem;
+  color: var(--ink); font-weight: 700;
+}
+
+/* PYQ list */
+.pyq-grid { display: grid; gap: .85rem; margin-top: 1rem; }
+.pyq-card {
+  border: 1px solid var(--line); border-radius: var(--radius);
+  padding: .9rem 1.1rem; background: var(--white);
+}
+.pyq-tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: .68rem; font-weight: 700; color: #6d28d9;
+  background: #ede9fe; padding: .15rem .55rem; border-radius: 999px;
+  margin-right: .5rem; text-transform: uppercase; letter-spacing: .04em;
+}
+.pyq-q { font-size: .9rem; color: var(--ink); line-height: 1.65; margin: .4rem 0; }
+.pyq-ans-toggle {
+  font-size: .78rem; color: var(--phys); cursor: pointer;
+  font-weight: 600; user-select: none;
+}
+.pyq-ans-toggle:hover { text-decoration: underline; }
+.pyq-ans { display: none; margin-top: .5rem; font-size: .85rem; color: var(--ink2); line-height: 1.7; }
+.pyq-ans.open { display: block; }
+.pyq-ans .answer-final {
+  display: inline-block; margin-top: .4rem;
+  background: var(--phys-l); border-left: 3px solid var(--phys);
+  padding: .35rem .7rem; border-radius: 4px;
+  font-family: 'JetBrains Mono', monospace; font-weight: 700;
+  color: var(--ink);
+}
+
+/* Mistake list */
+.mistake-list { display: grid; gap: .65rem; margin: 1rem 0; }
+.mistake-item {
+  display: grid; grid-template-columns: auto 1fr; gap: .7rem;
+  background: var(--bg); padding: .75rem 1rem; border-radius: 8px;
+  font-size: .88rem; color: var(--ink2); line-height: 1.6;
+  border-left: 3px solid var(--red);
+}
+.mistake-item .mistake-icon { font-size: 1.1rem; }
+.mistake-item strong { color: var(--red); }
+
+/* Cheat card */
+.cheat-card {
+  background: linear-gradient(135deg, #134e4a 0%, #0f766e 100%);
+  color: white; border-radius: var(--radius);
+  padding: 1.5rem 1.75rem; margin: 2rem 0;
+}
+.cheat-card h3 { color: white; margin-top: 0; font-family: 'DM Serif Display', serif; font-size: 1.25rem; }
+.cheat-card ul { color: rgba(255,255,255,.9); margin-left: 1.2rem; line-height: 1.8; font-size: .9rem; }
+.cheat-card code { background: rgba(255,255,255,.15); padding: .1rem .4rem; border-radius: 4px; font-size: .85em; }
+
+/* Step-by-step boxes */
+.method-box {
+  background: var(--phys-l); border: 1px solid var(--phys-m);
+  border-radius: var(--radius); padding: 1rem 1.25rem; margin: 1rem 0;
+}
+.method-box .method-title {
+  font-weight: 700; color: var(--phys); margin-bottom: .5rem;
+  font-size: .92rem;
+}
+.method-box ol { margin-left: 1.4rem; }
+
+/* Two-column compare */
+.compare-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1rem 0;
+}
+.compare-cell {
+  background: var(--bg); border-radius: 8px; padding: .85rem 1rem;
+  font-size: .87rem; color: var(--ink2); line-height: 1.6;
+}
+.compare-cell strong { color: var(--ink); display: block; margin-bottom: .35rem; font-size: .92rem; }
+@media (max-width: 640px) { .compare-grid { grid-template-columns: 1fr; } }
+
+/* Section anchor offset for sticky-ish nav */
+.topic-section { scroll-margin-top: 1rem; }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="nav-brand">JEE 2027</div>
+    <div class="nav-links">
+      <a href="../index.html">Dashboard</a>
+      <a href="../subjects/math.html">📐 Math</a>
+      <a href="../subjects/physics.html" class="phys-active">⚡ Physics</a>
+      <a href="../subjects/chemistry.html">🧪 Chemistry</a>
+      <a href="../progress.html">✅ Progress</a>
+      <a href="../schedule.html">📋 Schedule</a>
+      <a href="../settings.html">⚙ Settings</a>
+    </div>
+    <button class="nav-toggle" onclick="toggleNav()">☰</button>
+  </div>
+</nav>
+
+<header class="page-hero phys-hero">
+  <div class="page-hero-content">
+    <div class="page-hero-tag">Physics · Unit P2 · Deep-Dive</div>
+    <h1>Newton's Laws of Motion</h1>
+    <p>The three laws that govern every mechanics question on the JEE paper — from a block on an incline to a satellite in orbit. Master these, and roughly 8–9% of the Physics paper becomes plug-and-play.</p>
+    <div class="topic-meta-bar">
+      <span class="topic-meta-pill"><strong>Weight:</strong> 8–9% (≈8 marks)</span>
+      <span class="topic-meta-pill"><strong>Difficulty:</strong> 🟡 Moderate</span>
+      <span class="topic-meta-pill"><strong>Prereq:</strong> Vectors, Kinematics</span>
+      <span class="topic-meta-pill"><strong>Time to master:</strong> 25–30 hrs</span>
+    </div>
+  </div>
+</header>
+
+<section class="section">
+<div class="topic-wrap">
+
+  <!-- ── TABLE OF CONTENTS ──────────────────────────────────────────────── -->
+  <nav class="topic-toc">
+    <div class="topic-toc-title">📖 In this guide</div>
+    <ol>
+      <li><a href="#foundations">Foundations: Force, Mass &amp; Inertia</a></li>
+      <li><a href="#first-law">Newton's First Law</a></li>
+      <li><a href="#second-law">Newton's Second Law</a></li>
+      <li><a href="#third-law">Newton's Third Law</a></li>
+      <li><a href="#fbd">Free-Body Diagrams (FBD)</a></li>
+      <li><a href="#forces">The 5 Forces in Mechanics</a></li>
+      <li><a href="#incline">Inclined Planes</a></li>
+      <li><a href="#pulleys">Pulleys &amp; Connected Bodies</a></li>
+      <li><a href="#friction">Friction in Depth</a></li>
+      <li><a href="#noninertial">Non-Inertial Frames &amp; Pseudo Forces</a></li>
+      <li><a href="#constraints">Constraint Relations</a></li>
+      <li><a href="#formulas">Master Formula Sheet</a></li>
+      <li><a href="#examples">Worked Examples (Easy → Hard)</a></li>
+      <li><a href="#pyqs">JEE Previous-Year Questions</a></li>
+      <li><a href="#traps">Common Traps &amp; Mistakes</a></li>
+      <li><a href="#cheat">One-Page Cheat Card</a></li>
+    </ol>
+  </nav>
+
+  <!-- ── 1. FOUNDATIONS ─────────────────────────────────────────────────── -->
+  <div class="topic-section" id="foundations">
+    <h2><span class="sec-num">01</span>Foundations: Force, Mass &amp; Inertia</h2>
+
+    <p>Before the laws make sense, three ideas must be crystal clear.</p>
+
+    <h3>What is a force?</h3>
+    <p>A <strong>force</strong> is any push or pull that, if unbalanced, changes the velocity of a body. Force is a <em>vector</em> — it has magnitude <em>and</em> direction. The SI unit is the <span class="m">newton (N) = kg·m/s²</span>.</p>
+
+    <p>For JEE, you only ever encounter <strong>five</strong> kinds of contact/non-contact forces:</p>
+    <ol>
+      <li><strong>Gravity</strong> (always present, downward, magnitude <span class="m">mg</span>)</li>
+      <li><strong>Normal</strong> (perpendicular to a contact surface)</li>
+      <li><strong>Tension</strong> (along a string, pulling away from the body)</li>
+      <li><strong>Friction</strong> (along a contact surface, opposing relative motion or tendency)</li>
+      <li><strong>Spring force</strong> (along the spring, magnitude <span class="m">kx</span>)</li>
+    </ol>
+    <p>Anything else (electric, magnetic, applied push) reduces to one of these in the FBD.</p>
+
+    <h3>Mass &amp; Inertia</h3>
+    <p><strong>Mass</strong> measures the resistance of a body to acceleration — its <em>inertia</em>. Doubling the mass halves the acceleration produced by the same force. Mass is a scalar, measured in kg, and (in classical mechanics) it does not change with motion.</p>
+
+    <div class="callout info">
+      <div class="callout-title">⚡ JEE quick-fact</div>
+      <strong>Weight</strong> (= <span class="m">mg</span>) is a <em>force</em> measured in newtons. <strong>Mass</strong> is a property measured in kg. Confusing the two is the most common conceptual slip in JEE-Main — especially in lift problems.
+    </div>
+
+    <h3>Frames of reference</h3>
+    <p>Newton's laws hold only in <strong>inertial frames</strong> — frames that are at rest or move with constant velocity (no acceleration). A car braking, a lift accelerating up, a merry-go-round — these are <em>non-inertial</em> frames. To use Newton's laws inside them, we add a <strong>pseudo force</strong> (covered in §10).</p>
+
+    <div class="diagram">
+      <svg viewBox="0 0 520 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Inertial vs non-inertial frame">
+        <!-- Inertial frame: train moving at constant v -->
+        <text x="100" y="20" font-family="DM Sans" font-size="13" font-weight="700" text-anchor="middle" fill="#0f766e">Inertial frame</text>
+        <rect x="30" y="50" width="140" height="50" fill="#0f766e" opacity=".15" stroke="#0f766e" stroke-width="1.5"/>
+        <text x="100" y="80" font-family="DM Sans" font-size="12" text-anchor="middle" fill="#0f172a">Train at v = const</text>
+        <line x1="180" y1="75" x2="220" y2="75" stroke="#0f766e" stroke-width="2" marker-end="url(#arr1)"/>
+        <text x="200" y="68" font-family="JetBrains Mono" font-size="11" text-anchor="middle" fill="#0f766e">v</text>
+        <text x="100" y="125" font-family="DM Sans" font-size="11" text-anchor="middle" fill="#64748b">F = ma works directly</text>
+
+        <!-- Non-inertial frame: train accelerating -->
+        <text x="380" y="20" font-family="DM Sans" font-size="13" font-weight="700" text-anchor="middle" fill="#b91c1c">Non-inertial frame</text>
+        <rect x="310" y="50" width="140" height="50" fill="#b91c1c" opacity=".12" stroke="#b91c1c" stroke-width="1.5"/>
+        <text x="380" y="80" font-family="DM Sans" font-size="12" text-anchor="middle" fill="#0f172a">Train accelerating</text>
+        <line x1="460" y1="75" x2="505" y2="75" stroke="#b91c1c" stroke-width="2" marker-end="url(#arr2)"/>
+        <text x="482" y="68" font-family="JetBrains Mono" font-size="11" text-anchor="middle" fill="#b91c1c">a</text>
+        <text x="380" y="125" font-family="DM Sans" font-size="11" text-anchor="middle" fill="#64748b">Add pseudo force −ma</text>
+
+        <defs>
+          <marker id="arr1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+            <path d="M0,0 L10,5 L0,10 z" fill="#0f766e"/>
+          </marker>
+          <marker id="arr2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+            <path d="M0,0 L10,5 L0,10 z" fill="#b91c1c"/>
+          </marker>
+        </defs>
+      </svg>
+      <div class="diagram-cap">Inertial vs non-inertial frame — Newton's laws hold directly only on the left.</div>
+    </div>
+  </div>
+
+  <!-- ── 2. FIRST LAW ──────────────────────────────────────────────────── -->
+  <div class="topic-section" id="first-law">
+    <h2><span class="sec-num">02</span>Newton's First Law — Law of Inertia</h2>
+
+    <blockquote style="border-left:4px solid var(--phys); padding-left:1rem; margin:1rem 0; font-style:italic; color:var(--ink2);">
+      "Every body continues in its state of rest or uniform motion in a straight line, unless compelled by an external force to change that state."
+    </blockquote>
+
+    <p>The first law has two consequences worth memorising for JEE:</p>
+
+    <ol>
+      <li><strong>It defines force.</strong> A force is whatever causes a change in velocity. No change → no net force.</li>
+      <li><strong>It defines an inertial frame.</strong> A frame in which an isolated body keeps constant velocity is inertial.</li>
+    </ol>
+
+    <h3>What "uniform motion" actually means</h3>
+    <p>"Uniform motion in a straight line" means <strong>constant velocity vector</strong> — both magnitude and direction unchanged. A ball in circular motion at constant <em>speed</em> is <em>not</em> in uniform motion (its direction is changing) — so a net force <em>must</em> act on it (the centripetal force).</p>
+
+    <div class="diagram">
+      <svg viewBox="0 0 520 140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="First law illustration">
+        <line x1="20" y1="100" x2="500" y2="100" stroke="#64748b" stroke-width="1.5" stroke-dasharray="4 3"/>
+        <circle cx="80"  cy="100" r="14" fill="#0f766e"/>
+        <circle cx="220" cy="100" r="14" fill="#0f766e" opacity=".7"/>
+        <circle cx="360" cy="100" r="14" fill="#0f766e" opacity=".4"/>
+        <line x1="80"  y1="80" x2="80"  y2="50" stroke="#0f766e" stroke-width="2" marker-end="url(#arrA)"/>
+        <line x1="220" y1="80" x2="220" y2="50" stroke="#0f766e" stroke-width="2" marker-end="url(#arrA)"/>
+        <line x1="360" y1="80" x2="360" y2="50" stroke="#0f766e" stroke-width="2" marker-end="url(#arrA)"/>
+        <text x="80"  y="40" font-family="JetBrains Mono" font-size="11" text-anchor="middle" fill="#0f766e">v</text>
+        <text x="220" y="40" font-family="JetBrains Mono" font-size="11" text-anchor="middle" fill="#0f766e">v</text>
+        <text x="360" y="40" font-family="JetBrains Mono" font-size="11" text-anchor="middle" fill="#0f766e">v</text>
+        <text x="260" y="125" font-family="DM Sans" font-size="11" text-anchor="middle" fill="#64748b">Same velocity at every instant — no net force needed</text>
+        <defs>
+          <marker id="arrA" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+            <path d="M0,0 L10,5 L0,10 z" fill="#0f766e"/>
+          </marker>
+        </defs>
+      </svg>
+      <div class="diagram-cap">An isolated body in uniform motion — three snapshots, identical velocity.</div>
+    </div>
+
+    <div class="callout warn">
+      <div class="callout-title">⚠ JEE trap</div>
+      Don't say "no force acts." A book lying on a table has gravity AND normal force on it — but they <strong>cancel</strong>. The first law requires the <em>net</em> force to be zero, not the absence of forces.
+    </div>
+  </div>
+
+  <!-- ── 3. SECOND LAW ─────────────────────────────────────────────────── -->
+  <div class="topic-section" id="second-law">
+    <h2><span class="sec-num">03</span>Newton's Second Law — F = ma</h2>
+
+    <p>This is the most heavily-tested law on JEE. Its full general form is:</p>
+
+    <div class="eq-block">
+      F<sub>net</sub> = dp/dt
+      <span class="eq-label">Newton's 2nd law — momentum form</span>
+    </div>
+
+    <p>Where <span class="m">p = mv</span> is linear momentum. For constant-mass systems (almost all JEE problems), this reduces to:</p>
+
+    <div class="eq-block">
+      <strong>F<sub>net</sub> = m · a</strong>
+      <span class="eq-label">For constant mass</span>
+    </div>
+
+    <h3>The four things you must remember</h3>
+    <ol>
+      <li><strong>Vector equation.</strong> Apply it separately along each independent axis: <span class="m">ΣF<sub>x</sub> = ma<sub>x</sub></span>, <span class="m">ΣF<sub>y</sub> = ma<sub>y</sub></span>.</li>
+      <li><strong>Net force only.</strong> Sum <em>all</em> forces acting on the body — no others.</li>
+      <li><strong>Acceleration is in the direction of net force.</strong> Not the velocity, not the position.</li>
+      <li><strong>Frame must be inertial</strong> — else add pseudo-forces (§10).</li>
+    </ol>
+
+    <h3>Variable-mass systems</h3>
+    <p>Rockets, falling chains, conveyor belts — here mass changes with time. The full law becomes:</p>
+    <div class="eq-block">
+      F<sub>ext</sub> = m·(dv/dt) + v·(dm/dt)
+      <span class="eq-label">Variable-mass (rocket-equation precursor)</span>
+    </div>
+    <p>For the rocket equation: thrust <span class="m">= v<sub>rel</sub> · |dm/dt|</span>. JEE Advanced occasionally tests this.</p>
+
+    <h3>Impulse — the time integral of force</h3>
+    <p>Integrating the second law over time gives the <strong>impulse–momentum theorem</strong>:</p>
+    <div class="eq-block">
+      J = ∫F dt = Δp = m(v<sub>f</sub> − v<sub>i</sub>)
+      <span class="eq-label">Impulse = change in momentum</span>
+    </div>
+
+    <p>Useful when force acts for a very short time (collisions, hammer blow, ball bouncing) — when the integral is hard but Δp is easy.</p>
+
+    <div class="callout info">
+      <div class="callout-title">📌 JEE shortcut</div>
+      For collisions on JEE, <strong>always</strong> reach for impulse first. You rarely need to know the exact force-vs-time profile — only initial and final momentum.
+    </div>
+
+    <div class="diagram">
+      <svg viewBox="0 0 520 180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="F=ma vector decomposition">
+        <!-- Block on plane with net F at angle -->
+        <rect x="200" y="80" width="80" height="50" fill="#0f766e" opacity=".25" stroke="#0f766e" stroke-width="1.5"/>
+        <text x="240" y="110" font-family="DM Sans" font-size="13" font-weight="600" text-anchor="middle" fill="#0f172a">m</text>
+
+        <!-- Net F vector at angle -->
+        <line x1="280" y1="105" x2="400" y2="55" stroke="#b91c1c" stroke-width="2.5" marker-end="url(#arrR)"/>
+        <text x="345" y="70" font-family="JetBrains Mono" font-size="13" font-weight="700" fill="#b91c1c">F</text>
+
+        <!-- Components -->
+        <line x1="280" y1="105" x2="400" y2="105" stroke="#0f766e" stroke-width="1.5" stroke-dasharray="3 3" marker-end="url(#arrG)"/>
+        <text x="410" y="110" font-family="JetBrains Mono" font-size="11" fill="#0f766e">F·cosθ</text>
+        <line x1="400" y1="105" x2="400" y2="55" stroke="#0f766e" stroke-width="1.5" stroke-dasharray="3 3" marker-end="url(#arrG)"/>
+        <text x="445" y="80" font-family="JetBrains Mono" font-size="11" fill="#0f766e">F·sinθ</text>
+
+        <!-- Angle arc -->
+        <path d="M 320 105 A 40 40 0 0 0 320 100" fill="none" stroke="#0f172a" stroke-width="1"/>
+        <text x="320" y="98" font-family="JetBrains Mono" font-size="11" fill="#0f172a">θ</text>
+
+        <text x="260" y="160" font-family="DM Sans" font-size="11" text-anchor="middle" fill="#64748b">Decompose net force along axes → apply F = ma in each direction</text>
+
+        <defs>
+          <marker id="arrR" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+            <path d="M0,0 L10,5 L0,10 z" fill="#b91c1c"/>
+          </marker>
+          <marker id="arrG" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+            <path d="M0,0 L10,5 L0,10 z" fill="#0f766e"/>
+          </marker>
+        </defs>
+      </svg>
+      <div class="diagram-cap">A net force F at angle θ produces accelerations <span class="m">a<sub>x</sub> = F cosθ / m</span>, <span class="m">a<sub>y</sub> = F sinθ / m</span>.</div>
+    </div>
+  </div>
+
+  <!-- ── 4. THIRD LAW ──────────────────────────────────────────────────── -->
+  <div class="topic-section" id="third-law">
+    <h2><span class="sec-num">04</span>Newton's Third Law — Action &amp; Reaction</h2>
+
+    <blockquote style="border-left:4px solid var(--phys); padding-left:1rem; margin:1rem 0; font-style:italic; color:var(--ink2);">
+      "To every action there is an equal and opposite reaction."
+    </blockquote>
+
+    <p>The full statement: <strong>If body A exerts a force F<sub>AB</sub> on body B, then B exerts a force F<sub>BA</sub> = −F<sub>AB</sub> on A.</strong> Action–reaction pairs:</p>
+    <ul>
+      <li>are equal in magnitude</li>
+      <li>are opposite in direction</li>
+      <li>act on <strong>different bodies</strong> (this is the killer detail)</li>
+      <li>are of the same nature (gravitational ↔ gravitational, normal ↔ normal)</li>
+      <li>act simultaneously — there is no "first" and "then"</li>
+    </ul>
+
+    <div class="callout danger">
+      <div class="callout-title">🛑 The cardinal rule</div>
+      In a free-body diagram of <em>one</em> object, you NEVER show both members of an action–reaction pair. You show only the force <em>on that one object</em>. The reaction lives on the <em>other</em> object's FBD.
+    </div>
+
+    <div class="diagram">
+      <svg viewBox="0 0 520 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Action reaction pair">
+        <!-- Two blocks pushing each other -->
+        <rect x="120" y="80" width="80" height="60" fill="#0f766e" opacity=".3" stroke="#0f766e" stroke-width="1.5"/>
+        <text x="160" y="115" font-family="DM Sans" font-size="14" font-weight="700" text-anchor="middle" fill="#0f172a">A</text>
+
+        <rect x="280" y="80" width="80" height="60" fill="#1d4ed8" opacity=".3" stroke="#1d4ed8" stroke-width="1.5"/>
+        <text x="320" y="115" font-family="DM Sans" font-size="14" font-weight="700" text-anchor="middle" fill="#0f172a">B</text>
+
+        <!-- A pushes B (force on B, points right) -->
+        <line x1="200" y1="100" x2="280" y2="100" stroke="#0f766e" stroke-width="2.5" marker-end="url(#arrL1)"/>
+        <text x="240" y="93" font-family="JetBrains Mono" font-size="11" font-weight="700" text-anchor="middle" fill="#0f766e">F<tspan font-size="9">A→B</tspan></text>
+
+        <!-- B pushes A (force on A, points left) -->
+        <line x1="280" y1="125" x2="200" y2="125" stroke="#1d4ed8" stroke-width="2.5" marker-end="url(#arrL2)"/>
+        <text x="240" y="142" font-family="JetBrains Mono" font-size="11" font-weight="700" text-anchor="middle" fill="#1d4ed8">F<tspan font-size="9">B→A</tspan></text>
+
+        <text x="240" y="175" font-family="DM Sans" font-size="11" text-anchor="middle" fill="#64748b">Equal magnitude, opposite direction, on DIFFERENT bodies.</text>
+
+        <defs>
+          <marker id="arrL1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+            <path d="M0,0 L10,5 L0,10 z" fill="#0f766e"/>
+          </marker>
+          <marker id="arrL2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+            <path d="M0,0 L10,5 L0,10 z" fill="#1d4ed8"/>
+          </marker>
+        </defs>
+      </svg>
+      <div class="diagram-cap">A pushes B → B pushes A back. The two arrows live on different bodies' FBDs.</div>
+    </div>
+
+    <h3>Common JEE traps with the third law</h3>
+    <ul>
+      <li><strong>"Weight (mg) and Normal (N) on a table are an action–reaction pair."</strong> Wrong. Both act on the same body. The reaction to weight is the gravitational pull the body exerts on Earth.</li>
+      <li><strong>"Tension on both ends of a string is an action–reaction pair."</strong> Wrong unless the string is massless. Tension at end 1 acts on the body at end 1; the reaction is the body at end 1 pulling the string.</li>
+      <li><strong>"Reaction is always less because the heavier body 'wins'."</strong> Wrong. Magnitudes are always equal. The accelerations differ because masses differ.</li>
+    </ul>
+  </div>
+
+  <!-- ── 5. FBD ────────────────────────────────────────────────────────── -->
+  <div class="topic-section" id="fbd">
+    <h2><span class="sec-num">05</span>Free-Body Diagrams — The Universal Method</h2>
+
+    <p>An FBD is a sketch of a single object showing every force <em>on</em> that object — and nothing else. Done correctly, it converts any mechanics problem into routine algebra.</p>
+
+    <div class="method-box">
+      <div class="method-title">🎯 The 5-step FBD method</div>
+      <ol>
+        <li><strong>Isolate</strong> one body. Replace everything else by the force it exerts on this body.</li>
+        <li><strong>Sketch</strong> a dot or rectangle for the body. Don't draw context (no incline, no other blocks).</li>
+        <li><strong>Add forces:</strong> always start with gravity (<span class="m">mg</span> down). Then normals, tensions, friction, springs, applied — in that order.</li>
+        <li><strong>Choose axes</strong> to align with the expected acceleration (along an incline, vertically in a lift, etc.). Resolve every off-axis force.</li>
+        <li><strong>Write</strong> <span class="m">ΣF<sub>x</sub> = ma<sub>x</sub></span> and <span class="m">ΣF<sub>y</sub> = ma<sub>y</sub></span>. Solve.</li>
+      </ol>
+    </div>
+
+    <h3>FBD examples — three setups every JEE student must know</h3>
+
+    <div class="diagram">
+      <svg viewBox="0 0 720 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="FBD examples">
+        <!-- (a) Block on floor -->
+        <text x="100" y="20" font-family="DM Sans" font-size="12" font-weight="700" text-anchor="middle" fill="#0f172a">(a) Block on floor</text>
+        <line x1="20" y1="150" x2="180" y2="150" stroke="#64748b" stroke-width="1.5"/>
+        <rect x="65" y="100" width="70" height="50" fill="#0f766e" opacity=".25" stroke="#0f766e" stroke-width="1.5"/>
+        <text x="100" y="130" font-family="DM Sans" font-size="13" font-weight="600" text-anchor="middle" fill="#0f172a">m</text>
+        <line x1="100" y1="100" x2="100" y2="55" stroke="#0f766e" stroke-width="2" marker-end="url(#arrZ)"/>
+        <text x="115" y="65" font-family="JetBrains Mono" font-size="11" fill="#0f766e">N</text>
+        <line x1="100" y1="150" x2="100" y2="190" stroke="#b91c1c" stroke-width="2" marker-end="url(#arrR1)"/>
+        <text x="115" y="180" font-family="JetBrains Mono" font-size="11" fill="#b91c1c">mg</text>
+
+        <!-- (b) Block on incline -->
+        <text x="370" y="20" font-family="DM Sans" font-size="12" font-weight="700" text-anchor="middle" fill="#0f172a">(b) Block on incline (frictionless)</text>
+        <polygon points="270,170 480,170 480,80" fill="#e2e8f0" stroke="#64748b" stroke-width="1.5"/>
+        <text x="465" y="160" font-family="JetBrains Mono" font-size="11" fill="#0f172a">θ</text>
+        <!-- Block tilted on incline -->
+        <g transform="translate(380,120) rotate(-23)">
+          <rect x="-25" y="-18" width="50" height="36" fill="#0f766e" opacity=".25" stroke="#0f766e" stroke-width="1.5"/>
+          <text x="0" y="5" font-family="DM Sans" font-size="11" font-weight="600" text-anchor="middle" fill="#0f172a">m</text>
+          <!-- Normal (perpendicular to incline) -->
+          <line x1="0" y1="-18" x2="0" y2="-50" stroke="#0f766e" stroke-width="2" marker-end="url(#arrZ)"/>
+          <text x="12" y="-40" font-family="JetBrains Mono" font-size="10" fill="#0f766e">N</text>
+        </g>
+        <!-- Gravity (always vertical) -->
+        <line x1="380" y1="125" x2="380" y2="180" stroke="#b91c1c" stroke-width="2" marker-end="url(#arrR1)"/>
+        <text x="395" y="170" font-family="JetBrains Mono" font-size="11" fill="#b91c1c">mg</text>
+
+        <!-- (c) Hanging block -->
+        <text x="620" y="20" font-family="DM Sans" font-size="12" font-weight="700" text-anchor="middle" fill="#0f172a">(c) Hanging block</text>
+        <line x1="540" y1="40" x2="700" y2="40" stroke="#64748b" stroke-width="2"/>
+        <line x1="620" y1="40" x2="620" y2="100" stroke="#0f172a" stroke-width="1.5"/>
+        <rect x="585" y="100" width="70" height="50" fill="#0f766e" opacity=".25" stroke="#0f766e" stroke-width="1.5"/>
+        <text x="620" y="130" font-family="DM Sans" font-size="13" font-weight="600" text-anchor="middle" fill="#0f172a">m</text>
+        <line x1="620" y1="100" x2="620" y2="60" stroke="#0f766e" stroke-width="2" marker-end="url(#arrZ)"/>
+        <text x="635" y="80" font-family="JetBrains Mono" font-size="11" fill="#0f766e">T</text>
+        <line x1="620" y1="150" x2="620" y2="190" stroke="#b91c1c" stroke-width="2" marker-end="url(#arrR1)"/>
+        <text x="635" y="180" font-family="JetBrains Mono" font-size="11" fill="#b91c1c">mg</text>
+
+        <defs>
+          <marker id="arrZ" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+            <path d="M0,0 L10,5 L0,10 z" fill="#0f766e"/>
+          </marker>
+          <marker id="arrR1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+            <path d="M0,0 L10,5 L0,10 z" fill="#b91c1c"/>
+          </marker>
+        </defs>
+      </svg>
+      <div class="diagram-cap">Three canonical FBDs. (a) Equilibrium: N = mg. (b) Frictionless incline: N = mg cosθ; net along slope = mg sinθ. (c) Static hang: T = mg.</div>
+    </div>
+  </div>
+
+  <!-- ── 6. FORCES IN MECHANICS ────────────────────────────────────────── -->
+  <div class="topic-section" id="forces">
+    <h2><span class="sec-num">06</span>The 5 Forces in Mechanics</h2>
+
+    <h3>① Gravity (Weight)</h3>
+    <p>Always present, always vertical (down toward Earth's centre), magnitude <span class="m">W = mg</span> with <span class="m">g ≈ 9.8 m/s²</span> (use 10 in JEE for speed unless specified). It does <em>not</em> change with the surface, the lift, or the angle of an incline — it is a property of the body and the gravitational field.</p>
+
+    <h3>② Normal force</h3>
+    <p>A contact force <strong>perpendicular to the surface</strong>, pushing the body <em>away</em> from the surface. Its magnitude is <em>not</em> a fixed formula — it is whatever it has to be so that the body does not penetrate the surface. Common results:</p>
+    <ul>
+      <li>Block on horizontal floor at rest: <span class="m">N = mg</span></li>
+      <li>Block on incline at angle θ: <span class="m">N = mg cosθ</span></li>
+      <li>Block in lift accelerating up at <span class="m">a</span>: <span class="m">N = m(g + a)</span></li>
+      <li>Block in lift accelerating down at <span class="m">a</span>: <span class="m">N = m(g − a)</span></li>
+      <li>Lift in free-fall (<span class="m">a = g</span>): <span class="m">N = 0</span> ← apparent weightlessness</li>
+    </ul>
+
+    <h3>③ Tension</h3>
+    <p>The pull of a string/rod on whatever is attached. Tension is <em>directed away</em> from the body along the string. For a <strong>massless inextensible string</strong>: tension is the <em>same</em> at every point. If the string has mass or passes over a frictional pulley, tensions differ on the two sides.</p>
+
+    <h3>④ Friction</h3>
+    <p>Detailed treatment in §9. Always tangential to the contact surface, opposing the <em>tendency</em> of relative motion (static) or actual relative motion (kinetic).</p>
+
+    <h3>⑤ Spring force</h3>
+    <p>For an ideal spring of constant <span class="m">k</span>, displaced from natural length by <span class="m">x</span>:</p>
+    <div class="eq-block">
+      F<sub>spring</sub> = −k·x
+      <span class="eq-label">Hooke's law (restoring force)</span>
+    </div>
+    <p>The minus sign means the force always points <em>back</em> toward the natural length. Stretched → pulls in. Compressed → pushes out.</p>
+  </div>
+
+  <!-- ── 7. INCLINED PLANES ────────────────────────────────────────────── -->
+  <div class="topic-section" id="incline">
+    <h2><span class="sec-num">07</span>Inclined Planes — The Master Setup</h2>
+
+    <p>Inclined planes appear in 30%+ of JEE-Main NLM questions. The trick is always the same: <strong>rotate your axes</strong> so x is along the slope (down-the-slope positive) and y is perpendicular to the slope.</p>
+
+    <div class="diagram">
+      <svg viewBox="0 0 520 240" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Inclined plane FBD">
+        <polygon points="60,200 460,200 460,60" fill="#e2e8f0" stroke="#64748b" stroke-width="1.5"/>
+        <text x="445" y="190" font-family="JetBrains Mono" font-size="12" fill="#0f172a">θ</text>
+        <text x="260" y="220" font-family="DM Sans" font-size="11" text-anchor="middle" fill="#64748b">θ measured from horizontal</text>
+
+        <!-- block tilted on incline -->
+        <g transform="translate(280,140) rotate(-20.6)">
+          <rect x="-30" y="-22" width="60" height="44" fill="#0f766e" opacity=".25" stroke="#0f766e" stroke-width="1.5"/>
+          <text x="0" y="5" font-family="DM Sans" font-size="13" font-weight="600" text-anchor="middle" fill="#0f172a">m</text>
+          <!-- Normal -->
+          <line x1="0" y1="-22" x2="0" y2="-65" stroke="#0f766e" stroke-width="2.2" marker-end="url(#arrI1)"/>
+          <text x="14" y="-50" font-family="JetBrains Mono" font-size="11" fill="#0f766e">N</text>
+          <!-- mg sinθ along slope -->
+          <line x1="0" y1="22" x2="55" y2="22" stroke="#b91c1c" stroke-width="2.2" marker-end="url(#arrI2)"/>
+          <text x="62" y="20" font-family="JetBrains Mono" font-size="10" fill="#b91c1c">mg sinθ</text>
+        </g>
+        <!-- Full mg vertical -->
+        <line x1="280" y1="155" x2="280" y2="220" stroke="#b91c1c" stroke-width="2.2" marker-end="url(#arrI2)" stroke-dasharray="3 2" opacity=".5"/>
+        <text x="295" y="210" font-family="JetBrains Mono" font-size="10" fill="#b91c1c" opacity=".7">mg</text>
+
+        <defs>
+          <marker id="arrI1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+            <path d="M0,0 L10,5 L0,10 z" fill="#0f766e"/>
+          </marker>
+          <marker id="arrI2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+            <path d="M0,0 L10,5 L0,10 z" fill="#b91c1c"/>
+          </marker>
+        </defs>
+      </svg>
+      <div class="diagram-cap">Tilted axes: along the slope and perpendicular to it. Weight resolves into <span class="m">mg sinθ</span> (down-slope) and <span class="m">mg cosθ</span> (into surface).</div>
+    </div>
+
+    <h3>Standard results (memorise the derivation, not the answer)</h3>
+    <p>For a block of mass <span class="m">m</span> on an incline of angle <span class="m">θ</span>:</p>
+    <ul>
+      <li><strong>Normal:</strong> <span class="m">N = mg cosθ</span></li>
+      <li><strong>Frictionless slide:</strong> <span class="m">a = g sinθ</span></li>
+      <li><strong>With friction (sliding down):</strong> <span class="m">a = g(sinθ − μ<sub>k</sub> cosθ)</span></li>
+      <li><strong>Sliding condition (static):</strong> <span class="m">tanθ &gt; μ<sub>s</sub></span> (else block stays put)</li>
+      <li><strong>Pushed up incline with force F along slope:</strong> <span class="m">a = F/m − g sinθ − μ<sub>k</sub>g cosθ</span></li>
+    </ul>
+
+    <div class="callout warn">
+      <div class="callout-title">⚠ Don't memorise; derive</div>
+      JEE will twist the geometry — angle of friction, double inclines, wedge that itself accelerates. If you only memorised <span class="m">a = g sinθ</span>, you're stuck. If you internalised the FBD method, every variation is the same five steps.
+    </div>
+  </div>
+
+  <!-- ── 8. PULLEYS ───────────────────────────────────────────────────── -->
+  <div class="topic-section" id="pulleys">
+    <h2><span class="sec-num">08</span>Pulleys &amp; Connected Bodies</h2>
+
+    <p>The trick for any multi-body problem: write <span class="m">F = ma</span> <em>separately</em> for every body, then use <strong>constraint equations</strong> to relate accelerations.</p>
+
+    <h3>Atwood machine — the classic</h3>
+    <div class="diagram">
+      <svg viewBox="0 0 320 220" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Atwood machine">
+        <!-- Pulley -->
+        <circle cx="160" cy="40" r="18" fill="none" stroke="#0f172a" stroke-width="2"/>
+        <circle cx="160" cy="40" r="3" fill="#0f172a"/>
+        <!-- Strings -->
+        <line x1="142" y1="40" x2="100" y2="100" stroke="#0f172a" stroke-width="1.5"/>
+        <line x1="178" y1="40" x2="220" y2="100" stroke="#0f172a" stroke-width="1.5"/>
+        <!-- m1 (lighter) -->
+        <rect x="75" y="100" width="50" height="40" fill="#0f766e" opacity=".25" stroke="#0f766e" stroke-width="1.5"/>
+        <text x="100" y="125" font-family="DM Sans" font-size="13" font-weight="600" text-anchor="middle" fill="#0f172a">m₁</text>
+        <line x1="100" y1="140" x2="100" y2="170" stroke="#0f766e" stroke-width="2" marker-end="url(#arrP1)"/>
+        <text x="115" y="165" font-family="JetBrains Mono" font-size="10" fill="#0f766e">a</text>
+        <!-- m2 (heavier) -->
+        <rect x="190" y="100" width="60" height="50" fill="#1d4ed8" opacity=".25" stroke="#1d4ed8" stroke-width="1.5"/>
+        <text x="220" y="130" font-family="DM Sans" font-size="13" font-weight="600" text-anchor="middle" fill="#0f172a">m₂</text>
+        <line x1="220" y1="150" x2="220" y2="195" stroke="#1d4ed8" stroke-width="2" marker-end="url(#arrP2)"/>
+        <text x="235" y="180" font-family="JetBrains Mono" font-size="10" fill="#1d4ed8">a</text>
+        <text x="160" y="215" font-family="DM Sans" font-size="11" text-anchor="middle" fill="#64748b">m₂ &gt; m₁ → m₂ falls, m₁ rises, both accelerations equal in magnitude</text>
+
+        <defs>
+          <marker id="arrP1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+            <path d="M0,0 L10,5 L0,10 z" fill="#0f766e"/>
+          </marker>
+          <marker id="arrP2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+            <path d="M0,0 L10,5 L0,10 z" fill="#1d4ed8"/>
+          </marker>
+        </defs>
+      </svg>
+      <div class="diagram-cap">Atwood machine: massless string, frictionless pulley.</div>
+    </div>
+
+    <p>For each body, take "down" as positive in the direction it actually moves:</p>
+
+    <div class="eq-block">
+      m₂g − T = m₂a&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;T − m₁g = m₁a
+      <span class="eq-label">Two equations, two unknowns (T and a)</span>
+    </div>
+
+    <p>Adding: <span class="m">a = (m₂ − m₁)g / (m₁ + m₂)</span>. Substituting back: <span class="m">T = 2 m₁ m₂ g / (m₁ + m₂)</span>.</p>
+
+    <h3>Modified Atwood (one block on a table)</h3>
+    <p>Block <span class="m">m₁</span> on frictionless horizontal table, connected over a pulley at the edge to hanging block <span class="m">m₂</span>:</p>
+    <div class="eq-block">
+      a = m₂g / (m₁ + m₂)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;T = m₁m₂g / (m₁ + m₂)
+    </div>
+
+    <h3>Block-on-incline + hanging block</h3>
+    <p>Block <span class="m">m₁</span> on incline angle θ (with friction coefficient μ between block and incline), connected over a pulley at the top to hanging block <span class="m">m₂</span>. Assume <span class="m">m₂</span> heavy enough to drag <span class="m">m₁</span> up the incline:</p>
+    <div class="eq-block">
+      a = [m₂g − m₁g sinθ − μ m₁g cosθ] / (m₁ + m₂)
+    </div>
+  </div>
+
+  <!-- ── 9. FRICTION ───────────────────────────────────────────────────── -->
+  <div class="topic-section" id="friction">
+    <h2><span class="sec-num">09</span>Friction in Depth</h2>
+
+    <p>Friction is a contact force tangential to the surface, opposing relative motion (or its <em>tendency</em>). It comes in two flavours.</p>
+
+    <div class="compare-grid">
+      <div class="compare-cell">
+        <strong>Static friction (no relative motion yet)</strong>
+        <span class="m">0 ≤ f<sub>s</sub> ≤ μ<sub>s</sub> N</span><br>
+        Self-adjusting — equals exactly the applied force needed to keep the body still, up to a maximum of <span class="m">μ<sub>s</sub>N</span>.
+      </div>
+      <div class="compare-cell">
+        <strong>Kinetic friction (already sliding)</strong>
+        <span class="m">f<sub>k</sub> = μ<sub>k</sub> N</span><br>
+        Constant magnitude (independent of speed), direction always opposite to actual motion.
+      </div>
+    </div>
+
+    <p><strong>Universal fact:</strong> <span class="m">μ<sub>s</sub> &gt; μ<sub>k</sub></span>. It always takes more force to <em>start</em> sliding than to <em>continue</em> sliding.</p>
+
+    <h3>Angle of friction &amp; angle of repose</h3>
+    <p>The <strong>angle of friction</strong> <span class="m">λ</span> is defined by <span class="m">tanλ = μ<sub>s</sub></span>. The <strong>angle of repose</strong> is the steepest incline at which a block remains static — and turns out to equal <span class="m">λ</span>.</p>
+
+    <p>So: an incline at angle <span class="m">θ</span>:</p>
+    <ul>
+      <li><span class="m">θ &lt; λ</span>: block stationary (static friction holds it).</li>
+      <li><span class="m">θ = λ</span>: on the verge of slipping.</li>
+      <li><span class="m">θ &gt; λ</span>: block accelerates down; <span class="m">a = g(sinθ − μ<sub>k</sub>cosθ)</span>.</li>
+    </ul>
+
+    <h3>Friction on multi-block stacks</h3>
+    <p>Two blocks A (top) and B (bottom) on a horizontal surface. Force F applied on B. The friction <em>between A and B</em> is what makes A accelerate. Procedure:</p>
+    <ol>
+      <li>Find the maximum friction A can experience: <span class="m">f<sub>max</sub> = μ m<sub>A</sub> g</span>.</li>
+      <li>Find the acceleration A would need to keep up: <span class="m">a = F / (m<sub>A</sub> + m<sub>B</sub>)</span> if no slipping.</li>
+      <li>Check: if <span class="m">m<sub>A</sub>·a ≤ f<sub>max</sub></span>, no slipping. Otherwise A slides on B.</li>
+    </ol>
+  </div>
+
+  <!-- ── 10. NON-INERTIAL FRAMES ───────────────────────────────────────── -->
+  <div class="topic-section" id="noninertial">
+    <h2><span class="sec-num">10</span>Non-Inertial Frames &amp; Pseudo Forces</h2>
+
+    <p>If you analyse a problem from a frame that itself accelerates with acceleration <span class="m">a<sub>frame</sub></span>, Newton's second law fails — unless you add a <strong>pseudo force</strong> on every body of mass <span class="m">m</span>:</p>
+
+    <div class="eq-block">
+      F<sub>pseudo</sub> = −m · a<sub>frame</sub>
+      <span class="eq-label">Opposite to the frame's acceleration</span>
+    </div>
+
+    <h3>Lift (elevator) problems — the cleanest example</h3>
+    <p>Person of mass <span class="m">m</span> standing on a weighing machine inside a lift. The machine reads <strong>apparent weight</strong> = the normal force on the person.</p>
+
+    <div class="compare-grid">
+      <div class="compare-cell">
+        <strong>Lift accelerating upward at a</strong>
+        From outside (inertial): <span class="m">N − mg = ma → N = m(g+a)</span>. Apparent weight increases.
+      </div>
+      <div class="compare-cell">
+        <strong>Lift accelerating downward at a</strong>
+        <span class="m">N = m(g − a)</span>. Apparent weight decreases.
+      </div>
+      <div class="compare-cell">
+        <strong>Free-fall (a = g)</strong>
+        <span class="m">N = 0</span>. The person is weightless — feet barely touch the floor.
+      </div>
+      <div class="compare-cell">
+        <strong>Constant velocity (a = 0)</strong>
+        <span class="m">N = mg</span>. Same as standing on solid ground.
+      </div>
+    </div>
+
+    <h3>Solving inside the non-inertial frame</h3>
+    <p>The lift accelerating up at <span class="m">a</span>. Inside the lift, the person is at rest. Apply Newton's law in the lift frame: <span class="m">N − mg − m·a = 0</span> (where <span class="m">−m·a</span> is the pseudo force pointing down because the frame accelerates up). Solve: <span class="m">N = m(g+a)</span>. Same answer, less geometry — pick whichever frame is faster.</p>
+
+    <div class="callout info">
+      <div class="callout-title">📌 When to switch to a non-inertial frame</div>
+      Use the moving frame when one body is <em>at rest</em> in that frame (e.g. a person standing in a lift, a bob hanging in an accelerating car). It removes the kinematic constraint and reduces the algebra.
+    </div>
+  </div>
+
+  <!-- ── 11. CONSTRAINTS ──────────────────────────────────────────────── -->
+  <div class="topic-section" id="constraints">
+    <h2><span class="sec-num">11</span>Constraint Relations (JEE Advanced)</h2>
+
+    <p>When two bodies are connected by a string or in contact such that they cannot move independently, their accelerations are <strong>related</strong> by a constraint equation. Skip this if you're targeting JEE Main only — it shows up often in JEE Advanced.</p>
+
+    <h3>Two methods</h3>
+
+    <h4>① String-length method</h4>
+    <p>If the string is inextensible, the total length is constant. Differentiate twice with respect to time → acceleration relation.</p>
+
+    <p><strong>Example:</strong> for a single Atwood machine, <span class="m">L = y₁ + y₂ + (constant)</span>, so <span class="m">dL/dt = 0 → v₁ = −v₂ → a₁ = −a₂</span>. The two blocks move with equal-magnitude opposite accelerations.</p>
+
+    <h4>② Velocity-along-string method (faster)</h4>
+    <p>The component of velocity of any body along the string equals the component of velocity of any other point on that string along the string. Same for acceleration.</p>
+
+    <p><strong>Example — wedge problem:</strong> A wedge slides on a horizontal frictionless floor with horizontal acceleration <span class="m">A</span>. A block sits on the wedge surface (angle θ). If the block slides on the wedge with relative acceleration <span class="m">a<sub>rel</sub></span> along the slope, the block's true acceleration in the ground frame has both horizontal and vertical components — set up the constraint that the block stays in contact (perpendicular relative velocity = 0).</p>
+
+    <div class="callout warn">
+      <div class="callout-title">⚠ JEE Advanced trap</div>
+      Pulley systems with movable pulleys: the acceleration of a block hanging from a movable pulley is <em>half</em> the acceleration of the load on the other side (if the pulley is in the middle of the string). String constraints are mass-independent — they're pure geometry.
+    </div>
+  </div>
+
+  <!-- ── 12. FORMULAS ──────────────────────────────────────────────────── -->
+  <div class="topic-section" id="formulas">
+    <h2><span class="sec-num">12</span>Master Formula Sheet</h2>
+
+    <p>Every formula here is derivable from <span class="m">F = ma</span> + a good FBD. Memorise the second-law applications, but always be ready to derive.</p>
+
+    <div class="formula-table-wrap" style="border:1px solid var(--line); border-radius:var(--radius); overflow:hidden;">
+      <table class="formula-table phys-unit">
+        <thead>
+          <tr><th>Formula</th><th>Setting</th><th>Notes</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="formula-cell">F<sub>net</sub> = ma</td><td>Newton's 2nd (constant mass)</td><td class="note-cell">Vector — apply per axis</td></tr>
+          <tr><td class="formula-cell">F<sub>net</sub> = dp/dt</td><td>Newton's 2nd (general)</td><td class="note-cell">Use for variable mass</td></tr>
+          <tr><td class="formula-cell">J = ∫F dt = Δp</td><td>Impulse–momentum</td><td class="note-cell">Collisions, hammer blows</td></tr>
+          <tr><td class="formula-cell">W = mg</td><td>Weight</td><td class="note-cell">Always vertical down</td></tr>
+          <tr><td class="formula-cell">N = mg (level floor)</td><td>Normal — flat surface</td><td class="note-cell">Only if no vertical accel</td></tr>
+          <tr><td class="formula-cell">N = mg cosθ</td><td>Normal — incline</td><td class="note-cell">θ from horizontal</td></tr>
+          <tr><td class="formula-cell">N = m(g + a)</td><td>Lift up</td><td class="note-cell">Apparent weight ↑</td></tr>
+          <tr><td class="formula-cell">N = m(g − a)</td><td>Lift down</td><td class="note-cell">Apparent weight ↓</td></tr>
+          <tr><td class="formula-cell">N = 0</td><td>Free-fall</td><td class="note-cell">a = g</td></tr>
+          <tr><td class="formula-cell">a = g sinθ</td><td>Frictionless incline</td><td class="note-cell">Mass cancels</td></tr>
+          <tr><td class="formula-cell">a = g(sinθ − μ cosθ)</td><td>Incline with friction (sliding)</td><td class="note-cell">μ = μ<sub>k</sub></td></tr>
+          <tr><td class="formula-cell">tanλ = μ<sub>s</sub></td><td>Angle of friction</td><td class="note-cell">= angle of repose</td></tr>
+          <tr><td class="formula-cell">f<sub>s</sub> ≤ μ<sub>s</sub>N</td><td>Static friction</td><td class="note-cell">≤ not =</td></tr>
+          <tr><td class="formula-cell">f<sub>k</sub> = μ<sub>k</sub>N</td><td>Kinetic friction</td><td class="note-cell">μ<sub>s</sub> &gt; μ<sub>k</sub></td></tr>
+          <tr><td class="formula-cell">F<sub>spring</sub> = −kx</td><td>Hooke's law</td><td class="note-cell">Restoring</td></tr>
+          <tr><td class="formula-cell">a = (m₂ − m₁)g / (m₁ + m₂)</td><td>Atwood acceleration</td><td class="note-cell">Heavier falls</td></tr>
+          <tr><td class="formula-cell">T = 2m₁m₂g / (m₁ + m₂)</td><td>Atwood tension</td><td class="note-cell">Massless string</td></tr>
+          <tr><td class="formula-cell">a = m₂g / (m₁ + m₂)</td><td>Modified Atwood (table + hang)</td><td class="note-cell">Frictionless table</td></tr>
+          <tr><td class="formula-cell">F<sub>pseudo</sub> = −m·a<sub>frame</sub></td><td>Non-inertial frame</td><td class="note-cell">Opposite to frame's a</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Variable explanations — every symbol decoded</h3>
+    <div class="formula-explain-grid" style="margin-top:1rem">
+      <div class="formula-explain-card phys-unit" style="border-left:3px solid var(--phys); background: var(--bg); padding:.9rem 1rem; border-radius:8px;">
+        <div class="formula-explain-eq">F = ma</div>
+        <div class="formula-explain-name">Newton's 2nd Law</div>
+        <div class="formula-explain-vars">
+          <span class="formula-explain-var"><b>F</b> = net external force (N)</span>
+          <span class="formula-explain-var"><b>m</b> = mass (kg)</span>
+          <span class="formula-explain-var"><b>a</b> = acceleration (m/s²)</span>
+        </div>
+        <div class="formula-explain-use"><strong>Vector:</strong> apply per axis. <strong>Net</strong> = sum of every force on the FBD.</div>
+        <div class="formula-explain-derive">From <span class="m">F = dp/dt</span> with constant m. Holds only in inertial frames.</div>
+      </div>
+
+      <div class="formula-explain-card phys-unit" style="border-left:3px solid var(--phys); background: var(--bg); padding:.9rem 1rem; border-radius:8px;">
+        <div class="formula-explain-eq">N = m(g ± a)</div>
+        <div class="formula-explain-name">Apparent weight in a lift</div>
+        <div class="formula-explain-vars">
+          <span class="formula-explain-var"><b>N</b> = normal / scale reading (N)</span>
+          <span class="formula-explain-var"><b>g</b> = 10 m/s²</span>
+          <span class="formula-explain-var"><b>a</b> = lift acceleration (m/s²)</span>
+        </div>
+        <div class="formula-explain-use"><strong>+ a</strong> if lift goes up (heavier feel). <strong>− a</strong> if lift goes down. <strong>a = g</strong> → weightless.</div>
+        <div class="formula-explain-derive">From <span class="m">N − mg = ma</span> in the ground frame. Equivalent to adding pseudo <span class="m">−ma</span> in lift frame.</div>
+      </div>
+
+      <div class="formula-explain-card phys-unit" style="border-left:3px solid var(--phys); background: var(--bg); padding:.9rem 1rem; border-radius:8px;">
+        <div class="formula-explain-eq">a = g(sinθ − μ cosθ)</div>
+        <div class="formula-explain-name">Sliding down a rough incline</div>
+        <div class="formula-explain-vars">
+          <span class="formula-explain-var"><b>θ</b> = incline from horizontal</span>
+          <span class="formula-explain-var"><b>μ</b> = μ<sub>k</sub> (kinetic)</span>
+          <span class="formula-explain-var"><b>g</b> = 10 m/s²</span>
+        </div>
+        <div class="formula-explain-use"><strong>Sliding down:</strong> friction acts <em>up</em> the slope. <strong>Pushed up:</strong> swap sign of friction term.</div>
+        <div class="formula-explain-derive">From <span class="m">mg sinθ − μ mg cosθ = ma</span>. If <span class="m">tanθ &lt; μ</span>, block does not slide → static, a = 0.</div>
+      </div>
+
+      <div class="formula-explain-card phys-unit" style="border-left:3px solid var(--phys); background: var(--bg); padding:.9rem 1rem; border-radius:8px;">
+        <div class="formula-explain-eq">a = (m₂ − m₁)g / (m₁+m₂)</div>
+        <div class="formula-explain-name">Atwood machine</div>
+        <div class="formula-explain-vars">
+          <span class="formula-explain-var"><b>m₁, m₂</b> = two hanging masses</span>
+          <span class="formula-explain-var"><b>g</b> = 10 m/s²</span>
+        </div>
+        <div class="formula-explain-use">Heavier mass falls. Tension <span class="m">T = 2m₁m₂g/(m₁+m₂)</span> — same throughout massless string.</div>
+        <div class="formula-explain-derive">Write F=ma for each block, treat down-as-positive in direction of motion, add.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── 13. WORKED EXAMPLES ───────────────────────────────────────────── -->
+  <div class="topic-section" id="examples">
+    <h2><span class="sec-num">13</span>Worked Examples — Easy → Hard</h2>
+
+    <p>Each example is solved in the JEE method: FBD → axes → equations → answer.</p>
+
+    <!-- EASY 1 -->
+    <div class="example-card">
+      <div class="example-head">
+        <span class="example-badge badge-easy">Easy</span>
+        <span>Example 1 — Pull on a frictionless surface</span>
+      </div>
+      <div class="example-body">
+        <p>A 5 kg block on a frictionless horizontal surface is pulled by a horizontal force of 20 N. Find its acceleration.</p>
+        <span class="step-label">Setup</span>
+        <p>Forces on block: gravity (down, 50 N), normal (up, 50 N — they cancel), applied 20 N horizontal.</p>
+        <span class="step-label">Apply F = ma</span>
+        <p>Horizontally: <span class="m">20 = 5a → a = 4 m/s²</span>.</p>
+        <div class="answer">a = 4 m/s²</div>
+      </div>
+    </div>
+
+    <!-- EASY 2 -->
+    <div class="example-card">
+      <div class="example-head">
+        <span class="example-badge badge-easy">Easy</span>
+        <span>Example 2 — Apparent weight in a lift</span>
+      </div>
+      <div class="example-body">
+        <p>A person of mass 70 kg stands on a weighing machine in a lift accelerating up at 2 m/s². What does the machine read? (g = 10)</p>
+        <span class="step-label">FBD on person</span>
+        <p>Up: normal N (= scale reading). Down: weight 700 N. Net up = ma.</p>
+        <span class="step-label">Equation</span>
+        <p><span class="m">N − mg = ma → N = m(g + a) = 70 × 12 = 840 N</span>.</p>
+        <div class="answer">N = 840 N</div>
+      </div>
+    </div>
+
+    <!-- MOD 1 -->
+    <div class="example-card">
+      <div class="example-head">
+        <span class="example-badge badge-mod">Moderate</span>
+        <span>Example 3 — Block on a rough incline</span>
+      </div>
+      <div class="example-body">
+        <p>A 4 kg block is placed on a 30° incline. The coefficient of kinetic friction is 0.2. Find the acceleration of the block as it slides down. (g = 10)</p>
+        <span class="step-label">Resolve along the slope</span>
+        <p>Down-slope: <span class="m">mg sinθ = 4 × 10 × 0.5 = 20 N</span>.</p>
+        <p>Friction (up the slope): <span class="m">μ mg cosθ = 0.2 × 4 × 10 × (√3/2) ≈ 6.93 N</span>.</p>
+        <span class="step-label">F = ma along slope</span>
+        <p><span class="m">20 − 6.93 = 4a → a ≈ 3.27 m/s²</span>.</p>
+        <div class="answer">a ≈ 3.27 m/s² (down the slope)</div>
+      </div>
+    </div>
+
+    <!-- MOD 2 -->
+    <div class="example-card">
+      <div class="example-head">
+        <span class="example-badge badge-mod">Moderate</span>
+        <span>Example 4 — Two blocks pushed together</span>
+      </div>
+      <div class="example-body">
+        <p>Blocks A (3 kg) and B (5 kg) are in contact on a frictionless horizontal surface. A horizontal force of 24 N is applied on A pushing it toward B. Find (i) the system's acceleration and (ii) the contact force between A and B.</p>
+        <span class="step-label">System equation</span>
+        <p><span class="m">a = F/(m<sub>A</sub>+m<sub>B</sub>) = 24/8 = 3 m/s²</span>.</p>
+        <span class="step-label">Isolate B</span>
+        <p>Only force on B (horizontal) is the contact force <span class="m">N<sub>AB</sub></span> from A. Then <span class="m">N<sub>AB</sub> = m<sub>B</sub>·a = 5 × 3 = 15 N</span>.</p>
+        <div class="answer">a = 3 m/s², contact force = 15 N</div>
+      </div>
+    </div>
+
+    <!-- HARD 1 -->
+    <div class="example-card">
+      <div class="example-head">
+        <span class="example-badge badge-hard">Hard</span>
+        <span>Example 5 — Block on accelerating wedge (no friction)</span>
+      </div>
+      <div class="example-body">
+        <p>A wedge of angle 30° is accelerated horizontally with acceleration <span class="m">a</span>. A small block placed on the smooth incline does not slide relative to the wedge. Find <span class="m">a</span>. (g = 10)</p>
+        <span class="step-label">Frame choice</span>
+        <p>Use the wedge frame (non-inertial). Block is at rest in this frame.</p>
+        <span class="step-label">Forces on block</span>
+        <p>Gravity <span class="m">mg</span> down, normal <span class="m">N</span> perpendicular to incline, pseudo force <span class="m">ma</span> horizontal (opposite to wedge motion).</p>
+        <span class="step-label">Resolve along the slope</span>
+        <p>For block to stay at rest: <span class="m">mg sinθ = ma cosθ → a = g tanθ</span>.</p>
+        <p>For θ = 30°: <span class="m">a = 10 × tan 30° = 10/√3 ≈ 5.77 m/s²</span>.</p>
+        <div class="answer">a = g tanθ ≈ 5.77 m/s²</div>
+      </div>
+    </div>
+
+    <!-- HARD 2 -->
+    <div class="example-card">
+      <div class="example-head">
+        <span class="example-badge badge-hard">Hard</span>
+        <span>Example 6 — Two-block stack with friction (which slips first?)</span>
+      </div>
+      <div class="example-body">
+        <p>Block A (mass 2 kg) sits on top of block B (mass 4 kg). The lower surface is frictionless; between A and B, μ<sub>s</sub> = μ<sub>k</sub> = 0.4. A horizontal force F is applied to B. Find the maximum F such that A does not slip on B. (g = 10)</p>
+        <span class="step-label">Think — what makes A accelerate?</span>
+        <p>Only friction (from B). Max friction A can experience: <span class="m">f<sub>max</sub> = 0.4 × 2 × 10 = 8 N</span>. So max acceleration A can have without slipping: <span class="m">a<sub>max</sub> = 8/2 = 4 m/s²</span>.</p>
+        <span class="step-label">If no slipping, common a</span>
+        <p><span class="m">a = F/(m<sub>A</sub>+m<sub>B</sub>) = F/6</span>. Set <span class="m">F/6 = 4 → F = 24 N</span>.</p>
+        <div class="answer">F<sub>max</sub> = 24 N</div>
+      </div>
+    </div>
+
+    <!-- HARD 3 -->
+    <div class="example-card">
+      <div class="example-head">
+        <span class="example-badge badge-hard">Hard</span>
+        <span>Example 7 — Movable pulley constraint</span>
+      </div>
+      <div class="example-body">
+        <p>In the system shown: a block of mass M hangs from a movable pulley; a string from the movable pulley goes over a fixed pulley and connects to a block of mass m on a frictionless horizontal table, pulled by horizontal force F. Find the acceleration of M. (Massless strings &amp; pulleys.)</p>
+        <span class="step-label">String constraint</span>
+        <p>Length of the string from the wall, around the movable pulley, to F: as M moves down by x, both string segments on either side of the movable pulley shorten by x → so F-end string moves <em>2x</em>. Therefore <span class="m">a<sub>m</sub> = 2 a<sub>M</sub></span>.</p>
+        <span class="step-label">Force equations</span>
+        <p>Tension in F-string: <span class="m">T</span>. Block on table: <span class="m">F − T = m·a<sub>m</sub> = 2m·a<sub>M</sub></span>. Movable pulley with M hanging: tension on each side is T (single string), so net up on M = <span class="m">2T − Mg = M·a<sub>M</sub></span> (taking up positive — M actually goes down so a<sub>M</sub> is negative if convention).</p>
+        <span class="step-label">Solve</span>
+        <p>From the first: <span class="m">T = F − 2m·a<sub>M</sub></span>. Substitute: <span class="m">2F − 4m·a<sub>M</sub> − Mg = M·a<sub>M</sub></span>. So <span class="m">a<sub>M</sub> = (2F − Mg) / (M + 4m)</span>.</p>
+        <div class="answer">a<sub>M</sub> = (2F − Mg) / (M + 4m)</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── 14. PYQs ──────────────────────────────────────────────────────── -->
+  <div class="topic-section" id="pyqs">
+    <h2><span class="sec-num">14</span>JEE Previous-Year Questions</h2>
+
+    <p>Selected questions in the style of recent JEE Main &amp; Advanced papers (2018–2024). Click each to reveal the worked answer.</p>
+
+    <div class="pyq-grid">
+
+      <!-- PYQ 1 -->
+      <div class="pyq-card">
+        <span class="pyq-tag">JEE Main · 2020</span>
+        <span class="example-badge badge-mod" style="margin-left:.3rem">Moderate</span>
+        <div class="pyq-q">A block of mass 10 kg is in contact with a vertical wall. The coefficient of friction between block and wall is 0.5. What minimum horizontal force is needed to prevent the block from sliding down? (g = 10 m/s²)</div>
+        <span class="pyq-ans-toggle" onclick="this.nextElementSibling.classList.toggle('open');this.textContent=this.nextElementSibling.classList.contains('open')?'▲ Hide solution':'▼ Show solution'">▼ Show solution</span>
+        <div class="pyq-ans">
+          <p>The horizontal force F provides the normal: N = F. Maximum static friction (vertical, upward) = μF. To prevent sliding: <span class="m">μF ≥ mg → F ≥ mg/μ = 100/0.5 = 200 N</span>.</p>
+          <span class="answer-final">F<sub>min</sub> = 200 N</span>
+        </div>
+      </div>
+
+      <!-- PYQ 2 -->
+      <div class="pyq-card">
+        <span class="pyq-tag">JEE Main · 2019</span>
+        <span class="example-badge badge-easy" style="margin-left:.3rem">Easy</span>
+        <div class="pyq-q">A man of mass 70 kg stands on a weighing machine in a lift moving downward with a uniform acceleration of 5 m/s². The reading of the weighing machine is: (g = 10)</div>
+        <span class="pyq-ans-toggle" onclick="this.nextElementSibling.classList.toggle('open');this.textContent=this.nextElementSibling.classList.contains('open')?'▲ Hide solution':'▼ Show solution'">▼ Show solution</span>
+        <div class="pyq-ans">
+          <p><span class="m">N = m(g − a) = 70 × (10 − 5) = 350 N</span>.</p>
+          <span class="answer-final">350 N</span>
+        </div>
+      </div>
+
+      <!-- PYQ 3 -->
+      <div class="pyq-card">
+        <span class="pyq-tag">JEE Main · 2021</span>
+        <span class="example-badge badge-mod" style="margin-left:.3rem">Moderate</span>
+        <div class="pyq-q">Two blocks of masses 4 kg and 6 kg are connected by an inextensible string over a frictionless pulley. The system is released from rest. Find the tension in the string. (g = 10)</div>
+        <span class="pyq-ans-toggle" onclick="this.nextElementSibling.classList.toggle('open');this.textContent=this.nextElementSibling.classList.contains('open')?'▲ Hide solution':'▼ Show solution'">▼ Show solution</span>
+        <div class="pyq-ans">
+          <p>Atwood. <span class="m">T = 2m₁m₂g/(m₁+m₂) = 2 × 4 × 6 × 10 / 10 = 48 N</span>.</p>
+          <span class="answer-final">T = 48 N</span>
+        </div>
+      </div>
+
+      <!-- PYQ 4 -->
+      <div class="pyq-card">
+        <span class="pyq-tag">JEE Main · 2022</span>
+        <span class="example-badge badge-mod" style="margin-left:.3rem">Moderate</span>
+        <div class="pyq-q">A block just begins to slide down a rough inclined plane when the angle of inclination is 45°. The coefficient of static friction between the block and the plane is:</div>
+        <span class="pyq-ans-toggle" onclick="this.nextElementSibling.classList.toggle('open');this.textContent=this.nextElementSibling.classList.contains('open')?'▲ Hide solution':'▼ Show solution'">▼ Show solution</span>
+        <div class="pyq-ans">
+          <p>Angle of repose = angle of friction → <span class="m">μ<sub>s</sub> = tan 45° = 1</span>.</p>
+          <span class="answer-final">μ<sub>s</sub> = 1</span>
+        </div>
+      </div>
+
+      <!-- PYQ 5 -->
+      <div class="pyq-card">
+        <span class="pyq-tag">JEE Main · 2023</span>
+        <span class="example-badge badge-hard" style="margin-left:.3rem">Hard</span>
+        <div class="pyq-q">A block A of mass 2 kg rests on top of a 4 kg block B placed on a frictionless horizontal surface. The coefficient of friction between A and B is 0.5. A horizontal force F is applied to B. The maximum value of F so that A and B move together is: (g = 10)</div>
+        <span class="pyq-ans-toggle" onclick="this.nextElementSibling.classList.toggle('open');this.textContent=this.nextElementSibling.classList.contains('open')?'▲ Hide solution':'▼ Show solution'">▼ Show solution</span>
+        <div class="pyq-ans">
+          <p>Max friction on A: <span class="m">f<sub>max</sub> = 0.5 × 2 × 10 = 10 N</span>. Max acceleration A can sustain: <span class="m">a = 5 m/s²</span>. For combined motion: <span class="m">F = (m<sub>A</sub>+m<sub>B</sub>)·a = 6 × 5 = 30 N</span>.</p>
+          <span class="answer-final">F<sub>max</sub> = 30 N</span>
+        </div>
+      </div>
+
+      <!-- PYQ 6 -->
+      <div class="pyq-card">
+        <span class="pyq-tag">JEE Main · 2018</span>
+        <span class="example-badge badge-mod" style="margin-left:.3rem">Moderate</span>
+        <div class="pyq-q">A particle of mass m is moving with constant velocity v on a smooth horizontal table. It strikes a vertical wall and rebounds with the same speed. If the time of contact is Δt, the magnitude of the average force exerted by the wall on the particle is:</div>
+        <span class="pyq-ans-toggle" onclick="this.nextElementSibling.classList.toggle('open');this.textContent=this.nextElementSibling.classList.contains('open')?'▲ Hide solution':'▼ Show solution'">▼ Show solution</span>
+        <div class="pyq-ans">
+          <p>Δp = m·v − (−m·v) = 2mv. Impulse–momentum: <span class="m">F<sub>avg</sub> · Δt = 2mv → F<sub>avg</sub> = 2mv/Δt</span>.</p>
+          <span class="answer-final">F<sub>avg</sub> = 2mv/Δt</span>
+        </div>
+      </div>
+
+      <!-- PYQ 7 -->
+      <div class="pyq-card">
+        <span class="pyq-tag">JEE Advanced · 2019</span>
+        <span class="example-badge badge-hard" style="margin-left:.3rem">Hard</span>
+        <div class="pyq-q">A wedge of angle 30° is on a frictionless horizontal surface. A block of mass m is placed on the smooth wedge. The wedge has mass M. When released, find the acceleration of the wedge.</div>
+        <span class="pyq-ans-toggle" onclick="this.nextElementSibling.classList.toggle('open');this.textContent=this.nextElementSibling.classList.contains('open')?'▲ Hide solution':'▼ Show solution'">▼ Show solution</span>
+        <div class="pyq-ans">
+          <p>This requires constraint analysis. Let A be the wedge's horizontal acceleration (leftward) and a<sub>r</sub> the block's acceleration along the slope (down the slope, relative to wedge). The block stays in contact: components perpendicular to slope match. Resulting standard result:</p>
+          <p><span class="m">A = m·g·sinθ·cosθ / (M + m·sin²θ)</span>.</p>
+          <p>For θ = 30°, m = M (or whatever the question gives), substitute. With <span class="m">sin30 = 0.5, cos30 = √3/2</span>: <span class="m">A = m·g·(√3/4) / (M + m/4)</span>.</p>
+          <span class="answer-final">A = mg sinθ cosθ / (M + m sin²θ)</span>
+        </div>
+      </div>
+
+      <!-- PYQ 8 -->
+      <div class="pyq-card">
+        <span class="pyq-tag">JEE Main · 2024</span>
+        <span class="example-badge badge-mod" style="margin-left:.3rem">Moderate</span>
+        <div class="pyq-q">A block of mass 1 kg is pushed up a rough incline of 30° with an initial speed of 10 m/s. If μ<sub>k</sub> = 0.1, the deceleration on the way up is: (g = 10, √3 ≈ 1.73)</div>
+        <span class="pyq-ans-toggle" onclick="this.nextElementSibling.classList.toggle('open');this.textContent=this.nextElementSibling.classList.contains('open')?'▲ Hide solution':'▼ Show solution'">▼ Show solution</span>
+        <div class="pyq-ans">
+          <p>Going up: gravity AND friction both act <em>down</em> the slope. <span class="m">a = g(sinθ + μ cosθ) = 10(0.5 + 0.1 × 0.866) ≈ 10 × 0.587 ≈ 5.87 m/s²</span>.</p>
+          <span class="answer-final">a ≈ 5.87 m/s² (deceleration)</span>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="callout warn" style="margin-top:1.5rem">
+      <div class="callout-title">📚 Practice strategy</div>
+      Don't just read solutions. <strong>Cover the answer, attempt every problem cold, then check.</strong> Aim for 50+ NLM problems (across all difficulties) before the exam — the formulas are few, but the FBD intuition takes practice.
+    </div>
+  </div>
+
+  <!-- ── 15. TRAPS ─────────────────────────────────────────────────────── -->
+  <div class="topic-section" id="traps">
+    <h2><span class="sec-num">15</span>Common Traps &amp; Mistakes</h2>
+
+    <div class="mistake-list">
+      <div class="mistake-item"><span class="mistake-icon">⚠</span><div><strong>Mixing forces from two bodies in one FBD.</strong> Each FBD shows forces on <em>one</em> body. The reaction lives elsewhere.</div></div>
+      <div class="mistake-item"><span class="mistake-icon">⚠</span><div><strong>Assuming N = mg always.</strong> True only on a stationary horizontal surface. Inclines, lifts, accelerating frames all break this.</div></div>
+      <div class="mistake-item"><span class="mistake-icon">⚠</span><div><strong>Friction = μN always.</strong> No — that's the <em>maximum</em> static friction. Actual static friction is whatever is needed, up to μ<sub>s</sub>N.</div></div>
+      <div class="mistake-item"><span class="mistake-icon">⚠</span><div><strong>Forgetting friction direction reverses going up an incline.</strong> Going down → friction up. Going up → friction down. Sign change matters.</div></div>
+      <div class="mistake-item"><span class="mistake-icon">⚠</span><div><strong>Treating tension as the same on both sides of a frictional or massive pulley.</strong> It is not — only for a massless string over a frictionless pulley.</div></div>
+      <div class="mistake-item"><span class="mistake-icon">⚠</span><div><strong>Forgetting the pseudo force in non-inertial frames.</strong> If you're sitting in the lift's frame, you must add <span class="m">−ma<sub>frame</sub></span> on every body.</div></div>
+      <div class="mistake-item"><span class="mistake-icon">⚠</span><div><strong>Calling weight and normal an action–reaction pair.</strong> They both act on the same body. Reaction to weight is the body pulling Earth up.</div></div>
+      <div class="mistake-item"><span class="mistake-icon">⚠</span><div><strong>Resolving along x/y on an incline.</strong> Always resolve along/perpendicular to the slope — the algebra collapses.</div></div>
+      <div class="mistake-item"><span class="mistake-icon">⚠</span><div><strong>Ignoring that string constraints are kinematic.</strong> A movable pulley halves the speed of the load. Forces don't tell you this — geometry does.</div></div>
+      <div class="mistake-item"><span class="mistake-icon">⚠</span><div><strong>Using F = ma in collisions.</strong> Force is huge for a tiny time and unknown — use impulse <span class="m">F·Δt = Δp</span> instead.</div></div>
+    </div>
+  </div>
+
+  <!-- ── 16. CHEAT CARD ────────────────────────────────────────────────── -->
+  <div class="topic-section" id="cheat">
+    <h2><span class="sec-num">16</span>One-Page Cheat Card</h2>
+
+    <div class="cheat-card">
+      <h3>🎯 Newton's Laws — exam-day recall</h3>
+      <ul>
+        <li><strong>1st law:</strong> No net force ⇒ velocity constant. Defines inertial frame.</li>
+        <li><strong>2nd law:</strong> <code>F<sub>net</sub> = ma</code> per axis. Mass constant ⇒ <code>F = ma</code>; otherwise <code>F = dp/dt</code>.</li>
+        <li><strong>3rd law:</strong> Equal &amp; opposite, on <em>different</em> bodies.</li>
+        <li><strong>FBD method:</strong> isolate body → list every force → choose axes → write <code>ΣF = ma</code>.</li>
+        <li><strong>Normal:</strong> <code>N = mg</code> (flat) · <code>mg cosθ</code> (incline) · <code>m(g±a)</code> (lift).</li>
+        <li><strong>Friction:</strong> <code>f<sub>s</sub> ≤ μ<sub>s</sub>N</code> (self-adjusting) · <code>f<sub>k</sub> = μ<sub>k</sub>N</code> · <code>μ<sub>s</sub> &gt; μ<sub>k</sub></code>.</li>
+        <li><strong>Incline (sliding):</strong> <code>a = g(sinθ − μcosθ)</code>. <strong>Repose:</strong> <code>tanλ = μ<sub>s</sub></code>.</li>
+        <li><strong>Atwood:</strong> <code>a = (m₂−m₁)g/(m₁+m₂)</code> · <code>T = 2m₁m₂g/(m₁+m₂)</code>.</li>
+        <li><strong>Lift:</strong> apparent <code>N = m(g+a)</code> up · <code>m(g−a)</code> down · <code>0</code> in free-fall.</li>
+        <li><strong>Non-inertial:</strong> add pseudo <code>−ma<sub>frame</sub></code> on every body.</li>
+        <li><strong>Collisions:</strong> use impulse <code>J = F·Δt = Δp</code>, never F = ma directly.</li>
+      </ul>
+    </div>
+
+    <div style="text-align:center; margin-top:2rem;">
+      <a href="../subjects/physics.html" style="display:inline-block; padding:.7rem 1.4rem; background:var(--phys); color:white; border-radius:8px; font-weight:700; text-decoration:none;">← Back to Physics overview</a>
+      &nbsp;
+      <a href="../progress.html" style="display:inline-block; padding:.7rem 1.4rem; background:var(--bg); color:var(--ink); border:1px solid var(--line); border-radius:8px; font-weight:700; text-decoration:none;">Mark sessions complete →</a>
+    </div>
+  </div>
+
+</div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-brand">JEE 2027 Prep</div>
+      <div class="footer-links">
+        <a href="../index.html">Dashboard</a>
+        <a href="../subjects/math.html">Math</a>
+        <a href="../subjects/physics.html">Physics</a>
+        <a href="../subjects/chemistry.html">Chemistry</a>
+        <a href="../progress.html">Progress</a>
+      </div>
+      <div class="footer-note">Topic deep-dive · Newton's Laws of Motion</div>
+    </div>
+  </div>
+</footer>
+
+<div id="toast" class="toast"></div>
+<script src="../js/main.js?v=2"></script>
+</body>
+</html>
