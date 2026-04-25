@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vectors — JEE 2027 Deep-Dive</title>
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+<style>
+  .vectors-hero { background: linear-gradient(135deg, #1e3a8a 0%, #1d4ed8 100%); }
+</style>
+</head>
+<body class="topic-math">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="nav-brand">JEE 2027</div>
+    <div class="nav-links">
+      <a href="../index.html">Dashboard</a>
+      <a href="../subjects/math.html" class="math-active">📐 Math</a>
+      <a href="../subjects/physics.html">⚡ Physics</a>
+      <a href="../subjects/chemistry.html">🧪 Chemistry</a>
+      <a href="../progress.html">✅ Progress</a>
+      <a href="../schedule.html">📋 Schedule</a>
+      <a href="../settings.html">⚙ Settings</a>
+    </div>
+    <button class="nav-toggle" onclick="toggleNav()">☰</button>
+  </div>
+</nav>
+
+<header class="page-hero vectors-hero">
+  <div class="page-hero-content">
+    <div class="page-hero-tag">Math · Unit M8 · Deep-Dive</div>
+    <h1>Vectors</h1>
+    <p>The dual-purpose chapter: a Math topic worth 4–6 marks <em>and</em> the foundation under every Physics dynamics problem. Master the dot &amp; cross products and you've unlocked Newton's Laws, Work–Energy, Magnetism, and Rotation.</p>
+    <div class="topic-meta-bar">
+      <span class="topic-meta-pill"><strong>Weight:</strong> 5–7% (Math) · prereq for Physics</span>
+      <span class="topic-meta-pill"><strong>Difficulty:</strong> 🟢 Easy → 🟡 Moderate</span>
+      <span class="topic-meta-pill"><strong>Prereq:</strong> Trigonometry</span>
+      <span class="topic-meta-pill"><strong>Time to master:</strong> 12–15 hrs</span>
+    </div>
+  </div>
+</header>
+
+<section class="section">
+<div class="topic-wrap">
+
+  <nav class="topic-toc">
+    <div class="topic-toc-title">📖 In this guide</div>
+    <ol>
+      <li><a href="#foundations">Foundations: Scalars vs Vectors</a></li>
+      <li><a href="#representation">Representing a Vector</a></li>
+      <li><a href="#components">Components &amp; Unit Vectors</a></li>
+      <li><a href="#addition">Vector Addition &amp; Subtraction</a></li>
+      <li><a href="#scalar-mult">Scalar Multiplication</a></li>
+      <li><a href="#dot">The Dot (Scalar) Product</a></li>
+      <li><a href="#cross">The Cross (Vector) Product</a></li>
+      <li><a href="#projection">Projections &amp; Angles</a></li>
+      <li><a href="#applications">Applications in Physics</a></li>
+      <li><a href="#three-d">3D Geometry — Lines &amp; Planes</a></li>
+      <li><a href="#formulas">Master Formula Sheet</a></li>
+      <li><a href="#examples">Worked Examples (Easy → Hard)</a></li>
+      <li><a href="#pyqs">JEE Previous-Year Questions</a></li>
+      <li><a href="#traps">Common Traps &amp; Mistakes</a></li>
+      <li><a href="#cheat">One-Page Cheat Card</a></li>
+    </ol>
+  </nav>
+
+  <!-- ── 1. Foundations ──────────────────────────────────────────────── -->
+  <div class="topic-section" id="foundations">
+    <h2><span class="sec-num">01</span>Foundations: Scalars vs Vectors</h2>
+    <p>A <strong>scalar</strong> has only magnitude (mass, time, temperature, work, energy). A <strong>vector</strong> has magnitude <em>and</em> direction (displacement, velocity, force, electric field).</p>
+
+    <div class="callout warn">
+      <div class="callout-title">⚠ Quantities that look like vectors but aren't</div>
+      <strong>Current</strong> and <strong>angular position</strong> have direction-like properties but obey scalar addition (current adds at junctions, angles add as scalars only for small rotations). They are scalars by JEE convention. <strong>Finite rotations</strong> are explicitly not vectors.
+    </div>
+
+    <h3>The two equality rules</h3>
+    <ul>
+      <li>Two vectors are <strong>equal</strong> iff they have the same magnitude <em>and</em> the same direction. Position is irrelevant — vectors can be translated freely.</li>
+      <li>The <strong>negative</strong> of a vector has the same magnitude but opposite direction.</li>
+    </ul>
+  </div>
+
+  <!-- ── 2. Representation ───────────────────────────────────────────── -->
+  <div class="topic-section" id="representation">
+    <h2><span class="sec-num">02</span>Representing a Vector</h2>
+    <p>Three equivalent representations — pick whichever makes the problem easiest:</p>
+    <ol>
+      <li><strong>Geometric</strong> — an arrow with a tail and a tip. Best for visualisation.</li>
+      <li><strong>Component</strong> — <span class="m">a = (a<sub>x</sub>, a<sub>y</sub>, a<sub>z</sub>)</span> in a chosen frame. Best for arithmetic.</li>
+      <li><strong>Magnitude–angle</strong> — <span class="m">|a|, θ</span>. Best for angle-based problems.</li>
+    </ol>
+
+    <div class="diagram">
+      <svg viewBox="0 0 460 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Vector representations">
+        <!-- Axes -->
+        <line x1="50" y1="160" x2="220" y2="160" stroke="#0f172a" stroke-width="1.5" marker-end="url(#vArrAx)"/>
+        <line x1="50" y1="160" x2="50"  y2="40"  stroke="#0f172a" stroke-width="1.5" marker-end="url(#vArrAx)"/>
+        <text x="225" y="165" font-family="JetBrains Mono" font-size="11" fill="#0f172a">x</text>
+        <text x="45"  y="35"  font-family="JetBrains Mono" font-size="11" fill="#0f172a">y</text>
+        <!-- Vector -->
+        <line x1="50" y1="160" x2="180" y2="70" stroke="#1d4ed8" stroke-width="2.5" marker-end="url(#vArr)"/>
+        <text x="100" y="95" font-family="JetBrains Mono" font-size="13" fill="#1d4ed8" font-weight="700">a</text>
+        <!-- Components -->
+        <line x1="50"  y1="160" x2="180" y2="160" stroke="#0f766e" stroke-width="1.5" stroke-dasharray="3 2"/>
+        <line x1="180" y1="160" x2="180" y2="70"  stroke="#0f766e" stroke-width="1.5" stroke-dasharray="3 2"/>
+        <text x="115" y="175" font-family="JetBrains Mono" font-size="11" fill="#0f766e">a<tspan font-size="9">x</tspan></text>
+        <text x="190" y="115" font-family="JetBrains Mono" font-size="11" fill="#0f766e">a<tspan font-size="9">y</tspan></text>
+        <!-- Angle arc -->
+        <path d="M 80 160 A 30 30 0 0 0 76 142" fill="none" stroke="#b45309" stroke-width="1.5"/>
+        <text x="86" y="148" font-family="JetBrains Mono" font-size="10" fill="#b45309">θ</text>
+        <!-- Description -->
+        <text x="280" y="60"  font-family="DM Sans" font-size="11" fill="#0f172a" font-weight="700">3 ways to write the same vector:</text>
+        <text x="280" y="85"  font-family="JetBrains Mono" font-size="11" fill="#1d4ed8">a = (a<tspan font-size="9">x</tspan>, a<tspan font-size="9">y</tspan>)</text>
+        <text x="280" y="105" font-family="JetBrains Mono" font-size="11" fill="#0f766e">a = a<tspan font-size="9">x</tspan>î + a<tspan font-size="9">y</tspan>ĵ</text>
+        <text x="280" y="125" font-family="JetBrains Mono" font-size="11" fill="#b45309">|a|, θ&nbsp;&nbsp;(polar form)</text>
+        <text x="280" y="155" font-family="DM Sans" font-size="10" fill="#64748b">a<tspan font-size="9">x</tspan> = |a|·cos θ &nbsp;·&nbsp; a<tspan font-size="9">y</tspan> = |a|·sin θ</text>
+        <defs>
+          <marker id="vArr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#1d4ed8"/></marker>
+          <marker id="vArrAx" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#0f172a"/></marker>
+        </defs>
+      </svg>
+    </div>
+  </div>
+
+  <!-- ── 3. Components and unit vectors ──────────────────────────────── -->
+  <div class="topic-section" id="components">
+    <h2><span class="sec-num">03</span>Components &amp; Unit Vectors</h2>
+    <p><strong>Unit vectors</strong> have magnitude 1. The three standard Cartesian unit vectors are <span class="m">î, ĵ, k̂</span> along the x, y, z axes:</p>
+
+    <div class="eq-block">
+      a = a<sub>x</sub>·î + a<sub>y</sub>·ĵ + a<sub>z</sub>·k̂
+      <span class="eq-label">Component (rectangular) form</span>
+    </div>
+
+    <h3>Magnitude</h3>
+    <div class="eq-block">
+      |a| = √(a<sub>x</sub>² + a<sub>y</sub>² + a<sub>z</sub>²)
+      <span class="eq-label">Pythagoras in 3D</span>
+    </div>
+
+    <h3>Unit vector along a</h3>
+    <div class="eq-block">
+      â = a / |a|
+      <span class="eq-label">Direction-only — magnitude 1</span>
+    </div>
+
+    <h3>Direction cosines</h3>
+    <p>If a vector makes angles <span class="m">α, β, γ</span> with the x, y, z axes, then:</p>
+    <div class="eq-block">
+      cos²α + cos²β + cos²γ = 1
+      <span class="eq-label">Direction-cosine identity</span>
+    </div>
+    <p>The numbers <span class="m">l = cosα, m = cosβ, n = cosγ</span> form the <strong>direction cosines</strong>; <span class="m">(l, m, n) = â</span>.</p>
+  </div>
+
+  <!-- ── 4. Addition / subtraction ───────────────────────────────────── -->
+  <div class="topic-section" id="addition">
+    <h2><span class="sec-num">04</span>Vector Addition &amp; Subtraction</h2>
+    <p>Add component-by-component, or geometrically by tip-to-tail. Both methods give the same answer.</p>
+
+    <div class="eq-block">
+      a + b = (a<sub>x</sub>+b<sub>x</sub>, a<sub>y</sub>+b<sub>y</sub>, a<sub>z</sub>+b<sub>z</sub>)
+      <span class="eq-label">Component form — fast</span>
+    </div>
+
+    <h3>Triangle, parallelogram, polygon laws</h3>
+    <ul>
+      <li><strong>Triangle law:</strong> place tail of <span class="m">b</span> at tip of <span class="m">a</span>; resultant is the closing side.</li>
+      <li><strong>Parallelogram law:</strong> place tails together; resultant is the diagonal of the parallelogram.</li>
+      <li><strong>Polygon law:</strong> for n vectors, place them tip-to-tail; resultant closes the polygon.</li>
+    </ul>
+
+    <h3>Magnitude of resultant — angle θ between a and b</h3>
+    <div class="eq-block">
+      |a + b| = √(|a|² + |b|² + 2|a||b|cos θ)
+      <span class="eq-label">Cosine rule version</span>
+    </div>
+    <ul>
+      <li><strong>Same direction (θ = 0):</strong> |a+b| = |a| + |b| (max).</li>
+      <li><strong>Opposite (θ = 180°):</strong> |a+b| = ||a| − |b|| (min).</li>
+      <li><strong>Perpendicular (θ = 90°):</strong> |a+b| = √(|a|² + |b|²).</li>
+    </ul>
+
+    <!-- ── Interactive: Vector addition visualizer ────────────────── -->
+    <div class="explainer" id="ex-vec-add">
+      <div class="explainer-title">
+        <span class="explainer-title-tag">Interactive</span>
+        🎮 Two vectors at an angle — see the resultant
+      </div>
+      <p style="font-size:.88rem; color:var(--ink2); margin-bottom:.6rem">Slide |a|, |b|, and the angle θ between them. The resultant magnitude and direction update live; the SVG draws all three vectors tip-to-tail.</p>
+
+      <div class="explainer-slider-row">
+        <label for="va-len">|a|</label>
+        <input type="range" id="va-len" min="1" max="10" value="5" step="0.5">
+        <span class="val" id="va-len-val">5.0</span>
+      </div>
+      <div class="explainer-slider-row">
+        <label for="vb-len">|b|</label>
+        <input type="range" id="vb-len" min="1" max="10" value="3" step="0.5">
+        <span class="val" id="vb-len-val">3.0</span>
+      </div>
+      <div class="explainer-slider-row">
+        <label for="vab-theta">Angle θ between (°)</label>
+        <input type="range" id="vab-theta" min="0" max="180" value="60" step="5">
+        <span class="val" id="vab-theta-val">60°</span>
+      </div>
+
+      <div class="explainer-stage">
+        <svg id="vec-svg" viewBox="0 0 460 230" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Vector addition">
+          <line x1="50"  y1="170" x2="430" y2="170" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="3 3"/>
+          <line id="vec-a" x1="100" y1="170" x2="200" y2="170" stroke="#1d4ed8" stroke-width="3" marker-end="url(#vAA)"/>
+          <line id="vec-b" x1="200" y1="170" x2="280" y2="100" stroke="#0f766e" stroke-width="3" marker-end="url(#vBB)"/>
+          <line id="vec-r" x1="100" y1="170" x2="280" y2="100" stroke="#b91c1c" stroke-width="3" marker-end="url(#vRR)"/>
+          <text id="lab-a" x="150" y="160" font-family="JetBrains Mono" font-size="13" fill="#1d4ed8" font-weight="700">a</text>
+          <text id="lab-b" x="245" y="130" font-family="JetBrains Mono" font-size="13" fill="#0f766e" font-weight="700">b</text>
+          <text id="lab-r" x="180" y="125" font-family="JetBrains Mono" font-size="13" fill="#b91c1c" font-weight="700">a+b</text>
+          <defs>
+            <marker id="vAA" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#1d4ed8"/></marker>
+            <marker id="vBB" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#0f766e"/></marker>
+            <marker id="vRR" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#b91c1c"/></marker>
+          </defs>
+        </svg>
+      </div>
+
+      <div class="explainer-readout-grid">
+        <div class="explainer-readout"><div class="lbl">|a + b|</div><div class="num" id="vec-r-mag">7.0</div></div>
+        <div class="explainer-readout"><div class="lbl">Direction (from a)</div><div class="num" id="vec-r-dir">21.8°</div></div>
+        <div class="explainer-readout feel"><div class="lbl">θ → resultant</div><div class="num" id="vec-r-status">Mid-range</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── 5. Scalar multiplication ────────────────────────────────────── -->
+  <div class="topic-section" id="scalar-mult">
+    <h2><span class="sec-num">05</span>Scalar Multiplication</h2>
+    <p>Multiplying a vector by a scalar <span class="m">k</span>:</p>
+    <ul>
+      <li>Scales magnitude: <span class="m">|ka| = |k| · |a|</span>.</li>
+      <li>Same direction if <span class="m">k &gt; 0</span>; opposite if <span class="m">k &lt; 0</span>.</li>
+      <li>Component-wise: <span class="m">k·a = (k·a<sub>x</sub>, k·a<sub>y</sub>, k·a<sub>z</sub>)</span>.</li>
+    </ul>
+
+    <p>A vector <span class="m">b</span> is <strong>parallel</strong> to <span class="m">a</span> iff there exists a scalar <span class="m">k</span> with <span class="m">b = k·a</span>. Two parallel vectors have parallel components: <span class="m">b<sub>x</sub>/a<sub>x</sub> = b<sub>y</sub>/a<sub>y</sub> = b<sub>z</sub>/a<sub>z</sub></span>.</p>
+  </div>
+
+  <!-- ── 6. Dot product ─────────────────────────────────────────────── -->
+  <div class="topic-section" id="dot">
+    <h2><span class="sec-num">06</span>The Dot (Scalar) Product</h2>
+    <p>The dot product takes two vectors and returns a <em>scalar</em>:</p>
+
+    <div class="eq-block">
+      a · b = |a| |b| cos θ
+      <span class="eq-label">θ = angle between a and b</span>
+    </div>
+
+    <p>In components:</p>
+    <div class="eq-block">
+      a · b = a<sub>x</sub>·b<sub>x</sub> + a<sub>y</sub>·b<sub>y</sub> + a<sub>z</sub>·b<sub>z</sub>
+    </div>
+
+    <h3>Properties</h3>
+    <ul>
+      <li><strong>Commutative:</strong> <span class="m">a · b = b · a</span>.</li>
+      <li><strong>Distributive:</strong> <span class="m">a · (b + c) = a·b + a·c</span>.</li>
+      <li><strong>Self dot:</strong> <span class="m">a · a = |a|²</span>.</li>
+      <li><strong>Perpendicular vectors:</strong> <span class="m">a · b = 0</span> ⇔ a ⊥ b (assuming non-zero vectors).</li>
+      <li><strong>Unit vectors:</strong> <span class="m">î·î = ĵ·ĵ = k̂·k̂ = 1</span>; <span class="m">î·ĵ = ĵ·k̂ = k̂·î = 0</span>.</li>
+    </ul>
+
+    <h3>Why it matters</h3>
+    <div class="callout info">
+      <div class="callout-title">⚡ The dot product unlocks Physics</div>
+      <strong>Work</strong> = <span class="m">F · d</span>. <strong>Power</strong> = <span class="m">F · v</span>. <strong>Magnetic flux</strong> = <span class="m">B · A</span>. Anytime "force times distance in the direction of motion" appears, that's a dot product.
+    </div>
+  </div>
+
+  <!-- ── 7. Cross product ───────────────────────────────────────────── -->
+  <div class="topic-section" id="cross">
+    <h2><span class="sec-num">07</span>The Cross (Vector) Product</h2>
+    <p>The cross product takes two vectors and returns a <em>vector</em> perpendicular to both:</p>
+
+    <div class="eq-block">
+      |a × b| = |a| |b| sin θ
+      <span class="eq-label">Magnitude</span>
+    </div>
+
+    <p><strong>Direction:</strong> perpendicular to the plane of <span class="m">a</span> and <span class="m">b</span>, given by the <strong>right-hand rule</strong> — curl fingers from a to b, thumb gives a×b.</p>
+
+    <h3>Determinant form</h3>
+    <div class="eq-block">
+      a × b = | î &nbsp;&nbsp; ĵ &nbsp;&nbsp; k̂ |<br>
+      &emsp;&emsp;&emsp;| a<sub>x</sub> &nbsp; a<sub>y</sub> &nbsp; a<sub>z</sub> |<br>
+      &emsp;&emsp;&emsp;| b<sub>x</sub> &nbsp; b<sub>y</sub> &nbsp; b<sub>z</sub> |
+      <span class="eq-label">3×3 determinant</span>
+    </div>
+    <p>Expanding: <span class="m">a × b = (a<sub>y</sub>b<sub>z</sub> − a<sub>z</sub>b<sub>y</sub>)î − (a<sub>x</sub>b<sub>z</sub> − a<sub>z</sub>b<sub>x</sub>)ĵ + (a<sub>x</sub>b<sub>y</sub> − a<sub>y</sub>b<sub>x</sub>)k̂</span>.</p>
+
+    <h3>Properties</h3>
+    <ul>
+      <li><strong>Anti-commutative:</strong> <span class="m">a × b = −(b × a)</span>.</li>
+      <li><strong>Distributive:</strong> <span class="m">a × (b + c) = a×b + a×c</span>.</li>
+      <li><strong>Self cross:</strong> <span class="m">a × a = 0</span>.</li>
+      <li><strong>Parallel vectors:</strong> <span class="m">a × b = 0</span> ⇔ a ∥ b.</li>
+      <li><strong>Unit vectors:</strong> <span class="m">î×ĵ = k̂</span>, <span class="m">ĵ×k̂ = î</span>, <span class="m">k̂×î = ĵ</span>. Cycle (î → ĵ → k̂); reverse → negate.</li>
+    </ul>
+
+    <h3>Geometric meaning</h3>
+    <p>The magnitude <span class="m">|a × b|</span> equals the <strong>area of the parallelogram</strong> with sides a and b. Half of it is the triangle's area.</p>
+
+    <div class="callout info">
+      <div class="callout-title">⚡ The cross product unlocks Physics too</div>
+      <strong>Torque</strong> = <span class="m">r × F</span>. <strong>Angular momentum</strong> = <span class="m">r × p</span>. <strong>Magnetic force</strong> = <span class="m">qv × B</span>. Whenever something rotates or twists, expect a cross product.
+    </div>
+
+    <!-- ── Interactive: dot/cross calculator ────────────────────────── -->
+    <div class="explainer" id="ex-dot-cross">
+      <div class="explainer-title">
+        <span class="explainer-title-tag">Interactive</span>
+        🎮 Dot &amp; Cross product calculator
+      </div>
+      <p style="font-size:.88rem; color:var(--ink2); margin-bottom:.6rem">Enter two 3D vectors. The page shows their dot product (scalar), cross product (vector), magnitudes, and the angle between them.</p>
+
+      <div style="display:grid; grid-template-columns:auto 1fr 1fr 1fr; gap:.5rem; align-items:center; margin:.75rem 0; font-size:.88rem;">
+        <span style="font-weight:700; color:var(--ink2)">a =</span>
+        <input class="explainer-num-inp" type="number" id="dc-ax" value="2" step="1">
+        <input class="explainer-num-inp" type="number" id="dc-ay" value="3" step="1">
+        <input class="explainer-num-inp" type="number" id="dc-az" value="1" step="1">
+        <span style="font-weight:700; color:var(--ink2)">b =</span>
+        <input class="explainer-num-inp" type="number" id="dc-bx" value="4" step="1">
+        <input class="explainer-num-inp" type="number" id="dc-by" value="-1" step="1">
+        <input class="explainer-num-inp" type="number" id="dc-bz" value="2" step="1">
+      </div>
+
+      <div class="explainer-readout-grid">
+        <div class="explainer-readout"><div class="lbl">a · b</div><div class="num" id="dc-dot">7</div></div>
+        <div class="explainer-readout"><div class="lbl">|a × b|</div><div class="num" id="dc-crossmag">14.04</div></div>
+        <div class="explainer-readout"><div class="lbl">|a|, |b|</div><div class="num" id="dc-mags">3.74, 4.58</div></div>
+        <div class="explainer-readout feel"><div class="lbl">Angle θ</div><div class="num" id="dc-angle">65.9°</div></div>
+      </div>
+
+      <div class="explainer-formula-live" id="dc-cross-formula">a × b = (3·2 − 1·(−1))î − (2·2 − 1·4)ĵ + (2·(−1) − 3·4)k̂ = 7î + 0ĵ − 14k̂</div>
+
+      <div class="callout info" style="margin-top:1rem">
+        <div class="callout-title">Sanity checks</div>
+        <strong>Try a = b:</strong> dot = |a|², cross = 0. <strong>Try a ⊥ b</strong> (e.g. a=(1,0,0), b=(0,1,0)): dot = 0, cross = (0,0,1). <strong>Try a = −b:</strong> angle = 180°.
+      </div>
+    </div>
+  </div>
+
+  <!-- ── 8. Projection ──────────────────────────────────────────────── -->
+  <div class="topic-section" id="projection">
+    <h2><span class="sec-num">08</span>Projections &amp; Angles</h2>
+
+    <h3>Scalar projection of a along b</h3>
+    <p>The component of <span class="m">a</span> in the direction of <span class="m">b</span>:</p>
+    <div class="eq-block">
+      proj<sub>b</sub>(a) = (a · b) / |b|
+      <span class="eq-label">Scalar — can be negative</span>
+    </div>
+
+    <h3>Vector projection of a along b</h3>
+    <div class="eq-block">
+      proj<sub>b</sub>(a) · b̂ = ((a · b) / |b|²) · b
+      <span class="eq-label">Vector along b</span>
+    </div>
+
+    <h3>Angle between vectors</h3>
+    <div class="eq-block">
+      cos θ = (a · b) / (|a| |b|)
+      <span class="eq-label">From dot product</span>
+    </div>
+    <div class="eq-block">
+      sin θ = |a × b| / (|a| |b|)
+      <span class="eq-label">From cross product</span>
+    </div>
+
+    <p>Both forms are useful: the dot is faster; the cross gives sign of orientation in 2D.</p>
+  </div>
+
+  <!-- ── 9. Applications ─────────────────────────────────────────────── -->
+  <div class="topic-section" id="applications">
+    <h2><span class="sec-num">09</span>Applications in Physics</h2>
+
+    <div class="formula-table-wrap" style="border:1px solid var(--line); border-radius:var(--radius); overflow:hidden;">
+      <table class="formula-table">
+        <thead><tr><th>Quantity</th><th>Formula</th><th>Type</th></tr></thead>
+        <tbody>
+          <tr><td>Work</td><td class="formula-cell">W = F · d</td><td>Dot</td></tr>
+          <tr><td>Power</td><td class="formula-cell">P = F · v</td><td>Dot</td></tr>
+          <tr><td>Magnetic flux</td><td class="formula-cell">φ = B · A</td><td>Dot</td></tr>
+          <tr><td>Torque</td><td class="formula-cell">τ = r × F</td><td>Cross</td></tr>
+          <tr><td>Angular momentum</td><td class="formula-cell">L = r × p</td><td>Cross</td></tr>
+          <tr><td>Force on charge in B-field</td><td class="formula-cell">F = q (v × B)</td><td>Cross</td></tr>
+          <tr><td>Force on current element</td><td class="formula-cell">dF = I (dL × B)</td><td>Cross</td></tr>
+          <tr><td>Centripetal acceleration</td><td class="formula-cell">a = ω × (ω × r)</td><td>Double cross</td></tr>
+          <tr><td>Velocity in rotation</td><td class="formula-cell">v = ω × r</td><td>Cross</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p style="font-size:.88rem; color:var(--ink3); margin-top:.5rem">A working rule: if the answer should be a number, expect a dot. If it's a vector that points in a direction perpendicular to the inputs, expect a cross.</p>
+  </div>
+
+  <!-- ── 10. 3D Geometry ─────────────────────────────────────────────── -->
+  <div class="topic-section" id="three-d">
+    <h2><span class="sec-num">10</span>3D Geometry — Lines &amp; Planes</h2>
+
+    <h3>Line through point a₀ in direction d</h3>
+    <div class="eq-block">
+      r = a₀ + t·d
+      <span class="eq-label">Vector form, t ∈ ℝ</span>
+    </div>
+    <p>Cartesian: <span class="m">(x − x₀)/d<sub>x</sub> = (y − y₀)/d<sub>y</sub> = (z − z₀)/d<sub>z</sub></span>.</p>
+
+    <h3>Plane with normal n through point a₀</h3>
+    <div class="eq-block">
+      (r − a₀) · n = 0
+      <span class="eq-label">Normal form</span>
+    </div>
+    <p>Cartesian: <span class="m">a·x + b·y + c·z = d</span>, where (a, b, c) = n.</p>
+
+    <h3>Common JEE distances</h3>
+    <ul>
+      <li><strong>Point P to plane</strong> <span class="m">ax + by + cz = d</span>: <span class="m">|aP<sub>x</sub> + bP<sub>y</sub> + cP<sub>z</sub> − d| / √(a² + b² + c²)</span>.</li>
+      <li><strong>Point P to line</strong> through a₀ with direction d: <span class="m">|(P − a₀) × d| / |d|</span>.</li>
+      <li><strong>Skew lines</strong> distance: <span class="m">|(a₂ − a₁) · (d₁ × d₂)| / |d₁ × d₂|</span> — uses both dot and cross.</li>
+    </ul>
+
+    <h3>Angle between</h3>
+    <ul>
+      <li><strong>Two lines:</strong> use dot product of direction vectors.</li>
+      <li><strong>Two planes:</strong> use dot product of normals.</li>
+      <li><strong>Line and plane:</strong> sin of the angle = |d · n| / (|d|·|n|) (note: <em>sine</em>, not cosine — geometry quirk).</li>
+    </ul>
+  </div>
+
+  <!-- ── 11. Master formulas ─────────────────────────────────────────── -->
+  <div class="topic-section" id="formulas">
+    <h2><span class="sec-num">11</span>Master Formula Sheet</h2>
+    <div class="formula-table-wrap" style="border:1px solid var(--line); border-radius:var(--radius); overflow:hidden;">
+      <table class="formula-table">
+        <thead><tr><th>Formula</th><th>Meaning</th><th>Use</th></tr></thead>
+        <tbody>
+          <tr><td class="formula-cell">|a| = √(a<sub>x</sub>² + a<sub>y</sub>² + a<sub>z</sub>²)</td><td>Magnitude</td><td class="note-cell">Pythagoras</td></tr>
+          <tr><td class="formula-cell">â = a / |a|</td><td>Unit vector</td><td class="note-cell">Direction only</td></tr>
+          <tr><td class="formula-cell">a · b = a<sub>x</sub>b<sub>x</sub> + a<sub>y</sub>b<sub>y</sub> + a<sub>z</sub>b<sub>z</sub></td><td>Dot product</td><td class="note-cell">Scalar</td></tr>
+          <tr><td class="formula-cell">a · b = |a||b| cos θ</td><td>Dot — angle form</td><td class="note-cell">Angle finder</td></tr>
+          <tr><td class="formula-cell">|a × b| = |a||b| sin θ</td><td>Cross magnitude</td><td class="note-cell">Area of parallelogram</td></tr>
+          <tr><td class="formula-cell">a × b = (a<sub>y</sub>b<sub>z</sub>−a<sub>z</sub>b<sub>y</sub>, a<sub>z</sub>b<sub>x</sub>−a<sub>x</sub>b<sub>z</sub>, a<sub>x</sub>b<sub>y</sub>−a<sub>y</sub>b<sub>x</sub>)</td><td>Cross — components</td><td class="note-cell"></td></tr>
+          <tr><td class="formula-cell">|a + b|² = |a|² + |b|² + 2|a||b|cosθ</td><td>Cosine rule</td><td class="note-cell">Resultant</td></tr>
+          <tr><td class="formula-cell">cos²α + cos²β + cos²γ = 1</td><td>Direction cosines</td><td class="note-cell">3D direction</td></tr>
+          <tr><td class="formula-cell">proj<sub>b</sub>(a) = (a·b)/|b|</td><td>Scalar projection</td><td class="note-cell">Component along b</td></tr>
+          <tr><td class="formula-cell">A<sub>△</sub> = ½|a × b|</td><td>Triangle area</td><td class="note-cell">Sides a, b from same vertex</td></tr>
+          <tr><td class="formula-cell">V = |a · (b × c)|</td><td>Parallelepiped volume</td><td class="note-cell">Scalar triple</td></tr>
+          <tr><td class="formula-cell">a · (b × c) = b · (c × a) = c · (a × b)</td><td>Cyclic property</td><td class="note-cell">Scalar triple identity</td></tr>
+          <tr><td class="formula-cell">a × (b × c) = (a·c)b − (a·b)c</td><td>BAC–CAB rule</td><td class="note-cell">Vector triple</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ── 12. Examples ────────────────────────────────────────────────── -->
+  <div class="topic-section" id="examples">
+    <h2><span class="sec-num">12</span>Worked Examples — Easy → Hard</h2>
+
+    <div class="example-card">
+      <div class="example-head"><span class="example-badge badge-easy">Easy</span><span>Example 1 — Magnitude &amp; unit vector</span></div>
+      <div class="example-body">
+        <p>Given <span class="m">a = 3î + 4ĵ</span>, find <span class="m">|a|</span> and the unit vector along a.</p>
+        <span class="step-label">Magnitude</span>
+        <p><span class="m">|a| = √(9 + 16) = 5</span>.</p>
+        <span class="step-label">Unit vector</span>
+        <p><span class="m">â = (3î + 4ĵ)/5 = 0.6î + 0.8ĵ</span>.</p>
+        <div class="answer">|a| = 5, â = 0.6î + 0.8ĵ</div>
+      </div>
+    </div>
+
+    <div class="example-card">
+      <div class="example-head"><span class="example-badge badge-easy">Easy</span><span>Example 2 — Dot product &amp; angle</span></div>
+      <div class="example-body">
+        <p>Find the angle between <span class="m">a = (1, 1, 0)</span> and <span class="m">b = (1, 0, 1)</span>.</p>
+        <span class="step-label">Compute dot &amp; magnitudes</span>
+        <p><span class="m">a · b = 1·1 + 1·0 + 0·1 = 1</span>. <span class="m">|a| = √2, |b| = √2</span>.</p>
+        <span class="step-label">cos θ</span>
+        <p><span class="m">cos θ = 1/(√2·√2) = 1/2 → θ = 60°</span>.</p>
+        <div class="answer">θ = 60°</div>
+      </div>
+    </div>
+
+    <div class="example-card">
+      <div class="example-head"><span class="example-badge badge-mod">Moderate</span><span>Example 3 — Cross product &amp; area</span></div>
+      <div class="example-body">
+        <p>Find the area of the triangle with vertices A(1,0,0), B(0,1,0), C(0,0,1).</p>
+        <span class="step-label">Edge vectors</span>
+        <p><span class="m">AB = (−1, 1, 0)</span>, <span class="m">AC = (−1, 0, 1)</span>.</p>
+        <span class="step-label">Cross</span>
+        <p><span class="m">AB × AC = (1·1 − 0·0)î − (−1·1 − 0·(−1))ĵ + (−1·0 − 1·(−1))k̂ = î + ĵ + k̂</span>.</p>
+        <span class="step-label">Area</span>
+        <p><span class="m">A = ½|AB × AC| = ½√3</span>.</p>
+        <div class="answer">A = √3/2</div>
+      </div>
+    </div>
+
+    <div class="example-card">
+      <div class="example-head"><span class="example-badge badge-mod">Moderate</span><span>Example 4 — Resultant of two forces</span></div>
+      <div class="example-body">
+        <p>Two forces of 10 N and 15 N act at a point at 60° to each other. Find the resultant.</p>
+        <span class="step-label">Cosine rule</span>
+        <p><span class="m">|R|² = 100 + 225 + 2·10·15·(0.5) = 100 + 225 + 150 = 475</span>.</p>
+        <p><span class="m">|R| = √475 ≈ 21.79 N</span>.</p>
+        <span class="step-label">Direction (from 10 N)</span>
+        <p><span class="m">tan α = 15·sin60°/(10 + 15·cos60°) = 15·(√3/2)/(10 + 7.5) = 13.0/17.5 ≈ 0.742 → α ≈ 36.6°</span>.</p>
+        <div class="answer">|R| ≈ 21.79 N at ≈ 36.6° from the 10 N force</div>
+      </div>
+    </div>
+
+    <div class="example-card">
+      <div class="example-head"><span class="example-badge badge-hard">Hard</span><span>Example 5 — Coplanar vectors (scalar triple)</span></div>
+      <div class="example-body">
+        <p>Show that <span class="m">a = (1,2,3), b = (2,3,4), c = (3,4,5)</span> are coplanar.</p>
+        <span class="step-label">Compute the scalar triple product</span>
+        <p><span class="m">a · (b × c) = det| 1 2 3 ; 2 3 4 ; 3 4 5 |</span></p>
+        <p>Expanding: <span class="m">1(15 − 16) − 2(10 − 12) + 3(8 − 9) = −1 + 4 − 3 = 0</span>.</p>
+        <span class="step-label">Conclusion</span>
+        <p>Scalar triple product = 0 ⇒ vectors are coplanar.</p>
+        <div class="answer">Coplanar (a · (b × c) = 0)</div>
+      </div>
+    </div>
+
+    <div class="example-card">
+      <div class="example-head"><span class="example-badge badge-hard">Hard</span><span>Example 6 — Distance from point to line</span></div>
+      <div class="example-body">
+        <p>Find the distance from P(2, 3, 1) to the line passing through A(1, 0, 0) in direction d = (1, 1, 1).</p>
+        <span class="step-label">Vector AP</span>
+        <p><span class="m">AP = (1, 3, 1)</span>.</p>
+        <span class="step-label">Cross AP × d</span>
+        <p><span class="m">AP × d = (3·1 − 1·1, 1·1 − 1·1, 1·1 − 3·1) = (2, 0, −2)</span>.</p>
+        <span class="step-label">Distance</span>
+        <p><span class="m">|AP × d| = √8 = 2√2</span>. <span class="m">|d| = √3</span>.</p>
+        <p><span class="m">distance = 2√2 / √3 = 2√6 / 3 ≈ 1.633</span>.</p>
+        <div class="answer">d = 2√6/3</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── 13. PYQs ────────────────────────────────────────────────────── -->
+  <div class="topic-section" id="pyqs">
+    <h2><span class="sec-num">13</span>JEE Previous-Year Questions</h2>
+    <div class="pyq-grid">
+
+      <div class="pyq-card">
+        <span class="pyq-tag">JEE Main · 2020</span>
+        <span class="example-badge badge-easy" style="margin-left:.3rem">Easy</span>
+        <div class="pyq-q">If <span class="m">a · b = 0</span> and <span class="m">a × b = 0</span> with non-zero a and b, then:</div>
+        <span class="pyq-ans-toggle" onclick="this.nextElementSibling.classList.toggle('open');this.textContent=this.nextElementSibling.classList.contains('open')?'▲ Hide':'▼ Show'">▼ Show</span>
+        <div class="pyq-ans">
+          <p>a · b = 0 ⇒ a ⊥ b. a × b = 0 ⇒ a ∥ b. A non-zero vector cannot be both parallel and perpendicular to another non-zero vector. <strong>Contradiction</strong> — no such vectors exist.</p>
+          <span class="answer-final">Impossible (contradiction)</span>
+        </div>
+      </div>
+
+      <div class="pyq-card">
+        <span class="pyq-tag">JEE Main · 2021</span>
+        <span class="example-badge badge-mod" style="margin-left:.3rem">Moderate</span>
+        <div class="pyq-q">If <span class="m">|a| = 5, |b| = 4</span>, and <span class="m">|a × b| = 8</span>, then |a · b| equals:</div>
+        <span class="pyq-ans-toggle" onclick="this.nextElementSibling.classList.toggle('open');this.textContent=this.nextElementSibling.classList.contains('open')?'▲ Hide':'▼ Show'">▼ Show</span>
+        <div class="pyq-ans">
+          <p>From cross: <span class="m">8 = 5·4·sin θ → sin θ = 0.4 → cos θ = ±√(1 − 0.16) = ±√0.84</span>.</p>
+          <p><span class="m">|a · b| = 5·4·|cos θ| = 20·√0.84 = 20·0.917 ≈ 4√21</span> (since 0.84 = 21/25).</p>
+          <span class="answer-final">|a · b| = 4√21</span>
+        </div>
+      </div>
+
+      <div class="pyq-card">
+        <span class="pyq-tag">JEE Main · 2019</span>
+        <span class="example-badge badge-mod" style="margin-left:.3rem">Moderate</span>
+        <div class="pyq-q">The projection of <span class="m">a = 2î + 3ĵ + 2k̂</span> on <span class="m">b = î + 2ĵ + k̂</span> is:</div>
+        <span class="pyq-ans-toggle" onclick="this.nextElementSibling.classList.toggle('open');this.textContent=this.nextElementSibling.classList.contains('open')?'▲ Hide':'▼ Show'">▼ Show</span>
+        <div class="pyq-ans">
+          <p><span class="m">a · b = 2 + 6 + 2 = 10</span>. <span class="m">|b| = √6</span>.</p>
+          <p>Projection = <span class="m">(a · b)/|b| = 10/√6 = 5√6/3</span>.</p>
+          <span class="answer-final">5√6 / 3</span>
+        </div>
+      </div>
+
+      <div class="pyq-card">
+        <span class="pyq-tag">JEE Main · 2022</span>
+        <span class="example-badge badge-mod" style="margin-left:.3rem">Moderate</span>
+        <div class="pyq-q">A unit vector perpendicular to both <span class="m">a = (1, 1, 0)</span> and <span class="m">b = (0, 1, 1)</span> is:</div>
+        <span class="pyq-ans-toggle" onclick="this.nextElementSibling.classList.toggle('open');this.textContent=this.nextElementSibling.classList.contains('open')?'▲ Hide':'▼ Show'">▼ Show</span>
+        <div class="pyq-ans">
+          <p><span class="m">a × b = (1·1 − 0·1, 0·0 − 1·1, 1·1 − 1·0) = (1, −1, 1)</span>.</p>
+          <p>Magnitude √3. Unit vector: <span class="m">(1, −1, 1)/√3</span>.</p>
+          <span class="answer-final">±(î − ĵ + k̂)/√3</span>
+        </div>
+      </div>
+
+      <div class="pyq-card">
+        <span class="pyq-tag">JEE Main · 2023</span>
+        <span class="example-badge badge-hard" style="margin-left:.3rem">Hard</span>
+        <div class="pyq-q">The volume of the parallelepiped with edges <span class="m">a = î + ĵ, b = ĵ + k̂, c = k̂ + î</span> is:</div>
+        <span class="pyq-ans-toggle" onclick="this.nextElementSibling.classList.toggle('open');this.textContent=this.nextElementSibling.classList.contains('open')?'▲ Hide':'▼ Show'">▼ Show</span>
+        <div class="pyq-ans">
+          <p><span class="m">V = |a · (b × c)| = det| 1 1 0 ; 0 1 1 ; 1 0 1 |</span></p>
+          <p>= <span class="m">1(1 − 0) − 1(0 − 1) + 0 = 1 + 1 = 2</span>.</p>
+          <span class="answer-final">V = 2</span>
+        </div>
+      </div>
+
+      <div class="pyq-card">
+        <span class="pyq-tag">JEE Main · 2018</span>
+        <span class="example-badge badge-mod" style="margin-left:.3rem">Moderate</span>
+        <div class="pyq-q">If <span class="m">a + b + c = 0</span> with <span class="m">|a| = 3, |b| = 5, |c| = 7</span>, find the angle between a and b.</div>
+        <span class="pyq-ans-toggle" onclick="this.nextElementSibling.classList.toggle('open');this.textContent=this.nextElementSibling.classList.contains('open')?'▲ Hide':'▼ Show'">▼ Show</span>
+        <div class="pyq-ans">
+          <p>From <span class="m">c = −(a + b)</span>, square: <span class="m">|c|² = |a|² + |b|² + 2|a||b|cos θ</span>.</p>
+          <p><span class="m">49 = 9 + 25 + 30 cos θ → cos θ = 15/30 = 1/2 → θ = 60°</span>.</p>
+          <span class="answer-final">θ = 60°</span>
+        </div>
+      </div>
+
+      <div class="pyq-card">
+        <span class="pyq-tag">JEE Main · 2024</span>
+        <span class="example-badge badge-hard" style="margin-left:.3rem">Hard</span>
+        <div class="pyq-q">Distance from origin to the plane <span class="m">2x − y + 2z = 9</span> is:</div>
+        <span class="pyq-ans-toggle" onclick="this.nextElementSibling.classList.toggle('open');this.textContent=this.nextElementSibling.classList.contains('open')?'▲ Hide':'▼ Show'">▼ Show</span>
+        <div class="pyq-ans">
+          <p><span class="m">d = |2(0) − 1(0) + 2(0) − 9| / √(4 + 1 + 4) = 9/3 = 3</span>.</p>
+          <span class="answer-final">3 units</span>
+        </div>
+      </div>
+
+      <div class="pyq-card">
+        <span class="pyq-tag">JEE Advanced · 2019</span>
+        <span class="example-badge badge-hard" style="margin-left:.3rem">Hard</span>
+        <div class="pyq-q">Vectors <span class="m">a, b, c</span> are mutually perpendicular unit vectors. Find <span class="m">|2a + 3b − c|</span>.</div>
+        <span class="pyq-ans-toggle" onclick="this.nextElementSibling.classList.toggle('open');this.textContent=this.nextElementSibling.classList.contains('open')?'▲ Hide':'▼ Show'">▼ Show</span>
+        <div class="pyq-ans">
+          <p>Square: <span class="m">|2a + 3b − c|² = 4|a|² + 9|b|² + |c|² + cross-terms</span>. Cross-terms vanish (mutually perpendicular).</p>
+          <p>= <span class="m">4 + 9 + 1 = 14</span>. So magnitude = <span class="m">√14</span>.</p>
+          <span class="answer-final">√14</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── 14. Traps ───────────────────────────────────────────────────── -->
+  <div class="topic-section" id="traps">
+    <h2><span class="sec-num">14</span>Common Traps &amp; Mistakes</h2>
+    <div class="mistake-list">
+      <div class="mistake-item"><span class="mistake-icon">⚠</span><div><strong>Treating cross product as commutative.</strong> <span class="m">a × b = −(b × a)</span>. Order matters; sign flips.</div></div>
+      <div class="mistake-item"><span class="mistake-icon">⚠</span><div><strong>Using cosine for line-plane angle.</strong> Line-plane uses <em>sine</em> of d·n / (|d|·|n|), since the angle is measured from the surface, not from the normal.</div></div>
+      <div class="mistake-item"><span class="mistake-icon">⚠</span><div><strong>Confusing parallel with collinear.</strong> Parallel means same or opposite direction. Collinear additionally requires a shared line.</div></div>
+      <div class="mistake-item"><span class="mistake-icon">⚠</span><div><strong>Forgetting that a × a = 0.</strong> Comes up in scalar-triple shortcuts.</div></div>
+      <div class="mistake-item"><span class="mistake-icon">⚠</span><div><strong>Adding magnitudes for resultant of perpendicular vectors.</strong> Need <span class="m">√(|a|² + |b|²)</span>, not <span class="m">|a| + |b|</span>.</div></div>
+      <div class="mistake-item"><span class="mistake-icon">⚠</span><div><strong>Applying right-hand rule loosely.</strong> Cross direction is given by curl-right-hand from first to second vector. Slip in finger position → sign error.</div></div>
+      <div class="mistake-item"><span class="mistake-icon">⚠</span><div><strong>Assuming a · b = 0 alone implies independence.</strong> It only implies perpendicularity for non-zero vectors. Linear independence of three vectors needs scalar triple ≠ 0.</div></div>
+    </div>
+  </div>
+
+  <!-- ── 15. Cheat ───────────────────────────────────────────────────── -->
+  <div class="topic-section" id="cheat">
+    <h2><span class="sec-num">15</span>One-Page Cheat Card</h2>
+    <div class="cheat-card">
+      <h3>📐 Vectors — exam-day recall</h3>
+      <ul>
+        <li><strong>Magnitude:</strong> <code>|a| = √(a<sub>x</sub>² + a<sub>y</sub>² + a<sub>z</sub>²)</code> · unit <code>â = a/|a|</code></li>
+        <li><strong>Dot:</strong> <code>a·b = a<sub>x</sub>b<sub>x</sub> + a<sub>y</sub>b<sub>y</sub> + a<sub>z</sub>b<sub>z</sub> = |a||b|cosθ</code> · scalar · 0 ⇔ ⊥</li>
+        <li><strong>Cross:</strong> <code>|a×b| = |a||b|sinθ</code> · vector ⊥ both · 0 ⇔ ∥ · anti-commutative</li>
+        <li><strong>Cyclic:</strong> <code>î×ĵ = k̂</code> · <code>ĵ×k̂ = î</code> · <code>k̂×î = ĵ</code></li>
+        <li><strong>Resultant:</strong> <code>|a+b|² = |a|² + |b|² + 2|a||b|cosθ</code></li>
+        <li><strong>Projection:</strong> <code>(a·b)/|b|</code> on direction of b</li>
+        <li><strong>Triangle area:</strong> <code>½|a×b|</code> · <strong>Parallelogram:</strong> <code>|a×b|</code></li>
+        <li><strong>Volume:</strong> <code>|a·(b×c)|</code> · 0 ⇒ coplanar</li>
+        <li><strong>BAC–CAB:</strong> <code>a×(b×c) = (a·c)b − (a·b)c</code></li>
+        <li><strong>Direction cosines:</strong> <code>l² + m² + n² = 1</code></li>
+        <li><strong>Distance pt → plane</strong> <code>ax+by+cz=d</code>: <code>|aP+bQ+cR−d|/√(a²+b²+c²)</code></li>
+        <li><strong>Line-plane angle:</strong> sine, not cosine</li>
+        <li><strong>Physics:</strong> work=F·d · torque=r×F · L=r×p · F=qv×B</li>
+      </ul>
+    </div>
+    <div class="topic-cta-row">
+      <a href="../subjects/math.html" class="btn-primary">← Back to Math overview</a>
+      <a href="../topics/kinematics.html" class="btn-secondary">Next: Kinematics →</a>
+    </div>
+  </div>
+
+</div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-brand">JEE 2027 Prep</div>
+      <div class="footer-links">
+        <a href="../index.html">Dashboard</a>
+        <a href="../subjects/math.html">Math</a>
+        <a href="../subjects/physics.html">Physics</a>
+        <a href="../subjects/chemistry.html">Chemistry</a>
+        <a href="../progress.html">Progress</a>
+      </div>
+      <div class="footer-note">Topic deep-dive · Vectors</div>
+    </div>
+  </div>
+</footer>
+
+<div id="toast" class="toast"></div>
+<script src="../js/main.js?v=2"></script>
+<script>
+// ── Interactive explainer wiring (page-local) ────────────────────────────────
+(function () {
+  // ── Vector addition visualizer ──
+  const vaLen = document.getElementById('va-len');
+  const vbLen = document.getElementById('vb-len');
+  const vTheta = document.getElementById('vab-theta');
+  if (vaLen && vbLen && vTheta) {
+    const SCALE = 18;       // px per unit
+    const ORIG_X = 100, ORIG_Y = 170;
+    function update() {
+      const A = +vaLen.value, B = +vbLen.value, TH = +vTheta.value;
+      document.getElementById('va-len-val').textContent = A.toFixed(1);
+      document.getElementById('vb-len-val').textContent = B.toFixed(1);
+      document.getElementById('vab-theta-val').textContent = TH + '°';
+
+      const rad = TH * Math.PI / 180;
+      // a along +x
+      const aTipX = ORIG_X + A * SCALE;
+      const aTipY = ORIG_Y;
+      // b at angle θ from a, placed tail at a's tip
+      const bDx = B * Math.cos(rad) * SCALE;
+      const bDy = -B * Math.sin(rad) * SCALE;
+      const bTipX = aTipX + bDx;
+      const bTipY = aTipY + bDy;
+      // resultant
+      const rTipX = bTipX, rTipY = bTipY;
+
+      document.getElementById('vec-a').setAttribute('x1', ORIG_X);
+      document.getElementById('vec-a').setAttribute('y1', ORIG_Y);
+      document.getElementById('vec-a').setAttribute('x2', aTipX);
+      document.getElementById('vec-a').setAttribute('y2', aTipY);
+      document.getElementById('vec-b').setAttribute('x1', aTipX);
+      document.getElementById('vec-b').setAttribute('y1', aTipY);
+      document.getElementById('vec-b').setAttribute('x2', bTipX);
+      document.getElementById('vec-b').setAttribute('y2', bTipY);
+      document.getElementById('vec-r').setAttribute('x1', ORIG_X);
+      document.getElementById('vec-r').setAttribute('y1', ORIG_Y);
+      document.getElementById('vec-r').setAttribute('x2', rTipX);
+      document.getElementById('vec-r').setAttribute('y2', rTipY);
+
+      // Labels at midpoints
+      document.getElementById('lab-a').setAttribute('x', (ORIG_X + aTipX)/2);
+      document.getElementById('lab-a').setAttribute('y', ORIG_Y - 8);
+      document.getElementById('lab-b').setAttribute('x', (aTipX + bTipX)/2 + 6);
+      document.getElementById('lab-b').setAttribute('y', (aTipY + bTipY)/2);
+      document.getElementById('lab-r').setAttribute('x', (ORIG_X + rTipX)/2 - 12);
+      document.getElementById('lab-r').setAttribute('y', (ORIG_Y + rTipY)/2 - 5);
+
+      // Resultant magnitude & direction
+      const rMag = Math.sqrt(A*A + B*B + 2*A*B*Math.cos(rad));
+      const rDir = Math.atan2(B*Math.sin(rad), A + B*Math.cos(rad)) * 180 / Math.PI;
+
+      document.getElementById('vec-r-mag').textContent = rMag.toFixed(2);
+      document.getElementById('vec-r-dir').textContent = rDir.toFixed(1) + '°';
+      let st;
+      if (TH === 0)        st = '|a| + |b| (max)';
+      else if (TH === 180) st = '||a|−|b|| (min)';
+      else if (TH === 90)  st = '√(a²+b²) ⊥';
+      else                 st = 'Mid-range';
+      document.getElementById('vec-r-status').textContent = st;
+    }
+    [vaLen, vbLen, vTheta].forEach(s => s.addEventListener('input', update));
+    update();
+  }
+
+  // ── Dot/Cross calculator ──
+  const ids = ['dc-ax','dc-ay','dc-az','dc-bx','dc-by','dc-bz'];
+  const inputs = ids.map(i => document.getElementById(i));
+  if (inputs.every(Boolean)) {
+    function dc() {
+      const [ax, ay, az, bx, by, bz] = inputs.map(i => +i.value);
+      const dot = ax*bx + ay*by + az*bz;
+      const cx = ay*bz - az*by;
+      const cy = az*bx - ax*bz;
+      const cz = ax*by - ay*bx;
+      const cmag = Math.sqrt(cx*cx + cy*cy + cz*cz);
+      const aMag = Math.sqrt(ax*ax + ay*ay + az*az);
+      const bMag = Math.sqrt(bx*bx + by*by + bz*bz);
+      let angle;
+      if (aMag === 0 || bMag === 0) angle = NaN;
+      else {
+        const cosT = Math.max(-1, Math.min(1, dot / (aMag * bMag)));
+        angle = Math.acos(cosT) * 180 / Math.PI;
+      }
+      document.getElementById('dc-dot').textContent = dot.toString();
+      document.getElementById('dc-crossmag').textContent = cmag.toFixed(2);
+      document.getElementById('dc-mags').textContent = aMag.toFixed(2) + ', ' + bMag.toFixed(2);
+      document.getElementById('dc-angle').textContent = isNaN(angle) ? '—' : angle.toFixed(1) + '°';
+      document.getElementById('dc-cross-formula').textContent =
+        `a × b = (${ay}·${bz} − ${az}·${by})î − (${ax}·${bz} − ${az}·${bx})ĵ + (${ax}·${by} − ${ay}·${bx})k̂ = ${cx}î ${cy>=0?'+':'−'} ${Math.abs(cy)}ĵ ${cz>=0?'+':'−'} ${Math.abs(cz)}k̂`;
+    }
+    inputs.forEach(i => i.addEventListener('input', dc));
+    dc();
+  }
+})();
+</script>
+</body>
+</html>

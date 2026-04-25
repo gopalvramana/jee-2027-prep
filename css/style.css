@@ -1890,3 +1890,17 @@ body[class*="topic-"] .section { padding-top: 1.75rem; padding-bottom: 2.5rem; }
   margin-top: 1rem; font-size: .88rem; color: var(--ink);
   overflow-x: auto; white-space: nowrap;
 }
+
+/* Numeric input inside explainer (vector calculator) */
+.explainer-num-inp {
+  width: 100%; min-width: 0;
+  padding: .4rem .55rem;
+  border: 1px solid var(--line); border-radius: 6px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: .9rem; color: var(--ink); background: var(--white);
+  text-align: center;
+}
+.explainer-num-inp:focus {
+  outline: 2px solid var(--topic-accent);
+  outline-offset: 1px; border-color: var(--topic-accent);
+}

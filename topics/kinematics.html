@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kinematics — JEE 2027 Deep-Dive</title>
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body class="topic-phys">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="nav-brand">JEE 2027</div>
+    <div class="nav-links">
+      <a href="../index.html">Dashboard</a>
+      <a href="../subjects/math.html">📐 Math</a>
+      <a href="../subjects/physics.html" class="phys-active">⚡ Physics</a>
+      <a href="../subjects/chemistry.html">🧪 Chemistry</a>
+      <a href="../progress.html">✅ Progress</a>
+      <a href="../schedule.html">📋 Schedule</a>
+      <a href="../settings.html">⚙ Settings</a>
+    </div>
+    <button class="nav-toggle" onclick="toggleNav()">☰</button>
+  </div>
+</nav>
+
+<header class="page-hero phys-hero">
+  <div class="page-hero-content">
+    <div class="page-hero-tag">Physics · Unit P1 · Deep-Dive</div>
+    <h1>Kinematics</h1>
+    <p>The language motion is described in. Master kinematics and Newton's Laws becomes a translation exercise — every dynamics problem starts with a velocity, acceleration, or trajectory.</p>
+    <div class="topic-meta-bar">
+      <span class="topic-meta-pill"><strong>Weight:</strong> 8–10% (≈10 marks)</span>
+      <span class="topic-meta-pill"><strong>Difficulty:</strong> 🟡 Moderate</span>
+      <span class="topic-meta-pill"><strong>Prereq:</strong> Vectors, basic calculus</span>
+      <span class="topic-meta-pill"><strong>Time to master:</strong> 30–35 hrs</span>
+    </div>
+  </div>
+</header>
+
+<section class="section">
+<div class="topic-wrap">
+
+  <nav class="topic-toc">
+    <div class="topic-toc-title">📖 In this guide</div>
+    <ol>
+      <li><a href="#foundations">Foundations: Position, Distance, Displacement</a></li>
+      <li><a href="#speed-velocity">Speed vs Velocity</a></li>
+      <li><a href="#acceleration">Acceleration</a></li>
+      <li><a href="#suvat">The Three SUVAT Equations</a></li>
+      <li><a href="#freefall">Free Fall</a></li>
+      <li><a href="#graphs">Motion Graphs (x-t, v-t, a-t)</a></li>
+      <li><a href="#two-d">2D Motion — Decomposition</a></li>
+      <li><a href="#projectile">Projectile Motion</a></li>
+      <li><a href="#projectile-extras">Non-standard Projectiles</a></li>
+      <li><a href="#relative">Relative Motion</a></li>
+      <li><a href="#circular">Circular Motion</a></li>
+      <li><a href="#formulas">Master Formula Sheet</a></li>
+      <li><a href="#examples">Worked Examples (Easy → Hard)</a></li>
+      <li><a href="#pyqs">JEE Previous-Year Questions</a></li>
+      <li><a href="#traps">Common Traps &amp; Mistakes</a></li>
+      <li><a href="#cheat">One-Page Cheat Card</a></li>
+    </ol>
+  </nav>
+
+  <!-- ── 1. Foundations ──────────────────────────────────────────────── -->
+  <div class="topic-section" id="foundations">
+    <h2><span class="sec-num">01</span>Foundations: Position, Distance, Displacement</h2>
+    <p>Every kinematics problem starts with a <strong>frame of reference</strong> and an <strong>origin</strong>. Once those are fixed, three quantities describe where a particle has been:</p>
+
+    <ul>
+      <li><strong>Position</strong> — vector from origin to particle. Symbol <span class="m">r</span>; SI unit metre.</li>
+      <li><strong>Distance</strong> — total path length travelled. Scalar, always non-negative.</li>
+      <li><strong>Displacement</strong> — vector from initial position to final position. <span class="m">Δr = r<sub>f</sub> − r<sub>i</sub></span>.</li>
+    </ul>
+
+    <div class="callout warn">
+      <div class="callout-title">⚠ Distance ≠ |Displacement|</div>
+      A runner completing one lap of a 400 m track has <strong>distance = 400 m</strong> but <strong>displacement = 0</strong>. JEE loves this distinction in 1D back-and-forth motion problems.
+    </div>
+
+    <div class="diagram">
+      <svg viewBox="0 0 460 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Distance vs displacement">
+        <line x1="40" y1="80" x2="420" y2="80" stroke="#cbd5e1" stroke-width="1.5"/>
+        <circle cx="80" cy="80" r="6" fill="#0f766e"/>
+        <text x="80" y="110" font-family="DM Sans" font-size="11" text-anchor="middle" fill="#0f172a">A (start)</text>
+        <circle cx="320" cy="80" r="6" fill="#1d4ed8"/>
+        <text x="320" y="110" font-family="DM Sans" font-size="11" text-anchor="middle" fill="#0f172a">B</text>
+        <circle cx="200" cy="80" r="6" fill="#b91c1c"/>
+        <text x="200" y="110" font-family="DM Sans" font-size="11" text-anchor="middle" fill="#0f172a">C (end)</text>
+        <path d="M 80 75 Q 200 30 320 75" stroke="#0f766e" stroke-width="2" fill="none"/>
+        <path d="M 320 85 Q 260 130 200 85" stroke="#1d4ed8" stroke-width="2" fill="none"/>
+        <line x1="80" y1="80" x2="200" y2="80" stroke="#b91c1c" stroke-width="2.5" stroke-dasharray="4 3" marker-end="url(#kArr1)"/>
+        <text x="140" y="65" font-family="JetBrains Mono" font-size="11" fill="#b91c1c" font-weight="700" text-anchor="middle">Δr</text>
+        <text x="200" y="35" font-family="DM Sans" font-size="11" text-anchor="middle" fill="#0f766e">Path A→B→C (curved)</text>
+        <defs>
+          <marker id="kArr1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#b91c1c"/></marker>
+        </defs>
+      </svg>
+      <div class="diagram-cap">A particle moves A → B → C along a curved path. Distance = total path length. Displacement = straight arrow A → C.</div>
+    </div>
+  </div>
+
+  <!-- ── 2. Speed vs velocity ─────────────────────────────────────────── -->
+  <div class="topic-section" id="speed-velocity">
+    <h2><span class="sec-num">02</span>Speed vs Velocity</h2>
+    <p>Speed is a scalar (rate of distance), velocity is a vector (rate of displacement). Each has an <strong>average</strong> form (over an interval) and an <strong>instantaneous</strong> form (at one instant).</p>
+
+    <div class="compare-grid">
+      <div class="compare-cell">
+        <strong>Speed (scalar)</strong>
+        Average: <span class="m">v̄ = total distance / total time</span><br>
+        Instantaneous: <span class="m">|v(t)|</span> — magnitude of velocity vector at instant t.
+      </div>
+      <div class="compare-cell">
+        <strong>Velocity (vector)</strong>
+        Average: <span class="m">v̄ = Δr / Δt</span> — direction = direction of displacement<br>
+        Instantaneous: <span class="m">v = dr/dt</span> — direction tangent to path.
+      </div>
+    </div>
+
+    <div class="callout info">
+      <div class="callout-title">📌 JEE rule</div>
+      <strong>Average speed ≥ |Average velocity|</strong>, always. They're equal only when motion is in a straight line without reversal.
+    </div>
+
+    <h3>The instantaneous formula</h3>
+    <p>Position is a function of time, <span class="m">r(t)</span>. Velocity is its time-derivative:</p>
+    <div class="eq-block">
+      v(t) = dr/dt
+      <span class="eq-label">Instantaneous velocity</span>
+    </div>
+    <p>If you have <span class="m">x(t) = 3t² − 2t</span>, then <span class="m">v(t) = 6t − 2</span>. At <span class="m">t = 4</span> s, <span class="m">v = 22</span> m/s.</p>
+  </div>
+
+  <!-- ── 3. Acceleration ──────────────────────────────────────────────── -->
+  <div class="topic-section" id="acceleration">
+    <h2><span class="sec-num">03</span>Acceleration</h2>
+    <p>Acceleration is the rate of change of <em>velocity</em>, not of speed. A car turning a corner at constant speed is still accelerating — its velocity direction is changing.</p>
+
+    <div class="eq-block">
+      a(t) = dv/dt = d²r/dt²
+      <span class="eq-label">Instantaneous acceleration</span>
+    </div>
+
+    <h3>Three useful identities</h3>
+    <p>From the chain rule, when <span class="m">v</span> is given as a function of position rather than time:</p>
+    <div class="eq-block">
+      a = v·(dv/dx)
+      <span class="eq-label">Useful when a depends on x</span>
+    </div>
+
+    <p>Three ways to read these:</p>
+    <ul>
+      <li><strong>If v is given vs t:</strong> <span class="m">a = dv/dt</span>.</li>
+      <li><strong>If x is given vs t:</strong> <span class="m">a = d²x/dt²</span>.</li>
+      <li><strong>If v is given vs x:</strong> <span class="m">a = v·dv/dx</span>.</li>
+    </ul>
+
+    <div class="callout warn">
+      <div class="callout-title">⚠ Speed-vs-velocity acceleration trap</div>
+      "Object is decelerating" is ambiguous. It usually means speed is decreasing, but in vector language it just means <span class="m">a</span> opposes <span class="m">v</span>. In circular motion at constant speed, the centripetal acceleration is perpendicular to <span class="m">v</span> — neither accelerating nor decelerating in the everyday sense.
+    </div>
+  </div>
+
+  <!-- ── 4. SUVAT ─────────────────────────────────────────────────────── -->
+  <div class="topic-section" id="suvat">
+    <h2><span class="sec-num">04</span>The Three SUVAT Equations</h2>
+    <p>For motion in <strong>one direction with constant acceleration</strong>, three equations relate u (initial velocity), v (final), a, t, and s (displacement):</p>
+
+    <div class="eq-block">
+      v = u + at
+      <span class="eq-label">No s</span>
+    </div>
+    <div class="eq-block">
+      s = ut + ½ a t²
+      <span class="eq-label">No v</span>
+    </div>
+    <div class="eq-block">
+      v² = u² + 2as
+      <span class="eq-label">No t</span>
+    </div>
+
+    <h3>Why they exist</h3>
+    <p>Start from <span class="m">a = dv/dt</span>. Integrate: <span class="m">v = u + at</span>. Now <span class="m">v = dx/dt</span>; integrate again: <span class="m">x = ut + ½at²</span>. Eliminate t between these two to get <span class="m">v² = u² + 2as</span>.</p>
+
+    <div class="callout danger">
+      <div class="callout-title">🛑 They only work for constant a</div>
+      If acceleration changes (variable force, air resistance, gravitational variation), these equations <em>do not apply</em>. Use calculus or graphical methods instead.
+    </div>
+
+    <!-- ── Interactive: SUVAT solver ──────────────────────────────────── -->
+    <div class="explainer" id="ex-suvat">
+      <div class="explainer-title">
+        <span class="explainer-title-tag">Interactive</span>
+        🎮 SUVAT solver — tweak u, a, t and watch v &amp; s
+      </div>
+      <p style="font-size:.88rem; color:var(--ink2); margin-bottom:.6rem">All three equations agree because they describe the same motion. Vary the inputs and see how the outputs trace each other.</p>
+
+      <div class="explainer-slider-row">
+        <label for="suv-u">Initial velocity u (m/s)</label>
+        <input type="range" id="suv-u" min="-30" max="30" value="10" step="1">
+        <span class="val" id="suv-u-val">10</span>
+      </div>
+      <div class="explainer-slider-row">
+        <label for="suv-a">Acceleration a (m/s²)</label>
+        <input type="range" id="suv-a" min="-10" max="10" value="2" step="0.5">
+        <span class="val" id="suv-a-val">2.0</span>
+      </div>
+      <div class="explainer-slider-row">
+        <label for="suv-t">Time t (s)</label>
+        <input type="range" id="suv-t" min="0" max="20" value="5" step="0.5">
+        <span class="val" id="suv-t-val">5.0</span>
+      </div>
+
+      <div class="explainer-formula-live" id="suv-formula">v = u + at = 10 + 2.0·5.0 = 20 m/s · s = ut + ½at² = 10·5.0 + 0.5·2.0·25 = 75 m</div>
+
+      <div class="explainer-readout-grid">
+        <div class="explainer-readout"><div class="lbl">Final velocity v</div><div class="num" id="suv-v">20 m/s</div></div>
+        <div class="explainer-readout"><div class="lbl">Displacement s</div><div class="num" id="suv-s">75 m</div></div>
+        <div class="explainer-readout feel"><div class="lbl">v² = u² + 2as check</div><div class="num" id="suv-check">400 ✓</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── 5. Free fall ─────────────────────────────────────────────────── -->
+  <div class="topic-section" id="freefall">
+    <h2><span class="sec-num">05</span>Free Fall</h2>
+    <p>Free fall is just SUVAT with <span class="m">a = g ≈ 10 m/s²</span> downward. The trick is sign convention:</p>
+
+    <div class="method-box">
+      <div class="method-title">🎯 Sign convention rule</div>
+      <ol>
+        <li>Pick a positive direction (usually <strong>upward</strong> for vertical problems).</li>
+        <li>Then <span class="m">g = −10 m/s²</span> (since gravity pulls in the negative direction).</li>
+        <li>Initial velocity, position, and final velocity all signed accordingly.</li>
+      </ol>
+    </div>
+
+    <p><strong>Worked example:</strong> A ball thrown up at 20 m/s. When does it return to the launch point? (g = 10)</p>
+    <p>Up-positive: <span class="m">u = +20</span>, <span class="m">a = −10</span>, <span class="m">s = 0</span> (back at start).</p>
+    <p><span class="m">s = ut + ½at² → 0 = 20t − 5t² → t(20 − 5t) = 0 → t = 0 or t = 4 s</span>.</p>
+    <p>So it returns at t = 4 s. Time to peak = 2 s by symmetry.</p>
+  </div>
+
+  <!-- ── 6. Graphs ────────────────────────────────────────────────────── -->
+  <div class="topic-section" id="graphs">
+    <h2><span class="sec-num">06</span>Motion Graphs (x-t, v-t, a-t)</h2>
+    <p>Graphs encode kinematics geometrically. Two relations matter for JEE:</p>
+
+    <div class="compare-grid">
+      <div class="compare-cell">
+        <strong>Slope = derivative</strong>
+        Slope of <span class="m">x-t</span> graph = velocity.<br>
+        Slope of <span class="m">v-t</span> graph = acceleration.
+      </div>
+      <div class="compare-cell">
+        <strong>Area = integral</strong>
+        Area under <span class="m">v-t</span> graph = displacement.<br>
+        Area under <span class="m">a-t</span> graph = change in velocity.
+      </div>
+    </div>
+
+    <div class="diagram">
+      <svg viewBox="0 0 540 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="x-t and v-t graphs">
+        <!-- x-t graph -->
+        <text x="80" y="20" font-family="DM Sans" font-size="11" font-weight="700" text-anchor="middle" fill="#0f172a">x vs t</text>
+        <line x1="30" y1="170" x2="160" y2="170" stroke="#0f172a" stroke-width="1.5"/>
+        <line x1="30" y1="40" x2="30" y2="170" stroke="#0f172a" stroke-width="1.5"/>
+        <path d="M 30 170 Q 90 130 160 50" stroke="#0f766e" stroke-width="2.5" fill="none"/>
+        <text x="155" y="40" font-family="JetBrains Mono" font-size="10" fill="#0f766e">x</text>
+        <text x="170" y="175" font-family="JetBrains Mono" font-size="10" fill="#0f172a">t</text>
+        <text x="100" y="195" font-family="DM Sans" font-size="10" text-anchor="middle" fill="#64748b">slope = v</text>
+
+        <!-- v-t graph -->
+        <text x="280" y="20" font-family="DM Sans" font-size="11" font-weight="700" text-anchor="middle" fill="#0f172a">v vs t (constant a)</text>
+        <line x1="220" y1="170" x2="360" y2="170" stroke="#0f172a" stroke-width="1.5"/>
+        <line x1="220" y1="40" x2="220" y2="170" stroke="#0f172a" stroke-width="1.5"/>
+        <line x1="220" y1="140" x2="350" y2="50" stroke="#1d4ed8" stroke-width="2.5"/>
+        <polygon points="220,170 350,170 350,50 220,140" fill="#1d4ed8" opacity=".18"/>
+        <text x="355" y="40" font-family="JetBrains Mono" font-size="10" fill="#1d4ed8">v</text>
+        <text x="370" y="175" font-family="JetBrains Mono" font-size="10" fill="#0f172a">t</text>
+        <text x="290" y="195" font-family="DM Sans" font-size="10" text-anchor="middle" fill="#64748b">slope = a · area = s</text>
+
+        <!-- a-t graph -->
+        <text x="470" y="20" font-family="DM Sans" font-size="11" font-weight="700" text-anchor="middle" fill="#0f172a">a vs t (constant)</text>
+        <line x1="410" y1="170" x2="530" y2="170" stroke="#0f172a" stroke-width="1.5"/>
+        <line x1="410" y1="40" x2="410" y2="170" stroke="#0f172a" stroke-width="1.5"/>
+        <line x1="410" y1="100" x2="525" y2="100" stroke="#b91c1c" stroke-width="2.5"/>
+        <rect x="410" y="100" width="115" height="70" fill="#b91c1c" opacity=".15"/>
+        <text x="525" y="40" font-family="JetBrains Mono" font-size="10" fill="#b91c1c">a</text>
+        <text x="540" y="175" font-family="JetBrains Mono" font-size="10" fill="#0f172a">t</text>
+        <text x="470" y="195" font-family="DM Sans" font-size="10" text-anchor="middle" fill="#64748b">area = Δv</text>
+      </svg>
+      <div class="diagram-cap">For motion with constant a: x is parabolic in t, v is linear in t, a is constant.</div>
+    </div>
+
+    <h3>Reading common graphs</h3>
+    <ul>
+      <li><strong>Horizontal line on x-t:</strong> object at rest.</li>
+      <li><strong>Straight diagonal on x-t:</strong> uniform velocity.</li>
+      <li><strong>Curved x-t:</strong> non-zero acceleration.</li>
+      <li><strong>Straight diagonal on v-t:</strong> uniform acceleration.</li>
+      <li><strong>v-t crosses zero:</strong> object reverses direction.</li>
+    </ul>
+  </div>
+
+  <!-- ── 7. 2D Decomposition ─────────────────────────────────────────── -->
+  <div class="topic-section" id="two-d">
+    <h2><span class="sec-num">07</span>2D Motion — Decomposition</h2>
+    <p>Two-dimensional motion is just <em>two independent</em> 1D motions, one along x and one along y. Velocity, acceleration, and SUVAT all apply per-axis.</p>
+
+    <div class="eq-block">
+      r(t) = (x(t), y(t)) &nbsp;·&nbsp; v(t) = (v<sub>x</sub>, v<sub>y</sub>) &nbsp;·&nbsp; a(t) = (a<sub>x</sub>, a<sub>y</sub>)
+    </div>
+
+    <p>The two components don't interact — vertical gravity does not affect horizontal velocity. The <em>only</em> link is shared time.</p>
+
+    <div class="callout info">
+      <div class="callout-title">📌 The independence principle</div>
+      <strong>Two free particles released at the same instant — one dropped, one fired horizontally — hit the ground at the same time</strong>, regardless of horizontal speed. Their vertical motion is identical because vertical acceleration is the same (g down).
+    </div>
+  </div>
+
+  <!-- ── 8. Projectile motion ────────────────────────────────────────── -->
+  <div class="topic-section" id="projectile">
+    <h2><span class="sec-num">08</span>Projectile Motion</h2>
+    <p>A projectile is launched with speed <span class="m">u</span> at angle <span class="m">θ</span> above the horizontal, on flat ground. After launch, the only force is gravity (no air resistance — JEE convention).</p>
+
+    <div class="eq-block">
+      Initial: u<sub>x</sub> = u·cos θ &nbsp;·&nbsp; u<sub>y</sub> = u·sin θ
+    </div>
+
+    <h3>Three formulas to memorise</h3>
+    <div class="eq-block">
+      Time of flight: T = 2u·sin θ / g
+    </div>
+    <div class="eq-block">
+      Maximum height: H = u² sin²θ / (2g)
+    </div>
+    <div class="eq-block">
+      Range: R = u² sin(2θ) / g
+    </div>
+
+    <p>Equation of trajectory (eliminating t):</p>
+    <div class="eq-block">
+      y = x·tan θ − g x² / (2 u² cos²θ)
+      <span class="eq-label">Parabola in x</span>
+    </div>
+
+    <h3>Useful identities</h3>
+    <ul>
+      <li><strong>Maximum range</strong> on flat ground: at <span class="m">θ = 45°</span>, <span class="m">R<sub>max</sub> = u²/g</span>.</li>
+      <li><strong>Two angles → same range:</strong> <span class="m">θ</span> and <span class="m">90° − θ</span> give equal R but different T and H.</li>
+      <li><strong>R = 4H · cot θ</strong> — handy for quick checks.</li>
+    </ul>
+
+    <!-- ── Interactive: Projectile playground ───────────────────────── -->
+    <div class="explainer" id="ex-projectile">
+      <div class="explainer-title">
+        <span class="explainer-title-tag">Interactive</span>
+        🎮 Projectile playground — drag u and θ
+      </div>
+      <p style="font-size:.88rem; color:var(--ink2); margin-bottom:.6rem">Set the launch speed and angle. The trajectory is computed and drawn live; range, max height, and time of flight update instantly.</p>
+
+      <div class="explainer-slider-row">
+        <label for="proj-u">Launch speed u (m/s)</label>
+        <input type="range" id="proj-u" min="10" max="60" value="30" step="1">
+        <span class="val" id="proj-u-val">30</span>
+      </div>
+      <div class="explainer-slider-row">
+        <label for="proj-theta">Launch angle θ (°)</label>
+        <input type="range" id="proj-theta" min="5" max="85" value="45" step="1">
+        <span class="val" id="proj-theta-val">45°</span>
+      </div>
+
+      <div class="explainer-stage">
+        <svg id="proj-svg" viewBox="0 0 540 220" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Projectile trajectory">
+          <line x1="20" y1="200" x2="520" y2="200" stroke="#64748b" stroke-width="1.5"/>
+          <path id="proj-path" d="M 20 200" stroke="#0f766e" stroke-width="2.5" fill="none"/>
+          <circle id="proj-launch" cx="20" cy="200" r="5" fill="#1d4ed8"/>
+          <circle id="proj-peak" cx="20" cy="200" r="4" fill="#b45309" opacity=".7"/>
+          <circle id="proj-land"  cx="20" cy="200" r="5" fill="#b91c1c"/>
+          <text x="270" y="218" font-family="DM Sans" font-size="11" text-anchor="middle" fill="#64748b">g = 10 m/s² · no air resistance</text>
+        </svg>
+      </div>
+
+      <div class="explainer-readout-grid">
+        <div class="explainer-readout"><div class="lbl">Range R</div><div class="num" id="proj-R">90.0 m</div></div>
+        <div class="explainer-readout"><div class="lbl">Max height H</div><div class="num" id="proj-H">22.5 m</div></div>
+        <div class="explainer-readout"><div class="lbl">Time of flight T</div><div class="num" id="proj-T">4.24 s</div></div>
+        <div class="explainer-readout feel"><div class="lbl">Status</div><div class="num" id="proj-status">θ = 45° (R<sub>max</sub>)</div></div>
+      </div>
+
+      <div class="callout info" style="margin-top:1rem">
+        <div class="callout-title">Try this</div>
+        Try θ = 30° and θ = 60° — same range but different trajectories. At θ = 45° you get max range. Increase u from 30 to 60: range scales as <span class="m">u²</span>.
+      </div>
+    </div>
+  </div>
+
+  <!-- ── 9. Non-standard projectiles ─────────────────────────────────── -->
+  <div class="topic-section" id="projectile-extras">
+    <h2><span class="sec-num">09</span>Non-standard Projectiles</h2>
+
+    <h3>Projectile from a height</h3>
+    <p>Launched from height <span class="m">h</span> at angle <span class="m">θ</span>. Vertical: <span class="m">y(t) = h + u sinθ · t − ½gt²</span>. Land when <span class="m">y = 0</span> — solve quadratic for t.</p>
+
+    <h3>Horizontally projected from a cliff</h3>
+    <p>Special case: <span class="m">θ = 0</span>, height h. Time to ground: <span class="m">T = √(2h/g)</span>. Horizontal range: <span class="m">R = u · T = u·√(2h/g)</span>.</p>
+
+    <h3>Projectile up an incline (angle α)</h3>
+    <p>Choose axes <em>along</em> the incline (down-slope: gravity component <span class="m">g sin α</span>; perpendicular: <span class="m">g cos α</span>). Launch at angle <span class="m">β</span> from the incline.</p>
+    <ul>
+      <li><strong>Time of flight along incline:</strong> <span class="m">T = 2u sinβ / (g cos α)</span>.</li>
+      <li><strong>Range along incline:</strong> <span class="m">R = 2u² sinβ cos(α+β) / (g cos²α)</span>.</li>
+      <li><strong>Max range</strong> at <span class="m">β = 45° − α/2</span>.</li>
+    </ul>
+
+    <div class="callout warn">
+      <div class="callout-title">⚠ Incline trap</div>
+      Don't measure β from horizontal — measure it from the incline surface. The "max-range angle 45°" rule does not apply on inclined ground.
+    </div>
+  </div>
+
+  <!-- ── 10. Relative motion ─────────────────────────────────────────── -->
+  <div class="topic-section" id="relative">
+    <h2><span class="sec-num">10</span>Relative Motion</h2>
+    <p>Velocity is always relative to a frame. The velocity of A relative to B is:</p>
+
+    <div class="eq-block">
+      v<sub>AB</sub> = v<sub>A</sub> − v<sub>B</sub>
+      <span class="eq-label">Vector subtraction</span>
+    </div>
+
+    <h3>River-boat problem</h3>
+    <p>A boat with velocity <span class="m">v<sub>b</sub></span> (relative to water) crossing a river flowing at <span class="m">v<sub>r</sub></span> (ground frame). Three classic JEE questions:</p>
+    <ul>
+      <li><strong>Min time across:</strong> point boat directly perpendicular to current. Time = w / v<sub>b</sub>; drift = (v<sub>r</sub> / v<sub>b</sub>) · w.</li>
+      <li><strong>Min drift (zero drift):</strong> point upstream so that horizontal component cancels current. Requires <span class="m">v<sub>b</sub> &gt; v<sub>r</sub></span>; angle <span class="m">θ = sin⁻¹(v<sub>r</sub>/v<sub>b</sub>)</span>; time = w / √(v<sub>b</sub>² − v<sub>r</sub>²).</li>
+      <li><strong>Min time to cross with given drift:</strong> calculus problem.</li>
+    </ul>
+
+    <h3>Rain–man problem</h3>
+    <p>A pedestrian walks at <span class="m">v<sub>m</sub></span>. Rain falls vertically at <span class="m">v<sub>r</sub></span>. The umbrella angle θ from vertical satisfies:</p>
+    <div class="eq-block">
+      tan θ = v<sub>m</sub> / v<sub>r</sub>
+    </div>
+    <p>The man tilts his umbrella forward (against motion) by angle θ to keep dry.</p>
+  </div>
+
+  <!-- ── 11. Circular motion ─────────────────────────────────────────── -->
+  <div class="topic-section" id="circular">
+    <h2><span class="sec-num">11</span>Circular Motion</h2>
+    <p>For a particle moving in a circle of radius <span class="m">r</span>, two angular quantities matter:</p>
+    <ul>
+      <li><strong>Angular velocity</strong> <span class="m">ω = dθ/dt</span> (rad/s). Linear: <span class="m">v = ω r</span>.</li>
+      <li><strong>Angular acceleration</strong> <span class="m">α = dω/dt</span>. Tangential: <span class="m">a<sub>t</sub> = α r</span>.</li>
+    </ul>
+
+    <h3>Centripetal acceleration</h3>
+    <p>Even at constant speed, a particle on a circle has acceleration <em>pointing toward the centre</em>:</p>
+    <div class="eq-block">
+      a<sub>c</sub> = v² / r = ω² r
+      <span class="eq-label">Centripetal — always exists in circular motion</span>
+    </div>
+
+    <h3>Non-uniform circular motion</h3>
+    <p>If speed changes too, total acceleration has two perpendicular components:</p>
+    <div class="eq-block">
+      |a| = √(a<sub>c</sub>² + a<sub>t</sub>²)
+    </div>
+    <ul>
+      <li><strong>a<sub>c</sub></strong> — radial (toward centre), magnitude <span class="m">v²/r</span>. Changes direction.</li>
+      <li><strong>a<sub>t</sub></strong> — tangent to path, magnitude <span class="m">dv/dt</span>. Changes speed.</li>
+    </ul>
+  </div>
+
+  <!-- ── 12. Master formulas ─────────────────────────────────────────── -->
+  <div class="topic-section" id="formulas">
+    <h2><span class="sec-num">12</span>Master Formula Sheet</h2>
+    <div class="formula-table-wrap" style="border:1px solid var(--line); border-radius:var(--radius); overflow:hidden;">
+      <table class="formula-table">
+        <thead><tr><th>Formula</th><th>Setting</th><th>Notes</th></tr></thead>
+        <tbody>
+          <tr><td class="formula-cell">v = dx/dt</td><td>Velocity (1D)</td><td class="note-cell">Slope of x-t</td></tr>
+          <tr><td class="formula-cell">a = dv/dt = d²x/dt²</td><td>Acceleration</td><td class="note-cell">Slope of v-t</td></tr>
+          <tr><td class="formula-cell">a = v · dv/dx</td><td>When a = a(x)</td><td class="note-cell">Chain-rule trick</td></tr>
+          <tr><td class="formula-cell">v = u + at</td><td>SUVAT (no s)</td><td class="note-cell">Constant a only</td></tr>
+          <tr><td class="formula-cell">s = ut + ½at²</td><td>SUVAT (no v)</td><td class="note-cell"></td></tr>
+          <tr><td class="formula-cell">v² = u² + 2as</td><td>SUVAT (no t)</td><td class="note-cell"></td></tr>
+          <tr><td class="formula-cell">s<sub>n</sub> = u + a(n − ½)</td><td>Distance in n-th second</td><td class="note-cell">Useful trick</td></tr>
+          <tr><td class="formula-cell">T = √(2h/g)</td><td>Free-fall from height h</td><td class="note-cell">u = 0</td></tr>
+          <tr><td class="formula-cell">T = 2u sinθ / g</td><td>Projectile time of flight</td><td class="note-cell">From flat ground</td></tr>
+          <tr><td class="formula-cell">H = u² sin²θ / (2g)</td><td>Projectile max height</td><td class="note-cell"></td></tr>
+          <tr><td class="formula-cell">R = u² sin(2θ) / g</td><td>Projectile range</td><td class="note-cell">θ = 45° for R<sub>max</sub></td></tr>
+          <tr><td class="formula-cell">y = x tan θ − gx²/(2u²cos²θ)</td><td>Trajectory equation</td><td class="note-cell">Parabola</td></tr>
+          <tr><td class="formula-cell">v<sub>AB</sub> = v<sub>A</sub> − v<sub>B</sub></td><td>Relative velocity</td><td class="note-cell">Vector subtraction</td></tr>
+          <tr><td class="formula-cell">tan θ = v<sub>m</sub> / v<sub>r</sub></td><td>Rain–man umbrella</td><td class="note-cell">θ from vertical</td></tr>
+          <tr><td class="formula-cell">v = ω r</td><td>Linear–angular link</td><td class="note-cell"></td></tr>
+          <tr><td class="formula-cell">a<sub>c</sub> = v²/r = ω²r</td><td>Centripetal acceleration</td><td class="note-cell">Always toward centre</td></tr>
+          <tr><td class="formula-cell">a<sub>t</sub> = αr = dv/dt</td><td>Tangential acceleration</td><td class="note-cell">Changes speed</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ── 13. Examples ─────────────────────────────────────────────────── -->
+  <div class="topic-section" id="examples">
+    <h2><span class="sec-num">13</span>Worked Examples — Easy → Hard</h2>
+
+    <div class="example-card">
+      <div class="example-head"><span class="example-badge badge-easy">Easy</span><span>Example 1 — Average velocity</span></div>
+      <div class="example-body">
+        <p>A car travels 60 km north in 1 h, then 40 km south in 0.5 h. Find average speed and average velocity.</p>
+        <span class="step-label">Total distance &amp; displacement</span>
+        <p>Distance = 100 km. Displacement = 60 − 40 = 20 km north. Total time = 1.5 h.</p>
+        <span class="step-label">Compute</span>
+        <p>Average speed = 100/1.5 ≈ 66.7 km/h. Average velocity = 20/1.5 ≈ 13.3 km/h, north.</p>
+        <div class="answer">Speed 66.7 km/h · Velocity 13.3 km/h N</div>
+      </div>
+    </div>
+
+    <div class="example-card">
+      <div class="example-head"><span class="example-badge badge-easy">Easy</span><span>Example 2 — Free fall</span></div>
+      <div class="example-body">
+        <p>A stone is dropped from a 80 m cliff. (g = 10) Find time to land and impact speed.</p>
+        <span class="step-label">Apply SUVAT (down-positive)</span>
+        <p><span class="m">s = ½gt² → 80 = 5t² → t = 4 s</span>. <span class="m">v = gt = 40 m/s</span>.</p>
+        <div class="answer">t = 4 s, v = 40 m/s</div>
+      </div>
+    </div>
+
+    <div class="example-card">
+      <div class="example-head"><span class="example-badge badge-mod">Moderate</span><span>Example 3 — Distance in n-th second</span></div>
+      <div class="example-body">
+        <p>A particle starts from rest with constant a = 4 m/s². Find the distance covered in the 5th second.</p>
+        <span class="step-label">Use s<sub>n</sub> = u + a(n − ½)</span>
+        <p><span class="m">s<sub>5</sub> = 0 + 4·(5 − 0.5) = 18 m</span>.</p>
+        <div class="answer">18 m</div>
+      </div>
+    </div>
+
+    <div class="example-card">
+      <div class="example-head"><span class="example-badge badge-mod">Moderate</span><span>Example 4 — Two angles, same range</span></div>
+      <div class="example-body">
+        <p>A projectile is fired at 30° with speed 50 m/s. What other angle gives the same range? Compare H and T. (g = 10)</p>
+        <span class="step-label">Range invariance</span>
+        <p>Range is unchanged for <span class="m">θ' = 90° − 30° = 60°</span>.</p>
+        <span class="step-label">H and T comparison</span>
+        <p>H ∝ sin²θ, so H(60°)/H(30°) = (sin²60°)/(sin²30°) = (3/4)/(1/4) = 3. The 60° launch goes 3× higher.</p>
+        <p>T ∝ sin θ, so T(60°)/T(30°) = sin60°/sin30° = √3.</p>
+        <div class="answer">θ' = 60°. H × 3, T × √3.</div>
+      </div>
+    </div>
+
+    <div class="example-card">
+      <div class="example-head"><span class="example-badge badge-hard">Hard</span><span>Example 5 — River boat (zero drift)</span></div>
+      <div class="example-body">
+        <p>A river is 100 m wide; current = 3 m/s. A boat moves at 5 m/s in still water. To reach directly opposite, find (i) the angle to point upstream and (ii) crossing time.</p>
+        <span class="step-label">Zero drift condition</span>
+        <p>Horizontal: <span class="m">v<sub>b</sub> sin θ = v<sub>r</sub> → sin θ = 3/5 → θ = 37°</span> upstream.</p>
+        <span class="step-label">Crossing time</span>
+        <p>Vertical (across) speed = <span class="m">v<sub>b</sub> cos θ = 5 · 4/5 = 4 m/s</span>. Time = 100/4 = 25 s.</p>
+        <div class="answer">θ = 37° upstream, t = 25 s</div>
+      </div>
+    </div>
+
+    <div class="example-card">
+      <div class="example-head"><span class="example-badge badge-hard">Hard</span><span>Example 6 — Position-dependent acceleration</span></div>
+      <div class="example-body">
+        <p>A particle's velocity at position x is given by <span class="m">v(x) = 4√x</span> m/s. Find its acceleration at <span class="m">x = 4 m</span>.</p>
+        <span class="step-label">Use a = v · dv/dx</span>
+        <p><span class="m">dv/dx = 4 · ½ x⁻¹/² = 2/√x</span>. At x = 4: <span class="m">v = 8</span>, <span class="m">dv/dx = 1</span>.</p>
+        <span class="step-label">Multiply</span>
+        <p><span class="m">a = v · (dv/dx) = 8 · 1 = 8 m/s²</span>.</p>
+        <div class="answer">a = 8 m/s²</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── 14. PYQs ────────────────────────────────────────────────────── -->
+  <div class="topic-section" id="pyqs">
+    <h2><span class="sec-num">14</span>JEE Previous-Year Questions</h2>
+    <div class="pyq-grid">
+
+      <div class="pyq-card">
+        <span class="pyq-tag">JEE Main · 2020</span>
+        <span class="example-badge badge-easy" style="margin-left:.3rem">Easy</span>
+        <div class="pyq-q">A ball is thrown vertically upward with velocity 20 m/s. Time taken to reach the maximum height is: (g = 10)</div>
+        <span class="pyq-ans-toggle" onclick="this.nextElementSibling.classList.toggle('open');this.textContent=this.nextElementSibling.classList.contains('open')?'▲ Hide':'▼ Show'">▼ Show</span>
+        <div class="pyq-ans">
+          <p>At max height, v = 0. <span class="m">v = u − gt → 0 = 20 − 10t → t = 2 s</span>.</p>
+          <span class="answer-final">2 s</span>
+        </div>
+      </div>
+
+      <div class="pyq-card">
+        <span class="pyq-tag">JEE Main · 2021</span>
+        <span class="example-badge badge-mod" style="margin-left:.3rem">Moderate</span>
+        <div class="pyq-q">A particle moves with velocity <span class="m">v = 3t² − 4t + 2</span> m/s. Acceleration at t = 2 s is:</div>
+        <span class="pyq-ans-toggle" onclick="this.nextElementSibling.classList.toggle('open');this.textContent=this.nextElementSibling.classList.contains('open')?'▲ Hide':'▼ Show'">▼ Show</span>
+        <div class="pyq-ans">
+          <p><span class="m">a = dv/dt = 6t − 4</span>. At t = 2: <span class="m">a = 8 m/s²</span>.</p>
+          <span class="answer-final">8 m/s²</span>
+        </div>
+      </div>
+
+      <div class="pyq-card">
+        <span class="pyq-tag">JEE Main · 2019</span>
+        <span class="example-badge badge-mod" style="margin-left:.3rem">Moderate</span>
+        <div class="pyq-q">A particle is projected from ground at 60° with speed 20 m/s. Maximum height reached: (g = 10)</div>
+        <span class="pyq-ans-toggle" onclick="this.nextElementSibling.classList.toggle('open');this.textContent=this.nextElementSibling.classList.contains('open')?'▲ Hide':'▼ Show'">▼ Show</span>
+        <div class="pyq-ans">
+          <p><span class="m">H = u²sin²θ/(2g) = 400·(3/4)/20 = 15 m</span>.</p>
+          <span class="answer-final">15 m</span>
+        </div>
+      </div>
+
+      <div class="pyq-card">
+        <span class="pyq-tag">JEE Main · 2022</span>
+        <span class="example-badge badge-mod" style="margin-left:.3rem">Moderate</span>
+        <div class="pyq-q">Two cars start from the same point, going east at 60 km/h and north at 80 km/h. Their relative velocity is:</div>
+        <span class="pyq-ans-toggle" onclick="this.nextElementSibling.classList.toggle('open');this.textContent=this.nextElementSibling.classList.contains('open')?'▲ Hide':'▼ Show'">▼ Show</span>
+        <div class="pyq-ans">
+          <p>Vectors are perpendicular. <span class="m">|v<sub>rel</sub>| = √(60² + 80²) = 100 km/h</span>.</p>
+          <span class="answer-final">100 km/h</span>
+        </div>
+      </div>
+
+      <div class="pyq-card">
+        <span class="pyq-tag">JEE Main · 2023</span>
+        <span class="example-badge badge-hard" style="margin-left:.3rem">Hard</span>
+        <div class="pyq-q">A stone is thrown horizontally from a tower with velocity 10 m/s. It lands 40 m from the base. Find the height of the tower. (g = 10)</div>
+        <span class="pyq-ans-toggle" onclick="this.nextElementSibling.classList.toggle('open');this.textContent=this.nextElementSibling.classList.contains('open')?'▲ Hide':'▼ Show'">▼ Show</span>
+        <div class="pyq-ans">
+          <p>Horizontal: <span class="m">x = v<sub>x</sub> t → 40 = 10·t → t = 4 s</span>. Vertical: <span class="m">h = ½gt² = 5·16 = 80 m</span>.</p>
+          <span class="answer-final">80 m</span>
+        </div>
+      </div>
+
+      <div class="pyq-card">
+        <span class="pyq-tag">JEE Main · 2018</span>
+        <span class="example-badge badge-mod" style="margin-left:.3rem">Moderate</span>
+        <div class="pyq-q">A particle moves in a circle of radius 5 m at constant speed 10 m/s. Magnitude of its acceleration is:</div>
+        <span class="pyq-ans-toggle" onclick="this.nextElementSibling.classList.toggle('open');this.textContent=this.nextElementSibling.classList.contains('open')?'▲ Hide':'▼ Show'">▼ Show</span>
+        <div class="pyq-ans">
+          <p>Pure centripetal: <span class="m">a = v²/r = 100/5 = 20 m/s²</span>.</p>
+          <span class="answer-final">20 m/s²</span>
+        </div>
+      </div>
+
+      <div class="pyq-card">
+        <span class="pyq-tag">JEE Main · 2024</span>
+        <span class="example-badge badge-hard" style="margin-left:.3rem">Hard</span>
+        <div class="pyq-q">An object's velocity satisfies <span class="m">v² = 25 − 16x</span> in SI. Find acceleration as a function of x, then evaluate at x = 1.</div>
+        <span class="pyq-ans-toggle" onclick="this.nextElementSibling.classList.toggle('open');this.textContent=this.nextElementSibling.classList.contains('open')?'▲ Hide':'▼ Show'">▼ Show</span>
+        <div class="pyq-ans">
+          <p>Differentiate w.r.t. x: <span class="m">2v · dv/dx = −16 → v · dv/dx = −8</span>.</p>
+          <p>But <span class="m">a = v · dv/dx = −8 m/s²</span> — independent of x.</p>
+          <span class="answer-final">a = −8 m/s² (constant)</span>
+        </div>
+      </div>
+
+      <div class="pyq-card">
+        <span class="pyq-tag">JEE Advanced · 2020</span>
+        <span class="example-badge badge-hard" style="margin-left:.3rem">Hard</span>
+        <div class="pyq-q">A boat with maximum speed v in still water crosses a river of width d, current speed u (u &lt; v). The minimum time to cross and reach a point exactly opposite the start is:</div>
+        <span class="pyq-ans-toggle" onclick="this.nextElementSibling.classList.toggle('open');this.textContent=this.nextElementSibling.classList.contains('open')?'▲ Hide':'▼ Show'">▼ Show</span>
+        <div class="pyq-ans">
+          <p>Boat aims upstream at angle <span class="m">θ = sin⁻¹(u/v)</span> so horizontal component cancels current.</p>
+          <p>Across-river speed: <span class="m">v cos θ = √(v² − u²)</span>. Time = d / √(v² − u²).</p>
+          <span class="answer-final">t = d / √(v² − u²)</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── 15. Traps ───────────────────────────────────────────────────── -->
+  <div class="topic-section" id="traps">
+    <h2><span class="sec-num">15</span>Common Traps &amp; Mistakes</h2>
+    <div class="mistake-list">
+      <div class="mistake-item"><span class="mistake-icon">⚠</span><div><strong>Using SUVAT for variable acceleration.</strong> <span class="m">v = u + at</span> only works for <em>constant</em> a. For variable a, integrate <span class="m">a(t)</span> or use <span class="m">a = v dv/dx</span>.</div></div>
+      <div class="mistake-item"><span class="mistake-icon">⚠</span><div><strong>Confusing distance with |displacement|.</strong> Always different when motion reverses or curves.</div></div>
+      <div class="mistake-item"><span class="mistake-icon">⚠</span><div><strong>Missing the sign of g.</strong> Pick a positive direction and stick with it. If up is +, then g = −10 (not +10).</div></div>
+      <div class="mistake-item"><span class="mistake-icon">⚠</span><div><strong>Mixing 2D components.</strong> Horizontal and vertical motion are independent. Write <span class="m">x(t)</span> and <span class="m">y(t)</span> on separate lines.</div></div>
+      <div class="mistake-item"><span class="mistake-icon">⚠</span><div><strong>Forgetting circular motion has acceleration even at constant speed.</strong> Centripetal <span class="m">v²/r</span> never goes away.</div></div>
+      <div class="mistake-item"><span class="mistake-icon">⚠</span><div><strong>Reading slope as area on graphs.</strong> Slope of x-t = velocity. <em>Area</em> under v-t = displacement. Don't swap them.</div></div>
+      <div class="mistake-item"><span class="mistake-icon">⚠</span><div><strong>Treating projectile range formula as universal.</strong> <span class="m">R = u²sin2θ/g</span> only works for launch and landing at the <em>same height</em>.</div></div>
+      <div class="mistake-item"><span class="mistake-icon">⚠</span><div><strong>Adding speeds for relative motion.</strong> Velocities are vectors — subtract, don't add scalars unless they're collinear.</div></div>
+    </div>
+  </div>
+
+  <!-- ── 16. Cheat card ──────────────────────────────────────────────── -->
+  <div class="topic-section" id="cheat">
+    <h2><span class="sec-num">16</span>One-Page Cheat Card</h2>
+    <div class="cheat-card">
+      <h3>🎯 Kinematics — exam-day recall</h3>
+      <ul>
+        <li><strong>v = dx/dt · a = dv/dt = v·dv/dx</strong></li>
+        <li><strong>SUVAT (constant a only):</strong> <code>v = u + at</code> · <code>s = ut + ½at²</code> · <code>v² = u² + 2as</code></li>
+        <li><strong>nth-second:</strong> <code>s<sub>n</sub> = u + a(n − ½)</code></li>
+        <li><strong>Free fall:</strong> <code>T = √(2h/g)</code> · impact <code>v = √(2gh)</code></li>
+        <li><strong>Graphs:</strong> slope = derivative · area = integral.</li>
+        <li><strong>Projectile flat ground:</strong> <code>T = 2u sinθ/g</code> · <code>H = u² sin²θ/(2g)</code> · <code>R = u² sin2θ/g</code> · max R at 45°.</li>
+        <li><strong>Trajectory:</strong> <code>y = x tanθ − gx²/(2u²cos²θ)</code></li>
+        <li><strong>Cliff (horizontal launch):</strong> <code>T = √(2h/g)</code>, <code>R = uT</code></li>
+        <li><strong>Relative:</strong> <code>v<sub>AB</sub> = v<sub>A</sub> − v<sub>B</sub></code> · river boat zero-drift: <code>sin θ = v<sub>r</sub>/v<sub>b</sub></code></li>
+        <li><strong>Circular:</strong> <code>v = ωr</code> · <code>a<sub>c</sub> = v²/r</code> · <code>a<sub>t</sub> = αr</code> · total <code>√(a<sub>c</sub>²+a<sub>t</sub>²)</code></li>
+      </ul>
+    </div>
+    <div class="topic-cta-row">
+      <a href="../subjects/physics.html" class="btn-primary">← Back to Physics overview</a>
+      <a href="../topics/newtons-laws.html" class="btn-secondary">Next: Newton's Laws →</a>
+    </div>
+  </div>
+
+</div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-brand">JEE 2027 Prep</div>
+      <div class="footer-links">
+        <a href="../index.html">Dashboard</a>
+        <a href="../subjects/math.html">Math</a>
+        <a href="../subjects/physics.html">Physics</a>
+        <a href="../subjects/chemistry.html">Chemistry</a>
+        <a href="../progress.html">Progress</a>
+      </div>
+      <div class="footer-note">Topic deep-dive · Kinematics</div>
+    </div>
+  </div>
+</footer>
+
+<div id="toast" class="toast"></div>
+<script src="../js/main.js?v=2"></script>
+<script>
+// ── Interactive explainer wiring (page-local) ────────────────────────────────
+(function () {
+  // SUVAT solver
+  const u = document.getElementById('suv-u');
+  const a = document.getElementById('suv-a');
+  const t = document.getElementById('suv-t');
+  if (u && a && t) {
+    const fmt = n => Number(n).toFixed(n % 1 === 0 ? 0 : 1);
+    function update() {
+      const U = +u.value, A = +a.value, T = +t.value;
+      document.getElementById('suv-u-val').textContent = fmt(U);
+      document.getElementById('suv-a-val').textContent = fmt(A);
+      document.getElementById('suv-t-val').textContent = fmt(T);
+      const v = U + A * T;
+      const s = U * T + 0.5 * A * T * T;
+      const v2 = U * U + 2 * A * s;
+      document.getElementById('suv-v').textContent = v.toFixed(1) + ' m/s';
+      document.getElementById('suv-s').textContent = s.toFixed(1) + ' m';
+      const close = Math.abs(v * v - v2) < 0.01;
+      document.getElementById('suv-check').textContent = v2.toFixed(0) + (close ? ' ✓' : ' …');
+      document.getElementById('suv-formula').textContent =
+        `v = u + at = ${fmt(U)} + ${fmt(A)}·${fmt(T)} = ${v.toFixed(1)} m/s · s = ut + ½at² = ${fmt(U)}·${fmt(T)} + 0.5·${fmt(A)}·${(T*T).toFixed(1)} = ${s.toFixed(1)} m`;
+    }
+    [u, a, t].forEach(s => s.addEventListener('input', update));
+    update();
+  }
+
+  // Projectile playground
+  const pu = document.getElementById('proj-u');
+  const pTheta = document.getElementById('proj-theta');
+  if (pu && pTheta) {
+    const G = 10;
+    const path = document.getElementById('proj-path');
+    const launch = document.getElementById('proj-launch');
+    const peak = document.getElementById('proj-peak');
+    const land = document.getElementById('proj-land');
+    const status = document.getElementById('proj-status');
+
+    function updateProj() {
+      const U = +pu.value;
+      const TH = +pTheta.value;
+      const rad = TH * Math.PI / 180;
+      const ux = U * Math.cos(rad);
+      const uy = U * Math.sin(rad);
+      const T = (2 * uy) / G;
+      const R = (U * U * Math.sin(2 * rad)) / G;
+      const H = (uy * uy) / (2 * G);
+
+      document.getElementById('proj-u-val').textContent = U;
+      document.getElementById('proj-theta-val').textContent = TH + '°';
+      document.getElementById('proj-R').textContent = R.toFixed(1) + ' m';
+      document.getElementById('proj-H').textContent = H.toFixed(1) + ' m';
+      document.getElementById('proj-T').textContent = T.toFixed(2) + ' s';
+
+      let st;
+      if (TH === 45) st = 'θ = 45° (R<sub>max</sub>)';
+      else if (TH < 45) st = 'Low arc — long horizontal';
+      else st = 'High arc — long airtime';
+      status.innerHTML = st;
+
+      // Draw path: 30 sample points, scale to fit 20..510 px on x and 200..40 on y
+      // Use universal scaling: max range across slider settings = 60²/10 = 360 m, max H = 60²/20 = 180 m
+      const maxR = 360, maxH = 180;
+      const xScale = 490 / maxR;
+      const yScale = 160 / maxH;
+      const x0 = 20, y0 = 200;
+      let d = '';
+      for (let i = 0; i <= 30; i++) {
+        const ti = (i / 30) * T;
+        const x = ux * ti;
+        const y = uy * ti - 0.5 * G * ti * ti;
+        const px = x0 + x * xScale;
+        const py = y0 - y * yScale;
+        d += (i === 0 ? 'M ' : ' L ') + px.toFixed(1) + ' ' + py.toFixed(1);
+      }
+      path.setAttribute('d', d);
+      launch.setAttribute('cx', x0);
+      launch.setAttribute('cy', y0);
+      peak.setAttribute('cx', x0 + (R / 2) * xScale);
+      peak.setAttribute('cy', y0 - H * yScale);
+      land.setAttribute('cx', x0 + R * xScale);
+      land.setAttribute('cy', y0);
+    }
+    [pu, pTheta].forEach(s => s.addEventListener('input', updateProj));
+    updateProj();
+  }
+})();
+</script>
+</body>
+</html>
