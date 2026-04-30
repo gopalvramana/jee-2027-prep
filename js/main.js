@@ -749,7 +749,7 @@ const TC_MONTH = ['','January','February','March','April','May','June',
 const TC_DAY   = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
 
 function tcPhaseLabel(yr, mo) {
-  if (yr === 2026 && mo <= 6)  return '📖 Phase 1 — Foundation Sprint';
+  if (yr === 2026 && mo >= 5 && mo <= 8) return '☀ Phase 1 — Summer Intensive';
   if (yr === 2026 && mo <= 10) return '⚡ Phase 2 — JEE Layer';
   if ((yr === 2026 && mo >= 11) || (yr === 2027 && mo === 1)) return '🎯 Phase 3 — Attempt 1 Drill';
   if (yr === 2027 && mo <= 4)  return '🚀 Phase 4 — Attempt 2 Boost';
