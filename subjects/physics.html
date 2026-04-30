@@ -514,7 +514,7 @@
       p8: ['p-p8-1','p-p8-2','p-p8-3'],
     };
     for (const [uid, ids] of Object.entries(units)) {
-      const done = ids.filter(id => prog[id]).length;
+      const done = ids.filter(id => prog[id]?.done).length;
       const total = ids.length;
       const pct = total ? Math.round(done/total*100) : 0;
       const bar = document.getElementById('rm-bar-'+uid);
@@ -527,7 +527,7 @@
       if (done===total && total>0) { stat.textContent='✓ Done'; stat.className='rm-status rm-done'; }
       else if (done>0) { stat.textContent='In progress'; stat.className='rm-status rm-inprog'; }
     }
-    const p3done = ['p3-w1a','p3-w3','p3-mock1'].filter(id => prog[id]).length;
+    const p3done = ['p3-w1a','p3-w3','p3-mock1'].filter(id => prog[id]?.done).length;
     const s3 = document.getElementById('rm-stat-pp3');
     if (s3 && p3done > 0) { s3.textContent='In progress'; s3.className='rm-status rm-inprog'; }
   } catch(e){}
