@@ -2071,3 +2071,68 @@ body.vid-chem { --vid-accent: #b45309; --vid-light: #fde68a; --vid-muted: #fffbe
   .vid-unit-head { flex-wrap: wrap; }
   .vid-deep-link { margin-left: 0; }
 }
+
+/* ── Unit Roadmap Matrix ─────────────────────────────────────────────────── */
+.rm-section { padding-top: 1.5rem; padding-bottom: 0; }
+.rm-section-title { font-size: .7rem; font-weight: 700; letter-spacing: .08em;
+  text-transform: uppercase; color: var(--ink3); margin-bottom: .6rem; }
+.rm-wrap { overflow-x: auto; border-radius: 10px; border: 1px solid #e5e7eb; }
+.rm-table { width: 100%; border-collapse: collapse; font-size: .82rem; }
+.rm-table thead th {
+  padding: .45rem .75rem; background: #f9fafb; font-size: .63rem; font-weight: 700;
+  letter-spacing: .06em; text-transform: uppercase; color: var(--ink3);
+  border-bottom: 1px solid #e5e7eb; text-align: left; white-space: nowrap;
+}
+.rm-table thead th:last-child { text-align: center; }
+.rm-table tbody tr { cursor: pointer; transition: filter .12s; border-bottom: 1px solid #eef0f3; }
+.rm-table tbody tr:last-child { border-bottom: none; }
+.rm-table tbody tr:hover { filter: brightness(.955); }
+.rm-table td { padding: .52rem .75rem; vertical-align: middle; }
+
+/* Phase row tints */
+.rm-p1     { background: #f0fdf4; }
+.rm-p1-hi  { background: #dcfce7; }   /* high-yield summer units */
+.rm-p2     { background: #f0f9ff; }
+.rm-p2-lo  { background: #f8fafc; }   /* low-yield phase 2 units */
+.rm-p3     { background: #f5f3ff; }
+.rm-p4     { background: #fff7ed; }
+
+/* Unit badge */
+.rm-badge {
+  display: inline-block; font-family: var(--mono); font-size: .7rem;
+  font-weight: 700; padding: .15rem .45rem; border-radius: 5px;
+}
+.rm-badge.math { background: #dbeafe; color: #1d4ed8; }
+.rm-badge.phys { background: #ccfbf1; color: #0f766e; }
+.rm-badge.chem { background: #fef3c7; color: #92400e; }
+.rm-badge.p3b  { background: #ede9fe; color: #6d28d9; }
+.rm-badge.p4b  { background: #d1fae5; color: #065f46; }
+
+/* Topic cell */
+.rm-name { font-weight: 600; line-height: 1.3; }
+.rm-sub { display: block; font-size: .7rem; color: var(--ink3); margin-top: .1rem; }
+.rm-hy { color: #b45309; font-size: .65rem; font-weight: 700; vertical-align: middle; margin-left: .2rem; }
+
+/* Month */
+.rm-month { white-space: nowrap; color: var(--ink2); font-size: .78rem; }
+.rm-sun { color: #059669; font-weight: 700; }
+
+/* Progress bar */
+.rm-prog-wrap { display: flex; align-items: center; gap: .4rem; }
+.rm-bar-track { width: 52px; height: 5px; background: #e5e7eb; border-radius: 3px; flex-shrink: 0; }
+.rm-bar-fill  { height: 5px; border-radius: 3px; width: 0; transition: width .4s ease; }
+.rm-cnt { font-family: var(--mono); font-size: .68rem; color: var(--ink3); white-space: nowrap; }
+
+/* Status badge */
+.rm-status {
+  display: inline-block; font-size: .63rem; font-weight: 700;
+  padding: .15rem .5rem; border-radius: 9999px; white-space: nowrap;
+}
+.rm-done   { background: #dcfce7; color: #166534; }
+.rm-inprog { background: #fef9c3; color: #854d0e; }
+.rm-soon   { background: #f3f4f6; color: #94a3b8; }
+
+@media (max-width: 600px) {
+  .rm-table .rm-col-sub { display: none; }  /* hide Key Topics col on mobile */
+  .rm-table td, .rm-table th { padding: .42rem .45rem; }
+}
