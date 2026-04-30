@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Atomic Structure — JEE 2027 Deep-Dive</title>
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body class="topic-chem">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="nav-brand">JEE 2027</div>
+    <div class="nav-links">
+      <a href="../index.html">Dashboard</a>
+      <a href="../subjects/math.html">📐 Math</a>
+      <a href="../subjects/physics.html">⚡ Physics</a>
+      <a href="../subjects/chemistry.html" class="active">🧪 Chemistry</a>
+      <a href="../progress.html">✅ Progress</a>
+      <a href="../schedule.html">📋 Schedule</a>
+      <a href="../settings.html">⚙ Settings</a>
+    </div>
+    <button class="nav-toggle" onclick="toggleNav()">☰</button>
+  </div>
+</nav>
+
+<header class="page-hero" style="background:var(--topic-grad)">
+  <div class="page-hero-content">
+    <div class="page-hero-tag">Chemistry · Unit C2 · Deep-Dive</div>
+    <h1>⚛ Atomic Structure</h1>
+    <p>From Bohr's orbits to quantum numbers and periodic trends — every chemistry question about electrons starts here. Nail the formulas and exception rules once, and this unit becomes 5–6 reliable marks.</p>
+    <div class="topic-meta-bar">
+      <span class="topic-meta-pill"><strong>Weight:</strong> 6–7% (≈6 marks)</span>
+      <span class="topic-meta-pill"><strong>Difficulty:</strong> 🟡 Moderate</span>
+      <span class="topic-meta-pill"><strong>Prereq:</strong> C1 Mole Concept</span>
+      <span class="topic-meta-pill"><strong>Time to master:</strong> 6–8 hrs</span>
+      <span class="topic-meta-pill"><a href="../subjects/chemistry.html#unit-c2">↩ Back to Chemistry</a></span>
+    </div>
+  </div>
+</header>
+
+<section class="section">
+<div class="topic-wrap">
+
+  <!-- TOC -->
+  <nav class="topic-toc">
+    <div class="topic-toc-title">📖 In this guide</div>
+    <ol>
+      <li><a href="#why">Why This Unit Matters</a></li>
+      <li><a href="#models">Atomic Models — From Thomson to Bohr</a></li>
+      <li><a href="#bohr">Bohr Model — All Equations</a></li>
+      <li><a href="#spectra">Atomic Spectra &amp; Spectral Series</a></li>
+      <li><a href="#duality">Wave-Particle Duality — de Broglie</a></li>
+      <li><a href="#uncertainty">Heisenberg Uncertainty Principle</a></li>
+      <li><a href="#quantum">All 4 Quantum Numbers</a></li>
+      <li><a href="#orbitals">Shapes of Orbitals</a></li>
+      <li><a href="#config">Electron Configuration — Rules &amp; Exceptions</a></li>
+      <li><a href="#trends">Periodic Trends</a></li>
+      <li><a href="#reference">Formula Reference Table</a></li>
+      <li><a href="#examples">Worked Examples</a></li>
+      <li><a href="#pyqs">JEE Previous-Year Questions</a></li>
+      <li><a href="#traps">Common Traps</a></li>
+      <li><a href="#cheat">Cheat Card</a></li>
+    </ol>
+  </nav>
+
+  <!-- 01. WHY -->
+  <div class="topic-section" id="why">
+    <h2><span class="sec-num">01</span>Why This Unit Matters</h2>
+    <p>Atomic Structure is the lens through which all of chemistry is understood. Electron configurations explain reactivity, periodic trends, bonding preferences, and oxidation states. Every organic mechanism in Phase 3 depends on knowing where electrons live and how easily they move.</p>
+    <div class="callout info">
+      <div class="callout-title">📊 JEE Appearance: Almost Every Year</div>
+      Atomic Structure appears in JEE Main virtually every year — typically 2–3 questions. The Bohr model formula, spectral series identification, quantum number validity, and Cr/Cu exceptions are the four most-tested sub-topics.
+    </div>
+    <div class="callout success">
+      <div class="callout-title">✅ High ROI Unit</div>
+      Unlike Organic mechanisms that require broad context, Atomic Structure questions are self-contained formula/rule applications. 6 hours of focused study → near-certain 4–6 marks per attempt.
+    </div>
+  </div>
+
+  <!-- 02. MODELS -->
+  <div class="topic-section" id="models">
+    <h2><span class="sec-num">02</span>Atomic Models — From Thomson to Bohr</h2>
+    <div class="compare-grid">
+      <div class="compare-col">
+        <div class="compare-col-head">Thomson's Plum Pudding (1904)</div>
+        <ul>
+          <li>Atom = positive sphere with electrons embedded</li>
+          <li>Explains neutrality but not atomic spectra</li>
+          <li><strong>Disproved by:</strong> Rutherford's gold foil experiment (1909)</li>
+        </ul>
+      </div>
+      <div class="compare-col">
+        <div class="compare-col-head">Rutherford's Nuclear Model (1911)</div>
+        <ul>
+          <li>Dense positive nucleus; electrons orbit far away</li>
+          <li>Most atom = empty space</li>
+          <li><strong>Flaw:</strong> Orbiting electrons should spiral in (Maxwell's equations) — model predicts atoms shouldn't exist</li>
+        </ul>
+      </div>
+      <div class="compare-col">
+        <div class="compare-col-head">Bohr's Model (1913)</div>
+        <ul>
+          <li>Electrons occupy fixed energy levels — no radiation while in orbit</li>
+          <li>Energy emitted/absorbed only when jumping between levels</li>
+          <li><strong>Limitation:</strong> Works only for H and H-like ions (He⁺, Li²⁺); fails for multi-electron atoms</li>
+        </ul>
+      </div>
+    </div>
+    <div class="callout warn">
+      <div class="callout-title">⚠ JEE Trap</div>
+      Rutherford's model failed because classical EM theory says an accelerating charge radiates energy — circular orbit = centripetal acceleration = energy loss. Bohr "fixed" this by postulate, not by physics. JEE sometimes asks <em>why</em> Rutherford's model is inadequate.
+    </div>
+  </div>
+
+  <!-- 03. BOHR -->
+  <div class="topic-section" id="bohr">
+    <h2><span class="sec-num">03</span>Bohr Model — All Equations</h2>
+    <p>All Bohr equations apply to <strong>hydrogen-like species</strong>: H (Z=1), He⁺ (Z=2), Li²⁺ (Z=3), Be³⁺ (Z=4). Plug the correct Z in.</p>
+
+    <div class="method-box">
+      <div class="method-box-title">Bohr Equations — Master Table</div>
+      <div class="formula-table-wrap">
+        <table class="formula-table">
+          <thead><tr><th>Quantity</th><th>Formula</th><th>Key Values</th></tr></thead>
+          <tbody>
+            <tr><td>Energy of nth orbit</td><td class="formula-cell">E<sub>n</sub> = −13.6 Z²/n² eV</td><td>E₁(H) = −13.6 eV; E₂ = −3.4 eV; E₃ = −1.51 eV</td></tr>
+            <tr><td>Radius of nth orbit</td><td class="formula-cell">r<sub>n</sub> = 0.529 n²/Z Å</td><td>r₁(H) = 0.529 Å (Bohr radius a₀)</td></tr>
+            <tr><td>Velocity of electron</td><td class="formula-cell">v<sub>n</sub> = 2.18×10⁶ Z/n m/s</td><td>v₁(H) = 2.18×10⁶ m/s</td></tr>
+            <tr><td>Frequency of revolution</td><td class="formula-cell">f<sub>n</sub> ∝ Z²/n³</td><td>Increases with Z, decreases with n</td></tr>
+            <tr><td>Energy of emitted photon</td><td class="formula-cell">ΔE = E<sub>high</sub> − E<sub>low</sub> = hν = hc/λ</td><td>Always positive (energy released)</td></tr>
+            <tr><td>Number of spectral lines</td><td class="formula-cell">Lines = n(n−1)/2</td><td>n=5 → 10 lines; n=4 → 6 lines</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="callout info">
+      <div class="callout-title">💡 Ionisation Energy from Bohr</div>
+      IE of hydrogen from nth level = |E<sub>n</sub>| = 13.6/n² eV. Ground state IE = 13.6 eV = 1312 kJ/mol. For He⁺: IE = 13.6 × 4 = 54.4 eV.
+    </div>
+
+    <!-- Interactive: Bohr Calculator -->
+    <div class="explainer">
+      <div class="explainer-title">⚛ Bohr Calculator</div>
+      <div style="display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:1rem;align-items:center">
+        <label style="font-size:.875rem;color:var(--ink2)">Z (atomic number):
+          <select id="bc-z" onchange="bcUpdate()" style="margin-left:.5rem;padding:.3rem .5rem;border:1px solid var(--border);border-radius:6px;font-family:inherit">
+            <option value="1">1 — Hydrogen (H)</option>
+            <option value="2">2 — He⁺</option>
+            <option value="3">3 — Li²⁺</option>
+            <option value="4">4 — Be³⁺</option>
+          </select>
+        </label>
+        <label style="font-size:.875rem;color:var(--ink2)">Orbit n:
+          <select id="bc-n" onchange="bcUpdate()" style="margin-left:.5rem;padding:.3rem .5rem;border:1px solid var(--border);border-radius:6px;font-family:inherit">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+          </select>
+        </label>
+      </div>
+      <div id="bc-out" style="background:var(--topic-accent-l);border-radius:10px;padding:1rem 1.25rem;font-size:.875rem;line-height:2"></div>
+    </div>
+  </div>
+
+  <!-- 04. SPECTRA -->
+  <div class="topic-section" id="spectra">
+    <h2><span class="sec-num">04</span>Atomic Spectra &amp; Spectral Series</h2>
+    <p>When an electron jumps from a higher energy level (n₂) to a lower level (n₁), a photon is emitted with wavelength given by the <strong>Rydberg equation</strong>:</p>
+    <div class="method-box">
+      <div class="method-box-title">Rydberg Equation</div>
+      <p style="font-size:1.1rem;text-align:center;margin:.5rem 0"><strong>1/λ = R<sub>H</sub> (1/n₁² − 1/n₂²)</strong></p>
+      <p style="text-align:center;color:var(--ink3);font-size:.875rem">R<sub>H</sub> = 1.097 × 10⁷ m⁻¹ &nbsp;|&nbsp; n₂ > n₁ &nbsp;|&nbsp; λ in metres</p>
+    </div>
+
+    <div class="formula-table-wrap" style="margin-top:1.25rem">
+      <table class="formula-table">
+        <thead><tr><th>Series</th><th>Transition (ends at)</th><th>Region</th><th>JEE Tip</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Lyman</strong></td><td>n → 1</td><td>Ultraviolet (UV)</td><td>Highest energy series</td></tr>
+          <tr><td><strong>Balmer</strong></td><td>n → 2</td><td>Visible (400–700 nm)</td><td>Only visible series — most tested</td></tr>
+          <tr><td><strong>Paschen</strong></td><td>n → 3</td><td>Infrared (IR)</td><td>Near-IR</td></tr>
+          <tr><td><strong>Brackett</strong></td><td>n → 4</td><td>Infrared (IR)</td><td>Mid-IR</td></tr>
+          <tr><td><strong>Pfund</strong></td><td>n → 5</td><td>Infrared (IR)</td><td>Far-IR</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="callout warn">
+      <div class="callout-title">⚠ Most Common JEE Question Type</div>
+      "Electron falls from n=5 to n=1 — how many spectral lines?" Answer: n(n−1)/2 = 5×4/2 = <strong>10 lines</strong>. This formula counts all possible transitions among n levels.
+    </div>
+    <div class="callout info">
+      <div class="callout-title">💡 Series Limit</div>
+      The series limit (n₂ → ∞) gives the minimum wavelength (maximum energy) of each series. For Lyman series limit: 1/λ = R<sub>H</sub>(1/1²) → λ = 91.2 nm.
+    </div>
+  </div>
+
+  <!-- 05. DE BROGLIE -->
+  <div class="topic-section" id="duality">
+    <h2><span class="sec-num">05</span>Wave-Particle Duality — de Broglie</h2>
+    <p>Louis de Broglie (1924) proposed that all matter has wave properties. The wavelength associated with a particle is:</p>
+    <div class="method-box">
+      <div class="method-box-title">de Broglie Wavelength</div>
+      <p style="font-size:1.1rem;text-align:center;margin:.5rem 0"><strong>λ = h/mv = h/p</strong></p>
+      <p style="text-align:center;color:var(--ink3);font-size:.875rem">h = 6.626 × 10⁻³⁴ J·s &nbsp;|&nbsp; m = mass (kg) &nbsp;|&nbsp; v = velocity (m/s)</p>
+    </div>
+    <div class="compare-grid">
+      <div class="compare-col">
+        <div class="compare-col-head">Key Relationships</div>
+        <ul>
+          <li>λ ∝ 1/m — heavier particles have shorter wavelength</li>
+          <li>λ ∝ 1/v — faster particles have shorter wavelength</li>
+          <li>For electron accelerated through potential V: λ = h/√(2meV)</li>
+          <li>Bohr's quantisation condition: 2πr = nλ (orbit circumference = n wavelengths)</li>
+        </ul>
+      </div>
+      <div class="compare-col">
+        <div class="compare-col-head">JEE Problems</div>
+        <ul>
+          <li>Find λ for electron at 2×10⁶ m/s: λ = 6.626×10⁻³⁴ / (9.11×10⁻³¹ × 2×10⁶) ≈ 0.364 nm</li>
+          <li>Macroscopic objects (cricket ball, car) have negligible λ → wave nature unobservable</li>
+          <li>Compare λ of e⁻, p⁺, neutron at same speed → λ ∝ 1/m → electron has largest λ</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- 06. HEISENBERG -->
+  <div class="topic-section" id="uncertainty">
+    <h2><span class="sec-num">06</span>Heisenberg Uncertainty Principle</h2>
+    <p>It is fundamentally impossible to simultaneously determine both the exact position and exact momentum of a particle:</p>
+    <div class="method-box">
+      <div class="method-box-title">Uncertainty Principle</div>
+      <p style="font-size:1.1rem;text-align:center;margin:.5rem 0"><strong>Δx · Δp ≥ h/4π</strong></p>
+      <p style="text-align:center;color:var(--ink3);font-size:.875rem">Δx = uncertainty in position &nbsp;|&nbsp; Δp = m·Δv = uncertainty in momentum</p>
+      <p style="text-align:center;font-size:.875rem;margin-top:.5rem">Also: <strong>ΔE · Δt ≥ h/4π</strong> (energy-time uncertainty)</p>
+    </div>
+    <div class="callout info">
+      <div class="callout-title">💡 Why Bohr's Model Fails Here</div>
+      Bohr assigned a definite orbit (position) and definite velocity to electrons — this directly violates Heisenberg's principle. Modern quantum mechanics replaces "orbits" with "orbitals" — probability regions where electrons are likely to be found.
+    </div>
+    <div class="callout warn">
+      <div class="callout-title">⚠ JEE Calculation Tip</div>
+      Given Δx, find minimum Δv: Δv = h/(4π·m·Δx). Always use m = 9.11×10⁻³¹ kg for electron. Make sure units are consistent (Δx in metres, Δp in kg·m/s).
+    </div>
+  </div>
+
+  <!-- 07. QUANTUM NUMBERS -->
+  <div class="topic-section" id="quantum">
+    <h2><span class="sec-num">07</span>All 4 Quantum Numbers</h2>
+    <p>Every electron in an atom is uniquely described by a set of four quantum numbers. <strong>Pauli's Exclusion Principle:</strong> no two electrons in the same atom can have all four quantum numbers identical.</p>
+
+    <div class="formula-table-wrap">
+      <table class="formula-table">
+        <thead><tr><th>Quantum Number</th><th>Symbol</th><th>Allowed Values</th><th>What it Describes</th><th>JEE Tip</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Principal</strong></td><td class="formula-cell">n</td><td>1, 2, 3, 4… (positive integers)</td><td>Shell, size, energy level</td><td>Determines energy in H; higher n = higher energy</td></tr>
+          <tr><td><strong>Azimuthal</strong></td><td class="formula-cell">l</td><td>0 to (n−1)</td><td>Subshell, orbital shape</td><td>l=0→s, l=1→p, l=2→d, l=3→f</td></tr>
+          <tr><td><strong>Magnetic</strong></td><td class="formula-cell">m<sub>l</sub></td><td>−l to +l (integers, 2l+1 values)</td><td>Orbital orientation</td><td>Number of orbitals in subshell = 2l+1</td></tr>
+          <tr><td><strong>Spin</strong></td><td class="formula-cell">m<sub>s</sub></td><td>+½ or −½ only</td><td>Electron spin direction</td><td>Two electrons max per orbital</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="method-box" style="margin-top:1.5rem">
+      <div class="method-box-title">Electron Capacity Rules</div>
+      <ul style="line-height:2;margin:0">
+        <li>Max electrons in shell n: <strong>2n²</strong> &emsp;(n=1→2, n=2→8, n=3→18, n=4→32)</li>
+        <li>Max electrons in subshell: <strong>4l + 2</strong> &emsp;(s=2, p=6, d=10, f=14)</li>
+        <li>Number of orbitals in subshell: <strong>2l + 1</strong> &emsp;(s=1, p=3, d=5, f=7)</li>
+        <li>Number of orbitals in shell n: <strong>n²</strong></li>
+      </ul>
+    </div>
+
+    <!-- Interactive: QN validator -->
+    <div class="explainer">
+      <div class="explainer-title">🔍 Quantum Number Validator</div>
+      <p style="font-size:.875rem;color:var(--ink3);margin-bottom:.75rem">Enter a set of quantum numbers to check if it's valid:</p>
+      <div style="display:flex;gap:.75rem;flex-wrap:wrap;align-items:center;margin-bottom:1rem">
+        <label style="font-size:.875rem">n: <input id="qn-n" type="number" min="1" max="7" value="3" onchange="qnCheck()" style="width:50px;padding:.3rem;border:1px solid var(--border);border-radius:6px;font-family:inherit;margin-left:.3rem"></label>
+        <label style="font-size:.875rem">l: <input id="qn-l" type="number" min="0" max="6" value="2" onchange="qnCheck()" style="width:50px;padding:.3rem;border:1px solid var(--border);border-radius:6px;font-family:inherit;margin-left:.3rem"></label>
+        <label style="font-size:.875rem">m<sub>l</sub>: <input id="qn-ml" type="number" min="-6" max="6" value="1" onchange="qnCheck()" style="width:50px;padding:.3rem;border:1px solid var(--border);border-radius:6px;font-family:inherit;margin-left:.3rem"></label>
+        <label style="font-size:.875rem">m<sub>s</sub>: <select id="qn-ms" onchange="qnCheck()" style="padding:.3rem;border:1px solid var(--border);border-radius:6px;font-family:inherit;margin-left:.3rem"><option value="0.5">+½</option><option value="-0.5">−½</option></select></label>
+      </div>
+      <div id="qn-out" style="padding:.75rem 1rem;border-radius:8px;font-size:.9rem;font-weight:500"></div>
+    </div>
+  </div>
+
+  <!-- 08. ORBITALS -->
+  <div class="topic-section" id="orbitals">
+    <h2><span class="sec-num">08</span>Shapes of Orbitals</h2>
+    <div class="compare-grid">
+      <div class="compare-col">
+        <div class="compare-col-head">s Orbital (l=0)</div>
+        <ul>
+          <li>Spherically symmetric</li>
+          <li>1 orbital per subshell, max 2 electrons</li>
+          <li>1s is smallest; 2s, 3s larger with radial nodes</li>
+          <li>Number of radial nodes = n − l − 1</li>
+        </ul>
+      </div>
+      <div class="compare-col">
+        <div class="compare-col-head">p Orbital (l=1)</div>
+        <ul>
+          <li>Dumbbell shape along x, y, z axes</li>
+          <li>3 orbitals: p<sub>x</sub>, p<sub>y</sub>, p<sub>z</sub></li>
+          <li>Max 6 electrons per p subshell</li>
+          <li>Have one nodal plane through nucleus</li>
+        </ul>
+      </div>
+      <div class="compare-col">
+        <div class="compare-col-head">d Orbital (l=2)</div>
+        <ul>
+          <li>5 orbitals, complex shapes (4-lobed + doughnut)</li>
+          <li>d<sub>xy</sub>, d<sub>yz</sub>, d<sub>xz</sub>, d<sub>x²−y²</sub>, d<sub>z²</sub></li>
+          <li>Max 10 electrons per d subshell</li>
+          <li>Key for transition metal chemistry</li>
+        </ul>
+      </div>
+    </div>
+    <div class="callout info">
+      <div class="callout-title">💡 Nodes Formula</div>
+      Total nodes = n − 1. Angular (nodal planes) = l. Radial nodes = n − l − 1.
+      Example: 3p orbital → total nodes = 2; angular = 1; radial = 3−1−1 = 1.
+    </div>
+  </div>
+
+  <!-- 09. ELECTRON CONFIG -->
+  <div class="topic-section" id="config">
+    <h2><span class="sec-num">09</span>Electron Configuration — Rules &amp; Exceptions</h2>
+
+    <div class="method-box">
+      <div class="method-box-title">Three Rules for Filling Electrons</div>
+      <ol style="line-height:2;margin:0">
+        <li><strong>Aufbau Principle:</strong> Fill orbitals in increasing energy order: 1s → 2s → 2p → 3s → 3p → 4s → 3d → 4p → 5s → 4d → 5p → 6s → 4f → 5d…</li>
+        <li><strong>Pauli Exclusion Principle:</strong> Max 2 electrons per orbital, with opposite spins</li>
+        <li><strong>Hund's Rule:</strong> In degenerate orbitals (same energy), fill one electron in each before pairing. All unpaired electrons have parallel spins.</li>
+      </ol>
+    </div>
+
+    <div class="callout danger" style="margin-top:1.25rem">
+      <div class="callout-title">⚠ CRITICAL: Cr and Cu Exceptions — Appear Every Year</div>
+      <p>Half-filled and fully-filled d subshells are extra stable due to exchange energy and symmetry.</p>
+      <ul style="margin:.5rem 0;line-height:2">
+        <li><strong>Cr (Z=24):</strong> Expected [Ar]3d⁴4s² → Actual <strong>[Ar]3d⁵4s¹</strong> (half-filled d⁵ is stable)</li>
+        <li><strong>Cu (Z=29):</strong> Expected [Ar]3d⁹4s² → Actual <strong>[Ar]3d¹⁰4s¹</strong> (fully-filled d¹⁰ is stable)</li>
+        <li><strong>Mo (Z=42):</strong> [Kr]4d⁵5s¹ (same as Cr logic)</li>
+        <li><strong>Ag (Z=47):</strong> [Kr]4d¹⁰5s¹ (same as Cu logic)</li>
+      </ul>
+      <p>When asked for config of Cr²⁺ or Cu⁺ — first write the neutral atom config, then remove electrons from the 4s orbital first (not 3d).</p>
+    </div>
+
+    <div class="formula-table-wrap" style="margin-top:1.25rem">
+      <table class="formula-table">
+        <thead><tr><th>Ion</th><th>Config</th><th>Why</th></tr></thead>
+        <tbody>
+          <tr><td>Fe (Z=26)</td><td class="formula-cell">[Ar]3d⁶4s²</td><td>Normal Aufbau</td></tr>
+          <tr><td>Fe²⁺</td><td class="formula-cell">[Ar]3d⁶</td><td>Remove 4s electrons first</td></tr>
+          <tr><td>Fe³⁺</td><td class="formula-cell">[Ar]3d⁵</td><td>Remove 4s then one 3d</td></tr>
+          <tr><td>Cu (Z=29)</td><td class="formula-cell">[Ar]3d¹⁰4s¹</td><td>Exception — full d</td></tr>
+          <tr><td>Cu⁺</td><td class="formula-cell">[Ar]3d¹⁰</td><td>Lose 4s¹ first</td></tr>
+          <tr><td>Cu²⁺</td><td class="formula-cell">[Ar]3d⁹</td><td>Lose 4s then one 3d</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- 10. PERIODIC TRENDS -->
+  <div class="topic-section" id="trends">
+    <h2><span class="sec-num">10</span>Periodic Trends</h2>
+    <div class="compare-grid">
+      <div class="compare-col">
+        <div class="compare-col-head">Atomic Radius</div>
+        <ul>
+          <li><strong>Across period (→):</strong> Decreases — more protons, same shell, electrons pulled closer</li>
+          <li><strong>Down group (↓):</strong> Increases — more shells, more shielding</li>
+          <li>Exception: Ga &lt; Al (d-block contraction)</li>
+        </ul>
+      </div>
+      <div class="compare-col">
+        <div class="compare-col-head">Ionisation Energy (IE)</div>
+        <ul>
+          <li><strong>Across period (→):</strong> Generally increases — smaller atom, electrons harder to remove</li>
+          <li><strong>Down group (↓):</strong> Decreases — electrons farther, more shielding</li>
+          <li><strong>Exception:</strong> IE(B) &lt; IE(Be); IE(O) &lt; IE(N) — half-filled stability</li>
+        </ul>
+      </div>
+      <div class="compare-col">
+        <div class="compare-col-head">Electronegativity</div>
+        <ul>
+          <li><strong>Across (→):</strong> Increases; <strong>Down (↓):</strong> Decreases</li>
+          <li>Order: F &gt; O &gt; N &gt; Cl &gt; Br &gt; S &gt; C &gt; H</li>
+          <li>Fluorine = most electronegative element</li>
+          <li>Noble gases excluded (don't form bonds)</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="callout warn">
+      <div class="callout-title">⚠ IE Anomalies — JEE Favourite</div>
+      <p>Be has higher IE than B: Be has filled 2s² (stable) vs B has 2p¹ (easier to remove).</p>
+      <p>N has higher IE than O: N has half-filled 2p³ (extra stable) vs O has 2p⁴ where one orbital has paired electrons (easier to remove the paired one).</p>
+      <p>Memorise the order: Li &lt; Be &gt; B &lt; C &lt; N &gt; O &lt; F &lt; Ne</p>
+    </div>
+  </div>
+
+  <!-- 11. REFERENCE -->
+  <div class="topic-section" id="reference">
+    <h2><span class="sec-num">11</span>Formula Reference Table</h2>
+    <div class="formula-table-wrap">
+      <table class="formula-table">
+        <thead><tr><th>Formula</th><th>Name</th><th>Note</th></tr></thead>
+        <tbody>
+          <tr><td class="formula-cell">E<sub>n</sub> = −13.6 Z²/n² eV</td><td>Bohr energy</td><td>H-like atoms only; E₁(H) = −13.6 eV</td></tr>
+          <tr><td class="formula-cell">r<sub>n</sub> = 0.529 n²/Z Å</td><td>Bohr radius</td><td>r₁(H) = 0.529 Å = a₀</td></tr>
+          <tr><td class="formula-cell">v<sub>n</sub> = 2.18×10⁶ Z/n m/s</td><td>Orbital velocity</td><td></td></tr>
+          <tr><td class="formula-cell">1/λ = R<sub>H</sub>(1/n₁² − 1/n₂²)</td><td>Rydberg</td><td>R<sub>H</sub> = 1.097×10⁷ m⁻¹</td></tr>
+          <tr><td class="formula-cell">E = hν = hc/λ</td><td>Photon energy</td><td>h = 6.626×10⁻³⁴ J·s</td></tr>
+          <tr><td class="formula-cell">λ = h/mv</td><td>de Broglie</td><td>Wave nature of matter</td></tr>
+          <tr><td class="formula-cell">Δx · Δp ≥ h/4π</td><td>Heisenberg</td><td>Minimum uncertainty</td></tr>
+          <tr><td class="formula-cell">Lines = n(n−1)/2</td><td>Spectral lines</td><td>From n-th level to ground</td></tr>
+          <tr><td class="formula-cell">Capacity = 2n²</td><td>Shell capacity</td><td>n=1→2, n=2→8, n=3→18</td></tr>
+          <tr><td class="formula-cell">Radial nodes = n − l − 1</td><td>Nodes</td><td>Angular nodes = l; Total = n−1</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- 12. EXAMPLES -->
+  <div class="topic-section" id="examples">
+    <h2><span class="sec-num">12</span>Worked Examples</h2>
+
+    <div class="method-box">
+      <div class="method-box-title">Example 1 — Spectral Lines (Easy)</div>
+      <p><strong>Q:</strong> How many spectral lines are possible when an electron in hydrogen falls from n=5 to n=1?</p>
+      <p><strong>Step 1:</strong> Number of lines = n(n−1)/2 where n = number of levels involved = 5</p>
+      <p><strong>Step 2:</strong> Lines = 5 × 4 / 2 = <strong>10</strong></p>
+      <p><em>Transitions: 5→4, 5→3, 5→2, 5→1, 4→3, 4→2, 4→1, 3→2, 3→1, 2→1</em></p>
+    </div>
+
+    <div class="method-box">
+      <div class="method-box-title">Example 2 — Bohr Energy (Medium)</div>
+      <p><strong>Q:</strong> Find the wavelength of radiation emitted when electron in hydrogen jumps from n=4 to n=2.</p>
+      <p><strong>Step 1:</strong> 1/λ = R<sub>H</sub>(1/n₁² − 1/n₂²) = 1.097×10⁷ × (1/4 − 1/16)</p>
+      <p><strong>Step 2:</strong> = 1.097×10⁷ × (4/16 − 1/16) = 1.097×10⁷ × 3/16</p>
+      <p><strong>Step 3:</strong> 1/λ = 2.057×10⁶ m⁻¹ → λ = 486 nm</p>
+      <p><strong>Answer:</strong> 486 nm — this is the blue Balmer line (H-β line)</p>
+    </div>
+
+    <div class="method-box">
+      <div class="method-box-title">Example 3 — Quantum Numbers (Medium)</div>
+      <p><strong>Q:</strong> Which set of quantum numbers is NOT valid: (a) (2,1,0,+½) (b) (3,3,0,+½) (c) (2,0,0,−½)?</p>
+      <p><strong>Check (a):</strong> n=2, l=1 (valid, l &lt; n), m<sub>l</sub>=0 (valid, |m<sub>l</sub>| ≤ l) → VALID</p>
+      <p><strong>Check (b):</strong> n=3, l=3 — but l must be 0 to (n−1) = 0 to 2. l=3 is NOT allowed → <strong>INVALID</strong></p>
+      <p><strong>Check (c):</strong> n=2, l=0, m<sub>l</sub>=0 (only allowed value for l=0) → VALID</p>
+      <p><strong>Answer: (b)</strong> is invalid because l cannot equal n.</p>
+    </div>
+
+    <div class="method-box">
+      <div class="method-box-title">Example 4 — Electron Config of Ion (Hard)</div>
+      <p><strong>Q:</strong> Write the electron configuration of Cr³⁺ (Z=24).</p>
+      <p><strong>Step 1:</strong> Cr (neutral) = [Ar]3d⁵4s¹ (exception — half-filled d)</p>
+      <p><strong>Step 2:</strong> Remove 3 electrons from Cr. Always remove from highest energy level first: remove 4s¹ first (1 electron), then 2 from 3d.</p>
+      <p><strong>Step 3:</strong> Cr³⁺ = [Ar]3d³</p>
+      <p><em>Note: Many students wrongly write [Ar]3d²4s¹ — don't leave 4s electrons when forming ions.</em></p>
+    </div>
+  </div>
+
+  <!-- 13. PYQs -->
+  <div class="topic-section" id="pyqs">
+    <h2><span class="sec-num">13</span>JEE Previous-Year Questions</h2>
+    <div class="callout info">
+      <div class="callout-title">📋 JEE Main — Recurring Question Patterns</div>
+      <ol style="line-height:2;margin:0">
+        <li><strong>Spectral lines calculation:</strong> "Electron falls from n=X — how many lines/which series?" (n(n−1)/2 formula)</li>
+        <li><strong>Bohr formula application:</strong> Energy/radius/wavelength for H-like ions with Z>1</li>
+        <li><strong>Invalid quantum number set:</strong> 4-option MCQ — find the impossible combination</li>
+        <li><strong>Electron configuration of exception elements/ions:</strong> Cr, Cu, Mo, Ag and their ions</li>
+        <li><strong>Periodic trends comparison:</strong> "Arrange in order of IE / atomic radius"</li>
+        <li><strong>IE anomaly:</strong> Why IE(N) > IE(O) or IE(Be) > IE(B)</li>
+      </ol>
+    </div>
+
+    <div class="method-box">
+      <div class="method-box-title">PYQ — JEE Main 2023</div>
+      <p><strong>Q:</strong> The number of orbitals with n=5, m<sub>l</sub>=+2 is:</p>
+      <p><strong>Solution:</strong> m<sub>l</sub>=+2 requires l ≥ 2. For n=5: l can be 2, 3, 4 (and l=2 gives m<sub>l</sub> up to ±2; l=3 gives up to ±3; l=4 gives up to ±4 — all include m<sub>l</sub>=+2). So orbitals: 3d, 4f, 5g → <strong>3 orbitals</strong>.</p>
+    </div>
+
+    <div class="method-box">
+      <div class="method-box-title">PYQ — JEE Main 2022</div>
+      <p><strong>Q:</strong> The energy of an electron in the second Bohr orbit of the hydrogen atom is −3.4 eV. The energy of the electron in the Bohr orbit of He⁺ with the same principal quantum number is:</p>
+      <p><strong>Solution:</strong> E<sub>n</sub>(He⁺) = E<sub>n</sub>(H) × Z² = −3.4 × 4 = <strong>−13.6 eV</strong></p>
+    </div>
+  </div>
+
+  <!-- 14. TRAPS -->
+  <div class="topic-section" id="traps">
+    <h2><span class="sec-num">14</span>Common Traps &amp; Mistakes</h2>
+    <div class="callout danger">
+      <div class="callout-title">❌ Trap 1: Forgetting Z in Bohr formulas for ions</div>
+      E<sub>n</sub>(He⁺, n=1) = −13.6 × 4 / 1 = −54.4 eV, NOT −13.6 eV. He⁺ has Z=2.
+    </div>
+    <div class="callout danger">
+      <div class="callout-title">❌ Trap 2: Removing electrons from 3d before 4s when forming ions</div>
+      When forming cations (Fe²⁺, Cu²⁺), always remove from 4s first, then 3d. Fe: [Ar]3d⁶4s² → Fe²⁺: [Ar]3d⁶ (not [Ar]3d⁴4s²).
+    </div>
+    <div class="callout danger">
+      <div class="callout-title">❌ Trap 3: Counting spectral lines as n levels instead of transitions</div>
+      "Falls from n=5 to n=1" — there are 5 levels (1,2,3,4,5), giving 5×4/2 = 10 transitions. Don't say "5 lines."
+    </div>
+    <div class="callout danger">
+      <div class="callout-title">❌ Trap 4: Applying Bohr model to multi-electron atoms</div>
+      Bohr's E<sub>n</sub> = −13.6Z²/n² formula ONLY works for H, He⁺, Li²⁺ (one-electron species). For Na, Mg, etc., this formula gives wrong answers.
+    </div>
+    <div class="callout danger">
+      <div class="callout-title">❌ Trap 5: IE anomalies — B vs Be, O vs N</div>
+      IE₁(Be) > IE₁(B) even though B comes after Be (higher Z) — Be's 2s² is harder to remove than B's 2p¹. Similarly IE₁(N) > IE₁(O) due to N's half-filled 2p³.
+    </div>
+  </div>
+
+  <!-- 15. CHEAT CARD -->
+  <div class="topic-section" id="cheat">
+    <h2><span class="sec-num">15</span>One-Page Cheat Card</h2>
+    <div class="method-box" style="background:var(--topic-accent-l);border-color:var(--topic-accent-m)">
+      <div class="method-box-title">⚛ Atomic Structure — Rapid Reference</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.25rem">
+        <div>
+          <p style="font-weight:600;margin-bottom:.4rem">Bohr Model (H-like only)</p>
+          <ul style="font-size:.82rem;line-height:1.9;margin:0">
+            <li>E<sub>n</sub> = −13.6 Z²/n² eV</li>
+            <li>r<sub>n</sub> = 0.529 n²/Z Å</li>
+            <li>1/λ = R<sub>H</sub>(1/n₁² − 1/n₂²)</li>
+            <li>Lines = n(n−1)/2</li>
+          </ul>
+        </div>
+        <div>
+          <p style="font-weight:600;margin-bottom:.4rem">Series</p>
+          <ul style="font-size:.82rem;line-height:1.9;margin:0">
+            <li>Lyman → n=1 (UV)</li>
+            <li>Balmer → n=2 (Visible)</li>
+            <li>Paschen → n=3 (IR)</li>
+          </ul>
+        </div>
+        <div>
+          <p style="font-weight:600;margin-bottom:.4rem">QN Rules</p>
+          <ul style="font-size:.82rem;line-height:1.9;margin:0">
+            <li>n: 1,2,3… | l: 0→n−1 | m<sub>l</sub>: −l→+l | m<sub>s</sub>: ±½</li>
+            <li>Shell cap: 2n² | Subshell: 4l+2 | Orbitals: 2l+1</li>
+          </ul>
+        </div>
+        <div>
+          <p style="font-weight:600;margin-bottom:.4rem">Exceptions</p>
+          <ul style="font-size:.82rem;line-height:1.9;margin:0">
+            <li>Cr: [Ar]3d⁵4s¹ (half-filled d)</li>
+            <li>Cu: [Ar]3d¹⁰4s¹ (full d)</li>
+            <li>IE: N > O, Be > B</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="topic-cta-row">
+    <a href="../subjects/chemistry.html#unit-c2" class="topic-cta-btn secondary">↩ Back to C2 Unit</a>
+    <a href="chemical-bonding.html" class="topic-cta-btn primary">Next: Chemical Bonding →</a>
+    <a href="../progress.html" class="topic-cta-btn secondary">✅ Mark sessions done</a>
+  </div>
+
+</div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-brand">JEE 2027 Prep</div>
+      <div class="footer-links">
+        <a href="../index.html">Dashboard</a>
+        <a href="../subjects/math.html">Math</a>
+        <a href="../subjects/physics.html">Physics</a>
+        <a href="../subjects/chemistry.html">Chemistry</a>
+        <a href="../progress.html">Progress</a>
+        <a href="../settings.html">Settings</a>
+      </div>
+      <div class="footer-note">All Phases · May 2026 – April 2027</div>
+    </div>
+  </div>
+</footer>
+
+<div id="toast" class="toast"></div>
+<script src="../js/main.js"></script>
+<script>
+// Bohr Calculator
+function bcUpdate() {
+  const Z = parseInt(document.getElementById('bc-z').value);
+  const n = parseInt(document.getElementById('bc-n').value);
+  const E = (-13.6 * Z * Z / (n * n)).toFixed(3);
+  const r = (0.529 * n * n / Z).toFixed(3);
+  const v = ((2.18e6 * Z) / n).toExponential(2);
+  const lines = n * (n - 1) / 2;
+  document.getElementById('bc-out').innerHTML =
+    `<strong>Energy:</strong> E<sub>${n}</sub> = −13.6 × ${Z}² / ${n}² = <strong>${E} eV</strong><br>
+     <strong>Radius:</strong> r<sub>${n}</sub> = 0.529 × ${n}² / ${Z} = <strong>${r} Å</strong><br>
+     <strong>Velocity:</strong> v<sub>${n}</sub> = 2.18×10⁶ × ${Z} / ${n} = <strong>${v} m/s</strong><br>
+     <strong>Spectral lines</strong> (if falling from n=${n} to ground): <strong>${lines}</strong>`;
+}
+bcUpdate();
+
+// QN Validator
+function qnCheck() {
+  const n = parseInt(document.getElementById('qn-n').value) || 0;
+  const l = parseInt(document.getElementById('qn-l').value) || 0;
+  const ml = parseInt(document.getElementById('qn-ml').value) || 0;
+  const out = document.getElementById('qn-out');
+  const errors = [];
+  if (n < 1) errors.push('n must be ≥ 1');
+  if (l < 0 || l >= n) errors.push(`l must be 0 to ${n-1} (i.e., 0 to n−1)`);
+  if (Math.abs(ml) > l) errors.push(`m<sub>l</sub> must be between −${l} and +${l}`);
+  if (errors.length === 0) {
+    const subshell = ['s','p','d','f','g'][l] || `l=${l}`;
+    out.style.background = '#dcfce7'; out.style.color = '#15803d';
+    out.innerHTML = `✅ Valid! This electron is in the ${n}${subshell} subshell, orbital m<sub>l</sub>=${ml}.`;
+  } else {
+    out.style.background = '#fee2e2'; out.style.color = '#b91c1c';
+    out.innerHTML = `❌ Invalid: ${errors.join('; ')}`;
+  }
+}
+qnCheck();
+</script>
+</body>
+</html>

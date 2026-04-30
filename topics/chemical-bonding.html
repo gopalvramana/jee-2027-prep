@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chemical Bonding — JEE 2027 Deep-Dive</title>
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body class="topic-chem">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="nav-brand">JEE 2027</div>
+    <div class="nav-links">
+      <a href="../index.html">Dashboard</a>
+      <a href="../subjects/math.html">📐 Math</a>
+      <a href="../subjects/physics.html">⚡ Physics</a>
+      <a href="../subjects/chemistry.html" class="active">🧪 Chemistry</a>
+      <a href="../progress.html">✅ Progress</a>
+      <a href="../schedule.html">📋 Schedule</a>
+      <a href="../settings.html">⚙ Settings</a>
+    </div>
+    <button class="nav-toggle" onclick="toggleNav()">☰</button>
+  </div>
+</nav>
+
+<header class="page-hero" style="background:var(--topic-grad)">
+  <div class="page-hero-content">
+    <div class="page-hero-tag">Chemistry · Unit C3 · Deep-Dive</div>
+    <h1>🔗 Chemical Bonding</h1>
+    <p>Lewis structures → VSEPR geometry → hybridisation → polarity — this four-step chain appears in almost every bonding JEE question. Master the chain once and 5–7 marks open up reliably.</p>
+    <div class="topic-meta-bar">
+      <span class="topic-meta-pill"><strong>Weight:</strong> 5–7% (≈6 marks)</span>
+      <span class="topic-meta-pill"><strong>Difficulty:</strong> 🟡 Moderate</span>
+      <span class="topic-meta-pill"><strong>Prereq:</strong> C2 Atomic Structure</span>
+      <span class="topic-meta-pill"><strong>Time to master:</strong> 6–8 hrs</span>
+      <span class="topic-meta-pill"><a href="../subjects/chemistry.html#unit-c3">↩ Back to Chemistry</a></span>
+    </div>
+  </div>
+</header>
+
+<section class="section">
+<div class="topic-wrap">
+
+  <!-- TOC -->
+  <nav class="topic-toc">
+    <div class="topic-toc-title">📖 In this guide</div>
+    <ol>
+      <li><a href="#why">Why This Unit Matters</a></li>
+      <li><a href="#types">Types of Chemical Bonds</a></li>
+      <li><a href="#lewis">Lewis Structures — Step-by-Step Method</a></li>
+      <li><a href="#formal">Formal Charge &amp; Resonance</a></li>
+      <li><a href="#vsepr">VSEPR Theory — All Geometries</a></li>
+      <li><a href="#hybrid">Hybridisation — sp to sp³d²</a></li>
+      <li><a href="#mo">MO Theory &amp; Bond Order</a></li>
+      <li><a href="#polarity">Molecular Polarity &amp; Dipole Moment</a></li>
+      <li><a href="#imf">Intermolecular Forces</a></li>
+      <li><a href="#reference">Formula &amp; Geometry Reference</a></li>
+      <li><a href="#examples">Worked Examples</a></li>
+      <li><a href="#pyqs">JEE Previous-Year Questions</a></li>
+      <li><a href="#traps">Common Traps</a></li>
+      <li><a href="#cheat">Cheat Card</a></li>
+    </ol>
+  </nav>
+
+  <!-- 01. WHY -->
+  <div class="topic-section" id="why">
+    <h2><span class="sec-num">01</span>Why This Unit Matters</h2>
+    <p>Chemical Bonding is the bridge between atomic structure and everything else. The shape of a molecule determines its polarity. Polarity determines intermolecular forces. Intermolecular forces determine boiling points, solubility, and reactivity. In organic chemistry, VSEPR and hybridisation explain why sp² carbons are planar and sp³ carbons are tetrahedral — critical for stereochemistry.</p>
+    <div class="callout info">
+      <div class="callout-title">📊 JEE Appearance: 2–3 Questions Per Paper</div>
+      Bonding appears consistently. Most common: VSEPR geometry prediction, hybridisation state, MO bond order, and polarity comparisons. These are all pattern-recognition problems once you know the rules.
+    </div>
+    <div class="callout success">
+      <div class="callout-title">✅ The Four-Step Chain</div>
+      For almost any bonding question: (1) Draw Lewis structure → (2) Count electron pairs → (3) Determine geometry (VSEPR) → (4) Determine hybridisation. This chain solves 80% of bonding problems.
+    </div>
+  </div>
+
+  <!-- 02. TYPES -->
+  <div class="topic-section" id="types">
+    <h2><span class="sec-num">02</span>Types of Chemical Bonds</h2>
+    <div class="compare-grid">
+      <div class="compare-col">
+        <div class="compare-col-head">Ionic Bond</div>
+        <ul>
+          <li>Electron <em>transfer</em> from metal to non-metal</li>
+          <li>ΔEN > 1.7 (rough rule)</li>
+          <li>Forms crystal lattice (not discrete molecules)</li>
+          <li>High melting point; conducts electricity when dissolved</li>
+          <li>Examples: NaCl, KBr, MgO, CaF₂</li>
+        </ul>
+      </div>
+      <div class="compare-col">
+        <div class="compare-col-head">Covalent Bond</div>
+        <ul>
+          <li>Electron <em>sharing</em> between non-metals</li>
+          <li>ΔEN &lt; 1.7 (rough rule); pure covalent if ΔEN ≈ 0</li>
+          <li>Forms discrete molecules</li>
+          <li>Lower melting point than ionic (exceptions: diamond, SiO₂)</li>
+          <li>Examples: H₂O, CO₂, CH₄, N₂</li>
+        </ul>
+      </div>
+      <div class="compare-col">
+        <div class="compare-col-head">Coordinate (Dative) Bond</div>
+        <ul>
+          <li>Both electrons donated by one atom</li>
+          <li>Donor: has lone pair; Acceptor: has empty orbital</li>
+          <li>Once formed, identical to covalent bond</li>
+          <li>Examples: NH₄⁺ (N→H⁺), BF₃·NH₃ (N→B)</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="formula-table-wrap" style="margin-top:1.25rem">
+      <table class="formula-table">
+        <thead><tr><th>ΔEN (Electronegativity Difference)</th><th>Bond Type</th></tr></thead>
+        <tbody>
+          <tr><td>0.0 – 0.4</td><td>Non-polar covalent (e.g. H₂, Cl₂)</td></tr>
+          <tr><td>0.4 – 1.7</td><td>Polar covalent (e.g. HCl, H₂O)</td></tr>
+          <tr><td>&gt; 1.7</td><td>Ionic (e.g. NaCl, MgO)</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- 03. LEWIS -->
+  <div class="topic-section" id="lewis">
+    <h2><span class="sec-num">03</span>Lewis Structures — Step-by-Step Method</h2>
+
+    <div class="method-box">
+      <div class="method-box-title">5-Step Lewis Structure Method</div>
+      <ol style="line-height:2;margin:0">
+        <li><strong>Count total valence electrons:</strong> Sum up valence e⁻ of all atoms. Add 1 per negative charge; subtract 1 per positive charge.</li>
+        <li><strong>Choose central atom:</strong> Least electronegative non-hydrogen atom (usually) goes in centre.</li>
+        <li><strong>Connect atoms with single bonds:</strong> Each bond uses 2 electrons.</li>
+        <li><strong>Complete octets on outer atoms first</strong> (except H, which needs only 2).</li>
+        <li><strong>Place remaining electrons on central atom.</strong> If central atom lacks octet, form double/triple bonds using lone pairs from outer atoms.</li>
+      </ol>
+    </div>
+
+    <div class="method-box" style="margin-top:1rem">
+      <div class="method-box-title">Worked: Lewis Structure of SO₂</div>
+      <p><strong>Step 1:</strong> Valence e⁻ = S(6) + O(6) + O(6) = 18 electrons</p>
+      <p><strong>Step 2:</strong> S is central (less electronegative than O)</p>
+      <p><strong>Step 3:</strong> S–O–S skeleton: uses 4 electrons → 14 remaining</p>
+      <p><strong>Step 4:</strong> Complete octets on both O: each needs 6 more e⁻ → uses 12 → 2 remaining</p>
+      <p><strong>Step 5:</strong> Place 2 e⁻ as lone pair on S → S has only 6 electrons. Form one double bond (S=O). Result: O=S–O (with lone pair on S)</p>
+      <p><strong>Final:</strong> SO₂ has resonance — both S–O bonds are equivalent with bond order 1.5</p>
+    </div>
+
+    <div class="callout warn">
+      <div class="callout-title">⚠ Octet Rule Exceptions — JEE Frequently Tests These</div>
+      <ul style="margin:.5rem 0;line-height:2">
+        <li><strong>H, He:</strong> Need only 2 electrons (duet)</li>
+        <li><strong>Be:</strong> Often has only 4 e⁻ (BeCl₂ — linear, incomplete octet)</li>
+        <li><strong>B:</strong> Often has only 6 e⁻ (BF₃ — trigonal planar, incomplete octet); acts as Lewis acid</li>
+        <li><strong>P, S, Cl, Xe:</strong> Can have expanded octets (10, 12 electrons) using d-orbitals: PCl₅, SF₆, XeF₄</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 04. FORMAL CHARGE & RESONANCE -->
+  <div class="topic-section" id="formal">
+    <h2><span class="sec-num">04</span>Formal Charge &amp; Resonance</h2>
+
+    <div class="method-box">
+      <div class="method-box-title">Formal Charge Formula</div>
+      <p style="font-size:1.05rem;text-align:center;margin:.5rem 0"><strong>FC = V − N − B/2</strong></p>
+      <p style="text-align:center;color:var(--ink3);font-size:.875rem">V = valence electrons of free atom &nbsp;|&nbsp; N = non-bonding (lone pair) electrons &nbsp;|&nbsp; B = bonding electrons</p>
+      <p style="margin-top:.75rem">The best Lewis structure has: (1) smallest formal charges, (2) negative FC on most electronegative atom, (3) sum of all FC = overall charge on molecule.</p>
+    </div>
+
+    <div class="formula-table-wrap" style="margin-top:1.25rem">
+      <table class="formula-table">
+        <thead><tr><th>Example</th><th>Atom</th><th>V</th><th>N</th><th>B</th><th>FC</th></tr></thead>
+        <tbody>
+          <tr><td rowspan="2">CO₂ (O=C=O)</td><td>C</td><td>4</td><td>0</td><td>8</td><td>4−0−4 = 0</td></tr>
+          <tr><td>Each O</td><td>6</td><td>4</td><td>4</td><td>6−4−2 = 0</td></tr>
+          <tr><td rowspan="2">CO (C≡O)</td><td>C</td><td>4</td><td>2</td><td>6</td><td>4−2−3 = −1</td></tr>
+          <tr><td>O</td><td>6</td><td>2</td><td>6</td><td>6−2−3 = +1</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout info" style="margin-top:1rem">
+      <div class="callout-title">💡 Resonance</div>
+      When more than one valid Lewis structure exists, the true structure is a <em>resonance hybrid</em> — an average of all contributing structures. Resonance lowers energy and delocalises electrons.
+      <ul style="margin:.5rem 0;line-height:2">
+        <li><strong>CO₃²⁻:</strong> 3 equivalent resonance structures → C–O bond order = 4/3 ≈ 1.33</li>
+        <li><strong>SO₂:</strong> 2 resonance structures → S–O bond order = 1.5</li>
+        <li><strong>Benzene (C₆H₆):</strong> 2 Kekulé structures → C–C bond order = 1.5</li>
+      </ul>
+      Bond order from resonance = total bonds / number of bonds of that type.
+    </div>
+  </div>
+
+  <!-- 05. VSEPR -->
+  <div class="topic-section" id="vsepr">
+    <h2><span class="sec-num">05</span>VSEPR Theory — All Geometries</h2>
+    <p>VSEPR (Valence Shell Electron Pair Repulsion): electron pairs arrange themselves to <strong>minimise repulsion</strong>. Count all electron pairs (bonding + lone) around the central atom.</p>
+    <p style="font-size:.875rem;color:var(--ink3);margin-bottom:.25rem"><strong>Repulsion order:</strong> Lone pair–Lone pair &gt; Lone pair–Bonding pair &gt; Bonding pair–Bonding pair</p>
+    <p style="font-size:.875rem;color:var(--ink3)">This is why lone pairs compress bond angles (NH₃: 107° vs CH₄: 109.5°; H₂O: 104.5° vs NH₃: 107°)</p>
+
+    <div class="formula-table-wrap" style="margin-top:1rem">
+      <table class="formula-table">
+        <thead><tr><th>Total Pairs</th><th>Bonding Pairs (BP)</th><th>Lone Pairs (LP)</th><th>Geometry</th><th>Bond Angle</th><th>Example</th></tr></thead>
+        <tbody>
+          <tr><td>2</td><td>2</td><td>0</td><td>Linear</td><td>180°</td><td>BeCl₂, CO₂</td></tr>
+          <tr><td>3</td><td>3</td><td>0</td><td>Trigonal planar</td><td>120°</td><td>BF₃, SO₃</td></tr>
+          <tr><td>3</td><td>2</td><td>1</td><td>Bent (V-shaped)</td><td>&lt;120°</td><td>SO₂, SnCl₂</td></tr>
+          <tr><td>4</td><td>4</td><td>0</td><td>Tetrahedral</td><td>109.5°</td><td>CH₄, CCl₄</td></tr>
+          <tr><td>4</td><td>3</td><td>1</td><td>Trigonal pyramidal</td><td>107°</td><td>NH₃, PCl₃</td></tr>
+          <tr><td>4</td><td>2</td><td>2</td><td>Bent</td><td>104.5°</td><td>H₂O, H₂S</td></tr>
+          <tr><td>5</td><td>5</td><td>0</td><td>Trigonal bipyramidal</td><td>90°/120°</td><td>PCl₅</td></tr>
+          <tr><td>5</td><td>4</td><td>1</td><td>See-saw</td><td>&lt;90°/120°</td><td>SF₄</td></tr>
+          <tr><td>5</td><td>3</td><td>2</td><td>T-shaped</td><td>&lt;90°</td><td>ClF₃</td></tr>
+          <tr><td>5</td><td>2</td><td>3</td><td>Linear</td><td>180°</td><td>XeF₂, I₃⁻</td></tr>
+          <tr><td>6</td><td>6</td><td>0</td><td>Octahedral</td><td>90°</td><td>SF₆</td></tr>
+          <tr><td>6</td><td>5</td><td>1</td><td>Square pyramidal</td><td>&lt;90°</td><td>BrF₅</td></tr>
+          <tr><td>6</td><td>4</td><td>2</td><td>Square planar</td><td>90°</td><td>XeF₄, ICl₄⁻</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Interactive: VSEPR predictor -->
+    <div class="explainer" style="margin-top:1.5rem">
+      <div class="explainer-title">🔭 VSEPR Geometry Predictor</div>
+      <p style="font-size:.875rem;color:var(--ink3);margin-bottom:.75rem">Select bonding pairs and lone pairs on central atom:</p>
+      <div style="display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:1rem;align-items:center">
+        <label style="font-size:.875rem">Bonding pairs:
+          <select id="vsepr-bp" onchange="vseprUpdate()" style="margin-left:.5rem;padding:.3rem .5rem;border:1px solid var(--border);border-radius:6px;font-family:inherit">
+            <option value="2">2</option><option value="3">3</option><option value="4" selected>4</option>
+            <option value="5">5</option><option value="6">6</option>
+          </select>
+        </label>
+        <label style="font-size:.875rem">Lone pairs:
+          <select id="vsepr-lp" onchange="vseprUpdate()" style="margin-left:.5rem;padding:.3rem .5rem;border:1px solid var(--border);border-radius:6px;font-family:inherit">
+            <option value="0" selected>0</option><option value="1">1</option>
+            <option value="2">2</option><option value="3">3</option>
+          </select>
+        </label>
+      </div>
+      <div id="vsepr-out" style="background:var(--topic-accent-l);border-radius:10px;padding:1rem 1.25rem;font-size:.875rem;line-height:2"></div>
+    </div>
+  </div>
+
+  <!-- 06. HYBRIDISATION -->
+  <div class="topic-section" id="hybrid">
+    <h2><span class="sec-num">06</span>Hybridisation — sp to sp³d²</h2>
+    <p>Hybridisation is the mixing of atomic orbitals to form new hybrid orbitals of equal energy. The number of hybrid orbitals = total electron pairs (bonding + lone) around central atom.</p>
+
+    <div class="method-box">
+      <div class="method-box-title">Hybridisation Quick Formula</div>
+      <p style="text-align:center;font-size:1rem;margin:.5rem 0"><strong>H = ½(V + M − C + A)</strong></p>
+      <p style="text-align:center;color:var(--ink3);font-size:.82rem">V = valence e⁻ of central atom &nbsp;|&nbsp; M = monovalent atoms &nbsp;|&nbsp; C = cations removed &nbsp;|&nbsp; A = anions added</p>
+      <p style="margin-top:.5rem;font-size:.875rem">Then: H=2→sp, H=3→sp², H=4→sp³, H=5→sp³d, H=6→sp³d²</p>
+    </div>
+
+    <div class="formula-table-wrap" style="margin-top:1.25rem">
+      <table class="formula-table">
+        <thead><tr><th>Hybridisation</th><th>Orbitals mixed</th><th>Geometry</th><th>Angle</th><th>Examples</th></tr></thead>
+        <tbody>
+          <tr><td><strong>sp</strong></td><td>1s + 1p</td><td>Linear</td><td>180°</td><td>BeCl₂, CO₂, C₂H₂ (acetylene)</td></tr>
+          <tr><td><strong>sp²</strong></td><td>1s + 2p</td><td>Trigonal planar</td><td>120°</td><td>BF₃, SO₃, C₂H₄ (ethylene), benzene</td></tr>
+          <tr><td><strong>sp³</strong></td><td>1s + 3p</td><td>Tetrahedral (or bent/pyramidal with LP)</td><td>109.5°</td><td>CH₄, NH₃, H₂O, CCl₄</td></tr>
+          <tr><td><strong>sp³d</strong></td><td>1s + 3p + 1d</td><td>Trigonal bipyramidal</td><td>90°/120°</td><td>PCl₅, SF₄, ClF₃</td></tr>
+          <tr><td><strong>sp³d²</strong></td><td>1s + 3p + 2d</td><td>Octahedral (or sq. planar with LP)</td><td>90°</td><td>SF₆, XeF₄, BrF₅</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout info" style="margin-top:1rem">
+      <div class="callout-title">💡 σ vs π Bonds</div>
+      <ul style="margin:.5rem 0;line-height:2">
+        <li>Single bond = 1σ bond (uses hybridised orbital, allows rotation)</li>
+        <li>Double bond = 1σ + 1π bond (π uses unhybridised p orbital, restricts rotation)</li>
+        <li>Triple bond = 1σ + 2π bonds</li>
+        <li>sp² C has one unhybridised p orbital → forms π bonds → flat geometry</li>
+        <li>sp³ C has no unhybridised p → no π bonds → can rotate freely</li>
+      </ul>
+    </div>
+
+    <div class="callout warn">
+      <div class="callout-title">⚠ JEE Trap: NH₃ vs NF₃ Hybridisation</div>
+      Both NH₃ and NF₃ are sp³ hybridised with trigonal pyramidal geometry. But their polarity and dipole moments differ — in NH₃ the N–H bond dipoles and lone pair dipole add up; in NF₃ they partially cancel. NF₃ has lower dipole moment than NH₃.
+    </div>
+  </div>
+
+  <!-- 07. MO THEORY -->
+  <div class="topic-section" id="mo">
+    <h2><span class="sec-num">07</span>MO Theory &amp; Bond Order</h2>
+    <p>Molecular Orbital (MO) theory combines atomic orbitals to form bonding (σ, π) and antibonding (σ*, π*) molecular orbitals. Bonding MOs are lower in energy; antibonding higher.</p>
+
+    <div class="method-box">
+      <div class="method-box-title">Bond Order Formula</div>
+      <p style="font-size:1.05rem;text-align:center;margin:.5rem 0"><strong>BO = (N<sub>b</sub> − N<sub>a</sub>) / 2</strong></p>
+      <p style="text-align:center;color:var(--ink3);font-size:.875rem">N<sub>b</sub> = electrons in bonding MOs &nbsp;|&nbsp; N<sub>a</sub> = electrons in antibonding MOs</p>
+      <p style="margin-top:.5rem;font-size:.875rem">BO = 0 → molecule doesn't exist; BO = 1 → single bond; BO = 1.5 → between single and double; BO = 2 → double; BO = 3 → triple</p>
+    </div>
+
+    <div class="formula-table-wrap" style="margin-top:1.25rem">
+      <table class="formula-table">
+        <thead><tr><th>Species</th><th>Total e⁻</th><th>N<sub>b</sub></th><th>N<sub>a</sub></th><th>BO</th><th>Magnetic</th></tr></thead>
+        <tbody>
+          <tr><td>H₂</td><td>2</td><td>2</td><td>0</td><td>1</td><td>Diamagnetic</td></tr>
+          <tr><td>He₂</td><td>4</td><td>2</td><td>2</td><td>0</td><td>Doesn't exist</td></tr>
+          <tr><td>Li₂</td><td>6</td><td>4</td><td>2</td><td>1</td><td>Diamagnetic</td></tr>
+          <tr><td>B₂</td><td>10</td><td>6</td><td>4</td><td>1</td><td>Paramagnetic (2 unpaired e⁻ in π)</td></tr>
+          <tr><td>C₂</td><td>12</td><td>8</td><td>4</td><td>2</td><td>Diamagnetic</td></tr>
+          <tr><td>N₂</td><td>14</td><td>10</td><td>4</td><td>3</td><td>Diamagnetic</td></tr>
+          <tr><td>O₂</td><td>16</td><td>10</td><td>6</td><td>2</td><td>Paramagnetic (2 unpaired in π*)</td></tr>
+          <tr><td>F₂</td><td>18</td><td>10</td><td>8</td><td>1</td><td>Diamagnetic</td></tr>
+          <tr><td>O₂⁺</td><td>15</td><td>10</td><td>5</td><td>2.5</td><td>Paramagnetic</td></tr>
+          <tr><td>O₂⁻</td><td>17</td><td>10</td><td>7</td><td>1.5</td><td>Paramagnetic</td></tr>
+          <tr><td>O₂²⁻</td><td>18</td><td>10</td><td>8</td><td>1</td><td>Diamagnetic</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="callout info" style="margin-top:1rem">
+      <div class="callout-title">💡 MO Energy Order for O₂, F₂ (Z ≥ 8)</div>
+      σ1s &lt; σ*1s &lt; σ2s &lt; σ*2s &lt; σ2p &lt; π2p = π2p &lt; π*2p = π*2p &lt; σ*2p
+      <p style="margin-top:.5rem">For N₂, C₂, B₂ (Z ≤ 7): π2p comes BEFORE σ2p (swapped due to 2s-2p interaction).</p>
+    </div>
+  </div>
+
+  <!-- 08. POLARITY -->
+  <div class="topic-section" id="polarity">
+    <h2><span class="sec-num">08</span>Molecular Polarity &amp; Dipole Moment</h2>
+    <p>A molecule is polar if the <strong>vector sum of all bond dipoles is non-zero</strong>. Individual polar bonds can cancel if the geometry is symmetric.</p>
+
+    <div class="compare-grid">
+      <div class="compare-col">
+        <div class="compare-col-head">Non-Polar (dipoles cancel)</div>
+        <ul>
+          <li><strong>CO₂</strong> — linear, O=C=O, dipoles cancel</li>
+          <li><strong>BF₃</strong> — trigonal planar, perfect symmetry</li>
+          <li><strong>CCl₄</strong> — tetrahedral, all C–Cl dipoles cancel</li>
+          <li><strong>SF₆</strong> — octahedral, symmetric</li>
+          <li><strong>XeF₂</strong> — linear (has LP, but non-polar)</li>
+        </ul>
+      </div>
+      <div class="compare-col">
+        <div class="compare-col-head">Polar (dipoles don't cancel)</div>
+        <ul>
+          <li><strong>H₂O</strong> — bent, lone pairs break symmetry</li>
+          <li><strong>NH₃</strong> — pyramidal, lone pair adds to dipole</li>
+          <li><strong>HCl, HF</strong> — diatomic with ΔEN</li>
+          <li><strong>CHCl₃</strong> — tetrahedral but asymmetric</li>
+          <li><strong>SO₂</strong> — bent geometry, dipoles add</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="callout warn">
+      <div class="callout-title">⚠ Key Rule: Symmetry = Non-Polar</div>
+      Any molecule with a centre of symmetry where all substituents are identical is non-polar — even if individual bonds are very polar. CCl₄ has 4 very polar C–Cl bonds but is non-polar overall because they point in directions that sum to zero.
+    </div>
+  </div>
+
+  <!-- 09. IMF -->
+  <div class="topic-section" id="imf">
+    <h2><span class="sec-num">09</span>Intermolecular Forces</h2>
+    <p><strong>Strength order:</strong> Ion-ion &gt; Ion-dipole &gt; H-bonding &gt; Dipole-dipole &gt; London dispersion (van der Waals)</p>
+
+    <div class="formula-table-wrap">
+      <table class="formula-table">
+        <thead><tr><th>Force</th><th>Present in</th><th>Strength</th><th>Effect on BP/MP</th></tr></thead>
+        <tbody>
+          <tr><td><strong>London / van der Waals</strong></td><td>All molecules (even non-polar)</td><td>Weakest; increases with molecular mass</td><td>Low BP; increases down group (I₂ &gt; Br₂ &gt; Cl₂)</td></tr>
+          <tr><td><strong>Dipole-dipole</strong></td><td>Polar molecules</td><td>Moderate</td><td>Higher BP than similar non-polar molecule</td></tr>
+          <tr><td><strong>Hydrogen bonding</strong></td><td>F–H, O–H, N–H with electronegative atom</td><td>Strong (10–40 kJ/mol)</td><td>Anomalously high BP (H₂O, HF, NH₃)</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout info" style="margin-top:1rem">
+      <div class="callout-title">💡 Why H₂O Boils at 100°C but H₂S at −60°C</div>
+      H₂O has extensive H-bonding (each molecule can form 4 H-bonds via 2 O–H bonds and 2 lone pairs on O). H₂S has no H-bonding — S is not electronegative enough. This single factor raises the boiling point of H₂O by ~160°C.
+    </div>
+
+    <div class="callout warn">
+      <div class="callout-title">⚠ JEE Trap: HF Boils Lower Than H₂O Despite Stronger H-bonds</div>
+      HF has stronger individual H-bonds per pair than H₂O (F is more electronegative than O). But HF can only form 2 H-bonds per molecule (1 donor H, 2 acceptor lone pairs — but chain structure forms, not network). H₂O forms a 3D network with 4 H-bonds per molecule. More H-bonds overall → higher BP for H₂O.
+    </div>
+  </div>
+
+  <!-- 10. REFERENCE -->
+  <div class="topic-section" id="reference">
+    <h2><span class="sec-num">10</span>Formula &amp; Geometry Reference</h2>
+    <div class="formula-table-wrap">
+      <table class="formula-table">
+        <thead><tr><th>Formula / Rule</th><th>Description</th><th>Note</th></tr></thead>
+        <tbody>
+          <tr><td class="formula-cell">FC = V − N − B/2</td><td>Formal charge</td><td>Best structure: FC closest to 0</td></tr>
+          <tr><td class="formula-cell">BO = (Nb − Na)/2</td><td>MO Bond order</td><td>Higher BO = shorter, stronger bond</td></tr>
+          <tr><td class="formula-cell">H = ½(V + M − C + A)</td><td>Hybridisation number</td><td>2→sp, 3→sp², 4→sp³, 5→sp³d, 6→sp³d²</td></tr>
+          <tr><td class="formula-cell">sp → 180°</td><td>Bond angle</td><td>Linear: BeCl₂, CO₂, C₂H₂</td></tr>
+          <tr><td class="formula-cell">sp² → 120°</td><td>Bond angle</td><td>Trigonal planar: BF₃, SO₃, C₂H₄</td></tr>
+          <tr><td class="formula-cell">sp³ → 109.5°</td><td>Bond angle</td><td>Tetrahedral: CH₄, CCl₄</td></tr>
+          <tr><td class="formula-cell">LP compresses angle ~2.5°</td><td>VSEPR adjustment</td><td>NH₃: 107°; H₂O: 104.5°</td></tr>
+          <tr><td class="formula-cell">ΔEN &gt; 1.7 → ionic</td><td>Bond type</td><td>ΔEN &lt; 0.4 → non-polar covalent</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- 11. EXAMPLES -->
+  <div class="topic-section" id="examples">
+    <h2><span class="sec-num">11</span>Worked Examples</h2>
+
+    <div class="method-box">
+      <div class="method-box-title">Example 1 — VSEPR + Hybridisation of XeF₄</div>
+      <p><strong>Q:</strong> Predict the geometry, hybridisation, and polarity of XeF₄.</p>
+      <p><strong>Step 1 — Valence electrons:</strong> Xe(8) + 4×F(7) = 36 electrons</p>
+      <p><strong>Step 2 — Lewis structure:</strong> 4 Xe–F bonds (uses 8 e⁻) + complete octets on F (uses 24 e⁻) + 4 e⁻ remain → 2 lone pairs on Xe</p>
+      <p><strong>Step 3 — VSEPR:</strong> 4 bonding pairs + 2 lone pairs = 6 total pairs → octahedral arrangement. Lone pairs go to opposite positions (minimise repulsion) → <strong>Square planar geometry</strong></p>
+      <p><strong>Step 4 — Hybridisation:</strong> 6 total pairs → <strong>sp³d²</strong></p>
+      <p><strong>Step 5 — Polarity:</strong> 4 Xe–F bond dipoles cancel due to square planar symmetry → <strong>Non-polar</strong></p>
+    </div>
+
+    <div class="method-box">
+      <div class="method-box-title">Example 2 — Bond Order Comparison</div>
+      <p><strong>Q:</strong> Arrange CO, CO₂, CO₃²⁻ in order of increasing C–O bond length.</p>
+      <p><strong>CO:</strong> Triple bond (C≡O), BO = 3</p>
+      <p><strong>CO₂:</strong> Two C=O double bonds, BO = 2</p>
+      <p><strong>CO₃²⁻:</strong> Resonance over 3 bonds, BO = 4/3 ≈ 1.33</p>
+      <p><strong>Higher BO = shorter bond. Order of increasing length: CO &lt; CO₂ &lt; CO₃²⁻</strong></p>
+    </div>
+
+    <div class="method-box">
+      <div class="method-box-title">Example 3 — O₂ Paramagnetism (MO Theory)</div>
+      <p><strong>Q:</strong> O₂ is paramagnetic. Why? VB theory fails to explain this.</p>
+      <p><strong>VB theory:</strong> Draws O₂ as O=O with all electrons paired → predicts diamagnetic. This is WRONG.</p>
+      <p><strong>MO theory:</strong> O₂ has 16 electrons. Filling MOs: ...σ2p²(π2p)⁴(π*2p)² — the two π* electrons go into separate degenerate orbitals (Hund's rule) → 2 unpaired electrons → <strong>paramagnetic</strong>.</p>
+      <p>This is the classic example where MO theory succeeds where VB theory fails.</p>
+    </div>
+  </div>
+
+  <!-- 12. PYQs -->
+  <div class="topic-section" id="pyqs">
+    <h2><span class="sec-num">12</span>JEE Previous-Year Questions</h2>
+    <div class="callout info">
+      <div class="callout-title">📋 Most Tested Chemical Bonding Patterns</div>
+      <ol style="line-height:2;margin:0">
+        <li>Predict geometry/shape of molecule (VSEPR table application)</li>
+        <li>Bond angle comparison between similar molecules (lone pair effect)</li>
+        <li>Which molecule is polar/non-polar (symmetry argument)</li>
+        <li>MO bond order of O₂, N₂, and their ions</li>
+        <li>Which species is paramagnetic (odd electron count or half-filled π*)</li>
+        <li>Formal charge calculation on specific atoms</li>
+      </ol>
+    </div>
+
+    <div class="method-box">
+      <div class="method-box-title">PYQ — JEE Main 2023</div>
+      <p><strong>Q:</strong> The geometry of the molecule with maximum number of lone pairs on the central atom is:</p>
+      <p>(a) ClF₃ &nbsp; (b) XeF₄ &nbsp; (c) SF₄ &nbsp; (d) BrF₅</p>
+      <p><strong>Solution:</strong> ClF₃: 3 BP + 2 LP = 5 (sp³d, T-shaped, 2 LP) | XeF₄: 4 BP + 2 LP = 6 (sp³d², sq. planar, 2 LP) | SF₄: 4 BP + 1 LP = 5 (sp³d, see-saw, 1 LP) | BrF₅: 5 BP + 1 LP = 6 (sp³d², sq. pyramidal, 1 LP)</p>
+      <p><strong>Answer: XeF₄ and ClF₃ both have 2 LP</strong> — XeF₄ is the correct answer as the question asks for the one molecule (option b).</p>
+    </div>
+
+    <div class="method-box">
+      <div class="method-box-title">PYQ — JEE Main 2022</div>
+      <p><strong>Q:</strong> Among the following, the incorrect statement about O₂ is:</p>
+      <p><strong>Solution:</strong> O₂ is paramagnetic (correct — 2 unpaired electrons in π*). O₂ bond order = 2 (correct). O₂ is a diradical (correct). O₂ can be explained by VB theory alone — this is <strong>INCORRECT</strong>. VB theory predicts diamagnetic O₂, which is experimentally wrong.</p>
+    </div>
+  </div>
+
+  <!-- 13. TRAPS -->
+  <div class="topic-section" id="traps">
+    <h2><span class="sec-num">13</span>Common Traps &amp; Mistakes</h2>
+    <div class="callout danger">
+      <div class="callout-title">❌ Trap 1: Confusing electronic geometry with molecular geometry</div>
+      H₂O has 4 electron pairs (tetrahedral electron geometry) but the molecular geometry is BENT (only 2 bonding pairs define shape). Always report molecular geometry, not electron geometry.
+    </div>
+    <div class="callout danger">
+      <div class="callout-title">❌ Trap 2: Thinking all polar bonds = polar molecule</div>
+      CO₂ has two very polar C=O bonds but is non-polar because it's linear and the dipoles cancel exactly. Always check geometry before concluding polarity.
+    </div>
+    <div class="callout danger">
+      <div class="callout-title">❌ Trap 3: NF₃ more polar than NH₃</div>
+      NF₃ is LESS polar than NH₃. In NH₃: N–H bond dipoles and lone pair dipole point in same direction (add up). In NF₃: N–F dipoles point away from N (toward F), opposing the lone pair on N → partial cancellation.
+    </div>
+    <div class="callout danger">
+      <div class="callout-title">❌ Trap 4: Assuming H-bond strength = boiling point</div>
+      HF has stronger H-bonds per pair than H₂O, but H₂O boils higher. Number of H-bonds per molecule matters: H₂O forms 4 H-bonds (3D network); HF forms fewer per molecule (chain structure).
+    </div>
+    <div class="callout danger">
+      <div class="callout-title">❌ Trap 5: BF₃ doesn't violate the octet rule</div>
+      BF₃ DOES violate the octet rule — B has only 6 electrons. That's why BF₃ is a Lewis acid (accepts lone pair from Lewis bases). Don't write a double bond to satisfy B's octet — formal charge analysis shows the structure with all single bonds is better.
+    </div>
+  </div>
+
+  <!-- 14. CHEAT CARD -->
+  <div class="topic-section" id="cheat">
+    <h2><span class="sec-num">14</span>One-Page Cheat Card</h2>
+    <div class="method-box" style="background:var(--topic-accent-l);border-color:var(--topic-accent-m)">
+      <div class="method-box-title">🔗 Chemical Bonding — Rapid Reference</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.25rem">
+        <div>
+          <p style="font-weight:600;margin-bottom:.4rem">VSEPR (total pairs → geometry)</p>
+          <ul style="font-size:.82rem;line-height:1.9;margin:0">
+            <li>2 → linear (180°)</li>
+            <li>3,0LP → trig. planar (120°)</li>
+            <li>4,0LP → tetrahedral (109.5°)</li>
+            <li>4,1LP → trig. pyramidal (107°)</li>
+            <li>4,2LP → bent (104.5°)</li>
+            <li>5,0LP → trig. bipyramidal</li>
+            <li>6,0LP → octahedral (90°)</li>
+            <li>6,2LP → square planar</li>
+          </ul>
+        </div>
+        <div>
+          <p style="font-weight:600;margin-bottom:.4rem">Hybridisation</p>
+          <ul style="font-size:.82rem;line-height:1.9;margin:0">
+            <li>sp → linear (BeCl₂, CO₂)</li>
+            <li>sp² → trig. planar (BF₃, C₂H₄)</li>
+            <li>sp³ → tetrahedral (CH₄, H₂O)</li>
+            <li>sp³d → trig. bipyramidal (PCl₅)</li>
+            <li>sp³d² → octahedral (SF₆)</li>
+          </ul>
+        </div>
+        <div>
+          <p style="font-weight:600;margin-bottom:.4rem">MO Bond Orders</p>
+          <ul style="font-size:.82rem;line-height:1.9;margin:0">
+            <li>N₂: BO=3 (diamagnetic)</li>
+            <li>O₂: BO=2 (paramagnetic ⚠)</li>
+            <li>F₂: BO=1 (diamagnetic)</li>
+            <li>O₂⁺: BO=2.5 | O₂⁻: BO=1.5</li>
+          </ul>
+        </div>
+        <div>
+          <p style="font-weight:600;margin-bottom:.4rem">Key Traps</p>
+          <ul style="font-size:.82rem;line-height:1.9;margin:0">
+            <li>CO₂, CCl₄, BF₃, SF₆ → non-polar</li>
+            <li>NF₃ less polar than NH₃</li>
+            <li>H₂O bp &gt; HF bp (more H-bonds)</li>
+            <li>O₂ is paramagnetic</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="topic-cta-row">
+    <a href="../subjects/chemistry.html#unit-c3" class="topic-cta-btn secondary">↩ Back to C3 Unit</a>
+    <a href="../subjects/chemistry.html#unit-c4" class="topic-cta-btn primary">Next: Thermochemistry →</a>
+    <a href="../progress.html" class="topic-cta-btn secondary">✅ Mark sessions done</a>
+  </div>
+
+</div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-brand">JEE 2027 Prep</div>
+      <div class="footer-links">
+        <a href="../index.html">Dashboard</a>
+        <a href="../subjects/math.html">Math</a>
+        <a href="../subjects/physics.html">Physics</a>
+        <a href="../subjects/chemistry.html">Chemistry</a>
+        <a href="../progress.html">Progress</a>
+        <a href="../settings.html">Settings</a>
+      </div>
+      <div class="footer-note">All Phases · May 2026 – April 2027</div>
+    </div>
+  </div>
+</footer>
+
+<div id="toast" class="toast"></div>
+<script src="../js/main.js"></script>
+<script>
+// VSEPR Predictor
+const VSEPR_DATA = {
+  '2-0': {geo:'Linear', angle:'180°', example:'BeCl₂, CO₂, C₂H₂', hybrid:'sp'},
+  '3-0': {geo:'Trigonal planar', angle:'120°', example:'BF₃, SO₃, C₂H₄', hybrid:'sp²'},
+  '2-1': {geo:'Bent (V-shaped)', angle:'&lt;120°', example:'SO₂, SnCl₂', hybrid:'sp²'},
+  '4-0': {geo:'Tetrahedral', angle:'109.5°', example:'CH₄, CCl₄, SiH₄', hybrid:'sp³'},
+  '3-1': {geo:'Trigonal pyramidal', angle:'107°', example:'NH₃, PCl₃', hybrid:'sp³'},
+  '2-2': {geo:'Bent (V-shaped)', angle:'104.5°', example:'H₂O, H₂S', hybrid:'sp³'},
+  '5-0': {geo:'Trigonal bipyramidal', angle:'90°/120°', example:'PCl₅', hybrid:'sp³d'},
+  '4-1': {geo:'See-saw', angle:'&lt;90°/120°', example:'SF₄, XeO₂F₂', hybrid:'sp³d'},
+  '3-2': {geo:'T-shaped', angle:'&lt;90°', example:'ClF₃, BrF₃', hybrid:'sp³d'},
+  '2-3': {geo:'Linear', angle:'180°', example:'XeF₂, I₃⁻', hybrid:'sp³d'},
+  '6-0': {geo:'Octahedral', angle:'90°', example:'SF₆, PCl₆⁻', hybrid:'sp³d²'},
+  '5-1': {geo:'Square pyramidal', angle:'&lt;90°', example:'BrF₅, XeOF₄', hybrid:'sp³d²'},
+  '4-2': {geo:'Square planar', angle:'90°', example:'XeF₄, ICl₄⁻', hybrid:'sp³d²'},
+};
+
+function vseprUpdate() {
+  const bp = document.getElementById('vsepr-bp').value;
+  const lp = document.getElementById('vsepr-lp').value;
+  const key = `${bp}-${lp}`;
+  const d = VSEPR_DATA[key];
+  const out = document.getElementById('vsepr-out');
+  if (d) {
+    out.innerHTML = `<strong>Molecular Geometry:</strong> ${d.geo}<br>
+      <strong>Bond Angle:</strong> ${d.angle}<br>
+      <strong>Hybridisation:</strong> ${d.hybrid}<br>
+      <strong>Examples:</strong> ${d.example}`;
+  } else {
+    out.innerHTML = '<em style="color:var(--ink3)">This combination of pairs is not common — try another.</em>';
+  }
+}
+vseprUpdate();
+</script>
+</body>
+</html>
