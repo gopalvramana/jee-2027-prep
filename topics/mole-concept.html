@@ -1,0 +1,915 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mole Concept &amp; Stoichiometry — JEE 2027 Deep-Dive</title>
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body class="topic-chem">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="nav-brand">JEE 2027</div>
+    <div class="nav-links">
+      <a href="../index.html">Dashboard</a>
+      <a href="../subjects/math.html">📐 Math</a>
+      <a href="../subjects/physics.html">⚡ Physics</a>
+      <a href="../subjects/chemistry.html" class="active">🧪 Chemistry</a>
+      <a href="../progress.html">✅ Progress</a>
+      <a href="../schedule.html">📋 Schedule</a>
+      <a href="../settings.html">⚙ Settings</a>
+    </div>
+    <button class="nav-toggle" onclick="toggleNav()">☰</button>
+  </div>
+</nav>
+
+<header class="page-hero" style="background:var(--topic-grad)">
+  <div class="page-hero-content">
+    <div class="page-hero-tag">Chemistry · Unit C1 · Deep-Dive</div>
+    <h1>🧪 Mole Concept &amp; Stoichiometry</h1>
+    <p>The foundation of all Physical Chemistry. Every topic from Equilibrium to Electrochemistry runs on moles. Get this unit completely right and 5–7 marks become routine across the whole year.</p>
+    <div class="topic-meta-bar">
+      <span class="topic-meta-pill"><strong>Weight:</strong> 7–9% (≈8 marks)</span>
+      <span class="topic-meta-pill"><strong>Difficulty:</strong> 🟡 Moderate</span>
+      <span class="topic-meta-pill"><strong>Prereq:</strong> Basic algebra</span>
+      <span class="topic-meta-pill"><strong>Time to master:</strong> 8–10 hrs</span>
+      <span class="topic-meta-pill"><a href="../subjects/chemistry.html#unit-c1">↩ Back to Chemistry</a></span>
+    </div>
+  </div>
+</header>
+
+<section class="section">
+<div class="topic-wrap">
+
+  <!-- ── TOC ──────────────────────────────────────────────────────────────── -->
+  <nav class="topic-toc">
+    <div class="topic-toc-title">📖 In this guide</div>
+    <ol>
+      <li><a href="#why">Why Mole Concept is the Foundation</a></li>
+      <li><a href="#mole">The Mole &amp; Avogadro's Number</a></li>
+      <li><a href="#molar-mass">Molar Mass, Formula Mass &amp; STP Volume</a></li>
+      <li><a href="#empirical">Empirical &amp; Molecular Formulas</a></li>
+      <li><a href="#stoich">Stoichiometry — Mole Ratios from Equations</a></li>
+      <li><a href="#limiting">Limiting Reagent — The Definitive Method</a></li>
+      <li><a href="#yield">Yield Calculations</a></li>
+      <li><a href="#concentration">All 6 Concentration Terms</a></li>
+      <li><a href="#interconvert">Interconverting Concentration Units</a></li>
+      <li><a href="#reference">Formula Reference Table</a></li>
+      <li><a href="#examples">Worked Examples (Easy → Hard)</a></li>
+      <li><a href="#pyqs">JEE Previous-Year Questions</a></li>
+      <li><a href="#traps">Common Traps &amp; Mistakes</a></li>
+      <li><a href="#cheat">One-Page Cheat Card</a></li>
+    </ol>
+  </nav>
+
+  <!-- ── 01. WHY ────────────────────────────────────────────────────────── -->
+  <div class="topic-section" id="why">
+    <h2><span class="sec-num">01</span>Why Mole Concept is the Foundation</h2>
+    <p>In JEE Chemistry, mole concept is not just one topic — it is the <em>language</em> every other Physical Chemistry topic speaks. Equilibrium constants (Kp, Kc) are ratios of molar concentrations. Electrochemistry uses Faraday's law in moles of electrons. Colligative properties calculate molality. Thermochemistry sums enthalpy per mole of reaction.</p>
+    <p>If you skip or rush C1, every downstream topic becomes harder than it needs to be because you are simultaneously learning new concepts <em>and</em> fighting mole arithmetic under pressure.</p>
+
+    <div class="callout danger">
+      <div class="callout-title">⚠ Shaky on C1 → C5, C6, C7 all become guesswork</div>
+      Equilibrium (C5), Ionic Equilibrium (C6), and Electrochemistry (C7) each assume fluent mole arithmetic. Students who lost marks in those units very often trace the root cause back to not having drilled C1 enough.
+    </div>
+
+    <div class="callout success">
+      <div class="callout-title">💰 8 hours of work → 5–7 marks secured all year</div>
+      Mole concept appears in about 2–3 direct questions every JEE Main paper, plus it underlies 4–6 more in other topics. Master it once; collect the marks in every mock and every attempt.
+    </div>
+
+    <p>JEE tests C1 in three concrete ways:</p>
+    <ol>
+      <li><strong>Direct questions</strong> — "How many atoms in X g of Y?", "Find moles of product from a balanced equation."</li>
+      <li><strong>Limiting reagent problems</strong> — 1–2 per paper, often numerical type (no negative marking).</li>
+      <li><strong>Concentration interconversion</strong> — converting molarity to molality, or finding mole fraction from a given solution composition.</li>
+    </ol>
+  </div>
+
+  <!-- ── 02. THE MOLE ───────────────────────────────────────────────────── -->
+  <div class="topic-section" id="mole">
+    <h2><span class="sec-num">02</span>The Mole &amp; Avogadro's Number</h2>
+    <p>A <strong>mole</strong> is simply a counting unit — like a "dozen" means 12, a "mole" means exactly <strong>6.022 × 10²³</strong>. That number is Avogadro's constant (Nₐ). One mole of <em>any</em> substance contains Nₐ formula units of that substance.</p>
+
+    <div class="method-box">
+      <div class="method-title">🔗 The Three Bridges — how moles connect everything</div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:.75rem;margin:.5rem 0">
+        <div style="background:white;border:1px solid var(--topic-accent-m);border-radius:8px;padding:.75rem;text-align:center">
+          <div style="font-size:1.1rem">⚖️</div>
+          <div style="font-weight:700;font-size:.85rem">Mass (g)</div>
+          <div style="font-size:.75rem;color:var(--ink3);margin-top:.3rem">÷ Molar mass M</div>
+        </div>
+        <div style="background:var(--topic-accent);color:white;border-radius:8px;padding:.75rem;text-align:center">
+          <div style="font-size:1.1rem">🧮</div>
+          <div style="font-weight:700;font-size:.9rem">Moles (n)</div>
+          <div style="font-size:.75rem;opacity:.85;margin-top:.3rem">the central currency</div>
+        </div>
+        <div style="background:white;border:1px solid var(--topic-accent-m);border-radius:8px;padding:.75rem;text-align:center">
+          <div style="font-size:1.1rem">🔢</div>
+          <div style="font-weight:700;font-size:.85rem">Particles (N)</div>
+          <div style="font-size:.75rem;color:var(--ink3);margin-top:.3rem">÷ Nₐ = 6.022×10²³</div>
+        </div>
+      </div>
+      <div style="text-align:center;background:white;border:1px solid var(--topic-accent-m);border-radius:8px;padding:.65rem;margin-top:.5rem">
+        <div style="font-size:1.1rem">🫙</div>
+        <div style="font-weight:700;font-size:.85rem">Volume at STP (L)</div>
+        <div style="font-size:.75rem;color:var(--ink3);margin-top:.2rem">÷ 22.4 L/mol &nbsp;·&nbsp; gases only &nbsp;·&nbsp; 0°C, 1 atm</div>
+      </div>
+      <p style="margin-top:.75rem;font-size:.85rem;color:var(--ink2)">All four quantities are connected through <strong>moles</strong>. Convert anything → moles → anything else. Two steps, never more.</p>
+    </div>
+
+    <h3>Key equations</h3>
+    <div class="formula-table-wrap" style="border:1px solid var(--line);border-radius:var(--radius);overflow:hidden">
+      <table class="formula-table">
+        <thead><tr><th>Equation</th><th>Gives you</th><th>Notes</th></tr></thead>
+        <tbody>
+          <tr><td class="formula-cell">n = m / M</td><td>Moles from mass</td><td class="note-cell">m in grams, M = molar mass in g/mol</td></tr>
+          <tr><td class="formula-cell">n = N / Nₐ</td><td>Moles from particle count</td><td class="note-cell">Nₐ = 6.022 × 10²³</td></tr>
+          <tr><td class="formula-cell">n = V(L) / 22.4</td><td>Moles from volume at STP</td><td class="note-cell">Gases only · 0°C and 1 atm only</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p style="font-size:.85rem;color:var(--ink3);margin-top:.5rem">Always identify <em>what you're counting</em> — atoms, molecules, ions, or electrons. 1 mol H₂O = 6.022×10²³ <em>molecules</em>, but = 2×6.022×10²³ <em>hydrogen atoms</em>.</p>
+
+    <!-- Interactive 1: Mole Calculator -->
+    <div class="explainer" id="ex-mole-calc">
+      <div class="explainer-title">
+        <span class="explainer-title-tag">Interactive</span>
+        🧮 Mole Calculator
+      </div>
+      <p style="font-size:.88rem;color:var(--ink2);margin-bottom:.85rem">Pick a substance and enter its mass. The calculator shows moles, number of particles, and volume at STP for gases.</p>
+      <div style="display:flex;gap:.75rem;flex-wrap:wrap;margin-bottom:.85rem">
+        <select id="mc-sub" class="se-sel" style="flex:1;min-width:180px" onchange="mcUpdate()">
+          <option value="H2O">Water (H₂O) — liquid</option>
+          <option value="CO2">Carbon dioxide (CO₂) — gas</option>
+          <option value="NaCl">Sodium chloride (NaCl) — solid</option>
+          <option value="H2SO4">Sulfuric acid (H₂SO₄) — liquid</option>
+          <option value="NH3">Ammonia (NH₃) — gas</option>
+          <option value="Fe">Iron (Fe) — solid</option>
+          <option value="CaCO3">Calcium carbonate (CaCO₃) — solid</option>
+          <option value="C6H12O6">Glucose (C₆H₁₂O₆) — solid</option>
+        </select>
+        <div style="display:flex;align-items:center;gap:.5rem;flex:1;min-width:160px">
+          <label style="font-size:.85rem;font-weight:600;white-space:nowrap">Mass (g):</label>
+          <input type="number" id="mc-mass" value="18" min="0" step="any"
+            style="border:1px solid #d1d5db;border-radius:6px;padding:.4rem .65rem;font-size:.9rem;width:100%;font-family:var(--mono)"
+            oninput="mcUpdate()">
+        </div>
+      </div>
+      <div class="explainer-stage" id="mc-result" style="text-align:left;font-size:.9rem;line-height:2">
+        Loading…
+      </div>
+    </div>
+  </div>
+
+  <!-- ── 03. MOLAR MASS ─────────────────────────────────────────────────── -->
+  <div class="topic-section" id="molar-mass">
+    <h2><span class="sec-num">03</span>Molar Mass, Formula Mass &amp; STP Volume</h2>
+    <p>The <strong>molar mass</strong> of a substance is the mass of exactly one mole of it, expressed in g/mol. Its numerical value equals the molecular weight (formula weight) in amu.</p>
+
+    <h3>How to calculate molar mass</h3>
+    <p>Sum up: <em>(atomic mass of each element) × (subscript in formula)</em></p>
+
+    <div class="compare-grid">
+      <div class="compare-cell">
+        <strong>H₂SO₄</strong>
+        H: 2 × 1.008 = 2.016<br>
+        S: 1 × 32.06 = 32.06<br>
+        O: 4 × 16.00 = 64.00<br>
+        <strong>Total: 98.08 g/mol</strong>
+      </div>
+      <div class="compare-cell">
+        <strong>Ca₃(PO₄)₂</strong>
+        Ca: 3 × 40.08 = 120.24<br>
+        P: 2 × 30.97 = 61.94<br>
+        O: 8 × 16.00 = 128.00<br>
+        <strong>Total: 310.18 g/mol</strong>
+      </div>
+    </div>
+
+    <h3>STP volume — the critical caveat</h3>
+    <div class="callout warn">
+      <div class="callout-title">⚠ 22.4 L/mol applies at 0°C and 1 atm ONLY</div>
+      At 25°C (298 K) and 1 bar (IUPAC standard), 1 mole of ideal gas occupies <strong>24.5 L</strong>, not 22.4 L. JEE Main almost always says "at STP" and expects 22.4 L — use it unless the problem specifies a different temperature.
+    </div>
+
+    <h3>Atoms in a compound — a common trap</h3>
+    <p>When counting <em>atoms</em> (not molecules), multiply moles by Nₐ <em>and</em> by the number of atoms of that element per formula unit.</p>
+    <div class="callout info">
+      <div class="callout-title">📌 Example</div>
+      How many H atoms are in 36 g of H₂O?<br>
+      n(H₂O) = 36/18 = 2 mol &nbsp;→&nbsp; molecules = 2 × 6.022×10²³ = 1.204×10²⁴<br>
+      Each molecule has <strong>2</strong> H atoms &nbsp;→&nbsp; H atoms = 2 × 1.204×10²⁴ = <strong>2.408×10²⁴</strong>
+    </div>
+  </div>
+
+  <!-- ── 04. EMPIRICAL & MOLECULAR FORMULA ─────────────────────────────── -->
+  <div class="topic-section" id="empirical">
+    <h2><span class="sec-num">04</span>Empirical &amp; Molecular Formulas</h2>
+    <p>The <strong>empirical formula</strong> (EF) gives the simplest whole-number ratio of atoms. The <strong>molecular formula</strong> (MF) gives the actual count. MF = n × EF, where n = (given molar mass) ÷ (EF molar mass).</p>
+
+    <div class="method-box">
+      <div class="method-title">🎯 5-Step Method: % Composition → Empirical Formula</div>
+      <ol>
+        <li><strong>Assume 100 g sample</strong> — % values become grams directly.</li>
+        <li><strong>Convert grams → moles</strong> for each element (divide by atomic mass).</li>
+        <li><strong>Divide all mole values by the smallest</strong> mole value.</li>
+        <li><strong>Round to integers.</strong> If any ratio ends in ~0.5, multiply ALL by 2. If ~0.33 or ~0.67, multiply by 3.</li>
+        <li><strong>Write the EF.</strong> To find MF, divide the given molar mass by the EF molar mass to get n, then multiply subscripts by n.</li>
+      </ol>
+    </div>
+
+    <h3>Worked Example — Glucose derivation</h3>
+    <p>A compound contains 40.0% C, 6.67% H, 53.33% O by mass. Molar mass = 180 g/mol. Find MF.</p>
+    <div class="formula-table-wrap" style="border:1px solid var(--line);border-radius:var(--radius);overflow:hidden">
+      <table class="formula-table">
+        <thead><tr><th>Step</th><th>C</th><th>H</th><th>O</th></tr></thead>
+        <tbody>
+          <tr><td>Mass in 100 g</td><td>40.0 g</td><td>6.67 g</td><td>53.33 g</td></tr>
+          <tr><td>Moles (÷ at. mass)</td><td>40.0/12 = 3.33</td><td>6.67/1 = 6.67</td><td>53.33/16 = 3.33</td></tr>
+          <tr><td>÷ smallest (3.33)</td><td>1.00</td><td>2.00</td><td>1.00</td></tr>
+          <tr><td>EF</td><td colspan="3" style="font-weight:700">CH₂O &nbsp;(EF mass = 30 g/mol)</td></tr>
+          <tr><td>n = 180/30 = 6</td><td colspan="3" style="font-weight:700;color:var(--topic-accent)">MF = C₆H₁₂O₆ (Glucose)</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Combustion Analysis</h3>
+    <p>A CₓHᵧOᵤ compound is burned. Measure CO₂ produced (gives C) and H₂O produced (gives H). The oxygen in the compound = mass of sample − mass of C − mass of H.</p>
+    <div class="callout info">
+      <div class="callout-title">📌 Combustion shortcut</div>
+      n(C) = n(CO₂) &nbsp;·&nbsp; n(H) = 2 × n(H₂O) &nbsp;·&nbsp; n(O) = [mass of sample − m(C) − m(H)] / 16
+    </div>
+
+    <!-- Interactive 2: Empirical Formula Finder -->
+    <div class="explainer" id="ex-ef">
+      <div class="explainer-title">
+        <span class="explainer-title-tag">Interactive</span>
+        🔬 Empirical Formula Finder
+      </div>
+      <p style="font-size:.88rem;color:var(--ink2);margin-bottom:.85rem">Enter percentage composition. The tool shows every step of the derivation.</p>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:.65rem;margin-bottom:.85rem">
+        <div>
+          <label style="font-size:.8rem;font-weight:700;color:var(--ink3);display:block;margin-bottom:.3rem">% Carbon</label>
+          <input type="number" id="ef-c" value="40.0" min="0" max="100" step="0.01"
+            style="border:1px solid #d1d5db;border-radius:6px;padding:.4rem .65rem;font-size:.9rem;width:100%;font-family:var(--mono)"
+            oninput="efUpdate()">
+        </div>
+        <div>
+          <label style="font-size:.8rem;font-weight:700;color:var(--ink3);display:block;margin-bottom:.3rem">% Hydrogen</label>
+          <input type="number" id="ef-h" value="6.67" min="0" max="100" step="0.01"
+            style="border:1px solid #d1d5db;border-radius:6px;padding:.4rem .65rem;font-size:.9rem;width:100%;font-family:var(--mono)"
+            oninput="efUpdate()">
+        </div>
+        <div>
+          <label style="font-size:.8rem;font-weight:700;color:var(--ink3);display:block;margin-bottom:.3rem">% Oxygen (or blank)</label>
+          <input type="number" id="ef-o" value="53.33" min="0" max="100" step="0.01"
+            style="border:1px solid #d1d5db;border-radius:6px;padding:.4rem .65rem;font-size:.9rem;width:100%;font-family:var(--mono)"
+            oninput="efUpdate()">
+        </div>
+      </div>
+      <div class="explainer-stage" id="ef-result" style="text-align:left;font-size:.875rem;line-height:1.9">
+        Loading…
+      </div>
+    </div>
+  </div>
+
+  <!-- ── 05. STOICHIOMETRY ──────────────────────────────────────────────── -->
+  <div class="topic-section" id="stoich">
+    <h2><span class="sec-num">05</span>Stoichiometry — Mole Ratios from Equations</h2>
+    <p>A balanced chemical equation is a recipe in <em>moles</em>. The coefficients are the mole ratios. Once you have moles of any species, you can find moles of any other species by simple proportion.</p>
+
+    <div class="method-box">
+      <div class="method-title">🎯 4-Step Stoichiometry Method</div>
+      <ol>
+        <li><strong>Write the balanced equation</strong> — every atom on both sides must balance.</li>
+        <li><strong>Convert given quantity → moles</strong> (use n = m/M, or n = V/22.4 at STP).</li>
+        <li><strong>Use mole ratio</strong> from the balanced equation to find moles of the desired species.</li>
+        <li><strong>Convert moles → asked unit</strong> (grams, particles, litres at STP).</li>
+      </ol>
+    </div>
+
+    <h3>Worked Example</h3>
+    <p>How many grams of H₂O are produced when 4 g of H₂ reacts with excess O₂?</p>
+    <p><strong>Equation:</strong> 2H₂ + O₂ → 2H₂O</p>
+    <ol>
+      <li>n(H₂) = 4 / 2 = <strong>2 mol</strong></li>
+      <li>Ratio: 2 mol H₂ produces 2 mol H₂O → n(H₂O) = 2 mol</li>
+      <li>m(H₂O) = 2 × 18 = <strong>36 g</strong></li>
+    </ol>
+
+    <div class="callout info">
+      <div class="callout-title">📌 Gas volume at STP version</div>
+      If the question asks for volume of a gaseous product at STP, just multiply the moles of that gas by 22.4 L/mol at the end. Example: 2 mol H₂O vapour at STP = 2 × 22.4 = 44.8 L.
+    </div>
+  </div>
+
+  <!-- ── 06. LIMITING REAGENT ───────────────────────────────────────────── -->
+  <div class="topic-section" id="limiting">
+    <h2><span class="sec-num">06</span>Limiting Reagent — The Definitive Method</h2>
+    <p>The <strong>limiting reagent</strong> (LR) is the reactant that runs out first, stopping the reaction. The amount of product is determined entirely by the LR. The other reactants are in <em>excess</em> — some is left over.</p>
+
+    <div class="method-box">
+      <div class="method-title">🎯 The one correct method — never fail a LR question</div>
+      <ol>
+        <li><strong>Convert all given masses/volumes to moles.</strong></li>
+        <li><strong>Divide moles of each reactant by its stoichiometric coefficient.</strong></li>
+        <li><strong>The reactant with the smallest quotient is the LR.</strong></li>
+        <li>Use the LR's moles (× ratio) to find moles of product. Convert to grams.</li>
+        <li>Find excess: moles of excess = moles given − moles consumed (from LR stoich).</li>
+      </ol>
+    </div>
+
+    <div class="callout danger">
+      <div class="callout-title">❌ The most common wrong approach — comparing raw moles</div>
+      Many students simply compare the moles of each reactant and call the smaller one the LR. <strong>This is wrong</strong> whenever the stoichiometric coefficients are unequal. Example: N₂ + 3H₂ → 2NH₃. With 1 mol N₂ and 2 mol H₂ — raw moles say N₂ is smaller, but the correct test says: N₂ ratio = 1/1 = 1, H₂ ratio = 2/3 = 0.667 → <strong>H₂ is the LR</strong>.
+    </div>
+
+    <h3>Full worked example — N₂ + 3H₂ → 2NH₃</h3>
+    <p>Given: 28 g N₂ and 9 g H₂. Find grams of NH₃ produced and grams of excess reagent.</p>
+    <div class="formula-table-wrap" style="border:1px solid var(--line);border-radius:var(--radius);overflow:hidden">
+      <table class="formula-table">
+        <thead><tr><th></th><th>N₂ (coeff 1)</th><th>H₂ (coeff 3)</th><th>NH₃ (coeff 2)</th></tr></thead>
+        <tbody>
+          <tr><td>Given mass</td><td>28 g</td><td>9 g</td><td>—</td></tr>
+          <tr><td>Molar mass</td><td>28 g/mol</td><td>2 g/mol</td><td>17 g/mol</td></tr>
+          <tr><td>Moles</td><td>1 mol</td><td>4.5 mol</td><td>—</td></tr>
+          <tr><td>÷ coeff</td><td>1/1 = <strong>1.0</strong></td><td>4.5/3 = <strong>1.5</strong></td><td>—</td></tr>
+          <tr><td>LR?</td><td style="color:var(--red);font-weight:700">✓ LR (smaller)</td><td>excess</td><td>—</td></tr>
+          <tr><td>Product moles</td><td colspan="2">1 mol N₂ × (2 mol NH₃ / 1 mol N₂) = 2 mol</td><td>2 mol</td></tr>
+          <tr><td>Product mass</td><td colspan="2"></td><td style="font-weight:700;color:var(--topic-accent)">34 g NH₃</td></tr>
+          <tr><td>Excess H₂</td><td colspan="3">H₂ consumed = 1 × 3 = 3 mol → Excess = 4.5 − 3 = 1.5 mol = 3 g</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Interactive 3: LR Calculator -->
+    <div class="explainer" id="ex-lr">
+      <div class="explainer-title">
+        <span class="explainer-title-tag">Interactive</span>
+        ⚖️ Limiting Reagent Calculator — N₂ + 3H₂ → 2NH₃
+      </div>
+      <p style="font-size:.88rem;color:var(--ink2);margin-bottom:.85rem">Adjust the grams of each reactant. The calculator shows which is the limiting reagent, how much NH₃ forms, and how much excess remains.</p>
+      <div class="explainer-slider-row">
+        <label>N₂ (g): </label>
+        <input type="range" id="lr-n2" min="1" max="100" value="28" oninput="lrUpdate()">
+        <span class="val" id="lr-n2-val">28 g</span>
+      </div>
+      <div class="explainer-slider-row">
+        <label>H₂ (g): </label>
+        <input type="range" id="lr-h2" min="1" max="50" value="9" oninput="lrUpdate()">
+        <span class="val" id="lr-h2-val">9 g</span>
+      </div>
+      <div class="explainer-readout-grid" id="lr-readouts">
+        <div class="explainer-readout"><div class="lbl">N₂ moles</div><div class="num" id="lr-mn2">—</div></div>
+        <div class="explainer-readout"><div class="lbl">H₂ moles</div><div class="num" id="lr-mh2">—</div></div>
+        <div class="explainer-readout"><div class="lbl">N₂ ratio (÷1)</div><div class="num" id="lr-rn2">—</div></div>
+        <div class="explainer-readout"><div class="lbl">H₂ ratio (÷3)</div><div class="num" id="lr-rh2">—</div></div>
+        <div class="explainer-readout feel"><div class="lbl">Limiting Reagent</div><div class="num" id="lr-lr">—</div></div>
+        <div class="explainer-readout feel"><div class="lbl">NH₃ produced</div><div class="num" id="lr-nh3">—</div></div>
+        <div class="explainer-readout"><div class="lbl">Excess reagent</div><div class="num" id="lr-excess">—</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── 07. YIELD ──────────────────────────────────────────────────────── -->
+  <div class="topic-section" id="yield">
+    <h2><span class="sec-num">07</span>Yield Calculations</h2>
+    <p>Stoichiometry gives the <em>theoretical yield</em> — the maximum possible product if the reaction goes 100% to completion. In practice, the <em>actual yield</em> is always less due to side reactions, losses, and incomplete conversion.</p>
+
+    <div class="formula-table-wrap" style="border:1px solid var(--line);border-radius:var(--radius);overflow:hidden">
+      <table class="formula-table">
+        <thead><tr><th>Term</th><th>Definition</th><th>Formula</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Theoretical yield</strong></td><td>Maximum product from stoichiometry</td><td class="formula-cell">From balanced equation</td></tr>
+          <tr><td><strong>Actual yield</strong></td><td>Product actually collected</td><td class="formula-cell">Given in problem</td></tr>
+          <tr><td><strong>% Yield</strong></td><td>Efficiency of the reaction</td><td class="formula-cell">% yield = (actual / theoretical) × 100</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Worked Example</h3>
+    <p>CH₄ + 2O₂ → CO₂ + 2H₂O. Starting with 4 g of CH₄, 8 g of CO₂ is actually collected. Find % yield.</p>
+    <ol>
+      <li>n(CH₄) = 4/16 = 0.25 mol</li>
+      <li>Theoretical n(CO₂) = 0.25 mol (1:1 ratio) → theoretical mass = 0.25 × 44 = <strong>11 g</strong></li>
+      <li>% yield = (8/11) × 100 = <strong>72.7%</strong></li>
+    </ol>
+
+    <div class="callout warn">
+      <div class="callout-title">⚠ Reverse yield problems</div>
+      JEE sometimes gives the % yield and asks for the actual or theoretical mass. Reverse: <br>
+      actual = (% yield / 100) × theoretical &nbsp;·&nbsp; theoretical = actual / (% yield / 100)
+    </div>
+  </div>
+
+  <!-- ── 08. CONCENTRATION TERMS ────────────────────────────────────────── -->
+  <div class="topic-section" id="concentration">
+    <h2><span class="sec-num">08</span>All 6 Concentration Terms Side-by-Side</h2>
+    <p>Six different ways to express "how much solute is in how much solution." JEE tests all of them — often asking you to convert between two in the same problem.</p>
+
+    <div class="formula-table-wrap" style="border:1px solid var(--line);border-radius:var(--radius);overflow:hidden">
+      <table class="formula-table">
+        <thead><tr><th>Term</th><th>Formula</th><th>Units</th><th>Temp dependent?</th><th>Main JEE use</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>Molarity (M)</strong></td>
+            <td class="formula-cell">M = n_solute / V(L)</td>
+            <td>mol/L</td>
+            <td style="color:var(--red)">Yes ⚠</td>
+            <td>Most calculations, titrations</td>
+          </tr>
+          <tr>
+            <td><strong>Molality (m)</strong></td>
+            <td class="formula-cell">m = n_solute / kg_solvent</td>
+            <td>mol/kg</td>
+            <td style="color:var(--green)">No ✓</td>
+            <td>Colligative properties (ΔTb, ΔTf)</td>
+          </tr>
+          <tr>
+            <td><strong>Mole fraction (X)</strong></td>
+            <td class="formula-cell">X_A = n_A / (n_A + n_B)</td>
+            <td>Dimensionless</td>
+            <td style="color:var(--green)">No ✓</td>
+            <td>Raoult's law, vapour pressure</td>
+          </tr>
+          <tr>
+            <td><strong>Normality (N)</strong></td>
+            <td class="formula-cell">N = n-factor × M</td>
+            <td>eq/L</td>
+            <td style="color:var(--red)">Yes ⚠</td>
+            <td>Acid-base and redox titrations</td>
+          </tr>
+          <tr>
+            <td><strong>% w/w</strong></td>
+            <td class="formula-cell">(m_solute / m_solution) × 100</td>
+            <td>%</td>
+            <td style="color:var(--green)">No ✓</td>
+            <td>Commercial concentrations (lab bottles)</td>
+          </tr>
+          <tr>
+            <td><strong>% w/v</strong></td>
+            <td class="formula-cell">(m_solute (g) / V(mL)) × 100</td>
+            <td>%</td>
+            <td style="color:var(--red)">Yes ⚠</td>
+            <td>Pharmaceutical/lab reagents</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Dilution</h3>
+    <p>When you add water to a solution, moles of solute are conserved even though volume changes.</p>
+    <div style="text-align:center;padding:.85rem;background:var(--topic-accent-l);border-radius:8px;font-family:var(--mono);font-size:1rem;font-weight:700;color:var(--topic-accent);margin:1rem 0">
+      M₁V₁ = M₂V₂
+    </div>
+    <p style="font-size:.88rem;color:var(--ink2)">M₁, V₁ = initial molarity and volume &nbsp;·&nbsp; M₂, V₂ = final molarity and volume. Works for normality too: N₁V₁ = N₂V₂.</p>
+
+    <h3>n-factor — what it means</h3>
+    <p>The n-factor is the number of equivalents per mole of solute. It is <em>reaction-dependent</em>, not just compound-dependent.</p>
+    <div class="compare-grid">
+      <div class="compare-cell">
+        <strong>For acids</strong>
+        n-factor = number of H⁺ ions furnished per molecule<br>
+        HCl → 1 &nbsp;·&nbsp; H₂SO₄ → 2 &nbsp;·&nbsp; H₃PO₄ → 3
+      </div>
+      <div class="compare-cell">
+        <strong>For redox reactions</strong>
+        n-factor = change in oxidation state per formula unit<br>
+        KMnO₄ in acid → 5 (Mn: +7→+2)<br>
+        KMnO₄ in neutral → 3 (Mn: +7→+4)
+      </div>
+    </div>
+    <div class="callout warn">
+      <div class="callout-title">⚠ KMnO₄ n-factor changes with medium</div>
+      This is a favourite JEE trap. Always check whether the medium is acidic, neutral, or basic before assigning n-factor to KMnO₄, K₂Cr₂O₇, or similar oxidising agents.
+    </div>
+  </div>
+
+  <!-- ── 09. INTERCONVERT ───────────────────────────────────────────────── -->
+  <div class="topic-section" id="interconvert">
+    <h2><span class="sec-num">09</span>Interconverting Concentration Units</h2>
+    <p>The most useful conversion is <strong>Molarity ↔ Molality</strong>, which requires the solution density. The key is always to pick a basis (1 L of solution, or 1 kg of solvent) and work from there.</p>
+
+    <h3>Molarity → Molality</h3>
+    <div style="text-align:center;padding:.85rem;background:var(--topic-accent-l);border-radius:8px;font-family:var(--mono);font-size:.95rem;font-weight:700;color:var(--topic-accent);margin:1rem 0">
+      m = (1000 × M) / (1000ρ − M × M_w)
+    </div>
+    <p style="font-size:.88rem;color:var(--ink2)">ρ = density of solution in g/mL &nbsp;·&nbsp; M_w = molar mass of solute in g/mol &nbsp;·&nbsp; M = molarity in mol/L</p>
+
+    <h3>Mole Fraction ↔ Molality</h3>
+    <p style="font-size:.88rem">For solute A in solvent B: &nbsp; <span style="font-family:var(--mono);font-size:.88rem">X_A = (m × M_B) / (1000 + m × M_B)</span> &nbsp; where M_B is molar mass of solvent (g/mol).</p>
+
+    <div class="method-box">
+      <div class="method-title">🎯 Worked Conversion: 2 M H₂SO₄, density 1.18 g/mL</div>
+      <ol>
+        <li>Basis: 1 L of solution = 1000 mL.</li>
+        <li>Mass of 1 L solution = 1000 × 1.18 = 1180 g.</li>
+        <li>Mass of H₂SO₄ = 2 mol × 98 g/mol = 196 g.</li>
+        <li>Mass of water (solvent) = 1180 − 196 = 984 g = 0.984 kg.</li>
+        <li>Molality m = 2 mol / 0.984 kg = <strong>2.03 mol/kg</strong>.</li>
+        <li>Mole fraction X(H₂SO₄): n(H₂SO₄)=2, n(H₂O)=984/18=54.67 &nbsp;→&nbsp; X = 2/(2+54.67) = <strong>0.0353</strong>.</li>
+      </ol>
+    </div>
+
+    <div class="callout info">
+      <div class="callout-title">📌 Quick check</div>
+      Molality is always slightly <em>larger</em> than molarity for aqueous solutions (because molality uses kg of solvent only, while molarity uses total volume of solution). If your answer shows m &lt; M, check your arithmetic.
+    </div>
+  </div>
+
+  <!-- ── 10. REFERENCE TABLE ────────────────────────────────────────────── -->
+  <div class="topic-section" id="reference">
+    <h2><span class="sec-num">10</span>Formula Reference Table</h2>
+    <div class="formula-table-wrap" style="border:1px solid var(--line);border-radius:var(--radius);overflow:hidden">
+      <table class="formula-table">
+        <thead><tr><th>Formula</th><th>What it gives</th><th>Key condition / trap</th></tr></thead>
+        <tbody>
+          <tr><td class="formula-cell">n = m / M</td><td>Moles from mass</td><td class="note-cell">M must be molar mass in g/mol</td></tr>
+          <tr><td class="formula-cell">n = N / Nₐ</td><td>Moles from particle count</td><td class="note-cell">Nₐ = 6.022 × 10²³</td></tr>
+          <tr><td class="formula-cell">n = V / 22.4</td><td>Moles from gas volume</td><td class="note-cell">Only at STP (0°C, 1 atm)</td></tr>
+          <tr><td class="formula-cell">M = n / V(L)</td><td>Molarity</td><td class="note-cell">V in litres, temp-dependent</td></tr>
+          <tr><td class="formula-cell">m = n_solute / kg_solvent</td><td>Molality</td><td class="note-cell">Temperature-independent — use for ΔTb, ΔTf</td></tr>
+          <tr><td class="formula-cell">X_A = n_A / Σn</td><td>Mole fraction</td><td class="note-cell">Σ of all mole fractions = 1</td></tr>
+          <tr><td class="formula-cell">N = n-factor × M</td><td>Normality</td><td class="note-cell">n-factor is reaction-specific</td></tr>
+          <tr><td class="formula-cell">Eq. mass = M / n-factor</td><td>Equivalent mass</td><td class="note-cell">Same caveat — reaction-specific</td></tr>
+          <tr><td class="formula-cell">M₁V₁ = M₂V₂</td><td>Dilution</td><td class="note-cell">Moles conserved; also N₁V₁ = N₂V₂</td></tr>
+          <tr><td class="formula-cell">% yield = (actual/theoretical) × 100</td><td>Reaction efficiency</td><td class="note-cell">Always ≤ 100%</td></tr>
+          <tr><td class="formula-cell">m = (1000M) / (1000ρ − MM_w)</td><td>Molarity → Molality</td><td class="note-cell">ρ in g/mL, M_w in g/mol</td></tr>
+          <tr><td class="formula-cell">EF mass × n = MF mass</td><td>Molecular formula</td><td class="note-cell">n must be a positive integer</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ── 11. WORKED EXAMPLES ────────────────────────────────────────────── -->
+  <div class="topic-section" id="examples">
+    <h2><span class="sec-num">11</span>Worked Examples — Easy → Hard</h2>
+
+    <h3>🟢 Easy — Particles from mass</h3>
+    <p><strong>Q:</strong> How many atoms are in 4.25 g of NH₃?</p>
+    <div class="method-box">
+      <div class="method-title">Solution</div>
+      <ol>
+        <li>M(NH₃) = 14 + 3 = 17 g/mol</li>
+        <li>n(NH₃) = 4.25 / 17 = <strong>0.25 mol</strong></li>
+        <li>Molecules = 0.25 × 6.022×10²³ = 1.506×10²³</li>
+        <li>Each NH₃ has 4 atoms (1 N + 3 H) → total atoms = 4 × 1.506×10²³ = <strong>6.022×10²³ atoms = Nₐ</strong></li>
+      </ol>
+    </div>
+
+    <h3>🟡 Medium — Limiting reagent with Fe₂O₃</h3>
+    <p><strong>Q:</strong> Fe₂O₃ + 3CO → 2Fe + 3CO₂. If 160 g of Fe₂O₃ and 84 g of CO are used, find the mass of Fe produced.</p>
+    <div class="method-box">
+      <div class="method-title">Solution</div>
+      <ol>
+        <li>n(Fe₂O₃) = 160/160 = 1 mol &nbsp;·&nbsp; n(CO) = 84/28 = 3 mol</li>
+        <li>LR test: Fe₂O₃ ratio = 1/1 = 1 &nbsp;·&nbsp; CO ratio = 3/3 = 1 &nbsp;→&nbsp; <strong>equal ratio — neither is limiting, both run out exactly</strong></li>
+        <li>n(Fe) = 1 × 2 = 2 mol &nbsp;→&nbsp; m(Fe) = 2 × 56 = <strong>112 g</strong></li>
+      </ol>
+    </div>
+
+    <h3>🔴 Hard — Concentration interconversion chain</h3>
+    <p><strong>Q:</strong> A H₂SO₄ solution has molarity 9.8 M and density 1.48 g/mL. Find: (a) % w/w, (b) molality, (c) mole fraction of H₂SO₄.</p>
+    <div class="method-box">
+      <div class="method-title">Solution (basis: 1 L solution)</div>
+      <ol>
+        <li>Mass of 1 L solution = 1000 × 1.48 = <strong>1480 g</strong></li>
+        <li>Mass of H₂SO₄ = 9.8 × 98 = <strong>960.4 g</strong></li>
+        <li><strong>(a)</strong> % w/w = 960.4/1480 × 100 = <strong>64.9%</strong></li>
+        <li>Mass of water = 1480 − 960.4 = 519.6 g = 0.5196 kg</li>
+        <li><strong>(b)</strong> m = 9.8 / 0.5196 = <strong>18.86 mol/kg</strong></li>
+        <li>n(H₂O) = 519.6/18 = 28.87 mol</li>
+        <li><strong>(c)</strong> X(H₂SO₄) = 9.8 / (9.8 + 28.87) = <strong>0.253</strong></li>
+      </ol>
+    </div>
+
+    <h3>🔴 Hard — Combustion analysis + % yield chained</h3>
+    <p><strong>Q:</strong> A hydrocarbon CₓHᵧ weighing 1.6 g is burned. 4.4 g of CO₂ and 2.7 g of H₂O are collected. If molar mass = 16 g/mol, identify the compound. If 0.08 mol of this compound gives only 0.07 mol of CO₂, what is the % yield?</p>
+    <div class="method-box">
+      <div class="method-title">Solution</div>
+      <ol>
+        <li>n(CO₂) = 4.4/44 = 0.1 mol → n(C) = 0.1 mol → mass C = 1.2 g</li>
+        <li>n(H₂O) = 2.7/18 = 0.15 mol → n(H) = 0.3 mol → mass H = 0.3 g</li>
+        <li>Check: 1.2 + 0.3 = 1.5 g ≈ 1.6 g (small rounding) → no O in compound ✓</li>
+        <li>C:H ratio = 0.1 : 0.3 = 1 : 3 → EF = CH₃ (EF mass = 15). MF mass = 16 → n = 16/15 ≈ 1 (round) → <strong>CH₄ (methane)</strong></li>
+        <li>Reaction: CH₄ + 2O₂ → CO₂ + 2H₂O. Theoretical n(CO₂) from 0.08 mol CH₄ = 0.08 mol</li>
+        <li>% yield = 0.07/0.08 × 100 = <strong>87.5%</strong></li>
+      </ol>
+    </div>
+  </div>
+
+  <!-- ── 12. JEE PYQs ───────────────────────────────────────────────────── -->
+  <div class="topic-section" id="pyqs">
+    <h2><span class="sec-num">12</span>JEE Previous-Year Questions</h2>
+
+    <h3>PYQ 1 — Moles &amp; Particles (JEE Main style)</h3>
+    <p><strong>Q:</strong> The number of atoms in 4.25 g of NH₃ is approximately: (Nₐ = 6.023 × 10²³)</p>
+    <p><em>Approach:</em> n = 4.25/17 = 0.25 mol → molecules = 0.25Nₐ → each has 4 atoms → total = Nₐ</p>
+    <p><strong>Answer: 6.023 × 10²³</strong></p>
+
+    <h3>PYQ 2 — Limiting Reagent</h3>
+    <p><strong>Q:</strong> A + 2B → 3C. If 3 moles of A and 5 moles of B are taken, the moles of C formed are:</p>
+    <p><em>Approach:</em> A ratio = 3/1 = 3 · B ratio = 5/2 = 2.5 → B is LR → moles of C = 2.5 × 3 = <strong>7.5 mol</strong></p>
+
+    <h3>PYQ 3 — Molarity Calculation</h3>
+    <p><strong>Q:</strong> 4 g of NaOH is dissolved to make 500 mL of solution. Find the molarity.</p>
+    <p><em>Approach:</em> n(NaOH) = 4/40 = 0.1 mol · V = 0.5 L → M = 0.1/0.5 = <strong>0.2 mol/L</strong></p>
+
+    <h3>PYQ 4 — Empirical Formula</h3>
+    <p><strong>Q:</strong> A compound contains 75% C and 25% H by mass. Find its empirical formula.</p>
+    <p><em>Approach:</em> n(C) = 75/12 = 6.25 · n(H) = 25/1 = 25 · ratio C:H = 6.25:25 = 1:4</p>
+    <p><strong>Answer: CH₄</strong></p>
+
+    <h3>PYQ 5 — Dilution</h3>
+    <p><strong>Q:</strong> 20 mL of 0.5 M HCl is diluted to 200 mL. What is the new molarity?</p>
+    <p><em>Approach:</em> M₁V₁ = M₂V₂ → 0.5 × 20 = M₂ × 200 → M₂ = <strong>0.05 M</strong></p>
+
+    <h3>PYQ 6 — % Yield</h3>
+    <p><strong>Q:</strong> In a reaction A → B, 2 mol of A gives theoretical yield 88 g of B (M = 44 g/mol). If actual yield is 66 g, what is % yield?</p>
+    <p><em>Approach:</em> Theoretical = 2 × 44 = 88 g · % yield = 66/88 × 100 = <strong>75%</strong></p>
+  </div>
+
+  <!-- ── 13. COMMON TRAPS ───────────────────────────────────────────────── -->
+  <div class="topic-section" id="traps">
+    <h2><span class="sec-num">13</span>Common Traps &amp; Mistakes</h2>
+
+    <div class="callout danger">
+      <div class="callout-title">🪤 Trap 1 — Using 22.4 L at the wrong temperature</div>
+      22.4 L/mol is valid only at 0°C (273 K) and 1 atm. At 25°C, the molar volume is 24.5 L/mol. Always check the temperature in the problem.
+    </div>
+
+    <div class="callout danger">
+      <div class="callout-title">🪤 Trap 2 — Comparing raw moles to find the limiting reagent</div>
+      The LR is NOT always the one with fewer moles. Always divide moles by the stoichiometric coefficient. In N₂ + 3H₂ → 2NH₃, with 2 mol N₂ and 5 mol H₂: ratios are 2 and 1.67 → H₂ is LR, even though there are more moles of it.
+    </div>
+
+    <div class="callout danger">
+      <div class="callout-title">🪤 Trap 3 — n-factor is reaction-specific, not compound-specific</div>
+      H₂SO₄ has n-factor = 2 in most neutralisations, but = 1 when it acts as a monobasic acid (e.g., with excess NaOH in NaHSO₄ formation context). KMnO₄ has n-factor 5 in acid, 3 in neutral, 1 in strongly alkaline medium.
+    </div>
+
+    <div class="callout danger">
+      <div class="callout-title">🪤 Trap 4 — Confusing empirical and molecular formula</div>
+      CH₂O, C₂H₄O₂, and C₆H₁₂O₆ all have the same empirical formula CH₂O. Without molar mass information, you cannot determine the molecular formula.
+    </div>
+
+    <div class="callout danger">
+      <div class="callout-title">🪤 Trap 5 — Using molarity when molality is needed (colligative properties)</div>
+      Elevation of boiling point (ΔTb) and depression of freezing point (ΔTf) use <strong>molality</strong>, not molarity. The formula is ΔTb = Kb × m. Using molarity gives a wrong answer.
+    </div>
+
+    <div class="callout danger">
+      <div class="callout-title">🪤 Trap 6 — Counting molecules instead of atoms</div>
+      "Atoms in 18 g H₂O" ≠ Nₐ. n(H₂O) = 1 mol → molecules = Nₐ → but <em>atoms</em> = 3Nₐ (2H + 1O per molecule). Read the question carefully.
+    </div>
+  </div>
+
+  <!-- ── 14. CHEAT CARD ─────────────────────────────────────────────────── -->
+  <div class="topic-section" id="cheat">
+    <h2><span class="sec-num">14</span>One-Page Cheat Card</h2>
+    <div style="background:var(--topic-accent-l);border:2px solid var(--topic-accent-m);border-radius:12px;padding:1.25rem 1.4rem">
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem">
+
+        <div>
+          <div style="font-weight:800;color:var(--topic-accent);font-size:.8rem;letter-spacing:.06em;text-transform:uppercase;margin-bottom:.5rem">🔗 The Three Bridges</div>
+          <div style="font-family:var(--mono);font-size:.8rem;line-height:2;background:white;border-radius:6px;padding:.65rem .85rem">
+            n = m / M<br>
+            n = N / Nₐ<br>
+            n = V(L) / 22.4 &nbsp;<span style="color:var(--ink3)">(STP only)</span>
+          </div>
+        </div>
+
+        <div>
+          <div style="font-weight:800;color:var(--topic-accent);font-size:.8rem;letter-spacing:.06em;text-transform:uppercase;margin-bottom:.5rem">⚖️ LR Test (3 steps)</div>
+          <div style="font-size:.82rem;line-height:1.75;background:white;border-radius:6px;padding:.65rem .85rem">
+            1. Moles of each reactant<br>
+            2. Divide each by its coeff<br>
+            3. Smallest ratio = LR
+          </div>
+        </div>
+
+        <div>
+          <div style="font-weight:800;color:var(--topic-accent);font-size:.8rem;letter-spacing:.06em;text-transform:uppercase;margin-bottom:.5rem">🔬 Empirical Formula (5 steps)</div>
+          <div style="font-size:.82rem;line-height:1.75;background:white;border-radius:6px;padding:.65rem .85rem">
+            1. % → grams (assume 100 g)<br>
+            2. Grams → moles (÷ at. mass)<br>
+            3. ÷ smallest mole<br>
+            4. Round (×2 if ~0.5, ×3 if ~0.33)<br>
+            5. n = MF mass ÷ EF mass → MF
+          </div>
+        </div>
+
+        <div>
+          <div style="font-weight:800;color:var(--topic-accent);font-size:.8rem;letter-spacing:.06em;text-transform:uppercase;margin-bottom:.5rem">📊 Concentration Terms</div>
+          <div style="font-family:var(--mono);font-size:.78rem;line-height:1.9;background:white;border-radius:6px;padding:.65rem .85rem">
+            M = n / V(L) &nbsp;<span style="color:var(--ink3)">temp↑</span><br>
+            m = n / kg_solv &nbsp;<span style="color:var(--green)">stable</span><br>
+            X = nA / (nA+nB) &nbsp;<span style="color:var(--green)">stable</span><br>
+            N = n-factor × M<br>
+            M₁V₁ = M₂V₂
+          </div>
+        </div>
+
+      </div>
+
+      <div style="margin-top:.85rem;background:white;border-radius:6px;padding:.65rem .85rem">
+        <div style="font-weight:800;color:var(--topic-accent);font-size:.8rem;letter-spacing:.06em;text-transform:uppercase;margin-bottom:.4rem">⚠ Must-remember traps</div>
+        <div style="font-size:.8rem;color:var(--ink2);line-height:1.8">
+          22.4 L → 0°C only &nbsp;·&nbsp; LR = smallest moles/coeff (not smallest moles) &nbsp;·&nbsp; n-factor is reaction-specific &nbsp;·&nbsp; colligative props use molality, not molarity &nbsp;·&nbsp; EF ≠ MF without molar mass &nbsp;·&nbsp; count atoms not molecules
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ── CTA ────────────────────────────────────────────────────────────── -->
+  <div class="topic-cta-row">
+    <a href="../subjects/chemistry.html#unit-c1" class="btn-primary">↩ Back to C1 Unit</a>
+    <a href="../subjects/chemistry.html#unit-c2" class="btn-secondary">Next: Atomic Structure →</a>
+    <a href="../progress.html" class="btn-secondary">✅ Mark sessions done</a>
+  </div>
+
+</div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-brand">JEE 2027 Prep</div>
+      <div class="footer-links">
+        <a href="../index.html">Dashboard</a>
+        <a href="../subjects/chemistry.html">Chemistry</a>
+        <a href="../subjects/math.html">Math</a>
+        <a href="../subjects/physics.html">Physics</a>
+        <a href="../progress.html">Progress</a>
+      </div>
+      <div class="footer-note">Chemistry · Unit C1 · Deep-Dive</div>
+    </div>
+  </div>
+</footer>
+
+<div id="toast" class="toast"></div>
+<script src="../js/main.js?v=2"></script>
+<script>
+// ── Interactive 1: Mole Calculator ───────────────────────────────────────
+const MC_DATA = {
+  H2O:    { name:'Water (H₂O)',                  M:18.02,  gas:false },
+  CO2:    { name:'Carbon dioxide (CO₂)',          M:44.01,  gas:true  },
+  NaCl:   { name:'Sodium chloride (NaCl)',        M:58.44,  gas:false },
+  H2SO4:  { name:'Sulfuric acid (H₂SO₄)',         M:98.08,  gas:false },
+  NH3:    { name:'Ammonia (NH₃)',                 M:17.03,  gas:true  },
+  Fe:     { name:'Iron (Fe)',                     M:55.85,  gas:false },
+  CaCO3:  { name:'Calcium carbonate (CaCO₃)',     M:100.09, gas:false },
+  C6H12O6:{ name:'Glucose (C₆H₁₂O₆)',            M:180.16, gas:false },
+};
+
+function mcUpdate() {
+  const key   = document.getElementById('mc-sub').value;
+  const mass  = parseFloat(document.getElementById('mc-mass').value);
+  const sub   = MC_DATA[key];
+  const el    = document.getElementById('mc-result');
+  if (!sub || isNaN(mass) || mass <= 0) { el.innerHTML='<em>Enter a positive mass.</em>'; return; }
+  const moles = mass / sub.M;
+  const Na    = 6.022e23;
+  const N     = moles * Na;
+  const vol   = sub.gas ? moles * 22.4 : null;
+
+  function fmt(n, dp) {
+    if (n >= 1e20) return n.toExponential(3);
+    return n.toFixed(dp);
+  }
+
+  el.innerHTML = `
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:.6rem">
+      <div style="background:white;border-radius:6px;padding:.6rem .85rem;border:1px solid var(--topic-accent-m)">
+        <div style="font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--topic-accent);margin-bottom:.2rem">Moles</div>
+        <div style="font-family:var(--mono);font-size:1.05rem;font-weight:700">${fmt(moles,4)} mol</div>
+      </div>
+      <div style="background:white;border-radius:6px;padding:.6rem .85rem;border:1px solid var(--topic-accent-m)">
+        <div style="font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--topic-accent);margin-bottom:.2rem">Particles</div>
+        <div style="font-family:var(--mono);font-size:1.05rem;font-weight:700">${N.toExponential(3)}</div>
+      </div>
+      ${vol !== null
+        ? `<div style="background:white;border-radius:6px;padding:.6rem .85rem;border:1px solid var(--topic-accent-m)">
+            <div style="font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--topic-accent);margin-bottom:.2rem">Volume at STP</div>
+            <div style="font-family:var(--mono);font-size:1.05rem;font-weight:700">${fmt(vol,3)} L</div>
+           </div>`
+        : `<div style="background:#f9fafb;border-radius:6px;padding:.6rem .85rem;border:1px solid #e5e7eb">
+            <div style="font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:#94a3b8;margin-bottom:.2rem">Volume at STP</div>
+            <div style="font-family:var(--mono);font-size:.9rem;color:#94a3b8">N/A (not a gas)</div>
+           </div>`
+      }
+    </div>
+    <div style="font-size:.75rem;color:var(--ink3);margin-top:.6rem">
+      ${mass} g of ${sub.name} &nbsp;·&nbsp; M = ${sub.M} g/mol &nbsp;·&nbsp; n = ${mass}/${sub.M} = ${fmt(moles,4)} mol
+    </div>`;
+}
+mcUpdate();
+
+// ── Interactive 2: Empirical Formula Finder ───────────────────────────────
+function gcd2(a, b) { return b < 0.001 ? a : gcd2(b, a % b); }
+function bestInt(r, tol) {
+  for (let d = 1; d <= 8; d++) {
+    if (Math.abs(r * d - Math.round(r * d)) < tol) return Math.round(r * d);
+  }
+  return Math.round(r);
+}
+
+function efUpdate() {
+  const pC = parseFloat(document.getElementById('ef-c').value) || 0;
+  const pH = parseFloat(document.getElementById('ef-h').value) || 0;
+  const pO = parseFloat(document.getElementById('ef-o').value) || 0;
+  const el = document.getElementById('ef-result');
+
+  if (pC + pH + pO > 100.5) {
+    el.innerHTML = '<div style="color:var(--red)">⚠ Percentages sum to more than 100%. Check values.</div>'; return;
+  }
+  if (pC + pH + pO < 0.1) {
+    el.innerHTML = '<em>Enter at least one percentage.</em>'; return;
+  }
+
+  const mC = pC / 12.011;
+  const mH = pH / 1.008;
+  const mO = pO > 0 ? pO / 16.00 : 0;
+  const vals = [mC, mH, mO].filter(x => x > 0);
+  if (!vals.length) { el.innerHTML = '<em>Enter percentages.</em>'; return; }
+  const mn = Math.min(...vals);
+  const rC = mC / mn;
+  const rH = mH / mn;
+  const rO = pO > 0 ? mO / mn : 0;
+
+  // find multiplier
+  let mult = 1;
+  for (let d = 1; d <= 6; d++) {
+    const ok = [rC, rH, rO].filter(r => r > 0).every(r => Math.abs(r * d - Math.round(r * d)) < 0.08);
+    if (ok) { mult = d; break; }
+  }
+
+  const nC = Math.round(rC * mult);
+  const nH = Math.round(rH * mult);
+  const nO = pO > 0 ? Math.round(rO * mult) : 0;
+
+  let formula = '';
+  if (nC) formula += `C${nC > 1 ? nC : ''}`;
+  if (nH) formula += `H${nH > 1 ? nH : ''}`;
+  if (nO) formula += `O${nO > 1 ? nO : ''}`;
+
+  const steps = [
+    `<strong>Step 1 — Assume 100 g sample:</strong> C = ${pC.toFixed(2)} g, H = ${pH.toFixed(2)} g${pO > 0 ? `, O = ${pO.toFixed(2)} g` : ''}`,
+    `<strong>Step 2 — Convert to moles:</strong> C = ${mC.toFixed(3)}, H = ${mH.toFixed(3)}${pO > 0 ? `, O = ${mO.toFixed(3)}` : ''}`,
+    `<strong>Step 3 — Divide by smallest (${mn.toFixed(3)}):</strong> C = ${rC.toFixed(3)}, H = ${rH.toFixed(3)}${pO > 0 ? `, O = ${rO.toFixed(3)}` : ''}`,
+    mult > 1 ? `<strong>Step 4 — Multiply by ${mult} for whole numbers</strong>` : null,
+    `<strong>Empirical Formula: <span style="font-family:var(--mono);color:var(--topic-accent);font-size:1rem">${formula}</span></strong>`,
+  ].filter(Boolean);
+
+  el.innerHTML = steps.map(s => `<div style="margin-bottom:.3rem">${s}</div>`).join('');
+}
+efUpdate();
+
+// ── Interactive 3: Limiting Reagent Calculator ────────────────────────────
+function lrUpdate() {
+  const gN2 = parseFloat(document.getElementById('lr-n2').value);
+  const gH2 = parseFloat(document.getElementById('lr-h2').value);
+  document.getElementById('lr-n2-val').textContent = gN2 + ' g';
+  document.getElementById('lr-h2-val').textContent = gH2 + ' g';
+
+  const mN2 = gN2 / 28.014;
+  const mH2 = gH2 / 2.016;
+  const rN2 = mN2 / 1;   // coeff 1
+  const rH2 = mH2 / 3;   // coeff 3
+
+  const lrIsN2 = rN2 <= rH2;
+  const lr = lrIsN2 ? 'N₂' : 'H₂';
+  const molNH3 = Math.min(rN2, rH2) * 2;
+  const gNH3   = molNH3 * 17.031;
+
+  let excessStr;
+  if (lrIsN2) {
+    const h2Used   = mN2 * 3;
+    const h2Excess = Math.max(0, mH2 - h2Used);
+    excessStr = `H₂: ${(h2Excess * 2.016).toFixed(2)} g`;
+  } else {
+    const n2Used   = mH2 / 3;
+    const n2Excess = Math.max(0, mN2 - n2Used);
+    excessStr = `N₂: ${(n2Excess * 28.014).toFixed(2)} g`;
+  }
+
+  document.getElementById('lr-mn2').textContent   = mN2.toFixed(3) + ' mol';
+  document.getElementById('lr-mh2').textContent   = mH2.toFixed(3) + ' mol';
+  document.getElementById('lr-rn2').textContent   = rN2.toFixed(3);
+  document.getElementById('lr-rh2').textContent   = rH2.toFixed(3);
+  document.getElementById('lr-lr').textContent    = lr;
+  document.getElementById('lr-nh3').textContent   = gNH3.toFixed(2) + ' g';
+  document.getElementById('lr-excess').textContent = excessStr;
+}
+lrUpdate();
+</script>
+</body>
+</html>
