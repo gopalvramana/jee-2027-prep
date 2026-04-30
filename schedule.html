@@ -28,7 +28,7 @@
 
 <header class="page-hero sched-hero">
   <div class="page-hero-content">
-    <div class="page-hero-tag">All Phases · March 2026 – April 2027</div>
+    <div class="page-hero-tag">All Phases · May 2026 – April 2027</div>
     <h1>📋 Schedule</h1>
     <p>Control exactly which sessions appear on the dashboard — rename topics, move them between weeks, add custom sessions, or remove ones you don't need.</p>
   </div>
@@ -57,8 +57,6 @@
         <option value="p4">🚀 Phase 4</option>
       </select>
       <select id="se-new-month" class="se-sel">
-        <option value="2026-3">March 2026</option>
-        <option value="2026-4">April 2026</option>
         <option value="2026-5">May 2026</option>
         <option value="2026-6">June 2026</option>
         <option value="2026-7">July 2026</option>
@@ -102,7 +100,7 @@
         <a href="schedule.html">Schedule</a>
         <a href="settings.html">Settings</a>
       </div>
-      <div class="footer-note">All Phases · March 2026 – April 2027</div>
+      <div class="footer-note">All Phases · May 2026 – April 2027</div>
     </div>
   </div>
 </footer>
@@ -114,17 +112,17 @@
 // Uses: loadSchedule, saveSchedule, showToast, tcEsc, TC_MONTH, TC_ICON from main.js
 
 const SE_MONTHS = [
-  {y:2026,m:3},{y:2026,m:4},{y:2026,m:5},{y:2026,m:6},
+  {y:2026,m:5},{y:2026,m:6},
   {y:2026,m:7},{y:2026,m:8},{y:2026,m:9},{y:2026,m:10},
   {y:2026,m:11},{y:2026,m:12},
   {y:2027,m:1},{y:2027,m:2},{y:2027,m:3},{y:2027,m:4},
 ];
 
 const SE_PHASES = [
-  { label:'Phase 1 — Foundation Sprint', color:'#1d4ed8',
-    test: s => s.y===2026 && s.m>=3 && s.m<=6 },
+  { label:'Phase 1 — ☀ Summer Intensive (Foundation Sprint)', color:'#1d4ed8',
+    test: s => s.y===2026 && s.m>=5 && s.m<=8 },
   { label:'Phase 2 — JEE Layer', color:'#0f766e',
-    test: s => s.y===2026 && s.m>=7 && s.m<=10 },
+    test: s => s.y===2026 && s.m>=9 && s.m<=10 },
   { label:'Phase 3 — Attempt 1 Drill', color:'#4f46e5',
     test: s => (s.y===2026 && s.m>=11) || (s.y===2027 && s.m===1) },
   { label:'Phase 4 — Attempt 2 Boost', color:'#059669',
