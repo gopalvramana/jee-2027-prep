@@ -547,146 +547,150 @@ window.resetScheduleToDefault = function() {
 
 // ── Today's Progress Card ────────────────────────────────────────────────────
 // Start: May 15 2026. Summer vacation (May 15–Aug 15) = 2 subjects/day intensive.
+// Math priority: Coord Geo (Jun) → Calculus (Jul) → Integration (Aug) = 60-76% of Math paper
+// Low-yield Math (Quadratics, Sequences, P&C) pushed to Phase 2 Oct — only 10-14% combined
 // Phase 1 (Summer) = May–Aug 2026  |  Phase 2 = Sep–Oct 2026
 // Phase 3 = Nov 2026–Jan 2027      |  Phase 4 = Feb–Apr 2027
 const WEEKLY_TARGETS = [
-  // ── ☀ SUMMER INTENSIVE · Phase 1 · May 2026 (starts May 15 = Week 3) ──────
-  // 2 subjects per day — Math + Physics or Math + Chem each day
+  // ── ☀ SUMMER · May 2026 · M1 Trigonometry (starts May 15 = Week 3) ───────
   {y:2026,m:5,w:3,sessions:[
-    ['m-t1','Trig Ratios & ASTC','math'],
-    ['m-t2','Trig Standard Values & Identities','math'],
+    ['m-t1','Trig Ratios, ASTC & Standard Values','math'],
+    ['m-t2','Trig Identities — Pythagorean, Reciprocal','math'],
     ['p-s0a','Units & Dimensions — Intro','phys'],
     ['p-s0b','Dimensional Analysis & Error','phys'],
   ]},
   {y:2026,m:5,w:4,sessions:[
     ['m-t3','Compound & Multiple Angle Formulas','math'],
-    ['m-t4','Trig Equations','math'],
+    ['m-t4','Inverse Trig, Properties of Triangles & Equations','math'],
     ['p-s1','1D Kinematics — Equations of Motion','phys'],
     ['c-s1','Mole Concept & Avogadro','chem'],
     ['c-s2','Stoichiometry & Limiting Reagent','chem'],
   ]},
-  // ── ☀ SUMMER INTENSIVE · June 2026 ──────────────────────────────────────
+  // ── ☀ SUMMER · June 2026 · M3 Coordinate Geometry ★ 16–20% of Math ──────
   {y:2026,m:6,w:1,sessions:[
-    ['m-t5','Inverse Trig & Properties of Triangles','math'],
-    ['m-t6','Trig JEE Problem Drill','math'],
+    ['m-m3-1','Straight Lines — Slope, Distance, Section Formula','math'],
+    ['m-m3-2','Straight Lines — Angle, Perpendicular, Locus','math'],
     ['p-s2','2D Motion & Projectile','phys'],
     ['c-s3','Concentration Terms & Titration','chem'],
   ]},
   {y:2026,m:6,w:2,sessions:[
-    ['m-m2-1','Quadratics — Roots & Nature','math'],
-    ['m-m2-2','Quadratic Inequalities','math'],
+    ['m-m3-3','Circles — Standard & General Form, Tangents','math'],
+    ['m-m3-4','Circles — Chord of Contact, Family of Circles','math'],
     ['p-s3','Relative Motion & River Problems','phys'],
     ['c-s4','Bohr Model & Atomic Spectra','chem'],
   ]},
   {y:2026,m:6,w:3,sessions:[
-    ['m-m2-3','Functions — Domain & Range','math'],
-    ['m-m2-4','Composite & Inverse Functions','math'],
+    ['m-m3-5','Parabola — Focus, Directrix, Tangents & Normals','math'],
+    ['m-m3-6','Ellipse — Standard form, Properties, Tangents','math'],
     ['p-s4','Newton\'s Laws & FBD','phys'],
     ['c-s5','Quantum Numbers & Orbitals','chem'],
   ]},
   {y:2026,m:6,w:4,sessions:[
-    ['m-m3-1','Straight Lines','math'],
-    ['m-m3-2','Circles','math'],
+    ['m-m3-7','Hyperbola & Rectangular Hyperbola','math'],
+    ['m-m3-8','Coord Geo — JEE PYQ Drill (all conics)','math'],
     ['p-s5','Friction & Inclines','phys'],
     ['c-s6','Electron Config & Periodic Trends','chem'],
   ]},
-  // ── ☀ SUMMER INTENSIVE · July 2026 ──────────────────────────────────────
+  // ── ☀ SUMMER · July 2026 · M5+M6 Calculus ★ 20–25% of Math ────────────
   {y:2026,m:7,w:1,sessions:[
-    ['m-m3-3','Parabola','math'],
-    ['m-m3-4','Ellipse & Hyperbola','math'],
+    ['m-m5-1','Limits — LHL/RHL, Standard Limits, L\'Hôpital','math'],
+    ['m-m5-2','Continuity, Differentiability & First Principles','math'],
     ['p-s6','Pulley Systems & Connected Bodies','phys'],
     ['c-s7','Ionic & Covalent Bonding','chem'],
   ]},
   {y:2026,m:7,w:2,sessions:[
-    ['m-m4-1','AP & GP — nth Term & Sum','math'],
-    ['m-m4-2','Special Series & Infinite Series','math'],
+    ['m-m5-3','Differentiation — Product, Quotient & Chain Rule','math'],
+    ['m-m5-4','Implicit, Parametric & Logarithmic Differentiation','math'],
     ['p-s7','Work-Energy Theorem','phys'],
     ['c-s8','VSEPR & Hybridisation','chem'],
   ]},
   {y:2026,m:7,w:3,sessions:[
-    ['m-m4-3','Permutations & Combinations','math'],
-    ['m-m4-4','Binomial Theorem','math'],
+    ['m-m6-1','AOD — Tangents, Normals & Angle of Intersection','math'],
+    ['m-m6-2','AOD — Maxima, Minima & Second Derivative Test','math'],
     ['p-s8','Conservation of Energy & Collisions','phys'],
     ['c-s9','Polarity, IMF & Hydrogen Bonding','chem'],
   ]},
   {y:2026,m:7,w:4,sessions:[
-    ['m-m5-1','Limits & L\'Hôpital','math'],
-    ['m-m5-2','Continuity & Differentiability','math'],
+    ['m-m6-3','AOD — Increasing/Decreasing, Rate of Change','math'],
+    ['m-m6-4','AOD — Approximations + JEE PYQ Drill','math'],
     ['p-s9','Ohm\'s Law & Resistance Circuits','phys'],
     ['c-s10','Enthalpy & First Law of Thermodynamics','chem'],
   ]},
-  // ── ☀ SUMMER INTENSIVE · August 2026 Wk 1–2 (intensive ends ~Aug 15) ────
+  // ── ☀ SUMMER · Aug Wk 1–2 · M7 Integration ★ 12–16% of Math ───────────
   {y:2026,m:8,w:1,sessions:[
-    ['m-m5-3','Product / Quotient / Chain Rule','math'],
-    ['m-m5-4','Implicit & Parametric Differentiation','math'],
+    ['m-m7-1','Integration — Indefinite & Standard Forms','math'],
+    ['m-m7-2','Integration — Substitution & Trigonometric','math'],
     ['p-s10','Kirchhoff\'s Laws & Complex Circuits','phys'],
     ['c-s11','Hess\'s Law & Bond Energies','chem'],
   ]},
   {y:2026,m:8,w:2,sessions:[
-    ['m-m5-5','Higher Derivatives & MVT','math'],
+    ['m-m7-3','Integration — By Parts & ILATE Rule','math'],
+    ['m-m7-4','Integration — Partial Fractions & Special Integrals','math'],
     ['p-s11','Cells, Internal Resistance & Wheatstone','phys'],
     ['c-s12','Gibbs Energy & Spontaneity','chem'],
   ]},
-  // ── Transition: Aug 15 — pace shifts to 1 subject/day ────────────────────
+  // ── Transition: Aug 15 — pace shifts, Integration continues ──────────────
   {y:2026,m:8,w:3,sessions:[
-    ['m-m6-1','Tangents & Normals','math'],
+    ['m-m7-5','Definite Integration & Properties','math'],
+    ['m-m7-6','Area Under Curves','math'],
     ['p-p5-1','Torque & Angular Acceleration','phys'],
     ['c-c5-1','Kp, Kc & Reaction Quotient','chem'],
   ]},
   {y:2026,m:8,w:4,sessions:[
-    ['m-m6-2','Maxima & Minima','math'],
+    ['m-m7-7','Differential Equations — Variable Separable & Linear','math'],
     ['p-p5-2','Moment of Inertia','phys'],
-    ['c-c5-2','Le Chatelier\'s Principle','chem'],
-  ]},
-  // ── Phase 2 · September 2026 ─────────────────────────────────────────────
-  {y:2026,m:9,w:1,sessions:[
-    ['m-m6-3','Increasing/Decreasing Functions','math'],
-    ['m-m6-4','Rate of Change & Approximations','math'],
     ['p-p5-3','Angular Momentum & Conservation','phys'],
-    ['c-c5-3','ICE Tables & Equilibrium Problems','chem'],
+    ['c-c5-2','Le Chatelier\'s Principle & ICE Tables','chem'],
+  ]},
+  // ── Phase 2 · Sep 2026 · M8 Vectors & 3D ★ 12–16% of Math ─────────────
+  {y:2026,m:9,w:1,sessions:[
+    ['m-m8-1','Vectors — Addition, Dot Product & Applications','math'],
+    ['m-m8-2','Vectors — Cross Product, Scalar Triple Product','math'],
+    ['p-p5-4','Rolling Without Slipping','phys'],
+    ['c-c5-3','Equilibrium Problems & Ksp','chem'],
   ]},
   {y:2026,m:9,w:2,sessions:[
-    ['m-m7-1','Indefinite Integration','math'],
-    ['m-m7-2','Substitution Method','math'],
-    ['p-p5-4','Rolling Without Slipping','phys'],
-    ['c-c6-1','pH & Acids / Bases','chem'],
+    ['m-m8-3','3D Geometry — Lines & Planes','math'],
+    ['m-m8-4','3D Geometry — Distance, Angle & Skew Lines','math'],
+    ['p-p6-1','Biot-Savart & Ampere\'s Law','phys'],
+    ['c-c6-1','pH & Strong/Weak Acids & Bases','chem'],
   ]},
   {y:2026,m:9,w:3,sessions:[
-    ['m-m7-3','Integration by Parts','math'],
-    ['m-m7-4','Partial Fractions','math'],
-    ['p-p6-1','Biot-Savart & Ampere\'s Law','phys'],
-    ['c-c6-2','Buffer Solutions & Henderson Eq.','chem'],
+    ['m-m8-5','Matrices — Operations & Types','math'],
+    ['m-m8-6','Determinants, Inverse & Cramer\'s Rule','math'],
+    ['p-p6-2','Force on Current Conductor & Magnetic Loops','phys'],
+    ['c-c6-2','Buffer Solutions & Henderson Equation','chem'],
   ]},
   {y:2026,m:9,w:4,sessions:[
-    ['m-m7-5','Definite Integration','math'],
-    ['m-m7-6','Area Under Curves','math'],
-    ['p-p6-2','Force on Current Conductor & Loops','phys'],
-    ['c-c6-3','Ksp & Common Ion Effect','chem'],
-  ]},
-  // ── Phase 2 · October 2026 ───────────────────────────────────────────────
-  {y:2026,m:10,w:1,sessions:[
-    ['m-m7-7','Differential Equations','math'],
-    ['m-m8-1','Vectors — Dot & Cross Products','math'],
+    ['m-m8-7','Vectors & 3D — JEE PYQ Drill','math'],
     ['p-p6-3','Charged Particles in Magnetic Field','phys'],
+    ['c-c6-3','Ksp, Common Ion Effect & Indicators','chem'],
+  ]},
+  // ── Phase 2 · Oct 2026 · Lower-yield Math + Physics & Chem finish ────────
+  {y:2026,m:10,w:1,sessions:[
+    ['m-m2-1','Quadratics — Roots, Nature & Discriminant','math'],
+    ['m-m2-2','Functions — Domain, Range & Transformations','math'],
+    ['p-p7-1','Faraday\'s & Lenz\'s Law','phys'],
     ['c-c7-1','Galvanic Cells & EMF','chem'],
   ]},
   {y:2026,m:10,w:2,sessions:[
-    ['m-m8-2','3D Geometry','math'],
-    ['m-m8-3','Matrices & Determinants','math'],
-    ['p-p7-1','Faraday\'s & Lenz\'s Law','phys'],
-    ['c-c7-2','Nernst Equation','chem'],
-  ]},
-  {y:2026,m:10,w:3,sessions:[
-    ['m-m8-4','Probability','math'],
+    ['m-m4-1','Sequences — AP, GP & Special Series','math'],
+    ['m-m4-2','Permutations, Combinations & Binomial Theorem','math'],
     ['p-p7-2','Self & Mutual Inductance','phys'],
     ['p-p7-3','AC Circuits & Resonance','phys'],
-    ['c-c7-3','Electrolysis & Faraday\'s Laws','chem'],
+    ['c-c7-2','Nernst Equation & Electrolysis','chem'],
   ]},
-  {y:2026,m:10,w:4,sessions:[
+  {y:2026,m:10,w:3,sessions:[
+    ['m-m8-8','Probability — Classical & Conditional','math'],
     ['p-p8-1','Reflection — Plane & Curved Mirrors','phys'],
     ['p-p8-2','Refraction, TIR & Lenses','phys'],
-    ['c-c8-1','GOC — Electronic Effects','chem'],
-    ['c-c8-2','Reaction Intermediates & Mechanisms','chem'],
+    ['c-c7-3','Conductance & Faraday\'s Laws','chem'],
+  ]},
+  {y:2026,m:10,w:4,sessions:[
+    ['m-pyq1','Math JEE PYQ Sprint — Calculus + Coord Geo','math'],
+    ['p-p8-3','Prism, Dispersion & Optical Instruments','phys'],
+    ['c-c8-1','GOC — Electronic Effects & Reaction Intermediates','chem'],
+    ['c-c8-2','GOC — SN1/SN2, Elimination & Addition','chem'],
   ]},
   // ── Phase 3 · November 2026 ───────────────────────────────────────────────
   {y:2026,m:11,w:1,sessions:[
