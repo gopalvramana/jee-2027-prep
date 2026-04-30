@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chemical Equilibrium — JEE 2027 Deep-Dive</title>
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body class="topic-chem">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="nav-brand">JEE 2027</div>
+    <div class="nav-links">
+      <a href="../index.html">Dashboard</a>
+      <a href="../subjects/math.html">📐 Math</a>
+      <a href="../subjects/physics.html">⚡ Physics</a>
+      <a href="../subjects/chemistry.html" class="active">🧪 Chemistry</a>
+      <a href="../progress.html">✅ Progress</a>
+      <a href="../schedule.html">📋 Schedule</a>
+      <a href="../settings.html">⚙ Settings</a>
+    </div>
+    <button class="nav-toggle" onclick="toggleNav()">☰</button>
+  </div>
+</nav>
+
+<header class="page-hero" style="background:var(--topic-grad)">
+  <div class="page-hero-content">
+    <div class="page-hero-tag">Chemistry · Unit C5 · Deep-Dive</div>
+    <h1>⚖ Chemical Equilibrium</h1>
+    <p>The ICE table is the most powerful tool in JEE Chemistry — every equilibrium numerical collapses into the same three-row setup. Learn the pattern once and K<sub>p</sub>, K<sub>c</sub>, Le Chatelier, and degree of dissociation all become routine.</p>
+    <div class="topic-meta-bar">
+      <span class="topic-meta-pill"><strong>Weight:</strong> 7–9% (≈8 marks)</span>
+      <span class="topic-meta-pill"><strong>Difficulty:</strong> 🟠 High</span>
+      <span class="topic-meta-pill"><strong>Prereq:</strong> C1 Mole Concept, C4 Thermochemistry</span>
+      <span class="topic-meta-pill"><strong>Time to master:</strong> 8–10 hrs</span>
+      <span class="topic-meta-pill"><a href="../subjects/chemistry.html#unit-c5">↩ Back to Chemistry</a></span>
+    </div>
+  </div>
+</header>
+
+<section class="section">
+<div class="topic-wrap">
+
+  <!-- TOC -->
+  <nav class="topic-toc">
+    <div class="topic-toc-title">📖 In this guide</div>
+    <ol>
+      <li><a href="#why">Why This Unit Matters</a></li>
+      <li><a href="#concept">What is Equilibrium?</a></li>
+      <li><a href="#kc">Writing K<sub>c</sub> Expressions</a></li>
+      <li><a href="#kp">K<sub>p</sub> and the K<sub>p</sub>–K<sub>c</sub> Relation</a></li>
+      <li><a href="#manipulate">Manipulating K — Reverse, Scale, Combine</a></li>
+      <li><a href="#q">Reaction Quotient Q — Predicting Direction</a></li>
+      <li><a href="#lechat">Le Chatelier's Principle — All Stresses</a></li>
+      <li><a href="#haber">Haber Process — Master Example</a></li>
+      <li><a href="#ice">ICE Table — The Definitive Method</a></li>
+      <li><a href="#alpha">Degree of Dissociation — PCl₅ &amp; N₂O₄</a></li>
+      <li><a href="#reference">Formula Reference</a></li>
+      <li><a href="#examples">Worked Examples</a></li>
+      <li><a href="#pyqs">JEE Previous-Year Questions</a></li>
+      <li><a href="#traps">Common Traps</a></li>
+      <li><a href="#cheat">Cheat Card</a></li>
+    </ol>
+  </nav>
+
+  <!-- 01 WHY -->
+  <div class="topic-section" id="why">
+    <h2><span class="sec-num">01</span>Why This Unit Matters</h2>
+    <p>Chemical Equilibrium is the highest-yield Physical Chemistry unit for JEE. It appears in 2–3 questions per paper, sometimes more, and the question types are highly predictable. Every numerical reduces to setting up an ICE table. Every conceptual question is Le Chatelier. Learn these two tools and this unit is nearly solved.</p>
+    <div class="callout danger">
+      <div class="callout-title">⚠ Most Skipped → Most Regretted</div>
+      Students often rush through equilibrium because "I'll understand it when I study acids and bases." This is backwards. Ionic equilibrium (C6), electrochemistry (C7), and even organic reaction rates all use equilibrium concepts. Shaky C5 = shaky everything downstream.
+    </div>
+    <div class="callout info">
+      <div class="callout-title">📊 JEE Statistics: 7–9% = 7–9 marks out of 100 in Chemistry</div>
+      Among all Physical Chemistry topics, equilibrium has the highest question frequency per paper. Master it first within Physical Chemistry.
+    </div>
+  </div>
+
+  <!-- 02 CONCEPT -->
+  <div class="topic-section" id="concept">
+    <h2><span class="sec-num">02</span>What is Equilibrium?</h2>
+    <p>When a reversible reaction proceeds in a closed system, eventually the rate of the forward reaction equals the rate of the reverse reaction. At this point, concentrations stop changing — this is <strong>dynamic equilibrium</strong>.</p>
+    <div class="compare-grid">
+      <div class="compare-col">
+        <div class="compare-col-head">What IS equilibrium</div>
+        <ul>
+          <li>Both forward and reverse reactions still occurring</li>
+          <li>Concentrations of reactants and products are constant (not equal)</li>
+          <li>Rate<sub>forward</sub> = Rate<sub>reverse</sub></li>
+          <li>System is in a minimum Gibbs energy state (ΔG = 0)</li>
+          <li>Can be approached from either direction</li>
+        </ul>
+      </div>
+      <div class="compare-col">
+        <div class="compare-col-head">What is NOT equilibrium</div>
+        <ul>
+          <li>Concentrations are equal (they almost never are)</li>
+          <li>Reactions have stopped</li>
+          <li>The system is "stuck" — it will respond to disturbances</li>
+          <li>Only applies to one direction</li>
+        </ul>
+      </div>
+    </div>
+    <div class="callout info">
+      <div class="callout-title">💡 Equilibrium vs. Completion</div>
+      Reactions with very large K (K &gt;&gt; 1) effectively "go to completion" — virtually all reactants convert to products. Reactions with very small K (K &lt;&lt; 1) barely proceed. Intermediate K → true equilibrium mixture of both.
+    </div>
+  </div>
+
+  <!-- 03 KC -->
+  <div class="topic-section" id="kc">
+    <h2><span class="sec-num">03</span>Writing K<sub>c</sub> Expressions</h2>
+    <p>For a general reaction: <strong>aA + bB ⇌ cC + dD</strong></p>
+    <div class="method-box">
+      <div class="method-box-title">Law of Mass Action</div>
+      <p style="font-size:1.1rem;text-align:center;margin:.5rem 0"><strong>K<sub>c</sub> = [C]<sup>c</sup> [D]<sup>d</sup> / [A]<sup>a</sup> [B]<sup>b</sup></strong></p>
+      <p style="color:var(--ink3);font-size:.875rem;text-align:center">Concentrations in mol/L (M) &nbsp;|&nbsp; Only at equilibrium concentrations</p>
+    </div>
+    <div class="callout warn" style="margin-top:1rem">
+      <div class="callout-title">⚠ Pure Solids and Liquids are EXCLUDED from K</div>
+      The activities of pure solids and pure liquids = 1, so they are not included in K expressions.<br>
+      Examples:
+      <ul style="margin:.5rem 0;line-height:2">
+        <li>CaCO₃(s) ⇌ CaO(s) + CO₂(g) &nbsp;→&nbsp; K<sub>c</sub> = [CO₂] (solids excluded)</li>
+        <li>H₂O(l) ⇌ H⁺(aq) + OH⁻(aq) &nbsp;→&nbsp; K<sub>w</sub> = [H⁺][OH⁻] (liquid water excluded)</li>
+        <li>Fe₂O₃(s) + 3H₂(g) ⇌ 2Fe(s) + 3H₂O(g) &nbsp;→&nbsp; K<sub>c</sub> = [H₂O]³/[H₂]³</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 04 KP -->
+  <div class="topic-section" id="kp">
+    <h2><span class="sec-num">04</span>K<sub>p</sub> and the K<sub>p</sub>–K<sub>c</sub> Relation</h2>
+    <p>For gas-phase reactions, it is often more convenient to express equilibrium in terms of partial pressures rather than concentrations:</p>
+    <div class="method-box">
+      <div class="method-box-title">K<sub>p</sub> Expression and Relation to K<sub>c</sub></div>
+      <p style="font-size:1.05rem;text-align:center;margin:.5rem 0"><strong>K<sub>p</sub> = K<sub>c</sub> (RT)<sup>Δn<sub>g</sub></sup></strong></p>
+      <p style="text-align:center;color:var(--ink3);font-size:.875rem">R = 0.0821 L·atm/mol·K &nbsp;|&nbsp; T in Kelvin &nbsp;|&nbsp; Δn<sub>g</sub> = moles gaseous products − gaseous reactants</p>
+    </div>
+    <div class="formula-table-wrap" style="margin-top:1rem">
+      <table class="formula-table">
+        <thead><tr><th>Reaction</th><th>Δn<sub>g</sub></th><th>K<sub>p</sub> vs K<sub>c</sub></th></tr></thead>
+        <tbody>
+          <tr><td>N₂ + 3H₂ ⇌ 2NH₃</td><td>2−4 = −2</td><td>K<sub>p</sub> = K<sub>c</sub>(RT)⁻² → K<sub>p</sub> &lt; K<sub>c</sub></td></tr>
+          <tr><td>PCl₅ ⇌ PCl₃ + Cl₂</td><td>2−1 = +1</td><td>K<sub>p</sub> = K<sub>c</sub>(RT)¹ → K<sub>p</sub> &gt; K<sub>c</sub></td></tr>
+          <tr><td>H₂ + Cl₂ ⇌ 2HCl</td><td>2−2 = 0</td><td>K<sub>p</sub> = K<sub>c</sub></td></tr>
+          <tr><td>N₂O₄ ⇌ 2NO₂</td><td>2−1 = +1</td><td>K<sub>p</sub> = K<sub>c</sub>(RT)</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- 05 MANIPULATE -->
+  <div class="topic-section" id="manipulate">
+    <h2><span class="sec-num">05</span>Manipulating K — Reverse, Scale, Combine</h2>
+    <div class="method-box">
+      <div class="method-box-title">Three Algebraic Rules for K</div>
+      <div class="formula-table-wrap" style="margin:0">
+        <table class="formula-table">
+          <thead><tr><th>Operation</th><th>Effect on K</th><th>Example</th></tr></thead>
+          <tbody>
+            <tr><td>Reverse the reaction</td><td>K<sub>new</sub> = 1/K</td><td>If A⇌B has K=4, then B⇌A has K=0.25</td></tr>
+            <tr><td>Multiply coefficients by n</td><td>K<sub>new</sub> = K<sup>n</sup></td><td>If A⇌B has K=4, then 2A⇌2B has K=16</td></tr>
+            <tr><td>Add two reactions (Hess for K)</td><td>K<sub>total</sub> = K₁ × K₂</td><td>K for A→C = K(A→B) × K(B→C)</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="callout info" style="margin-top:1rem">
+      <div class="callout-title">💡 K is Temperature Dependent Only</div>
+      K changes only with temperature. Changing concentration, pressure, or adding a catalyst does NOT change K — it changes the equilibrium position (the actual amounts at equilibrium) but the ratio defined by K stays fixed.
+    </div>
+  </div>
+
+  <!-- 06 Q -->
+  <div class="topic-section" id="q">
+    <h2><span class="sec-num">06</span>Reaction Quotient Q — Predicting Direction</h2>
+    <p>Q has the same mathematical form as K<sub>c</sub>, but uses <em>current</em> concentrations (not equilibrium concentrations).</p>
+    <div class="method-box">
+      <div class="method-box-title">Q vs K — Direction of Reaction</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:1rem;text-align:center;margin:.75rem 0">
+        <div style="background:#fee2e2;padding:1rem;border-radius:8px">
+          <div style="font-size:1.2rem;font-weight:700">Q &gt; K</div>
+          <div style="font-size:.875rem;margin-top:.4rem">Too many products<br>→ <strong>Reverse reaction</strong><br>→ Reactants form</div>
+        </div>
+        <div style="background:#dcfce7;padding:1rem;border-radius:8px">
+          <div style="font-size:1.2rem;font-weight:700">Q = K</div>
+          <div style="font-size:.875rem;margin-top:.4rem">At equilibrium<br>→ <strong>No net change</strong><br>→ System is stable</div>
+        </div>
+        <div style="background:#dbeafe;padding:1rem;border-radius:8px">
+          <div style="font-size:1.2rem;font-weight:700">Q &lt; K</div>
+          <div style="font-size:.875rem;margin-top:.4rem">Too many reactants<br>→ <strong>Forward reaction</strong><br>→ Products form</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 07 LE CHATELIER -->
+  <div class="topic-section" id="lechat">
+    <h2><span class="sec-num">07</span>Le Chatelier's Principle — All Stresses</h2>
+    <p><strong>Le Chatelier's Principle:</strong> When a stress is applied to a system at equilibrium, the system shifts in the direction that partially relieves that stress.</p>
+
+    <div class="formula-table-wrap">
+      <table class="formula-table">
+        <thead><tr><th>Stress</th><th>Direction of Shift</th><th>Effect on K</th></tr></thead>
+        <tbody>
+          <tr><td>Add reactant</td><td>Forward (to consume added reactant)</td><td>No change</td></tr>
+          <tr><td>Remove reactant</td><td>Reverse (to replenish reactant)</td><td>No change</td></tr>
+          <tr><td>Add product</td><td>Reverse (to consume added product)</td><td>No change</td></tr>
+          <tr><td>Remove product</td><td>Forward (to replenish product)</td><td>No change</td></tr>
+          <tr><td>Increase pressure (decrease V)</td><td>Towards side with fewer gas moles</td><td>No change</td></tr>
+          <tr><td>Decrease pressure (increase V)</td><td>Towards side with more gas moles</td><td>No change</td></tr>
+          <tr><td>Increase temperature</td><td>Endothermic direction (absorbs heat)</td><td>Increases if endo → products; decreases if exo</td></tr>
+          <tr><td>Decrease temperature</td><td>Exothermic direction (releases heat)</td><td>Decreases if endo; increases if exo</td></tr>
+          <tr><td>Add catalyst</td><td>No shift — reaches equilibrium faster</td><td>No change</td></tr>
+          <tr><td>Add inert gas at constant V</td><td>No shift (partial pressures unchanged)</td><td>No change</td></tr>
+          <tr><td>Add inert gas at constant P</td><td>Towards side with more gas moles (partial pressures decrease)</td><td>No change</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout warn" style="margin-top:1rem">
+      <div class="callout-title">⚠ The Inert Gas Trap — Most Common JEE Confusion</div>
+      <p><strong>Constant volume:</strong> Adding inert gas → total pressure rises, but partial pressures of reactants/products unchanged → <strong>no shift</strong>.</p>
+      <p><strong>Constant pressure:</strong> Adding inert gas → volume must expand to maintain pressure → partial pressures of all species decrease → system shifts towards more moles of gas.</p>
+    </div>
+
+    <!-- Interactive: Le Chatelier -->
+    <div class="explainer" style="margin-top:1.5rem">
+      <div class="explainer-title">⚖ Le Chatelier Explorer</div>
+      <p style="font-size:.875rem;color:var(--ink3);margin-bottom:.75rem">Reaction: N₂(g) + 3H₂(g) ⇌ 2NH₃(g) &nbsp;|&nbsp; ΔH = −92 kJ (exothermic)</p>
+      <div style="display:flex;gap:.75rem;flex-wrap:wrap;margin-bottom:1rem">
+        <button onclick="lc('add_n2')" style="padding:.5rem 1rem;border:1px solid var(--border);border-radius:8px;cursor:pointer;font-family:inherit;font-size:.875rem;background:var(--surface)">Add N₂</button>
+        <button onclick="lc('remove_nh3')" style="padding:.5rem 1rem;border:1px solid var(--border);border-radius:8px;cursor:pointer;font-family:inherit;font-size:.875rem;background:var(--surface)">Remove NH₃</button>
+        <button onclick="lc('inc_p')" style="padding:.5rem 1rem;border:1px solid var(--border);border-radius:8px;cursor:pointer;font-family:inherit;font-size:.875rem;background:var(--surface)">↑ Pressure</button>
+        <button onclick="lc('dec_p')" style="padding:.5rem 1rem;border:1px solid var(--border);border-radius:8px;cursor:pointer;font-family:inherit;font-size:.875rem;background:var(--surface)">↓ Pressure</button>
+        <button onclick="lc('inc_t')" style="padding:.5rem 1rem;border:1px solid var(--border);border-radius:8px;cursor:pointer;font-family:inherit;font-size:.875rem;background:var(--surface)">↑ Temperature</button>
+        <button onclick="lc('dec_t')" style="padding:.5rem 1rem;border:1px solid var(--border);border-radius:8px;cursor:pointer;font-family:inherit;font-size:.875rem;background:var(--surface)">↓ Temperature</button>
+        <button onclick="lc('catalyst')" style="padding:.5rem 1rem;border:1px solid var(--border);border-radius:8px;cursor:pointer;font-family:inherit;font-size:.875rem;background:var(--surface)">Add Catalyst</button>
+        <button onclick="lc('inert_v')" style="padding:.5rem 1rem;border:1px solid var(--border);border-radius:8px;cursor:pointer;font-family:inherit;font-size:.875rem;background:var(--surface)">Inert gas (const. V)</button>
+      </div>
+      <div id="lc-out" style="background:var(--topic-accent-l);border-radius:10px;padding:1rem 1.25rem;font-size:.875rem;line-height:1.8;min-height:60px">
+        Click a stress above to see the Le Chatelier response.
+      </div>
+    </div>
+  </div>
+
+  <!-- 08 HABER -->
+  <div class="topic-section" id="haber">
+    <h2><span class="sec-num">08</span>Haber Process — Master Example</h2>
+    <p>The industrial synthesis of ammonia is the single most-tested Le Chatelier application in JEE. Understand it deeply and you can answer any Le Chatelier question.</p>
+    <div class="method-box">
+      <div class="method-box-title">N₂(g) + 3H₂(g) ⇌ 2NH₃(g) &nbsp;&nbsp; ΔH = −92 kJ (exothermic)</div>
+      <div class="formula-table-wrap" style="margin:.75rem 0 0">
+        <table class="formula-table">
+          <thead><tr><th>Factor</th><th>For more NH₃</th><th>Industrial compromise</th></tr></thead>
+          <tbody>
+            <tr><td>Pressure</td><td>High P (4→2 gas moles)</td><td>150–300 atm (higher is costly)</td></tr>
+            <tr><td>Temperature</td><td>Low T (exothermic → low T shifts forward)</td><td>450–500°C (balance with rate)</td></tr>
+            <tr><td>Concentration</td><td>Excess N₂ and H₂; remove NH₃</td><td>NH₃ liquefied and removed continuously</td></tr>
+            <tr><td>Catalyst</td><td>Doesn't change yield, only speed</td><td>Fe₂O₃ with K₂O, Al₂O₃ promoters</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="callout info">
+      <div class="callout-title">💡 Why Not Use Even Lower Temperature?</div>
+      Low temperature means slower reaction rate. The catalyst works best around 450°C. Below ~300°C, the rate is so slow that equilibrium is essentially never reached in a practical reactor — so the high yield (from low T) is worthless because it takes too long. 450°C is the sweet spot where rate is acceptable and yield is reasonable (~15%).
+    </div>
+  </div>
+
+  <!-- 09 ICE -->
+  <div class="topic-section" id="ice">
+    <h2><span class="sec-num">09</span>ICE Table — The Definitive Method</h2>
+    <p>ICE = <strong>I</strong>nitial concentrations, <strong>C</strong>hange in concentrations, <strong>E</strong>quilibrium concentrations. Set up this table before every single equilibrium numerical — no exceptions.</p>
+
+    <div class="method-box">
+      <div class="method-box-title">ICE Table Template — A(g) ⇌ B(g) + C(g)</div>
+      <div class="formula-table-wrap" style="margin:.75rem 0 0">
+        <table class="formula-table">
+          <thead><tr><th></th><th>A</th><th>B</th><th>C</th></tr></thead>
+          <tbody>
+            <tr><td><strong>I</strong>nitial (M)</td><td>a</td><td>0</td><td>0</td></tr>
+            <tr><td><strong>C</strong>hange (M)</td><td>−x</td><td>+x</td><td>+x</td></tr>
+            <tr><td><strong>E</strong>quilibrium (M)</td><td>a−x</td><td>x</td><td>x</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="margin-top:.75rem">Then: K<sub>c</sub> = [B][C]/[A] = x²/(a−x). Solve for x. If K<sub>c</sub> &lt;&lt; 1, use the small x approximation: a−x ≈ a → x ≈ √(K<sub>c</sub>·a). Otherwise solve the quadratic exactly.</p>
+    </div>
+
+    <!-- Interactive: ICE solver -->
+    <div class="explainer" style="margin-top:1.25rem">
+      <div class="explainer-title">🧮 ICE Table Solver — A ⇌ B + C</div>
+      <p style="font-size:.875rem;color:var(--ink3);margin-bottom:.75rem">Enter initial concentration of A and K<sub>c</sub>:</p>
+      <div style="display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:1rem;align-items:center">
+        <label style="font-size:.875rem">Initial [A] (M):
+          <input id="ice-a" type="number" value="2" step="0.01" onchange="iceUpdate()" style="width:80px;padding:.3rem;border:1px solid var(--border);border-radius:6px;font-family:inherit;margin-left:.4rem">
+        </label>
+        <label style="font-size:.875rem">K<sub>c</sub>:
+          <input id="ice-k" type="number" value="0.5" step="0.001" onchange="iceUpdate()" style="width:80px;padding:.3rem;border:1px solid var(--border);border-radius:6px;font-family:inherit;margin-left:.4rem">
+        </label>
+      </div>
+      <div id="ice-out" style="background:var(--topic-accent-l);border-radius:10px;padding:1rem 1.25rem;font-size:.875rem;line-height:2;font-family:var(--font-mono)"></div>
+    </div>
+  </div>
+
+  <!-- 10 ALPHA -->
+  <div class="topic-section" id="alpha">
+    <h2><span class="sec-num">10</span>Degree of Dissociation — PCl₅ &amp; N₂O₄</h2>
+    <p>The degree of dissociation (α) is the fraction of the initial moles of a reactant that has dissociated at equilibrium. 0 ≤ α ≤ 1.</p>
+
+    <div class="method-box">
+      <div class="method-box-title">PCl₅ Dissociation — Definitive Derivation</div>
+      <p><strong>Reaction:</strong> PCl₅(g) ⇌ PCl₃(g) + Cl₂(g)</p>
+      <p>Start with <em>a</em> moles PCl₅ in volume V:</p>
+      <div class="formula-table-wrap" style="margin:.5rem 0">
+        <table class="formula-table">
+          <thead><tr><th></th><th>PCl₅</th><th>PCl₃</th><th>Cl₂</th><th>Total</th></tr></thead>
+          <tbody>
+            <tr><td>Initial</td><td>a</td><td>0</td><td>0</td><td>a</td></tr>
+            <tr><td>Change</td><td>−aα</td><td>+aα</td><td>+aα</td><td>—</td></tr>
+            <tr><td>Equilibrium</td><td>a(1−α)</td><td>aα</td><td>aα</td><td>a(1+α)</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p><strong>K<sub>c</sub></strong> = [PCl₃][Cl₂]/[PCl₅] = (aα/V)² / (a(1−α)/V) = <strong>a α²/V(1−α)</strong></p>
+      <p><strong>K<sub>p</sub></strong> = α² P / (1−α²) &nbsp;&nbsp;(when total pressure = P and Δn<sub>g</sub>=1)</p>
+      <p style="color:var(--ink3);font-size:.875rem;margin-top:.5rem">Higher pressure (smaller V or larger P) → smaller α (equilibrium shifts backward, fewer gas moles)</p>
+    </div>
+
+    <div class="method-box" style="margin-top:1rem">
+      <div class="method-box-title">N₂O₄ Dissociation</div>
+      <p><strong>Reaction:</strong> N₂O₄(g) ⇌ 2NO₂(g)</p>
+      <p>Start with 1 mol N₂O₄:</p>
+      <div class="formula-table-wrap" style="margin:.5rem 0">
+        <table class="formula-table">
+          <thead><tr><th></th><th>N₂O₄</th><th>NO₂</th><th>Total</th></tr></thead>
+          <tbody>
+            <tr><td>Initial</td><td>1</td><td>0</td><td>1</td></tr>
+            <tr><td>Equilibrium</td><td>1−α</td><td>2α</td><td>1+α</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>Mole fractions: χ(N₂O₄) = (1−α)/(1+α); χ(NO₂) = 2α/(1+α)</p>
+      <p>Partial pressures: P(N₂O₄) = P(1−α)/(1+α); P(NO₂) = 2Pα/(1+α)</p>
+      <p><strong>K<sub>p</sub></strong> = [P(NO₂)]² / P(N₂O₄) = <strong>4α²P / (1−α²)</strong></p>
+    </div>
+  </div>
+
+  <!-- 11 REFERENCE -->
+  <div class="topic-section" id="reference">
+    <h2><span class="sec-num">11</span>Formula Reference</h2>
+    <div class="formula-table-wrap">
+      <table class="formula-table">
+        <thead><tr><th>Formula</th><th>Name</th><th>Note</th></tr></thead>
+        <tbody>
+          <tr><td class="formula-cell">K<sub>c</sub> = [C]<sup>c</sup>[D]<sup>d</sup> / [A]<sup>a</sup>[B]<sup>b</sup></td><td>Equilibrium constant</td><td>Exclude pure solids/liquids</td></tr>
+          <tr><td class="formula-cell">K<sub>p</sub> = K<sub>c</sub>(RT)<sup>Δn<sub>g</sub></sup></td><td>Kp–Kc relation</td><td>R=0.0821 L·atm/mol·K</td></tr>
+          <tr><td class="formula-cell">K<sub>rev</sub> = 1/K</td><td>Reverse reaction</td><td></td></tr>
+          <tr><td class="formula-cell">K<sub>×n</sub> = K<sup>n</sup></td><td>Scaled reaction</td><td></td></tr>
+          <tr><td class="formula-cell">Q &lt; K → forward; Q &gt; K → reverse</td><td>Reaction quotient</td><td></td></tr>
+          <tr><td class="formula-cell">ΔG° = −RT ln K</td><td>Thermodynamic K</td><td>K &gt; 1 ↔ ΔG° &lt; 0</td></tr>
+          <tr><td class="formula-cell">K<sub>c</sub>(PCl₅) = aα²/V(1−α)</td><td>PCl₅ dissociation</td><td>a = initial moles</td></tr>
+          <tr><td class="formula-cell">K<sub>p</sub>(PCl₅) = α²P/(1−α²)</td><td>PCl₅ (Kp form)</td><td>Δn<sub>g</sub> = 1</td></tr>
+          <tr><td class="formula-cell">K<sub>p</sub>(N₂O₄) = 4α²P/(1−α²)</td><td>N₂O₄ dissociation</td><td>Δn<sub>g</sub> = 1</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- 12 EXAMPLES -->
+  <div class="topic-section" id="examples">
+    <h2><span class="sec-num">12</span>Worked Examples</h2>
+
+    <div class="method-box">
+      <div class="method-box-title">Example 1 — Finding K<sub>p</sub> from K<sub>c</sub> (Easy)</div>
+      <p><strong>Q:</strong> For PCl₅ ⇌ PCl₃ + Cl₂, K<sub>c</sub> = 1.8×10⁻⁷ at 250°C (523 K). Find K<sub>p</sub>.</p>
+      <p><strong>Step 1:</strong> Δn<sub>g</sub> = (1+1) − 1 = +1</p>
+      <p><strong>Step 2:</strong> K<sub>p</sub> = K<sub>c</sub>(RT)^Δn<sub>g</sub> = 1.8×10⁻⁷ × (0.082 × 523)¹</p>
+      <p><strong>Step 3:</strong> K<sub>p</sub> = 1.8×10⁻⁷ × 42.9 = <strong>7.7×10⁻⁶ atm</strong></p>
+    </div>
+
+    <div class="method-box">
+      <div class="method-box-title">Example 2 — ICE Table Numerical (Medium)</div>
+      <p><strong>Q:</strong> For A(g) ⇌ 2B(g), K<sub>p</sub> = 4 atm. Initial pressure of A = 2 atm. Find equilibrium pressures.</p>
+      <div class="formula-table-wrap" style="margin:.5rem 0">
+        <table class="formula-table">
+          <thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+          <tbody>
+            <tr><td>Initial (atm)</td><td>2</td><td>0</td></tr>
+            <tr><td>Change</td><td>−x</td><td>+2x</td></tr>
+            <tr><td>Equilibrium</td><td>2−x</td><td>2x</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p><strong>K<sub>p</sub></strong> = (2x)²/(2−x) = 4</p>
+      <p>4x² = 4(2−x) = 8 − 4x → 4x² + 4x − 8 = 0 → x² + x − 2 = 0 → (x+2)(x−1) = 0 → x = 1</p>
+      <p><strong>P(A) = 1 atm, P(B) = 2 atm</strong></p>
+    </div>
+
+    <div class="method-box">
+      <div class="method-box-title">Example 3 — N₂O₄ Degree of Dissociation (Hard)</div>
+      <p><strong>Q:</strong> N₂O₄(g) ⇌ 2NO₂(g). α = 0.5 and total pressure P = 1 atm at 25°C. Find K<sub>p</sub>.</p>
+      <p><strong>Using derived formula:</strong> K<sub>p</sub> = 4α²P / (1−α²)</p>
+      <p>K<sub>p</sub> = 4(0.5)²(1) / (1−0.25) = 4(0.25)/0.75 = 1.0/0.75 = <strong>1.33 atm</strong></p>
+    </div>
+
+    <div class="method-box">
+      <div class="method-box-title">Example 4 — Q to Predict Direction</div>
+      <p><strong>Q:</strong> For N₂ + 3H₂ ⇌ 2NH₃, K<sub>c</sub> = 0.148 at 500°C. Current concentrations: [N₂]=2M, [H₂]=3M, [NH₃]=4M. Which direction does the reaction proceed?</p>
+      <p><strong>Q<sub>c</sub></strong> = [NH₃]² / ([N₂][H₂]³) = (4)² / (2 × 27) = 16/54 = 0.296</p>
+      <p>Q = 0.296 &gt; K = 0.148 → <strong>Q &gt; K → reaction proceeds in reverse</strong> (NH₃ decomposes)</p>
+    </div>
+  </div>
+
+  <!-- 13 PYQs -->
+  <div class="topic-section" id="pyqs">
+    <h2><span class="sec-num">13</span>JEE Previous-Year Questions</h2>
+    <div class="callout info">
+      <div class="callout-title">📋 Most Tested Equilibrium Patterns</div>
+      <ol style="line-height:2;margin:0">
+        <li>Write K<sub>c</sub> and K<sub>p</sub>; find one from other using Δn<sub>g</sub>RT</li>
+        <li>ICE table numerical: given initial conditions and K, find equilibrium concentrations/pressures</li>
+        <li>Le Chatelier: predict shift direction for given stress (especially temperature and inert gas)</li>
+        <li>Degree of dissociation: PCl₅ or N₂O₄ numerical</li>
+        <li>Q vs K comparison to find reaction direction</li>
+        <li>Effect of changing conditions on K value (only temperature changes K)</li>
+      </ol>
+    </div>
+
+    <div class="method-box">
+      <div class="method-box-title">PYQ — JEE Main 2023</div>
+      <p><strong>Q:</strong> The value of K<sub>c</sub> for the reaction SO₂(g) + ½O₂(g) ⇌ SO₃(g) at 727°C is 9.9 L<sup>½</sup>mol<sup>−½</sup>. K<sub>p</sub> at 1000 K is (R = 0.082 L·atm/mol·K):</p>
+      <p>Δn<sub>g</sub> = 1 − (1 + 0.5) = −0.5</p>
+      <p>K<sub>p</sub> = K<sub>c</sub>(RT)^(−0.5) = 9.9 × (0.082 × 1000)^(−0.5) = 9.9 / √82 = 9.9/9.06 ≈ <strong>1.09 atm^(−0.5)</strong></p>
+    </div>
+
+    <div class="method-box">
+      <div class="method-box-title">PYQ — JEE Main 2022</div>
+      <p><strong>Q:</strong> For PCl₅(g) ⇌ PCl₃(g) + Cl₂(g), the degree of dissociation is α at a pressure P. At the same temperature, what happens to α if pressure is halved?</p>
+      <p>K<sub>p</sub> = α²P/(1−α²) = constant (K only changes with T).</p>
+      <p>If P halves, α² must increase proportionally to keep K<sub>p</sub> constant → <strong>α increases</strong>.</p>
+      <p>This agrees with Le Chatelier: lower pressure → more gas moles favoured → more dissociation.</p>
+    </div>
+  </div>
+
+  <!-- 14 TRAPS -->
+  <div class="topic-section" id="traps">
+    <h2><span class="sec-num">14</span>Common Traps &amp; Mistakes</h2>
+    <div class="callout danger">
+      <div class="callout-title">❌ Trap 1: Including solids/liquids in K expression</div>
+      CaCO₃(s) ⇌ CaO(s) + CO₂(g) — K<sub>c</sub> = [CO₂] only. Neither solid goes in the expression. Adding them multiplies by 1 (no numerical error) but shows conceptual misunderstanding.
+    </div>
+    <div class="callout danger">
+      <div class="callout-title">❌ Trap 2: Thinking catalyst shifts equilibrium</div>
+      A catalyst makes reactions reach equilibrium faster, but does not change the equilibrium position or K. Both forward and reverse rates increase equally.
+    </div>
+    <div class="callout danger">
+      <div class="callout-title">❌ Trap 3: Inert gas at constant pressure vs constant volume</div>
+      At constant volume: no shift. At constant pressure: shifts toward more gas moles. Always read the condition carefully — this is a classic JEE question.
+    </div>
+    <div class="callout danger">
+      <div class="callout-title">❌ Trap 4: Forgetting to use concentration (not moles) in K<sub>c</sub></div>
+      If 0.5 mol PCl₃ is formed in a 5L vessel, [PCl₃] = 0.5/5 = 0.1 M. Don't plug moles directly into K<sub>c</sub> — divide by volume first.
+    </div>
+    <div class="callout danger">
+      <div class="callout-title">❌ Trap 5: Assuming equilibrium means equal concentrations</div>
+      Equilibrium concentrations of reactants and products are almost never equal. Equal concentrations is a coincidence, not a definition. Large K → products dominate; small K → reactants dominate.
+    </div>
+  </div>
+
+  <!-- 15 CHEAT CARD -->
+  <div class="topic-section" id="cheat">
+    <h2><span class="sec-num">15</span>One-Page Cheat Card</h2>
+    <div class="method-box" style="background:var(--topic-accent-l);border-color:var(--topic-accent-m)">
+      <div class="method-box-title">⚖ Chemical Equilibrium — Rapid Reference</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.25rem">
+        <div>
+          <p style="font-weight:600;margin-bottom:.4rem">Core Formulas</p>
+          <ul style="font-size:.82rem;line-height:1.9;margin:0">
+            <li>K<sub>p</sub> = K<sub>c</sub>(RT)<sup>Δn<sub>g</sub></sup></li>
+            <li>K<sub>rev</sub> = 1/K &nbsp;|&nbsp; K<sub>×n</sub> = K<sup>n</sup></li>
+            <li>Q &lt; K → forward; Q &gt; K → reverse</li>
+            <li>K<sub>p</sub>(PCl₅) = α²P/(1−α²)</li>
+            <li>K<sub>p</sub>(N₂O₄) = 4α²P/(1−α²)</li>
+          </ul>
+        </div>
+        <div>
+          <p style="font-weight:600;margin-bottom:.4rem">Le Chatelier Rules</p>
+          <ul style="font-size:.82rem;line-height:1.9;margin:0">
+            <li>↑P → fewer gas moles side</li>
+            <li>↑T → endothermic side (K changes)</li>
+            <li>Catalyst → no shift, no K change</li>
+            <li>Inert gas, const V → no shift</li>
+            <li>Inert gas, const P → more gas moles side</li>
+          </ul>
+        </div>
+        <div>
+          <p style="font-weight:600;margin-bottom:.4rem">ICE Table Steps</p>
+          <ol style="font-size:.82rem;line-height:1.9;margin:0">
+            <li>Write balanced equation</li>
+            <li>Set up I, C, E rows</li>
+            <li>Express K in terms of x</li>
+            <li>Solve for x; check: x &lt; initial</li>
+          </ol>
+        </div>
+        <div>
+          <p style="font-weight:600;margin-bottom:.4rem">K Tells You</p>
+          <ul style="font-size:.82rem;line-height:1.9;margin:0">
+            <li>K &gt;&gt; 1 → products favoured</li>
+            <li>K &lt;&lt; 1 → reactants favoured</li>
+            <li>K changes only with T</li>
+            <li>ΔG° = −RT ln K</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="topic-cta-row">
+    <a href="../subjects/chemistry.html#unit-c5" class="topic-cta-btn secondary">↩ Back to C5 Unit</a>
+    <a href="../subjects/chemistry.html#unit-c6" class="topic-cta-btn primary">Next: Ionic Equilibrium →</a>
+    <a href="../progress.html" class="topic-cta-btn secondary">✅ Mark sessions done</a>
+  </div>
+
+</div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-brand">JEE 2027 Prep</div>
+      <div class="footer-links">
+        <a href="../index.html">Dashboard</a>
+        <a href="../subjects/math.html">Math</a>
+        <a href="../subjects/physics.html">Physics</a>
+        <a href="../subjects/chemistry.html">Chemistry</a>
+        <a href="../progress.html">Progress</a>
+        <a href="../settings.html">Settings</a>
+      </div>
+      <div class="footer-note">All Phases · May 2026 – April 2027</div>
+    </div>
+  </div>
+</footer>
+
+<div id="toast" class="toast"></div>
+<script src="../js/main.js"></script>
+<script>
+// Le Chatelier Explorer
+const LC_RESPONSES = {
+  add_n2:   { dir: '→ Forward', why: 'Added N₂ (reactant) → Q < K → system shifts forward to consume excess N₂ and produce more NH₃.', k: 'K unchanged (only T changes K).' },
+  remove_nh3: { dir: '→ Forward', why: 'Removed NH₃ (product) → Q < K → system shifts forward to replenish NH₃.', k: 'K unchanged.' },
+  inc_p:    { dir: '→ Forward', why: 'Higher pressure favours fewer gas moles. Left side: 4 mol gas; right side: 2 mol gas → forward shift → more NH₃.', k: 'K unchanged.' },
+  dec_p:    { dir: '← Reverse', why: 'Lower pressure favours more gas moles. Left side: 4 mol gas > right side: 2 mol → reverse shift → more N₂ and H₂.', k: 'K unchanged.' },
+  inc_t:    { dir: '← Reverse (endothermic direction)', why: 'Reaction is exothermic (ΔH = −92 kJ). Increasing T favours the endothermic (reverse) direction — heat is a "reactant" here. Less NH₃ produced.', k: 'K decreases (forward K becomes smaller at higher T for exothermic reaction).' },
+  dec_t:    { dir: '→ Forward (exothermic direction)', why: 'Decreasing T favours the exothermic direction. More NH₃ produced. (But reaction is slower — kinetics vs. thermodynamics trade-off)', k: 'K increases (forward K becomes larger at lower T for exothermic reaction).' },
+  catalyst: { dir: '⟺ No shift', why: 'Catalyst lowers activation energy equally for both forward and reverse reactions. Equilibrium is reached faster but the equilibrium position (ratio of products to reactants) is unchanged.', k: 'K unchanged.' },
+  inert_v:  { dir: '⟺ No shift', why: 'Adding inert gas at constant volume: partial pressures of N₂, H₂, NH₃ are unchanged (concentrations unchanged) → Q = K still → no shift.', k: 'K unchanged.' },
+};
+function lc(key) {
+  const r = LC_RESPONSES[key];
+  document.getElementById('lc-out').innerHTML =
+    `<strong>Shift:</strong> ${r.dir}<br><strong>Why:</strong> ${r.why}<br><strong>Effect on K:</strong> ${r.k}`;
+}
+
+// ICE Table Solver — A ⇌ B + C
+function iceUpdate() {
+  const a = parseFloat(document.getElementById('ice-a').value) || 0;
+  const k = parseFloat(document.getElementById('ice-k').value) || 0;
+  // Kc = x²/(a−x) → x² + kx − ka = 0 → x = (−k + √(k²+4ka)) / 2
+  const disc = k * k + 4 * k * a;
+  const x = (-k + Math.sqrt(disc)) / 2;
+  const eqA = (a - x).toFixed(4);
+  const eqB = x.toFixed(4);
+  const out = document.getElementById('ice-out');
+  if (x < 0 || x > a) {
+    out.innerHTML = 'Invalid values — check that K<sub>c</sub> and [A] are positive.';
+    return;
+  }
+  const approxValid = k < 0.01 * a;
+  out.innerHTML =
+    `ICE: [A] = ${a} - x  |  [B] = x  |  [C] = x\n` +
+    `Kc = x² / (${a} - x) = ${k}\n` +
+    `Solving: x² + ${k}x - ${(k*a).toFixed(4)} = 0\n` +
+    `x = ${x.toFixed(4)} M\n\n` +
+    `[A]eq = ${eqA} M\n` +
+    `[B]eq = [C]eq = ${eqB} M\n` +
+    `α (degree of dissociation) = ${(x/a*100).toFixed(1)}%` +
+    (approxValid ? '\n\n(Small-x approx valid: x ≈ √(Kc·a) = ' + Math.sqrt(k*a).toFixed(4) + ')' : '');
+}
+iceUpdate();
+</script>
+</body>
+</html>

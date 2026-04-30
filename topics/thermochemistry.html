@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Thermochemistry — JEE 2027 Deep-Dive</title>
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body class="topic-chem">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="nav-brand">JEE 2027</div>
+    <div class="nav-links">
+      <a href="../index.html">Dashboard</a>
+      <a href="../subjects/math.html">📐 Math</a>
+      <a href="../subjects/physics.html">⚡ Physics</a>
+      <a href="../subjects/chemistry.html" class="active">🧪 Chemistry</a>
+      <a href="../progress.html">✅ Progress</a>
+      <a href="../schedule.html">📋 Schedule</a>
+      <a href="../settings.html">⚙ Settings</a>
+    </div>
+    <button class="nav-toggle" onclick="toggleNav()">☰</button>
+  </div>
+</nav>
+
+<header class="page-hero" style="background:var(--topic-grad)">
+  <div class="page-hero-content">
+    <div class="page-hero-tag">Chemistry · Unit C4 · Deep-Dive</div>
+    <h1>🔥 Thermochemistry</h1>
+    <p>Enthalpy, Hess's Law, entropy, and Gibbs free energy — four interconnected ideas that govern whether reactions happen and how much heat they release. Master the sign conventions once and the rest falls into place.</p>
+    <div class="topic-meta-bar">
+      <span class="topic-meta-pill"><strong>Weight:</strong> 5–6% (≈5 marks)</span>
+      <span class="topic-meta-pill"><strong>Difficulty:</strong> 🟡 Moderate</span>
+      <span class="topic-meta-pill"><strong>Prereq:</strong> C1 Mole Concept</span>
+      <span class="topic-meta-pill"><strong>Time to master:</strong> 6–8 hrs</span>
+      <span class="topic-meta-pill"><a href="../subjects/chemistry.html#unit-c4">↩ Back to Chemistry</a></span>
+    </div>
+  </div>
+</header>
+
+<section class="section">
+<div class="topic-wrap">
+
+  <!-- TOC -->
+  <nav class="topic-toc">
+    <div class="topic-toc-title">📖 In this guide</div>
+    <ol>
+      <li><a href="#why">Why This Unit Matters</a></li>
+      <li><a href="#system">System, Surroundings &amp; Sign Conventions</a></li>
+      <li><a href="#firstlaw">First Law of Thermodynamics</a></li>
+      <li><a href="#enthalpy">Enthalpy — ΔH vs ΔU</a></li>
+      <li><a href="#types">Types of Enthalpy Changes</a></li>
+      <li><a href="#hess">Hess's Law — Step-by-Step</a></li>
+      <li><a href="#bond">Bond Enthalpy Method</a></li>
+      <li><a href="#entropy">Entropy — Predicting ΔS</a></li>
+      <li><a href="#gibbs">Gibbs Free Energy &amp; Spontaneity</a></li>
+      <li><a href="#matrix">Spontaneity Matrix</a></li>
+      <li><a href="#dg-k">ΔG° and Equilibrium Constant K</a></li>
+      <li><a href="#reference">Formula Reference</a></li>
+      <li><a href="#examples">Worked Examples</a></li>
+      <li><a href="#pyqs">JEE Previous-Year Questions</a></li>
+      <li><a href="#traps">Common Traps</a></li>
+      <li><a href="#cheat">Cheat Card</a></li>
+    </ol>
+  </nav>
+
+  <!-- 01 WHY -->
+  <div class="topic-section" id="why">
+    <h2><span class="sec-num">01</span>Why This Unit Matters</h2>
+    <p>Thermochemistry answers the question every chemist asks first: does this reaction release or absorb energy, and will it happen on its own? Enthalpy and entropy appear in every JEE paper — sometimes as direct numericals, sometimes hidden in equilibrium (ΔG° = −RT ln K) or electrochemistry (ΔG° = −nFE°).</p>
+    <div class="callout info">
+      <div class="callout-title">📊 JEE Pattern: Numericals + Concept Questions</div>
+      Typical C4 questions: Hess's law calculation (1–2 marks), predict sign of ΔS (1 mark), find temperature for spontaneity (1 mark), ΔH vs ΔU calculation (1 mark). Total: 4–5 reliable marks with focused preparation.
+    </div>
+    <div class="callout success">
+      <div class="callout-title">✅ Bridge to Equilibrium</div>
+      ΔG° = −RT ln K connects thermochemistry directly to Chemical Equilibrium (C5). A solid understanding of Gibbs energy makes C5 much easier to approach.
+    </div>
+  </div>
+
+  <!-- 02 SYSTEM -->
+  <div class="topic-section" id="system">
+    <h2><span class="sec-num">02</span>System, Surroundings &amp; Sign Conventions</h2>
+    <div class="compare-grid">
+      <div class="compare-col">
+        <div class="compare-col-head">System Types</div>
+        <ul>
+          <li><strong>Open:</strong> exchanges both matter and energy (e.g. open beaker)</li>
+          <li><strong>Closed:</strong> exchanges only energy, not matter (e.g. sealed flask)</li>
+          <li><strong>Isolated:</strong> exchanges neither (e.g. thermos flask — ideal)</li>
+        </ul>
+      </div>
+      <div class="compare-col">
+        <div class="compare-col-head">Sign Conventions (IUPAC)</div>
+        <ul>
+          <li><strong>q &gt; 0:</strong> heat flows INTO system (endothermic)</li>
+          <li><strong>q &lt; 0:</strong> heat flows OUT of system (exothermic)</li>
+          <li><strong>w &gt; 0:</strong> work done ON system (compression)</li>
+          <li><strong>w &lt; 0:</strong> work done BY system (expansion)</li>
+          <li>Work at constant P: <strong>w = −PΔV</strong></li>
+        </ul>
+      </div>
+      <div class="compare-col">
+        <div class="compare-col-head">Process Types</div>
+        <ul>
+          <li><strong>Isothermal:</strong> constant T; ΔU = 0 for ideal gas</li>
+          <li><strong>Adiabatic:</strong> q = 0 (no heat exchange)</li>
+          <li><strong>Isobaric:</strong> constant P; heat = ΔH</li>
+          <li><strong>Isochoric:</strong> constant V; heat = ΔU</li>
+        </ul>
+      </div>
+    </div>
+    <div class="callout warn">
+      <div class="callout-title">⚠ The JEE Sign Trap</div>
+      Work done BY the gas is negative in the IUPAC convention (w = −PΔV). When gas expands, ΔV &gt; 0, so w &lt; 0 — the system loses energy doing work on surroundings. Many textbooks use the opposite sign (w = +PΔV) — always check which convention is being used.
+    </div>
+  </div>
+
+  <!-- 03 FIRST LAW -->
+  <div class="topic-section" id="firstlaw">
+    <h2><span class="sec-num">03</span>First Law of Thermodynamics</h2>
+    <div class="method-box">
+      <div class="method-box-title">First Law: Energy is Conserved</div>
+      <p style="font-size:1.1rem;text-align:center;margin:.5rem 0"><strong>ΔU = q + w</strong></p>
+      <p style="text-align:center;color:var(--ink3);font-size:.875rem">ΔU = change in internal energy &nbsp;|&nbsp; q = heat &nbsp;|&nbsp; w = work</p>
+      <p style="margin-top:.75rem">At constant volume (ΔV = 0): w = 0, so <strong>ΔU = q<sub>v</sub></strong> (heat at constant volume = ΔU)</p>
+      <p>At constant pressure: <strong>q<sub>p</sub> = ΔH</strong> (heat at constant pressure = enthalpy change)</p>
+    </div>
+    <div class="callout info">
+      <div class="callout-title">💡 State Functions vs Path Functions</div>
+      <strong>State functions</strong> depend only on initial and final states, not the path: ΔU, ΔH, ΔS, ΔG.<br>
+      <strong>Path functions</strong> depend on the path taken: q (heat) and w (work).<br>
+      This is why Hess's Law works — ΔH is a state function, so the path doesn't matter.
+    </div>
+  </div>
+
+  <!-- 04 ENTHALPY -->
+  <div class="topic-section" id="enthalpy">
+    <h2><span class="sec-num">04</span>Enthalpy — ΔH vs ΔU</h2>
+    <div class="method-box">
+      <div class="method-box-title">The Key Relationship</div>
+      <p style="font-size:1.1rem;text-align:center;margin:.5rem 0"><strong>ΔH = ΔU + Δn<sub>g</sub>RT</strong></p>
+      <p style="text-align:center;color:var(--ink3);font-size:.875rem">Δn<sub>g</sub> = moles of gaseous products − moles of gaseous reactants</p>
+    </div>
+    <p style="margin-top:1rem">This formula corrects for the PΔV work done by/on the gas phase during a reaction at constant pressure. Liquids and solids contribute negligible volume change.</p>
+    <div class="formula-table-wrap" style="margin-top:1rem">
+      <table class="formula-table">
+        <thead><tr><th>Δn<sub>g</sub></th><th>Meaning</th><th>Relationship</th><th>Example</th></tr></thead>
+        <tbody>
+          <tr><td>Δn<sub>g</sub> = 0</td><td>Equal moles of gas on both sides</td><td>ΔH = ΔU</td><td>H₂(g) + Cl₂(g) → 2HCl(g)</td></tr>
+          <tr><td>Δn<sub>g</sub> &gt; 0</td><td>More gas produced</td><td>ΔH &gt; ΔU</td><td>CaCO₃(s) → CaO(s) + CO₂(g); Δn<sub>g</sub>=1</td></tr>
+          <tr><td>Δn<sub>g</sub> &lt; 0</td><td>Less gas produced</td><td>ΔH &lt; ΔU</td><td>N₂ + 3H₂ → 2NH₃; Δn<sub>g</sub>=−2</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- 05 TYPES -->
+  <div class="topic-section" id="types">
+    <h2><span class="sec-num">05</span>Types of Enthalpy Changes</h2>
+    <div class="formula-table-wrap">
+      <table class="formula-table">
+        <thead><tr><th>Type</th><th>Definition</th><th>Symbol</th><th>JEE Note</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Formation</strong></td><td>ΔH when 1 mol of compound forms from elements in standard states</td><td>ΔH°<sub>f</sub></td><td>ΔH°<sub>f</sub> of any element in its standard state = 0</td></tr>
+          <tr><td><strong>Combustion</strong></td><td>ΔH when 1 mol of substance burns completely in O₂</td><td>ΔH°<sub>c</sub></td><td>Always negative (exothermic)</td></tr>
+          <tr><td><strong>Neutralisation</strong></td><td>ΔH when 1 mol H⁺ reacts with 1 mol OH⁻</td><td>ΔH°<sub>n</sub></td><td>Strong acid + Strong base: always −57.3 kJ/mol</td></tr>
+          <tr><td><strong>Atomisation</strong></td><td>ΔH when 1 mol of gaseous atoms form from element</td><td>ΔH°<sub>at</sub></td><td>Always endothermic (bonds broken)</td></tr>
+          <tr><td><strong>Sublimation</strong></td><td>ΔH when solid → gas (no liquid phase)</td><td>ΔH°<sub>sub</sub></td><td>= ΔH°<sub>fus</sub> + ΔH°<sub>vap</sub></td></tr>
+          <tr><td><strong>Lattice energy</strong></td><td>ΔH when ionic solid → gaseous ions</td><td>ΔH°<sub>L</sub></td><td>Always endothermic; used in Born-Haber cycle</td></tr>
+          <tr><td><strong>Solution</strong></td><td>ΔH when 1 mol substance dissolves in large amount of water</td><td>ΔH°<sub>sol</sub></td><td>= ΔH°<sub>L</sub> + ΔH°<sub>hydration</sub></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="callout info" style="margin-top:1rem">
+      <div class="callout-title">💡 Standard State Convention</div>
+      Standard state = most stable form of element at 298 K and 1 atm. C(graphite), H₂(g), O₂(g), N₂(g), Na(s), etc. Carbon standard state is graphite, NOT diamond — so ΔH°<sub>f</sub> of graphite = 0 but ΔH°<sub>f</sub> of diamond ≠ 0.
+    </div>
+  </div>
+
+  <!-- 06 HESS -->
+  <div class="topic-section" id="hess">
+    <h2><span class="sec-num">06</span>Hess's Law — Step-by-Step Method</h2>
+    <p>Because enthalpy is a <strong>state function</strong>, the total ΔH of a reaction is the same regardless of how many steps it takes. You can combine any set of reactions algebraically to derive the ΔH for a target reaction.</p>
+
+    <div class="method-box">
+      <div class="method-box-title">Hess's Law — Definitive Method</div>
+      <ol style="line-height:2;margin:0">
+        <li><strong>Write the target equation</strong> clearly at the top.</li>
+        <li><strong>Identify which given equations</strong> contribute each species in the target.</li>
+        <li><strong>Reverse equations</strong> if needed (flip sign of ΔH).</li>
+        <li><strong>Multiply equations</strong> to match stoichiometry (multiply ΔH by same factor).</li>
+        <li><strong>Add all equations</strong> — cancel species appearing on both sides.</li>
+        <li><strong>Add all ΔH values</strong> to get total ΔH.</li>
+      </ol>
+    </div>
+
+    <div class="method-box" style="margin-top:1rem">
+      <div class="method-box-title">Worked: ΔH°<sub>f</sub> of CO using Hess's Law</div>
+      <p><strong>Target:</strong> C(s) + ½O₂(g) → CO(g) &nbsp; ΔH = ?</p>
+      <p><strong>Given:</strong></p>
+      <ul style="line-height:2;margin:0 0 .5rem">
+        <li>Eq 1: C(s) + O₂(g) → CO₂(g) &nbsp; ΔH₁ = −393 kJ</li>
+        <li>Eq 2: CO(g) + ½O₂(g) → CO₂(g) &nbsp; ΔH₂ = −283 kJ</li>
+      </ul>
+      <p><strong>Step 1:</strong> Reverse Eq 2 (to get CO on product side): CO₂(g) → CO(g) + ½O₂(g), ΔH = +283 kJ</p>
+      <p><strong>Step 2:</strong> Add Eq 1 + reversed Eq 2:</p>
+      <p style="font-family:var(--font-mono);font-size:.875rem;background:var(--surface);padding:.5rem .75rem;border-radius:6px;margin:.5rem 0">
+        C(s) + O₂(g) + CO₂(g) → CO₂(g) + CO(g) + ½O₂(g)
+      </p>
+      <p><strong>Step 3:</strong> Cancel CO₂ and ½O₂: C(s) + ½O₂(g) → CO(g)</p>
+      <p><strong>ΔH = −393 + 283 = <strong style="color:var(--topic-accent)">−110 kJ</strong></strong></p>
+    </div>
+
+    <div class="method-box" style="margin-top:1rem">
+      <div class="method-box-title">Formation Enthalpy Shortcut</div>
+      <p style="text-align:center;font-size:1rem;margin:.5rem 0"><strong>ΔH°<sub>rxn</sub> = Σ ΔH°<sub>f</sub>(products) − Σ ΔH°<sub>f</sub>(reactants)</strong></p>
+      <p>This is Hess's law applied to formation enthalpies. Remember: ΔH°<sub>f</sub> of any element in its standard state = 0.</p>
+    </div>
+  </div>
+
+  <!-- 07 BOND -->
+  <div class="topic-section" id="bond">
+    <h2><span class="sec-num">07</span>Bond Enthalpy Method</h2>
+    <p>When ΔH°<sub>f</sub> values aren't given, use bond enthalpies (also called bond dissociation energies):</p>
+    <div class="method-box">
+      <div class="method-box-title">Bond Enthalpy Formula</div>
+      <p style="font-size:1.05rem;text-align:center;margin:.5rem 0"><strong>ΔH°<sub>rxn</sub> = Σ(bond enthalpies of bonds broken) − Σ(bond enthalpies of bonds formed)</strong></p>
+      <p style="color:var(--ink3);font-size:.875rem;margin-top:.5rem">Breaking bonds = endothermic (+) &nbsp;|&nbsp; Forming bonds = exothermic (−)</p>
+    </div>
+
+    <div class="method-box" style="margin-top:1rem">
+      <div class="method-box-title">Worked: H₂ + Cl₂ → 2HCl</div>
+      <p><strong>Bonds broken:</strong> 1 H–H (436 kJ) + 1 Cl–Cl (242 kJ) = 678 kJ</p>
+      <p><strong>Bonds formed:</strong> 2 H–Cl (2 × 431 = 862 kJ)</p>
+      <p><strong>ΔH = 678 − 862 = <strong style="color:var(--topic-accent)">−184 kJ</strong></strong> (exothermic ✓)</p>
+    </div>
+
+    <div class="callout warn">
+      <div class="callout-title">⚠ Bond Enthalpy Method is Approximate</div>
+      Bond enthalpies are average values — the actual bond energy varies slightly depending on the molecule. Results from this method are approximate. When ΔH°<sub>f</sub> values are available, use the Hess's law/formation method — it gives exact answers.
+    </div>
+  </div>
+
+  <!-- 08 ENTROPY -->
+  <div class="topic-section" id="entropy">
+    <h2><span class="sec-num">08</span>Entropy — Predicting ΔS</h2>
+    <p>Entropy (S) is a measure of disorder/randomness. The Second Law states: the entropy of the universe increases for any spontaneous process.</p>
+
+    <div class="method-box">
+      <div class="method-box-title">Rules for Predicting Sign of ΔS</div>
+      <div class="compare-grid" style="margin:0">
+        <div class="compare-col">
+          <div class="compare-col-head">ΔS &gt; 0 (Entropy Increases)</div>
+          <ul>
+            <li>Solid → Liquid → Gas (phase changes)</li>
+            <li>Dissolving a solid in a liquid</li>
+            <li>Reaction produces more moles of gas</li>
+            <li>Increasing temperature</li>
+            <li>Mixing of gases</li>
+          </ul>
+        </div>
+        <div class="compare-col">
+          <div class="compare-col-head">ΔS &lt; 0 (Entropy Decreases)</div>
+          <ul>
+            <li>Gas → Liquid → Solid (phase changes)</li>
+            <li>Gas dissolves into liquid</li>
+            <li>Reaction produces fewer moles of gas</li>
+            <li>Formation of precipitate from solution</li>
+            <li>N₂ + 3H₂ → 2NH₃ (4 mol gas → 2 mol gas)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="callout info" style="margin-top:1rem">
+      <div class="callout-title">💡 Absolute Entropy</div>
+      Unlike ΔH and ΔG, absolute entropies S° can be measured (Third Law: S = 0 for perfect crystal at 0 K). Standard entropy values are tabulated. ΔS°<sub>rxn</sub> = Σ S°(products) − Σ S°(reactants). Note: ΔS°<sub>f</sub> of elements ≠ 0 (unlike ΔH°<sub>f</sub>).
+    </div>
+  </div>
+
+  <!-- 09 GIBBS -->
+  <div class="topic-section" id="gibbs">
+    <h2><span class="sec-num">09</span>Gibbs Free Energy &amp; Spontaneity</h2>
+    <div class="method-box">
+      <div class="method-box-title">Gibbs Free Energy</div>
+      <p style="font-size:1.1rem;text-align:center;margin:.5rem 0"><strong>ΔG = ΔH − TΔS</strong></p>
+      <ul style="line-height:2;margin:.5rem 0 0">
+        <li><strong>ΔG &lt; 0:</strong> Spontaneous (favourable) — reaction proceeds without external energy</li>
+        <li><strong>ΔG &gt; 0:</strong> Non-spontaneous (unfavourable) — needs external energy input</li>
+        <li><strong>ΔG = 0:</strong> System is at equilibrium</li>
+      </ul>
+    </div>
+
+    <!-- Interactive: ΔG Calculator -->
+    <div class="explainer" style="margin-top:1.25rem">
+      <div class="explainer-title">🧮 Gibbs Free Energy Calculator</div>
+      <p style="font-size:.875rem;color:var(--ink3);margin-bottom:.75rem">Enter ΔH, ΔS and temperature to check spontaneity:</p>
+      <div style="display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:1rem;align-items:center">
+        <label style="font-size:.875rem">ΔH (kJ/mol):
+          <input id="dg-dh" type="number" value="-100" onchange="dgUpdate()" style="width:80px;padding:.3rem;border:1px solid var(--border);border-radius:6px;font-family:inherit;margin-left:.4rem">
+        </label>
+        <label style="font-size:.875rem">ΔS (J/mol·K):
+          <input id="dg-ds" type="number" value="200" onchange="dgUpdate()" style="width:80px;padding:.3rem;border:1px solid var(--border);border-radius:6px;font-family:inherit;margin-left:.4rem">
+        </label>
+        <label style="font-size:.875rem">T (K):
+          <input id="dg-t" type="number" value="298" onchange="dgUpdate()" style="width:80px;padding:.3rem;border:1px solid var(--border);border-radius:6px;font-family:inherit;margin-left:.4rem">
+        </label>
+      </div>
+      <div id="dg-out" style="background:var(--topic-accent-l);border-radius:10px;padding:1rem 1.25rem;font-size:.875rem;line-height:2"></div>
+    </div>
+  </div>
+
+  <!-- 10 MATRIX -->
+  <div class="topic-section" id="matrix">
+    <h2><span class="sec-num">10</span>Spontaneity Matrix</h2>
+    <p>The combination of ΔH and ΔS signs determines when a reaction is spontaneous. This table must be memorised — it appears in JEE almost every year.</p>
+    <div class="formula-table-wrap">
+      <table class="formula-table">
+        <thead><tr><th>ΔH</th><th>ΔS</th><th>ΔG = ΔH − TΔS</th><th>Spontaneity</th><th>Example</th></tr></thead>
+        <tbody>
+          <tr style="background:#dcfce7"><td>− (exo)</td><td>+ (disorder ↑)</td><td>Always −</td><td><strong>Always spontaneous</strong> (all T)</td><td>2H₂O₂ → 2H₂O + O₂</td></tr>
+          <tr style="background:#fee2e2"><td>+ (endo)</td><td>− (disorder ↓)</td><td>Always +</td><td><strong>Never spontaneous</strong> (any T)</td><td>Reverse of above</td></tr>
+          <tr style="background:#fef9c3"><td>− (exo)</td><td>− (disorder ↓)</td><td>− at low T, + at high T</td><td><strong>Spontaneous at low T</strong></td><td>N₂ + 3H₂ → 2NH₃</td></tr>
+          <tr style="background:#fef9c3"><td>+ (endo)</td><td>+ (disorder ↑)</td><td>+ at low T, − at high T</td><td><strong>Spontaneous at high T</strong></td><td>CaCO₃ → CaO + CO₂</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="callout info" style="margin-top:1rem">
+      <div class="callout-title">💡 Crossover Temperature</div>
+      For the borderline cases (ΔH and ΔS both −, or both +), the crossover temperature where ΔG = 0 is:
+      <p style="text-align:center;font-size:1rem;margin:.5rem 0"><strong>T<sub>crossover</sub> = ΔH / ΔS</strong></p>
+      (with ΔH in J/mol and ΔS in J/mol·K, or both in kJ). Reaction is spontaneous below this T if ΔH &lt; 0, ΔS &lt; 0; above this T if ΔH &gt; 0, ΔS &gt; 0.
+    </div>
+  </div>
+
+  <!-- 11 DG-K -->
+  <div class="topic-section" id="dg-k">
+    <h2><span class="sec-num">11</span>ΔG° and Equilibrium Constant K</h2>
+    <div class="method-box">
+      <div class="method-box-title">The Bridge Between Thermodynamics and Equilibrium</div>
+      <p style="font-size:1.05rem;text-align:center;margin:.5rem 0"><strong>ΔG° = −RT ln K</strong></p>
+      <p style="text-align:center;color:var(--ink3);font-size:.875rem">R = 8.314 J/mol·K &nbsp;|&nbsp; T in Kelvin &nbsp;|&nbsp; K = equilibrium constant</p>
+    </div>
+    <div class="formula-table-wrap" style="margin-top:1rem">
+      <table class="formula-table">
+        <thead><tr><th>K value</th><th>ln K</th><th>ΔG°</th><th>Meaning</th></tr></thead>
+        <tbody>
+          <tr><td>K &gt;&gt; 1</td><td>Positive, large</td><td>Negative, large</td><td>Products strongly favoured</td></tr>
+          <tr><td>K = 1</td><td>0</td><td>0</td><td>Equal tendency for products and reactants</td></tr>
+          <tr><td>K &lt;&lt; 1</td><td>Negative, large</td><td>Positive, large</td><td>Reactants strongly favoured</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="callout info" style="margin-top:1rem">
+      <div class="callout-title">💡 Also useful: ΔG = ΔG° + RT ln Q</div>
+      This generalised form gives ΔG at any composition (not just standard). At equilibrium Q = K → ΔG = ΔG° + RT ln K = −RT ln K + RT ln K = 0. Makes sense — ΔG = 0 at equilibrium.
+    </div>
+  </div>
+
+  <!-- 12 REFERENCE -->
+  <div class="topic-section" id="reference">
+    <h2><span class="sec-num">12</span>Formula Reference</h2>
+    <div class="formula-table-wrap">
+      <table class="formula-table">
+        <thead><tr><th>Formula</th><th>Name</th><th>Note</th></tr></thead>
+        <tbody>
+          <tr><td class="formula-cell">ΔU = q + w</td><td>First Law</td><td>w = −PΔV at constant P</td></tr>
+          <tr><td class="formula-cell">ΔH = ΔU + Δn<sub>g</sub>RT</td><td>H–U relation</td><td>Δn<sub>g</sub> = gaseous moles (P−R)</td></tr>
+          <tr><td class="formula-cell">ΔH°<sub>rxn</sub> = ΣΔH°<sub>f</sub>(P) − ΣΔH°<sub>f</sub>(R)</td><td>Hess's Law</td><td>ΔH°<sub>f</sub>(element) = 0</td></tr>
+          <tr><td class="formula-cell">ΔH = Σ(broken) − Σ(formed)</td><td>Bond enthalpies</td><td>Approximate method</td></tr>
+          <tr><td class="formula-cell">q = mcΔT</td><td>Calorimetry</td><td>m=mass (g), c=specific heat (J/g·K)</td></tr>
+          <tr><td class="formula-cell">C<sub>p</sub> − C<sub>v</sub> = R</td><td>Heat capacities</td><td>Ideal gas only; R = 8.314 J/mol·K</td></tr>
+          <tr><td class="formula-cell">ΔG = ΔH − TΔS</td><td>Gibbs Free Energy</td><td>ΔG &lt; 0 → spontaneous</td></tr>
+          <tr><td class="formula-cell">T = ΔH/ΔS</td><td>Crossover temperature</td><td>ΔG = 0 at this T</td></tr>
+          <tr><td class="formula-cell">ΔG° = −RT ln K</td><td>Thermodynamics ↔ Equilibrium</td><td>K &gt; 1 ↔ ΔG° &lt; 0</td></tr>
+          <tr><td class="formula-cell">ΔG° = −nFE°</td><td>Thermodynamics ↔ Electrochemistry</td><td>n=electrons, F=96500 C/mol</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- 13 EXAMPLES -->
+  <div class="topic-section" id="examples">
+    <h2><span class="sec-num">13</span>Worked Examples</h2>
+
+    <div class="method-box">
+      <div class="method-box-title">Example 1 — ΔH vs ΔU (Easy)</div>
+      <p><strong>Q:</strong> For N₂(g) + 3H₂(g) → 2NH₃(g), ΔH = −92 kJ at 300 K. Find ΔU.</p>
+      <p><strong>Step 1:</strong> Δn<sub>g</sub> = moles of gas produced − consumed = 2 − (1+3) = −2</p>
+      <p><strong>Step 2:</strong> ΔH = ΔU + Δn<sub>g</sub>RT → ΔU = ΔH − Δn<sub>g</sub>RT</p>
+      <p><strong>Step 3:</strong> ΔU = −92000 − (−2)(8.314)(300) = −92000 + 4988 = <strong>−87012 J ≈ −87 kJ</strong></p>
+    </div>
+
+    <div class="method-box">
+      <div class="method-box-title">Example 2 — Hess's Law (Medium)</div>
+      <p><strong>Q:</strong> Find ΔH°<sub>c</sub> for benzene (C₆H₆, l). Given: ΔH°<sub>f</sub>(CO₂) = −393, ΔH°<sub>f</sub>(H₂O,l) = −286, ΔH°<sub>f</sub>(C₆H₆,l) = +49 kJ/mol</p>
+      <p><strong>Target:</strong> C₆H₆(l) + 15/2 O₂(g) → 6CO₂(g) + 3H₂O(l)</p>
+      <p><strong>ΔH°<sub>c</sub></strong> = [6(−393) + 3(−286)] − [49 + 0] = [−2358 − 858] − 49 = <strong>−3265 kJ/mol</strong></p>
+    </div>
+
+    <div class="method-box">
+      <div class="method-box-title">Example 3 — Spontaneity Temperature (Medium)</div>
+      <p><strong>Q:</strong> For a reaction: ΔH = +30 kJ, ΔS = +100 J/K. At what minimum temperature is it spontaneous?</p>
+      <p><strong>Step 1:</strong> Need ΔG &lt; 0, i.e., ΔH − TΔS &lt; 0</p>
+      <p><strong>Step 2:</strong> 30000 − T × 100 &lt; 0 → T &gt; 30000/100 = <strong>300 K</strong></p>
+      <p>Spontaneous above 300 K (ΔH &gt; 0, ΔS &gt; 0 → favourable at high T).</p>
+    </div>
+
+    <div class="method-box">
+      <div class="method-box-title">Example 4 — Bond Energy (Hard)</div>
+      <p><strong>Q:</strong> Find ΔH for CH₄(g) + 2O₂(g) → CO₂(g) + 2H₂O(g). Bond energies: C–H=413, O=O=498, C=O=799, O–H=463 kJ/mol.</p>
+      <p><strong>Bonds broken:</strong> 4 × C–H + 2 × O=O = 4(413) + 2(498) = 1652 + 996 = 2648 kJ</p>
+      <p><strong>Bonds formed:</strong> 2 × C=O (in CO₂) + 4 × O–H (in 2H₂O) = 2(799) + 4(463) = 1598 + 1852 = 3450 kJ</p>
+      <p><strong>ΔH = 2648 − 3450 = <strong style="color:var(--topic-accent)">−802 kJ</strong></strong> (exothermic ✓)</p>
+    </div>
+  </div>
+
+  <!-- 14 PYQs -->
+  <div class="topic-section" id="pyqs">
+    <h2><span class="sec-num">14</span>JEE Previous-Year Questions</h2>
+    <div class="callout info">
+      <div class="callout-title">📋 Most Tested Thermochemistry Patterns</div>
+      <ol style="line-height:2;margin:0">
+        <li>Calculate ΔH or ΔU using Δn<sub>g</sub>RT correction</li>
+        <li>Hess's law: combine 2–3 equations to find ΔH for target reaction</li>
+        <li>Predict spontaneity from ΔH/ΔS signs and temperature</li>
+        <li>Find crossover temperature where reaction becomes spontaneous</li>
+        <li>Predict sign of ΔS for a given physical/chemical change</li>
+        <li>Connect ΔG° to K (larger K → more negative ΔG°)</li>
+      </ol>
+    </div>
+
+    <div class="method-box">
+      <div class="method-box-title">PYQ — JEE Main 2023</div>
+      <p><strong>Q:</strong> Standard enthalpy of formation of CH₄(g), CO₂(g) and H₂O(l) are −74.8, −393.5 and −285.5 kJ/mol. The standard enthalpy of combustion of methane is:</p>
+      <p><strong>CH₄ + 2O₂ → CO₂ + 2H₂O</strong></p>
+      <p>ΔH°<sub>c</sub> = [−393.5 + 2(−285.5)] − [−74.8 + 0] = [−393.5 − 571] + 74.8 = <strong>−889.7 kJ/mol</strong></p>
+    </div>
+
+    <div class="method-box">
+      <div class="method-box-title">PYQ — JEE Main 2022</div>
+      <p><strong>Q:</strong> For a reaction at 300 K: ΔH° = −57.32 kJ/mol, ΔS° = −176.04 J/mol·K. The correct statement about the reaction is:</p>
+      <p>ΔG° = ΔH° − TΔS° = −57320 − 300(−176.04) = −57320 + 52812 = <strong>−4508 J/mol ≈ −4.5 kJ/mol</strong></p>
+      <p>ΔG° &lt; 0 → spontaneous at 300 K. (ΔH &lt; 0, ΔS &lt; 0 → spontaneous only at low T — and 300 K is below crossover T = 57320/176.04 ≈ 325 K)</p>
+    </div>
+  </div>
+
+  <!-- 15 TRAPS -->
+  <div class="topic-section" id="traps">
+    <h2><span class="sec-num">15</span>Common Traps &amp; Mistakes</h2>
+    <div class="callout danger">
+      <div class="callout-title">❌ Trap 1: Mixing up ΔH and ΔU sign corrections</div>
+      ΔH = ΔU + Δn<sub>g</sub>RT — the Δn<sub>g</sub> applies only to gaseous species. Liquids and solids don't contribute to Δn<sub>g</sub>. For C + O₂ → CO₂, Δn<sub>g</sub> = 1 − 1 = 0 (not counting the solid C).
+    </div>
+    <div class="callout danger">
+      <div class="callout-title">❌ Trap 2: ΔH°<sub>f</sub> of elements ≠ 0 for entropy</div>
+      Standard formation enthalpy of elements = 0. But standard entropy S° of elements ≠ 0. Don't confuse them. S°(H₂,g) = 130.6 J/mol·K (not zero).
+    </div>
+    <div class="callout danger">
+      <div class="callout-title">❌ Trap 3: Units mismatch in ΔG = ΔH − TΔS</div>
+      ΔH is usually given in kJ/mol, ΔS in J/mol·K. Convert one to match the other before calculating ΔG. Common error: −100 kJ − 298 × 200 J/K → off by 1000×.
+    </div>
+    <div class="callout danger">
+      <div class="callout-title">❌ Trap 4: Catalyst changes ΔG or K</div>
+      Catalyst does NOT change ΔG, ΔH, ΔS, or K. It only lowers activation energy — the reaction reaches equilibrium faster. The thermodynamic outcome is unchanged.
+    </div>
+    <div class="callout danger">
+      <div class="callout-title">❌ Trap 5: Spontaneous ≠ fast</div>
+      A reaction can be spontaneous (ΔG &lt; 0) but extremely slow. Diamond spontaneously converts to graphite at room temperature — but effectively never does because the kinetic barrier is enormous.
+    </div>
+  </div>
+
+  <!-- 16 CHEAT CARD -->
+  <div class="topic-section" id="cheat">
+    <h2><span class="sec-num">16</span>One-Page Cheat Card</h2>
+    <div class="method-box" style="background:var(--topic-accent-l);border-color:var(--topic-accent-m)">
+      <div class="method-box-title">🔥 Thermochemistry — Rapid Reference</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.25rem">
+        <div>
+          <p style="font-weight:600;margin-bottom:.4rem">Core Equations</p>
+          <ul style="font-size:.82rem;line-height:1.9;margin:0">
+            <li>ΔU = q + w &nbsp;|&nbsp; w = −PΔV</li>
+            <li>ΔH = ΔU + Δn<sub>g</sub>RT</li>
+            <li>ΔH°<sub>rxn</sub> = ΣΔH°<sub>f</sub>(P) − ΣΔH°<sub>f</sub>(R)</li>
+            <li>ΔG = ΔH − TΔS</li>
+            <li>ΔG° = −RT ln K</li>
+            <li>T<sub>cross</sub> = ΔH/ΔS</li>
+          </ul>
+        </div>
+        <div>
+          <p style="font-weight:600;margin-bottom:.4rem">Spontaneity Matrix</p>
+          <ul style="font-size:.82rem;line-height:1.9;margin:0">
+            <li>−ΔH, +ΔS → always spontaneous ✅</li>
+            <li>+ΔH, −ΔS → never spontaneous ❌</li>
+            <li>−ΔH, −ΔS → spontaneous at low T</li>
+            <li>+ΔH, +ΔS → spontaneous at high T</li>
+          </ul>
+        </div>
+        <div>
+          <p style="font-weight:600;margin-bottom:.4rem">ΔS Signs</p>
+          <ul style="font-size:.82rem;line-height:1.9;margin:0">
+            <li>+ΔS: solid→gas, more gas moles, dissolving</li>
+            <li>−ΔS: gas→solid, fewer gas moles, precipitate</li>
+          </ul>
+        </div>
+        <div>
+          <p style="font-weight:600;margin-bottom:.4rem">Key ΔH°<sub>f</sub> Values</p>
+          <ul style="font-size:.82rem;line-height:1.9;margin:0">
+            <li>CO₂(g): −393 kJ/mol</li>
+            <li>H₂O(l): −286 kJ/mol</li>
+            <li>H₂O(g): −242 kJ/mol</li>
+            <li>Any element (std): 0</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="topic-cta-row">
+    <a href="../subjects/chemistry.html#unit-c4" class="topic-cta-btn secondary">↩ Back to C4 Unit</a>
+    <a href="chemical-equilibrium.html" class="topic-cta-btn primary">Next: Chemical Equilibrium →</a>
+    <a href="../progress.html" class="topic-cta-btn secondary">✅ Mark sessions done</a>
+  </div>
+
+</div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-brand">JEE 2027 Prep</div>
+      <div class="footer-links">
+        <a href="../index.html">Dashboard</a>
+        <a href="../subjects/math.html">Math</a>
+        <a href="../subjects/physics.html">Physics</a>
+        <a href="../subjects/chemistry.html">Chemistry</a>
+        <a href="../progress.html">Progress</a>
+        <a href="../settings.html">Settings</a>
+      </div>
+      <div class="footer-note">All Phases · May 2026 – April 2027</div>
+    </div>
+  </div>
+</footer>
+
+<div id="toast" class="toast"></div>
+<script src="../js/main.js"></script>
+<script>
+function dgUpdate() {
+  const dh = parseFloat(document.getElementById('dg-dh').value) || 0;
+  const ds = parseFloat(document.getElementById('dg-ds').value) || 0;
+  const T  = parseFloat(document.getElementById('dg-t').value)  || 298;
+  const dg = dh - (T * ds / 1000); // dh in kJ, ds in J/K → ds/1000 to kJ
+  const spont = dg < 0 ? '✅ Spontaneous' : dg > 0 ? '❌ Non-spontaneous' : '⚖ At equilibrium (ΔG = 0)';
+  const cross = ds !== 0 ? (dh * 1000 / ds).toFixed(1) : '—';
+  document.getElementById('dg-out').innerHTML =
+    `<strong>ΔG = ΔH − TΔS</strong> = ${dh} − ${T} × ${ds}/1000 = <strong>${dg.toFixed(2)} kJ/mol</strong><br>
+     <strong>Verdict:</strong> ${spont}<br>
+     <strong>Crossover T</strong> (where ΔG = 0): <strong>${cross} K</strong>`;
+}
+dgUpdate();
+</script>
+</body>
+</html>
