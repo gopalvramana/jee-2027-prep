@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Electrochemistry — JEE 2027 Deep-Dive</title>
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body class="topic-chem">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="nav-brand">JEE 2027</div>
+    <div class="nav-links">
+      <a href="../index.html">Dashboard</a>
+      <a href="../subjects/math.html">📐 Math</a>
+      <a href="../subjects/physics.html">⚡ Physics</a>
+      <a href="../subjects/chemistry.html" class="active">🧪 Chemistry</a>
+      <a href="../progress.html">✅ Progress</a>
+      <a href="../schedule.html">📋 Schedule</a>
+      <a href="../settings.html">⚙ Settings</a>
+    </div>
+    <button class="nav-toggle" onclick="toggleNav()">☰</button>
+  </div>
+</nav>
+
+<header class="page-hero" style="background:var(--topic-grad)">
+  <div class="page-hero-content">
+    <div class="page-hero-tag">Chemistry · Unit C7 · Deep-Dive</div>
+    <h1>⚡ Electrochemistry</h1>
+    <p>Galvanic cells, Nernst equation, Faraday's laws, and conductance — four independent sub-topics each worth 1–2 marks. High yield because the question types are completely predictable and the formulas are short.</p>
+    <div class="topic-meta-bar">
+      <span class="topic-meta-pill"><strong>Weight:</strong> 6–8% (≈7 marks)</span>
+      <span class="topic-meta-pill"><strong>Difficulty:</strong> 🟡 Moderate</span>
+      <span class="topic-meta-pill"><strong>Prereq:</strong> C4 Thermochemistry, C5 Equilibrium</span>
+      <span class="topic-meta-pill"><strong>Time to master:</strong> 8–10 hrs</span>
+      <span class="topic-meta-pill"><a href="../subjects/chemistry.html#unit-c7">↩ Back to Chemistry</a></span>
+    </div>
+  </div>
+</header>
+
+<section class="section">
+<div class="topic-wrap">
+
+  <!-- TOC -->
+  <nav class="topic-toc">
+    <div class="topic-toc-title">📖 In this guide</div>
+    <ol>
+      <li><a href="#why">Why This Unit Matters</a></li>
+      <li><a href="#redox">Redox Reactions — Quick Review</a></li>
+      <li><a href="#galvanic">Galvanic Cells — Parts &amp; Notation</a></li>
+      <li><a href="#srp">Standard Reduction Potentials</a></li>
+      <li><a href="#ecell">E°<sub>cell</sub> Calculations</a></li>
+      <li><a href="#thermo">ΔG°, K, and E° — The Three-Way Link</a></li>
+      <li><a href="#nernst">Nernst Equation</a></li>
+      <li><a href="#conc-cell">Concentration Cells</a></li>
+      <li><a href="#electrolysis">Electrolysis vs Galvanic Cell</a></li>
+      <li><a href="#faraday">Faraday's Laws — The Mole Chain</a></li>
+      <li><a href="#products">Electrode Products in Electrolysis</a></li>
+      <li><a href="#conductance">Conductance — Resistance to Molar</a></li>
+      <li><a href="#kohlrausch">Kohlrausch's Law</a></li>
+      <li><a href="#reference">Formula Reference</a></li>
+      <li><a href="#examples">Worked Examples</a></li>
+      <li><a href="#pyqs">JEE Previous-Year Questions</a></li>
+      <li><a href="#traps">Common Traps</a></li>
+      <li><a href="#cheat">Cheat Card</a></li>
+    </ol>
+  </nav>
+
+  <!-- 01 WHY -->
+  <div class="topic-section" id="why">
+    <h2><span class="sec-num">01</span>Why This Unit Matters</h2>
+    <p>Electrochemistry is one of the highest-density scoring units in JEE Chemistry. It packs four distinct sub-topics — galvanic cells, Nernst equation, Faraday's electrolysis, and conductance — each of which yields 1–2 independent questions. A student who masters all four reliably scores 6–8 marks.</p>
+    <div class="callout success">
+      <div class="callout-title">✅ Four Independent Sub-Topics = Four Independent Mark Blocks</div>
+      Even if one sub-topic confuses you, the other three still give marks. Study each as a separate unit with its own formula set. Unlike Organic where everything connects, electrochemistry sub-topics are largely independent.
+    </div>
+    <div class="callout info">
+      <div class="callout-title">📊 Connections to Other Units</div>
+      Electrochemistry links thermochemistry (ΔG° = −nFE°), equilibrium (log K = nE°/0.0592), and ionic equilibrium (conductance → Ka). Mastering it reinforces C4 and C5 simultaneously.
+    </div>
+  </div>
+
+  <!-- 02 REDOX -->
+  <div class="topic-section" id="redox">
+    <h2><span class="sec-num">02</span>Redox Reactions — Quick Review</h2>
+    <div class="compare-grid">
+      <div class="compare-col">
+        <div class="compare-col-head">Oxidation</div>
+        <ul>
+          <li>Loss of electrons (OIL — Oxidation Is Loss)</li>
+          <li>Oxidation state increases</li>
+          <li>Occurs at the anode in all electrochemical cells</li>
+          <li>Reducing agent is oxidised (loses electrons)</li>
+        </ul>
+      </div>
+      <div class="compare-col">
+        <div class="compare-col-head">Reduction</div>
+        <ul>
+          <li>Gain of electrons (RIG — Reduction Is Gain)</li>
+          <li>Oxidation state decreases</li>
+          <li>Occurs at the cathode in all electrochemical cells</li>
+          <li>Oxidising agent is reduced (gains electrons)</li>
+        </ul>
+      </div>
+    </div>
+    <div class="callout info">
+      <div class="callout-title">💡 Balancing Redox — Half-Reaction Method</div>
+      Split the reaction into oxidation half-reaction and reduction half-reaction. Balance each for atoms (add H₂O for O, H⁺ for H), then balance for charge (add electrons). Multiply to equalise electrons, then add half-reactions. In basic solution, add OH⁻ to neutralise H⁺ at the end.
+    </div>
+  </div>
+
+  <!-- 03 GALVANIC -->
+  <div class="topic-section" id="galvanic">
+    <h2><span class="sec-num">03</span>Galvanic Cells — Parts &amp; Notation</h2>
+    <p>A galvanic (voltaic) cell converts spontaneous chemical energy into electrical energy. The Daniel cell (Zn-Cu) is the standard example.</p>
+    <div class="method-box">
+      <div class="method-box-title">Galvanic Cell Structure</div>
+      <div class="compare-grid" style="margin:0">
+        <div class="compare-col">
+          <div class="compare-col-head">Anode (−ve electrode)</div>
+          <ul>
+            <li>Oxidation occurs here</li>
+            <li>Electrons leave from here → external circuit</li>
+            <li>Mass decreases (metal dissolves)</li>
+            <li>Anions from salt bridge migrate here</li>
+            <li>Daniel cell: Zn → Zn²⁺ + 2e⁻</li>
+          </ul>
+        </div>
+        <div class="compare-col">
+          <div class="compare-col-head">Cathode (+ve electrode)</div>
+          <ul>
+            <li>Reduction occurs here</li>
+            <li>Electrons arrive here from external circuit</li>
+            <li>Mass increases (metal deposits)</li>
+            <li>Cations from salt bridge migrate here</li>
+            <li>Daniel cell: Cu²⁺ + 2e⁻ → Cu</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="method-box" style="margin-top:1rem">
+      <div class="method-box-title">Cell Notation (IUPAC)</div>
+      <p style="text-align:center;font-family:var(--font-mono);font-size:.95rem;margin:.5rem 0">Anode | anode solution || cathode solution | Cathode</p>
+      <p style="text-align:center;font-family:var(--font-mono);font-size:.95rem">Zn(s) | Zn²⁺(aq) || Cu²⁺(aq) | Cu(s)</p>
+      <ul style="line-height:2;margin:.5rem 0 0;font-size:.875rem">
+        <li>Single vertical bar | = phase boundary (solid/liquid interface)</li>
+        <li>Double vertical bar || = salt bridge (usually KCl or KNO₃ in agar)</li>
+        <li>Left side always = anode (oxidation); Right side always = cathode (reduction)</li>
+      </ul>
+    </div>
+    <div class="callout info">
+      <div class="callout-title">💡 Salt Bridge Function</div>
+      The salt bridge completes the circuit by allowing ion migration without mixing the two electrode solutions. Anions (Cl⁻) migrate to the anode; cations (K⁺) migrate to the cathode — maintaining electrical neutrality in each half-cell.
+    </div>
+  </div>
+
+  <!-- 04 SRP -->
+  <div class="topic-section" id="srp">
+    <h2><span class="sec-num">04</span>Standard Reduction Potentials</h2>
+    <p>All electrode potentials are measured relative to the Standard Hydrogen Electrode (SHE): H⁺(1M) + e⁻ → ½H₂(g), E° = 0.00 V by definition.</p>
+    <div class="formula-table-wrap">
+      <table class="formula-table">
+        <thead><tr><th>Half-Reaction (Reduction)</th><th>E° (V)</th><th>JEE Note</th></tr></thead>
+        <tbody>
+          <tr><td>Li⁺ + e⁻ → Li</td><td>−3.04</td><td>Strongest reducing agent (most negative E°)</td></tr>
+          <tr><td>Na⁺ + e⁻ → Na</td><td>−2.71</td><td></td></tr>
+          <tr><td>Zn²⁺ + 2e⁻ → Zn</td><td>−0.76</td><td>Anode in Daniel cell</td></tr>
+          <tr><td>Fe²⁺ + 2e⁻ → Fe</td><td>−0.44</td><td></td></tr>
+          <tr><td>2H⁺ + 2e⁻ → H₂</td><td>0.00</td><td>SHE reference</td></tr>
+          <tr><td>Cu²⁺ + 2e⁻ → Cu</td><td>+0.34</td><td>Cathode in Daniel cell</td></tr>
+          <tr><td>Fe³⁺ + e⁻ → Fe²⁺</td><td>+0.77</td><td>Common in JEE questions</td></tr>
+          <tr><td>Ag⁺ + e⁻ → Ag</td><td>+0.80</td><td>Common in JEE questions</td></tr>
+          <tr><td>Br₂ + 2e⁻ → 2Br⁻</td><td>+1.07</td><td></td></tr>
+          <tr><td>Cl₂ + 2e⁻ → 2Cl⁻</td><td>+1.36</td><td></td></tr>
+          <tr><td>F₂ + 2e⁻ → 2F⁻</td><td>+2.87</td><td>Strongest oxidising agent (most positive E°)</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="callout info" style="margin-top:1rem">
+      <div class="callout-title">💡 Reading the Table</div>
+      Higher E° (more positive) → better oxidising agent (more easily reduced). Lower E° (more negative) → better reducing agent (more easily oxidised). The species at the bottom left of the table are the strongest reducing agents.
+    </div>
+  </div>
+
+  <!-- 05 ECELL -->
+  <div class="topic-section" id="ecell">
+    <h2><span class="sec-num">05</span>E°<sub>cell</sub> Calculations</h2>
+    <div class="method-box">
+      <div class="method-box-title">Standard Cell Potential</div>
+      <p style="font-size:1.1rem;text-align:center;margin:.5rem 0"><strong>E°<sub>cell</sub> = E°<sub>cathode</sub> − E°<sub>anode</sub></strong></p>
+      <p style="text-align:center;color:var(--ink3);font-size:.875rem">Both values are taken as standard reduction potentials (from the SRP table)</p>
+      <ul style="margin:.75rem 0 0;line-height:2">
+        <li>The electrode with higher E° (reduction potential) is the cathode</li>
+        <li>The electrode with lower E° is the anode</li>
+        <li>E°<sub>cell</sub> &gt; 0 → spontaneous reaction → ΔG° &lt; 0</li>
+        <li>E°<sub>cell</sub> &lt; 0 → non-spontaneous</li>
+      </ul>
+      <p style="margin-top:.75rem"><strong>Daniel cell example:</strong> E°<sub>cell</sub> = E°(Cu²⁺/Cu) − E°(Zn²⁺/Zn) = 0.34 − (−0.76) = <strong>1.10 V</strong></p>
+    </div>
+    <div class="callout warn">
+      <div class="callout-title">⚠ E° does NOT scale with coefficients</div>
+      Standard electrode potential is an intensive property — it doesn't change when you multiply the half-reaction by 2, 3, etc. E°(Cu²⁺/Cu) = +0.34 V whether you write Cu²⁺ + 2e⁻ → Cu or 2Cu²⁺ + 4e⁻ → 2Cu. (ΔG° does scale, because ΔG° = −nFE° and n doubles.)
+    </div>
+  </div>
+
+  <!-- 06 THERMO -->
+  <div class="topic-section" id="thermo">
+    <h2><span class="sec-num">06</span>ΔG°, K, and E° — The Three-Way Link</h2>
+    <div class="method-box">
+      <div class="method-box-title">The Master Connection</div>
+      <p style="font-size:1.05rem;text-align:center;margin:.5rem 0"><strong>ΔG° = −nFE°<sub>cell</sub> = −RT ln K</strong></p>
+      <p style="text-align:center;color:var(--ink3);font-size:.875rem">n = moles of electrons transferred &nbsp;|&nbsp; F = 96500 C/mol</p>
+    </div>
+    <div class="formula-table-wrap" style="margin-top:1rem">
+      <table class="formula-table">
+        <thead><tr><th>E°<sub>cell</sub></th><th>ΔG°</th><th>K</th><th>Spontaneity</th></tr></thead>
+        <tbody>
+          <tr><td>&gt; 0</td><td>&lt; 0</td><td>&gt; 1</td><td>Forward reaction spontaneous ✅</td></tr>
+          <tr><td>= 0</td><td>= 0</td><td>= 1</td><td>At equilibrium ⚖</td></tr>
+          <tr><td>&lt; 0</td><td>&gt; 0</td><td>&lt; 1</td><td>Non-spontaneous ❌ (reverse is spontaneous)</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="callout info" style="margin-top:1rem">
+      <div class="callout-title">💡 Finding K from E°</div>
+      From ΔG° = −nFE° and ΔG° = −RT ln K:
+      <p style="text-align:center;font-size:1rem;margin:.5rem 0"><strong>log K = nE° / 0.0592</strong> (at 25°C)</p>
+      Example: Daniel cell E° = 1.10 V, n=2 → log K = 2×1.10/0.0592 = 37.2 → K = 10^37.2 ≈ 1.6×10³⁷ (reaction essentially goes to completion)
+    </div>
+  </div>
+
+  <!-- 07 NERNST -->
+  <div class="topic-section" id="nernst">
+    <h2><span class="sec-num">07</span>Nernst Equation</h2>
+    <p>The Nernst equation gives the cell potential at non-standard concentrations:</p>
+    <div class="method-box">
+      <div class="method-box-title">Nernst Equation</div>
+      <p style="font-size:1.05rem;text-align:center;margin:.5rem 0"><strong>E = E° − (RT/nF) ln Q &nbsp;=&nbsp; E° − (0.0592/n) log Q</strong> at 25°C</p>
+      <p style="text-align:center;color:var(--ink3);font-size:.875rem">Q = reaction quotient (same form as Kc, using current concentrations/pressures)</p>
+    </div>
+
+    <!-- Interactive: Nernst Calculator -->
+    <div class="explainer" style="margin-top:1.25rem">
+      <div class="explainer-title">⚡ Nernst Equation Calculator</div>
+      <p style="font-size:.875rem;color:var(--ink3);margin-bottom:.75rem">For reaction: Zn + Cu²⁺ → Zn²⁺ + Cu (n=2, E°=1.10 V)</p>
+      <div style="display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:1rem;align-items:center">
+        <label style="font-size:.875rem">E° (V):
+          <input id="ne-e0" type="number" value="1.10" step="0.01" onchange="neUpdate()" style="width:70px;padding:.3rem;border:1px solid var(--border);border-radius:6px;font-family:inherit;margin-left:.4rem">
+        </label>
+        <label style="font-size:.875rem">n (electrons):
+          <input id="ne-n" type="number" value="2" min="1" max="6" onchange="neUpdate()" style="width:55px;padding:.3rem;border:1px solid var(--border);border-radius:6px;font-family:inherit;margin-left:.4rem">
+        </label>
+        <label style="font-size:.875rem">[Zn²⁺] (M):
+          <input id="ne-ox" type="number" value="0.1" step="0.01" onchange="neUpdate()" style="width:70px;padding:.3rem;border:1px solid var(--border);border-radius:6px;font-family:inherit;margin-left:.4rem">
+        </label>
+        <label style="font-size:.875rem">[Cu²⁺] (M):
+          <input id="ne-red" type="number" value="1.0" step="0.01" onchange="neUpdate()" style="width:70px;padding:.3rem;border:1px solid var(--border);border-radius:6px;font-family:inherit;margin-left:.4rem">
+        </label>
+      </div>
+      <div id="ne-out" style="background:var(--topic-accent-l);border-radius:10px;padding:1rem 1.25rem;font-size:.875rem;line-height:2"></div>
+    </div>
+
+    <div class="callout warn" style="margin-top:1.25rem">
+      <div class="callout-title">⚠ 0.0592 factor is ONLY at 25°C</div>
+      The 0.0592/n factor comes from 2.303RT/F evaluated at 298 K. At any other temperature, use the full form: E = E° − (2.303RT/nF) log Q. JEE problems always specify 25°C when they want you to use 0.0592.
+    </div>
+  </div>
+
+  <!-- 08 CONC CELL -->
+  <div class="topic-section" id="conc-cell">
+    <h2><span class="sec-num">08</span>Concentration Cells</h2>
+    <p>A concentration cell uses the same electrode material and same electrolyte at different concentrations in each half-cell. E° = 0 (same electrodes), but E ≠ 0 because of concentration difference.</p>
+    <div class="method-box">
+      <div class="method-box-title">Concentration Cell EMF</div>
+      <p style="text-align:center;font-size:1rem;margin:.5rem 0"><strong>E = (0.0592/n) × log([high]/[low])</strong> at 25°C</p>
+      <p>The more concentrated half-cell is the cathode (reduction favoured when more ions available).</p>
+      <p><strong>Example:</strong> Cu|Cu²⁺(0.01M)||Cu²⁺(1M)|Cu (n=2)</p>
+      <p>E = (0.0592/2) × log(1/0.01) = 0.0296 × 2 = <strong>0.059 V</strong></p>
+    </div>
+  </div>
+
+  <!-- 09 ELECTROLYSIS -->
+  <div class="topic-section" id="electrolysis">
+    <h2><span class="sec-num">09</span>Electrolysis vs Galvanic Cell</h2>
+    <div class="compare-grid">
+      <div class="compare-col">
+        <div class="compare-col-head">Galvanic Cell</div>
+        <ul>
+          <li>Spontaneous redox reaction (ΔG &lt; 0)</li>
+          <li>Chemical energy → electrical energy</li>
+          <li>Anode = −ve (electrons leave)</li>
+          <li>No external power source needed</li>
+          <li>Examples: batteries, fuel cells, Daniel cell</li>
+        </ul>
+      </div>
+      <div class="compare-col">
+        <div class="compare-col-head">Electrolytic Cell</div>
+        <ul>
+          <li>Non-spontaneous reaction (ΔG &gt; 0)</li>
+          <li>Electrical energy → chemical energy</li>
+          <li>Anode = +ve (connected to +ve terminal)</li>
+          <li>External power source required</li>
+          <li>Examples: electroplating, electrolysis of water, NaCl electrolysis</li>
+        </ul>
+      </div>
+    </div>
+    <div class="callout warn">
+      <div class="callout-title">⚠ Anode Sign Convention Trap</div>
+      In BOTH cells, oxidation occurs at the anode and reduction at the cathode. However, the sign of the anode differs: in a galvanic cell, the anode is the negative electrode (electrons flow out); in an electrolytic cell, the anode is connected to the positive terminal of the battery (forces oxidation).
+    </div>
+  </div>
+
+  <!-- 10 FARADAY -->
+  <div class="topic-section" id="faraday">
+    <h2><span class="sec-num">10</span>Faraday's Laws — The Mole Chain</h2>
+    <div class="method-box">
+      <div class="method-box-title">Faraday's Laws — Unified Formula</div>
+      <p style="font-size:1.05rem;text-align:center;margin:.5rem 0"><strong>m = (M × I × t) / (n × F)</strong></p>
+      <p style="text-align:center;color:var(--ink3);font-size:.875rem">m = mass deposited (g) &nbsp;|&nbsp; M = molar mass (g/mol) &nbsp;|&nbsp; I = current (A) &nbsp;|&nbsp; t = time (s)</p>
+      <p style="text-align:center;color:var(--ink3);font-size:.875rem">n = electrons per ion &nbsp;|&nbsp; F = 96500 C/mol</p>
+    </div>
+    <div class="method-box" style="margin-top:1rem">
+      <div class="method-box-title">The Mole Chain — Always Follow This Sequence</div>
+      <ol style="line-height:2;margin:0">
+        <li><strong>Find charge passed:</strong> Q = I × t (coulombs)</li>
+        <li><strong>Find moles of electrons:</strong> mol e⁻ = Q / F = Q / 96500</li>
+        <li><strong>Find moles of substance deposited:</strong> mol substance = mol e⁻ / n (electrons per ion)</li>
+        <li><strong>Find mass or volume:</strong> mass = mol × M &nbsp;or&nbsp; volume at STP = mol × 22.4 L</li>
+      </ol>
+    </div>
+
+    <!-- Interactive: Faraday Calculator -->
+    <div class="explainer" style="margin-top:1.25rem">
+      <div class="explainer-title">🔋 Faraday's Law Calculator</div>
+      <p style="font-size:.875rem;color:var(--ink3);margin-bottom:.75rem">Find mass deposited or evolved during electrolysis:</p>
+      <div style="display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:1rem;align-items:center">
+        <label style="font-size:.875rem">Current I (A):
+          <input id="fl-i" type="number" value="2" step="0.1" onchange="flUpdate()" style="width:70px;padding:.3rem;border:1px solid var(--border);border-radius:6px;font-family:inherit;margin-left:.4rem">
+        </label>
+        <label style="font-size:.875rem">Time t (min):
+          <input id="fl-t" type="number" value="30" step="1" onchange="flUpdate()" style="width:70px;padding:.3rem;border:1px solid var(--border);border-radius:6px;font-family:inherit;margin-left:.4rem">
+        </label>
+        <label style="font-size:.875rem">Molar mass M (g/mol):
+          <input id="fl-m" type="number" value="63.5" step="0.1" onchange="flUpdate()" style="width:80px;padding:.3rem;border:1px solid var(--border);border-radius:6px;font-family:inherit;margin-left:.4rem">
+        </label>
+        <label style="font-size:.875rem">n (e⁻ per ion):
+          <input id="fl-n" type="number" value="2" min="1" max="4" onchange="flUpdate()" style="width:55px;padding:.3rem;border:1px solid var(--border);border-radius:6px;font-family:inherit;margin-left:.4rem">
+        </label>
+      </div>
+      <div id="fl-out" style="background:var(--topic-accent-l);border-radius:10px;padding:1rem 1.25rem;font-size:.875rem;line-height:2"></div>
+    </div>
+  </div>
+
+  <!-- 11 PRODUCTS -->
+  <div class="topic-section" id="products">
+    <h2><span class="sec-num">11</span>Electrode Products in Electrolysis</h2>
+    <div class="formula-table-wrap">
+      <table class="formula-table">
+        <thead><tr><th>Electrolyte</th><th>Cathode Product</th><th>Anode Product</th><th>Note</th></tr></thead>
+        <tbody>
+          <tr><td>Dilute H₂SO₄ (or H₂O)</td><td>H₂ (reduction of H⁺)</td><td>O₂ (oxidation of H₂O)</td><td>Mole ratio H₂:O₂ = 2:1</td></tr>
+          <tr><td>CuSO₄ (dilute)</td><td>Cu (reduction of Cu²⁺)</td><td>O₂ (oxidation of H₂O)</td><td>Cu deposits, [Cu²⁺] decreases</td></tr>
+          <tr><td>CuSO₄ (Cu anode)</td><td>Cu deposits</td><td>Cu dissolves (anode)into Cu²⁺</td><td>Used for electrorefining</td></tr>
+          <tr><td>NaCl (concentrated)</td><td>H₂ at cathode</td><td>Cl₂ at anode</td><td>Chlor-alkali process; NaOH also produced</td></tr>
+          <tr><td>NaCl (dilute)</td><td>H₂</td><td>O₂ (not Cl₂ — dilute Cl⁻)</td><td>O₂ preferred when [Cl⁻] low</td></tr>
+          <tr><td>AgNO₃ (Ag anode)</td><td>Ag deposits</td><td>Ag dissolves</td><td>Net: Ag transfers from anode to cathode = electroplating</td></tr>
+          <tr><td>Al₂O₃ (molten, Hall process)</td><td>Al metal</td><td>O₂ (carbon anode consumed)</td><td>Industrial Al production; n=3 for Al³⁺</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="callout info" style="margin-top:1rem">
+      <div class="callout-title">💡 Water Electrolysis Stoichiometry</div>
+      2H₂O → 2H₂ + O₂. Moles of H₂ produced = 2 × moles of O₂. For every 4 moles of electrons, 2 mol H₂ and 1 mol O₂ are produced. At cathode: 2H⁺ + 2e⁻ → H₂; at anode: 2H₂O → O₂ + 4H⁺ + 4e⁻.
+    </div>
+  </div>
+
+  <!-- 12 CONDUCTANCE -->
+  <div class="topic-section" id="conductance">
+    <h2><span class="sec-num">12</span>Conductance — Resistance to Molar</h2>
+    <div class="method-box">
+      <div class="method-box-title">Conductance Hierarchy</div>
+      <div class="formula-table-wrap" style="margin:.5rem 0">
+        <table class="formula-table">
+          <thead><tr><th>Quantity</th><th>Formula</th><th>Unit</th><th>Note</th></tr></thead>
+          <tbody>
+            <tr><td>Resistance R</td><td>R = ρ·l/A</td><td>Ω (ohm)</td><td>ρ = resistivity (Ω·m)</td></tr>
+            <tr><td>Conductance G</td><td>G = 1/R</td><td>S (Siemens)</td><td>G = 1/R</td></tr>
+            <tr><td>Specific conductance κ</td><td>κ = G × (l/A) = 1/ρ</td><td>S/m or S/cm</td><td>l/A = cell constant</td></tr>
+            <tr><td>Molar conductance Λ<sub>m</sub></td><td>Λ<sub>m</sub> = κ×1000/C</td><td>S·cm²/mol</td><td>C in mol/L; factor 1000 converts L→cm³</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="compare-grid" style="margin-top:1rem">
+      <div class="compare-col">
+        <div class="compare-col-head">Strong Electrolytes (e.g. KCl, NaCl)</div>
+        <ul>
+          <li>Fully dissociated in solution</li>
+          <li>Λ<sub>m</sub> increases slightly on dilution</li>
+          <li>Due to reduced interionic attraction at lower concentration</li>
+          <li>Debye-Hückel-Onsager equation: Λ<sub>m</sub> = Λ°<sub>m</sub> − b√C</li>
+          <li>Λ°<sub>m</sub> found by extrapolation to zero concentration</li>
+        </ul>
+      </div>
+      <div class="compare-col">
+        <div class="compare-col-head">Weak Electrolytes (e.g. CH₃COOH, NH₄OH)</div>
+        <ul>
+          <li>Partially dissociated — α increases with dilution</li>
+          <li>Λ<sub>m</sub> increases greatly on dilution (more ions formed)</li>
+          <li>Cannot extrapolate to find Λ°<sub>m</sub> — use Kohlrausch's law instead</li>
+          <li>α = Λ<sub>m</sub>/Λ°<sub>m</sub> at given concentration</li>
+          <li>Ka = Cα²/(1−α) from measured Λ<sub>m</sub></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- 13 KOHLRAUSCH -->
+  <div class="topic-section" id="kohlrausch">
+    <h2><span class="sec-num">13</span>Kohlrausch's Law</h2>
+    <div class="method-box">
+      <div class="method-box-title">Kohlrausch's Law of Independent Migration of Ions</div>
+      <p style="font-size:1.05rem;text-align:center;margin:.5rem 0"><strong>Λ°<sub>m</sub> = ν₊λ°₊ + ν₋λ°₋</strong></p>
+      <p style="text-align:center;color:var(--ink3);font-size:.875rem">Λ°<sub>m</sub> = limiting molar conductivity (at infinite dilution) &nbsp;|&nbsp; λ° = ionic conductivity</p>
+      <p style="margin-top:.5rem;font-size:.875rem">Each ion contributes independently to the total conductance. This allows Λ°<sub>m</sub> of weak electrolytes (which can't be measured directly) to be calculated from strong electrolyte data.</p>
+    </div>
+    <div class="method-box" style="margin-top:1rem">
+      <div class="method-box-title">Classic JEE Application — Λ°<sub>m</sub>(CH₃COOH)</div>
+      <p>Λ°<sub>m</sub>(CH₃COOH) cannot be found by extrapolation (conductance curve is too steep for weak acids).</p>
+      <p>Instead, use: <strong>Λ°<sub>m</sub>(CH₃COOH) = Λ°<sub>m</sub>(HCl) + Λ°<sub>m</sub>(CH₃COONa) − Λ°<sub>m</sub>(NaCl)</strong></p>
+      <p>Proof: HCl contributes (λ°H⁺ + λ°Cl⁻); CH₃COONa contributes (λ°CH₃COO⁻ + λ°Na⁺); NaCl contributes (λ°Na⁺ + λ°Cl⁻). Subtracting NaCl cancels Na⁺ and Cl⁻, leaving (λ°H⁺ + λ°CH₃COO⁻) = Λ°<sub>m</sub>(CH₃COOH).</p>
+      <p>With given values: 426 + 91 − 126 = <strong>391 S·cm²/mol</strong></p>
+    </div>
+    <div class="callout info">
+      <div class="callout-title">💡 Finding Ka from Conductance</div>
+      At concentration C: α = Λ<sub>m</sub>/Λ°<sub>m</sub> → Ka = Cα²/(1−α). This is how Ka of weak acids is determined experimentally. JEE sometimes gives conductance data and asks for Ka.
+    </div>
+  </div>
+
+  <!-- 14 REFERENCE -->
+  <div class="topic-section" id="reference">
+    <h2><span class="sec-num">14</span>Formula Reference</h2>
+    <div class="formula-table-wrap">
+      <table class="formula-table">
+        <thead><tr><th>Formula</th><th>Name</th><th>Note</th></tr></thead>
+        <tbody>
+          <tr><td class="formula-cell">E°<sub>cell</sub> = E°<sub>cathode</sub> − E°<sub>anode</sub></td><td>Standard cell potential</td><td>Both as reduction potentials</td></tr>
+          <tr><td class="formula-cell">ΔG° = −nFE°</td><td>Free energy from E°</td><td>F = 96500 C/mol</td></tr>
+          <tr><td class="formula-cell">log K = nE°/0.0592</td><td>K from E°</td><td>At 25°C</td></tr>
+          <tr><td class="formula-cell">E = E° − (0.0592/n) log Q</td><td>Nernst (25°C)</td><td>Q = ion product ratio</td></tr>
+          <tr><td class="formula-cell">E<sub>conc</sub> = (0.0592/n) log([high]/[low])</td><td>Concentration cell</td><td>E° = 0 for same electrode</td></tr>
+          <tr><td class="formula-cell">m = MIt/(nF)</td><td>Faraday's law</td><td>t in seconds</td></tr>
+          <tr><td class="formula-cell">Q = It (coulombs)</td><td>Charge passed</td><td></td></tr>
+          <tr><td class="formula-cell">mol e⁻ = Q/F = It/F</td><td>Moles of electrons</td><td></td></tr>
+          <tr><td class="formula-cell">Λ<sub>m</sub> = κ × 1000/C</td><td>Molar conductance</td><td>C in mol/L, κ in S/cm</td></tr>
+          <tr><td class="formula-cell">Λ°<sub>m</sub> = Σν₊λ°₊ + Σν₋λ°₋</td><td>Kohlrausch's law</td><td></td></tr>
+          <tr><td class="formula-cell">α = Λ<sub>m</sub>/Λ°<sub>m</sub></td><td>Degree of dissociation</td><td>From conductance data</td></tr>
+          <tr><td class="formula-cell">Ka = Cα²/(1−α)</td><td>Ka from α</td><td>Combined with Ostwald</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- 15 EXAMPLES -->
+  <div class="topic-section" id="examples">
+    <h2><span class="sec-num">15</span>Worked Examples</h2>
+
+    <div class="method-box">
+      <div class="method-box-title">Example 1 — E°cell and ΔG° (Easy)</div>
+      <p><strong>Q:</strong> E°(Zn²⁺/Zn) = −0.76 V, E°(Cu²⁺/Cu) = +0.34 V. Find E°cell and ΔG°.</p>
+      <p>Zn is the anode (lower E°); Cu is the cathode. n = 2 electrons.</p>
+      <p>E°cell = 0.34 − (−0.76) = <strong>1.10 V</strong></p>
+      <p>ΔG° = −nFE° = −2 × 96500 × 1.10 = <strong>−212,300 J = −212.3 kJ/mol</strong></p>
+    </div>
+
+    <div class="method-box">
+      <div class="method-box-title">Example 2 — Nernst Equation (Medium)</div>
+      <p><strong>Q:</strong> Find EMF of Daniel cell when [Zn²⁺] = 0.1 M and [Cu²⁺] = 0.01 M at 25°C. E° = 1.10 V.</p>
+      <p>Reaction: Zn + Cu²⁺ → Zn²⁺ + Cu &nbsp;|&nbsp; Q = [Zn²⁺]/[Cu²⁺] = 0.1/0.01 = 10</p>
+      <p>E = 1.10 − (0.0592/2) × log(10) = 1.10 − 0.0296 × 1 = <strong>1.070 V</strong></p>
+    </div>
+
+    <div class="method-box">
+      <div class="method-box-title">Example 3 — Faraday's Law (Medium)</div>
+      <p><strong>Q:</strong> 2A flows through CuSO₄ solution for 30 min. Find mass of Cu deposited. (M<sub>Cu</sub> = 63.5, n = 2)</p>
+      <p>Step 1: Q = I × t = 2 × 30 × 60 = 3600 C</p>
+      <p>Step 2: mol e⁻ = 3600/96500 = 0.0373 mol</p>
+      <p>Step 3: mol Cu = 0.0373/2 = 0.01866 mol (n=2 for Cu²⁺)</p>
+      <p>Step 4: mass = 0.01866 × 63.5 = <strong>1.185 g</strong></p>
+    </div>
+
+    <div class="method-box">
+      <div class="method-box-title">Example 4 — Kohlrausch + Ka (Hard)</div>
+      <p><strong>Q:</strong> Conductivity of 0.1 M CH₃COOH = 0.0041 S/m. Λ°<sub>m</sub>(CH₃COOH) = 391 S·cm²/mol. Find Ka.</p>
+      <p>Convert κ: 0.0041 S/m = 0.041 S/cm (×100 since 1m = 100cm... wait: S/m × 0.01 = S/cm) → 0.0041 S/m = 0.000041 S/cm</p>
+      <p>Λ<sub>m</sub> = κ×1000/C = 0.000041 × 1000 / 0.1 = <strong>0.41 S·cm²/mol</strong></p>
+      <p>Wait — more carefully: κ = 0.0041 S/m = 4.1×10⁻³ S/m = 4.1×10⁻⁵ S/cm; C = 0.1 mol/L</p>
+      <p>Λ<sub>m</sub> = (4.1×10⁻⁵ S/cm × 1000 cm³/L) / 0.1 mol/L = <strong>0.41 S·cm²/mol</strong></p>
+      <p>α = Λ<sub>m</sub>/Λ°<sub>m</sub> = 0.41/391 = 0.00105 = 0.105%</p>
+      <p>Ka = Cα²/(1−α) ≈ Cα² = 0.1 × (0.00105)² = <strong>1.1×10⁻⁷</strong></p>
+      <p><em>Note: textbooks often use κ in S/cm directly; always check units carefully.</em></p>
+    </div>
+  </div>
+
+  <!-- 16 PYQs -->
+  <div class="topic-section" id="pyqs">
+    <h2><span class="sec-num">16</span>JEE Previous-Year Questions</h2>
+    <div class="callout info">
+      <div class="callout-title">📋 Most Tested Electrochemistry Patterns</div>
+      <ol style="line-height:2;margin:0">
+        <li>E°cell from standard reduction potentials; identify anode/cathode</li>
+        <li>Nernst equation: find E at given concentrations</li>
+        <li>Find K from E° (log K = nE°/0.0592)</li>
+        <li>Faraday's law: mass deposited or gas evolved given I and t</li>
+        <li>Kohlrausch's law: find Λ°<sub>m</sub> of weak electrolyte from three strong electrolytes</li>
+        <li>Best reducing/oxidising agent from SRP table</li>
+      </ol>
+    </div>
+
+    <div class="method-box">
+      <div class="method-box-title">PYQ — JEE Main 2023</div>
+      <p><strong>Q:</strong> 5A current is passed for 1 hour through AgNO₃ solution. Find mass of Ag deposited. (M<sub>Ag</sub>=108, n=1)</p>
+      <p>Q = 5 × 3600 = 18000 C &nbsp;|&nbsp; mol e⁻ = 18000/96500 = 0.1865 &nbsp;|&nbsp; mol Ag = 0.1865 (n=1) &nbsp;|&nbsp; mass = 0.1865 × 108 = <strong>20.1 g</strong></p>
+    </div>
+
+    <div class="method-box">
+      <div class="method-box-title">PYQ — JEE Main 2022</div>
+      <p><strong>Q:</strong> For the cell Zn|Zn²⁺(0.1M)||Cu²⁺(0.01M)|Cu at 25°C, E°cell = 1.10 V. The cell potential E is:</p>
+      <p>Q = [Zn²⁺]/[Cu²⁺] = 0.1/0.01 = 10 &nbsp;|&nbsp; E = 1.10 − (0.0592/2)log(10) = 1.10 − 0.0296 = <strong>1.07 V</strong></p>
+    </div>
+  </div>
+
+  <!-- 17 TRAPS -->
+  <div class="topic-section" id="traps">
+    <h2><span class="sec-num">17</span>Common Traps &amp; Mistakes</h2>
+    <div class="callout danger">
+      <div class="callout-title">❌ Trap 1: E°cell = E°anode + E°cathode (reversing the anode sign)</div>
+      The correct formula is E°cell = E°cathode − E°anode, where BOTH are taken as reduction potentials. A common mistake is to flip the anode sign and add: this is equivalent to E°cell = E°(red,cathode) + E°(ox,anode) = E°(red,cathode) − E°(red,anode). The result is the same, but students often double-flip and get wrong answers.
+    </div>
+    <div class="callout danger">
+      <div class="callout-title">❌ Trap 2: Multiplying E° by stoichiometric factor</div>
+      Doubling a half-reaction does NOT double E°. E° is an intensive property (like temperature — doubling a hot body doesn't make it twice as hot). However, n doubles, so ΔG° = −nFE° does double.
+    </div>
+    <div class="callout danger">
+      <div class="callout-title">❌ Trap 3: Using minutes instead of seconds in Faraday's law</div>
+      Q = I × t requires t in seconds. 30 minutes = 1800 seconds. This error multiplies the answer by 60 — very costly.
+    </div>
+    <div class="callout danger">
+      <div class="callout-title">❌ Trap 4: Anode is positive in galvanic cell</div>
+      In a galvanic cell, the anode is the NEGATIVE electrode (electrons flow out to external circuit). In an electrolytic cell, the anode is connected to the positive terminal. Same chemistry, different sign labelling.
+    </div>
+    <div class="callout danger">
+      <div class="callout-title">❌ Trap 5: Units in molar conductance</div>
+      Λm = κ × 1000/C requires κ in S/cm and C in mol/L. If κ is given in S/m, divide by 100 to convert to S/cm (not multiply). SI unit confusion is the #1 source of errors in conductance numericals.
+    </div>
+  </div>
+
+  <!-- 18 CHEAT CARD -->
+  <div class="topic-section" id="cheat">
+    <h2><span class="sec-num">18</span>One-Page Cheat Card</h2>
+    <div class="method-box" style="background:var(--topic-accent-l);border-color:var(--topic-accent-m)">
+      <div class="method-box-title">⚡ Electrochemistry — Rapid Reference</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.25rem">
+        <div>
+          <p style="font-weight:600;margin-bottom:.4rem">Galvanic Cell</p>
+          <ul style="font-size:.82rem;line-height:1.9;margin:0">
+            <li>E°cell = E°(cathode) − E°(anode)</li>
+            <li>ΔG° = −nFE° &nbsp;|&nbsp; log K = nE°/0.0592</li>
+            <li>Anode = oxidation = −ve electrode</li>
+            <li>Higher E° → cathode</li>
+          </ul>
+        </div>
+        <div>
+          <p style="font-weight:600;margin-bottom:.4rem">Nernst Equation</p>
+          <ul style="font-size:.82rem;line-height:1.9;margin:0">
+            <li>E = E° − (0.0592/n) log Q (25°C)</li>
+            <li>Q = [products]/[reactants]</li>
+            <li>At equil.: E=0 → log K = nE°/0.0592</li>
+            <li>Conc. cell: E = (0.0592/n) log([hi]/[lo])</li>
+          </ul>
+        </div>
+        <div>
+          <p style="font-weight:600;margin-bottom:.4rem">Faraday's Law Chain</p>
+          <ul style="font-size:.82rem;line-height:1.9;margin:0">
+            <li>Q = It (seconds!) &nbsp;|&nbsp; mol e⁻ = Q/96500</li>
+            <li>mol deposited = mol e⁻ / n</li>
+            <li>mass = mol × M &nbsp;|&nbsp; gas at STP: ×22400 mL</li>
+          </ul>
+        </div>
+        <div>
+          <p style="font-weight:600;margin-bottom:.4rem">Conductance</p>
+          <ul style="font-size:.82rem;line-height:1.9;margin:0">
+            <li>Λ<sub>m</sub> = κ×1000/C &nbsp;(κ in S/cm)</li>
+            <li>Kohlrausch: Λ°<sub>m</sub>(CH₃COOH) = HCl + CH₃COONa − NaCl</li>
+            <li>α = Λm/Λ°m &nbsp;→&nbsp; Ka = Cα²/(1−α)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="topic-cta-row">
+    <a href="../subjects/chemistry.html#unit-c7" class="topic-cta-btn secondary">↩ Back to C7 Unit</a>
+    <a href="../subjects/chemistry.html#unit-c8" class="topic-cta-btn primary">Next: GOC (Organic) →</a>
+    <a href="../progress.html" class="topic-cta-btn secondary">✅ Mark sessions done</a>
+  </div>
+
+</div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-brand">JEE 2027 Prep</div>
+      <div class="footer-links">
+        <a href="../index.html">Dashboard</a>
+        <a href="../subjects/math.html">Math</a>
+        <a href="../subjects/physics.html">Physics</a>
+        <a href="../subjects/chemistry.html">Chemistry</a>
+        <a href="../progress.html">Progress</a>
+        <a href="../settings.html">Settings</a>
+      </div>
+      <div class="footer-note">All Phases · May 2026 – April 2027</div>
+    </div>
+  </div>
+</footer>
+
+<div id="toast" class="toast"></div>
+<script src="../js/main.js"></script>
+<script>
+// Nernst Calculator
+function neUpdate() {
+  const e0  = parseFloat(document.getElementById('ne-e0').value)  || 1.10;
+  const n   = parseFloat(document.getElementById('ne-n').value)   || 2;
+  const ox  = parseFloat(document.getElementById('ne-ox').value)  || 0.1;  // [Zn²⁺] products
+  const red = parseFloat(document.getElementById('ne-red').value) || 1.0;  // [Cu²⁺] reactants
+  const Q   = ox / red;
+  const E   = e0 - (0.0592 / n) * Math.log10(Q);
+  document.getElementById('ne-out').innerHTML =
+    `<strong>Q</strong> = [Zn²⁺]/[Cu²⁺] = ${ox}/${red} = ${Q.toFixed(4)}<br>
+     <strong>E = E° − (0.0592/n) log Q</strong><br>
+     E = ${e0} − (0.0592/${n}) × log(${Q.toFixed(4)})<br>
+     E = ${e0} − ${(0.0592/n).toFixed(4)} × ${Math.log10(Q).toFixed(4)}<br>
+     <strong>E = ${E.toFixed(4)} V</strong>`;
+}
+neUpdate();
+
+// Faraday's Law Calculator
+function flUpdate() {
+  const I = parseFloat(document.getElementById('fl-i').value) || 2;
+  const t = parseFloat(document.getElementById('fl-t').value) || 30;
+  const M = parseFloat(document.getElementById('fl-m').value) || 63.5;
+  const n = parseFloat(document.getElementById('fl-n').value) || 2;
+  const tSec = t * 60;
+  const Q    = I * tSec;
+  const molE = Q / 96500;
+  const molD = molE / n;
+  const mass = molD * M;
+  document.getElementById('fl-out').innerHTML =
+    `<strong>Step 1 — Charge:</strong> Q = ${I}A × ${tSec}s = ${Q.toFixed(1)} C<br>
+     <strong>Step 2 — mol e⁻:</strong> ${Q.toFixed(1)} / 96500 = ${molE.toFixed(5)} mol<br>
+     <strong>Step 3 — mol deposited:</strong> ${molE.toFixed(5)} / ${n} = ${molD.toFixed(5)} mol<br>
+     <strong>Step 4 — Mass:</strong> ${molD.toFixed(5)} × ${M} = <strong>${mass.toFixed(3)} g</strong>`;
+}
+flUpdate();
+</script>
+</body>
+</html>

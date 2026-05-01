@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ionic Equilibrium — JEE 2027 Deep-Dive</title>
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body class="topic-chem">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="nav-brand">JEE 2027</div>
+    <div class="nav-links">
+      <a href="../index.html">Dashboard</a>
+      <a href="../subjects/math.html">📐 Math</a>
+      <a href="../subjects/physics.html">⚡ Physics</a>
+      <a href="../subjects/chemistry.html" class="active">🧪 Chemistry</a>
+      <a href="../progress.html">✅ Progress</a>
+      <a href="../schedule.html">📋 Schedule</a>
+      <a href="../settings.html">⚙ Settings</a>
+    </div>
+    <button class="nav-toggle" onclick="toggleNav()">☰</button>
+  </div>
+</nav>
+
+<header class="page-hero" style="background:var(--topic-grad)">
+  <div class="page-hero-content">
+    <div class="page-hero-tag">Chemistry · Unit C6 · Deep-Dive</div>
+    <h1>🧪 Ionic Equilibrium</h1>
+    <p>pH, buffers, and K<sub>sp</sub> — every acid-base JEE question uses the same four formulas. Nail Ka/Kb, Henderson-Hasselbalch, and the solubility product chain and this unit becomes 5–7 reliable marks.</p>
+    <div class="topic-meta-bar">
+      <span class="topic-meta-pill"><strong>Weight:</strong> 5–7% (≈6 marks)</span>
+      <span class="topic-meta-pill"><strong>Difficulty:</strong> 🟠 High</span>
+      <span class="topic-meta-pill"><strong>Prereq:</strong> C1 Mole Concept, C5 Equilibrium</span>
+      <span class="topic-meta-pill"><strong>Time to master:</strong> 8–10 hrs</span>
+      <span class="topic-meta-pill"><a href="../subjects/chemistry.html#unit-c6">↩ Back to Chemistry</a></span>
+    </div>
+  </div>
+</header>
+
+<section class="section">
+<div class="topic-wrap">
+
+  <!-- TOC -->
+  <nav class="topic-toc">
+    <div class="topic-toc-title">📖 In this guide</div>
+    <ol>
+      <li><a href="#why">Why This Unit Matters</a></li>
+      <li><a href="#theories">Acid-Base Theories</a></li>
+      <li><a href="#kw">K<sub>w</sub>, pH and pOH</a></li>
+      <li><a href="#strong">Strong Acids &amp; Bases — pH</a></li>
+      <li><a href="#weak">Weak Acids &amp; Bases — K<sub>a</sub>, K<sub>b</sub>, α</a></li>
+      <li><a href="#conjugate">Conjugate Pairs &amp; K<sub>a</sub>·K<sub>b</sub> = K<sub>w</sub></a></li>
+      <li><a href="#ostwald">Ostwald's Dilution Law</a></li>
+      <li><a href="#buffer">Buffer Solutions &amp; Henderson-Hasselbalch</a></li>
+      <li><a href="#hydrolysis">Salt Hydrolysis</a></li>
+      <li><a href="#ksp">K<sub>sp</sub> &amp; Molar Solubility</a></li>
+      <li><a href="#common-ion">Common Ion Effect</a></li>
+      <li><a href="#precip">Ionic Product vs K<sub>sp</sub> — Precipitation</a></li>
+      <li><a href="#reference">Formula Reference</a></li>
+      <li><a href="#examples">Worked Examples</a></li>
+      <li><a href="#pyqs">JEE Previous-Year Questions</a></li>
+      <li><a href="#traps">Common Traps</a></li>
+      <li><a href="#cheat">Cheat Card</a></li>
+    </ol>
+  </nav>
+
+  <!-- 01 WHY -->
+  <div class="topic-section" id="why">
+    <h2><span class="sec-num">01</span>Why This Unit Matters</h2>
+    <p>Ionic equilibrium directly builds on C5 (Chemical Equilibrium) — it's just equilibrium applied to ions in solution. The Ka/Kb framework is the same ICE table approach you already know. JEE tests acid-base chemistry in nearly every paper, often with 2 direct questions and further application in electrochemistry.</p>
+    <div class="callout info">
+      <div class="callout-title">📊 JEE Pattern: Numericals Dominate</div>
+      Most C6 JEE questions are calculation-based: find pH of weak acid/base, buffer pH after adding strong acid/base, molar solubility from Ksp. The formulas are few and the pattern is always the same — recognise it and the marks are nearly automatic.
+    </div>
+    <div class="callout success">
+      <div class="callout-title">✅ Four Formulas to Master</div>
+      1. [H⁺] = √(Ka·C) for weak acids &nbsp;|&nbsp; 2. pH = pKa + log([A⁻]/[HA]) for buffers &nbsp;|&nbsp; 3. Ksp = (s)^a (ns)^b for solubility &nbsp;|&nbsp; 4. Ka × Kb = Kw for conjugate pairs. These four handle ~80% of questions.
+    </div>
+  </div>
+
+  <!-- 02 THEORIES -->
+  <div class="topic-section" id="theories">
+    <h2><span class="sec-num">02</span>Acid-Base Theories</h2>
+    <div class="compare-grid">
+      <div class="compare-col">
+        <div class="compare-col-head">Arrhenius (1884)</div>
+        <ul>
+          <li>Acid: produces H⁺ in water</li>
+          <li>Base: produces OH⁻ in water</li>
+          <li>Limited to aqueous solutions</li>
+          <li>Examples: HCl (acid), NaOH (base)</li>
+        </ul>
+      </div>
+      <div class="compare-col">
+        <div class="compare-col-head">Brønsted-Lowry (1923)</div>
+        <ul>
+          <li>Acid: proton (H⁺) donor</li>
+          <li>Base: proton acceptor</li>
+          <li>Works in non-aqueous solvents too</li>
+          <li>Conjugate pairs: HA/A⁻ and BH⁺/B</li>
+          <li>NH₃ is a base (accepts H⁺ → NH₄⁺)</li>
+        </ul>
+      </div>
+      <div class="compare-col">
+        <div class="compare-col-head">Lewis (1923)</div>
+        <ul>
+          <li>Acid: electron pair acceptor</li>
+          <li>Base: electron pair donor</li>
+          <li>Broadest definition — includes reactions with no proton transfer</li>
+          <li>BF₃ is a Lewis acid (accepts from NH₃)</li>
+          <li>AlCl₃, Fe³⁺, H⁺ are Lewis acids</li>
+        </ul>
+      </div>
+    </div>
+    <div class="callout info">
+      <div class="callout-title">💡 JEE Application of Lewis Theory</div>
+      Lewis acid-base concept is tested in questions about: (1) why BF₃ reacts with NH₃ (Lewis acid-base pair), (2) why AlCl₃ is a catalyst in Friedel-Crafts reactions (Lewis acid), (3) ligand-metal bonding in coordination compounds (ligands = Lewis bases; metal = Lewis acid).
+    </div>
+  </div>
+
+  <!-- 03 KW -->
+  <div class="topic-section" id="kw">
+    <h2><span class="sec-num">03</span>K<sub>w</sub>, pH and pOH</h2>
+    <div class="method-box">
+      <div class="method-box-title">Water Self-Ionisation</div>
+      <p style="text-align:center;font-size:1rem;margin:.5rem 0"><strong>H₂O ⇌ H⁺ + OH⁻</strong></p>
+      <p style="text-align:center"><strong>K<sub>w</sub> = [H⁺][OH⁻] = 10⁻¹⁴ at 25°C</strong></p>
+      <p style="margin-top:.75rem">Pure water: [H⁺] = [OH⁻] = 10⁻⁷ M → pH = 7 (neutral at 25°C)</p>
+      <ul style="line-height:2;margin:.5rem 0 0">
+        <li><strong>pH = −log[H⁺]</strong> &nbsp;|&nbsp; <strong>pOH = −log[OH⁻]</strong></li>
+        <li><strong>pH + pOH = pKw = 14</strong> (at 25°C only)</li>
+        <li><strong>pKa + pKb = pKw = 14</strong> (for conjugate pair)</li>
+      </ul>
+    </div>
+    <div class="callout warn">
+      <div class="callout-title">⚠ Kw is Temperature Dependent</div>
+      Kw = 10⁻¹⁴ only at 25°C (298 K). At higher temperatures Kw increases, so neutral pH &lt; 7. At 37°C (body temp), Kw ≈ 2.4×10⁻¹⁴, neutral pH ≈ 6.8. JEE sometimes asks about this — "neutral" means [H⁺]=[OH⁻], not pH=7.
+    </div>
+  </div>
+
+  <!-- 04 STRONG -->
+  <div class="topic-section" id="strong">
+    <h2><span class="sec-num">04</span>Strong Acids &amp; Bases — pH Calculations</h2>
+    <div class="formula-table-wrap">
+      <table class="formula-table">
+        <thead><tr><th>Species</th><th>[H⁺] or [OH⁻]</th><th>Example</th></tr></thead>
+        <tbody>
+          <tr><td>Strong monoprotic acid (HCl, HNO₃)</td><td>[H⁺] = C (full dissociation)</td><td>0.01 M HCl → [H⁺]=0.01 M → pH=2</td></tr>
+          <tr><td>Strong diprotic acid (H₂SO₄ dilute)</td><td>[H⁺] = 2C</td><td>0.01 M H₂SO₄ → [H⁺]=0.02 M → pH=1.7</td></tr>
+          <tr><td>Strong monobase (NaOH, KOH)</td><td>[OH⁻] = C → [H⁺]=Kw/C</td><td>0.01 M NaOH → pOH=2 → pH=12</td></tr>
+          <tr><td>Strong dibase (Ba(OH)₂)</td><td>[OH⁻] = 2C</td><td>0.001 M Ba(OH)₂ → [OH⁻]=0.002 → pOH=2.7 → pH=11.3</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="callout info">
+      <div class="callout-title">💡 Very Dilute Strong Acid — Trap</div>
+      For very dilute HCl (say 10⁻⁸ M), [H⁺] ≠ 10⁻⁸ M. Water's own [H⁺] contribution (10⁻⁷ M) becomes significant. Total [H⁺] = 10⁻⁸ + √(10⁻⁸ × 10⁻⁷ + 10⁻¹⁴) — but JEE rarely goes here. The key insight: pH can never exceed 7 for any acid solution.
+    </div>
+  </div>
+
+  <!-- 05 WEAK -->
+  <div class="topic-section" id="weak">
+    <h2><span class="sec-num">05</span>Weak Acids &amp; Bases — K<sub>a</sub>, K<sub>b</sub>, α</h2>
+    <p>Weak acids partially dissociate. Apply ICE table with approximation when valid:</p>
+    <div class="method-box">
+      <div class="method-box-title">Weak Acid (HA) ICE Table</div>
+      <div class="formula-table-wrap" style="margin:.5rem 0">
+        <table class="formula-table">
+          <thead><tr><th></th><th>HA</th><th>H⁺</th><th>A⁻</th></tr></thead>
+          <tbody>
+            <tr><td><strong>I</strong></td><td>C</td><td>≈0</td><td>0</td></tr>
+            <tr><td><strong>C</strong></td><td>−x</td><td>+x</td><td>+x</td></tr>
+            <tr><td><strong>E</strong></td><td>C−x</td><td>x</td><td>x</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>Ka = x²/(C−x) ≈ x²/C when α &lt;&lt; 1 (i.e., Ka &lt;&lt; C)</p>
+      <p><strong>→ [H⁺] = x = √(Ka·C) &nbsp;|&nbsp; α = x/C = √(Ka/C) &nbsp;|&nbsp; pH = ½(pKa − log C)</strong></p>
+      <p style="margin-top:.5rem;color:var(--ink3);font-size:.875rem">Approximation valid when α &lt; 5% (i.e., Ka/C &lt; 0.0025). Otherwise solve quadratic: x² + Ka·x − Ka·C = 0</p>
+    </div>
+
+    <!-- Interactive: pH Calculator -->
+    <div class="explainer" style="margin-top:1.25rem">
+      <div class="explainer-title">🧮 Weak Acid pH Calculator</div>
+      <p style="font-size:.875rem;color:var(--ink3);margin-bottom:.75rem">Enter Ka and initial concentration to find pH, [H⁺], and degree of dissociation:</p>
+      <div style="display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:1rem;align-items:center">
+        <label style="font-size:.875rem">K<sub>a</sub>:
+          <input id="ph-ka" type="number" value="1.8e-5" step="1e-6" onchange="phUpdate()" style="width:100px;padding:.3rem;border:1px solid var(--border);border-radius:6px;font-family:inherit;margin-left:.4rem">
+        </label>
+        <label style="font-size:.875rem">C (mol/L):
+          <input id="ph-c" type="number" value="0.1" step="0.01" onchange="phUpdate()" style="width:80px;padding:.3rem;border:1px solid var(--border);border-radius:6px;font-family:inherit;margin-left:.4rem">
+        </label>
+      </div>
+      <div id="ph-out" style="background:var(--topic-accent-l);border-radius:10px;padding:1rem 1.25rem;font-size:.875rem;line-height:2"></div>
+    </div>
+
+    <div class="method-box" style="margin-top:1.25rem">
+      <div class="method-box-title">Weak Base (B) — Analogous Treatment</div>
+      <p>B + H₂O ⇌ BH⁺ + OH⁻ &nbsp;|&nbsp; Kb = [BH⁺][OH⁻]/[B]</p>
+      <p><strong>[OH⁻] = √(Kb·C)</strong> → pOH = ½(pKb − log C) → pH = 14 − pOH</p>
+      <p>Example: 0.1 M NH₃, Kb=1.8×10⁻⁵ → [OH⁻]=√(1.8×10⁻⁶)=1.34×10⁻³ → pOH=2.87 → pH=11.13</p>
+    </div>
+  </div>
+
+  <!-- 06 CONJUGATE -->
+  <div class="topic-section" id="conjugate">
+    <h2><span class="sec-num">06</span>Conjugate Pairs &amp; K<sub>a</sub> · K<sub>b</sub> = K<sub>w</sub></h2>
+    <p>Every acid has a conjugate base (acid minus one H⁺) and vice versa. The stronger the acid, the weaker its conjugate base.</p>
+    <div class="method-box">
+      <div class="method-box-title">Conjugate Pair Relationship</div>
+      <p style="font-size:1.05rem;text-align:center;margin:.5rem 0"><strong>K<sub>a</sub> × K<sub>b</sub> = K<sub>w</sub> = 10⁻¹⁴</strong></p>
+      <p style="text-align:center;color:var(--ink3);font-size:.875rem">For a conjugate acid-base pair (e.g. CH₃COOH / CH₃COO⁻)</p>
+    </div>
+    <div class="formula-table-wrap" style="margin-top:1rem">
+      <table class="formula-table">
+        <thead><tr><th>Acid</th><th>Ka</th><th>Conjugate Base</th><th>Kb</th><th>pKa + pKb</th></tr></thead>
+        <tbody>
+          <tr><td>CH₃COOH</td><td>1.8×10⁻⁵</td><td>CH₃COO⁻</td><td>5.6×10⁻¹⁰</td><td>4.74 + 9.26 = 14</td></tr>
+          <tr><td>NH₄⁺</td><td>5.6×10⁻¹⁰</td><td>NH₃</td><td>1.8×10⁻⁵</td><td>9.26 + 4.74 = 14</td></tr>
+          <tr><td>HCN</td><td>6.2×10⁻¹⁰</td><td>CN⁻</td><td>1.6×10⁻⁵</td><td>14</td></tr>
+          <tr><td>H₂O</td><td>≈1 (acid)</td><td>OH⁻</td><td>Kw=10⁻¹⁴ (Kb for OH⁻)</td><td>—</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="callout info">
+      <div class="callout-title">💡 Relative Acid-Base Strength</div>
+      Strong acid (large Ka) → weak conjugate base (small Kb). Example: HCl is a strong acid (Ka→∞) → Cl⁻ is an extremely weak base (essentially no base character). This is why NaCl solution is neutral — Cl⁻ does not hydrolyse.
+    </div>
+  </div>
+
+  <!-- 07 OSTWALD -->
+  <div class="topic-section" id="ostwald">
+    <h2><span class="sec-num">07</span>Ostwald's Dilution Law</h2>
+    <div class="method-box">
+      <div class="method-box-title">Dilution Increases Dissociation</div>
+      <p style="font-size:1.05rem;text-align:center;margin:.5rem 0"><strong>α = √(Ka/C) &nbsp;&nbsp;&nbsp; Ka = Cα²/(1−α) ≈ Cα²</strong></p>
+      <p style="text-align:center;color:var(--ink3);font-size:.875rem">As C decreases (dilution), α increases → more dissociation</p>
+    </div>
+    <p style="margin-top:1rem">This is why: adding water to acetic acid increases its % dissociation, but decreases [H⁺] overall (fewer moles per unit volume despite higher α). Therefore pH increases (less acidic) on dilution.</p>
+    <div class="callout warn">
+      <div class="callout-title">⚠ JEE Trap: Dilution Increases α but Decreases [H⁺]</div>
+      Students often say "diluting weak acid makes it more acidic because more dissociates." Wrong. α increases but [H⁺] = √(Ka·C) decreases with dilution. Both α and [H⁺] cannot increase simultaneously.
+    </div>
+  </div>
+
+  <!-- 08 BUFFER -->
+  <div class="topic-section" id="buffer">
+    <h2><span class="sec-num">08</span>Buffer Solutions &amp; Henderson-Hasselbalch</h2>
+    <p>A buffer resists pH change on addition of small amounts of strong acid or base. Acidic buffer = weak acid + its conjugate base (its salt with strong base).</p>
+    <div class="method-box">
+      <div class="method-box-title">Henderson-Hasselbalch Equation</div>
+      <p style="font-size:1.1rem;text-align:center;margin:.5rem 0"><strong>pH = pK<sub>a</sub> + log([A⁻]/[HA])</strong></p>
+      <p style="text-align:center;color:var(--ink3);font-size:.875rem">For basic buffers: pOH = pK<sub>b</sub> + log([salt]/[base])</p>
+      <ul style="line-height:2;margin:.75rem 0 0">
+        <li>[A⁻]/[HA] = 1 → log(1) = 0 → pH = pKa (best buffer point)</li>
+        <li>Buffer range: pH = pKa ± 1 (effective buffering region)</li>
+        <li>Buffer capacity: highest when [A⁻] = [HA] (equal moles)</li>
+      </ul>
+    </div>
+    <div class="method-box" style="margin-top:1rem">
+      <div class="method-box-title">Adding Strong Acid/Base to Buffer — Method</div>
+      <ol style="line-height:2;margin:0">
+        <li>Write the reaction: added acid reacts with A⁻ (conjugate base); added base reacts with HA (weak acid)</li>
+        <li>Calculate new moles of HA and A⁻ after the reaction</li>
+        <li>Apply Henderson-Hasselbalch with new moles (volume cancels if same volume)</li>
+      </ol>
+      <p style="margin-top:.5rem;font-size:.875rem">Example: 0.1 mol CH₃COOH + 0.1 mol CH₃COONa in 1L (pKa=4.74). Add 0.01 mol HCl:</p>
+      <p>HCl + CH₃COO⁻ → CH₃COOH + Cl⁻ &nbsp;|&nbsp; New: [HA]=0.11, [A⁻]=0.09</p>
+      <p>pH = 4.74 + log(0.09/0.11) = 4.74 − 0.087 = <strong>4.65</strong> (was 4.74 — very small change!)</p>
+    </div>
+  </div>
+
+  <!-- 09 HYDROLYSIS -->
+  <div class="topic-section" id="hydrolysis">
+    <h2><span class="sec-num">09</span>Salt Hydrolysis</h2>
+    <p>When salts dissolve in water, the ions may react with water (hydrolyse) to make the solution acidic or basic.</p>
+    <div class="formula-table-wrap">
+      <table class="formula-table">
+        <thead><tr><th>Salt Type</th><th>Example</th><th>Solution pH</th><th>Hydrolysing Ion</th><th>Formula</th></tr></thead>
+        <tbody>
+          <tr><td>Strong acid + Strong base</td><td>NaCl, KNO₃</td><td>pH = 7 (neutral)</td><td>Neither — no hydrolysis</td><td>—</td></tr>
+          <tr><td>Weak acid + Strong base</td><td>CH₃COONa, KCN</td><td>pH &gt; 7 (basic)</td><td>A⁻ hydrolyses → HA + OH⁻</td><td>pH = 7 + ½(pKa + log C)</td></tr>
+          <tr><td>Strong acid + Weak base</td><td>NH₄Cl, FeCl₃</td><td>pH &lt; 7 (acidic)</td><td>BH⁺ hydrolyses → B + H⁺</td><td>pH = 7 − ½(pKb + log C)</td></tr>
+          <tr><td>Weak acid + Weak base</td><td>CH₃COONH₄</td><td>pH ≈ 7 + ½(pKa−pKb)</td><td>Both hydrolyse</td><td>Depends on relative Ka, Kb</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="callout info" style="margin-top:1rem">
+      <div class="callout-title">💡 Hydrolysis Constant K<sub>h</sub></div>
+      For A⁻ + H₂O ⇌ HA + OH⁻: &nbsp; Kh = Kw/Ka<br>
+      For BH⁺ + H₂O ⇌ B + H₃O⁺: &nbsp; Kh = Kw/Kb<br>
+      Larger Kh → stronger hydrolysis → more extreme pH deviation from 7.
+    </div>
+  </div>
+
+  <!-- 10 KSP -->
+  <div class="topic-section" id="ksp">
+    <h2><span class="sec-num">10</span>K<sub>sp</sub> &amp; Molar Solubility</h2>
+    <p>For a sparingly soluble salt M<sub>a</sub>X<sub>b</sub>(s) ⇌ aM<sup>n+</sup>(aq) + bX<sup>m−</sup>(aq):</p>
+    <div class="method-box">
+      <div class="method-box-title">Ksp Expressions and Solubility</div>
+      <div class="formula-table-wrap" style="margin:.5rem 0">
+        <table class="formula-table">
+          <thead><tr><th>Salt Type</th><th>Dissolution</th><th>K<sub>sp</sub></th><th>s in terms of K<sub>sp</sub></th></tr></thead>
+          <tbody>
+            <tr><td>MX (1:1)</td><td>MX ⇌ M⁺ + X⁻ &nbsp; (s, s)</td><td>s²</td><td>s = √K<sub>sp</sub></td></tr>
+            <tr><td>MX₂ (1:2)</td><td>MX₂ ⇌ M²⁺ + 2X⁻ &nbsp; (s, 2s)</td><td>s·(2s)² = 4s³</td><td>s = (K<sub>sp</sub>/4)^(1/3)</td></tr>
+            <tr><td>M₂X (2:1)</td><td>M₂X ⇌ 2M⁺ + X²⁻ &nbsp; (2s, s)</td><td>(2s)²·s = 4s³</td><td>s = (K<sub>sp</sub>/4)^(1/3)</td></tr>
+            <tr><td>MX₃ (1:3)</td><td>MX₃ ⇌ M³⁺ + 3X⁻ &nbsp; (s, 3s)</td><td>s·(3s)³ = 27s⁴</td><td>s = (K<sub>sp</sub>/27)^(1/4)</td></tr>
+            <tr><td>M₂X₃ (2:3)</td><td>M₂X₃ ⇌ 2M³⁺ + 3X²⁻ &nbsp; (2s, 3s)</td><td>(2s)²(3s)³ = 108s⁵</td><td>s = (K<sub>sp</sub>/108)^(1/5)</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="callout warn">
+      <div class="callout-title">⚠ Comparing Solubilities Using Ksp</div>
+      You can only compare Ksp directly for salts with the SAME formula type (e.g. all MX salts). For different types, calculate s from the formula above and compare. AgCl (Ksp=1.8×10⁻¹⁰, s=1.34×10⁻⁵) vs Ag₂CrO₄ (Ksp=1.12×10⁻¹², 4s³ formula, s=6.54×10⁻⁵). Despite higher Ksp for AgCl, Ag₂CrO₄ is more soluble!
+    </div>
+  </div>
+
+  <!-- 11 COMMON ION -->
+  <div class="topic-section" id="common-ion">
+    <h2><span class="sec-num">11</span>Common Ion Effect</h2>
+    <p>Adding an ion that is already part of the equilibrium shifts the solubility equilibrium backwards, reducing solubility. This is Le Chatelier's principle applied to Ksp.</p>
+    <div class="method-box">
+      <div class="method-box-title">Worked: Solubility of AgCl in 0.1 M NaCl</div>
+      <p><strong>AgCl(s) ⇌ Ag⁺ + Cl⁻</strong> &nbsp; Ksp = 1.8×10⁻¹⁰</p>
+      <p>NaCl provides [Cl⁻] = 0.1 M before AgCl dissolves.</p>
+      <div class="formula-table-wrap" style="margin:.5rem 0">
+        <table class="formula-table">
+          <thead><tr><th></th><th>Ag⁺</th><th>Cl⁻</th></tr></thead>
+          <tbody>
+            <tr><td>Initial</td><td>0</td><td>0.1</td></tr>
+            <tr><td>Change</td><td>+s</td><td>+s</td></tr>
+            <tr><td>Equil.</td><td>s</td><td>0.1+s ≈ 0.1</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>Ksp = s × 0.1 = 1.8×10⁻¹⁰ &nbsp;→&nbsp; s = <strong>1.8×10⁻⁹ M</strong></p>
+      <p>Compare: in pure water, s = √(1.8×10⁻¹⁰) = 1.34×10⁻⁵ M — common ion reduces solubility ~10,000×!</p>
+    </div>
+  </div>
+
+  <!-- 12 PRECIP -->
+  <div class="topic-section" id="precip">
+    <h2><span class="sec-num">12</span>Ionic Product vs K<sub>sp</sub> — Precipitation</h2>
+    <p>The ionic product (IP) is the product of ion concentrations raised to stoichiometric powers — same form as Ksp but at current (not equilibrium) concentrations.</p>
+    <div class="method-box">
+      <div class="method-box-title">Precipitation Rule</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:1rem;text-align:center;margin:.75rem 0">
+        <div style="background:#fee2e2;padding:1rem;border-radius:8px">
+          <div style="font-weight:700">IP &gt; K<sub>sp</sub></div>
+          <div style="font-size:.875rem;margin-top:.4rem">Precipitate forms (supersaturated → ions combine until equilibrium)</div>
+        </div>
+        <div style="background:#dcfce7;padding:1rem;border-radius:8px">
+          <div style="font-weight:700">IP = K<sub>sp</sub></div>
+          <div style="font-size:.875rem;margin-top:.4rem">Saturated — at equilibrium, no more precipitate</div>
+        </div>
+        <div style="background:#dbeafe;padding:1rem;border-radius:8px">
+          <div style="font-weight:700">IP &lt; K<sub>sp</sub></div>
+          <div style="font-size:.875rem;margin-top:.4rem">Unsaturated — no precipitate; more salt can dissolve</div>
+        </div>
+      </div>
+    </div>
+    <div class="callout info">
+      <div class="callout-title">💡 Mixing Problem — Remember Dilution</div>
+      When two solutions are mixed, concentrations change due to dilution before any precipitation occurs. New concentration = (moles from each solution) / (total volume). Then compare IP to Ksp.
+    </div>
+  </div>
+
+  <!-- 13 REFERENCE -->
+  <div class="topic-section" id="reference">
+    <h2><span class="sec-num">13</span>Formula Reference</h2>
+    <div class="formula-table-wrap">
+      <table class="formula-table">
+        <thead><tr><th>Formula</th><th>Name</th><th>Condition/Note</th></tr></thead>
+        <tbody>
+          <tr><td class="formula-cell">pH = −log[H⁺]</td><td>pH definition</td><td></td></tr>
+          <tr><td class="formula-cell">pH + pOH = 14</td><td>Water relation</td><td>At 25°C only</td></tr>
+          <tr><td class="formula-cell">Ka × Kb = Kw = 10⁻¹⁴</td><td>Conjugate pair</td><td>At 25°C</td></tr>
+          <tr><td class="formula-cell">[H⁺] = √(Ka·C)</td><td>Weak acid</td><td>When α &lt;&lt; 1</td></tr>
+          <tr><td class="formula-cell">α = √(Ka/C)</td><td>Degree of dissociation</td><td>Ostwald's law</td></tr>
+          <tr><td class="formula-cell">pH = pKa + log([A⁻]/[HA])</td><td>Henderson-Hasselbalch</td><td>Buffer (acidic)</td></tr>
+          <tr><td class="formula-cell">pOH = pKb + log([salt]/[base])</td><td>Henderson-Hasselbalch</td><td>Buffer (basic)</td></tr>
+          <tr><td class="formula-cell">Kh = Kw/Ka (or Kw/Kb)</td><td>Hydrolysis constant</td><td>For anion or cation</td></tr>
+          <tr><td class="formula-cell">Ksp(MX) = s² ; Ksp(MX₂) = 4s³</td><td>Solubility product</td><td>s = molar solubility</td></tr>
+          <tr><td class="formula-cell">IP &gt; Ksp → precipitate</td><td>Precipitation test</td><td>Dilute concentrations before comparing</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- 14 EXAMPLES -->
+  <div class="topic-section" id="examples">
+    <h2><span class="sec-num">14</span>Worked Examples</h2>
+
+    <div class="method-box">
+      <div class="method-box-title">Example 1 — Weak Acid pH (Easy)</div>
+      <p><strong>Q:</strong> Find pH of 0.1 M acetic acid. Ka = 1.8×10⁻⁵.</p>
+      <p>[H⁺] = √(1.8×10⁻⁵ × 0.1) = √(1.8×10⁻⁶) = 1.34×10⁻³ M</p>
+      <p>pH = −log(1.34×10⁻³) = 3 − log(1.34) = 3 − 0.127 = <strong>2.87</strong></p>
+      <p>Check α: 1.34×10⁻³/0.1 = 1.34% &lt;&lt; 5% ✓ approximation valid</p>
+    </div>
+
+    <div class="method-box">
+      <div class="method-box-title">Example 2 — Back-calculating Ka from pH (Medium)</div>
+      <p><strong>Q:</strong> pH of 0.1 M weak monobasic acid is 3. Find Ka and α.</p>
+      <p>[H⁺] = 10⁻³ M &nbsp;|&nbsp; Ka = [H⁺]²/C = (10⁻³)²/0.1 = 10⁻⁶/0.1 = <strong>Ka = 10⁻⁵</strong></p>
+      <p>α = [H⁺]/C = 10⁻³/0.1 = <strong>α = 0.01 = 1%</strong></p>
+    </div>
+
+    <div class="method-box">
+      <div class="method-box-title">Example 3 — Mg(OH)₂ Solubility &amp; pH (Medium)</div>
+      <p><strong>Q:</strong> Mg(OH)₂ Ksp = 1.8×10⁻¹¹. Find molar solubility and pH of saturated solution.</p>
+      <p>Mg(OH)₂ ⇌ Mg²⁺ + 2OH⁻ &nbsp;|&nbsp; (s, 2s) &nbsp;|&nbsp; Ksp = s·(2s)² = 4s³</p>
+      <p>4s³ = 1.8×10⁻¹¹ &nbsp;→&nbsp; s³ = 4.5×10⁻¹² &nbsp;→&nbsp; s = (4.5×10⁻¹²)^(1/3) = <strong>1.65×10⁻⁴ M</strong></p>
+      <p>[OH⁻] = 2s = 3.3×10⁻⁴ &nbsp;→&nbsp; pOH = −log(3.3×10⁻⁴) = 3.48 &nbsp;→&nbsp; <strong>pH = 10.52</strong></p>
+    </div>
+
+    <div class="method-box">
+      <div class="method-box-title">Example 4 — NH₄Cl Salt Hydrolysis (Hard)</div>
+      <p><strong>Q:</strong> Find pH of 0.1 M NH₄Cl. Kb(NH₃) = 1.8×10⁻⁵, Kw = 10⁻¹⁴.</p>
+      <p>NH₄⁺ is acidic. Ka(NH₄⁺) = Kw/Kb = 10⁻¹⁴/1.8×10⁻⁵ = 5.56×10⁻¹⁰</p>
+      <p>[H⁺] = √(Ka·C) = √(5.56×10⁻¹⁰ × 0.1) = √(5.56×10⁻¹¹) = 7.45×10⁻⁶</p>
+      <p><strong>pH = −log(7.45×10⁻⁶) = 5.13</strong> (acidic, as expected for salt of strong acid + weak base)</p>
+    </div>
+  </div>
+
+  <!-- 15 PYQs -->
+  <div class="topic-section" id="pyqs">
+    <h2><span class="sec-num">15</span>JEE Previous-Year Questions</h2>
+    <div class="callout info">
+      <div class="callout-title">📋 Most Tested Ionic Equilibrium Patterns</div>
+      <ol style="line-height:2;margin:0">
+        <li>pH of weak acid/base (Ka/Kb given)</li>
+        <li>Back-calculate Ka from pH of weak acid</li>
+        <li>Buffer pH using Henderson-Hasselbalch</li>
+        <li>pH of salt solution (hydrolysis)</li>
+        <li>Molar solubility from Ksp (MX, MX₂ types)</li>
+        <li>Will precipitation occur? (IP vs Ksp after mixing)</li>
+        <li>Common ion effect — compare solubility in pure water vs salt solution</li>
+      </ol>
+    </div>
+
+    <div class="method-box">
+      <div class="method-box-title">PYQ — JEE Main 2023</div>
+      <p><strong>Q:</strong> The pH of a 0.1 M solution of NH₄OH (Kb = 1.8×10⁻⁵) is:</p>
+      <p>[OH⁻] = √(1.8×10⁻⁵ × 0.1) = √(1.8×10⁻⁶) = 1.34×10⁻³</p>
+      <p>pOH = 2.87 → <strong>pH = 14 − 2.87 = 11.13</strong></p>
+    </div>
+
+    <div class="method-box">
+      <div class="method-box-title">PYQ — JEE Main 2022</div>
+      <p><strong>Q:</strong> K<sub>sp</sub> of BaSO₄ = 1.08×10⁻¹⁰. What is the molar solubility of BaSO₄ in pure water?</p>
+      <p>BaSO₄ ⇌ Ba²⁺ + SO₄²⁻ &nbsp;|&nbsp; Ksp = s² &nbsp;|&nbsp; s = √(1.08×10⁻¹⁰) = <strong>1.04×10⁻⁵ M</strong></p>
+    </div>
+  </div>
+
+  <!-- 16 TRAPS -->
+  <div class="topic-section" id="traps">
+    <h2><span class="sec-num">16</span>Common Traps &amp; Mistakes</h2>
+    <div class="callout danger">
+      <div class="callout-title">❌ Trap 1: Using [H⁺]=√(Ka·C) when approximation is invalid</div>
+      If Ka/C &gt; 0.0025 (α &gt; 5%), the approximation fails. For a 10⁻⁴ M solution with Ka=10⁻⁵, α=√(Ka/C)=√(0.1)=31.6% — must solve quadratic.
+    </div>
+    <div class="callout danger">
+      <div class="callout-title">❌ Trap 2: Including water in Kw or Ksp expressions</div>
+      [H₂O] is not included in Kw. [solid salt] is not included in Ksp. Only dissolved ionic species appear.
+    </div>
+    <div class="callout danger">
+      <div class="callout-title">❌ Trap 3: Comparing Ksp directly for different salt types</div>
+      AgCl (Ksp=1.8×10⁻¹⁰, type MX) has higher Ksp than Ag₂CrO₄ (Ksp=1.12×10⁻¹², type M₂X), but Ag₂CrO₄ is more soluble. Must calculate s from the formula for each type.
+    </div>
+    <div class="callout danger">
+      <div class="callout-title">❌ Trap 4: Forgetting dilution when mixing solutions for IP test</div>
+      If 100 mL of 0.001 M Ba²⁺ is mixed with 100 mL of 0.001 M SO₄²⁻, each concentration halves to 5×10⁻⁴ M. IP = (5×10⁻⁴)² = 2.5×10⁻⁷. Compare to Ksp(BaSO₄)=1.08×10⁻¹⁰ → IP &gt;&gt; Ksp → precipitate forms.
+    </div>
+    <div class="callout danger">
+      <div class="callout-title">❌ Trap 5: pH = 7 means neutral (temperature dependent)</div>
+      Neutral means [H⁺]=[OH⁻], which equals pH=7 only at 25°C. At higher temperatures, Kw increases so neutral pH &lt; 7.
+    </div>
+  </div>
+
+  <!-- 17 CHEAT CARD -->
+  <div class="topic-section" id="cheat">
+    <h2><span class="sec-num">17</span>One-Page Cheat Card</h2>
+    <div class="method-box" style="background:var(--topic-accent-l);border-color:var(--topic-accent-m)">
+      <div class="method-box-title">🧪 Ionic Equilibrium — Rapid Reference</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.25rem">
+        <div>
+          <p style="font-weight:600;margin-bottom:.4rem">pH Formulas</p>
+          <ul style="font-size:.82rem;line-height:1.9;margin:0">
+            <li>[H⁺] = √(Ka·C) → pH = ½(pKa − log C)</li>
+            <li>pH = pKa + log([A⁻]/[HA])</li>
+            <li>Ka × Kb = 10⁻¹⁴ &nbsp;|&nbsp; pH + pOH = 14</li>
+            <li>α = √(Ka/C) &nbsp;|&nbsp; valid when α &lt; 5%</li>
+          </ul>
+        </div>
+        <div>
+          <p style="font-weight:600;margin-bottom:.4rem">Salt Hydrolysis</p>
+          <ul style="font-size:.82rem;line-height:1.9;margin:0">
+            <li>Strong + Strong → neutral (NaCl)</li>
+            <li>Weak acid + Strong base → basic (CH₃COONa)</li>
+            <li>Strong acid + Weak base → acidic (NH₄Cl)</li>
+            <li>Kh = Kw/Ka or Kw/Kb</li>
+          </ul>
+        </div>
+        <div>
+          <p style="font-weight:600;margin-bottom:.4rem">Ksp &amp; Solubility</p>
+          <ul style="font-size:.82rem;line-height:1.9;margin:0">
+            <li>MX: s=√Ksp &nbsp;|&nbsp; MX₂: s=(Ksp/4)^(1/3)</li>
+            <li>Common ion → solubility decreases</li>
+            <li>IP &gt; Ksp → precipitate forms</li>
+            <li>Dilute before comparing IP to Ksp</li>
+          </ul>
+        </div>
+        <div>
+          <p style="font-weight:600;margin-bottom:.4rem">Key pKa Values</p>
+          <ul style="font-size:.82rem;line-height:1.9;margin:0">
+            <li>CH₃COOH: pKa = 4.74</li>
+            <li>NH₄⁺: pKa = 9.26 (pKb NH₃ = 4.74)</li>
+            <li>H₂CO₃: pKa₁ = 6.35, pKa₂ = 10.33</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="topic-cta-row">
+    <a href="../subjects/chemistry.html#unit-c6" class="topic-cta-btn secondary">↩ Back to C6 Unit</a>
+    <a href="electrochemistry.html" class="topic-cta-btn primary">Next: Electrochemistry →</a>
+    <a href="../progress.html" class="topic-cta-btn secondary">✅ Mark sessions done</a>
+  </div>
+
+</div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-brand">JEE 2027 Prep</div>
+      <div class="footer-links">
+        <a href="../index.html">Dashboard</a>
+        <a href="../subjects/math.html">Math</a>
+        <a href="../subjects/physics.html">Physics</a>
+        <a href="../subjects/chemistry.html">Chemistry</a>
+        <a href="../progress.html">Progress</a>
+        <a href="../settings.html">Settings</a>
+      </div>
+      <div class="footer-note">All Phases · May 2026 – April 2027</div>
+    </div>
+  </div>
+</footer>
+
+<div id="toast" class="toast"></div>
+<script src="../js/main.js"></script>
+<script>
+// Weak acid pH calculator
+function phUpdate() {
+  const ka = parseFloat(document.getElementById('ph-ka').value) || 1.8e-5;
+  const c  = parseFloat(document.getElementById('ph-c').value)  || 0.1;
+  // Exact: x² + ka*x - ka*c = 0 → x = (-ka + sqrt(ka²+4ka*c))/2
+  const disc = ka * ka + 4 * ka * c;
+  const x = (-ka + Math.sqrt(disc)) / 2;
+  const alpha = x / c;
+  const ph = -Math.log10(x);
+  const approx = Math.sqrt(ka * c);
+  const approxValid = alpha < 0.05;
+  document.getElementById('ph-out').innerHTML =
+    `<strong>Exact [H⁺]:</strong> ${x.toExponential(3)} M<br>` +
+    `<strong>pH:</strong> ${ph.toFixed(2)}<br>` +
+    `<strong>α (degree of dissociation):</strong> ${(alpha*100).toFixed(2)}%<br>` +
+    `<strong>Approx [H⁺]</strong> = √(Ka·C) = ${approx.toExponential(3)} M ${approxValid ? '✅ (valid, α &lt; 5%)' : '⚠ (invalid, use exact value)'}`;
+}
+phUpdate();
+</script>
+</body>
+</html>
