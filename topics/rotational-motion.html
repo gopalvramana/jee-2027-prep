@@ -195,6 +195,46 @@
       <div class="callout info">
         <strong>The only 3 you need to derive from scratch:</strong> disk (½MR²), solid sphere (2/5 MR²), rod (ML²/12). Use axis theorems for all others.
       </div>
+
+      <div class="diagram">
+        <svg viewBox="0 0 480 180" width="480" height="180" style="max-width:100%;font-family:DM Sans,sans-serif;">
+          <text x="240" y="16" text-anchor="middle" font-size="12" font-weight="600" fill="#1e293b">Standard MOI Shapes — Must Memorise</text>
+          <!-- Solid disk -->
+          <g transform="translate(60,95)">
+            <ellipse cx="0" cy="0" rx="40" ry="14" fill="#bfdbfe" stroke="#1d4ed8" stroke-width="1.5"/>
+            <rect x="-40" y="-36" width="80" height="36" fill="#93c5fd" stroke="#1d4ed8" stroke-width="1.5"/>
+            <ellipse cx="0" cy="-36" rx="40" ry="14" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+            <!-- Axis line -->
+            <line x1="0" y1="-55" x2="0" y2="20" stroke="#1d4ed8" stroke-width="1.5" stroke-dasharray="4,2"/>
+            <text x="0" y="35" text-anchor="middle" font-size="11" fill="#1d4ed8" font-weight="600">Solid Disk</text>
+            <text x="0" y="50" text-anchor="middle" font-size="12" fill="#1e3a8a" font-weight="700">I = ½MR²</text>
+          </g>
+          <!-- Solid sphere -->
+          <g transform="translate(230,95)">
+            <circle cx="0" cy="-20" r="42" fill="#bbf7d0" stroke="#15803d" stroke-width="1.5"/>
+            <ellipse cx="0" cy="-20" rx="42" ry="13" fill="none" stroke="#15803d" stroke-width="1" stroke-dasharray="4,3"/>
+            <!-- Axis -->
+            <line x1="0" y1="-70" x2="0" y2="25" stroke="#15803d" stroke-width="1.5" stroke-dasharray="4,2"/>
+            <text x="0" y="40" text-anchor="middle" font-size="11" fill="#15803d" font-weight="600">Solid Sphere</text>
+            <text x="0" y="55" text-anchor="middle" font-size="12" fill="#14532d" font-weight="700">I = ⅖MR²</text>
+          </g>
+          <!-- Thin rod -->
+          <g transform="translate(400,95)">
+            <rect x="-8" y="-50" width="16" height="100" rx="4" fill="#fde68a" stroke="#b45309" stroke-width="1.5"/>
+            <!-- Axis through centre -->
+            <line x1="-38" y1="0" x2="38" y2="0" stroke="#b45309" stroke-width="1.5" stroke-dasharray="4,2"/>
+            <text x="0" y="70" text-anchor="middle" font-size="11" fill="#b45309" font-weight="600">Thin Rod</text>
+            <text x="0" y="85" text-anchor="middle" font-size="11" fill="#78350f" font-weight="700">I = ML²/12</text>
+            <!-- L label -->
+            <line x1="14" y1="-50" x2="14" y2="50" stroke="#b45309" stroke-width="1" stroke-dasharray="3,2"/>
+            <text x="22" y="-44" font-size="9" fill="#b45309">L/2</text>
+            <text x="22" y="55" font-size="9" fill="#b45309">L/2</text>
+          </g>
+          <!-- Dividers -->
+          <line x1="155" y1="25" x2="155" y2="165" stroke="#e2e8f0" stroke-width="1"/>
+          <line x1="315" y1="25" x2="315" y2="165" stroke="#e2e8f0" stroke-width="1"/>
+        </svg>
+      </div>
     </section>
 
     <!-- S7 -->
@@ -328,6 +368,11 @@
         <p>v = √[2gh/(1 + I/mR²)]</p>
         <p><em>Lower moment of inertia coefficient → higher speed at bottom. Sphere always beats disk, disk beats hollow cylinder.</em></p>
       </div>
+
+      <div class="diagram" style="text-align:center;">
+        <canvas id="roll-cv" width="500" height="220" style="max-width:100%;border-radius:8px;"></canvas>
+        <div style="font-size:.8rem;color:#64748b;margin-top:.3rem;">Objects race down incline · Lower I/mR² → higher acceleration → reaches bottom first · Independent of mass &amp; radius</div>
+      </div>
     </section>
 
     <!-- S13 -->
@@ -415,6 +460,104 @@
 
 <script src="../js/main.js"></script>
 <script>
+// Rolling race animation
+const _SHAPES = [
+  { name: 'Solid Sphere',    k: 2/5, color: '#16a34a' },
+  { name: 'Solid Disk',      k: 1/2, color: '#0284c7' },
+  { name: 'Hollow Sphere',   k: 2/3, color: '#d97706' },
+  { name: 'Hollow Cylinder', k: 1,   color: '#dc2626' },
+];
+let _rollPos = [0, 0, 0, 0]; // 0→1: fraction of distance along incline
+let _rollDone = false;
+const _rollG = 10, _rollSin = Math.sin(30 * Math.PI/180);
+const _rollDt = 1/60, _rollLen = 1.0; // 1 m incline
+const _rollAccel = _SHAPES.map(s => _rollG * _rollSin / (1 + s.k)); // acceleration
+
+function _runRoll() {
+  const cv = document.getElementById('roll-cv');
+  if (!cv) return;
+  const ctx = cv.getContext('2d');
+  const W = cv.width, H = cv.height;
+
+  // Advance positions
+  _rollPos = _rollPos.map((p, i) => Math.min(p + _rollAccel[i] * _rollDt * 0.05, 1));
+
+  ctx.clearRect(0, 0, W, H);
+  ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+
+  // Title
+  ctx.fillStyle = '#1e293b'; ctx.font = 'bold 12px sans-serif'; ctx.textAlign = 'center';
+  ctx.fillText('Rolling Race Down 30° Incline (g sinθ / (1 + I/mR²))', W/2, 16);
+
+  // Incline geometry
+  const incTop = { x: 60, y: 30 };
+  const incBot = { x: 420, y: 190 };
+  const incLen = Math.hypot(incBot.x - incTop.x, incBot.y - incTop.y);
+  const incDX = (incBot.x - incTop.x) / incLen;
+  const incDY = (incBot.y - incTop.y) / incLen;
+  const normX = -incDY, normY = incDX; // perpendicular (upward from surface)
+
+  // Draw incline surface
+  ctx.beginPath();
+  ctx.moveTo(incTop.x, incTop.y);
+  ctx.lineTo(incBot.x, incBot.y);
+  ctx.lineTo(incBot.x, incTop.y);
+  ctx.closePath();
+  ctx.fillStyle = '#f1f5f9'; ctx.fill();
+  ctx.strokeStyle = '#94a3b8'; ctx.lineWidth = 2; ctx.stroke();
+
+  // 30° angle label
+  ctx.fillStyle = '#64748b'; ctx.font = '11px sans-serif'; ctx.textAlign = 'left';
+  ctx.fillText('30°', incBot.x + 8, incBot.y - 10);
+
+  const R = 13; // display radius of rolling circle
+  const spacing = 28; // vertical spacing between balls on incline
+
+  _SHAPES.forEach((shape, i) => {
+    const frac = _rollPos[i];
+    // Position along incline surface, offset vertically to stack them
+    const offset = i * spacing;
+    const bx = incTop.x + incDX * frac * incLen + normX * (R + offset + 8);
+    const by = incTop.y + incDY * frac * incLen + normY * (R + offset + 8);
+
+    // Draw rolling circle with rotation marks
+    ctx.beginPath(); ctx.arc(bx, by, R, 0, 2*Math.PI);
+    ctx.fillStyle = shape.color + '33'; ctx.fill();
+    ctx.strokeStyle = shape.color; ctx.lineWidth = 2; ctx.stroke();
+
+    // Rotation spoke
+    const angle = frac * 15;
+    ctx.beginPath();
+    ctx.moveTo(bx + R*Math.cos(angle), by + R*Math.sin(angle));
+    ctx.lineTo(bx - R*0.5*Math.cos(angle), by - R*0.5*Math.sin(angle));
+    ctx.strokeStyle = shape.color; ctx.lineWidth = 1.5; ctx.stroke();
+
+    // Label
+    const labelX = incBot.x + 12;
+    const labelY = 50 + i * 40;
+    ctx.fillStyle = shape.color; ctx.font = 'bold 10px sans-serif'; ctx.textAlign = 'left';
+    ctx.fillText(shape.name, labelX, labelY);
+    ctx.fillStyle = '#475569'; ctx.font = '10px sans-serif';
+    ctx.fillText('a = g sinθ/(1+' + shape.k.toFixed(2) + ') = ' + _rollAccel[i].toFixed(2) + ' m/s²', labelX, labelY + 13);
+
+    // Progress bar
+    ctx.fillStyle = '#e2e8f0'; ctx.fillRect(labelX, labelY + 18, 60, 5);
+    ctx.fillStyle = shape.color; ctx.fillRect(labelX, labelY + 18, 60 * frac, 5);
+  });
+
+  // Check if race done
+  if (_rollPos.every(p => p >= 1)) {
+    // Reset after brief pause
+    setTimeout(() => {
+      _rollPos = [0,0,0,0];
+      requestAnimationFrame(_runRoll);
+    }, 1800);
+    return;
+  }
+
+  requestAnimationFrame(_runRoll);
+}
+
 function amUpdate() {
   const I1 = parseFloat(document.getElementById('am-i1').value) || 1;
   const w1 = parseFloat(document.getElementById('am-w1').value) || 1;
@@ -435,6 +578,7 @@ Final KE   = ½I₂ω₂² = <strong>${KE2.toFixed(3)} J</strong>
 }
 
 amUpdate();
+_runRoll();
 </script>
 </body>
 </html>

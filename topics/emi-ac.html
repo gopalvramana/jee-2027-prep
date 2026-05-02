@@ -309,6 +309,11 @@
           </tbody>
         </table>
       </div>
+
+      <div class="diagram" style="text-align:center;">
+        <canvas id="acwave-cv" width="500" height="160" style="max-width:100%;border-radius:8px;"></canvas>
+        <div style="font-size:.8rem;color:#64748b;margin-top:.3rem;">AC voltage waveform · V_rms = V₀/√2 ≈ 0.707 V₀ · Average over full cycle = 0</div>
+      </div>
     </section>
 
     <!-- S11 -->
@@ -351,6 +356,11 @@
           <label style="font-size:.85rem;" style="grid-column:1/-1;">V_rms (V): <input id="lcr-V" type="number" value="220" min="1" step="10" oninput="lcrUpdate()" style="width:8rem;margin-top:.3rem;padding:.4rem;border:1px solid #d1fae5;border-radius:6px;font-size:.9rem;"></label>
         </div>
         <div id="lcr-out" style="background:#fff;border-radius:8px;padding:.9rem;font-family:'JetBrains Mono',monospace;font-size:.82rem;line-height:1.8;border:1px solid #d1fae5;"></div>
+      </div>
+
+      <div class="diagram" style="text-align:center;">
+        <canvas id="phasor-cv" width="500" height="240" style="max-width:100%;border-radius:8px;"></canvas>
+        <div style="font-size:.8rem;color:#64748b;margin-top:.3rem;">Phasor diagram updates with calculator · V_R (green) in phase with I · V_L (blue) leads 90° · V_C (orange) lags 90°</div>
       </div>
     </section>
 
@@ -504,6 +514,172 @@
 
 <script src="../js/main.js"></script>
 <script>
+// Draw static AC waveform on canvas
+function drawACWave() {
+  const cv = document.getElementById('acwave-cv');
+  if (!cv) return;
+  const ctx = cv.getContext('2d');
+  const W = cv.width, H = cv.height;
+  const ox = 48, oy = H/2, aW = W - 60;
+  const V0 = 60; // amplitude px
+  const period = aW / 2; // 2 full cycles
+
+  ctx.clearRect(0, 0, W, H);
+  ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+
+  // Grid lines
+  ctx.strokeStyle = '#e2e8f0'; ctx.lineWidth = 1;
+  [-V0, 0, V0].forEach(y => {
+    ctx.beginPath(); ctx.moveTo(ox, oy-y); ctx.lineTo(ox+aW, oy-y); ctx.stroke();
+  });
+
+  // V_rms dashed lines
+  const vrms = V0 / Math.sqrt(2);
+  ctx.strokeStyle = '#16a34a'; ctx.lineWidth = 1; ctx.setLineDash([5, 3]);
+  [[vrms,'#16a34a'], [-vrms,'#16a34a']].forEach(([y, col]) => {
+    ctx.strokeStyle = col;
+    ctx.beginPath(); ctx.moveTo(ox, oy-y); ctx.lineTo(ox+aW, oy-y); ctx.stroke();
+  });
+  ctx.setLineDash([]);
+
+  // Axes
+  ctx.strokeStyle = '#64748b'; ctx.lineWidth = 1.5;
+  ctx.beginPath(); ctx.moveTo(ox, 8); ctx.lineTo(ox, H-18); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(ox, oy); ctx.lineTo(ox+aW+8, oy); ctx.stroke();
+  // Axis arrows
+  ctx.fillStyle = '#64748b';
+  ctx.beginPath(); ctx.moveTo(ox, 8); ctx.lineTo(ox-4,18); ctx.lineTo(ox+4,18); ctx.closePath(); ctx.fill();
+  ctx.beginPath(); ctx.moveTo(ox+aW+8,oy); ctx.lineTo(ox+aW,oy-4); ctx.lineTo(ox+aW,oy+4); ctx.closePath(); ctx.fill();
+
+  // Sine wave
+  ctx.beginPath();
+  for (let i = 0; i <= aW; i++) {
+    const x = ox + i;
+    const y = oy - V0 * Math.sin(2 * Math.PI * i / period);
+    i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+  }
+  ctx.strokeStyle = '#0284c7'; ctx.lineWidth = 2.2; ctx.stroke();
+
+  // Labels
+  ctx.fillStyle = '#0284c7'; ctx.font = 'bold 11px sans-serif'; ctx.textAlign = 'right';
+  ctx.fillText('V₀', ox-4, oy - V0 + 4);
+  ctx.fillText('−V₀', ox-4, oy + V0 + 4);
+  ctx.fillStyle = '#16a34a'; ctx.font = '10px sans-serif';
+  ctx.fillText('V_rms', ox-4, oy - vrms + 4);
+  ctx.fillText('−V_rms', ox-4, oy + vrms + 4);
+  ctx.fillStyle = '#64748b'; ctx.textAlign = 'center';
+  ctx.fillText('t →', ox+aW+14, oy+3);
+  ctx.fillText('V', ox+4, 12);
+
+  // Period marker
+  ctx.strokeStyle = '#94a3b8'; ctx.lineWidth = 1;
+  ctx.beginPath(); ctx.moveTo(ox, H-10); ctx.lineTo(ox+period, H-10); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(ox,H-13); ctx.lineTo(ox,H-7); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(ox+period,H-13); ctx.lineTo(ox+period,H-7); ctx.stroke();
+  ctx.fillStyle = '#64748b'; ctx.font = '10px sans-serif'; ctx.textAlign = 'center';
+  ctx.fillText('T', ox + period/2, H - 2);
+  ctx.fillText('= 1/f = 2π/ω', ox + period/2 + 22, H-2);
+}
+
+// Draw LCR phasor diagram
+function drawPhasor() {
+  const cv = document.getElementById('phasor-cv');
+  if (!cv) return;
+  const ctx = cv.getContext('2d');
+  const W = cv.width, H = cv.height;
+
+  const R = parseFloat(document.getElementById('lcr-R').value) || 1;
+  const L = (parseFloat(document.getElementById('lcr-L').value) || 100) * 1e-3;
+  const C = (parseFloat(document.getElementById('lcr-C').value) || 200) * 1e-6;
+  const w = parseFloat(document.getElementById('lcr-w').value) || 100;
+  const Vs = parseFloat(document.getElementById('lcr-V').value) || 220;
+
+  const XL = w * L, XC = 1/(w*C);
+  const Z  = Math.sqrt(R*R + (XL-XC)*(XL-XC));
+  const I  = Vs / Z;
+  const VR = I * R, VL = I * XL, VC = I * XC;
+
+  ctx.clearRect(0, 0, W, H);
+  ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+
+  // Title
+  ctx.fillStyle = '#1e293b'; ctx.font = 'bold 12px sans-serif'; ctx.textAlign = 'center';
+  ctx.fillText('LCR Series Circuit — Phasor Diagram', W/2, 16);
+  ctx.fillStyle = '#64748b'; ctx.font = '10px sans-serif';
+  ctx.fillText('(Current I is the reference phasor — horizontal)', W/2, 30);
+
+  // Scale so Vs = 90 display px
+  const scale = Math.min(90 / Vs, 2);
+  const ox = 130, oy = H/2 + 10;
+
+  // Axes
+  ctx.strokeStyle = '#e2e8f0'; ctx.lineWidth = 1;
+  ctx.beginPath(); ctx.moveTo(30, oy); ctx.lineTo(W-20, oy); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(ox, 40); ctx.lineTo(ox, H-20); ctx.stroke();
+  ctx.fillStyle = '#94a3b8'; ctx.font = '10px sans-serif'; ctx.textAlign = 'center';
+  ctx.fillText('→ I', ox + 60, oy + 12);
+
+  const vr_px = VR * scale;
+  const vl_py = VL * scale;
+  const vc_py = VC * scale;
+  const vnet_px = vr_px;
+  const vnet_py = -(VL - VC) * scale; // negative = up
+
+  // V_R phasor (horizontal, in phase with I)
+  _arrEMI(ctx, ox, oy, ox + vr_px, oy, '#16a34a', 2.5);
+  ctx.fillStyle = '#16a34a'; ctx.font = 'bold 11px sans-serif'; ctx.textAlign = 'center';
+  ctx.fillText('V_R=' + VR.toFixed(0) + 'V', ox + vr_px/2, oy - 9);
+
+  // V_L phasor (up from tip of V_R)
+  _arrEMI(ctx, ox + vr_px, oy, ox + vr_px, oy - vl_py, '#0284c7', 2.5);
+  ctx.fillStyle = '#0284c7'; ctx.textAlign = 'left';
+  ctx.fillText('V_L=' + VL.toFixed(0) + 'V', ox + vr_px + 8, oy - vl_py/2 + 4);
+
+  // V_C phasor (down from tip of V_R)
+  _arrEMI(ctx, ox + vr_px, oy, ox + vr_px, oy + vc_py, '#f97316', 2.5);
+  ctx.fillStyle = '#f97316';
+  ctx.fillText('V_C=' + VC.toFixed(0) + 'V', ox + vr_px + 8, oy + vc_py/2 + 4);
+
+  // Net voltage phasor (from origin)
+  _arrEMI(ctx, ox, oy, ox + vnet_px, oy + vnet_py, '#dc2626', 2.8);
+  ctx.fillStyle = '#dc2626'; ctx.font = 'bold 12px sans-serif'; ctx.textAlign = 'left';
+  ctx.fillText('V=' + Vs.toFixed(0) + 'V (supply)', ox + vnet_px + 6, oy + vnet_py - 4);
+
+  // Phase angle arc
+  if (Math.abs(vnet_py) > 4) {
+    const phi_rad = Math.atan2(-vnet_py, vnet_px);
+    const phi_deg = phi_rad * 180 / Math.PI;
+    ctx.beginPath();
+    ctx.arc(ox, oy, 32, 0, phi_rad, phi_rad < 0);
+    ctx.strokeStyle = '#dc2626'; ctx.lineWidth = 1; ctx.setLineDash([3,2]); ctx.stroke(); ctx.setLineDash([]);
+    ctx.fillStyle = '#dc2626'; ctx.font = '11px sans-serif'; ctx.textAlign = 'center';
+    ctx.fillText('φ=' + phi_deg.toFixed(1) + '°', ox + 60, oy + (vnet_py < 0 ? -20 : 22));
+  }
+
+  // Current reference arrow
+  _arrEMI(ctx, ox - 55, oy, ox - 10, oy, '#475569', 1.5);
+  ctx.fillStyle = '#475569'; ctx.font = 'bold 11px sans-serif'; ctx.textAlign = 'right';
+  ctx.fillText('I', ox - 60, oy + 4);
+
+  // Legend
+  const lx = W - 145, ly = 42;
+  [['V_R','#16a34a','in phase with I'], ['V_L','#0284c7','leads I by 90°'], ['V_C','#f97316','lags I by 90°'], ['V','#dc2626','supply (at angle φ)']].forEach(([lbl,col,note],i) => {
+    ctx.fillStyle = col; ctx.beginPath(); ctx.fillRect(lx, ly+i*22, 14, 3); ctx.fill();
+    ctx.font = 'bold 10px sans-serif'; ctx.textAlign = 'left'; ctx.fillText(lbl, lx+18, ly+i*22+4);
+    ctx.fillStyle = '#64748b'; ctx.font = '9px sans-serif'; ctx.fillText(note, lx+18, ly+i*22+14);
+  });
+}
+
+function _arrEMI(ctx, x1, y1, x2, y2, col, lw) {
+  const ang = Math.atan2(y2-y1, x2-x1);
+  ctx.beginPath(); ctx.moveTo(x1,y1); ctx.lineTo(x2,y2);
+  ctx.strokeStyle=col; ctx.lineWidth=lw; ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(x2,y2);
+  ctx.lineTo(x2-9*Math.cos(ang-.42),y2-9*Math.sin(ang-.42));
+  ctx.lineTo(x2-9*Math.cos(ang+.42),y2-9*Math.sin(ang+.42));
+  ctx.closePath(); ctx.fillStyle=col; ctx.fill();
+}
+
 function lcrUpdate() {
   const R = parseFloat(document.getElementById('lcr-R').value) || 1;
   const L = (parseFloat(document.getElementById('lcr-L').value) || 100) * 1e-3;
@@ -535,6 +711,8 @@ P_avg = V×I×cosφ = <strong>${P.toFixed(2)} W</strong>
 ──────────────────────────────
 Resonant ω₀ = 1/√(LC) = <strong>${w0.toFixed(2)} rad/s</strong>
 Resonant f₀  = <strong>${f0.toFixed(2)} Hz</strong>`;
+
+  drawPhasor();
 }
 
 function pfUpdate() {
@@ -555,6 +733,7 @@ Reactive power Q = S × sinφ = <strong>${Math.abs(Q).toFixed(2)} VAR</strong>
 P² + Q² = S² check: ${(P*P + Q*Q).toFixed(1)} vs ${(S*S).toFixed(1)} ✓`;
 }
 
+drawACWave();
 lcrUpdate();
 pfUpdate();
 </script>

@@ -258,6 +258,11 @@
         <div id="ec-out" style="background:#fff;border-radius:8px;padding:.9rem;font-family:'JetBrains Mono',monospace;font-size:.82rem;line-height:1.8;border:1px solid #d1fae5;"></div>
       </div>
 
+      <div class="diagram" style="text-align:center;">
+        <canvas id="ebar-cv" width="480" height="190" style="max-width:100%;border-radius:8px;"></canvas>
+        <div style="font-size:.8rem;color:#64748b;margin-top:.3rem;">Energy bar chart updates with calculator · Total energy is conserved (PE + KE = constant)</div>
+      </div>
+
       <div class="callout warn">
         <strong>Pendulum — Quick result:</strong> v at lowest point = √(2gL(1 − cosθ)), where θ is the initial angle from vertical and L is the pendulum length. Derived directly from mgh = ½mv².
       </div>
@@ -545,6 +550,85 @@
 
 <script src="../js/main.js"></script>
 <script>
+function drawEBar(PE1, KE1, PE2, KE2) {
+  const cv = document.getElementById('ebar-cv');
+  if (!cv) return;
+  const ctx = cv.getContext('2d');
+  const W = cv.width, H = cv.height;
+
+  ctx.clearRect(0, 0, W, H);
+  ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+
+  const total = Math.max(PE1 + KE1, 1);
+  const barW = 90, gap = 40, topPad = 40, botPad = 35;
+  const maxH = H - topPad - botPad;
+
+  // Title & labels
+  ctx.fillStyle = '#1e293b'; ctx.font = 'bold 12px sans-serif'; ctx.textAlign = 'center';
+  ctx.fillText('Energy Conservation — Bar Chart', W/2, 18);
+
+  const groups = [
+    { label: 'Initial State', pe: PE1, ke: KE1, x: 110 },
+    { label: 'Final State',   pe: PE2, ke: KE2, x: 290 }
+  ];
+
+  groups.forEach(g => {
+    const peH = (g.pe / total) * maxH;
+    const keH = (g.ke / total) * maxH;
+    const stackH = peH + keH;
+    const baseY = H - botPad;
+
+    // KE bar (bottom, teal)
+    ctx.fillStyle = '#0f766e';
+    ctx.fillRect(g.x - barW/2, baseY - keH, barW, keH);
+    // KE label inside bar if tall enough
+    if (keH > 18) {
+      ctx.fillStyle = '#fff'; ctx.font = 'bold 10px sans-serif'; ctx.textAlign = 'center';
+      ctx.fillText('KE', g.x, baseY - keH/2 + 4);
+      ctx.font = '9px sans-serif';
+      ctx.fillText(g.ke.toFixed(1) + ' J', g.x, baseY - keH/2 + 15);
+    }
+
+    // PE bar (on top, amber)
+    ctx.fillStyle = '#d97706';
+    ctx.fillRect(g.x - barW/2, baseY - keH - peH, barW, peH);
+    if (peH > 18) {
+      ctx.fillStyle = '#fff'; ctx.font = 'bold 10px sans-serif'; ctx.textAlign = 'center';
+      ctx.fillText('PE', g.x, baseY - keH - peH/2 + 4);
+      ctx.font = '9px sans-serif';
+      ctx.fillText(g.pe.toFixed(1) + ' J', g.x, baseY - keH - peH/2 + 15);
+    }
+
+    // Total label above stack
+    ctx.fillStyle = '#1e293b'; ctx.font = 'bold 11px sans-serif'; ctx.textAlign = 'center';
+    ctx.fillText('E = ' + (g.pe + g.ke).toFixed(1) + ' J', g.x, baseY - stackH - 7);
+
+    // Group label below
+    ctx.fillStyle = '#475569'; ctx.font = '11px sans-serif';
+    ctx.fillText(g.label, g.x, H - 8);
+
+    // Border
+    ctx.strokeStyle = '#94a3b8'; ctx.lineWidth = 1;
+    ctx.strokeRect(g.x - barW/2, baseY - stackH, barW, stackH);
+  });
+
+  // Baseline
+  ctx.strokeStyle = '#94a3b8'; ctx.lineWidth = 1;
+  ctx.beginPath(); ctx.moveTo(30, H - botPad); ctx.lineTo(W - 30, H - botPad); ctx.stroke();
+
+  // Legend
+  ctx.fillStyle = '#d97706'; ctx.fillRect(W - 135, 30, 12, 12);
+  ctx.fillStyle = '#475569'; ctx.font = '10px sans-serif'; ctx.textAlign = 'left';
+  ctx.fillText('PE = mgh', W - 119, 41);
+  ctx.fillStyle = '#0f766e'; ctx.fillRect(W - 135, 48, 12, 12);
+  ctx.fillStyle = '#475569'; ctx.fillText('KE = ½mv²', W - 119, 59);
+
+  // Arrow between bars
+  ctx.strokeStyle = '#94a3b8'; ctx.lineWidth = 1;
+  ctx.beginPath(); ctx.moveTo(165, H/2); ctx.lineTo(245, H/2); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(240, H/2-4); ctx.lineTo(245, H/2); ctx.lineTo(240, H/2+4); ctx.stroke();
+}
+
 function ecUpdate() {
   const m  = parseFloat(document.getElementById('ec-m').value)  || 1;
   const h1 = parseFloat(document.getElementById('ec-h1').value) || 0;
@@ -558,6 +642,7 @@ function ecUpdate() {
   const out = document.getElementById('ec-out');
   if (KE_final < 0) {
     out.innerHTML = `<span style="color:#dc2626;">❌ Not possible — final height h₂ is too high for given initial energy.<br>Max reachable height = ${(E_initial / (m * g)).toFixed(2)} m</span>`;
+    drawEBar(m*g*h1, 0.5*m*u*u, m*g*h2, 0);
     return;
   }
   const v = Math.sqrt(2 * KE_final / m);
@@ -565,6 +650,8 @@ function ecUpdate() {
 Final PE        = mgh₂ = ${(m*g*h2).toFixed(2)} J
 Final KE        = ${E_initial.toFixed(2)} − ${(m*g*h2).toFixed(2)} = <strong>${KE_final.toFixed(2)} J</strong>
 Final speed v   = √(2 × KE / m) = <strong>${v.toFixed(3)} m/s</strong>`;
+
+  drawEBar(m*g*h1, 0.5*m*u*u, m*g*h2, KE_final);
 }
 
 function colUpdate() {

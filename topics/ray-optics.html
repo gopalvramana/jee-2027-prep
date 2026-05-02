@@ -162,6 +162,10 @@
           <label style="font-size:.85rem;">Object height h_o (cm): <input id="op-h" type="number" value="5" min="0.1" step="0.5" oninput="opUpdate()" style="width:100%;margin-top:.3rem;padding:.4rem;border:1px solid #d1fae5;border-radius:6px;font-size:.9rem;"></label>
         </div>
         <div id="op-out" style="background:#fff;border-radius:8px;padding:.9rem;font-family:'JetBrains Mono',monospace;font-size:.82rem;line-height:1.8;border:1px solid #d1fae5;"></div>
+        <div class="diagram" style="margin-top:1rem;text-align:center;">
+          <canvas id="ray-canvas" width="640" height="300" style="max-width:100%;border-radius:8px;background:#0f172a;"></canvas>
+          <p class="diagram-cap" style="font-size:.78rem;color:var(--ink3);margin-top:.4rem;">Principal ray diagram — updates with the calculator above. Dashed = virtual rays.</p>
+        </div>
       </div>
 
       <div class="method-box">
@@ -213,6 +217,44 @@
 
       <div class="callout warn">
         <strong>Denser medium (higher n): slower speed, shorter wavelength, ray bends TOWARD normal.</strong> Rarer medium (lower n): faster speed, longer wavelength, ray bends AWAY from normal.
+      </div>
+
+      <div class="diagram" style="margin-top:1rem;text-align:center;">
+        <svg viewBox="0 0 400 280" width="400" height="280" style="max-width:100%;border-radius:8px;display:inline-block;" aria-label="Snell's Law refraction diagram">
+          <!-- Medium 1 background -->
+          <rect x="0" y="0" width="400" height="140" fill="#bfdbfe" opacity="0.45"/>
+          <!-- Medium 2 background -->
+          <rect x="0" y="140" width="400" height="140" fill="#99f6e4" opacity="0.45"/>
+          <!-- Medium labels -->
+          <text x="16" y="22" font-size="13" fill="#1e40af" font-family="DM Sans,sans-serif" font-weight="700">Medium 1 (n₁)</text>
+          <text x="16" y="272" font-size="13" fill="#0f766e" font-family="DM Sans,sans-serif" font-weight="700">Medium 2 (n₂ &gt; n₁)</text>
+          <!-- Interface line (solid) -->
+          <line x1="0" y1="140" x2="400" y2="140" stroke="#64748b" stroke-width="1.5"/>
+          <!-- Normal (vertical dashed) -->
+          <line x1="200" y1="10" x2="200" y2="270" stroke="#94a3b8" stroke-width="1" stroke-dasharray="5,4"/>
+          <text x="204" y="18" font-size="11" fill="#64748b" font-family="DM Sans,sans-serif">Normal</text>
+          <!-- Incident ray: (100,20) → (200,140) -->
+          <line x1="100" y1="20" x2="200" y2="140" stroke="#f59e0b" stroke-width="2"/>
+          <polygon points="196,131 204,131 200,142" fill="#f59e0b"/>
+          <text x="90" y="55" font-size="11" fill="#b45309" font-family="DM Sans,sans-serif">Incident ray</text>
+          <!-- Reflected ray: (200,140) → (300,20), dashed -->
+          <line x1="200" y1="140" x2="300" y2="20" stroke="#94a3b8" stroke-width="1.2" stroke-dasharray="5,4"/>
+          <polygon points="296,29 304,25 300,18" fill="#94a3b8"/>
+          <!-- Refracted ray: (200,140) → (290,280), bent toward normal -->
+          <line x1="200" y1="140" x2="290" y2="280" stroke="#10b981" stroke-width="2.2"/>
+          <polygon points="284,271 292,273 290,281" fill="#10b981"/>
+          <text x="248" y="238" font-size="10" fill="#0f766e" font-family="DM Sans,sans-serif">Refracted ray</text>
+          <text x="236" y="251" font-size="10" fill="#0f766e" font-family="DM Sans,sans-serif">(bends toward normal)</text>
+          <!-- θ₁ arc in medium 1 -->
+          <path d="M 200,118 A 22,22 0 0 0 182,128" fill="none" stroke="#f59e0b" stroke-width="1.5"/>
+          <text x="166" y="120" font-size="12" fill="#b45309" font-family="DM Sans,sans-serif" font-weight="700">θ₁</text>
+          <!-- θ₂ arc in medium 2 -->
+          <path d="M 200,162 A 22,22 0 0 1 215,167" fill="none" stroke="#10b981" stroke-width="1.5"/>
+          <text x="218" y="174" font-size="12" fill="#0f766e" font-family="DM Sans,sans-serif" font-weight="700">θ₂</text>
+          <!-- Snell's law label -->
+          <text x="200" y="130" font-size="11" fill="#0f172a" font-family="JetBrains Mono,monospace" text-anchor="middle" font-weight="700">n₁ sin θ₁ = n₂ sin θ₂</text>
+        </svg>
+        <p class="diagram-cap" style="font-size:.78rem;color:var(--ink3);margin-top:.4rem;">Refraction at interface: ray bends toward normal entering denser medium (n₂ &gt; n₁). θ₂ &lt; θ₁.</p>
       </div>
     </section>
 
@@ -286,6 +328,10 @@
             <tr><td>Within F₁ (|u| &lt; f)</td><td class="formula-cell">Virtual, erect, magnified (same side as object)</td></tr>
           </tbody>
         </table>
+      </div>
+
+      <div class="callout info">
+        Use the ray diagram in Section 4 — select <strong>Lens</strong> from the dropdown to see lens ray diagrams.
       </div>
     </section>
 
@@ -388,6 +434,10 @@
           <label style="font-size:.85rem;">n (fringe number): <input id="ydse-n" type="number" value="3" min="1" max="20" step="1" oninput="ydseUpdate()" style="width:100%;margin-top:.3rem;padding:.4rem;border:1px solid #d1fae5;border-radius:6px;font-size:.9rem;"></label>
         </div>
         <div id="ydse-out" style="background:#fff;border-radius:8px;padding:.9rem;font-family:'JetBrains Mono',monospace;font-size:.82rem;line-height:1.8;border:1px solid #d1fae5;"></div>
+        <div class="diagram" style="margin-top:1rem;text-align:center;">
+          <canvas id="ydse-canvas" width="640" height="200" style="max-width:100%;border-radius:8px;background:#0f172a;"></canvas>
+          <p class="diagram-cap" style="font-size:.78rem;color:var(--ink3);margin-top:.4rem;">YDSE fringe pattern — intensity I = I₀ cos²(πyd/λD). Updates with calculator above.</p>
+        </div>
       </div>
 
       <div class="callout warn">
@@ -546,6 +596,7 @@ m           = ${type==='mirror'?'−v/u':'v/u'} = ${type==='mirror'?'-':''}${v.t
 Image type  : <strong>${imgType}</strong>
 Orientation : <strong>${orientation}</strong>  |  Size: <strong>${size}</strong>  (|m|=${Math.abs(m).toFixed(2)})
 Image height: ${m.toFixed(3)} × ${h} = <strong>${hi.toFixed(2)} cm</strong>`;
+  drawRayDiagram();
 }
 
 function ydseUpdate() {
@@ -564,6 +615,269 @@ function ydseUpdate() {
 ${n}th bright fringe: y = nβ = ${n} × ${(beta*1000).toFixed(4)}mm = <strong>${(yn_bright*1000).toFixed(4)} mm</strong>
 ${n}th dark fringe:  y = (2n−1)β/2 = <strong>${(yn_dark*1000).toFixed(4)} mm</strong>
 Angular fringe width = λ/d = <strong>${(lam/d*1000).toFixed(4)} mrad</strong>`;
+  drawYdse();
+}
+
+// ── Ray Diagram ──────────────────────────────────────────────────────────────
+function drawRayDiagram() {
+  const canvas = document.getElementById('ray-canvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  const W = 640, H = 300;
+  ctx.clearRect(0, 0, W, H);
+
+  const f    = parseFloat(document.getElementById('op-f').value) || -20;
+  const u    = parseFloat(document.getElementById('op-u').value) || -30;
+  const type = document.getElementById('op-type').value;
+
+  let v, m;
+  if (type === 'mirror') {
+    v = 1 / (1/f - 1/u);
+    m = -v / u;
+  } else {
+    v = 1 / (1/f + 1/u);
+    m = v / u;
+  }
+
+  const mirrorX = 480;
+  const axisY   = 150;
+  const maxVal  = Math.max(Math.abs(u), Math.abs(v), Math.abs(f) * 2, 10);
+  const scale   = Math.min(400 / maxVal, 6);
+
+  // helpers
+  function arrow(x1, y1, x2, y2, color, dashed) {
+    ctx.save();
+    ctx.strokeStyle = color;
+    ctx.fillStyle   = color;
+    ctx.lineWidth   = 1.6;
+    if (dashed) ctx.setLineDash([5, 4]);
+    else        ctx.setLineDash([]);
+    ctx.beginPath();
+    ctx.moveTo(x1, y1);
+    ctx.lineTo(x2, y2);
+    ctx.stroke();
+    const ang = Math.atan2(y2 - y1, x2 - x1);
+    const hs  = 8;
+    ctx.beginPath();
+    ctx.moveTo(x2, y2);
+    ctx.lineTo(x2 - hs * Math.cos(ang - 0.4), y2 - hs * Math.sin(ang - 0.4));
+    ctx.lineTo(x2 - hs * Math.cos(ang + 0.4), y2 - hs * Math.sin(ang + 0.4));
+    ctx.closePath();
+    ctx.fill();
+    ctx.restore();
+  }
+
+  function dot(x, y, r, color) {
+    ctx.beginPath();
+    ctx.arc(x, y, r, 0, Math.PI * 2);
+    ctx.fillStyle = color;
+    ctx.fill();
+  }
+
+  function label(txt, x, y, color, align) {
+    ctx.save();
+    ctx.font = '11px DM Sans, sans-serif';
+    ctx.fillStyle   = color || '#e2e8f0';
+    ctx.textAlign   = align  || 'center';
+    ctx.fillText(txt, x, y);
+    ctx.restore();
+  }
+
+  // Background
+  ctx.fillStyle = '#0f172a';
+  ctx.fillRect(0, 0, W, H);
+
+  // Optical axis
+  ctx.save();
+  ctx.strokeStyle = '#475569';
+  ctx.lineWidth   = 1;
+  ctx.setLineDash([6, 4]);
+  ctx.beginPath();
+  ctx.moveTo(0, axisY);
+  ctx.lineTo(W, axisY);
+  ctx.stroke();
+  ctx.restore();
+
+  // Draw mirror or lens symbol at mirrorX
+  ctx.save();
+  ctx.strokeStyle = '#94a3b8';
+  ctx.lineWidth   = 2.5;
+  ctx.setLineDash([]);
+  if (type === 'mirror') {
+    // Concave mirror: arc opening to the LEFT (toward object)
+    // Convex mirror: arc opening to the RIGHT
+    const arcR = 60;
+    const span = Math.PI / 4;
+    if (f < 0) {
+      // concave (f < 0 in New Cartesian for mirror)
+      ctx.beginPath();
+      ctx.arc(mirrorX + arcR, axisY, arcR, Math.PI - span, Math.PI + span);
+      ctx.stroke();
+    } else {
+      // convex
+      ctx.beginPath();
+      ctx.arc(mirrorX - arcR, axisY, arcR, -span, span);
+      ctx.stroke();
+    }
+    // label
+    label(f < 0 ? 'Concave Mirror' : 'Convex Mirror', mirrorX, H - 10, '#94a3b8', 'center');
+  } else {
+    // Biconvex lens symbol: two arcs forming lens shape
+    ctx.beginPath();
+    ctx.arc(mirrorX - 40, axisY, 50, -Math.PI / 5, Math.PI / 5);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.arc(mirrorX + 40, axisY, 50, Math.PI - Math.PI / 5, Math.PI + Math.PI / 5);
+    ctx.stroke();
+    label(f > 0 ? 'Convex Lens' : 'Concave Lens', mirrorX, H - 10, '#94a3b8', 'center');
+  }
+  ctx.restore();
+
+  // Compute key x positions
+  const fX = mirrorX + f * scale;
+  const cX = mirrorX + 2 * f * scale;  // C = 2f for mirror
+  const uX = mirrorX + u * scale;
+  const vX = mirrorX + v * scale;
+
+  // Mark F and C / F₁ F₂
+  dot(fX, axisY, 4, '#fbbf24');
+  label('F', fX, axisY + 16, '#fbbf24');
+  if (type === 'mirror') {
+    dot(cX, axisY, 4, '#fb923c');
+    label('C', cX, axisY + 16, '#fb923c');
+  } else {
+    const f2X = mirrorX - f * scale;
+    dot(f2X, axisY, 4, '#fbbf24');
+    label('F₂', f2X, axisY + 16, '#fbbf24');
+    label('F₁', fX, axisY + 16, '#fbbf24');
+  }
+  label('P', mirrorX, axisY + 16, '#94a3b8');
+
+  // Object arrow (always upright, height 50px from axis upward)
+  const objH = 50;
+  arrow(uX, axisY, uX, axisY - objH, '#22d3ee', false);
+  label('Object', uX, axisY - objH - 8, '#22d3ee', 'center');
+
+  // Determine if image is virtual
+  const imgVirtual = (type === 'mirror') ? (v > 0) : (v < 0);
+  const imgH = m * objH;  // may be negative (inverted)
+  const imgColor = imgVirtual ? '#818cf8' : '#4ade80';
+
+  // Image arrow
+  if (isFinite(v) && Math.abs(vX) < W + 200) {
+    arrow(vX, axisY, vX, axisY - imgH, imgColor, imgVirtual);
+    label('Image', vX, axisY - imgH - 8, imgColor, 'center');
+  }
+
+  // Ray 1: Parallel to axis from object tip → hits mirror/lens at axisY level of mirrorX
+  //         Then reflects/refracts through F (or appears to come from F for virtual)
+  const tipX = uX, tipY = axisY - objH;
+
+  // Ray 1 segment: object tip → mirror/lens (horizontal)
+  arrow(tipX, tipY, mirrorX, tipY, '#f87171', false);
+  if (isFinite(fX)) {
+    if (!imgVirtual) {
+      // Real: goes through F
+      arrow(mirrorX, tipY, fX + (fX - mirrorX) * 3, axisY + (axisY - tipY) * 3 * (f < 0 || type === 'lens' ? 1 : -1), '#f87171', false);
+      // More precisely: from mirror/lens apex, refracted/reflected through F toward image
+      // Simplified: draw to image tip via F
+      if (isFinite(vX)) {
+        ctx.save();
+        ctx.strokeStyle = '#f87171';
+        ctx.lineWidth = 1.6;
+        ctx.setLineDash([]);
+        ctx.beginPath();
+        ctx.moveTo(mirrorX, tipY);
+        ctx.lineTo(vX, axisY - imgH);
+        ctx.stroke();
+        ctx.restore();
+      }
+    } else {
+      // Virtual: dashed backward extension through F
+      arrow(mirrorX, tipY, fX, axisY, '#818cf8', true);
+      if (isFinite(vX)) {
+        ctx.save();
+        ctx.strokeStyle = '#f87171';
+        ctx.lineWidth = 1.6;
+        ctx.setLineDash([]);
+        ctx.beginPath();
+        ctx.moveTo(mirrorX, tipY);
+        ctx.lineTo(0, axisY - imgH - (axisY - imgH - tipY) * (mirrorX / (mirrorX - vX)));
+        ctx.stroke();
+        ctx.restore();
+        arrow(mirrorX, tipY, vX, axisY - imgH, '#f87171', true);
+      }
+    }
+  }
+
+  // Ray 2: from object tip through F → hits mirror/lens → comes out parallel to axis
+  if (isFinite(fX) && isFinite(vX)) {
+    if (!imgVirtual) {
+      arrow(tipX, tipY, mirrorX, axisY - imgH, '#fbbf24', false);
+      // After mirror/lens: parallel to axis toward image
+      arrow(mirrorX, axisY - imgH, vX + (vX - mirrorX) * 0.5, axisY - imgH, '#fbbf24', false);
+    } else {
+      // Through F (dashed) then from lens parallel
+      arrow(tipX, tipY, mirrorX, axisY, '#fbbf24', false);
+      arrow(mirrorX, axisY, mirrorX + 80, axisY, '#fbbf24', false);
+    }
+  }
+}
+
+// ── YDSE Fringe Pattern ──────────────────────────────────────────────────────
+function drawYdse() {
+  const canvas = document.getElementById('ydse-canvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  const W = 640, H = 200;
+
+  const lam = (parseFloat(document.getElementById('ydse-lam').value) || 600) * 1e-9;
+  const D   = parseFloat(document.getElementById('ydse-D').value) || 1.5;
+  const d   = (parseFloat(document.getElementById('ydse-d').value) || 0.5) * 1e-3;
+
+  const beta = lam * D / d;  // fringe width in metres
+  // Map: 1 mm → ~30 px so fringe pattern looks good at realistic values
+  const pxPerM = 30 / 1e-3;  // 30 px per mm
+  const betaPx = beta * pxPerM;
+
+  ctx.fillStyle = '#0f172a';
+  ctx.fillRect(0, 0, W, H);
+
+  // Draw intensity stripes
+  const cx = W / 2;
+  for (let x = 0; x < W; x++) {
+    const xShift = x - cx;
+    // phase φ = π * xShift / betaPx
+    const phi = Math.PI * xShift / betaPx;
+    const I   = Math.cos(phi) ** 2;
+    // Bright = yellowish-white; dim = dark
+    const r = Math.round(255 * I);
+    const g = Math.round(230 * I);
+    const b = Math.round(100 * I);
+    ctx.fillStyle = `rgb(${r},${g},${b})`;
+    ctx.fillRect(x, 0, 1, H - 28);
+  }
+
+  // Label: Central bright fringe
+  ctx.save();
+  ctx.font = 'bold 11px DM Sans, sans-serif';
+  ctx.fillStyle = '#e2e8f0';
+  ctx.textAlign = 'center';
+  ctx.fillText('Central bright fringe', cx, H - 32);
+
+  // β arrow below the pattern
+  const bw = Math.min(betaPx, W / 2 - 4);
+  ctx.strokeStyle = '#fbbf24';
+  ctx.lineWidth   = 1.5;
+  ctx.setLineDash([]);
+  // left tick
+  ctx.beginPath(); ctx.moveTo(cx, H - 22); ctx.lineTo(cx + bw, H - 22); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(cx, H - 26); ctx.lineTo(cx, H - 18); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(cx + bw, H - 26); ctx.lineTo(cx + bw, H - 18); ctx.stroke();
+  ctx.fillStyle = '#fbbf24';
+  ctx.textAlign = 'center';
+  ctx.fillText('β = ' + (beta * 1000).toFixed(3) + ' mm', cx + bw / 2, H - 8);
+  ctx.restore();
 }
 
 opUpdate();

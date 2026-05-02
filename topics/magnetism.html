@@ -128,6 +128,40 @@
       <div class="callout warn">
         <strong>At centre of semi-circular arc of radius R:</strong> B = μ₀I/4R (half the full circle value). For arc of angle θ (radians): B = μ₀Iθ/4πR.
       </div>
+
+      <div class="diagram">
+        <svg viewBox="0 0 460 230" width="460" height="230" style="max-width:100%;font-family:DM Sans,sans-serif;">
+          <defs>
+            <marker id="barr" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+              <path d="M0,0 L8,4 L0,8 Z" fill="#0f766e"/>
+            </marker>
+          </defs>
+          <text x="230" y="18" text-anchor="middle" font-size="13" font-weight="600" fill="#1e293b">Magnetic Field Lines — Straight Current-Carrying Wire</text>
+          <text x="230" y="34" text-anchor="middle" font-size="11" fill="#64748b">Current I out of page ⊙ · B circles anticlockwise (right-hand rule)</text>
+          <!-- Concentric B field circles -->
+          <circle cx="200" cy="140" r="30" fill="none" stroke="#0f766e" stroke-width="2.2"/>
+          <circle cx="200" cy="140" r="57" fill="none" stroke="#0f766e" stroke-width="1.6"/>
+          <circle cx="200" cy="140" r="88" fill="none" stroke="#0f766e" stroke-width="1.1"/>
+          <!-- Direction arrows at top of each circle pointing left = anticlockwise -->
+          <line x1="205" y1="110" x2="195" y2="110" stroke="#0f766e" stroke-width="2.2" marker-end="url(#barr)"/>
+          <line x1="205" y1="83" x2="195" y2="83" stroke="#0f766e" stroke-width="1.6" marker-end="url(#barr)"/>
+          <line x1="205" y1="52" x2="195" y2="52" stroke="#0f766e" stroke-width="1.1" marker-end="url(#barr)"/>
+          <!-- Wire cross-section -->
+          <circle cx="200" cy="140" r="12" fill="#0c4a6e" stroke="#0f766e" stroke-width="2"/>
+          <text x="200" y="145" text-anchor="middle" font-size="13" fill="#fff" font-weight="bold">⊙</text>
+          <!-- Radius labels -->
+          <text x="233" y="139" font-size="10" fill="#0f766e">r₁</text>
+          <text x="260" y="139" font-size="10" fill="#0f766e">r₂</text>
+          <text x="291" y="139" font-size="10" fill="#0f766e">r₃</text>
+          <text x="200" y="183" text-anchor="middle" font-size="10" fill="#64748b">↑ Field gets weaker further from wire (B ∝ 1/r)</text>
+          <!-- Formula box -->
+          <rect x="315" y="70" width="132" height="80" rx="7" fill="#f0fdf4" stroke="#0f766e" stroke-width="1"/>
+          <text x="381" y="92" text-anchor="middle" font-size="12" fill="#065f46" font-weight="600">B = μ₀I / 2πr</text>
+          <text x="381" y="110" text-anchor="middle" font-size="11" fill="#065f46">B ∝ 1/r</text>
+          <text x="381" y="127" text-anchor="middle" font-size="10" fill="#64748b">weaker farther out</text>
+          <text x="381" y="142" text-anchor="middle" font-size="10" fill="#64748b">denser lines = stronger</text>
+        </svg>
+      </div>
     </section>
 
     <!-- S4 -->
@@ -226,6 +260,11 @@
           <label style="font-size:.85rem;">Magnetic field B (T): <input id="cm-B" type="number" value="0.5" min="0.01" step="0.01" oninput="cmUpdate()" style="width:100%;margin-top:.3rem;padding:.4rem;border:1px solid #d1fae5;border-radius:6px;font-size:.9rem;"></label>
         </div>
         <div id="cm-out" style="background:#fff;border-radius:8px;padding:.9rem;font-family:'JetBrains Mono',monospace;font-size:.82rem;line-height:1.8;border:1px solid #d1fae5;"></div>
+      </div>
+
+      <div class="diagram" style="text-align:center;">
+        <canvas id="orbit-cv" width="500" height="260" style="max-width:100%;border-radius:8px;"></canvas>
+        <div style="font-size:.8rem;color:#64748b;margin-top:.3rem;">Orbit radius scales with r = mv/qB · Adjust inputs above · v ⊥ F so B does zero work</div>
       </div>
     </section>
 
@@ -439,6 +478,8 @@
 
 <script src="../js/main.js"></script>
 <script>
+let _orbitR = 0.0418, _orbitAng = 0, _orbitRunning = false;
+
 function cmUpdate() {
   const m = (parseFloat(document.getElementById('cm-m').value) || 1.67) * 1e-27;
   const q = (parseFloat(document.getElementById('cm-q').value) || 1.6) * 1e-19;
@@ -457,6 +498,99 @@ Force F       = qvB = <strong>${F.toExponential(3)} N</strong>
 Time period T = 2πm/qB = <strong>${T.toExponential(3)} s</strong>  (independent of v!)
 Frequency f   = qB/2πm = <strong>${f.toExponential(3)} Hz</strong>
 Kinetic energy = ½mv² = <strong>${KE.toExponential(3)} J</strong>  (unchanged by B — no work done)`;
+
+  _orbitR = r;
+  if (!_orbitRunning) { _orbitRunning = true; _runOrbit(); }
+}
+
+function _runOrbit() {
+  const cv = document.getElementById('orbit-cv');
+  if (!cv) return;
+  const ctx = cv.getContext('2d');
+  const W = cv.width, H = cv.height, cx = W/2, cy = H/2;
+
+  ctx.clearRect(0, 0, W, H);
+
+  // Background gradient
+  const bg = ctx.createLinearGradient(0, 0, 0, H);
+  bg.addColorStop(0, '#f0f9ff'); bg.addColorStop(1, '#e0f2fe');
+  ctx.fillStyle = bg; ctx.fillRect(0, 0, W, H);
+
+  // B field × markers (into page)
+  ctx.fillStyle = '#94a3b8'; ctx.font = '13px sans-serif'; ctx.textAlign = 'center';
+  for (let ix = 28; ix < W; ix += 52)
+    for (let iy = 26; iy < H; iy += 48)
+      ctx.fillText('×', ix, iy);
+  ctx.fillStyle = '#64748b'; ctx.font = '10px sans-serif'; ctx.textAlign = 'right';
+  ctx.fillText('B (into page)', W - 8, H - 6);
+
+  // Scale: default r=0.0418 m → 90 display px
+  const dispR = Math.min(Math.max(_orbitR / 0.0418 * 90, 16), 118);
+
+  // Orbit path (dashed circle)
+  ctx.beginPath(); ctx.arc(cx, cy, dispR, 0, 2*Math.PI);
+  ctx.strokeStyle = '#0284c7'; ctx.lineWidth = 1.5;
+  ctx.setLineDash([5, 3]); ctx.stroke(); ctx.setLineDash([]);
+
+  // Particle position
+  const px = cx + dispR * Math.cos(_orbitAng);
+  const py = cy + dispR * Math.sin(_orbitAng);
+
+  // Velocity arrow (tangent, 90° ahead of radius)
+  const vLen = 38;
+  const vdx = -Math.sin(_orbitAng) * vLen, vdy = Math.cos(_orbitAng) * vLen;
+  _arrowMag(ctx, px, py, px+vdx, py+vdy, '#ef4444', 2);
+  ctx.fillStyle = '#ef4444'; ctx.font = 'bold 12px sans-serif'; ctx.textAlign = 'center';
+  ctx.fillText('v', px + vdx*1.35, py + vdy*1.35 + 4);
+
+  // Force arrow (centripetal, toward centre)
+  const fLen = Math.min(dispR * 0.38, 32);
+  const fd = 1/dispR;
+  const fdx = (cx-px)*fd*fLen, fdy = (cy-py)*fd*fLen;
+  _arrowMag(ctx, px, py, px+fdx, py+fdy, '#7c3aed', 2);
+  ctx.fillStyle = '#7c3aed';
+  ctx.fillText('F', px + fdx*1.45, py + fdy*1.45 + 4);
+
+  // Particle dot
+  ctx.beginPath(); ctx.arc(px, py, 9, 0, 2*Math.PI);
+  ctx.fillStyle = '#0f766e'; ctx.fill();
+  ctx.fillStyle = '#fff'; ctx.font = 'bold 12px sans-serif'; ctx.textAlign = 'center';
+  ctx.fillText('+', px, py+4);
+
+  // Radius dashed line & label
+  ctx.beginPath(); ctx.moveTo(cx, cy); ctx.lineTo(px - fdx/fLen*9, py - fdy/fLen*9);
+  ctx.strokeStyle = '#94a3b8'; ctx.lineWidth = 1; ctx.setLineDash([3,2]); ctx.stroke(); ctx.setLineDash([]);
+  ctx.fillStyle = '#64748b'; ctx.font = '10px sans-serif';
+  ctx.fillText('r', (cx+px)/2 + 5, (cy+py)/2 - 4);
+
+  // Centre dot
+  ctx.beginPath(); ctx.arc(cx, cy, 3, 0, 2*Math.PI); ctx.fillStyle = '#475569'; ctx.fill();
+
+  // Info box
+  ctx.fillStyle = 'rgba(255,255,255,0.92)'; ctx.strokeStyle = '#0f766e'; ctx.lineWidth = 1;
+  ctx.fillRect(8, 8, 180, 58); ctx.strokeRect(8, 8, 180, 58);
+  ctx.fillStyle = '#065f46'; ctx.font = 'bold 11px monospace'; ctx.textAlign = 'left';
+  ctx.fillText('r = ' + (_orbitR * 100).toFixed(2) + ' cm', 16, 27);
+  ctx.fillStyle = '#475569'; ctx.font = '10px sans-serif';
+  ctx.fillText('F ⊥ v  →  B does zero work', 16, 42);
+  ctx.fillText('T = 2πm/qB  (speed-independent)', 16, 56);
+
+  // Caption
+  ctx.fillStyle = '#1e293b'; ctx.font = 'bold 11px sans-serif'; ctx.textAlign = 'center';
+  ctx.fillText('Charged Particle Circular Motion in B Field', W/2, H - 6);
+
+  _orbitAng += 0.025;
+  requestAnimationFrame(_runOrbit);
+}
+
+function _arrowMag(ctx, x1, y1, x2, y2, col, lw) {
+  const ang = Math.atan2(y2-y1, x2-x1);
+  ctx.beginPath(); ctx.moveTo(x1, y1); ctx.lineTo(x2, y2);
+  ctx.strokeStyle = col; ctx.lineWidth = lw; ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(x2, y2);
+  ctx.lineTo(x2 - 9*Math.cos(ang-.42), y2 - 9*Math.sin(ang-.42));
+  ctx.lineTo(x2 - 9*Math.cos(ang+.42), y2 - 9*Math.sin(ang+.42));
+  ctx.closePath(); ctx.fillStyle = col; ctx.fill();
 }
 
 cmUpdate();
