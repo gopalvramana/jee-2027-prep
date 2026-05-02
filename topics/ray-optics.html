@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ray Optics — JEE 2027 Deep-Dive</title>
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body class="topic-phys">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="nav-brand">JEE 2027</div>
+    <div class="nav-links">
+      <a href="../index.html">Dashboard</a>
+      <a href="../subjects/math.html">📐 Math</a>
+      <a href="../subjects/physics.html" class="phys-active">⚡ Physics</a>
+      <a href="../subjects/chemistry.html">🧪 Chemistry</a>
+      <a href="../progress.html">✅ Progress</a>
+    </div>
+    <button class="nav-toggle" onclick="toggleNav()">☰</button>
+  </div>
+</nav>
+
+<header class="page-hero" style="background:var(--topic-grad);padding:3rem 1rem 2.5rem;">
+  <div class="page-hero-content">
+    <div class="page-hero-tag">P8 · Physics Deep-Dive · October 2026</div>
+    <h1>⚡ Ray Optics</h1>
+    <p>Mirrors · Snell's Law · TIR · Lenses · Prisms · YDSE · Sign Convention mastery</p>
+    <div class="page-hero-meta">
+      <div class="meta-item"><strong>JEE Weight:</strong> 7–8% (~8 marks)</div>
+      <div class="meta-item"><strong>Difficulty:</strong> 🟡 Moderate</div>
+      <div class="meta-item"><strong>Key Skill:</strong> Consistent sign convention — mirror ≠ lens formula</div>
+    </div>
+  </div>
+</header>
+
+<div class="topic-meta-bar">
+  <span class="topic-meta-pill">16 sections</span>
+  <span class="topic-meta-pill">2 interactives</span>
+  <span class="topic-meta-pill">9 JEE traps</span>
+  <span class="topic-meta-pill">6 worked examples</span>
+  <a href="../subjects/physics.html#unit-p8" class="topic-meta-pill" style="background:var(--topic-accent);color:#fff;text-decoration:none;">← Back to P8</a>
+</div>
+
+<div class="topic-wrap">
+  <nav class="topic-toc">
+    <div class="topic-toc-title">Contents</div>
+    <a href="#s1">1. Sign Convention</a>
+    <a href="#s2">2. Plane Mirror</a>
+    <a href="#s3">3. Spherical Mirrors</a>
+    <a href="#s4">4. Mirror Formula</a>
+    <a href="#s5">5. Mirror Image Types</a>
+    <a href="#s6">6. Snell's Law</a>
+    <a href="#s7">7. Total Internal Reflection</a>
+    <a href="#s8">8. Refraction at Plane Surface</a>
+    <a href="#s9">9. Lenses — Thin Lens Formula</a>
+    <a href="#s10">10. Lens Maker's Equation</a>
+    <a href="#s11">11. Lens Power &amp; Combination</a>
+    <a href="#s12">12. Prisms &amp; Dispersion</a>
+    <a href="#s13">13. Wave Optics — YDSE</a>
+    <a href="#s14">14. Diffraction</a>
+    <a href="#s15">15. Worked Examples</a>
+    <a href="#s16">16. Common Traps</a>
+  </nav>
+
+  <main class="topic-content">
+
+    <!-- S1 -->
+    <section class="topic-section" id="s1">
+      <h2>1. Sign Convention (New Cartesian)</h2>
+
+      <div class="callout info">
+        <strong>All distances measured from the pole (mirror) or optical centre (lens).</strong><br>
+        Positive = in direction of incident light (usually right). Negative = opposite to incident light (usually left).
+      </div>
+
+      <div class="formula-table-wrap">
+        <table class="formula-table">
+          <thead><tr><th>Quantity</th><th>Sign</th><th>Reason</th></tr></thead>
+          <tbody>
+            <tr><td>Object distance u</td><td class="formula-cell">Always − (real object)</td><td class="note-cell">Object is on incoming side (left)</td></tr>
+            <tr><td>Real image distance v</td><td class="formula-cell">− (mirror), + (lens)</td><td class="note-cell">Real image: same side as object (mirror), opposite side (lens)</td></tr>
+            <tr><td>Virtual image distance v</td><td class="formula-cell">+ (mirror), − (lens)</td><td class="note-cell">Virtual image: behind mirror, same side as object for lens</td></tr>
+            <tr><td>Focal length (concave mirror)</td><td class="formula-cell">− (negative)</td><td class="note-cell">Focus is on same side as object (real focus)</td></tr>
+            <tr><td>Focal length (convex mirror)</td><td class="formula-cell">+ (positive)</td><td class="note-cell">Virtual focus — behind mirror</td></tr>
+            <tr><td>Focal length (convex lens)</td><td class="formula-cell">+ (positive)</td><td class="note-cell">Converging</td></tr>
+            <tr><td>Focal length (concave lens)</td><td class="formula-cell">− (negative)</td><td class="note-cell">Diverging</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout danger">
+        <strong>The #1 trap in optics:</strong> Mirror formula and lens formula look similar but have DIFFERENT sign implications because real images form on different sides. Write the formula first, then substitute values with correct signs.
+      </div>
+    </section>
+
+    <!-- S2 -->
+    <section class="topic-section" id="s2">
+      <h2>2. Plane Mirror</h2>
+
+      <div class="method-box">
+        <div class="method-box-title">Key Properties</div>
+        <ul>
+          <li>Image is virtual, erect, laterally inverted, same size (m = +1)</li>
+          <li>Image is as far behind mirror as object is in front</li>
+          <li>Minimum mirror length to see full image = half the height of person</li>
+          <li>If mirror rotates by θ, reflected ray rotates by 2θ</li>
+          <li>Two mirrors at angle α: number of images = 360°/α − 1 (when 360/α is integer)</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- S3 -->
+    <section class="topic-section" id="s3">
+      <h2>3. Spherical Mirrors</h2>
+
+      <div class="callout info">
+        <strong>Relation: f = R/2</strong> — focal length is half the radius of curvature.<br>
+        Concave mirror: converging (f &lt; 0 in sign convention). Convex mirror: diverging (f &gt; 0).
+      </div>
+
+      <div class="formula-table-wrap">
+        <table class="formula-table">
+          <thead><tr><th>Object position (concave mirror)</th><th>Image type</th><th>Image position</th></tr></thead>
+          <tbody>
+            <tr><td>At infinity</td><td class="formula-cell">Real, inverted, point size</td><td class="note-cell">At focus F</td></tr>
+            <tr><td>Beyond C (u &lt; −2f)</td><td class="formula-cell">Real, inverted, diminished</td><td class="note-cell">Between F and C</td></tr>
+            <tr><td>At C (u = −2f)</td><td class="formula-cell">Real, inverted, same size</td><td class="note-cell">At C</td></tr>
+            <tr><td>Between F and C</td><td class="formula-cell">Real, inverted, magnified</td><td class="note-cell">Beyond C</td></tr>
+            <tr><td>At F (u = −f)</td><td class="formula-cell">Real, at infinity</td><td class="note-cell">At infinity</td></tr>
+            <tr><td>Between P and F</td><td class="formula-cell">Virtual, erect, magnified</td><td class="note-cell">Behind mirror</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- S4 -->
+    <section class="topic-section" id="s4">
+      <h2>4. Mirror Formula &amp; Magnification</h2>
+
+      <div class="callout info">
+        <strong>Mirror formula: 1/v + 1/u = 1/f = 2/R</strong><br>
+        <strong>Magnification: m = −v/u = h_i/h_o</strong>
+      </div>
+
+      <!-- INTERACTIVE: Mirror Calculator -->
+      <div class="method-box" style="background:#f0fdf4;border-color:#16a34a;">
+        <div class="method-box-title" style="color:#16a34a;">🔢 Interactive — Mirror / Lens Calculator</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-bottom:.75rem;">
+          <label style="font-size:.85rem;">Focal length f (cm): <input id="op-f" type="number" value="-20" step="1" oninput="opUpdate()" style="width:100%;margin-top:.3rem;padding:.4rem;border:1px solid #d1fae5;border-radius:6px;font-size:.9rem;"></label>
+          <label style="font-size:.85rem;">Object distance u (cm, must be −ve): <input id="op-u" type="number" value="-30" step="1" oninput="opUpdate()" style="width:100%;margin-top:.3rem;padding:.4rem;border:1px solid #d1fae5;border-radius:6px;font-size:.9rem;"></label>
+          <label style="font-size:.85rem;">Type:
+            <select id="op-type" onchange="opUpdate()" style="width:100%;margin-top:.3rem;padding:.4rem;border:1px solid #d1fae5;border-radius:6px;font-size:.9rem;">
+              <option value="mirror">Mirror (1/v + 1/u = 1/f)</option>
+              <option value="lens">Lens (1/v − 1/u = 1/f)</option>
+            </select>
+          </label>
+          <label style="font-size:.85rem;">Object height h_o (cm): <input id="op-h" type="number" value="5" min="0.1" step="0.5" oninput="opUpdate()" style="width:100%;margin-top:.3rem;padding:.4rem;border:1px solid #d1fae5;border-radius:6px;font-size:.9rem;"></label>
+        </div>
+        <div id="op-out" style="background:#fff;border-radius:8px;padding:.9rem;font-family:'JetBrains Mono',monospace;font-size:.82rem;line-height:1.8;border:1px solid #d1fae5;"></div>
+      </div>
+
+      <div class="method-box">
+        <div class="method-box-title">Interpreting Magnification</div>
+        <ul>
+          <li>m &lt; 0: image is inverted (real image for concave mirror)</li>
+          <li>m &gt; 0: image is erect (virtual image)</li>
+          <li>|m| &gt; 1: image is enlarged</li>
+          <li>|m| &lt; 1: image is diminished</li>
+          <li>m = −1: equal size, inverted, real image (object at C for concave mirror)</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- S5 -->
+    <section class="topic-section" id="s5">
+      <h2>5. Convex Mirror — Always Virtual</h2>
+
+      <div class="callout info">
+        Convex mirror ALWAYS forms a virtual, erect, diminished image regardless of object position. Used as rear-view mirror (wide field of view).
+      </div>
+
+      <div class="method-box">
+        <div class="method-box-title">Why Convex Mirrors are Used as Rear-view Mirrors</div>
+        <p>Always virtual + erect image → appears in front of driver. Always diminished → wider field of view than plane mirror. Image is always between focus and pole (compact image, entire scene fits).</p>
+      </div>
+    </section>
+
+    <!-- S6 -->
+    <section class="topic-section" id="s6">
+      <h2>6. Snell's Law of Refraction</h2>
+
+      <div class="callout info">
+        <strong>n₁ sin θ₁ = n₂ sin θ₂</strong><br>
+        n = refractive index = c/v (c = speed of light in vacuum, v = speed in medium). At boundary, frequency stays constant; speed and wavelength change.
+      </div>
+
+      <div class="formula-table-wrap">
+        <table class="formula-table">
+          <thead><tr><th>Property</th><th>Relation</th></tr></thead>
+          <tbody>
+            <tr><td>Speed in medium</td><td class="formula-cell">v = c/n</td></tr>
+            <tr><td>Wavelength in medium</td><td class="formula-cell">λ_medium = λ_vacuum/n</td></tr>
+            <tr><td>Frequency</td><td class="formula-cell">f = constant (never changes)</td></tr>
+            <tr><td>Relative refractive index</td><td class="formula-cell">n₁₂ = n₂/n₁ = sin θ₁/sin θ₂</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout warn">
+        <strong>Denser medium (higher n): slower speed, shorter wavelength, ray bends TOWARD normal.</strong> Rarer medium (lower n): faster speed, longer wavelength, ray bends AWAY from normal.
+      </div>
+    </section>
+
+    <!-- S7 -->
+    <section class="topic-section" id="s7">
+      <h2>7. Total Internal Reflection (TIR)</h2>
+
+      <div class="callout info">
+        <strong>Conditions:</strong> 1) Ray goes from denser to rarer medium (n₁ &gt; n₂) 2) Angle of incidence ≥ critical angle θ_c<br>
+        <strong>Critical angle: sin θ_c = n₂/n₁ = 1/n</strong> (when n₂ = 1 for air)
+      </div>
+
+      <div class="compare-grid">
+        <div class="compare-col">
+          <div class="compare-head">Applications of TIR</div>
+          <ul>
+            <li>Optical fibres (communication, medicine)</li>
+            <li>Totally reflecting prisms (periscopes, binoculars)</li>
+            <li>Diamonds sparkle (high n → small θ_c → TIR inside)</li>
+            <li>Mirage formation</li>
+          </ul>
+        </div>
+        <div class="compare-col">
+          <div class="compare-head">TIR Key Facts</div>
+          <ul>
+            <li>θ_c smaller → TIR easier at smaller angles</li>
+            <li>Diamond: n=2.42, θ_c = 24.4° (very small → easily TIR)</li>
+            <li>Glass-air: n=1.5, θ_c = 41.8°</li>
+            <li>Water-air: n=1.33, θ_c = 48.7°</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- S8 -->
+    <section class="topic-section" id="s8">
+      <h2>8. Apparent Depth &amp; Shift</h2>
+
+      <div class="callout info">
+        <strong>Apparent depth = Real depth / n</strong> (viewing from rarer into denser medium)<br>
+        Normal shift (upward shift of image) = t(1 − 1/n) where t = thickness of slab.
+      </div>
+
+      <div class="method-box">
+        <div class="method-box-title">Glass Slab — Lateral Shift</div>
+        <p>Lateral shift = d = t sinθ(1 − cosθ/√(n²−sin²θ))</p>
+        <p>For near-normal incidence (small θ): d ≈ t sinθ(1 − 1/n)</p>
+        <p>The emergent ray is parallel to the incident ray (same direction, shifted sideways).</p>
+      </div>
+    </section>
+
+    <!-- S9 -->
+    <section class="topic-section" id="s9">
+      <h2>9. Thin Lens Formula</h2>
+
+      <div class="callout info">
+        <strong>Lens formula: 1/v − 1/u = 1/f</strong><br>
+        <strong>Magnification: m = v/u = h_i/h_o</strong><br>
+        Note the MINUS sign: 1/v − 1/u (different from mirror formula 1/v + 1/u)
+      </div>
+
+      <div class="formula-table-wrap">
+        <table class="formula-table">
+          <thead><tr><th>Object position (convex lens)</th><th>Image</th></tr></thead>
+          <tbody>
+            <tr><td>At infinity</td><td class="formula-cell">Real, inverted, point size at focus F₂</td></tr>
+            <tr><td>Beyond 2F₁ (u &lt; −2f)</td><td class="formula-cell">Real, inverted, diminished between F₂ and 2F₂</td></tr>
+            <tr><td>At 2F₁ (u = −2f)</td><td class="formula-cell">Real, inverted, same size at 2F₂</td></tr>
+            <tr><td>Between F₁ and 2F₁</td><td class="formula-cell">Real, inverted, magnified beyond 2F₂</td></tr>
+            <tr><td>At F₁ (u = −f)</td><td class="formula-cell">At infinity</td></tr>
+            <tr><td>Within F₁ (|u| &lt; f)</td><td class="formula-cell">Virtual, erect, magnified (same side as object)</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- S10 -->
+    <section class="topic-section" id="s10">
+      <h2>10. Lens Maker's Equation</h2>
+
+      <div class="callout info">
+        <strong>1/f = (n − 1)(1/R₁ − 1/R₂)</strong><br>
+        n = refractive index of lens material · R₁ = radius of first surface · R₂ = radius of second surface (signs according to convention)
+      </div>
+
+      <div class="method-box">
+        <div class="method-box-title">Sign Convention for Radii</div>
+        <p>R₁: centre of curvature of first surface (the one facing the incoming light)</p>
+        <p>R₂: centre of curvature of second surface</p>
+        <p>If centre of curvature is to the right (same side as outgoing light): R is positive. If to the left: R is negative.</p>
+        <p><em>Example: Convex lens (both surfaces bulging outward): R₁ &gt; 0, R₂ &lt; 0 → 1/R₁ − 1/R₂ &gt; 0 → f &gt; 0 ✓</em></p>
+      </div>
+    </section>
+
+    <!-- S11 -->
+    <section class="topic-section" id="s11">
+      <h2>11. Lens Power and Combination</h2>
+
+      <div class="callout info">
+        <strong>P = 1/f</strong> (f in metres, P in dioptres D)<br>
+        <strong>Lenses in contact: P = P₁ + P₂</strong> or <strong>1/f = 1/f₁ + 1/f₂</strong>
+      </div>
+
+      <div class="formula-table-wrap">
+        <table class="formula-table">
+          <thead><tr><th>Combination</th><th>Formula</th><th>Notes</th></tr></thead>
+          <tbody>
+            <tr><td>Lenses in contact</td><td class="formula-cell">P = P₁ + P₂; 1/f = 1/f₁ + 1/f₂</td><td class="note-cell">Touching each other</td></tr>
+            <tr><td>Lenses separated by d</td><td class="formula-cell">1/f = 1/f₁ + 1/f₂ − d/(f₁f₂)</td><td class="note-cell">d = separation</td></tr>
+            <tr><td>Silvered lens (mirror+lens)</td><td class="formula-cell">P_eq = P_L + P_M + P_L = 2P_L + P_M</td><td class="note-cell">Light passes through lens twice</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- S12 -->
+    <section class="topic-section" id="s12">
+      <h2>12. Prisms &amp; Dispersion</h2>
+
+      <div class="callout info">
+        <strong>n = sin((A + δ_m)/2) / sin(A/2)</strong><br>
+        A = prism angle, δ_m = angle of minimum deviation. At minimum deviation: i₁ = i₂, r₁ = r₂ = A/2.
+      </div>
+
+      <div class="formula-table-wrap">
+        <table class="formula-table">
+          <thead><tr><th>Formula</th><th>Meaning</th></tr></thead>
+          <tbody>
+            <tr><td class="formula-cell">δ = (i₁ + i₂) − A</td><td>Deviation through prism</td></tr>
+            <tr><td class="formula-cell">r₁ + r₂ = A</td><td>Sum of refraction angles = prism angle</td></tr>
+            <tr><td class="formula-cell">n = sin((A+δ_m)/2)/sin(A/2)</td><td>At minimum deviation</td></tr>
+            <tr><td class="formula-cell">δ_m = 2i₁ − A</td><td>Minimum deviation condition</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="method-box">
+        <div class="method-box-title">Dispersion of White Light</div>
+        <p>Different wavelengths have different refractive indices. n_violet &gt; n_red (violet bends more).</p>
+        <p><strong>VIBGYOR</strong> — violet deviates most, red least. Angle of dispersion = δ_V − δ_R.</p>
+        <p>Dispersive power: ω = (n_V − n_R)/(n_Y − 1) where n_Y is mean refractive index.</p>
+      </div>
+    </section>
+
+    <!-- S13 -->
+    <section class="topic-section" id="s13">
+      <h2>13. Wave Optics — Young's Double Slit Experiment (YDSE)</h2>
+
+      <div class="callout info">
+        <strong>Fringe width: β = λD/d</strong><br>
+        λ = wavelength · D = distance to screen · d = slit separation
+      </div>
+
+      <div class="formula-table-wrap">
+        <table class="formula-table">
+          <thead><tr><th>Condition</th><th>Path Difference</th><th>Result</th></tr></thead>
+          <tbody>
+            <tr><td>Bright fringe (constructive)</td><td class="formula-cell">Δ = nλ (n = 0, ±1, ±2, …)</td><td class="note-cell">Bright bands</td></tr>
+            <tr><td>Dark fringe (destructive)</td><td class="formula-cell">Δ = (2n−1)λ/2</td><td class="note-cell">Dark bands</td></tr>
+            <tr><td>Position of nth bright fringe</td><td class="formula-cell">y_n = nλD/d</td><td class="note-cell">From central max</td></tr>
+            <tr><td>Position of nth dark fringe</td><td class="formula-cell">y_n = (2n−1)λD/2d</td><td class="note-cell"></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- INTERACTIVE: YDSE Calculator -->
+      <div class="method-box" style="background:#f0fdf4;border-color:#16a34a;">
+        <div class="method-box-title" style="color:#16a34a;">🔢 Interactive — YDSE Fringe Calculator</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-bottom:.75rem;">
+          <label style="font-size:.85rem;">λ wavelength (nm): <input id="ydse-lam" type="number" value="600" min="380" max="750" step="10" oninput="ydseUpdate()" style="width:100%;margin-top:.3rem;padding:.4rem;border:1px solid #d1fae5;border-radius:6px;font-size:.9rem;"></label>
+          <label style="font-size:.85rem;">D screen distance (m): <input id="ydse-D" type="number" value="1.5" min="0.1" step="0.1" oninput="ydseUpdate()" style="width:100%;margin-top:.3rem;padding:.4rem;border:1px solid #d1fae5;border-radius:6px;font-size:.9rem;"></label>
+          <label style="font-size:.85rem;">d slit separation (mm): <input id="ydse-d" type="number" value="0.5" min="0.01" step="0.05" oninput="ydseUpdate()" style="width:100%;margin-top:.3rem;padding:.4rem;border:1px solid #d1fae5;border-radius:6px;font-size:.9rem;"></label>
+          <label style="font-size:.85rem;">n (fringe number): <input id="ydse-n" type="number" value="3" min="1" max="20" step="1" oninput="ydseUpdate()" style="width:100%;margin-top:.3rem;padding:.4rem;border:1px solid #d1fae5;border-radius:6px;font-size:.9rem;"></label>
+        </div>
+        <div id="ydse-out" style="background:#fff;border-radius:8px;padding:.9rem;font-family:'JetBrains Mono',monospace;font-size:.82rem;line-height:1.8;border:1px solid #d1fae5;"></div>
+      </div>
+
+      <div class="callout warn">
+        <strong>If medium is changed (e.g., filled with water, n=1.33):</strong> λ_medium = λ_air/n → fringe width β = λ_air×D/(n×d). Fringe width DECREASES in denser medium.
+      </div>
+    </section>
+
+    <!-- S14 -->
+    <section class="topic-section" id="s14">
+      <h2>14. Single Slit Diffraction</h2>
+
+      <div class="callout info">
+        <strong>First minimum: a sinθ = λ → sinθ ≈ θ = λ/a</strong><br>
+        a = slit width. Width of central maximum = 2λD/a.
+      </div>
+
+      <div class="callout warn">
+        <strong>Key difference between YDSE and diffraction:</strong> YDSE uses TWO slits (d = separation between slits). Single slit diffraction uses ONE slit (a = width of slit). Do not confuse d and a.
+      </div>
+    </section>
+
+    <!-- S15 -->
+    <section class="topic-section" id="s15">
+      <h2>15. Worked Examples</h2>
+
+      <div class="method-box">
+        <div class="method-box-title">Example 1 — Concave Mirror</div>
+        <p>Object 15 cm from concave mirror of focal length 10 cm. Find image position and magnification.</p>
+        <div class="explainer">
+          Given: f = −10 cm, u = −15 cm (real object)<br>
+          Mirror formula: 1/v + 1/u = 1/f<br>
+          1/v + 1/(−15) = 1/(−10)<br>
+          1/v = −1/10 + 1/15 = −3/30 + 2/30 = −1/30<br>
+          v = <strong>−30 cm</strong> (real, same side as object → in front of mirror ✓)<br>
+          m = −v/u = −(−30)/(−15) = <strong>−2</strong> (inverted, magnified 2×)
+        </div>
+      </div>
+
+      <div class="method-box">
+        <div class="method-box-title">Example 2 — Convex Lens</div>
+        <p>Object 30 cm from convex lens of focal length 20 cm. Find image.</p>
+        <div class="explainer">
+          Given: f = +20 cm, u = −30 cm<br>
+          Lens formula: 1/v − 1/u = 1/f<br>
+          1/v − 1/(−30) = 1/20<br>
+          1/v + 1/30 = 1/20<br>
+          1/v = 1/20 − 1/30 = 3/60 − 2/60 = 1/60<br>
+          v = <strong>+60 cm</strong> (real, on other side of lens ✓)<br>
+          m = v/u = 60/(−30) = <strong>−2</strong> (inverted, 2× magnified)
+        </div>
+      </div>
+
+      <div class="method-box">
+        <div class="method-box-title">Example 3 — YDSE</div>
+        <p>YDSE: λ=500 nm, d=0.5 mm, D=2 m. Find fringe width and position of 5th bright fringe.</p>
+        <div class="explainer">
+          β = λD/d = (500×10⁻⁹ × 2) / (0.5×10⁻³) = 1000×10⁻⁹/0.5×10⁻³ = <strong>2×10⁻³ m = 2 mm</strong><br>
+          5th bright fringe: y₅ = 5β = 5 × 2 = <strong>10 mm</strong>
+        </div>
+      </div>
+
+      <div class="method-box">
+        <div class="method-box-title">Example 4 — Critical Angle</div>
+        <p>Find critical angle for glass-air interface. n_glass = 1.5. What happens at 45°?</p>
+        <div class="explainer">
+          sin θ_c = 1/n = 1/1.5 = 0.667<br>
+          θ_c = arcsin(0.667) = <strong>41.8°</strong><br>
+          At 45° &gt; 41.8° → TIR occurs. No refraction, complete reflection.
+        </div>
+      </div>
+    </section>
+
+    <!-- S16 -->
+    <section class="topic-section" id="s16">
+      <h2>16. Common JEE Traps</h2>
+
+      <div class="callout danger">
+        <strong>Trap 1:</strong> Mirror formula: 1/v + 1/u = 1/f. Lens formula: 1/v − 1/u = 1/f. The MINUS is only in the lens formula. Getting this wrong causes systematic errors.
+      </div>
+
+      <div class="callout danger">
+        <strong>Trap 2:</strong> Mirror magnification: m = −v/u. Lens magnification: m = +v/u. Sign flip between mirror and lens.
+      </div>
+
+      <div class="callout danger">
+        <strong>Trap 3:</strong> Object distance u is ALWAYS negative for real objects (in New Cartesian). Students often write u as positive — this always gives wrong answers.
+      </div>
+
+      <div class="callout danger">
+        <strong>Trap 4:</strong> YDSE fringe width β = λD/d: d is the SEPARATION between slits, D is the DISTANCE to screen. Do not confuse these. If D triples, β triples.
+      </div>
+
+      <div class="callout danger">
+        <strong>Trap 5:</strong> In YDSE with dark fringes: path difference = (2n−1)λ/2 where n = 1, 2, 3… (not 0). First dark fringe (n=1): Δ = λ/2.
+      </div>
+
+      <div class="callout danger">
+        <strong>Trap 6:</strong> Frequency never changes on refraction. Only speed (v = c/n) and wavelength (λ = λ₀/n) change.
+      </div>
+
+      <div class="callout danger">
+        <strong>Trap 7:</strong> TIR: ray must go from DENSER to RARER medium (not the other way). A ray going from air into glass can never undergo TIR.
+      </div>
+
+      <div class="callout danger">
+        <strong>Trap 8:</strong> Power of lens combination in contact: P = P₁ + P₂. But if there's a mirror: P_eq = 2P_L + P_M (light passes through lens TWICE, mirror once).
+      </div>
+
+      <div class="callout danger">
+        <strong>Trap 9:</strong> Minimum deviation through prism: rays inside are parallel to base (for equilateral prism). The formula n = sin((A+δ_m)/2)/sin(A/2) is ONLY valid at minimum deviation.
+      </div>
+
+      <div class="topic-cta-row">
+        <a href="emi-ac.html" class="topic-cta">← P7: EMI &amp; AC</a>
+        <a href="../subjects/physics.html" class="topic-cta topic-cta-next">Back to Physics ↑</a>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<footer style="text-align:center;padding:2rem 1rem;font-size:.8rem;color:var(--ink3);border-top:1px solid var(--border);">
+  JEE 2027 Prep · P8 Ray Optics Deep-Dive · <a href="../subjects/physics.html" style="color:var(--topic-accent);">Back to Physics</a>
+</footer>
+
+<script src="../js/main.js"></script>
+<script>
+function opUpdate() {
+  const f    = parseFloat(document.getElementById('op-f').value) || -20;
+  const u    = parseFloat(document.getElementById('op-u').value) || -30;
+  const h    = parseFloat(document.getElementById('op-h').value) || 5;
+  const type = document.getElementById('op-type').value;
+
+  let v, m;
+  if (type === 'mirror') {
+    // 1/v + 1/u = 1/f → 1/v = 1/f - 1/u
+    v = 1 / (1/f - 1/u);
+    m = -v / u;
+  } else {
+    // 1/v - 1/u = 1/f → 1/v = 1/f + 1/u
+    v = 1 / (1/f + 1/u);
+    m = v / u;
+  }
+  const hi = m * h;
+  const imgType = (type === 'mirror')
+    ? (v < 0 ? 'Real (in front of mirror)' : 'Virtual (behind mirror)')
+    : (v > 0 ? 'Real (opposite side of lens)' : 'Virtual (same side as object)');
+  const orientation = m > 0 ? 'Erect' : 'Inverted';
+  const size = Math.abs(m) > 1 ? 'Magnified' : (Math.abs(m) < 1 ? 'Diminished' : 'Same size');
+
+  document.getElementById('op-out').innerHTML =
+`Formula     : ${type === 'mirror' ? '1/v + 1/u = 1/f' : '1/v − 1/u = 1/f'}
+1/v         = 1/f ${type === 'mirror' ? '−' : '+'} 1/u (rearranged) = 1/${f} ${type==='mirror'?'−':'+'} 1/${u}
+v           = <strong>${v.toFixed(2)} cm</strong>
+m           = ${type==='mirror'?'−v/u':'v/u'} = ${type==='mirror'?'-':''}${v.toFixed(2)}/${u} = <strong>${m.toFixed(3)}</strong>
+Image type  : <strong>${imgType}</strong>
+Orientation : <strong>${orientation}</strong>  |  Size: <strong>${size}</strong>  (|m|=${Math.abs(m).toFixed(2)})
+Image height: ${m.toFixed(3)} × ${h} = <strong>${hi.toFixed(2)} cm</strong>`;
+}
+
+function ydseUpdate() {
+  const lam = (parseFloat(document.getElementById('ydse-lam').value) || 600) * 1e-9;
+  const D   = parseFloat(document.getElementById('ydse-D').value) || 1.5;
+  const d   = (parseFloat(document.getElementById('ydse-d').value) || 0.5) * 1e-3;
+  const n   = parseInt(document.getElementById('ydse-n').value)   || 3;
+
+  const beta = lam * D / d;
+  const yn_bright = n * beta;
+  const yn_dark   = (2*n - 1) * lam * D / (2 * d);
+
+  document.getElementById('ydse-out').innerHTML =
+`Fringe width β = λD/d = ${(lam*1e9).toFixed(0)}nm × ${D}m / ${(d*1e3).toFixed(2)}mm
+            β = <strong>${(beta*1000).toFixed(4)} mm = ${(beta*100).toFixed(5)} cm</strong>
+${n}th bright fringe: y = nβ = ${n} × ${(beta*1000).toFixed(4)}mm = <strong>${(yn_bright*1000).toFixed(4)} mm</strong>
+${n}th dark fringe:  y = (2n−1)β/2 = <strong>${(yn_dark*1000).toFixed(4)} mm</strong>
+Angular fringe width = λ/d = <strong>${(lam/d*1000).toFixed(4)} mrad</strong>`;
+}
+
+opUpdate();
+ydseUpdate();
+</script>
+</body>
+</html>

@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rotational Motion — JEE 2027 Deep-Dive</title>
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body class="topic-phys">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="nav-brand">JEE 2027</div>
+    <div class="nav-links">
+      <a href="../index.html">Dashboard</a>
+      <a href="../subjects/math.html">📐 Math</a>
+      <a href="../subjects/physics.html" class="phys-active">⚡ Physics</a>
+      <a href="../subjects/chemistry.html">🧪 Chemistry</a>
+      <a href="../progress.html">✅ Progress</a>
+    </div>
+    <button class="nav-toggle" onclick="toggleNav()">☰</button>
+  </div>
+</nav>
+
+<header class="page-hero" style="background:var(--topic-grad);padding:3rem 1rem 2.5rem;">
+  <div class="page-hero-content">
+    <div class="page-hero-tag">P5 · Physics Deep-Dive · Aug–Sep 2026</div>
+    <h1>⚡ Rotational Motion</h1>
+    <p>Torque · Moment of Inertia · Angular Momentum · Rolling · Axis Theorems</p>
+    <div class="page-hero-meta">
+      <div class="meta-item"><strong>JEE Weight:</strong> 6–8% (~7 marks)</div>
+      <div class="meta-item"><strong>Difficulty:</strong> 🔴 Hard</div>
+      <div class="meta-item"><strong>Key Skill:</strong> MOI + angular momentum conservation</div>
+    </div>
+  </div>
+</header>
+
+<div class="topic-meta-bar">
+  <span class="topic-meta-pill">14 sections</span>
+  <span class="topic-meta-pill">1 interactive</span>
+  <span class="topic-meta-pill">7 JEE traps</span>
+  <span class="topic-meta-pill">5 worked examples</span>
+  <a href="../subjects/physics.html#unit-p5" class="topic-meta-pill" style="background:var(--topic-accent);color:#fff;text-decoration:none;">← Back to P5</a>
+</div>
+
+<div class="topic-wrap">
+  <nav class="topic-toc">
+    <div class="topic-toc-title">Contents</div>
+    <a href="#s1">1. Rotational Analogues</a>
+    <a href="#s2">2. Torque</a>
+    <a href="#s3">3. Rotational Newton's 2nd Law</a>
+    <a href="#s4">4. Equations of Rotational Motion</a>
+    <a href="#s5">5. Moment of Inertia</a>
+    <a href="#s6">6. Standard MOI Values</a>
+    <a href="#s7">7. Parallel Axis Theorem</a>
+    <a href="#s8">8. Perpendicular Axis Theorem</a>
+    <a href="#s9">9. Angular Momentum</a>
+    <a href="#s10">10. Conservation of L</a>
+    <a href="#s11">11. Rolling Without Slipping</a>
+    <a href="#s12">12. Rolling on Inclines</a>
+    <a href="#s13">13. Worked Examples</a>
+    <a href="#s14">14. Common Traps</a>
+  </nav>
+
+  <main class="topic-content">
+
+    <!-- S1 -->
+    <section class="topic-section" id="s1">
+      <h2>1. Translational ↔ Rotational Analogues</h2>
+
+      <div class="formula-table-wrap">
+        <table class="formula-table">
+          <thead><tr><th>Translational</th><th>Symbol</th><th>Rotational</th><th>Symbol</th></tr></thead>
+          <tbody>
+            <tr><td>Displacement</td><td class="formula-cell">s</td><td>Angular displacement</td><td class="formula-cell">θ (rad)</td></tr>
+            <tr><td>Velocity</td><td class="formula-cell">v</td><td>Angular velocity</td><td class="formula-cell">ω (rad/s)</td></tr>
+            <tr><td>Acceleration</td><td class="formula-cell">a</td><td>Angular acceleration</td><td class="formula-cell">α (rad/s²)</td></tr>
+            <tr><td>Mass</td><td class="formula-cell">m</td><td>Moment of inertia</td><td class="formula-cell">I (kg·m²)</td></tr>
+            <tr><td>Force</td><td class="formula-cell">F</td><td>Torque</td><td class="formula-cell">τ (N·m)</td></tr>
+            <tr><td>Momentum p = mv</td><td class="formula-cell">p</td><td>Angular momentum L = Iω</td><td class="formula-cell">L (kg·m²/s)</td></tr>
+            <tr><td>KE = ½mv²</td><td class="formula-cell"></td><td>KE = ½Iω²</td><td class="formula-cell"></td></tr>
+            <tr><td>Work = Fs</td><td class="formula-cell"></td><td>Work = τθ</td><td class="formula-cell"></td></tr>
+            <tr><td>Power = Fv</td><td class="formula-cell"></td><td>Power = τω</td><td class="formula-cell"></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout info">
+        <strong>The rotational equations are IDENTICAL in form to translational ones.</strong> Replace m→I, F→τ, v→ω, a→α, s→θ. Learn the pattern, not 9 separate formulas.
+      </div>
+    </section>
+
+    <!-- S2 -->
+    <section class="topic-section" id="s2">
+      <h2>2. Torque</h2>
+
+      <div class="callout info">
+        <strong>τ = r × F = rF sinθ</strong><br>
+        r = distance from axis to point of force application · θ = angle between r and F · τ is a vector (direction by right-hand rule)
+      </div>
+
+      <div class="method-box">
+        <div class="method-box-title">Torque — Key Points</div>
+        <ul>
+          <li><strong>Moment arm = r sinθ</strong> = perpendicular distance from axis to line of action of force</li>
+          <li>Force through the axis: τ = 0 (no rotation produced)</li>
+          <li>Force parallel to r (along the line joining axis and point): τ = 0 (sinθ = 0)</li>
+          <li>Maximum torque: force perpendicular to r (θ = 90°): τ = rF</li>
+        </ul>
+      </div>
+
+      <div class="callout warn">
+        <strong>Torque and Energy have the same dimensions [ML²T⁻²]</strong> but are completely different quantities. Torque is N·m (a moment), not Joules (energy). JEE favourite trap!
+      </div>
+    </section>
+
+    <!-- S3 -->
+    <section class="topic-section" id="s3">
+      <h2>3. Rotational Newton's 2nd Law</h2>
+
+      <div class="callout info">
+        <strong>τ_net = Iα</strong><br>
+        Net torque about an axis = moment of inertia about that same axis × angular acceleration about that axis.
+      </div>
+
+      <div class="callout warn">
+        <strong>Both τ and I must be about the SAME axis.</strong> This is the most common rotational error — using MOI about one axis and torque about another.
+      </div>
+    </section>
+
+    <!-- S4 -->
+    <section class="topic-section" id="s4">
+      <h2>4. Equations of Rotational Motion</h2>
+
+      <div class="formula-table-wrap">
+        <table class="formula-table">
+          <thead><tr><th>Rotational</th><th>Translational Analogue</th></tr></thead>
+          <tbody>
+            <tr><td class="formula-cell">ω = ω₀ + αt</td><td>v = u + at</td></tr>
+            <tr><td class="formula-cell">θ = ω₀t + ½αt²</td><td>s = ut + ½at²</td></tr>
+            <tr><td class="formula-cell">ω² = ω₀² + 2αθ</td><td>v² = u² + 2as</td></tr>
+            <tr><td class="formula-cell">θ_n = ω₀ + α(2n−1)/2</td><td>s_n = u + a(2n−1)/2</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout info">
+        <strong>Conversion:</strong> ω in rpm → rad/s: multiply by 2π/60. Linear speed at rim: v = Rω.
+      </div>
+    </section>
+
+    <!-- S5 -->
+    <section class="topic-section" id="s5">
+      <h2>5. Moment of Inertia</h2>
+
+      <div class="callout info">
+        <strong>I = Σmᵢrᵢ²</strong> (discrete) or <strong>I = ∫r² dm</strong> (continuous)<br>
+        r = perpendicular distance of each mass element from the rotation axis
+      </div>
+
+      <div class="method-box">
+        <div class="method-box-title">Properties of MOI</div>
+        <ul>
+          <li>MOI is always positive (sum of positive terms)</li>
+          <li>Depends on mass distribution AND choice of axis</li>
+          <li>MOI is MINIMUM about the axis through the centre of mass</li>
+          <li>Unit: kg·m² — do NOT confuse with torque (N·m)</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- S6 -->
+    <section class="topic-section" id="s6">
+      <h2>6. Standard MOI Values — Must Memorise</h2>
+
+      <div class="formula-table-wrap">
+        <table class="formula-table">
+          <thead><tr><th>Body</th><th>Axis</th><th>I</th></tr></thead>
+          <tbody>
+            <tr><td>Thin rod (length L)</td><td>Centre, ⊥ to rod</td><td class="formula-cell">ML²/12</td></tr>
+            <tr><td>Thin rod (length L)</td><td>One end, ⊥ to rod</td><td class="formula-cell">ML²/3</td></tr>
+            <tr><td>Solid disk / cylinder</td><td>Central axis (through centre, ⊥ to disk)</td><td class="formula-cell">½MR²</td></tr>
+            <tr><td>Solid disk</td><td>Diameter</td><td class="formula-cell">¼MR²</td></tr>
+            <tr><td>Hollow cylinder (ring)</td><td>Central axis</td><td class="formula-cell">MR²</td></tr>
+            <tr><td>Hollow sphere</td><td>Diameter</td><td class="formula-cell">⅔MR²</td></tr>
+            <tr><td>Solid sphere</td><td>Diameter</td><td class="formula-cell">⅖MR²</td></tr>
+            <tr><td>Rectangular plate (a×b)</td><td>Centre, ⊥ to plate</td><td class="formula-cell">M(a²+b²)/12</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout info">
+        <strong>The only 3 you need to derive from scratch:</strong> disk (½MR²), solid sphere (2/5 MR²), rod (ML²/12). Use axis theorems for all others.
+      </div>
+    </section>
+
+    <!-- S7 -->
+    <section class="topic-section" id="s7">
+      <h2>7. Parallel Axis Theorem</h2>
+
+      <div class="callout info">
+        <strong>I = I_cm + Md²</strong><br>
+        I = MOI about any axis parallel to the CM axis · d = perpendicular distance between the two axes
+      </div>
+
+      <div class="method-box">
+        <div class="method-box-title">Applying Parallel Axis Theorem</div>
+        <p><strong>Step 1:</strong> Find I_cm (MOI about axis through centre of mass)</p>
+        <p><strong>Step 2:</strong> Measure d = distance from CM to the new parallel axis</p>
+        <p><strong>Step 3:</strong> Add Md²</p>
+        <p><em>Example: Rod about one end = ML²/12 + M(L/2)² = ML²/12 + ML²/4 = ML²/3 ✓</em></p>
+      </div>
+
+      <div class="callout warn">
+        <strong>IMPORTANT:</strong> One of the two axes MUST be through the centre of mass. You cannot use the parallel axis theorem between two arbitrary parallel axes.
+      </div>
+    </section>
+
+    <!-- S8 -->
+    <section class="topic-section" id="s8">
+      <h2>8. Perpendicular Axis Theorem</h2>
+
+      <div class="callout info">
+        <strong>I_z = I_x + I_y</strong><br>
+        Only for thin flat laminas (2D objects). z is perpendicular to the lamina. x and y are in the plane.
+      </div>
+
+      <div class="method-box">
+        <div class="method-box-title">Application</div>
+        <p>Disk: I_z (through centre, ⊥ to disk) = ½MR²</p>
+        <p>By symmetry: I_x = I_y (any two perpendicular diameters)</p>
+        <p>So: ½MR² = I_x + I_y = 2I_x → I_x = <strong>¼MR²</strong></p>
+        <p><em>This is why disk's diameter MOI = ¼MR².</em></p>
+      </div>
+    </section>
+
+    <!-- S9 -->
+    <section class="topic-section" id="s9">
+      <h2>9. Angular Momentum</h2>
+
+      <div class="formula-table-wrap">
+        <table class="formula-table">
+          <thead><tr><th>Case</th><th>Formula</th></tr></thead>
+          <tbody>
+            <tr><td>Rigid body rotating</td><td class="formula-cell">L = Iω</td></tr>
+            <tr><td>Particle</td><td class="formula-cell">L = r × p = mvr sinθ</td></tr>
+            <tr><td>Torque-angular momentum relation</td><td class="formula-cell">τ = dL/dt</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout info">
+        <strong>τ = dL/dt</strong> is the rotational analogue of Newton's 2nd law F = dp/dt. If net torque = 0, angular momentum is constant (conserved).
+      </div>
+    </section>
+
+    <!-- S10 -->
+    <section class="topic-section" id="s10">
+      <h2>10. Conservation of Angular Momentum</h2>
+
+      <div class="callout info">
+        <strong>If τ_ext = 0: L = Iω = constant → I₁ω₁ = I₂ω₂</strong><br>
+        When the moment of inertia changes (by changing mass distribution), ω changes inversely to keep L constant.
+      </div>
+
+      <!-- INTERACTIVE: Angular Momentum Conservator -->
+      <div class="method-box" style="background:#f0fdf4;border-color:#16a34a;">
+        <div class="method-box-title" style="color:#16a34a;">🔢 Interactive — Angular Momentum Conservation</div>
+        <p style="font-size:.85rem;margin-bottom:.75rem;">Simulate a skater pulling in/extending arms. (No external torque — L conserved.)</p>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-bottom:.75rem;">
+          <label style="font-size:.85rem;">Initial I₁ (kg·m²): <input id="am-i1" type="number" value="5" min="0.1" step="0.1" oninput="amUpdate()" style="width:100%;margin-top:.3rem;padding:.4rem;border:1px solid #d1fae5;border-radius:6px;font-size:.9rem;"></label>
+          <label style="font-size:.85rem;">Initial ω₁ (rad/s): <input id="am-w1" type="number" value="3" min="0.1" step="0.1" oninput="amUpdate()" style="width:100%;margin-top:.3rem;padding:.4rem;border:1px solid #d1fae5;border-radius:6px;font-size:.9rem;"></label>
+          <label style="font-size:.85rem;">Final I₂ (kg·m²): <input id="am-i2" type="number" value="2" min="0.1" step="0.1" oninput="amUpdate()" style="width:100%;margin-top:.3rem;padding:.4rem;border:1px solid #d1fae5;border-radius:6px;font-size:.9rem;"></label>
+        </div>
+        <div id="am-out" style="background:#fff;border-radius:8px;padding:.9rem;font-family:'JetBrains Mono',monospace;font-size:.82rem;line-height:1.8;border:1px solid #d1fae5;"></div>
+      </div>
+    </section>
+
+    <!-- S11 -->
+    <section class="topic-section" id="s11">
+      <h2>11. Rolling Without Slipping</h2>
+
+      <div class="callout info">
+        <strong>v_cm = Rω</strong> (rolling condition — contact point has zero velocity relative to ground)
+      </div>
+
+      <div class="formula-table-wrap">
+        <table class="formula-table">
+          <thead><tr><th>Quantity</th><th>Formula</th></tr></thead>
+          <tbody>
+            <tr><td>Total KE (rolling)</td><td class="formula-cell">KE = ½mv² + ½Iω² = ½mv²(1 + I/mR²)</td></tr>
+            <tr><td>Solid sphere</td><td class="formula-cell">KE_rot/KE_total = 2/7 (rotation is 2/7 of total)</td></tr>
+            <tr><td>Solid disk/cylinder</td><td class="formula-cell">KE_rot/KE_total = 1/3</td></tr>
+            <tr><td>Hollow sphere</td><td class="formula-cell">KE_rot/KE_total = 2/5</td></tr>
+            <tr><td>Hollow cylinder (ring)</td><td class="formula-cell">KE_rot/KE_total = 1/2</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- S12 -->
+    <section class="topic-section" id="s12">
+      <h2>12. Rolling Down an Incline</h2>
+
+      <div class="callout info">
+        <strong>a = g sinθ / (1 + I/mR²)</strong><br>
+        Rolling acceleration on incline of angle θ. Lower I/mR² ratio → higher acceleration → reaches bottom first.
+      </div>
+
+      <div class="formula-table-wrap">
+        <table class="formula-table">
+          <thead><tr><th>Object</th><th>I/mR²</th><th>a = g sinθ / (1 + I/mR²)</th><th>Speed at bottom</th></tr></thead>
+          <tbody>
+            <tr><td>Solid sphere</td><td class="formula-cell">2/5</td><td class="formula-cell">5g sinθ/7</td><td class="note-cell">Fastest — arrives first</td></tr>
+            <tr><td>Solid disk</td><td class="formula-cell">1/2</td><td class="formula-cell">2g sinθ/3</td><td class="note-cell"></td></tr>
+            <tr><td>Hollow sphere</td><td class="formula-cell">2/3</td><td class="formula-cell">3g sinθ/5</td><td class="note-cell"></td></tr>
+            <tr><td>Hollow cylinder (ring)</td><td class="formula-cell">1</td><td class="formula-cell">g sinθ/2</td><td class="note-cell">Slowest — arrives last</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="method-box">
+        <div class="method-box-title">Energy Method for Rolling on Incline</div>
+        <p>mgh = ½mv² + ½Iω² = ½mv²(1 + I/mR²)</p>
+        <p>v = √[2gh/(1 + I/mR²)]</p>
+        <p><em>Lower moment of inertia coefficient → higher speed at bottom. Sphere always beats disk, disk beats hollow cylinder.</em></p>
+      </div>
+    </section>
+
+    <!-- S13 -->
+    <section class="topic-section" id="s13">
+      <h2>13. Worked Examples</h2>
+
+      <div class="method-box">
+        <div class="method-box-title">Example 1 — Flywheel Stopping</div>
+        <p>A flywheel (I = 4 kg·m²) spinning at 600 rpm is brought to rest by a braking torque of 4π N·m. How long does it take?</p>
+        <div class="explainer">
+          ω₀ = 600 rpm = 600 × 2π/60 = 20π rad/s<br>
+          τ = Iα → −4π = 4 × α → α = −π rad/s²<br>
+          ω = ω₀ + αt → 0 = 20π − π×t → t = <strong>20 s</strong>
+        </div>
+      </div>
+
+      <div class="method-box">
+        <div class="method-box-title">Example 2 — Skater Pulls in Arms</div>
+        <p>A skater with I₁ = 5 kg·m² spins at ω₁ = 4 rad/s. By pulling arms in, I₂ = 1.25 kg·m². Find ω₂ and ratio of KE.</p>
+        <div class="explainer">
+          L conserved: I₁ω₁ = I₂ω₂<br>
+          ω₂ = 5×4/1.25 = <strong>16 rad/s</strong><br>
+          KE₁ = ½×5×16 = 40 J<br>
+          KE₂ = ½×1.25×256 = 160 J<br>
+          KE ratio = 4:1 (energy INCREASED — skater does work pulling arms in)
+        </div>
+      </div>
+
+      <div class="method-box">
+        <div class="method-box-title">Example 3 — Solid Sphere Rolling</div>
+        <p>A solid sphere rolls down a 10 m long incline (30°) from rest. Find speed at bottom and time taken.</p>
+        <div class="explainer">
+          h = 10 sin30° = 5 m<br>
+          v = √[2gh/(1 + 2/5)] = √[2×10×5/1.4] = √(100/1.4) ≈ <strong>8.45 m/s</strong><br>
+          a = g sin30°/(1 + 2/5) = 10×0.5/1.4 = 3.57 m/s²<br>
+          s = ½at² → 10 = ½×3.57×t² → t = √(20/3.57) ≈ <strong>2.37 s</strong>
+        </div>
+      </div>
+    </section>
+
+    <!-- S14 -->
+    <section class="topic-section" id="s14">
+      <h2>14. Common JEE Traps</h2>
+
+      <div class="callout danger">
+        <strong>Trap 1:</strong> Torque [N·m] and energy [J] have same dimensions [ML²T⁻²] but are not the same. Never convert N·m to Joules in rotation.
+      </div>
+
+      <div class="callout danger">
+        <strong>Trap 2:</strong> τ = Iα requires τ and I about the SAME axis. Torque about one axis ≠ Iα about another axis.
+      </div>
+
+      <div class="callout danger">
+        <strong>Trap 3:</strong> Parallel axis theorem requires one axis to be through the CM. Cannot use it between two arbitrary axes.
+      </div>
+
+      <div class="callout danger">
+        <strong>Trap 4:</strong> Perpendicular axis theorem is ONLY for thin flat laminas — NOT for 3D objects like spheres or cylinders.
+      </div>
+
+      <div class="callout danger">
+        <strong>Trap 5:</strong> Rolling without slipping: v = Rω at the CM. Contact point has ZERO velocity. Top of the object has velocity 2v (2× the CM velocity).
+      </div>
+
+      <div class="callout danger">
+        <strong>Trap 6:</strong> When a disk drops on a rotating disk (no external torque): I₁ω₁ = (I₁+I₂)ω_f. Kinetic energy is NOT conserved (there's slipping = friction = energy loss).
+      </div>
+
+      <div class="callout danger">
+        <strong>Trap 7:</strong> The order of objects reaching bottom of incline (fastest to slowest): solid sphere → solid disk → hollow sphere → hollow cylinder. This depends only on shape (I/mR² ratio), not mass or radius.
+      </div>
+
+      <div class="topic-cta-row">
+        <a href="current-electricity.html" class="topic-cta">← P4: Current Electricity</a>
+        <a href="magnetism.html" class="topic-cta topic-cta-next">P6: Magnetism →</a>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<footer style="text-align:center;padding:2rem 1rem;font-size:.8rem;color:var(--ink3);border-top:1px solid var(--border);">
+  JEE 2027 Prep · P5 Rotational Motion Deep-Dive · <a href="../subjects/physics.html" style="color:var(--topic-accent);">Back to Physics</a>
+</footer>
+
+<script src="../js/main.js"></script>
+<script>
+function amUpdate() {
+  const I1 = parseFloat(document.getElementById('am-i1').value) || 1;
+  const w1 = parseFloat(document.getElementById('am-w1').value) || 1;
+  const I2 = parseFloat(document.getElementById('am-i2').value) || 1;
+  const L  = I1 * w1;
+  const w2 = L / I2;
+  const KE1 = 0.5 * I1 * w1 * w1;
+  const KE2 = 0.5 * I2 * w2 * w2;
+  const dKE = KE2 - KE1;
+  const dir = dKE > 0 ? '↑ increased (arms pulled in — muscles do work)' : '↓ decreased (arms extended — KE → PE in muscles)';
+
+  document.getElementById('am-out').innerHTML =
+`Angular momentum L = I₁ω₁ = ${I1}×${w1} = <strong>${L.toFixed(3)} kg·m²/s</strong> (conserved)
+Final ω₂ = L/I₂ = ${L.toFixed(3)}/${I2} = <strong>${w2.toFixed(3)} rad/s</strong>
+Initial KE = ½I₁ω₁² = <strong>${KE1.toFixed(3)} J</strong>
+Final KE   = ½I₂ω₂² = <strong>${KE2.toFixed(3)} J</strong>
+ΔKE        = <strong>${Math.abs(dKE).toFixed(3)} J</strong> ${dir}`;
+}
+
+amUpdate();
+</script>
+</body>
+</html>

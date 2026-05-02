@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Magnetism — JEE 2027 Deep-Dive</title>
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body class="topic-phys">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="nav-brand">JEE 2027</div>
+    <div class="nav-links">
+      <a href="../index.html">Dashboard</a>
+      <a href="../subjects/math.html">📐 Math</a>
+      <a href="../subjects/physics.html" class="phys-active">⚡ Physics</a>
+      <a href="../subjects/chemistry.html">🧪 Chemistry</a>
+      <a href="../progress.html">✅ Progress</a>
+    </div>
+    <button class="nav-toggle" onclick="toggleNav()">☰</button>
+  </div>
+</nav>
+
+<header class="page-hero" style="background:var(--topic-grad);padding:3rem 1rem 2.5rem;">
+  <div class="page-hero-content">
+    <div class="page-hero-tag">P6 · Physics Deep-Dive · September 2026</div>
+    <h1>⚡ Magnetism</h1>
+    <p>Biot-Savart · Ampere's Law · Lorentz Force · Circular Motion · Galvanometer</p>
+    <div class="page-hero-meta">
+      <div class="meta-item"><strong>JEE Weight:</strong> 8–10% (~9 marks)</div>
+      <div class="meta-item"><strong>Difficulty:</strong> 🔴 Hard</div>
+      <div class="meta-item"><strong>Key Skill:</strong> Direction by right-hand rule + formula selection</div>
+    </div>
+  </div>
+</header>
+
+<div class="topic-meta-bar">
+  <span class="topic-meta-pill">15 sections</span>
+  <span class="topic-meta-pill">1 interactive</span>
+  <span class="topic-meta-pill">7 JEE traps</span>
+  <span class="topic-meta-pill">5 worked examples</span>
+  <a href="../subjects/physics.html#unit-p6" class="topic-meta-pill" style="background:var(--topic-accent);color:#fff;text-decoration:none;">← Back to P6</a>
+</div>
+
+<div class="topic-wrap">
+  <nav class="topic-toc">
+    <div class="topic-toc-title">Contents</div>
+    <a href="#s1">1. Magnetic Field — Concept</a>
+    <a href="#s2">2. Biot-Savart Law</a>
+    <a href="#s3">3. Key B Field Results</a>
+    <a href="#s4">4. Ampere's Law</a>
+    <a href="#s5">5. Solenoid &amp; Toroid</a>
+    <a href="#s6">6. Lorentz Force on Charge</a>
+    <a href="#s7">7. Circular Motion in B Field</a>
+    <a href="#s8">8. Velocity Selector</a>
+    <a href="#s9">9. Force on Current Wire</a>
+    <a href="#s10">10. Force Between Wires</a>
+    <a href="#s11">11. Torque on Current Loop</a>
+    <a href="#s12">12. Galvanometer</a>
+    <a href="#s13">13. Magnetic Dipole</a>
+    <a href="#s14">14. Worked Examples</a>
+    <a href="#s15">15. Common Traps</a>
+  </nav>
+
+  <main class="topic-content">
+
+    <!-- S1 -->
+    <section class="topic-section" id="s1">
+      <h2>1. Magnetic Field — The Concept</h2>
+
+      <div class="callout info">
+        <strong>Magnetic field B exists around:</strong> permanent magnets, current-carrying conductors, and moving charges. SI unit: Tesla (T) = kg/(A·s²).
+      </div>
+
+      <div class="method-box">
+        <div class="method-box-title">Right-Hand Rules — Summary</div>
+        <ul>
+          <li><strong>Straight wire:</strong> Thumb in current direction → fingers curl in B field direction (concentric circles)</li>
+          <li><strong>Coil/solenoid:</strong> Curl fingers in current direction → thumb points to North pole (direction of B inside)</li>
+          <li><strong>Force on positive charge (F = qv×B):</strong> Point fingers in v direction, curl toward B → thumb points in F direction</li>
+          <li><strong>For negative charge:</strong> Reverse the thumb direction (opposite to positive)</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- S2 -->
+    <section class="topic-section" id="s2">
+      <h2>2. Biot-Savart Law</h2>
+
+      <div class="callout info">
+        <strong>dB = (μ₀/4π) × (I dl × r̂) / r²</strong><br>
+        Magnitude: dB = (μ₀/4π) × I dl sinφ / r² where φ = angle between dl and r̂.<br>
+        μ₀ = 4π × 10⁻⁷ T·m/A (permeability of free space)
+      </div>
+
+      <div class="method-box">
+        <div class="method-box-title">When to Use Biot-Savart vs Ampere's Law</div>
+        <ul>
+          <li><strong>Biot-Savart:</strong> Curved wires, arcs, finite length segments, circular loops</li>
+          <li><strong>Ampere's Law:</strong> High-symmetry configurations — infinite straight wire, infinite solenoid, toroid</li>
+          <li><em>JEE tip: If the question involves a circular arc or loop → Biot-Savart. If infinite/symmetric → Ampere.</em></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- S3 -->
+    <section class="topic-section" id="s3">
+      <h2>3. Key Magnetic Field Results</h2>
+
+      <div class="formula-table-wrap">
+        <table class="formula-table">
+          <thead><tr><th>Source</th><th>Formula</th><th>Notes</th></tr></thead>
+          <tbody>
+            <tr><td>Infinite straight wire</td><td class="formula-cell">B = μ₀I / 2πr</td><td class="note-cell">r = perpendicular distance from wire</td></tr>
+            <tr><td>Finite wire (angle subtended α, β)</td><td class="formula-cell">B = μ₀I(sinα + sinβ) / 4πr</td><td class="note-cell">Semi-infinite: B = μ₀I/4πr</td></tr>
+            <tr><td>Centre of circular loop</td><td class="formula-cell">B = μ₀I / 2R</td><td class="note-cell">R = radius of loop</td></tr>
+            <tr><td>Axis of circular loop</td><td class="formula-cell">B = μ₀IR² / 2(R²+x²)^(3/2)</td><td class="note-cell">x = distance along axis from centre</td></tr>
+            <tr><td>Inside solenoid</td><td class="formula-cell">B = μ₀nI</td><td class="note-cell">n = N/L = turns per metre</td></tr>
+            <tr><td>Inside toroid</td><td class="formula-cell">B = μ₀NI / 2πr</td><td class="note-cell">r = mean radius</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout warn">
+        <strong>At centre of semi-circular arc of radius R:</strong> B = μ₀I/4R (half the full circle value). For arc of angle θ (radians): B = μ₀Iθ/4πR.
+      </div>
+    </section>
+
+    <!-- S4 -->
+    <section class="topic-section" id="s4">
+      <h2>4. Ampere's Law</h2>
+
+      <div class="callout info">
+        <strong>∮ B · dl = μ₀ I_enc</strong><br>
+        Line integral of B around a closed loop (Amperian loop) = μ₀ × total enclosed current.
+      </div>
+
+      <div class="method-box">
+        <div class="method-box-title">Applying Ampere's Law</div>
+        <ol>
+          <li>Choose an Amperian loop that passes through the field point with B uniform and parallel to dl everywhere</li>
+          <li>For a circular loop around infinite straight wire: B × 2πr = μ₀I → B = μ₀I/2πr</li>
+          <li>Inside a solenoid: rectangular loop with one side inside (B = μ₀nI), one side outside (B = 0)</li>
+          <li>Only works cleanly when B has high symmetry (cylindrical, planar)</li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- S5 -->
+    <section class="topic-section" id="s5">
+      <h2>5. Solenoid &amp; Toroid</h2>
+
+      <div class="compare-grid">
+        <div class="compare-col">
+          <div class="compare-head">Solenoid</div>
+          <ul>
+            <li>B_inside = μ₀nI (uniform)</li>
+            <li>B_outside ≈ 0 (for long solenoid)</li>
+            <li>n = N/L = turns per unit length</li>
+            <li>Self-inductance: L = μ₀n²Al (H)</li>
+          </ul>
+        </div>
+        <div class="compare-col">
+          <div class="compare-head">Toroid</div>
+          <ul>
+            <li>B_inside = μ₀NI/2πr (varies with r)</li>
+            <li>B_outside = 0 (B confined inside toroid)</li>
+            <li>N = total turns, r = radius at point</li>
+            <li>No external magnetic field leakage</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- S6 -->
+    <section class="topic-section" id="s6">
+      <h2>6. Lorentz Force on a Moving Charge</h2>
+
+      <div class="callout info">
+        <strong>F = q(v × B)</strong><br>
+        Magnitude: F = qvB sinθ (θ = angle between v and B). Direction: right-hand rule for positive charge; reverse for negative.
+      </div>
+
+      <div class="formula-table-wrap">
+        <table class="formula-table">
+          <thead><tr><th>Condition</th><th>Force</th><th>Result</th></tr></thead>
+          <tbody>
+            <tr><td>v ∥ B (θ = 0°)</td><td class="formula-cell">F = 0</td><td class="note-cell">No magnetic force — particle moves in straight line</td></tr>
+            <tr><td>v ⊥ B (θ = 90°)</td><td class="formula-cell">F = qvB (max)</td><td class="note-cell">Circular motion (centripetal force)</td></tr>
+            <tr><td>v at angle θ to B</td><td class="formula-cell">F = qvB sinθ</td><td class="note-cell">Helical motion</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout info">
+        <strong>Magnetic force does NO work on a moving charge</strong> (F ⊥ v always → W = F·d = 0). Magnetic field cannot change the speed or kinetic energy of a particle — only its direction.
+      </div>
+    </section>
+
+    <!-- S7 -->
+    <section class="topic-section" id="s7">
+      <h2>7. Circular Motion in Magnetic Field</h2>
+
+      <div class="callout info">
+        <strong>Centripetal force = magnetic force: mv²/r = qvB</strong><br>
+        Radius: r = mv/qB · Period: T = 2πm/qB · Frequency: f = qB/2πm
+      </div>
+
+      <div class="method-box">
+        <div class="method-box-title">Cyclotron Principle — Time Period is Independent of Speed!</div>
+        <p>T = 2πm/qB — independent of v and r. Faster particles move in larger circles but complete each revolution in the same time.</p>
+        <p>This is why the cyclotron works: the alternating electric field can stay in sync with the particle regardless of its energy.</p>
+      </div>
+
+      <!-- INTERACTIVE: Lorentz Force Calculator -->
+      <div class="method-box" style="background:#f0fdf4;border-color:#16a34a;">
+        <div class="method-box-title" style="color:#16a34a;">🔢 Interactive — Circular Motion in B Field</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-bottom:.75rem;">
+          <label style="font-size:.85rem;">Mass m (kg, ×10⁻²⁷): <input id="cm-m" type="number" value="1.67" min="0.01" step="0.01" oninput="cmUpdate()" style="width:100%;margin-top:.3rem;padding:.4rem;border:1px solid #d1fae5;border-radius:6px;font-size:.9rem;"></label>
+          <label style="font-size:.85rem;">Charge q (C, ×10⁻¹⁹): <input id="cm-q" type="number" value="1.6" min="0.01" step="0.01" oninput="cmUpdate()" style="width:100%;margin-top:.3rem;padding:.4rem;border:1px solid #d1fae5;border-radius:6px;font-size:.9rem;"></label>
+          <label style="font-size:.85rem;">Speed v (m/s, ×10⁶): <input id="cm-v" type="number" value="2" min="0.1" step="0.1" oninput="cmUpdate()" style="width:100%;margin-top:.3rem;padding:.4rem;border:1px solid #d1fae5;border-radius:6px;font-size:.9rem;"></label>
+          <label style="font-size:.85rem;">Magnetic field B (T): <input id="cm-B" type="number" value="0.5" min="0.01" step="0.01" oninput="cmUpdate()" style="width:100%;margin-top:.3rem;padding:.4rem;border:1px solid #d1fae5;border-radius:6px;font-size:.9rem;"></label>
+        </div>
+        <div id="cm-out" style="background:#fff;border-radius:8px;padding:.9rem;font-family:'JetBrains Mono',monospace;font-size:.82rem;line-height:1.8;border:1px solid #d1fae5;"></div>
+      </div>
+    </section>
+
+    <!-- S8 -->
+    <section class="topic-section" id="s8">
+      <h2>8. Velocity Selector</h2>
+
+      <div class="callout info">
+        <strong>When electric force = magnetic force: qE = qvB → v = E/B</strong><br>
+        Only particles with velocity v = E/B pass through undeflected. Used in mass spectrometers.
+      </div>
+
+      <div class="method-box">
+        <div class="method-box-title">Velocity Selector Setup</div>
+        <p>Electric field E and magnetic field B applied perpendicular to each other and to particle velocity.</p>
+        <p>Slow particles (qE &gt; qvB): deflected by E field. Fast particles: deflected by B field. Selected velocity v = E/B passes straight through.</p>
+      </div>
+    </section>
+
+    <!-- S9 -->
+    <section class="topic-section" id="s9">
+      <h2>9. Force on a Current-Carrying Wire</h2>
+
+      <div class="callout info">
+        <strong>F = I L × B → magnitude: F = BIL sinθ</strong><br>
+        θ = angle between current direction and B field. Force ⊥ to both I and B.
+      </div>
+
+      <div class="formula-table-wrap">
+        <table class="formula-table">
+          <thead><tr><th>Condition</th><th>Force</th></tr></thead>
+          <tbody>
+            <tr><td>Wire ∥ B (θ = 0°)</td><td class="formula-cell">F = 0</td></tr>
+            <tr><td>Wire ⊥ B (θ = 90°)</td><td class="formula-cell">F = BIL (maximum)</td></tr>
+            <tr><td>Closed loop in uniform B</td><td class="formula-cell">F_net = 0 (forces cancel)</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- S10 -->
+    <section class="topic-section" id="s10">
+      <h2>10. Force Between Parallel Wires</h2>
+
+      <div class="callout info">
+        <strong>F/L = μ₀I₁I₂ / 2πd</strong><br>
+        Force per unit length between two infinite parallel wires separated by distance d.
+      </div>
+
+      <div class="compare-grid">
+        <div class="compare-col">
+          <div class="compare-head">Same Direction Currents</div>
+          <ul>
+            <li>Wires <strong>attract</strong> each other</li>
+            <li>Definition of Ampere: 1 A produces 2×10⁻⁷ N/m at 1 m separation</li>
+          </ul>
+        </div>
+        <div class="compare-col">
+          <div class="compare-head">Opposite Direction Currents</div>
+          <ul>
+            <li>Wires <strong>repel</strong> each other</li>
+            <li>Memory: SADA → Same currents Attract, Different currents Repel</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- S11 -->
+    <section class="topic-section" id="s11">
+      <h2>11. Torque on a Current Loop</h2>
+
+      <div class="callout info">
+        <strong>τ = NIAB sinθ = m × B</strong><br>
+        N = turns, I = current, A = area of loop, B = field, θ = angle between coil PLANE and B (not normal!)
+      </div>
+
+      <div class="callout warn">
+        <strong>JEE Trap on θ:</strong> θ in τ = NIAB sinθ is the angle between the coil PLANE and B. When coil plane is parallel to B (θ = 90°) → max torque. When coil plane ⊥ B (θ = 0°) → zero torque. Some books define φ as the angle between B and the NORMAL — then τ = NIAB cosφ.
+      </div>
+
+      <div class="method-box">
+        <div class="method-box-title">Magnetic Dipole Moment</div>
+        <p>m = NIA (vector — direction by right-hand rule along normal to coil)</p>
+        <p>Torque: τ = m × B (magnitude: τ = mB sinα, α = angle between m and B)</p>
+        <p>Potential energy: U = −m · B = −mB cosα</p>
+      </div>
+    </section>
+
+    <!-- S12 -->
+    <section class="topic-section" id="s12">
+      <h2>12. Moving Coil Galvanometer</h2>
+
+      <div class="callout info">
+        <strong>At equilibrium: Deflecting torque = Restoring torque</strong><br>
+        NIAB = Cφ → φ = NIAB/C (φ = deflection, C = restoring couple per unit angle)
+      </div>
+
+      <div class="formula-table-wrap">
+        <table class="formula-table">
+          <thead><tr><th>Conversion</th><th>Method</th><th>Effect</th></tr></thead>
+          <tbody>
+            <tr><td>Ammeter</td><td class="formula-cell">Low resistance shunt S in parallel</td><td class="note-cell">I_g × G = (I − I_g) × S</td></tr>
+            <tr><td>Voltmeter</td><td class="formula-cell">High resistance R in series</td><td class="note-cell">V = I_g(G + R)</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout info">
+        <strong>Ammeter: low resistance (ideal = 0)</strong> — must not disturb circuit current. <strong>Voltmeter: high resistance (ideal = ∞)</strong> — must not draw current.
+      </div>
+    </section>
+
+    <!-- S13 -->
+    <section class="topic-section" id="s13">
+      <h2>13. Magnetic Dipole in External Field</h2>
+
+      <div class="formula-table-wrap">
+        <table class="formula-table">
+          <thead><tr><th>Property</th><th>Formula</th></tr></thead>
+          <tbody>
+            <tr><td>Torque on dipole</td><td class="formula-cell">τ = mB sinα (α = angle with B)</td></tr>
+            <tr><td>Potential energy</td><td class="formula-cell">U = −mB cosα</td></tr>
+            <tr><td>Stable equilibrium</td><td class="formula-cell">α = 0° (m ∥ B, U = −mB, minimum)</td></tr>
+            <tr><td>Unstable equilibrium</td><td class="formula-cell">α = 180° (m anti-∥ B, U = +mB, maximum)</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- S14 -->
+    <section class="topic-section" id="s14">
+      <h2>14. Worked Examples</h2>
+
+      <div class="method-box">
+        <div class="method-box-title">Example 1 — B at Centre of Semicircular Arc</div>
+        <p>A wire is bent into a semicircle of radius R=0.1 m. Current I=5 A. Straight portions extend to infinity on both sides (in same line). Find B at centre.</p>
+        <div class="explainer">
+          B (semicircular arc) = μ₀I/4R = (4π×10⁻⁷×5)/(4×0.1) = π×10⁻⁶/0.4 = 7.85×10⁻⁶ T<br>
+          B (two semi-infinite straight wires) = 2 × μ₀I/4πr = 0 (at the endpoint, perpendicular segment contributes 0)<br>
+          Wait — the semi-infinite straight segments DO contribute if they're NOT along the line to the centre.<br>
+          If straight parts extend along the same diameter line: they're along direction of r̂ → sinφ=0 → B=0 from straight parts<br>
+          Total B = <strong>7.85 × 10⁻⁶ T ≈ 7.85 μT</strong>
+        </div>
+      </div>
+
+      <div class="method-box">
+        <div class="method-box-title">Example 2 — Proton in Magnetic Field</div>
+        <p>A proton (m=1.67×10⁻²⁷ kg, q=1.6×10⁻¹⁹ C) enters B=0.5 T perpendicular at v=2×10⁶ m/s. Find radius and time period.</p>
+        <div class="explainer">
+          r = mv/qB = (1.67×10⁻²⁷ × 2×10⁶) / (1.6×10⁻¹⁹ × 0.5)<br>
+          r = 3.34×10⁻²¹ / 8×10⁻²⁰ = <strong>0.0418 m ≈ 4.18 cm</strong><br>
+          T = 2πm/qB = 2π×1.67×10⁻²⁷ / (1.6×10⁻¹⁹×0.5) = <strong>1.31×10⁻⁷ s</strong>
+        </div>
+      </div>
+
+      <div class="method-box">
+        <div class="method-box-title">Example 3 — Torque on Current Loop</div>
+        <p>Rectangular coil: 100 turns, 10 cm × 20 cm, carrying 2 A. Placed in uniform B = 0.5 T. Plane of coil parallel to B. Find torque.</p>
+        <div class="explainer">
+          A = 0.10 × 0.20 = 0.02 m²<br>
+          Coil plane parallel to B → θ = 90° (angle between plane and B)<br>
+          τ = NIAB sinθ = 100 × 2 × 0.02 × 0.5 × sin90° = 100 × 2 × 0.02 × 0.5 × 1 = <strong>2 N·m</strong>
+        </div>
+      </div>
+    </section>
+
+    <!-- S15 -->
+    <section class="topic-section" id="s15">
+      <h2>15. Common JEE Traps</h2>
+
+      <div class="callout danger">
+        <strong>Trap 1:</strong> Magnetic force does ZERO work on a moving charge. Speed and KE never change due to magnetic force alone. Only direction changes.
+      </div>
+
+      <div class="callout danger">
+        <strong>Trap 2:</strong> Time period T = 2πm/qB is INDEPENDENT of speed. Do not confuse with radius r = mv/qB (which depends on speed).
+      </div>
+
+      <div class="callout danger">
+        <strong>Trap 3:</strong> In τ = NIAB sinθ — θ is angle between coil PLANE and B, NOT between the normal and B. Max torque when plane is parallel to B (not perpendicular).
+      </div>
+
+      <div class="callout danger">
+        <strong>Trap 4:</strong> Parallel wires with currents in SAME direction ATTRACT. Different directions REPEL. (Opposite to electric charges — like charges attract for current!)
+      </div>
+
+      <div class="callout danger">
+        <strong>Trap 5:</strong> Net magnetic force on a closed current loop in a UNIFORM field = 0 (forces on opposite sides cancel). But torque ≠ 0 (they form a couple).
+      </div>
+
+      <div class="callout danger">
+        <strong>Trap 6:</strong> Ammeter has LOW resistance (added in parallel as shunt to divert most current). Voltmeter has HIGH resistance (added in series to draw minimal current). Swapping them gives wrong measurement.
+      </div>
+
+      <div class="callout danger">
+        <strong>Trap 7:</strong> B inside a solenoid is uniform and equals μ₀nI. B OUTSIDE is approximately zero (not μ₀nI). For a toroid, B inside varies with radius r (not uniform).
+      </div>
+
+      <div class="topic-cta-row">
+        <a href="rotational-motion.html" class="topic-cta">← P5: Rotational Motion</a>
+        <a href="emi-ac.html" class="topic-cta topic-cta-next">P7: EMI &amp; AC Circuits →</a>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<footer style="text-align:center;padding:2rem 1rem;font-size:.8rem;color:var(--ink3);border-top:1px solid var(--border);">
+  JEE 2027 Prep · P6 Magnetism Deep-Dive · <a href="../subjects/physics.html" style="color:var(--topic-accent);">Back to Physics</a>
+</footer>
+
+<script src="../js/main.js"></script>
+<script>
+function cmUpdate() {
+  const m = (parseFloat(document.getElementById('cm-m').value) || 1.67) * 1e-27;
+  const q = (parseFloat(document.getElementById('cm-q').value) || 1.6) * 1e-19;
+  const v = (parseFloat(document.getElementById('cm-v').value) || 2) * 1e6;
+  const B = parseFloat(document.getElementById('cm-B').value) || 0.5;
+
+  const r  = m * v / (q * B);
+  const T  = 2 * Math.PI * m / (q * B);
+  const f  = 1 / T;
+  const KE = 0.5 * m * v * v;
+  const F  = q * v * B;
+
+  document.getElementById('cm-out').innerHTML =
+`Radius r      = mv/qB = <strong>${r.toExponential(3)} m = ${(r*100).toFixed(2)} cm</strong>
+Force F       = qvB = <strong>${F.toExponential(3)} N</strong>
+Time period T = 2πm/qB = <strong>${T.toExponential(3)} s</strong>  (independent of v!)
+Frequency f   = qB/2πm = <strong>${f.toExponential(3)} Hz</strong>
+Kinetic energy = ½mv² = <strong>${KE.toExponential(3)} J</strong>  (unchanged by B — no work done)`;
+}
+
+cmUpdate();
+</script>
+</body>
+</html>

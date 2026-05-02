@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EMI & AC Circuits — JEE 2027 Deep-Dive</title>
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body class="topic-phys">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="nav-brand">JEE 2027</div>
+    <div class="nav-links">
+      <a href="../index.html">Dashboard</a>
+      <a href="../subjects/math.html">📐 Math</a>
+      <a href="../subjects/physics.html" class="phys-active">⚡ Physics</a>
+      <a href="../subjects/chemistry.html">🧪 Chemistry</a>
+      <a href="../progress.html">✅ Progress</a>
+    </div>
+    <button class="nav-toggle" onclick="toggleNav()">☰</button>
+  </div>
+</nav>
+
+<header class="page-hero" style="background:var(--topic-grad);padding:3rem 1rem 2.5rem;">
+  <div class="page-hero-content">
+    <div class="page-hero-tag">P7 · Physics Deep-Dive · October 2026</div>
+    <h1>⚡ EMI &amp; AC Circuits</h1>
+    <p>Faraday's Law · Lenz's Law · Self-Inductance · LCR Resonance · Power Factor</p>
+    <div class="page-hero-meta">
+      <div class="meta-item"><strong>JEE Weight:</strong> 7–8% (~8 marks)</div>
+      <div class="meta-item"><strong>Difficulty:</strong> 🔴 Hard</div>
+      <div class="meta-item"><strong>Key Skill:</strong> Resonance conditions + phasor analysis</div>
+    </div>
+  </div>
+</header>
+
+<div class="topic-meta-bar">
+  <span class="topic-meta-pill">16 sections</span>
+  <span class="topic-meta-pill">2 interactives</span>
+  <span class="topic-meta-pill">8 JEE traps</span>
+  <span class="topic-meta-pill">5 worked examples</span>
+  <a href="../subjects/physics.html#unit-p7" class="topic-meta-pill" style="background:var(--topic-accent);color:#fff;text-decoration:none;">← Back to P7</a>
+</div>
+
+<div class="topic-wrap">
+  <nav class="topic-toc">
+    <div class="topic-toc-title">Contents</div>
+    <a href="#s1">1. Magnetic Flux</a>
+    <a href="#s2">2. Faraday's Law</a>
+    <a href="#s3">3. Lenz's Law</a>
+    <a href="#s4">4. Motional EMF</a>
+    <a href="#s5">5. Eddy Currents</a>
+    <a href="#s6">6. Self-Inductance</a>
+    <a href="#s7">7. Mutual Inductance</a>
+    <a href="#s8">8. Transformer</a>
+    <a href="#s9">9. Energy in Inductor</a>
+    <a href="#s10">10. AC Basics</a>
+    <a href="#s11">11. Resistor/Inductor/Capacitor in AC</a>
+    <a href="#s12">12. LCR Series Circuit</a>
+    <a href="#s13">13. Resonance</a>
+    <a href="#s14">14. Power in AC</a>
+    <a href="#s15">15. Worked Examples</a>
+    <a href="#s16">16. Common Traps</a>
+  </nav>
+
+  <main class="topic-content">
+
+    <!-- S1 -->
+    <section class="topic-section" id="s1">
+      <h2>1. Magnetic Flux</h2>
+
+      <div class="callout info">
+        <strong>Φ = B · A = BA cosθ</strong><br>
+        θ = angle between B and the NORMAL to the surface (NOT the angle between B and the surface plane). Unit: Weber (Wb = T·m²).
+      </div>
+
+      <div class="method-box">
+        <div class="method-box-title">Ways to Change Flux → Induce EMF</div>
+        <ul>
+          <li><strong>Change B:</strong> move a magnet in/out of a coil</li>
+          <li><strong>Change A:</strong> expand or contract the area of a conducting loop</li>
+          <li><strong>Change θ:</strong> rotate the coil in the field (generator principle)</li>
+          <li><em>All three produce the same effect — EMF = −dΦ/dt</em></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- S2 -->
+    <section class="topic-section" id="s2">
+      <h2>2. Faraday's Law of Electromagnetic Induction</h2>
+
+      <div class="callout info">
+        <strong>ε = −N dΦ/dt</strong><br>
+        Magnitude of induced EMF = N × rate of change of flux through a single turn. The negative sign encodes Lenz's law.
+      </div>
+
+      <div class="formula-table-wrap">
+        <table class="formula-table">
+          <thead><tr><th>Form</th><th>Formula</th><th>Use When</th></tr></thead>
+          <tbody>
+            <tr><td>General</td><td class="formula-cell">ε = −N dΦ/dt</td><td class="note-cell">Flux changing with time</td></tr>
+            <tr><td>Average (finite ΔΦ, Δt)</td><td class="formula-cell">ε = N ΔΦ/Δt</td><td class="note-cell">For total flux change</td></tr>
+            <tr><td>Induced current</td><td class="formula-cell">I = ε/R = N(dΦ/dt)/R</td><td class="note-cell">Circuit resistance known</td></tr>
+            <tr><td>Charge flowed</td><td class="formula-cell">q = NΔΦ/R</td><td class="note-cell">Independent of time taken!</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout warn">
+        <strong>Charge = NΔΦ/R — independent of how fast the flux changes.</strong> Only the total flux change matters for total charge. Resistance determines charge for a given flux change.
+      </div>
+    </section>
+
+    <!-- S3 -->
+    <section class="topic-section" id="s3">
+      <h2>3. Lenz's Law</h2>
+
+      <div class="callout info">
+        <strong>The induced current opposes the change in flux that caused it.</strong><br>
+        This is a consequence of energy conservation — a "free" current would violate conservation of energy.
+      </div>
+
+      <div class="method-box">
+        <div class="method-box-title">Applying Lenz's Law Step by Step</div>
+        <ol>
+          <li>Identify the direction of the existing magnetic flux through the loop</li>
+          <li>Determine if flux is increasing or decreasing</li>
+          <li>Induced current must create B field that OPPOSES this change:
+            <ul>
+              <li>Flux increasing into page → induced B must point OUT of page → induced current counterclockwise (viewed from front)</li>
+              <li>Flux decreasing into page → induced B must point INTO page → induced current clockwise</li>
+            </ul>
+          </li>
+          <li>Apply right-hand rule to find current direction from induced B direction</li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- S4 -->
+    <section class="topic-section" id="s4">
+      <h2>4. Motional EMF</h2>
+
+      <div class="callout info">
+        <strong>ε = BLv</strong><br>
+        A conductor of length L moving at velocity v perpendicular to field B. The free electrons experience Lorentz force → charge separation → EMF.
+      </div>
+
+      <div class="method-box">
+        <div class="method-box-title">Motional EMF — Detailed Analysis</div>
+        <ul>
+          <li>Works only when v ⊥ B ⊥ L (all three mutually perpendicular)</li>
+          <li>If circuit is closed with resistance R: I = BLv/R</li>
+          <li>Power dissipated: P = B²L²v²/R</li>
+          <li>Force required to maintain constant v: F = BIL = B²L²v/R (opposing — Lenz's law)</li>
+          <li>If v varies: ε = BL(dv/dt × t) → use ε = Bv(t)·L at each instant</li>
+        </ul>
+      </div>
+
+      <div class="callout warn">
+        <strong>Rotating rod EMF:</strong> A rod of length L rotating about one end at ω in field B (perpendicular to rod): ε = ½BωL². Different from BLv!
+      </div>
+    </section>
+
+    <!-- S5 -->
+    <section class="topic-section" id="s5">
+      <h2>5. Eddy Currents</h2>
+
+      <div class="callout info">
+        <strong>Induced currents in bulk conductors</strong> (not just wires) — circulate in closed loops within the material itself.
+      </div>
+
+      <div class="compare-grid">
+        <div class="compare-col">
+          <div class="compare-head">Harmful Effects</div>
+          <ul>
+            <li>Energy loss as heat in transformer cores</li>
+            <li>Minimised by using laminated cores</li>
+            <li>Power loss in AC machines</li>
+          </ul>
+        </div>
+        <div class="compare-col">
+          <div class="compare-head">Useful Applications</div>
+          <ul>
+            <li>Electromagnetic braking (trains, roller coasters)</li>
+            <li>Induction cooktops</li>
+            <li>Metal detectors</li>
+            <li>Magnetic damping in galvanometers</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- S6 -->
+    <section class="topic-section" id="s6">
+      <h2>6. Self-Inductance</h2>
+
+      <div class="callout info">
+        <strong>L is defined by: ε = −L dI/dt</strong><br>
+        L = self-inductance (Henry, H). When current through a coil changes, the changing flux through it induces an EMF that opposes the change.
+      </div>
+
+      <div class="formula-table-wrap">
+        <table class="formula-table">
+          <thead><tr><th>Formula</th><th>Meaning</th></tr></thead>
+          <tbody>
+            <tr><td class="formula-cell">ε = −L dI/dt</td><td>EMF induced by changing I</td></tr>
+            <tr><td class="formula-cell">L = μ₀n²V = μ₀n²Al</td><td>Self-inductance of solenoid (V = volume)</td></tr>
+            <tr><td class="formula-cell">U = ½LI²</td><td>Energy stored in inductor</td></tr>
+            <tr><td class="formula-cell">L_series = L₁ + L₂</td><td>Series (no mutual inductance)</td></tr>
+            <tr><td class="formula-cell">1/L_parallel = 1/L₁ + 1/L₂</td><td>Parallel (no mutual inductance)</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout info">
+        <strong>Inductor opposes CHANGES in current.</strong> At t=0, inductor acts like open circuit (prevents sudden current change). After long time, acts like wire (short circuit) — full DC current flows.
+      </div>
+    </section>
+
+    <!-- S7 -->
+    <section class="topic-section" id="s7">
+      <h2>7. Mutual Inductance</h2>
+
+      <div class="callout info">
+        <strong>ε₂ = −M dI₁/dt</strong><br>
+        M = mutual inductance between two coils. When current in coil 1 changes, it induces EMF in coil 2.
+      </div>
+
+      <div class="formula-table-wrap">
+        <table class="formula-table">
+          <thead><tr><th>Formula</th><th>Notes</th></tr></thead>
+          <tbody>
+            <tr><td class="formula-cell">M = k√(L₁L₂)</td><td class="note-cell">k = coupling coefficient (0 ≤ k ≤ 1)</td></tr>
+            <tr><td class="formula-cell">M = μ₀N₁N₂A/l</td><td class="note-cell">For coaxial solenoids of same area</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- S8 -->
+    <section class="topic-section" id="s8">
+      <h2>8. Transformer</h2>
+
+      <div class="callout info">
+        <strong>V₁/V₂ = N₁/N₂</strong> (voltage ratio = turns ratio)<br>
+        <strong>V₁I₁ = V₂I₂</strong> (power conservation in ideal transformer)
+      </div>
+
+      <div class="formula-table-wrap">
+        <table class="formula-table">
+          <thead><tr><th>Type</th><th>Turns</th><th>Effect</th></tr></thead>
+          <tbody>
+            <tr><td>Step-up</td><td class="formula-cell">N₂ &gt; N₁</td><td class="note-cell">V₂ &gt; V₁, I₂ &lt; I₁ (voltage up, current down)</td></tr>
+            <tr><td>Step-down</td><td class="formula-cell">N₂ &lt; N₁</td><td class="note-cell">V₂ &lt; V₁, I₂ &gt; I₁ (voltage down, current up)</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout warn">
+        <strong>Efficiency losses in real transformers:</strong> eddy currents (minimised by laminated core), hysteresis loss (use soft iron core), copper loss (I²R in windings), flux leakage.
+      </div>
+    </section>
+
+    <!-- S9 -->
+    <section class="topic-section" id="s9">
+      <h2>9. Energy Stored in Inductor</h2>
+
+      <div class="callout info">
+        <strong>U = ½LI²</strong> — analogous to ½kx² for spring and ½mv² for kinetic energy.
+      </div>
+
+      <div class="method-box">
+        <div class="method-box-title">Energy Analogy Table</div>
+        <div style="overflow-x:auto;">
+          <table class="formula-table">
+            <thead><tr><th>Spring</th><th>Capacitor</th><th>Inductor</th></tr></thead>
+            <tbody>
+              <tr><td>Restoring force kx</td><td>Electric field E</td><td>Magnetic field B</td></tr>
+              <tr><td class="formula-cell">U = ½kx²</td><td class="formula-cell">U = ½CV² = Q²/2C</td><td class="formula-cell">U = ½LI²</td></tr>
+              <tr><td>x ↔ momentum</td><td>Q ↔ I</td><td>Ψ = LI ↔ x</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- S10 -->
+    <section class="topic-section" id="s10">
+      <h2>10. AC Basics</h2>
+
+      <div class="callout info">
+        <strong>V = V₀ sin(ωt)</strong> · <strong>I = I₀ sin(ωt + φ)</strong><br>
+        V₀ = peak voltage · ω = 2πf = angular frequency · φ = phase difference (I leads or lags V)
+      </div>
+
+      <div class="formula-table-wrap">
+        <table class="formula-table">
+          <thead><tr><th>Quantity</th><th>Formula</th><th>Note</th></tr></thead>
+          <tbody>
+            <tr><td>RMS voltage</td><td class="formula-cell">V_rms = V₀/√2 ≈ 0.707 V₀</td><td class="note-cell">Used in power calculations</td></tr>
+            <tr><td>RMS current</td><td class="formula-cell">I_rms = I₀/√2</td><td class="note-cell"></td></tr>
+            <tr><td>Average (full cycle)</td><td class="formula-cell">V_avg = 0 (sine wave)</td><td class="note-cell">Average of pure AC is zero</td></tr>
+            <tr><td>Average (half cycle)</td><td class="formula-cell">V_avg = 2V₀/π ≈ 0.637 V₀</td><td class="note-cell"></td></tr>
+            <tr><td>Form factor</td><td class="formula-cell">V_rms/V_avg = π/(2√2) ≈ 1.11</td><td class="note-cell"></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- S11 -->
+    <section class="topic-section" id="s11">
+      <h2>11. R, L, C Separately in AC</h2>
+
+      <div class="formula-table-wrap">
+        <table class="formula-table">
+          <thead><tr><th>Element</th><th>Impedance</th><th>Phase (I vs V)</th><th>Power</th></tr></thead>
+          <tbody>
+            <tr><td>Resistor R</td><td class="formula-cell">Z = R</td><td class="note-cell">φ = 0° (in phase)</td><td class="note-cell">P = I²R (real power)</td></tr>
+            <tr><td>Inductor L</td><td class="formula-cell">X_L = ωL</td><td class="note-cell">I lags V by 90° (ELI)</td><td class="note-cell">P_avg = 0</td></tr>
+            <tr><td>Capacitor C</td><td class="formula-cell">X_C = 1/ωC</td><td class="note-cell">I leads V by 90° (ICE)</td><td class="note-cell">P_avg = 0</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout info">
+        <strong>ELI the ICE man:</strong> In an inductive circuit (L), E(voltage) leads I(current) — ELI. In a capacitive circuit (C), I leads E — ICE. The extra letter is the leading quantity.
+      </div>
+    </section>
+
+    <!-- S12 -->
+    <section class="topic-section" id="s12">
+      <h2>12. LCR Series Circuit</h2>
+
+      <div class="callout info">
+        <strong>Z = √[R² + (X_L − X_C)²]</strong><br>
+        <strong>tan φ = (X_L − X_C) / R</strong> (φ = phase angle of V relative to I)
+      </div>
+
+      <!-- INTERACTIVE: LCR Calculator -->
+      <div class="method-box" style="background:#f0fdf4;border-color:#16a34a;">
+        <div class="method-box-title" style="color:#16a34a;">🔢 Interactive — LCR Circuit Analyser</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-bottom:.75rem;">
+          <label style="font-size:.85rem;">R (Ω): <input id="lcr-R" type="number" value="5" min="0.1" step="0.5" oninput="lcrUpdate()" style="width:100%;margin-top:.3rem;padding:.4rem;border:1px solid #d1fae5;border-radius:6px;font-size:.9rem;"></label>
+          <label style="font-size:.85rem;">L (mH): <input id="lcr-L" type="number" value="100" min="1" step="10" oninput="lcrUpdate()" style="width:100%;margin-top:.3rem;padding:.4rem;border:1px solid #d1fae5;border-radius:6px;font-size:.9rem;"></label>
+          <label style="font-size:.85rem;">C (μF): <input id="lcr-C" type="number" value="200" min="1" step="10" oninput="lcrUpdate()" style="width:100%;margin-top:.3rem;padding:.4rem;border:1px solid #d1fae5;border-radius:6px;font-size:.9rem;"></label>
+          <label style="font-size:.85rem;">ω (rad/s): <input id="lcr-w" type="number" value="100" min="1" step="10" oninput="lcrUpdate()" style="width:100%;margin-top:.3rem;padding:.4rem;border:1px solid #d1fae5;border-radius:6px;font-size:.9rem;"></label>
+          <label style="font-size:.85rem;" style="grid-column:1/-1;">V_rms (V): <input id="lcr-V" type="number" value="220" min="1" step="10" oninput="lcrUpdate()" style="width:8rem;margin-top:.3rem;padding:.4rem;border:1px solid #d1fae5;border-radius:6px;font-size:.9rem;"></label>
+        </div>
+        <div id="lcr-out" style="background:#fff;border-radius:8px;padding:.9rem;font-family:'JetBrains Mono',monospace;font-size:.82rem;line-height:1.8;border:1px solid #d1fae5;"></div>
+      </div>
+    </section>
+
+    <!-- S13 -->
+    <section class="topic-section" id="s13">
+      <h2>13. Resonance in LCR Circuit</h2>
+
+      <div class="callout info">
+        <strong>At resonance: X_L = X_C → ω₀ = 1/√(LC)</strong><br>
+        At ω₀: Z = R (minimum), I = V/R (maximum), power factor = 1, V and I are in phase.
+      </div>
+
+      <div class="formula-table-wrap">
+        <table class="formula-table">
+          <thead><tr><th>Quantity at Resonance</th><th>Value</th></tr></thead>
+          <tbody>
+            <tr><td>Impedance Z</td><td class="formula-cell">Z = R (minimum)</td></tr>
+            <tr><td>Current I</td><td class="formula-cell">I = V/R (maximum)</td></tr>
+            <tr><td>Phase angle φ</td><td class="formula-cell">φ = 0° (in phase)</td></tr>
+            <tr><td>Power factor</td><td class="formula-cell">cos φ = 1 (maximum)</td></tr>
+            <tr><td>V_L = V_C (individually)</td><td class="formula-cell">V_L = V_C = I × X_L (can be ≫ supply voltage!)</td></tr>
+            <tr><td>Q-factor (sharpness)</td><td class="formula-cell">Q = ω₀L/R = 1/(ω₀CR) = (1/R)√(L/C)</td></tr>
+            <tr><td>Resonant frequency f₀</td><td class="formula-cell">f₀ = 1/(2π√LC) Hz</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout warn">
+        <strong>At resonance V_L = V_C but they are 180° out of phase — they cancel!</strong> The net voltage across L+C = 0. All supply voltage appears across R. But individually, V_L and V_C can be much larger than supply voltage (voltage magnification = Q-factor).
+      </div>
+    </section>
+
+    <!-- S14 -->
+    <section class="topic-section" id="s14">
+      <h2>14. Power in AC Circuits</h2>
+
+      <div class="callout info">
+        <strong>P = V_rms × I_rms × cos φ = I²_rms × R</strong><br>
+        cos φ = power factor = R/Z. Only the resistive component dissipates real power.
+      </div>
+
+      <div class="formula-table-wrap">
+        <table class="formula-table">
+          <thead><tr><th>Circuit</th><th>Power factor</th><th>P_avg</th></tr></thead>
+          <tbody>
+            <tr><td>Pure R</td><td class="formula-cell">1</td><td class="note-cell">P = V_rms I_rms (maximum)</td></tr>
+            <tr><td>Pure L</td><td class="formula-cell">0 (lag 90°)</td><td class="note-cell">P_avg = 0 (reactive)</td></tr>
+            <tr><td>Pure C</td><td class="formula-cell">0 (lead 90°)</td><td class="note-cell">P_avg = 0 (reactive)</td></tr>
+            <tr><td>LCR at resonance</td><td class="formula-cell">1</td><td class="note-cell">P = V_rms²/R</td></tr>
+            <tr><td>LCR general</td><td class="formula-cell">R/Z</td><td class="note-cell">P = V_rms I_rms × R/Z</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- INTERACTIVE: Power Factor Calculator -->
+      <div class="method-box" style="background:#f0f9ff;border-color:#0284c7;">
+        <div class="method-box-title" style="color:#0284c7;">🔢 Interactive — AC Power Calculator</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-bottom:.75rem;">
+          <label style="font-size:.85rem;">V_rms (V): <input id="pf-V" type="number" value="220" min="1" step="10" oninput="pfUpdate()" style="width:100%;margin-top:.3rem;padding:.4rem;border:1px solid #bae6fd;border-radius:6px;font-size:.9rem;"></label>
+          <label style="font-size:.85rem;">I_rms (A): <input id="pf-I" type="number" value="5" min="0.1" step="0.1" oninput="pfUpdate()" style="width:100%;margin-top:.3rem;padding:.4rem;border:1px solid #bae6fd;border-radius:6px;font-size:.9rem;"></label>
+          <label style="font-size:.85rem;">Phase angle φ (°): <input id="pf-phi" type="number" value="60" min="-90" max="90" step="5" oninput="pfUpdate()" style="width:100%;margin-top:.3rem;padding:.4rem;border:1px solid #bae6fd;border-radius:6px;font-size:.9rem;"></label>
+        </div>
+        <div id="pf-out" style="background:#fff;border-radius:8px;padding:.9rem;font-family:'JetBrains Mono',monospace;font-size:.82rem;line-height:1.8;border:1px solid #bae6fd;"></div>
+      </div>
+    </section>
+
+    <!-- S15 -->
+    <section class="topic-section" id="s15">
+      <h2>15. Worked Examples</h2>
+
+      <div class="method-box">
+        <div class="method-box-title">Example 1 — Faraday's Law (Average EMF)</div>
+        <p>A coil of 200 turns and area 0.05 m² is placed in a magnetic field that changes uniformly from 0 to 0.8 T in 0.4 s. Find induced EMF and current if resistance = 20 Ω.</p>
+        <div class="explainer">
+          ΔΦ = BA = 0.8 × 0.05 = 0.04 Wb (per turn)<br>
+          ε = N × ΔΦ/Δt = 200 × 0.04/0.4 = <strong>20 V</strong><br>
+          I = ε/R = 20/20 = <strong>1 A</strong>
+        </div>
+      </div>
+
+      <div class="method-box">
+        <div class="method-box-title">Example 2 — Motional EMF</div>
+        <p>A rod of length 0.5 m moves at 4 m/s perpendicular to B = 0.3 T. The circuit has resistance 6 Ω. Find EMF, current, and the force needed to maintain constant velocity.</p>
+        <div class="explainer">
+          ε = BLv = 0.3 × 0.5 × 4 = <strong>0.6 V</strong><br>
+          I = ε/R = 0.6/6 = <strong>0.1 A</strong><br>
+          Force opposing motion = BIL = 0.3 × 0.1 × 0.5 = <strong>0.015 N</strong>
+        </div>
+      </div>
+
+      <div class="method-box">
+        <div class="method-box-title">Example 3 — LCR at Resonance</div>
+        <p>Series LCR: R=10Ω, L=100mH, C=100μF, V=100V. Find f₀, I at resonance, and Q-factor.</p>
+        <div class="explainer">
+          ω₀ = 1/√(LC) = 1/√(0.1 × 100×10⁻⁶) = 1/√(10⁻⁵) = 1/3.162×10⁻³ ≈ 316 rad/s<br>
+          f₀ = ω₀/2π = 316/6.28 ≈ <strong>50.3 Hz</strong><br>
+          I = V/R = 100/10 = <strong>10 A</strong><br>
+          Q = ω₀L/R = 316×0.1/10 = <strong>3.16</strong>
+        </div>
+      </div>
+    </section>
+
+    <!-- S16 -->
+    <section class="topic-section" id="s16">
+      <h2>16. Common JEE Traps</h2>
+
+      <div class="callout danger">
+        <strong>Trap 1:</strong> Total charge = NΔΦ/R — independent of TIME taken. The rate (EMF) depends on time, but total charge depends only on total flux change.
+      </div>
+
+      <div class="callout danger">
+        <strong>Trap 2:</strong> θ in Φ = BA cosθ — θ is angle between B and NORMAL to area, NOT between B and the surface plane.
+      </div>
+
+      <div class="callout danger">
+        <strong>Trap 3:</strong> V_L and V_C at resonance are NOT zero — they can be much larger than supply voltage V. Only V_L − V_C = 0 (they cancel). V_L = V_C = QV (Q-factor × supply voltage).
+      </div>
+
+      <div class="callout danger">
+        <strong>Trap 4:</strong> Pure inductor or capacitor: average power = 0, NOT V_rms × I_rms. P_avg = V_rms × I_rms × cos φ and cos 90° = 0.
+      </div>
+
+      <div class="callout danger">
+        <strong>Trap 5:</strong> Step-up transformer increases voltage but DECREASES current (energy conservation). If V doubles, I halves. Never both increase simultaneously.
+      </div>
+
+      <div class="callout danger">
+        <strong>Trap 6:</strong> At t=0, an inductor acts as OPEN circuit (opposes sudden current). After very long time, inductor acts as SHORT circuit (zero reactance for DC). Opposite of capacitor.
+      </div>
+
+      <div class="callout danger">
+        <strong>Trap 7:</strong> Motional EMF for rotating rod = ½BωL² (NOT BωL²). Factor of ½ because the effective average distance from pivot is L/2.
+      </div>
+
+      <div class="callout danger">
+        <strong>Trap 8:</strong> X_L = ωL increases with ω; X_C = 1/ωC decreases with ω. At high frequency, capacitor is low impedance (passes current), inductor is high impedance (blocks). Opposite at low frequency.
+      </div>
+
+      <div class="topic-cta-row">
+        <a href="magnetism.html" class="topic-cta">← P6: Magnetism</a>
+        <a href="ray-optics.html" class="topic-cta topic-cta-next">P8: Ray Optics →</a>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<footer style="text-align:center;padding:2rem 1rem;font-size:.8rem;color:var(--ink3);border-top:1px solid var(--border);">
+  JEE 2027 Prep · P7 EMI &amp; AC Circuits Deep-Dive · <a href="../subjects/physics.html" style="color:var(--topic-accent);">Back to Physics</a>
+</footer>
+
+<script src="../js/main.js"></script>
+<script>
+function lcrUpdate() {
+  const R = parseFloat(document.getElementById('lcr-R').value) || 1;
+  const L = (parseFloat(document.getElementById('lcr-L').value) || 100) * 1e-3;
+  const C = (parseFloat(document.getElementById('lcr-C').value) || 200) * 1e-6;
+  const w = parseFloat(document.getElementById('lcr-w').value) || 100;
+  const V = parseFloat(document.getElementById('lcr-V').value) || 220;
+
+  const XL = w * L;
+  const XC = 1 / (w * C);
+  const Z  = Math.sqrt(R * R + (XL - XC) * (XL - XC));
+  const phi = Math.atan2(XL - XC, R) * 180 / Math.PI;
+  const I  = V / Z;
+  const pf = R / Z;
+  const P  = V * I * pf;
+
+  const w0 = 1 / Math.sqrt(L * C);
+  const f0 = w0 / (2 * Math.PI);
+  const nature = XL > XC ? 'Inductive (I lags V)' : (XL < XC ? 'Capacitive (I leads V)' : 'Resistive — at resonance!');
+
+  document.getElementById('lcr-out').innerHTML =
+`X_L = ωL = ${w}×${(L*1000).toFixed(0)}mH = <strong>${XL.toFixed(3)} Ω</strong>
+X_C = 1/ωC = 1/(${w}×${(C*1e6).toFixed(0)}μF) = <strong>${XC.toFixed(3)} Ω</strong>
+Z   = √[R²+(X_L−X_C)²] = <strong>${Z.toFixed(3)} Ω</strong>
+φ   = arctan((X_L−X_C)/R) = <strong>${phi.toFixed(2)}°</strong>
+Nature: <strong>${nature}</strong>
+I_rms = V/Z = ${V}/${Z.toFixed(3)} = <strong>${I.toFixed(3)} A</strong>
+Power factor = R/Z = <strong>${pf.toFixed(4)}</strong>
+P_avg = V×I×cosφ = <strong>${P.toFixed(2)} W</strong>
+──────────────────────────────
+Resonant ω₀ = 1/√(LC) = <strong>${w0.toFixed(2)} rad/s</strong>
+Resonant f₀  = <strong>${f0.toFixed(2)} Hz</strong>`;
+}
+
+function pfUpdate() {
+  const V   = parseFloat(document.getElementById('pf-V').value) || 220;
+  const I   = parseFloat(document.getElementById('pf-I').value) || 5;
+  const phi = parseFloat(document.getElementById('pf-phi').value) || 0;
+  const rad = phi * Math.PI / 180;
+  const pf  = Math.cos(rad);
+  const P   = V * I * pf;
+  const S   = V * I; // apparent power
+  const Q   = V * I * Math.sin(rad); // reactive power
+
+  document.getElementById('pf-out').innerHTML =
+`Power factor  = cosφ = cos(${phi}°) = <strong>${pf.toFixed(4)}</strong>
+Apparent power S = V_rms × I_rms = <strong>${S.toFixed(2)} VA</strong>
+Real power P  = S × cosφ = <strong>${P.toFixed(2)} W</strong>
+Reactive power Q = S × sinφ = <strong>${Math.abs(Q).toFixed(2)} VAR</strong>
+P² + Q² = S² check: ${(P*P + Q*Q).toFixed(1)} vs ${(S*S).toFixed(1)} ✓`;
+}
+
+lcrUpdate();
+pfUpdate();
+</script>
+</body>
+</html>

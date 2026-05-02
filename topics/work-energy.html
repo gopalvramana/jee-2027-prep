@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Work, Energy & Power — JEE 2027 Deep-Dive</title>
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body class="topic-phys">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="nav-brand">JEE 2027</div>
+    <div class="nav-links">
+      <a href="../index.html">Dashboard</a>
+      <a href="../subjects/math.html">📐 Math</a>
+      <a href="../subjects/physics.html" class="phys-active">⚡ Physics</a>
+      <a href="../subjects/chemistry.html">🧪 Chemistry</a>
+      <a href="../progress.html">✅ Progress</a>
+    </div>
+    <button class="nav-toggle" onclick="toggleNav()">☰</button>
+  </div>
+</nav>
+
+<header class="page-hero" style="background:var(--topic-grad);padding:3rem 1rem 2.5rem;">
+  <div class="page-hero-content">
+    <div class="page-hero-tag">P3 · Physics Deep-Dive · July 2026</div>
+    <h1>⚡ Work, Energy &amp; Power</h1>
+    <p>Work-Energy theorem · Conservative forces · Collisions · Power · JEE problem patterns</p>
+    <div class="page-hero-meta">
+      <div class="meta-item"><strong>JEE Weight:</strong> 7–8% (~8 marks)</div>
+      <div class="meta-item"><strong>Difficulty:</strong> 🟡 Moderate</div>
+      <div class="meta-item"><strong>Key Skill:</strong> Choosing between F=ma and energy methods</div>
+    </div>
+  </div>
+</header>
+
+<div class="topic-meta-bar">
+  <span class="topic-meta-pill">15 sections</span>
+  <span class="topic-meta-pill">2 interactives</span>
+  <span class="topic-meta-pill">8 JEE traps</span>
+  <span class="topic-meta-pill">6 worked examples</span>
+  <a href="../subjects/physics.html#unit-p3" class="topic-meta-pill" style="background:var(--topic-accent);color:#fff;text-decoration:none;">← Back to P3</a>
+</div>
+
+<div class="topic-wrap">
+  <nav class="topic-toc">
+    <div class="topic-toc-title">Contents</div>
+    <a href="#s1">1. Work — Definition</a>
+    <a href="#s2">2. Work-Energy Theorem</a>
+    <a href="#s3">3. Conservative vs Non-Conservative</a>
+    <a href="#s4">4. Gravitational PE</a>
+    <a href="#s5">5. Spring PE</a>
+    <a href="#s6">6. Conservation of Mechanical Energy</a>
+    <a href="#s7">7. Power</a>
+    <a href="#s8">8. Momentum &amp; Impulse</a>
+    <a href="#s9">9. Elastic Collisions</a>
+    <a href="#s10">10. Inelastic Collisions</a>
+    <a href="#s11">11. Coefficient of Restitution</a>
+    <a href="#s12">12. Centre of Mass</a>
+    <a href="#s13">13. Worked Examples</a>
+    <a href="#s14">14. JEE PYQs</a>
+    <a href="#s15">15. Common Traps</a>
+  </nav>
+
+  <main class="topic-content">
+
+    <!-- S1 -->
+    <section class="topic-section" id="s1">
+      <h2>1. Work — Definition and Formula</h2>
+      <p>Work is done by a force when the force has a component <em>along</em> the direction of displacement.</p>
+
+      <div class="callout info">
+        <strong>W = F · d · cosθ</strong><br>
+        θ = angle between the force vector and the displacement vector. Work is a <strong>scalar</strong> — it has sign but no direction.
+      </div>
+
+      <div class="compare-grid" style="grid-template-columns:1fr 1fr 1fr;">
+        <div class="compare-col">
+          <div class="compare-head">Positive Work</div>
+          <ul>
+            <li>Force and displacement in <strong>same direction</strong> (θ &lt; 90°)</li>
+            <li>Applied force pulling block forward</li>
+            <li>Gravity on falling object</li>
+          </ul>
+        </div>
+        <div class="compare-col">
+          <div class="compare-head">Zero Work</div>
+          <ul>
+            <li>Force ⊥ displacement (θ = 90°)</li>
+            <li><strong>Normal force</strong> — always zero work</li>
+            <li><strong>Centripetal force</strong> — perpendicular to velocity</li>
+          </ul>
+        </div>
+        <div class="compare-col">
+          <div class="compare-head">Negative Work</div>
+          <ul>
+            <li>Force opposes displacement (θ &gt; 90°)</li>
+            <li><strong>Friction</strong> — always negative work</li>
+            <li>Gravity on rising object</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="method-box">
+        <div class="method-box-title">Variable Force — Work from F-x Graph</div>
+        <p>When F varies with x: <strong>W = area under F-x graph</strong></p>
+        <p>Area above x-axis = positive work. Area below = negative work. Net work = algebraic sum.</p>
+        <p><em>JEE frequently shows trapezoidal or triangular F-x graphs — just compute the area.</em></p>
+      </div>
+
+      <div class="callout warn">
+        <strong>Path Independence — only for Conservative Forces:</strong> Work done by gravity depends only on vertical height change, NOT the path. W_gravity = mgh (h = vertical drop), regardless of slope, curve, or zigzag path.
+      </div>
+    </section>
+
+    <!-- S2 -->
+    <section class="topic-section" id="s2">
+      <h2>2. Work-Energy Theorem</h2>
+
+      <div class="callout info">
+        <strong>W_net = ΔKE = ½mv² − ½mu²</strong><br>
+        Net work done by ALL forces on an object = change in its kinetic energy.
+      </div>
+
+      <div class="method-box">
+        <div class="method-box-title">How to Apply the Work-Energy Theorem</div>
+        <ol>
+          <li>Identify all forces acting on the object</li>
+          <li>Compute work done by EACH force: W_gravity, W_friction, W_applied, W_normal (= 0)</li>
+          <li>Sum all works: W_net = W₁ + W₂ + W₃ + …</li>
+          <li>Set equal to ΔKE: W_net = ½mv² − ½mu²</li>
+          <li>Solve for unknown (usually v or distance)</li>
+        </ol>
+      </div>
+
+      <div class="callout success">
+        <strong>When to use Energy vs F=ma:</strong> If time is not involved, energy is almost always faster. Ask: "Do I need time?" If no → energy method. If yes → kinematics/Newton.
+      </div>
+
+      <p><strong>Example:</strong> 2 kg block slides 5 m down a 30° incline with μ=0.2. Find final speed (starts at rest).</p>
+      <div class="explainer">
+        W_gravity = mgh = 2×10×(5 sin30°) = 2×10×2.5 = 50 J<br>
+        N = mg cos30° = 2×10×0.866 = 17.3 N<br>
+        W_friction = −μN×d = −0.2×17.3×5 = −17.3 J<br>
+        W_net = 50 − 17.3 = 32.7 J = ½×2×v²<br>
+        v² = 32.7 → v ≈ 5.7 m/s
+      </div>
+    </section>
+
+    <!-- S3 -->
+    <section class="topic-section" id="s3">
+      <h2>3. Conservative vs Non-Conservative Forces</h2>
+
+      <div class="compare-grid">
+        <div class="compare-col">
+          <div class="compare-head">Conservative Forces</div>
+          <ul>
+            <li>Work done is <strong>path-independent</strong></li>
+            <li>Work in a closed loop = 0</li>
+            <li>Can define potential energy</li>
+            <li><strong>Examples:</strong> Gravity, spring force, electrostatic force</li>
+          </ul>
+        </div>
+        <div class="compare-col">
+          <div class="compare-head">Non-Conservative Forces</div>
+          <ul>
+            <li>Work done is <strong>path-dependent</strong></li>
+            <li>Energy is dissipated (converted to heat)</li>
+            <li>Cannot define potential energy</li>
+            <li><strong>Examples:</strong> Friction, air resistance, applied force</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="callout info">
+        <strong>With non-conservative forces:</strong><br>
+        KE_f + PE_f = KE_i + PE_i − |W_friction| − |W_air resistance|<br>
+        (mechanical energy decreases by the work done against friction)
+      </div>
+    </section>
+
+    <!-- S4 -->
+    <section class="topic-section" id="s4">
+      <h2>4. Gravitational Potential Energy</h2>
+
+      <div class="formula-table-wrap">
+        <table class="formula-table">
+          <thead><tr><th>Formula</th><th>Meaning</th><th>JEE Note</th></tr></thead>
+          <tbody>
+            <tr><td class="formula-cell">PE = mgh</td><td>Gravitational PE</td><td class="note-cell">h measured from chosen reference</td></tr>
+            <tr><td class="formula-cell">W_gravity = mg·Δh</td><td>Work by gravity</td><td class="note-cell">= mg(h_i − h_f); positive when falling</td></tr>
+            <tr><td class="formula-cell">PE = −GMm/r</td><td>Universal gravity (far objects)</td><td class="note-cell">Negative; reference at infinity</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout warn">
+        <strong>Reference Level is your choice:</strong> You can set h=0 anywhere (ground, lowest point, table). Potential energy values change, but ΔPE is always the same. Always state your reference!
+      </div>
+    </section>
+
+    <!-- S5 -->
+    <section class="topic-section" id="s5">
+      <h2>5. Spring Potential Energy</h2>
+
+      <div class="callout info">
+        <strong>PE_spring = ½kx²</strong><br>
+        k = spring constant (N/m), x = compression or extension from natural length. Always positive (energy is stored).
+      </div>
+
+      <div class="method-box">
+        <div class="method-box-title">Spring-Block System — Key Results</div>
+        <ul>
+          <li><strong>Natural length position:</strong> max speed (all energy is KE, PE = 0)</li>
+          <li><strong>Max compression/extension:</strong> speed = 0 (all energy is PE, KE = 0)</li>
+          <li><strong>Energy conservation:</strong> ½kx₁² + ½mv₁² = ½kx₂² + ½mv₂²</li>
+          <li><strong>Spring force:</strong> F = −kx (restoring, opposite to x)</li>
+          <li><strong>Work by spring:</strong> W = −ΔPE_spring = −(½kx₂² − ½kx₁²)</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- S6 -->
+    <section class="topic-section" id="s6">
+      <h2>6. Conservation of Mechanical Energy</h2>
+
+      <div class="callout info">
+        <strong>KE + PE = constant</strong><br>
+        Valid ONLY when no friction or non-conservative forces do work. KE₁ + PE₁ = KE₂ + PE₂
+      </div>
+
+      <!-- INTERACTIVE: Energy Calculator -->
+      <div class="method-box" style="background:#f0fdf4;border-color:#16a34a;">
+        <div class="method-box-title" style="color:#16a34a;">🔢 Interactive — Energy Conservation Calculator</div>
+        <p style="font-size:.85rem;margin-bottom:1rem;">Given mass and initial/final heights, find speed at any point.</p>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-bottom:.75rem;">
+          <label style="font-size:.85rem;">Mass m (kg):
+            <input id="ec-m" type="number" value="2" min="0.1" step="0.1" oninput="ecUpdate()"
+              style="width:100%;margin-top:.3rem;padding:.4rem;border:1px solid #d1fae5;border-radius:6px;font-size:.9rem;">
+          </label>
+          <label style="font-size:.85rem;">Initial height h₁ (m):
+            <input id="ec-h1" type="number" value="10" min="0" step="0.5" oninput="ecUpdate()"
+              style="width:100%;margin-top:.3rem;padding:.4rem;border:1px solid #d1fae5;border-radius:6px;font-size:.9rem;">
+          </label>
+          <label style="font-size:.85rem;">Final height h₂ (m):
+            <input id="ec-h2" type="number" value="2" min="0" step="0.5" oninput="ecUpdate()"
+              style="width:100%;margin-top:.3rem;padding:.4rem;border:1px solid #d1fae5;border-radius:6px;font-size:.9rem;">
+          </label>
+          <label style="font-size:.85rem;">Initial speed u (m/s):
+            <input id="ec-u" type="number" value="0" min="0" step="0.5" oninput="ecUpdate()"
+              style="width:100%;margin-top:.3rem;padding:.4rem;border:1px solid #d1fae5;border-radius:6px;font-size:.9rem;">
+          </label>
+        </div>
+        <div id="ec-out" style="background:#fff;border-radius:8px;padding:.9rem;font-family:'JetBrains Mono',monospace;font-size:.82rem;line-height:1.8;border:1px solid #d1fae5;"></div>
+      </div>
+
+      <div class="callout warn">
+        <strong>Pendulum — Quick result:</strong> v at lowest point = √(2gL(1 − cosθ)), where θ is the initial angle from vertical and L is the pendulum length. Derived directly from mgh = ½mv².
+      </div>
+    </section>
+
+    <!-- S7 -->
+    <section class="topic-section" id="s7">
+      <h2>7. Power</h2>
+
+      <div class="formula-table-wrap">
+        <table class="formula-table">
+          <thead><tr><th>Formula</th><th>Use When</th><th>Units</th></tr></thead>
+          <tbody>
+            <tr><td class="formula-cell">P = W/t</td><td>Total work and total time known</td><td class="note-cell">W = J, t = s → P in Watts</td></tr>
+            <tr><td class="formula-cell">P = Fv</td><td>Force and velocity simultaneously known</td><td class="note-cell">F in N, v in m/s</td></tr>
+            <tr><td class="formula-cell">P = Fv cosθ</td><td>Force at angle θ to velocity</td><td class="note-cell"></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="method-box">
+        <div class="method-box-title">Engine Problems</div>
+        <p>A vehicle engine pulling at constant speed: net force = 0 → driving force = friction.</p>
+        <p><strong>P = F_friction × v_max</strong> at constant (terminal) velocity.</p>
+        <p><em>Energy billing:</em> 1 kWh = 1 unit = 3.6 × 10⁶ J. Cost = energy (kWh) × rate per unit.</p>
+      </div>
+    </section>
+
+    <!-- S8 -->
+    <section class="topic-section" id="s8">
+      <h2>8. Linear Momentum &amp; Impulse</h2>
+
+      <div class="formula-table-wrap">
+        <table class="formula-table">
+          <thead><tr><th>Quantity</th><th>Formula</th><th>Notes</th></tr></thead>
+          <tbody>
+            <tr><td>Linear Momentum</td><td class="formula-cell">p = mv</td><td class="note-cell">Vector, SI unit: kg·m/s</td></tr>
+            <tr><td>Impulse</td><td class="formula-cell">J = FΔt = Δp</td><td class="note-cell">= area under F-t graph</td></tr>
+            <tr><td>Conservation of Momentum</td><td class="formula-cell">Σp_initial = Σp_final</td><td class="note-cell">When F_ext = 0</td></tr>
+            <tr><td>KE in terms of p</td><td class="formula-cell">KE = p²/2m</td><td class="note-cell">Useful when p is given</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout info">
+        <strong>Momentum is ALWAYS conserved</strong> in collisions (if no external force). Energy conservation depends on whether the collision is elastic.
+      </div>
+    </section>
+
+    <!-- S9 -->
+    <section class="topic-section" id="s9">
+      <h2>9. Elastic Collisions (1D)</h2>
+
+      <div class="callout info">
+        <strong>Both momentum AND kinetic energy are conserved.</strong> Coefficient of restitution e = 1.
+      </div>
+
+      <div class="formula-table-wrap">
+        <table class="formula-table">
+          <thead><tr><th>Quantity</th><th>Formula</th><th>Notes</th></tr></thead>
+          <tbody>
+            <tr><td>Final velocity of m₁</td><td class="formula-cell">v₁ = (m₁−m₂)u₁/(m₁+m₂)</td><td class="note-cell">m₂ initially at rest</td></tr>
+            <tr><td>Final velocity of m₂</td><td class="formula-cell">v₂ = 2m₁u₁/(m₁+m₂)</td><td class="note-cell">m₂ initially at rest</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="compare-grid" style="grid-template-columns:1fr 1fr 1fr;">
+        <div class="compare-col">
+          <div class="compare-head">Equal Masses (m₁=m₂)</div>
+          <ul>
+            <li>v₁ = 0 (stops completely)</li>
+            <li>v₂ = u₁ (takes all velocity)</li>
+            <li>Classic Newton's cradle</li>
+          </ul>
+        </div>
+        <div class="compare-col">
+          <div class="compare-head">m₁ ≫ m₂ (heavy hits light)</div>
+          <ul>
+            <li>v₁ ≈ u₁ (barely slows)</li>
+            <li>v₂ ≈ 2u₁ (bounces at 2× speed)</li>
+          </ul>
+        </div>
+        <div class="compare-col">
+          <div class="compare-head">m₁ ≪ m₂ (light hits heavy)</div>
+          <ul>
+            <li>v₁ ≈ −u₁ (bounces back)</li>
+            <li>v₂ ≈ 0 (barely moves)</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- S10 -->
+    <section class="topic-section" id="s10">
+      <h2>10. Inelastic Collisions</h2>
+
+      <div class="compare-grid">
+        <div class="compare-col">
+          <div class="compare-head">Inelastic (general)</div>
+          <ul>
+            <li>Momentum conserved</li>
+            <li>KE NOT conserved (some lost to heat/deformation)</li>
+            <li>0 &lt; e &lt; 1</li>
+            <li>Objects separate after collision</li>
+          </ul>
+        </div>
+        <div class="compare-col">
+          <div class="compare-head">Perfectly Inelastic</div>
+          <ul>
+            <li>Momentum conserved</li>
+            <li>Maximum KE loss</li>
+            <li>e = 0</li>
+            <li>Objects <strong>stick together</strong>: v_common = m₁u₁/(m₁+m₂)</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="callout info">
+        <strong>Loss in KE (perfectly inelastic):</strong><br>
+        ΔKE = ½ × m₁m₂/(m₁+m₂) × u₁² = ½μu₁² where μ is the reduced mass
+      </div>
+    </section>
+
+    <!-- S11 -->
+    <section class="topic-section" id="s11">
+      <h2>11. Coefficient of Restitution</h2>
+
+      <div class="callout info">
+        <strong>e = v_separation / v_approach = (v₂ − v₁) / (u₁ − u₂)</strong><br>
+        e = 1: perfectly elastic · e = 0: perfectly inelastic · 0 &lt; e &lt; 1: partially elastic
+      </div>
+
+      <!-- INTERACTIVE: Collision Calculator -->
+      <div class="method-box" style="background:#f0f9ff;border-color:#0284c7;">
+        <div class="method-box-title" style="color:#0284c7;">🔢 Interactive — Collision Calculator</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-bottom:.75rem;">
+          <label style="font-size:.85rem;">m₁ (kg): <input id="col-m1" type="number" value="2" min="0.1" step="0.1" oninput="colUpdate()" style="width:100%;margin-top:.3rem;padding:.4rem;border:1px solid #bae6fd;border-radius:6px;font-size:.9rem;"></label>
+          <label style="font-size:.85rem;">m₂ (kg): <input id="col-m2" type="number" value="3" min="0.1" step="0.1" oninput="colUpdate()" style="width:100%;margin-top:.3rem;padding:.4rem;border:1px solid #bae6fd;border-radius:6px;font-size:.9rem;"></label>
+          <label style="font-size:.85rem;">u₁ (m/s): <input id="col-u1" type="number" value="10" step="0.5" oninput="colUpdate()" style="width:100%;margin-top:.3rem;padding:.4rem;border:1px solid #bae6fd;border-radius:6px;font-size:.9rem;"></label>
+          <label style="font-size:.85rem;">u₂ (m/s): <input id="col-u2" type="number" value="0" step="0.5" oninput="colUpdate()" style="width:100%;margin-top:.3rem;padding:.4rem;border:1px solid #bae6fd;border-radius:6px;font-size:.9rem;"></label>
+          <label style="font-size:.85rem;" style="grid-column:1/-1;">e (0=inelastic, 1=elastic):
+            <input id="col-e" type="range" min="0" max="1" step="0.05" value="1" oninput="colUpdate()" style="width:100%;margin-top:.3rem;">
+            <span id="col-e-val">1.00</span>
+          </label>
+        </div>
+        <div id="col-out" style="background:#fff;border-radius:8px;padding:.9rem;font-family:'JetBrains Mono',monospace;font-size:.82rem;line-height:1.8;border:1px solid #bae6fd;"></div>
+      </div>
+
+      <div class="method-box">
+        <div class="method-box-title">Ball Bouncing off Floor (e given)</div>
+        <p>After n bounces from height h₀: h_n = e²ⁿ × h₀</p>
+        <p><em>Example: e=0.8, dropped from h=10 m. After 2nd bounce: h = (0.8)⁴ × 10 = 0.4096 × 10 = 4.1 m</em></p>
+      </div>
+    </section>
+
+    <!-- S12 -->
+    <section class="topic-section" id="s12">
+      <h2>12. Centre of Mass</h2>
+
+      <div class="formula-table-wrap">
+        <table class="formula-table">
+          <thead><tr><th>Formula</th><th>Meaning</th></tr></thead>
+          <tbody>
+            <tr><td class="formula-cell">x_cm = (m₁x₁ + m₂x₂)/(m₁+m₂)</td><td>CM position (two particles)</td></tr>
+            <tr><td class="formula-cell">v_cm = (m₁v₁ + m₂v₂)/(m₁+m₂)</td><td>CM velocity</td></tr>
+            <tr><td class="formula-cell">F_ext = (m₁+m₂)a_cm</td><td>External force on system</td></tr>
+            <tr><td class="formula-cell">p_total = M × v_cm</td><td>Total momentum</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout info">
+        <strong>CM of a system moves as if ALL external forces act on total mass at CM.</strong> Internal forces (Newton's 3rd pair) cancel and don't affect CM motion.
+      </div>
+    </section>
+
+    <!-- S13 -->
+    <section class="topic-section" id="s13">
+      <h2>13. Worked Examples</h2>
+
+      <div class="method-box">
+        <div class="method-box-title">Example 1 — Pendulum Speed</div>
+        <p>A pendulum of length 2 m is released from 60° to vertical. Find speed at lowest point.</p>
+        <div class="explainer">
+          h = L − L cosθ = L(1 − cosθ) = 2(1 − cos60°) = 2(1 − 0.5) = 1 m<br>
+          Energy conservation: mgh = ½mv² → v = √(2gh) = √(2×10×1) = √20 ≈ <strong>4.47 m/s</strong>
+        </div>
+      </div>
+
+      <div class="method-box">
+        <div class="method-box-title">Example 2 — Work from F-x Graph</div>
+        <p>F-x graph: F increases linearly from 0 to 20 N as x goes from 0 to 4 m, then drops to 0. Find work done.</p>
+        <div class="explainer">
+          Area = ½ × base × height = ½ × 4 × 20 = <strong>40 J</strong><br>
+          (Triangle under the line)
+        </div>
+      </div>
+
+      <div class="method-box">
+        <div class="method-box-title">Example 3 — Collision and Compression</div>
+        <p>2 kg ball at 6 m/s hits stationary 4 kg ball attached to spring k=100 N/m. Max compression?</p>
+        <div class="explainer">
+          At max compression: both move at v_cm (momentum conservation)<br>
+          v_cm = m₁u₁/(m₁+m₂) = 2×6/6 = 2 m/s<br>
+          Energy in CM frame = ½(m₁+m₂)v_cm² = ½×6×4 = 12 J<br>
+          But total initial KE = ½×2×36 = 36 J; KE at compression = ½×6×4 = 12 J<br>
+          Energy stored in spring = 36 − 12 = 24 J = ½kx²<br>
+          x = √(2×24/100) = √0.48 ≈ <strong>0.69 m</strong>
+        </div>
+      </div>
+    </section>
+
+    <!-- S14 -->
+    <section class="topic-section" id="s14">
+      <h2>14. JEE PYQs</h2>
+
+      <div class="method-box">
+        <div class="method-box-title">PYQ 1 — (JEE Main 2020)</div>
+        <p>A particle of mass 2 kg is moving with velocity (2î + 3ĵ) m/s. A constant force F = (3î − 2ĵ) N acts for 4 s. Find the work done by the force.</p>
+        <div class="explainer">
+          Impulse = FΔt = (3î − 2ĵ) × 4 = (12î − 8ĵ) N·s<br>
+          v_f = v_i + Ft/m = (2î+3ĵ) + (12î−8ĵ)/2 = (2+6)î + (3−4)ĵ = 8î − ĵ<br>
+          ΔKE = ½×2×[(8²+1²) − (2²+3²)] = [65 − 13] = <strong>52 J</strong>
+        </div>
+      </div>
+
+      <div class="method-box">
+        <div class="method-box-title">PYQ 2 — (JEE Main 2019)</div>
+        <p>Two identical balls A and B, each mass 0.1 kg, are attached to two identical springs of spring constant 0.1 N/m. The system is arranged as shown in figure (A pushed toward B on frictionless surface). If A is displaced 0.1 m from mean, find the energy of the system.</p>
+        <div class="explainer">
+          PE = ½kx² = ½ × 0.1 × (0.1)² = 0.0005 J = <strong>5 × 10⁻⁴ J</strong>
+        </div>
+      </div>
+    </section>
+
+    <!-- S15 -->
+    <section class="topic-section" id="s15">
+      <h2>15. Common JEE Traps</h2>
+
+      <div class="callout danger">
+        <strong>Trap 1:</strong> "Work done by friction" — friction always does NEGATIVE work on the moving object (opposing direction). But don't confuse with heat generated = |W_friction by kinetic friction|. Heat = f_k × d (always positive).
+      </div>
+
+      <div class="callout danger">
+        <strong>Trap 2:</strong> Normal force does zero work on a block on an incline. It's perpendicular to the displacement (along incline). W_N = 0 always.
+      </div>
+
+      <div class="callout danger">
+        <strong>Trap 3:</strong> In a perfectly inelastic collision, KE is NOT zero after collision — the objects still move together. KE = 0 only if both initial momenta cancel (head-on, equal momenta).
+      </div>
+
+      <div class="callout danger">
+        <strong>Trap 4:</strong> Spring PE = ½kx² uses the EXTENSION or COMPRESSION from natural length — NOT the total length of the spring.
+      </div>
+
+      <div class="callout danger">
+        <strong>Trap 5:</strong> Coefficient of restitution: e = v_separation / v_approach — always positive. Don't mix up "after" and "before" speeds.
+      </div>
+
+      <div class="callout danger">
+        <strong>Trap 6:</strong> KE = p²/2m. If two particles have the same momentum, the lighter one has MORE kinetic energy. If same KE, lighter particle has MORE momentum.
+      </div>
+
+      <div class="callout danger">
+        <strong>Trap 7:</strong> Energy conservation is valid only when no non-conservative forces do work. With friction: always subtract |W_friction|.
+      </div>
+
+      <div class="callout danger">
+        <strong>Trap 8:</strong> Power P = Fv uses instantaneous force and instantaneous velocity. For average power, use P_avg = Total_work / Total_time.
+      </div>
+
+      <div class="topic-cta-row">
+        <a href="../subjects/physics.html#unit-p3" class="topic-cta">← Back to P3 Unit</a>
+        <a href="current-electricity.html" class="topic-cta topic-cta-next">P4: Current Electricity →</a>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<footer style="text-align:center;padding:2rem 1rem;font-size:.8rem;color:var(--ink3);border-top:1px solid var(--border);">
+  JEE 2027 Prep · P3 Work, Energy &amp; Power Deep-Dive · <a href="../subjects/physics.html" style="color:var(--topic-accent);">Back to Physics</a>
+</footer>
+
+<script src="../js/main.js"></script>
+<script>
+function ecUpdate() {
+  const m  = parseFloat(document.getElementById('ec-m').value)  || 1;
+  const h1 = parseFloat(document.getElementById('ec-h1').value) || 0;
+  const h2 = parseFloat(document.getElementById('ec-h2').value) || 0;
+  const u  = parseFloat(document.getElementById('ec-u').value)  || 0;
+  const g  = 10;
+
+  const E_initial = 0.5 * m * u * u + m * g * h1;
+  const KE_final  = E_initial - m * g * h2;
+
+  const out = document.getElementById('ec-out');
+  if (KE_final < 0) {
+    out.innerHTML = `<span style="color:#dc2626;">❌ Not possible — final height h₂ is too high for given initial energy.<br>Max reachable height = ${(E_initial / (m * g)).toFixed(2)} m</span>`;
+    return;
+  }
+  const v = Math.sqrt(2 * KE_final / m);
+  out.innerHTML = `Initial Energy  = ½mu² + mgh₁ = ${(0.5*m*u*u).toFixed(2)} + ${(m*g*h1).toFixed(2)} = <strong>${E_initial.toFixed(2)} J</strong>
+Final PE        = mgh₂ = ${(m*g*h2).toFixed(2)} J
+Final KE        = ${E_initial.toFixed(2)} − ${(m*g*h2).toFixed(2)} = <strong>${KE_final.toFixed(2)} J</strong>
+Final speed v   = √(2 × KE / m) = <strong>${v.toFixed(3)} m/s</strong>`;
+}
+
+function colUpdate() {
+  const m1 = parseFloat(document.getElementById('col-m1').value) || 1;
+  const m2 = parseFloat(document.getElementById('col-m2').value) || 1;
+  const u1 = parseFloat(document.getElementById('col-u1').value) || 0;
+  const u2 = parseFloat(document.getElementById('col-u2').value) || 0;
+  const e  = parseFloat(document.getElementById('col-e').value);
+  document.getElementById('col-e-val').textContent = e.toFixed(2);
+
+  // Two equations: m1v1 + m2v2 = m1u1 + m2u2  (momentum)
+  //                (v2 - v1) = e(u1 - u2)        (restitution)
+  const p = m1 * u1 + m2 * u2;
+  const v2 = (p + m1 * e * (u1 - u2)) / (m1 + m2);
+  const v1 = v2 - e * (u1 - u2);
+
+  const KE_i = 0.5 * m1 * u1 * u1 + 0.5 * m2 * u2 * u2;
+  const KE_f = 0.5 * m1 * v1 * v1 + 0.5 * m2 * v2 * v2;
+  const KE_loss = KE_i - KE_f;
+  const type = e >= 0.99 ? 'Elastic' : (e <= 0.01 ? 'Perfectly Inelastic' : 'Partially Inelastic');
+
+  document.getElementById('col-out').innerHTML =
+`Type            = <strong>${type}</strong> (e = ${e.toFixed(2)})
+Momentum (i)    = ${p.toFixed(3)} kg·m/s
+v₁ (after)      = <strong>${v1.toFixed(3)} m/s</strong>
+v₂ (after)      = <strong>${v2.toFixed(3)} m/s</strong>
+KE initial      = ${KE_i.toFixed(3)} J
+KE final        = ${KE_f.toFixed(3)} J
+KE lost         = <strong>${KE_loss.toFixed(3)} J</strong> (${KE_i > 0 ? (100*KE_loss/KE_i).toFixed(1) : 0}%)`;
+}
+
+// Init on load
+ecUpdate();
+colUpdate();
+</script>
+</body>
+</html>

@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Current Electricity — JEE 2027 Deep-Dive</title>
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body class="topic-phys">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="nav-brand">JEE 2027</div>
+    <div class="nav-links">
+      <a href="../index.html">Dashboard</a>
+      <a href="../subjects/math.html">📐 Math</a>
+      <a href="../subjects/physics.html" class="phys-active">⚡ Physics</a>
+      <a href="../subjects/chemistry.html">🧪 Chemistry</a>
+      <a href="../progress.html">✅ Progress</a>
+    </div>
+    <button class="nav-toggle" onclick="toggleNav()">☰</button>
+  </div>
+</nav>
+
+<header class="page-hero" style="background:var(--topic-grad);padding:3rem 1rem 2.5rem;">
+  <div class="page-hero-content">
+    <div class="page-hero-tag">P4 · Physics Deep-Dive · Jul–Aug 2026</div>
+    <h1>⚡ Current Electricity</h1>
+    <p>Ohm's Law · Kirchhoff's Laws · Wheatstone Bridge · Potentiometer · Power</p>
+    <div class="page-hero-meta">
+      <div class="meta-item"><strong>JEE Weight:</strong> 10–12% (~12 marks — highest in Physics)</div>
+      <div class="meta-item"><strong>Difficulty:</strong> 🟡 Moderate</div>
+      <div class="meta-item"><strong>Key Skill:</strong> Simplifying circuits + applying KVL/KCL</div>
+    </div>
+  </div>
+</header>
+
+<div class="topic-meta-bar">
+  <span class="topic-meta-pill">16 sections</span>
+  <span class="topic-meta-pill">2 interactives</span>
+  <span class="topic-meta-pill">8 JEE traps</span>
+  <span class="topic-meta-pill">5 worked examples</span>
+  <a href="../subjects/physics.html#unit-p4" class="topic-meta-pill" style="background:var(--topic-accent);color:#fff;text-decoration:none;">← Back to P4</a>
+</div>
+
+<div class="topic-wrap">
+  <nav class="topic-toc">
+    <div class="topic-toc-title">Contents</div>
+    <a href="#s1">1. Current &amp; Drift Velocity</a>
+    <a href="#s2">2. Ohm's Law</a>
+    <a href="#s3">3. Resistivity &amp; R=ρL/A</a>
+    <a href="#s4">4. Temperature Dependence</a>
+    <a href="#s5">5. Series Combination</a>
+    <a href="#s6">6. Parallel Combination</a>
+    <a href="#s7">7. KCL</a>
+    <a href="#s8">8. KVL</a>
+    <a href="#s9">9. Wheatstone Bridge</a>
+    <a href="#s10">10. EMF &amp; Terminal Voltage</a>
+    <a href="#s11">11. Cells in Series/Parallel</a>
+    <a href="#s12">12. Metre Bridge</a>
+    <a href="#s13">13. Potentiometer</a>
+    <a href="#s14">14. Electrical Power</a>
+    <a href="#s15">15. Worked Examples</a>
+    <a href="#s16">16. Common Traps</a>
+  </nav>
+
+  <main class="topic-content">
+
+    <!-- S1 -->
+    <section class="topic-section" id="s1">
+      <h2>1. Electric Current &amp; Drift Velocity</h2>
+
+      <div class="formula-table-wrap">
+        <table class="formula-table">
+          <thead><tr><th>Formula</th><th>Meaning</th><th>Notes</th></tr></thead>
+          <tbody>
+            <tr><td class="formula-cell">I = Q/t</td><td>Current = charge per time</td><td class="note-cell">1 A = 1 C/s</td></tr>
+            <tr><td class="formula-cell">I = nAqv_d</td><td>Microscopic form</td><td class="note-cell">n = number density, A = area, v_d = drift velocity</td></tr>
+            <tr><td class="formula-cell">J = I/A = nqv_d</td><td>Current density</td><td class="note-cell">A/m²</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout info">
+        <strong>Conventional current direction = opposite to electron flow.</strong> Electrons move from − to + (inside battery), but conventional current flows from + to −. JEE uses conventional current direction.
+      </div>
+    </section>
+
+    <!-- S2 -->
+    <section class="topic-section" id="s2">
+      <h2>2. Ohm's Law &amp; V-I Characteristics</h2>
+
+      <div class="callout info">
+        <strong>V = IR</strong> — valid for ohmic conductors at constant temperature. V-I graph is a straight line through origin with slope = R.
+      </div>
+
+      <div class="compare-grid">
+        <div class="compare-col">
+          <div class="compare-head">Ohmic Conductors</div>
+          <ul>
+            <li>R is constant (at constant T)</li>
+            <li>V-I graph: straight line</li>
+            <li>Metals at moderate temperatures</li>
+            <li>R = V/I = constant</li>
+          </ul>
+        </div>
+        <div class="compare-col">
+          <div class="compare-head">Non-Ohmic Conductors</div>
+          <ul>
+            <li>R varies with V or I</li>
+            <li>V-I graph: curved</li>
+            <li>Diodes, filament bulbs, semiconductors</li>
+            <li>R = V/I (calculated at each point)</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- S3 -->
+    <section class="topic-section" id="s3">
+      <h2>3. Resistivity and R = ρL/A</h2>
+
+      <div class="callout info">
+        <strong>R = ρL/A</strong><br>
+        ρ = resistivity (material property, Ω·m) · L = length (m) · A = cross-sectional area (m²)
+      </div>
+
+      <div class="method-box">
+        <div class="method-box-title">Key Relationships — Stretching/Drawing Wire</div>
+        <ul>
+          <li><strong>Volume is conserved:</strong> A₁L₁ = A₂L₂ = constant</li>
+          <li>If length doubles (L₂ = 2L₁): A₂ = A₁/2, so R₂ = ρ×2L₁/(A₁/2) = <strong>4R₁</strong> (quadruples!)</li>
+          <li>If radius doubles: A quadruples → R becomes ¼</li>
+          <li>General: if length becomes n times → R becomes n² times</li>
+        </ul>
+      </div>
+
+      <div class="callout warn">
+        <strong>JEE Trap:</strong> When a wire is stretched to n times its original length, its resistance increases by factor n² (not n), because BOTH L increases AND A decreases.
+      </div>
+    </section>
+
+    <!-- S4 -->
+    <section class="topic-section" id="s4">
+      <h2>4. Temperature Dependence of Resistance</h2>
+
+      <div class="callout info">
+        <strong>R = R₀(1 + αΔT)</strong><br>
+        α = temperature coefficient of resistance · ΔT = temperature change from reference T₀
+      </div>
+
+      <div class="compare-grid">
+        <div class="compare-col">
+          <div class="compare-head">Conductors (Metals)</div>
+          <ul>
+            <li>α &gt; 0 (positive)</li>
+            <li>R increases with temperature</li>
+            <li>More collisions at higher T</li>
+            <li>Example: Copper, Aluminium</li>
+          </ul>
+        </div>
+        <div class="compare-col">
+          <div class="compare-head">Semiconductors</div>
+          <ul>
+            <li>α &lt; 0 (negative)</li>
+            <li>R decreases with temperature</li>
+            <li>More charge carriers at higher T</li>
+            <li>Example: Silicon, Germanium</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- S5 -->
+    <section class="topic-section" id="s5">
+      <h2>5. Series Combination</h2>
+
+      <div class="callout info">
+        <strong>R_series = R₁ + R₂ + R₃ + …</strong><br>
+        Same current flows through all; voltage divides proportionally to resistance.
+      </div>
+
+      <div class="formula-table-wrap">
+        <table class="formula-table">
+          <thead><tr><th>Property</th><th>Series</th></tr></thead>
+          <tbody>
+            <tr><td>Current</td><td class="formula-cell">I same everywhere</td></tr>
+            <tr><td>Voltage</td><td class="formula-cell">V = V₁ + V₂ + V₃ = I(R₁+R₂+R₃)</td></tr>
+            <tr><td>Power</td><td class="formula-cell">P = I²R — higher R dissipates MORE power</td></tr>
+            <tr><td>Equivalent R</td><td class="formula-cell">R_eq = R₁ + R₂ + … (always larger than any individual R)</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout info">
+        <strong>Voltage Divider:</strong> V₁ = V × R₁/(R₁+R₂) — voltage across R₁ is proportional to R₁.
+      </div>
+    </section>
+
+    <!-- S6 -->
+    <section class="topic-section" id="s6">
+      <h2>6. Parallel Combination</h2>
+
+      <div class="callout info">
+        <strong>1/R_parallel = 1/R₁ + 1/R₂ + 1/R₃ + …</strong><br>
+        Same voltage across all; current divides inversely proportional to resistance.
+      </div>
+
+      <div class="formula-table-wrap">
+        <table class="formula-table">
+          <thead><tr><th>Property</th><th>Parallel</th></tr></thead>
+          <tbody>
+            <tr><td>Voltage</td><td class="formula-cell">V same across all branches</td></tr>
+            <tr><td>Current</td><td class="formula-cell">I = I₁ + I₂ + I₃; I₁/I₂ = R₂/R₁</td></tr>
+            <tr><td>Power</td><td class="formula-cell">P = V²/R — lower R dissipates MORE power</td></tr>
+            <tr><td>Equivalent R</td><td class="formula-cell">R_eq always LESS than smallest individual R</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="method-box">
+        <div class="method-box-title">Two Resistors in Parallel — Quick Formula</div>
+        <p>R_eq = R₁R₂/(R₁+R₂) — product over sum. Only works for exactly two resistors!</p>
+        <p><strong>Current divider:</strong> I₁ = I × R₂/(R₁+R₂) — current in R₁ is proportional to R₂ (the OTHER one).</p>
+      </div>
+
+      <!-- INTERACTIVE: Resistance Calculator -->
+      <div class="method-box" style="background:#f0fdf4;border-color:#16a34a;">
+        <div class="method-box-title" style="color:#16a34a;">🔢 Interactive — Series/Parallel Resistance Calculator</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:.6rem;margin-bottom:.75rem;">
+          <label style="font-size:.85rem;">R₁ (Ω): <input id="res-r1" type="number" value="4" min="0.1" step="0.5" oninput="resUpdate()" style="width:100%;margin-top:.3rem;padding:.4rem;border:1px solid #d1fae5;border-radius:6px;font-size:.9rem;"></label>
+          <label style="font-size:.85rem;">R₂ (Ω): <input id="res-r2" type="number" value="6" min="0.1" step="0.5" oninput="resUpdate()" style="width:100%;margin-top:.3rem;padding:.4rem;border:1px solid #d1fae5;border-radius:6px;font-size:.9rem;"></label>
+          <label style="font-size:.85rem;">R₃ (Ω): <input id="res-r3" type="number" value="12" min="0.1" step="0.5" oninput="resUpdate()" style="width:100%;margin-top:.3rem;padding:.4rem;border:1px solid #d1fae5;border-radius:6px;font-size:.9rem;"></label>
+        </div>
+        <label style="font-size:.85rem;">Supply Voltage V (V): <input id="res-v" type="number" value="12" min="1" step="1" oninput="resUpdate()" style="width:8rem;margin:.3rem 0 .75rem;padding:.4rem;border:1px solid #d1fae5;border-radius:6px;font-size:.9rem;"></label>
+        <div id="res-out" style="background:#fff;border-radius:8px;padding:.9rem;font-family:'JetBrains Mono',monospace;font-size:.82rem;line-height:1.8;border:1px solid #d1fae5;"></div>
+      </div>
+    </section>
+
+    <!-- S7 -->
+    <section class="topic-section" id="s7">
+      <h2>7. Kirchhoff's Current Law (KCL)</h2>
+
+      <div class="callout info">
+        <strong>ΣI_in = ΣI_out at any junction</strong><br>
+        Based on conservation of charge. Charge cannot accumulate at a node.
+      </div>
+
+      <div class="method-box">
+        <div class="method-box-title">How to Apply KCL</div>
+        <ol>
+          <li>Label each branch with a current variable (I₁, I₂, …) with an assumed direction</li>
+          <li>At each junction: sum of incoming currents = sum of outgoing</li>
+          <li>A negative answer means the actual direction is opposite to assumed</li>
+          <li>For N junctions, you get N−1 independent KCL equations</li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- S8 -->
+    <section class="topic-section" id="s8">
+      <h2>8. Kirchhoff's Voltage Law (KVL)</h2>
+
+      <div class="callout info">
+        <strong>ΣV = 0 around any closed loop</strong><br>
+        Based on conservation of energy. Going around a loop and returning, net potential change = 0.
+      </div>
+
+      <div class="method-box">
+        <div class="method-box-title">KVL Sign Convention (Clockwise traversal)</div>
+        <ul>
+          <li>Cross a resistor <strong>in the direction of assumed current</strong> → voltage drop: <strong>−IR</strong></li>
+          <li>Cross a resistor <strong>against assumed current</strong> → voltage gain: <strong>+IR</strong></li>
+          <li>Cross a battery from <strong>− to +</strong> (low to high potential) → <strong>+ε</strong></li>
+          <li>Cross a battery from <strong>+ to −</strong> (high to low potential) → <strong>−ε</strong></li>
+        </ul>
+      </div>
+
+      <div class="callout warn">
+        <strong>Systematic approach:</strong> Assume currents in all branches. Write KCL at N−1 junctions + KVL for sufficient loops. Solve simultaneously. Never guess and check.
+      </div>
+    </section>
+
+    <!-- S9 -->
+    <section class="topic-section" id="s9">
+      <h2>9. Wheatstone Bridge</h2>
+
+      <div class="callout info">
+        <strong>Balanced condition: P/Q = R/S</strong><br>
+        When balanced: no current through the galvanometer (middle branch). The bridge resistance = (P+Q)(R+S)/(P+Q+R+S) but with P+Q parallel to R+S.
+      </div>
+
+      <div class="method-box">
+        <div class="method-box-title">Wheatstone Bridge — Solving Approach</div>
+        <p><strong>If balanced (P/Q = R/S):</strong> ignore galvanometer branch. Solve as two series strings in parallel.</p>
+        <p><strong>If unbalanced:</strong> must use Kirchhoff's laws with 3 unknowns and 2 loops.</p>
+        <p><em>JEE almost always gives balanced bridge problems — check the ratio first!</em></p>
+      </div>
+
+      <div class="method-box">
+        <div class="method-box-title">Meter Bridge — Based on Wheatstone Principle</div>
+        <p><strong>X = R × l / (100 − l)</strong></p>
+        <p>X = unknown resistance, R = known resistance, l = balance length from left end (cm)</p>
+        <p>At balance: X/R = l/(100−l) → same as Wheatstone balance condition.</p>
+      </div>
+    </section>
+
+    <!-- S10 -->
+    <section class="topic-section" id="s10">
+      <h2>10. EMF &amp; Terminal Voltage</h2>
+
+      <div class="formula-table-wrap">
+        <table class="formula-table">
+          <thead><tr><th>Formula</th><th>Meaning</th><th>When</th></tr></thead>
+          <tbody>
+            <tr><td class="formula-cell">E = V + Ir</td><td>EMF = terminal V + internal drop</td><td class="note-cell">Discharging (supplying current)</td></tr>
+            <tr><td class="formula-cell">V = E − Ir</td><td>Terminal voltage</td><td class="note-cell">V &lt; E when discharging</td></tr>
+            <tr><td class="formula-cell">V = E + Ir</td><td>Terminal voltage during charging</td><td class="note-cell">V &gt; E when being charged</td></tr>
+            <tr><td class="formula-cell">I = E / (R + r)</td><td>Current in circuit</td><td class="note-cell">R = external, r = internal</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout warn">
+        <strong>Maximum current (short circuit):</strong> I_max = E/r (external R = 0). Terminal voltage = 0. Dangerous — all power dissipated internally.
+      </div>
+
+      <!-- INTERACTIVE: EMF Calculator -->
+      <div class="method-box" style="background:#f0f9ff;border-color:#0284c7;">
+        <div class="method-box-title" style="color:#0284c7;">🔢 Interactive — Battery Circuit Calculator</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-bottom:.75rem;">
+          <label style="font-size:.85rem;">EMF ε (V): <input id="bat-e" type="number" value="12" min="0.1" step="0.5" oninput="batUpdate()" style="width:100%;margin-top:.3rem;padding:.4rem;border:1px solid #bae6fd;border-radius:6px;font-size:.9rem;"></label>
+          <label style="font-size:.85rem;">Internal r (Ω): <input id="bat-r" type="number" value="1" min="0" step="0.1" oninput="batUpdate()" style="width:100%;margin-top:.3rem;padding:.4rem;border:1px solid #bae6fd;border-radius:6px;font-size:.9rem;"></label>
+          <label style="font-size:.85rem;">External R (Ω): <input id="bat-R" type="number" value="5" min="0.1" step="0.5" oninput="batUpdate()" style="width:100%;margin-top:.3rem;padding:.4rem;border:1px solid #bae6fd;border-radius:6px;font-size:.9rem;"></label>
+        </div>
+        <div id="bat-out" style="background:#fff;border-radius:8px;padding:.9rem;font-family:'JetBrains Mono',monospace;font-size:.82rem;line-height:1.8;border:1px solid #bae6fd;"></div>
+      </div>
+    </section>
+
+    <!-- S11 -->
+    <section class="topic-section" id="s11">
+      <h2>11. Cells in Series and Parallel</h2>
+
+      <div class="compare-grid">
+        <div class="compare-col">
+          <div class="compare-head">Series Cells</div>
+          <ul>
+            <li>ε_total = ε₁ + ε₂ + … (EMFs add)</li>
+            <li>r_total = r₁ + r₂ + … (resistances add)</li>
+            <li>Same current through all cells</li>
+            <li>Best for: high voltage applications</li>
+          </ul>
+        </div>
+        <div class="compare-col">
+          <div class="compare-head">Parallel Cells (n identical)</div>
+          <ul>
+            <li>ε_total = ε (same as single cell)</li>
+            <li>r_total = r/n (reduced internal R)</li>
+            <li>Best for: high current applications</li>
+            <li>Each cell supplies I/n current</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="callout warn">
+        <strong>Cells opposing each other in series:</strong> ε_net = ε₁ − ε₂ if connected +to+, r_net = r₁ + r₂. Higher EMF cell drives current through lower EMF cell (charging it).
+      </div>
+    </section>
+
+    <!-- S12 -->
+    <section class="topic-section" id="s12">
+      <h2>12. Metre Bridge</h2>
+
+      <div class="callout info">
+        <strong>X = R × l / (100 − l)</strong><br>
+        l = balance length (cm), R = known resistance in opposite gap, X = unknown resistance.
+      </div>
+
+      <div class="method-box">
+        <div class="method-box-title">Metre Bridge — End Error &amp; Sensitivity</div>
+        <ul>
+          <li>Balance point near 50 cm = most sensitive (equal arms)</li>
+          <li>Avoid balance point below 20 cm or above 80 cm (large % error)</li>
+          <li>End error: zero of scale may not coincide with end of wire — must use end corrections</li>
+          <li>Shift R to bring balance point near midpoint</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- S13 -->
+    <section class="topic-section" id="s13">
+      <h2>13. Potentiometer</h2>
+
+      <div class="callout info">
+        <strong>Principle: No current is drawn from the cell being measured at balance (null method).</strong> This makes it more accurate than a voltmeter.
+      </div>
+
+      <div class="formula-table-wrap">
+        <table class="formula-table">
+          <thead><tr><th>Application</th><th>Formula</th></tr></thead>
+          <tbody>
+            <tr><td>Compare EMFs</td><td class="formula-cell">E₁/E₂ = l₁/l₂</td></tr>
+            <tr><td>Measure internal resistance</td><td class="formula-cell">r = R(l₁ − l₂)/l₂</td></tr>
+            <tr><td>Potential gradient</td><td class="formula-cell">k = V/L (V/m along wire)</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="method-box">
+        <div class="method-box-title">Internal Resistance Measurement</div>
+        <p>l₁ = balance length with cell on open circuit (no external R)</p>
+        <p>l₂ = balance length with external resistance R connected across cell</p>
+        <p>Then: r = R(l₁ − l₂)/l₂</p>
+        <p><em>Derived from: E/V = l₁/l₂, and V = E − Ir = ER/(R+r) → solve for r.</em></p>
+      </div>
+    </section>
+
+    <!-- S14 -->
+    <section class="topic-section" id="s14">
+      <h2>14. Electrical Power</h2>
+
+      <div class="formula-table-wrap">
+        <table class="formula-table">
+          <thead><tr><th>Formula</th><th>Best Used When</th><th>Note</th></tr></thead>
+          <tbody>
+            <tr><td class="formula-cell">P = VI</td><td>Both V and I known</td><td class="note-cell">Most general</td></tr>
+            <tr><td class="formula-cell">P = I²R</td><td>Current and resistance known</td><td class="note-cell">Use for series: same I</td></tr>
+            <tr><td class="formula-cell">P = V²/R</td><td>Voltage and resistance known</td><td class="note-cell">Use for parallel: same V</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout danger">
+        <strong>Bulb brightness trick:</strong><br>
+        <strong>Series:</strong> same I → P = I²R → higher R = brighter (more voltage across it)<br>
+        <strong>Parallel:</strong> same V → P = V²/R → lower R = brighter (more current through it)
+      </div>
+
+      <div class="method-box">
+        <div class="method-box-title">Rated Power vs Actual Power</div>
+        <p>A bulb rated "60 W at 220 V" has R = V²/P = 220²/60 ≈ 807 Ω.</p>
+        <p>If connected to 110 V: P_actual = V²/R = 110²/807 ≈ 15 W (much dimmer).</p>
+        <p><em>JEE frequently asks: which bulb is brighter when connected in series/parallel.</em></p>
+      </div>
+    </section>
+
+    <!-- S15 -->
+    <section class="topic-section" id="s15">
+      <h2>15. Worked Examples</h2>
+
+      <div class="method-box">
+        <div class="method-box-title">Example 1 — Equivalent Resistance</div>
+        <p>Find equivalent resistance between A and B: 2Ω and 3Ω in series, this combination in parallel with 6Ω. Connected to 12 V battery.</p>
+        <div class="explainer">
+          Series combination: 2 + 3 = 5 Ω<br>
+          Parallel: R_eq = 5×6/(5+6) = 30/11 ≈ 2.73 Ω<br>
+          Total current I = 12/2.73 ≈ 4.4 A<br>
+          Current in 6Ω branch: I₆ = 12/6 = 2 A<br>
+          Current in 5Ω branch: I₅ = 12/5 = 2.4 A
+        </div>
+      </div>
+
+      <div class="method-box">
+        <div class="method-box-title">Example 2 — Wheatstone Bridge</div>
+        <p>Wheatstone bridge: P=3Ω, Q=6Ω, R=4Ω. Find S for balance. What is the resistance of the bridge between the supply terminals?</p>
+        <div class="explainer">
+          Balance condition: P/Q = R/S → 3/6 = 4/S → S = 8 Ω<br>
+          At balance: bridge = (P+Q) ∥ (R+S) = 9 ∥ 12 = 9×12/(9+12) = 108/21 ≈ <strong>5.14 Ω</strong>
+        </div>
+      </div>
+
+      <div class="method-box">
+        <div class="method-box-title">Example 3 — Potentiometer</div>
+        <p>Potentiometer wire 10 m. A cell of EMF 1.5 V balances at 3 m. What is the EMF that balances at 2.4 m?</p>
+        <div class="explainer">
+          Potential gradient k = 1.5/3 = 0.5 V/m<br>
+          E₂ = k × l₂ = 0.5 × 2.4 = <strong>1.2 V</strong>
+        </div>
+      </div>
+    </section>
+
+    <!-- S16 -->
+    <section class="topic-section" id="s16">
+      <h2>16. Common JEE Traps</h2>
+
+      <div class="callout danger">
+        <strong>Trap 1:</strong> R_parallel is LESS than the smallest individual resistor. If you get a larger value, you added instead of applied 1/R formula.
+      </div>
+
+      <div class="callout danger">
+        <strong>Trap 2:</strong> For bulbs in SERIES — higher rated wattage bulb has LOWER resistance (rated at higher V). At same V rating: P = V²/R, so higher P means lower R.
+      </div>
+
+      <div class="callout danger">
+        <strong>Trap 3:</strong> Terminal voltage during <em>charging</em> is V = E + Ir (GREATER than EMF), not V = E − Ir.
+      </div>
+
+      <div class="callout danger">
+        <strong>Trap 4:</strong> Stretching a wire of length L to 2L: resistance becomes 4R, not 2R. Both L doubles AND A halves.
+      </div>
+
+      <div class="callout danger">
+        <strong>Trap 5:</strong> Metre bridge balance formula: X = R×l/(100−l). It's (100−l) NOT l in denominator for the right-side gap.
+      </div>
+
+      <div class="callout danger">
+        <strong>Trap 6:</strong> KVL sign — when traversing a loop in the direction of assumed current through a resistor, it's a DROP (−IR), not a rise.
+      </div>
+
+      <div class="callout danger">
+        <strong>Trap 7:</strong> Potentiometer measures EMF (open circuit) not terminal voltage. The null method ensures no current flows through the cell being measured.
+      </div>
+
+      <div class="callout danger">
+        <strong>Trap 8:</strong> Wheatstone bridge balance P/Q = R/S means the ratio in the SAME arm (top-left : top-right = bottom-left : bottom-right). Mixing up arms gives wrong answer.
+      </div>
+
+      <div class="topic-cta-row">
+        <a href="work-energy.html" class="topic-cta">← P3: Work &amp; Energy</a>
+        <a href="rotational-motion.html" class="topic-cta topic-cta-next">P5: Rotational Motion →</a>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<footer style="text-align:center;padding:2rem 1rem;font-size:.8rem;color:var(--ink3);border-top:1px solid var(--border);">
+  JEE 2027 Prep · P4 Current Electricity Deep-Dive · <a href="../subjects/physics.html" style="color:var(--topic-accent);">Back to Physics</a>
+</footer>
+
+<script src="../js/main.js"></script>
+<script>
+function resUpdate() {
+  const r1 = parseFloat(document.getElementById('res-r1').value) || 1;
+  const r2 = parseFloat(document.getElementById('res-r2').value) || 1;
+  const r3 = parseFloat(document.getElementById('res-r3').value) || 1;
+  const V  = parseFloat(document.getElementById('res-v').value)  || 12;
+
+  const Rs = r1 + r2 + r3;
+  const Rp = 1 / (1/r1 + 1/r2 + 1/r3);
+  const Is = V / Rs;
+  const Ip = V / Rp;
+
+  document.getElementById('res-out').innerHTML =
+`── SERIES ─────────────────────────────
+R_series     = R₁+R₂+R₃ = ${r1}+${r2}+${r3} = <strong>${Rs.toFixed(3)} Ω</strong>
+Total I      = V/R = ${V}/${Rs.toFixed(3)} = <strong>${Is.toFixed(3)} A</strong>
+V₁ = ${Is.toFixed(3)}×${r1} = <strong>${(Is*r1).toFixed(3)} V</strong>   P₁ = <strong>${(Is*Is*r1).toFixed(3)} W</strong>
+V₂ = ${Is.toFixed(3)}×${r2} = <strong>${(Is*r2).toFixed(3)} V</strong>   P₂ = <strong>${(Is*Is*r2).toFixed(3)} W</strong>
+V₃ = ${Is.toFixed(3)}×${r3} = <strong>${(Is*r3).toFixed(3)} V</strong>   P₃ = <strong>${(Is*Is*r3).toFixed(3)} W</strong>
+
+── PARALLEL ────────────────────────────
+R_parallel   = <strong>${Rp.toFixed(3)} Ω</strong>
+Total I      = V/R = ${V}/${Rp.toFixed(3)} = <strong>${Ip.toFixed(3)} A</strong>
+I₁ = ${V}/${r1} = <strong>${(V/r1).toFixed(3)} A</strong>   P₁ = <strong>${(V*V/r1).toFixed(3)} W</strong>
+I₂ = ${V}/${r2} = <strong>${(V/r2).toFixed(3)} A</strong>   P₂ = <strong>${(V*V/r2).toFixed(3)} W</strong>
+I₃ = ${V}/${r3} = <strong>${(V/r3).toFixed(3)} A</strong>   P₃ = <strong>${(V*V/r3).toFixed(3)} W</strong>`;
+}
+
+function batUpdate() {
+  const E = parseFloat(document.getElementById('bat-e').value) || 12;
+  const r = parseFloat(document.getElementById('bat-r').value) || 0;
+  const R = parseFloat(document.getElementById('bat-R').value) || 1;
+  const I = E / (R + r);
+  const V_t = E - I * r;
+  const P_int = I * I * r;
+  const P_ext = I * I * R;
+  const eff = R > 0 ? (P_ext / (P_int + P_ext) * 100) : 0;
+
+  document.getElementById('bat-out').innerHTML =
+`Current I       = E/(R+r) = ${E}/(${R}+${r}) = <strong>${I.toFixed(4)} A</strong>
+Terminal V      = E − Ir = ${E} − ${(I*r).toFixed(4)} = <strong>${V_t.toFixed(4)} V</strong>
+Internal drop   = Ir = <strong>${(I*r).toFixed(4)} V</strong>
+Power (internal) = I²r = <strong>${P_int.toFixed(4)} W</strong>
+Power (external) = I²R = <strong>${P_ext.toFixed(4)} W</strong>
+Efficiency      = <strong>${eff.toFixed(1)}%</strong>`;
+}
+
+resUpdate();
+batUpdate();
+</script>
+</body>
+</html>
