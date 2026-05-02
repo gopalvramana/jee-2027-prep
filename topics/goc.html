@@ -1,0 +1,852 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>General Organic Chemistry (GOC) — JEE 2027 Deep-Dive</title>
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body class="topic-chem">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="nav-brand">JEE 2027</div>
+    <div class="nav-links">
+      <a href="../index.html">Dashboard</a>
+      <a href="../subjects/math.html">📐 Math</a>
+      <a href="../subjects/physics.html">⚡ Physics</a>
+      <a href="../subjects/chemistry.html" class="active">🧪 Chemistry</a>
+      <a href="../progress.html">✅ Progress</a>
+      <a href="../schedule.html">📋 Schedule</a>
+      <a href="../settings.html">⚙ Settings</a>
+    </div>
+    <button class="nav-toggle" onclick="toggleNav()">☰</button>
+  </div>
+</nav>
+
+<header class="page-hero" style="background:var(--topic-grad)">
+  <div class="page-hero-content">
+    <div class="page-hero-tag">Chemistry · Unit C8 · Deep-Dive</div>
+    <h1>🔬 General Organic Chemistry</h1>
+    <p>GOC is the grammar of Organic Chemistry — every reaction in Phase 3 is explained by the effects and mechanisms here. Inductive, resonance, hyperconjugation, carbocation stability, SN1/SN2, elimination, addition, EAS. Get this right once and all of Organic becomes predictable.</p>
+    <div class="topic-meta-bar">
+      <span class="topic-meta-pill"><strong>Weight:</strong> 20–25% (≈20 marks)</span>
+      <span class="topic-meta-pill"><strong>Difficulty:</strong> 🔴 High</span>
+      <span class="topic-meta-pill"><strong>Prereq:</strong> C2 Atomic Structure, C3 Bonding</span>
+      <span class="topic-meta-pill"><strong>Time to master:</strong> 15–20 hrs</span>
+      <span class="topic-meta-pill"><a href="../subjects/chemistry.html#unit-c8">↩ Back to Chemistry</a></span>
+    </div>
+  </div>
+</header>
+
+<section class="section">
+<div class="topic-wrap">
+
+  <!-- TOC -->
+  <nav class="topic-toc">
+    <div class="topic-toc-title">📖 In this guide</div>
+    <ol>
+      <li><a href="#why">Why GOC is the Foundation</a></li>
+      <li><a href="#cleavage">Bond Cleavage — Homolytic vs Heterolytic</a></li>
+      <li><a href="#inductive">Inductive Effect (I)</a></li>
+      <li><a href="#resonance">Resonance / Mesomeric Effect (M)</a></li>
+      <li><a href="#hyperconj">Hyperconjugation</a></li>
+      <li><a href="#acidity">Acidity &amp; Basicity from Electronic Effects</a></li>
+      <li><a href="#carbocation">Carbocations — Stability &amp; Structure</a></li>
+      <li><a href="#carbanion">Carbanions — Stability (Opposite Order)</a></li>
+      <li><a href="#radical">Free Radicals</a></li>
+      <li><a href="#sn">SN1 vs SN2 — Full Comparison</a></li>
+      <li><a href="#elimination">E1 vs E2 — Zaitsev vs Hofmann</a></li>
+      <li><a href="#sn-vs-e">SN vs E Competition</a></li>
+      <li><a href="#addition">Electrophilic Addition — Markovnikov</a></li>
+      <li><a href="#anti-mark">Anti-Markovnikov &amp; Other Addition Modes</a></li>
+      <li><a href="#aromatic">Aromaticity — Hückel's Rule</a></li>
+      <li><a href="#eas">EAS — Mechanism &amp; Directors</a></li>
+      <li><a href="#directors">Directing Groups — Master Table</a></li>
+      <li><a href="#examples">Worked Examples</a></li>
+      <li><a href="#pyqs">JEE Previous-Year Questions</a></li>
+      <li><a href="#traps">Common Traps</a></li>
+      <li><a href="#cheat">Cheat Card</a></li>
+    </ol>
+  </nav>
+
+  <!-- 01 WHY -->
+  <div class="topic-section" id="why">
+    <h2><span class="sec-num">01</span>Why GOC is the Foundation</h2>
+    <p>Organic Chemistry is 20–25% of the JEE Chemistry paper — the single largest topic. Unlike Physical Chemistry where each unit is somewhat independent, all of Organic builds on GOC. You cannot predict a reaction product in Phase 3 without understanding electronic effects (inductive, resonance) and mechanism types (SN1, SN2, E1, E2, addition, EAS).</p>
+    <div class="callout danger">
+      <div class="callout-title">⚠ Everything Downstream Depends on This Unit</div>
+      Named reactions, carbonyl chemistry, amines, polymers, biomolecules — every Phase 3 Organic topic will ask "why does this reaction happen?" and the answer will always be one of the effects or mechanisms covered here. Rushing through GOC costs marks in every Organic question.
+    </div>
+    <div class="callout success">
+      <div class="callout-title">✅ The GOC Mental Model</div>
+      Every organic reaction question follows: (1) What are the electronic conditions? (Nucleophile/electrophile, lone pairs, π electrons) → (2) What mechanism is triggered? (SN1/SN2/E1/E2/addition/EAS) → (3) What is the major product? (Stability of intermediate determines regiochemistry). Train this three-step thinking and Organic becomes a decision tree, not memorisation.
+    </div>
+  </div>
+
+  <!-- 02 CLEAVAGE -->
+  <div class="topic-section" id="cleavage">
+    <h2><span class="sec-num">02</span>Bond Cleavage — Homolytic vs Heterolytic</h2>
+    <div class="compare-grid">
+      <div class="compare-col">
+        <div class="compare-col-head">Homolytic Cleavage</div>
+        <ul>
+          <li>Each atom gets <strong>one electron</strong> from the bond pair</li>
+          <li>Produces free radicals (uncharged, one unpaired electron)</li>
+          <li>Happens under UV light, heat, or with radical initiators (peroxides ROOR)</li>
+          <li>R–X → R• + X•</li>
+          <li>Governs radical reactions (anti-Markovnikov HBr addition, halogenation of alkanes)</li>
+        </ul>
+      </div>
+      <div class="compare-col">
+        <div class="compare-col-head">Heterolytic Cleavage</div>
+        <ul>
+          <li>One atom gets <strong>both electrons</strong> from the bond</li>
+          <li>Produces ions (carbocations + anions, or carbanions + cations)</li>
+          <li>Happens in polar conditions, polar solvents, with ionic reagents</li>
+          <li>R–X → R⁺ + X⁻ (if X is electronegative)</li>
+          <li>Governs ionic mechanisms: SN1, SN2, E1, E2, electrophilic addition</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- 03 INDUCTIVE -->
+  <div class="topic-section" id="inductive">
+    <h2><span class="sec-num">03</span>Inductive Effect (I)</h2>
+    <p>The inductive effect is the transmission of electron density through the σ-bond framework due to electronegativity differences. It decreases rapidly with distance (negligible beyond 3 bonds).</p>
+    <div class="compare-grid">
+      <div class="compare-col">
+        <div class="compare-col-head">−I Effect (Electron Withdrawing)</div>
+        <ul>
+          <li>Groups more electronegative than carbon</li>
+          <li>Pull electron density away from carbon chain</li>
+          <li><strong>Increasing −I:</strong> F &gt; OH &gt; Cl &gt; Br &gt; I &gt; C≡N &gt; NO₂ &gt; COOH &gt; halogen</li>
+          <li>Effect: <em>increases</em> acidity of adjacent COOH (stabilises carboxylate A⁻)</li>
+          <li>Effect: <em>decreases</em> basicity of adjacent NH₂</li>
+          <li>Destabilises carbocations</li>
+        </ul>
+      </div>
+      <div class="compare-col">
+        <div class="compare-col-head">+I Effect (Electron Donating)</div>
+        <ul>
+          <li>Groups less electronegative than carbon (alkyl groups)</li>
+          <li>Push electron density toward carbon chain</li>
+          <li><strong>Increasing +I:</strong> (CH₃)₃C &gt; (CH₃)₂CH &gt; C₂H₅ &gt; CH₃ &gt; H</li>
+          <li>Effect: <em>decreases</em> acidity (destabilises carboxylate by adding electrons)</li>
+          <li>Effect: <em>increases</em> basicity of adjacent NH₂</li>
+          <li>Stabilises carbocations (explains 3° &gt; 2° &gt; 1°)</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="method-box" style="margin-top:1rem">
+      <div class="method-box-title">Acidity from −I Effect — Worked Pattern</div>
+      <p>More −I substituents → more stable carboxylate anion → stronger acid (larger Ka, smaller pKa)</p>
+      <div class="formula-table-wrap" style="margin:.5rem 0">
+        <table class="formula-table">
+          <thead><tr><th>Acid</th><th>pKa</th><th>Reason</th></tr></thead>
+          <tbody>
+            <tr><td>CH₃COOH (acetic acid)</td><td>4.74</td><td>No −I substituent; baseline</td></tr>
+            <tr><td>FCH₂COOH (fluoroacetic)</td><td>2.59</td><td>One F (strong −I) stabilises COO⁻</td></tr>
+            <tr><td>F₂CHCOOH (difluoroacetic)</td><td>1.24</td><td>Two F atoms → stronger −I</td></tr>
+            <tr><td>F₃CCOOH (trifluoroacetic)</td><td>0.23</td><td>Three F atoms → strongest −I; much stronger acid</td></tr>
+            <tr><td>CCl₃COOH (trichloroacetic)</td><td>0.66</td><td>Cl is −I but weaker than F</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- 04 RESONANCE -->
+  <div class="topic-section" id="resonance">
+    <h2><span class="sec-num">04</span>Resonance / Mesomeric Effect (M)</h2>
+    <p>The mesomeric effect (also called resonance effect) involves delocalisation of electrons through a π system or through lone pairs conjugated with a π system. It operates through bonds (not just through space) and is generally stronger than inductive effect when both are present.</p>
+    <div class="compare-grid">
+      <div class="compare-col">
+        <div class="compare-col-head">+M Groups (Electron Donors)</div>
+        <ul>
+          <li>Push lone pair electrons into π system</li>
+          <li>−NH₂, −NR₂, −OH, −OR, −OCOR</li>
+          <li>Halogens: −F, −Cl, −Br, −I (weak +M, also have −I)</li>
+          <li>Increase electron density at ortho and para positions (EAS → o/p director)</li>
+          <li>Increase basicity of the group itself (lone pair delocalised → less available)</li>
+          <li>Aniline: −NH₂ lone pair delocalised → less basic than cyclohexylamine</li>
+        </ul>
+      </div>
+      <div class="compare-col">
+        <div class="compare-col-head">−M Groups (Electron Withdrawers)</div>
+        <ul>
+          <li>Pull π electrons toward the group</li>
+          <li>−NO₂, −CN, −CHO, −COR, −COOH, −COOR, −SO₃H</li>
+          <li>Decrease electron density at ortho and para → meta director in EAS</li>
+          <li>Stabilise carbanions (withdraw electrons from adjacent carbanion)</li>
+          <li>Increase acidity: phenol &gt; cyclohexanol (phenoxide O⁻ delocalised by benzene ring)</li>
+        </ul>
+      </div>
+    </div>
+    <div class="callout info">
+      <div class="callout-title">💡 Resonance &gt; Inductive when both are present</div>
+      For −NH₂ attached to a benzene ring: −I of N (slight) is dominated by +M. For −NO₂: strong −M dominates. When deciding the overall electronic effect of a substituent, resonance (M) usually wins over inductive (I) — except halogens where the balance gives an unusual result (−I deactivates, but +M still directs ortho/para).
+    </div>
+  </div>
+
+  <!-- 05 HYPERCONJ -->
+  <div class="topic-section" id="hyperconj">
+    <h2><span class="sec-num">05</span>Hyperconjugation</h2>
+    <p>Hyperconjugation is the delocalisation of σ C–H (or C–C) bonding electrons into an adjacent empty p orbital (carbocation), π* orbital (double bond), or radical orbital. It requires the C–H bond and the p/π system to be in the correct geometry (roughly parallel).</p>
+    <div class="method-box">
+      <div class="method-box-title">Hyperconjugation and Carbocation Stability</div>
+      <p>More α-hydrogen atoms → more hyperconjugative structures → more stable carbocation</p>
+      <ul style="line-height:2;margin:.5rem 0">
+        <li>CH₃⁺: 0 α-H atoms, 0 hyperconjugation structures → least stable</li>
+        <li>CH₃CH₂⁺: 3 α-H → 3 hyperconjugation structures</li>
+        <li>(CH₃)₂CH⁺: 6 α-H → 6 hyperconjugation structures</li>
+        <li>(CH₃)₃C⁺: 9 α-H → 9 hyperconjugation structures → most stable tertiary carbocation</li>
+      </ul>
+      <p style="margin-top:.5rem">Number of hyperconjugating structures = number of α-C-H bonds (Baker-Nathan rule)</p>
+    </div>
+    <div class="callout info">
+      <div class="callout-title">💡 Hyperconjugation Also Explains Alkene Stability</div>
+      More substituted alkenes are more stable: CH₂=CH₂ &lt; CH₃CH=CH₂ &lt; (CH₃)₂C=CH₂ &lt; (CH₃)₂C=CHCH₃. Each additional alkyl group adds hyperconjugating C–H bonds. This is why Zaitsev's rule (more substituted alkene = major product) works.
+    </div>
+  </div>
+
+  <!-- 06 ACIDITY -->
+  <div class="topic-section" id="acidity">
+    <h2><span class="sec-num">06</span>Acidity &amp; Basicity from Electronic Effects</h2>
+    <div class="method-box">
+      <div class="method-box-title">Golden Rule: Stability of Conjugate Base = Acidity of Acid</div>
+      <p>The more stable the anion (conjugate base), the stronger the acid. Factors that stabilise the anion increase acidity.</p>
+    </div>
+    <div class="formula-table-wrap" style="margin-top:1rem">
+      <table class="formula-table">
+        <thead><tr><th>Comparison</th><th>More Acidic</th><th>Reason</th></tr></thead>
+        <tbody>
+          <tr><td>FCH₂COOH vs CH₃COOH</td><td>FCH₂COOH</td><td>F is −I → stabilises COO⁻</td></tr>
+          <tr><td>Phenol vs Cyclohexanol</td><td>Phenol (pKa≈10 vs 16)</td><td>PhO⁻ is resonance-stabilised by benzene ring (+−M); cyclohexoxide is not</td></tr>
+          <tr><td>CH₃COOH vs HCOOH</td><td>HCOOH (pKa=3.75)</td><td>CH₃ has +I → destabilises COO⁻; H has no effect</td></tr>
+          <tr><td>HC≡CH vs CH₂=CH₂ vs CH₄</td><td>HC≡CH (pKa≈25)</td><td>sp carbon (50% s-character) holds electron more tightly → C⁻ more stable</td></tr>
+          <tr><td>H₂O vs ROH vs R₂NH vs R₃N</td><td>H₂O (most acidic)</td><td>Alkyl groups (+I) destabilise O⁻/N⁻; fewer alkyl groups = more acidic</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="formula-table-wrap" style="margin-top:1rem">
+      <table class="formula-table">
+        <thead><tr><th>Basicity Comparison</th><th>More Basic</th><th>Reason</th></tr></thead>
+        <tbody>
+          <tr><td>CH₃NH₂ vs NH₃ vs C₆H₅NH₂</td><td>CH₃NH₂ (in gas phase)</td><td>Alkyl +I donates to N → more available lone pair</td></tr>
+          <tr><td>Aniline vs cyclohexylamine</td><td>Cyclohexylamine</td><td>Aniline lone pair is delocalised by ring (+M) → less available for protonation</td></tr>
+          <tr><td>Amines vs amides</td><td>Amines (R₃N)</td><td>Amide N lone pair delocalised by C=O (−M of carbonyl) → amides very weakly basic</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- 07 CARBOCATION -->
+  <div class="topic-section" id="carbocation">
+    <h2><span class="sec-num">07</span>Carbocations — Stability &amp; Structure</h2>
+    <p>A carbocation (carbonium ion) is a carbon with only 3 bonds and a positive formal charge. It is sp² hybridised with an empty p orbital perpendicular to the plane.</p>
+    <div class="method-box">
+      <div class="method-box-title">Stability Order (Most → Least Stable)</div>
+      <p style="text-align:center;font-size:1rem;margin:.5rem 0">
+        <strong>Allyl ≈ Benzyl &gt; 3° &gt; 2° &gt; 1° &gt; Vinyl ≈ Methyl ≈ Phenyl</strong>
+      </p>
+      <ul style="line-height:2;margin:.5rem 0 0">
+        <li><strong>Allyl (CH₂=CH–CH₂⁺):</strong> resonance with π bond → two equivalent structures; very stable</li>
+        <li><strong>Benzyl (C₆H₅CH₂⁺):</strong> resonance with benzene ring (5 structures) → very stable</li>
+        <li><strong>3° (R₃C⁺):</strong> 3 alkyl groups give +I and 9 hyperconjugating C–H bonds</li>
+        <li><strong>2° (R₂HC⁺):</strong> 6 hyperconjugating C–H bonds</li>
+        <li><strong>1° (RH₂C⁺):</strong> 3 hyperconjugating C–H bonds</li>
+        <li><strong>Vinyl (CH₂=CH⁺), Phenyl (C₆H₅⁺):</strong> sp² carbon cannot stabilise positive charge — very unstable</li>
+      </ul>
+    </div>
+
+    <!-- Interactive: Stability Ranker -->
+    <div class="explainer" style="margin-top:1.25rem">
+      <div class="explainer-title">⚡ Intermediate Stability Checker</div>
+      <p style="font-size:.875rem;color:var(--ink3);margin-bottom:.75rem">Select intermediate type and substituent to see stability reasoning:</p>
+      <div style="display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:1rem;align-items:center">
+        <label style="font-size:.875rem">Type:
+          <select id="is-type" onchange="isUpdate()" style="margin-left:.5rem;padding:.35rem .5rem;border:1px solid var(--border);border-radius:6px;font-family:inherit">
+            <option value="carbocation">Carbocation (R⁺)</option>
+            <option value="carbanion">Carbanion (R⁻)</option>
+            <option value="radical">Free Radical (R•)</option>
+          </select>
+        </label>
+        <label style="font-size:.875rem">Structure:
+          <select id="is-struct" onchange="isUpdate()" style="margin-left:.5rem;padding:.35rem .5rem;border:1px solid var(--border);border-radius:6px;font-family:inherit">
+            <option value="methyl">Methyl (CH₃)</option>
+            <option value="primary">Primary (1°)</option>
+            <option value="secondary">Secondary (2°)</option>
+            <option value="tertiary">Tertiary (3°)</option>
+            <option value="allyl">Allylic</option>
+            <option value="benzyl">Benzylic</option>
+            <option value="vinyl">Vinyl/Aryl</option>
+            <option value="sp">sp Carbon (alkynyl)</option>
+          </select>
+        </label>
+      </div>
+      <div id="is-out" style="background:var(--topic-accent-l);border-radius:10px;padding:1rem 1.25rem;font-size:.875rem;line-height:1.9"></div>
+    </div>
+  </div>
+
+  <!-- 08 CARBANION -->
+  <div class="topic-section" id="carbanion">
+    <h2><span class="sec-num">08</span>Carbanions — Stability (Opposite Order!)</h2>
+    <p>A carbanion carries a negative charge on carbon (lone pair). Stability requires withdrawing electron density from the carbanion centre — opposite logic to carbocations.</p>
+    <div class="method-box">
+      <div class="method-box-title">Carbanion Stability Order (Most → Least Stable)</div>
+      <p style="text-align:center;font-size:1rem;margin:.5rem 0">
+        <strong>sp &gt; sp² (vinyl, aryl) &gt; Benzyl ≈ Allyl &gt; 1° &gt; 2° &gt; 3° &gt; Methyl</strong>
+      </p>
+      <ul style="line-height:2;margin:.5rem 0 0">
+        <li><strong>sp carbanion (HC≡C⁻):</strong> sp orbital has 50% s-character → electrons held close to nucleus → most stable; terminal alkynes are surprisingly acidic (pKa≈25)</li>
+        <li><strong>Benzyl/Allyl:</strong> negative charge delocalised by resonance — stable despite being "extended" carbon</li>
+        <li><strong>1° &gt; 2° &gt; 3°:</strong> alkyl groups (+I) destabilise the negative charge; fewer alkyl groups = more stable carbanion</li>
+        <li><strong>Electron-withdrawing groups (−I, −M) stabilise carbanions</strong> — e.g. malonates, β-keto esters used in synthesis because EWG stabilises carbanion on α-carbon</li>
+      </ul>
+    </div>
+    <div class="callout warn">
+      <div class="callout-title">⚠ JEE Trap: Carbanion is OPPOSITE to Carbocation for Alkyl Groups</div>
+      Carbocation: 3° &gt; 2° &gt; 1° (alkyl +I stabilises positive charge). Carbanion: 1° &gt; 2° &gt; 3° (alkyl +I destabilises negative charge). This reversal is tested every few years.
+    </div>
+  </div>
+
+  <!-- 09 RADICAL -->
+  <div class="topic-section" id="radical">
+    <h2><span class="sec-num">09</span>Free Radicals</h2>
+    <p>A free radical has an odd number of electrons — one unpaired electron. Like carbocations, radicals are sp² hybridised with a singly-occupied p orbital.</p>
+    <div class="method-box">
+      <div class="method-box-title">Radical Stability Order — Same as Carbocation</div>
+      <p style="text-align:center;font-size:1rem;margin:.5rem 0">
+        <strong>Allyl ≈ Benzyl &gt; 3° &gt; 2° &gt; 1° &gt; Methyl</strong>
+      </p>
+      <ul style="line-height:2;margin:.5rem 0 0">
+        <li>Alkyl groups stabilise radicals by hyperconjugation (+I contributes less than for carbocations)</li>
+        <li>Allylic/benzylic radicals are resonance-stabilised — most stable</li>
+        <li>Vinyl/phenyl radicals are unstable (unpaired electron in sp² orbital)</li>
+      </ul>
+    </div>
+    <div class="callout info">
+      <div class="callout-title">💡 Radical Reactions: Initiated by Light or Peroxides</div>
+      Radical chain reactions have three phases: <strong>Initiation</strong> (ROOR → 2RO• by UV/heat), <strong>Propagation</strong> (RO• + H–R' → ROH + R'•; R'• + X₂ → R'X + X•), <strong>Termination</strong> (radical + radical → stable molecule). Anti-Markovnikov HBr addition follows this chain.
+    </div>
+  </div>
+
+  <!-- 10 SN -->
+  <div class="topic-section" id="sn">
+    <h2><span class="sec-num">10</span>SN1 vs SN2 — Full Comparison</h2>
+    <div class="formula-table-wrap">
+      <table class="formula-table">
+        <thead><tr><th>Feature</th><th>SN1</th><th>SN2</th></tr></thead>
+        <tbody>
+          <tr><td>Steps</td><td>2 steps (slow ionisation → fast attack)</td><td>1 step (concerted)</td></tr>
+          <tr><td>Rate law</td><td>Rate = k[RX] — unimolecular</td><td>Rate = k[RX][Nu⁻] — bimolecular</td></tr>
+          <tr><td>Intermediate</td><td>Carbocation (planar, sp²)</td><td>None (transition state only)</td></tr>
+          <tr><td>Substrate</td><td>3° &gt; 2° &gt;&gt; 1° (favours stable carbocations)</td><td>1° &gt; 2° &gt;&gt; 3° (backside access needed)</td></tr>
+          <tr><td>Nucleophile</td><td>Weak Nu (H₂O, ROH) OK</td><td>Strong Nu⁻ (OH⁻, CN⁻, I⁻) required</td></tr>
+          <tr><td>Solvent</td><td>Polar protic (water, alcohol) — stabilises carbocation and leaving group</td><td>Polar aprotic (DMSO, DMF, acetone) — doesn't solvate Nu⁻</td></tr>
+          <tr><td>Stereochemistry</td><td>Racemisation (attack from both faces of sp² carbocation)</td><td>Inversion (Walden inversion — backside attack only)</td></tr>
+          <tr><td>Rearrangement</td><td>Possible (hydride/methyl shift to stabilise carbocation)</td><td>Not possible (no carbocation intermediate)</td></tr>
+          <tr><td>Leaving group</td><td>I⁻ &gt; Br⁻ &gt; Cl⁻ &gt; F⁻</td><td>Same order</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Interactive: SN1/SN2 decision tool -->
+    <div class="explainer" style="margin-top:1.25rem">
+      <div class="explainer-title">🔍 SN1 vs SN2 Predictor</div>
+      <p style="font-size:.875rem;color:var(--ink3);margin-bottom:.75rem">Select substrate, nucleophile strength, and solvent to predict mechanism:</p>
+      <div style="display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:1rem;align-items:center">
+        <label style="font-size:.875rem">Substrate:
+          <select id="sn-sub" onchange="snUpdate()" style="margin-left:.5rem;padding:.35rem .5rem;border:1px solid var(--border);border-radius:6px;font-family:inherit">
+            <option value="methyl">Methyl (CH₃X)</option>
+            <option value="primary">Primary (1°)</option>
+            <option value="secondary">Secondary (2°)</option>
+            <option value="tertiary">Tertiary (3°)</option>
+          </select>
+        </label>
+        <label style="font-size:.875rem">Nucleophile:
+          <select id="sn-nu" onchange="snUpdate()" style="margin-left:.5rem;padding:.35rem .5rem;border:1px solid var(--border);border-radius:6px;font-family:inherit">
+            <option value="strong">Strong (OH⁻, CN⁻, I⁻, RS⁻)</option>
+            <option value="weak">Weak (H₂O, ROH, Cl⁻)</option>
+          </select>
+        </label>
+        <label style="font-size:.875rem">Solvent:
+          <select id="sn-solv" onchange="snUpdate()" style="margin-left:.5rem;padding:.35rem .5rem;border:1px solid var(--border);border-radius:6px;font-family:inherit">
+            <option value="aprotic">Polar aprotic (DMSO, DMF)</option>
+            <option value="protic">Polar protic (H₂O, EtOH)</option>
+          </select>
+        </label>
+      </div>
+      <div id="sn-out" style="background:var(--topic-accent-l);border-radius:10px;padding:1rem 1.25rem;font-size:.875rem;line-height:1.9"></div>
+    </div>
+
+    <div class="callout warn" style="margin-top:1.25rem">
+      <div class="callout-title">⚠ Nucleophilicity vs Basicity in Protic Solvents</div>
+      In polar protic solvents (water, alcohol), nucleophilicity ≠ basicity. Large, polarisable ions are better nucleophiles even if weaker bases because they are less solvated: I⁻ &gt; Br⁻ &gt; Cl⁻ &gt; F⁻ (nucleophilicity in protic). In polar aprotic solvents, Nu⁻ are not solvated, so nucleophilicity ≈ basicity: F⁻ &gt; Cl⁻ &gt; Br⁻ &gt; I⁻.
+    </div>
+  </div>
+
+  <!-- 11 ELIMINATION -->
+  <div class="topic-section" id="elimination">
+    <h2><span class="sec-num">11</span>E1 vs E2 — Zaitsev vs Hofmann</h2>
+    <div class="formula-table-wrap">
+      <table class="formula-table">
+        <thead><tr><th>Feature</th><th>E1</th><th>E2</th></tr></thead>
+        <tbody>
+          <tr><td>Steps</td><td>2 steps (ionisation → proton loss)</td><td>1 step (concerted)</td></tr>
+          <tr><td>Rate law</td><td>Rate = k[RX] — unimolecular</td><td>Rate = k[RX][B⁻] — bimolecular</td></tr>
+          <tr><td>Base needed</td><td>Weak base (or none); follows SN1 conditions</td><td>Strong base required (OH⁻, RO⁻)</td></tr>
+          <tr><td>Substrate</td><td>3° favoured (needs stable carbocation)</td><td>3° &gt; 2° &gt; 1°</td></tr>
+          <tr><td>Stereoelectronics</td><td>No geometric requirement</td><td>Anti-periplanar H and leaving group required (dihedral = 180°)</td></tr>
+          <tr><td>Major product</td><td>Zaitsev (more substituted alkene)</td><td>Zaitsev with small base; Hofmann with bulky base</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="method-box" style="margin-top:1.25rem">
+      <div class="method-box-title">Zaitsev vs Hofmann — When Each Applies</div>
+      <div class="compare-grid" style="margin:0">
+        <div class="compare-col">
+          <div class="compare-col-head">Zaitsev Product (More Substituted Alkene)</div>
+          <ul>
+            <li>Small base (NaOH, KOH, NaOEt)</li>
+            <li>More substituted alkene is thermodynamically more stable</li>
+            <li>More hyperconjugation → lower energy alkene</li>
+            <li>Example: 2-bromobutane + KOH → but-2-ene (major) + but-1-ene (minor)</li>
+          </ul>
+        </div>
+        <div class="compare-col">
+          <div class="compare-col-head">Hofmann Product (Less Substituted Alkene)</div>
+          <ul>
+            <li>Bulky base (t-BuOK, LDA)</li>
+            <li>Bulky base cannot approach crowded β-H → attacks less hindered H</li>
+            <li>Kinetically controlled — less stable but more accessible product</li>
+            <li>Example: 2-bromobutane + t-BuOK → but-1-ene (major)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 12 SN vs E -->
+  <div class="topic-section" id="sn-vs-e">
+    <h2><span class="sec-num">12</span>SN vs E Competition</h2>
+    <div class="formula-table-wrap">
+      <table class="formula-table">
+        <thead><tr><th>Condition</th><th>Favours SN</th><th>Favours E</th></tr></thead>
+        <tbody>
+          <tr><td>Temperature</td><td>Low temperature</td><td>High temperature (entropy increase with more products)</td></tr>
+          <tr><td>Base strength</td><td>Weak nucleophile (good Nu, poor base)</td><td>Strong base (poor Nu, good base)</td></tr>
+          <tr><td>Substrate</td><td>1° (SN2 easy backside attack)</td><td>3° (E favoured; SN2 blocked by bulk)</td></tr>
+          <tr><td>Bulky base</td><td>Not preferred with bulky base</td><td>Bulky base → E + Hofmann product</td></tr>
+          <tr><td>Solvent</td><td>Polar aprotic (SN2) or protic (SN1)</td><td>Less polar often favours E</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="callout info">
+      <div class="callout-title">💡 Practical Rules</div>
+      <ul style="margin:.5rem 0;line-height:2">
+        <li>1° substrate + strong Nu + polar aprotic → <strong>SN2</strong></li>
+        <li>3° substrate + weak Nu + polar protic + heat → <strong>SN1 + E1</strong></li>
+        <li>3° substrate + strong base → <strong>E2</strong> (SN2 too hindered)</li>
+        <li>2° substrate + strong base + polar aprotic → <strong>SN2 and/or E2</strong> (competition)</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 13 ADDITION -->
+  <div class="topic-section" id="addition">
+    <h2><span class="sec-num">13</span>Electrophilic Addition — Markovnikov's Rule</h2>
+    <p>Alkenes undergo addition of electrophiles (H⁺, X₂, X–Y) across the C=C double bond. The mechanism goes through a carbocation (or bromonium ion) intermediate.</p>
+    <div class="method-box">
+      <div class="method-box-title">Markovnikov's Rule</div>
+      <p><strong>H adds to the carbon that already has more hydrogens</strong> (equivalently: the electrophile adds to give the more stable carbocation intermediate).</p>
+      <p>Propene + HBr: H⁺ adds to CH₂= (C1, has 2H) → secondary carbocation on C2 (more stable) → Br⁻ attacks C2 → <strong>2-bromopropane</strong> (not 1-bromopropane)</p>
+    </div>
+    <div class="formula-table-wrap" style="margin-top:1rem">
+      <table class="formula-table">
+        <thead><tr><th>Reaction</th><th>Mechanism</th><th>Product</th><th>Note</th></tr></thead>
+        <tbody>
+          <tr><td>Alkene + HX (no peroxide)</td><td>Ionic, via carbocation</td><td>Markovnikov (X on more substituted C)</td><td>Faster with HI &gt; HBr &gt; HCl</td></tr>
+          <tr><td>Alkene + H₂SO₄ then H₂O</td><td>Ionic, via carbocation</td><td>Markovnikov alcohol</td><td>Acid-catalysed hydration</td></tr>
+          <tr><td>Alkene + Br₂/CCl₄</td><td>Bromonium ion → anti-addition</td><td>Trans-dibromo product</td><td>Anti-addition — vicinal dibromide</td></tr>
+          <tr><td>Alkene + HOX (X₂/H₂O)</td><td>Bromonium ion → Markovnikov</td><td>Halohydrin: OH on more sub. C</td><td>OH attacks C with more substituents</td></tr>
+          <tr><td>Alkene + BH₃ then H₂O₂</td><td>Syn addition of BH₃ → oxidation</td><td>Anti-Markovnikov alcohol, syn</td><td>Hydroboration-oxidation</td></tr>
+          <tr><td>Alkene + O₃ then Zn/H₂O</td><td>Ozonolysis</td><td>Aldehydes/ketones (C=C cleaved)</td><td>Reductive workup: aldehydes; oxidative: carboxylic acids</td></tr>
+          <tr><td>Alkene + KMnO₄ (cold, dilute)</td><td>Oxidation</td><td>cis-Diol (syn-dihydroxylation)</td><td>Baeyer's reagent — purple → colourless: alkene test</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- 14 ANTI-MARK -->
+  <div class="topic-section" id="anti-mark">
+    <h2><span class="sec-num">14</span>Anti-Markovnikov &amp; Other Addition Modes</h2>
+    <div class="method-box">
+      <div class="method-box-title">Anti-Markovnikov HBr Addition (Peroxide Effect)</div>
+      <p><strong>Condition:</strong> HBr + ROOR (peroxide) or UV light</p>
+      <p><strong>Mechanism:</strong> Radical chain — Br• adds first (not H⁺)</p>
+      <p><strong>Why Br• adds to less substituted C:</strong> Gives the more stable secondary radical (not primary)</p>
+      <p><strong>Product:</strong> Br on C with <em>fewer</em> H (anti-Markovnikov) → 1-bromopropane from propene</p>
+      <p style="margin-top:.5rem;font-size:.875rem;color:var(--ink3)">Only HBr shows this effect. HCl and HI do NOT show anti-Markovnikov addition.</p>
+    </div>
+    <div class="callout warn">
+      <div class="callout-title">⚠ Peroxide Effect Only for HBr — Not HCl or HI</div>
+      HCl: Cl• addition is endothermic → radical chain won't propagate. HI: I• is too stable (weak bond formed) → termination faster than propagation. Only HBr has the right balance of bond strengths for radical chain addition.
+    </div>
+  </div>
+
+  <!-- 15 AROMATIC -->
+  <div class="topic-section" id="aromatic">
+    <h2><span class="sec-num">15</span>Aromaticity — Hückel's Rule</h2>
+    <div class="method-box">
+      <div class="method-box-title">Hückel's Criteria for Aromaticity</div>
+      <ol style="line-height:2;margin:.5rem 0">
+        <li><strong>Cyclic</strong> (all atoms in the ring)</li>
+        <li><strong>Planar</strong></li>
+        <li><strong>Fully conjugated</strong> (continuous π system around the ring — every atom must have a p orbital)</li>
+        <li><strong>(4n + 2) π electrons</strong> where n = 0, 1, 2, 3… (2, 6, 10, 14, 18…)</li>
+      </ol>
+      <p>Anti-aromatic: cyclic, planar, conjugated but <strong>4n π electrons</strong> (4, 8, 12…). More destabilised than non-conjugated structure.</p>
+    </div>
+    <div class="formula-table-wrap" style="margin-top:1rem">
+      <table class="formula-table">
+        <thead><tr><th>Compound</th><th>π electrons</th><th>4n+2?</th><th>Classification</th></tr></thead>
+        <tbody>
+          <tr><td>Benzene</td><td>6</td><td>Yes (n=1)</td><td>Aromatic ✓</td></tr>
+          <tr><td>Naphthalene</td><td>10</td><td>Yes (n=2)</td><td>Aromatic ✓</td></tr>
+          <tr><td>Pyridine</td><td>6 (N lone pair in π)</td><td>Yes (n=1)</td><td>Aromatic ✓</td></tr>
+          <tr><td>Pyrrole</td><td>6 (N lone pair contributes)</td><td>Yes (n=1)</td><td>Aromatic ✓ — N lone pair in ring π system</td></tr>
+          <tr><td>Furan</td><td>6 (O lone pair contributes)</td><td>Yes (n=1)</td><td>Aromatic ✓</td></tr>
+          <tr><td>Cyclobutadiene</td><td>4</td><td>No (4n, n=1)</td><td>Anti-aromatic ✗</td></tr>
+          <tr><td>Cyclooctatetraene</td><td>8</td><td>No (4n, n=2)</td><td>Anti-aromatic — but tub-shaped so NOT planar → non-aromatic</td></tr>
+          <tr><td>Cyclopropenyl cation C₃H₃⁺</td><td>2</td><td>Yes (n=0)</td><td>Aromatic ✓ (smallest aromatic)</td></tr>
+          <tr><td>Cyclopentadienyl anion C₅H₅⁻</td><td>6</td><td>Yes (n=1)</td><td>Aromatic ✓ — anion, lone pair in ring</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- 16 EAS -->
+  <div class="topic-section" id="eas">
+    <h2><span class="sec-num">16</span>EAS — Mechanism &amp; Directing Effects</h2>
+    <p>Electrophilic Aromatic Substitution (EAS): an electrophile (E⁺) attacks the benzene ring, forming a σ-complex (arenium ion, Wheland intermediate), which loses H⁺ to restore aromaticity.</p>
+    <div class="method-box">
+      <div class="method-box-title">EAS General Mechanism (2 Steps)</div>
+      <ol style="line-height:2;margin:.5rem 0">
+        <li><strong>Slow (rate-determining):</strong> E⁺ attacks ring → arenium ion (σ-complex, cyclohexadienyl cation) — aromaticity lost, sp³ carbon formed</li>
+        <li><strong>Fast:</strong> Base removes H⁺ from sp³ carbon → restores aromaticity and π system</li>
+      </ol>
+      <p>Note: Addition (not substitution) gives the arenium ion. The second step is elimination of H⁺ (not addition of nucleophile) — key difference from alkene addition.</p>
+    </div>
+    <div class="formula-table-wrap" style="margin-top:1rem">
+      <table class="formula-table">
+        <thead><tr><th>Reaction</th><th>Electrophile generated</th><th>Conditions</th></tr></thead>
+        <tbody>
+          <tr><td>Nitration</td><td>NO₂⁺ (nitronium ion)</td><td>Conc. HNO₃ + Conc. H₂SO₄ (mixed acid)</td></tr>
+          <tr><td>Halogenation</td><td>Br⁺ or Cl⁺ (via X₂ + Lewis acid)</td><td>Br₂/FeBr₃ or Cl₂/AlCl₃</td></tr>
+          <tr><td>Sulfonation</td><td>SO₃ or HSO₃⁺</td><td>Fuming H₂SO₄ (oleum)</td></tr>
+          <tr><td>Friedel-Crafts alkylation</td><td>R⁺ (carbocation)</td><td>RCl + AlCl₃ (Lewis acid)</td></tr>
+          <tr><td>Friedel-Crafts acylation</td><td>RCO⁺ (acylium ion)</td><td>RCOCl + AlCl₃</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- 17 DIRECTORS -->
+  <div class="topic-section" id="directors">
+    <h2><span class="sec-num">17</span>Directing Groups — Master Table</h2>
+    <p>A substituent already on the ring determines where the next group goes (ortho, meta, or para) and whether the ring is activated or deactivated toward EAS.</p>
+    <div class="formula-table-wrap">
+      <table class="formula-table">
+        <thead><tr><th>Group</th><th>Direction</th><th>Activity</th><th>Reason</th><th>Examples</th></tr></thead>
+        <tbody>
+          <tr><td>−NH₂, −NHR, −NR₂</td><td>Ortho/Para</td><td>Strongly activating</td><td>+M: lone pair donated to ring → high e⁻ density at o/p</td><td>Aniline much more reactive than benzene</td></tr>
+          <tr><td>−OH, −OR</td><td>Ortho/Para</td><td>Strongly activating</td><td>+M: lone pair on O donated to ring</td><td>Phenol very reactive</td></tr>
+          <tr><td>−OCOR</td><td>Ortho/Para</td><td>Activating (moderate)</td><td>+M of O lone pair (partial)</td><td></td></tr>
+          <tr><td>−Alkyl (CH₃, C₂H₅…)</td><td>Ortho/Para</td><td>Mildly activating</td><td>+I of alkyl group; hyperconjugation</td><td>Toluene more reactive than benzene</td></tr>
+          <tr><td>−F, −Cl, −Br, −I</td><td>Ortho/Para</td><td><strong>Deactivating</strong></td><td>−I (deactivates) but +M (directs o/p) — lone pair donation outweighs inductive for direction</td><td>Classic JEE trap!</td></tr>
+          <tr><td>−NO₂</td><td>Meta</td><td>Strongly deactivating</td><td>−M: pulls π electrons away from ring → depletes o/p; meta has relatively higher density</td><td>Nitrobenzene less reactive than benzene</td></tr>
+          <tr><td>−CN, −CHO, −COR</td><td>Meta</td><td>Deactivating</td><td>−M: carbonyl withdraws π electrons</td><td></td></tr>
+          <tr><td>−COOH, −COOR, −SO₃H</td><td>Meta</td><td>Deactivating</td><td>−M effect dominates</td><td></td></tr>
+          <tr><td>−CF₃, −CCl₃, −NH₃⁺</td><td>Meta</td><td>Strongly deactivating</td><td>Strong −I, no +M</td><td></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="callout danger" style="margin-top:1rem">
+      <div class="callout-title">⚠ The Halogen Paradox — Most Tested EAS Trap</div>
+      Halogens (F, Cl, Br, I) DEACTIVATE the ring (−I effect withdraws electrons → ring is less reactive than benzene) BUT still direct ortho/para (+M lone pair donation stabilises o/p arenium ion more than meta). So the ring reacts <em>more slowly</em> than benzene, but the product is still predominantly ortho/para. Never confuse activation with direction.
+    </div>
+  </div>
+
+  <!-- 18 EXAMPLES -->
+  <div class="topic-section" id="examples">
+    <h2><span class="sec-num">18</span>Worked Examples</h2>
+
+    <div class="method-box">
+      <div class="method-box-title">Example 1 — Acidity Order (Easy)</div>
+      <p><strong>Q:</strong> Arrange in increasing acidity: CH₃COOH, FCH₂COOH, F₂CHCOOH, F₃CCOOH.</p>
+      <p>More F atoms = stronger −I effect = more stable COO⁻ = stronger acid.</p>
+      <p><strong>Answer:</strong> CH₃COOH &lt; FCH₂COOH &lt; F₂CHCOOH &lt; F₃CCOOH</p>
+      <p>(pKa: 4.74 &gt; 2.59 &gt; 1.24 &gt; 0.23)</p>
+    </div>
+
+    <div class="method-box">
+      <div class="method-box-title">Example 2 — Mechanism Prediction (Medium)</div>
+      <p><strong>Q:</strong> (CH₃)₃CBr reacts with H₂O. Predict mechanism and product.</p>
+      <p><strong>Analysis:</strong> 3° substrate + weak nucleophile (H₂O) + polar protic solvent → <strong>SN1</strong></p>
+      <p><strong>Step 1:</strong> (CH₃)₃CBr → (CH₃)₃C⁺ + Br⁻ (slow; stable 3° carbocation)</p>
+      <p><strong>Step 2:</strong> (CH₃)₃C⁺ + H₂O → (CH₃)₃COH₂⁺ → (CH₃)₃COH + H⁺ (fast)</p>
+      <p><strong>Stereochemistry:</strong> Racemisation (flat sp² carbocation attacked from both faces)</p>
+    </div>
+
+    <div class="method-box">
+      <div class="method-box-title">Example 3 — Directing Effects (Medium)</div>
+      <p><strong>Q:</strong> Nitration of toluene — predict major product.</p>
+      <p>–CH₃ is an ortho/para director (+I, hyperconjugation) and mildly activating.</p>
+      <p>Major products: 2-nitrotoluene (ortho) and 4-nitrotoluene (para).</p>
+      <p>In practice, para predominates due to steric hindrance at ortho.</p>
+      <p><strong>Answer: p-nitrotoluene is the major product</strong></p>
+    </div>
+
+    <div class="method-box">
+      <div class="method-box-title">Example 4 — Carbocation Stability + Rearrangement (Hard)</div>
+      <p><strong>Q:</strong> Neopentyl bromide ((CH₃)₃CCH₂Br) undergoes SN1 slowly. The product is not neopentyl alcohol but 2-methyl-2-butanol. Explain.</p>
+      <p><strong>Step 1:</strong> (CH₃)₃CCH₂Br → (CH₃)₃CCH₂⁺ (primary carbocation — very unstable)</p>
+      <p><strong>Step 2:</strong> Hydride shift: CH₃ migrates from C2 to C1 → (CH₃)₂C⁺CH(CH₃) (tertiary carbocation — stable!)</p>
+      <p><strong>Step 3:</strong> H₂O attacks tertiary carbocation → 2-methyl-2-butanol</p>
+      <p><em>This is a 1,2-hydride (or methyl) shift — always occurs to form more stable carbocation. Only possible in SN1, not SN2.</em></p>
+    </div>
+  </div>
+
+  <!-- 19 PYQs -->
+  <div class="topic-section" id="pyqs">
+    <h2><span class="sec-num">19</span>JEE Previous-Year Questions</h2>
+    <div class="callout info">
+      <div class="callout-title">📋 Most Tested GOC Patterns</div>
+      <ol style="line-height:2;margin:0">
+        <li>Acidity/basicity order given multiple substituents</li>
+        <li>Stability order of carbocations or carbanions</li>
+        <li>Identify SN1 or SN2 from substrate + conditions</li>
+        <li>Major product of HBr addition (with/without peroxide)</li>
+        <li>EAS directing group and product prediction</li>
+        <li>Identify aromatic/antiaromatic compound</li>
+        <li>Zaitsev vs Hofmann product prediction</li>
+      </ol>
+    </div>
+
+    <div class="method-box">
+      <div class="method-box-title">PYQ — JEE Main 2023</div>
+      <p><strong>Q:</strong> Which of the following is the most stable carbocation?</p>
+      <p>(A) CH₃CH₂⁺ &nbsp; (B) CH₂=CHCH₂⁺ &nbsp; (C) (CH₃)₃C⁺ &nbsp; (D) C₆H₅CH₂⁺</p>
+      <p><strong>Analysis:</strong> A = primary; B = allyl (resonance); C = tertiary; D = benzyl (5 resonance structures with benzene ring)</p>
+      <p><strong>Answer: D (benzyl) ≥ B (allyl) &gt; C (3°) &gt; A (1°)</strong></p>
+      <p>Benzyl has 5 resonance structures; allyl has 2. Both are more stable than 3°.</p>
+    </div>
+
+    <div class="method-box">
+      <div class="method-box-title">PYQ — JEE Main 2022</div>
+      <p><strong>Q:</strong> The compound that does NOT show positive Baeyer's test (KMnO₄) is:</p>
+      <p>(A) Propene &nbsp; (B) Propyne &nbsp; (C) Propane &nbsp; (D) Propenyl benzene</p>
+      <p><strong>Answer: C (propane)</strong> — Propane has no C=C or C≡C, so no oxidation by cold KMnO₄. All others have unsaturation and are oxidised (decolourise purple KMnO₄).</p>
+    </div>
+  </div>
+
+  <!-- 20 TRAPS -->
+  <div class="topic-section" id="traps">
+    <h2><span class="sec-num">20</span>Common Traps &amp; Mistakes</h2>
+    <div class="callout danger">
+      <div class="callout-title">❌ Trap 1: Carbanion stability = carbocation stability (they're opposite)</div>
+      Carbocation: 3° &gt; 2° &gt; 1° (alkyl donates electrons = stabilises +). Carbanion: 1° &gt; 2° &gt; 3° (alkyl donates electrons = destabilises −). Mixing up these orders is the #1 GOC error.
+    </div>
+    <div class="callout danger">
+      <div class="callout-title">❌ Trap 2: Halogens deactivate AND direct meta</div>
+      Halogens deactivate the ring (−I) but are ortho/para directors (+M wins for direction). They do NOT direct meta. Students confuse "deactivating" with "meta-directing" — only groups that withdraw by −M only (no +M) direct meta.
+    </div>
+    <div class="callout danger">
+      <div class="callout-title">❌ Trap 3: Peroxide effect works for HCl and HI too</div>
+      The peroxide/anti-Markovnikov effect is ONLY for HBr. HCl radical addition is endothermic (Cl• propagation step); HI radical addition is irreversible in wrong direction. Never apply peroxide effect to HCl or HI.
+    </div>
+    <div class="callout danger">
+      <div class="callout-title">❌ Trap 4: SN2 with 3° substrate is possible</div>
+      SN2 is essentially impossible with 3° substrates due to steric hindrance — the nucleophile cannot approach the back lobe of the C–X bond. 3° always goes SN1 (or E2 with strong base). Writing SN2 for (CH₃)₃CBr is wrong.
+    </div>
+    <div class="callout danger">
+      <div class="callout-title">❌ Trap 5: Pyridine N lone pair is in the π system</div>
+      In pyridine, the lone pair on N is in an sp² orbital in the plane of the ring — it is NOT part of the π system and is available for protonation (pyridine is a base). In pyrrole, the N lone pair IS part of the 6π aromatic system and is NOT available for protonation (pyrrole is a very weak base).
+    </div>
+    <div class="callout danger">
+      <div class="callout-title">❌ Trap 6: More substituted alkene = more stable (not always the major E2 product)</div>
+      With bulky base (t-BuOK), the less substituted alkene (Hofmann product) is major. More stable alkene = Zaitsev, but only with small base. With bulky base, kinetics (accessibility of β-H) dominates thermodynamics.
+    </div>
+  </div>
+
+  <!-- 21 CHEAT CARD -->
+  <div class="topic-section" id="cheat">
+    <h2><span class="sec-num">21</span>One-Page Cheat Card</h2>
+    <div class="method-box" style="background:var(--topic-accent-l);border-color:var(--topic-accent-m)">
+      <div class="method-box-title">🔬 GOC — Rapid Reference</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.25rem">
+        <div>
+          <p style="font-weight:600;margin-bottom:.4rem">Stability Orders</p>
+          <ul style="font-size:.82rem;line-height:1.9;margin:0">
+            <li>Carbocation &amp; Radical: Bn ≈ Allyl &gt; 3° &gt; 2° &gt; 1°</li>
+            <li>Carbanion: sp &gt; sp² &gt; Bn ≈ Allyl &gt; 1° &gt; 2° &gt; 3°</li>
+            <li>Acidity ↑ with −I; Basicity ↑ with +I</li>
+          </ul>
+        </div>
+        <div>
+          <p style="font-weight:600;margin-bottom:.4rem">SN1 vs SN2</p>
+          <ul style="font-size:.82rem;line-height:1.9;margin:0">
+            <li>SN1: 3°, weak Nu, protic, racemisation</li>
+            <li>SN2: 1°(best), strong Nu, aprotic, inversion</li>
+            <li>LG ability: I⁻ &gt; Br⁻ &gt; Cl⁻ &gt; F⁻</li>
+          </ul>
+        </div>
+        <div>
+          <p style="font-weight:600;margin-bottom:.4rem">Elimination</p>
+          <ul style="font-size:.82rem;line-height:1.9;margin:0">
+            <li>E2: strong base, anti-periplanar H required</li>
+            <li>Zaitsev: small base → more sub. alkene</li>
+            <li>Hofmann: bulky base (t-BuOK) → less sub.</li>
+          </ul>
+        </div>
+        <div>
+          <p style="font-weight:600;margin-bottom:.4rem">EAS Directors</p>
+          <ul style="font-size:.82rem;line-height:1.9;margin:0">
+            <li>o/p activating: −NH₂, −OH, −OR, −alkyl</li>
+            <li>o/p deactivating: −F, −Cl, −Br, −I (trap!)</li>
+            <li>meta deactivating: −NO₂, −CN, −CHO, −COOH</li>
+            <li>Hückel: 4n+2 π e⁻ → aromatic</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="topic-cta-row">
+    <a href="../subjects/chemistry.html#unit-c8" class="topic-cta-btn secondary">↩ Back to C8 Unit</a>
+    <a href="../subjects/chemistry.html" class="topic-cta-btn primary">All Chemistry Units →</a>
+    <a href="../progress.html" class="topic-cta-btn secondary">✅ Mark sessions done</a>
+  </div>
+
+</div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-brand">JEE 2027 Prep</div>
+      <div class="footer-links">
+        <a href="../index.html">Dashboard</a>
+        <a href="../subjects/math.html">Math</a>
+        <a href="../subjects/physics.html">Physics</a>
+        <a href="../subjects/chemistry.html">Chemistry</a>
+        <a href="../progress.html">Progress</a>
+        <a href="../settings.html">Settings</a>
+      </div>
+      <div class="footer-note">All Phases · May 2026 – April 2027</div>
+    </div>
+  </div>
+</footer>
+
+<div id="toast" class="toast"></div>
+<script src="../js/main.js"></script>
+<script>
+// Intermediate Stability Checker
+const IS_DATA = {
+  carbocation: {
+    methyl:    { rank: 1, label: 'Methyl CH₃⁺ — Least stable', explain: 'No alkyl groups, no hyperconjugation, no resonance. The most unstable carbocation possible.' },
+    primary:   { rank: 2, label: 'Primary (1°) — Very unstable', explain: '3 hyperconjugating α-C–H bonds provide slight stabilisation, but no resonance. Still very reactive.' },
+    secondary: { rank: 3, label: 'Secondary (2°) — Moderate stability', explain: '6 hyperconjugating α-C–H bonds + 2 alkyl groups giving +I effect. Commonly formed in SN1 and E1.' },
+    tertiary:  { rank: 4, label: 'Tertiary (3°) — Stable', explain: '9 hyperconjugating α-C–H bonds + 3 alkyl +I groups. Favoured in SN1, rearrangements stop here or proceed forward.' },
+    allyl:     { rank: 5, label: 'Allylic — Very stable (resonance)', explain: 'Two resonance structures (CH₂=CH–CH₂⁺ ↔ ⁺CH₂–CH=CH₂). Charge delocalised over 2 carbons. More stable than 3°.' },
+    benzyl:    { rank: 6, label: 'Benzylic — Most stable (5 resonance structures)', explain: 'Charge delocalised into benzene ring — 5 resonance structures (3 on ring + 2 extended). Most stable common carbocation.' },
+    vinyl:     { rank: 0, label: 'Vinyl/Aryl — Extremely unstable', explain: 'Positive charge on sp² carbon with no adjacent p orbital for hyperconjugation and empty orbital perpendicular to π system. Cannot be stabilised. Essentially never formed.' },
+    sp:        { rank: 0, label: 'sp Carbon — Extremely unstable', explain: 'sp hybridised carbocation: the empty orbital is in an sp orbital (50% s-character) — electrons are held far from nucleus in this geometry. Very unstable.' },
+  },
+  carbanion: {
+    methyl:    { rank: 1, label: 'Methyl CH₃⁻ — Least stable', explain: 'No electron-withdrawing groups. Pure +I of H atoms (minimal) provides no stabilisation. Extremely reactive base.' },
+    primary:   { rank: 2, label: 'Primary (1°) — Slightly more stable than methyl', explain: 'Fewer alkyl +I groups than 2° or 3°. Less electron donation into the negative centre.' },
+    secondary: { rank: 3, label: 'Secondary (2°) — Less stable than 1°', explain: 'Two alkyl groups (+I) push electrons toward the carbanion, destabilising the negative charge.' },
+    tertiary:  { rank: 0, label: 'Tertiary (3°) — Least stable among simple carbanions', explain: 'Three alkyl groups (+I) all destabilise the negative charge. OPPOSITE of carbocation — alkyl groups make carbanions worse.' },
+    allyl:     { rank: 4, label: 'Allylic — Stable (resonance)', explain: 'Negative charge delocalised over 2 carbons by resonance with C=C. More stable than simple alkyl carbanions.' },
+    benzyl:    { rank: 4, label: 'Benzylic — Stable (ring resonance)', explain: 'Negative charge delocalised into benzene ring (multiple resonance structures). Stable — benzylic carbanions used in organic synthesis.' },
+    vinyl:     { rank: 3, label: 'Vinyl/Aryl — Moderate stability', explain: 'sp² carbon holds negative charge — more s-character than sp³ → electrons held closer to nucleus → relatively stable. More stable than 1°.' },
+    sp:        { rank: 5, label: 'sp Carbon (alkynyl) — Most stable carbanion', explain: 'sp orbital has 50% s-character → electrons held very tightly → negative charge most stable. HC≡C⁻ is the strongest common carbanion. Terminal alkynes are acidic (pKa≈25) for this reason.' },
+  },
+  radical: {
+    methyl:    { rank: 1, label: 'Methyl CH₃• — Least stable', explain: 'No hyperconjugation, no resonance. Most reactive radical.' },
+    primary:   { rank: 2, label: 'Primary (1°) — Low stability', explain: '3 hyperconjugating α-C–H bonds. More stable than methyl radical.' },
+    secondary: { rank: 3, label: 'Secondary (2°) — Moderate stability', explain: '6 hyperconjugating C–H bonds. Similar pattern to carbocations.' },
+    tertiary:  { rank: 4, label: 'Tertiary (3°) — Stable', explain: '9 hyperconjugating C–H bonds + 3 alkyl groups. Note: +I stabilises radical less than carbocation (no charge).' },
+    allyl:     { rank: 5, label: 'Allylic — Very stable (resonance)', explain: 'Two resonance structures delocalise the radical over 2 carbons. Very stable — used in radical reactions.' },
+    benzyl:    { rank: 6, label: 'Benzylic — Most stable (ring resonance)', explain: 'Radical delocalised into benzene ring — 5 resonance structures. Most stable common radical.' },
+    vinyl:     { rank: 0, label: 'Vinyl/Aryl — Unstable', explain: 'Unpaired electron on sp² carbon perpendicular to ring/π system — limited stabilisation by adjacent π bonds.' },
+    sp:        { rank: 2, label: 'sp Carbon radical — Low stability', explain: 'Unpaired electron in sp orbital — more stable than vinyl but less than secondary.' },
+  }
+};
+
+const RANK_LABELS = ['Extremely unstable', 'Very low', 'Low–moderate', 'Moderate', 'Stable', 'Very stable', 'Most stable'];
+
+function isUpdate() {
+  const type   = document.getElementById('is-type').value;
+  const struct = document.getElementById('is-struct').value;
+  const d = IS_DATA[type][struct];
+  const bar = '█'.repeat(d.rank) + '░'.repeat(6 - d.rank);
+  document.getElementById('is-out').innerHTML =
+    `<strong>${d.label}</strong><br>` +
+    `Stability: <span style="font-family:var(--font-mono);letter-spacing:2px">${bar}</span> ${RANK_LABELS[d.rank] || ''}<br><br>` +
+    d.explain;
+}
+isUpdate();
+
+// SN1 vs SN2 Predictor
+function snUpdate() {
+  const sub  = document.getElementById('sn-sub').value;
+  const nu   = document.getElementById('sn-nu').value;
+  const solv = document.getElementById('sn-solv').value;
+  let mech, stereo, note;
+
+  if (sub === 'methyl' || sub === 'primary') {
+    if (nu === 'strong') {
+      mech = '✅ SN2'; stereo = 'Inversion of configuration (Walden inversion)';
+      note = sub === 'methyl' ? 'Methyl halides are the fastest in SN2 — no steric hindrance at all.' : '1° substrates give clean SN2 with strong nucleophiles. No carbocation intermediate, so no rearrangement.';
+    } else {
+      mech = '⚠ SN2 (slow) or No reaction'; stereo = 'Inversion, but slow';
+      note = 'Weak nucleophile with 1° substrate gives SN2 slowly. SN1 is not feasible (primary carbocation too unstable).';
+    }
+  } else if (sub === 'tertiary') {
+    if (nu === 'strong' && solv === 'aprotic') {
+      mech = '✅ E2 (elimination preferred)'; stereo = 'Anti-periplanar H and LG';
+      note = '3° substrate + strong base + polar aprotic: E2 dominates. SN2 is blocked by steric bulk. Use bulky base for Hofmann product, small strong base for Zaitsev.';
+    } else {
+      mech = '✅ SN1 + E1'; stereo = 'Racemisation (SN1); both E1 products';
+      note = '3° substrate + weak nucleophile + polar protic solvent: forms stable 3° carbocation → SN1 (racemisation) and E1 (Zaitsev alkene) compete. High temp favours E1.';
+    }
+  } else { // secondary
+    if (nu === 'strong' && solv === 'aprotic') {
+      mech = '⚠ SN2 and/or E2 (competition)'; stereo = 'Inversion (SN2); anti-periplanar (E2)';
+      note = '2° substrate is the ambiguous case. Strong Nu + aprotic → SN2/E2 mixture. Use strong bulky base for E2; strong non-bulky Nu for SN2.';
+    } else {
+      mech = '⚠ SN1 and/or E1 (competition)'; stereo = 'Racemisation (SN1); Zaitsev alkene (E1)';
+      note = '2° substrate in polar protic with weak Nu: SN1 and E1 compete through secondary carbocation. Higher temperature pushes toward E1.';
+    }
+  }
+
+  document.getElementById('sn-out').innerHTML =
+    `<strong>Predicted Mechanism: ${mech}</strong><br>` +
+    `<strong>Stereochemistry:</strong> ${stereo}<br>` +
+    `<strong>Reasoning:</strong> ${note}`;
+}
+snUpdate();
+</script>
+</body>
+</html>
