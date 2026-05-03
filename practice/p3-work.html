@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Practice: Work, Power &amp; Energy | JEE 2027</title>
+
+  <script>
+    MathJax = {
+      tex: { inlineMath: [['\\(','\\)']], displayMath: [['\\[','\\]']] },
+      options: { skipHtmlTags: ['script','noscript','style','textarea','pre'] }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" async></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --phys:#0f766e; --phys-l:#f0fdfa; --phys-m:#ccfbf1; --phys-d:#0d5f58;
+      --ink:#0f172a; --ink2:#334155; --ink3:#64748b;
+      --line:#e2e8f0; --bg:#f8fafc; --white:#ffffff;
+      --green:#15803d; --green-l:#f0fdf4; --red:#b91c1c; --red-l:#fef2f2;
+      --radius:10px; --shadow:0 2px 12px rgba(15,23,42,.08);
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth;font-size:16px}
+    body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--ink);line-height:1.65}
+    h1,h2,h3{font-family:'DM Serif Display',serif;line-height:1.2}
+    a{color:inherit;text-decoration:none}
+    .nav{position:sticky;top:0;z-index:100;background:var(--white);border-bottom:1px solid var(--line);box-shadow:0 1px 8px rgba(15,23,42,.06)}
+    .nav-inner{max-width:1100px;margin:0 auto;padding:0 1.5rem;display:flex;align-items:center;gap:1.5rem;height:58px}
+    .nav-brand{font-family:'DM Serif Display',serif;font-size:1.15rem;white-space:nowrap}
+    .nav-links{display:flex;gap:.25rem}
+    .nav-links a{padding:.35rem .75rem;border-radius:6px;font-size:.85rem;font-weight:500;color:var(--ink2);transition:background .15s}
+    .nav-links a:hover{background:var(--bg)}
+    .nav-links a.active{color:var(--phys);background:var(--phys-l)}
+    .nav-back{margin-left:auto;display:flex;align-items:center;gap:.4rem;font-size:.85rem;font-weight:500;color:var(--ink3);padding:.35rem .75rem;border-radius:6px;transition:background .15s}
+    .nav-back:hover{background:var(--bg);color:var(--ink)}
+    .hero{background:linear-gradient(135deg,var(--phys) 0%,var(--phys-d) 100%);color:#fff;padding:2rem 1.5rem 1.5rem}
+    .hero-inner{max-width:1100px;margin:0 auto}
+    .hero-tag{display:inline-flex;align-items:center;gap:.4rem;background:rgba(255,255,255,.15);border-radius:4px;font-size:.78rem;font-weight:600;letter-spacing:.05em;text-transform:uppercase;padding:.2rem .6rem;margin-bottom:.6rem}
+    .hero h1{font-size:1.75rem;margin-bottom:.4rem}
+    .hero p{font-size:.95rem;opacity:.85;max-width:600px}
+    .score-strip{background:var(--white);border-bottom:1px solid var(--line);padding:.75rem 1.5rem}
+    .score-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap}
+    .score-stat{display:flex;align-items:center;gap:.5rem;font-size:.88rem}
+    .score-num{font-family:'JetBrains Mono',monospace;font-size:1.1rem;font-weight:700}
+    .score-num.correct{color:var(--green)}.score-num.wrong{color:var(--red)}.score-num.total{color:var(--phys)}
+    .score-bar-wrap{flex:1;min-width:160px;height:6px;background:var(--line);border-radius:3px;overflow:hidden}
+    .score-bar{height:100%;background:var(--phys);border-radius:3px;transition:width .4s;width:0%}
+    .btn-reset{margin-left:auto;padding:.35rem .85rem;border-radius:6px;background:var(--bg);border:1px solid var(--line);cursor:pointer;font-size:.82rem;font-weight:500;color:var(--ink3);transition:background .15s}
+    .btn-reset:hover{background:var(--line);color:var(--ink)}
+    .filter-bar{background:var(--white);border-bottom:1px solid var(--line);padding:0 1.5rem;overflow-x:auto}
+    .filter-inner{max-width:1100px;margin:0 auto;display:flex;gap:.1rem}
+    .filter-tab{padding:.65rem 1rem;border-bottom:2px solid transparent;font-size:.85rem;font-weight:500;color:var(--ink3);cursor:pointer;white-space:nowrap;transition:color .15s,border-color .15s}
+    .filter-tab:hover{color:var(--ink)}
+    .filter-tab.active{color:var(--phys);border-bottom-color:var(--phys)}
+    .filter-tab .badge{display:inline-block;background:var(--bg);border-radius:10px;font-size:.72rem;padding:.1rem .4rem;margin-left:.3rem;color:var(--ink3)}
+    .filter-tab.active .badge{background:var(--phys-m);color:var(--phys-d)}
+    .main{max-width:1100px;margin:0 auto;padding:1.5rem 1.5rem 4rem}
+    .section-heading{font-size:.72rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--phys);padding:.4rem 0;margin:1.75rem 0 .75rem;border-bottom:2px solid var(--phys-m);display:flex;align-items:center;gap:.5rem}
+    .section-heading:first-child{margin-top:0}
+    .q-card{background:var(--white);border:1px solid var(--line);border-radius:var(--radius);margin-bottom:1rem;box-shadow:var(--shadow);overflow:hidden;transition:box-shadow .2s}
+    .q-card:hover{box-shadow:0 4px 20px rgba(15,23,42,.1)}
+    .q-card.answered-correct{border-color:#86efac}.q-card.answered-wrong{border-color:#fca5a5}
+    .q-header{display:flex;align-items:flex-start;gap:.75rem;padding:1rem 1.25rem .5rem}
+    .q-num{flex-shrink:0;width:28px;height:28px;background:var(--phys-m);color:var(--phys-d);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-size:.78rem;font-weight:700;margin-top:.1rem}
+    .q-num.correct-num{background:#bbf7d0;color:#15803d}.q-num.wrong-num{background:#fecaca;color:#b91c1c}
+    .q-meta{display:flex;gap:.4rem;flex-wrap:wrap;margin-bottom:.35rem}
+    .q-tag{font-size:.7rem;font-weight:600;letter-spacing:.04em;padding:.15rem .5rem;border-radius:3px;text-transform:uppercase}
+    .tag-pyq{background:#fef3c7;color:#92400e}.tag-foundation{background:var(--phys-m);color:var(--phys-d)}.tag-medium{background:#e0e7ff;color:#3730a3}.tag-hard{background:#fee2e2;color:#991b1b}
+    .q-body{padding:0 1.25rem .75rem 3.25rem}
+    .q-text{font-size:.95rem;line-height:1.7;margin-bottom:.85rem}
+    .q-diagram{margin-bottom:.85rem;text-align:center}
+    .q-options{display:grid;grid-template-columns:1fr 1fr;gap:.5rem;margin-bottom:.85rem}
+    @media(max-width:600px){.q-options{grid-template-columns:1fr}}
+    .opt{display:flex;align-items:flex-start;gap:.5rem;padding:.55rem .85rem;border-radius:7px;border:1.5px solid var(--line);cursor:pointer;font-size:.9rem;transition:border-color .15s,background .15s;background:var(--bg)}
+    .opt:hover:not(.disabled){border-color:var(--phys);background:var(--phys-l)}
+    .opt.selected{border-color:var(--phys);background:var(--phys-l)}
+    .opt.correct{border-color:#16a34a;background:#f0fdf4}
+    .opt.wrong-sel{border-color:#dc2626;background:#fef2f2}
+    .opt.disabled{cursor:default}
+    .opt-letter{flex-shrink:0;width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.78rem;font-weight:700;background:var(--line);color:var(--ink3)}
+    .opt.selected .opt-letter{background:var(--phys);color:#fff}
+    .opt.correct .opt-letter{background:#16a34a;color:#fff}
+    .opt.wrong-sel .opt-letter{background:#dc2626;color:#fff}
+    .opt-text{flex:1;line-height:1.5}
+    .q-footer{padding:0 1.25rem 1rem 3.25rem;display:flex;align-items:center;gap:.75rem;flex-wrap:wrap}
+    .btn-reveal{padding:.4rem 1rem;border-radius:6px;cursor:pointer;font-size:.85rem;font-weight:600;background:var(--phys);color:#fff;border:none;transition:background .15s,transform .1s}
+    .btn-reveal:hover{background:var(--phys-d)}.btn-reveal:active{transform:scale(.97)}
+    .btn-reveal:disabled{background:var(--line);color:var(--ink3);cursor:default;transform:none}
+    .answer-box{display:none;width:100%;background:var(--phys-l);border:1px solid var(--phys-m);border-radius:8px;padding:.75rem 1rem;margin-top:.5rem;font-size:.9rem;line-height:1.65}
+    .answer-box.visible{display:block}
+    .answer-box strong{color:var(--phys-d)}
+    .answer-correct-label{display:inline-flex;align-items:center;gap:.3rem;font-weight:700;color:var(--green);margin-bottom:.3rem}
+    @media(max-width:700px){.hero h1{font-size:1.35rem}.main{padding:1rem 1rem 3rem}.q-body{padding-left:1.25rem}.q-footer{padding-left:1.25rem}}
+  </style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <span class="nav-brand">JEE 2027</span>
+    <div class="nav-links">
+      <a href="../index.html">Home</a>
+      <a href="../subjects/physics.html" class="active">Physics</a>
+      <a href="index.html">Practice</a>
+    </div>
+    <a class="nav-back" href="../topics/work-energy.html">← Theory</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-tag">⚛ Physics · Unit P3</div>
+    <h1>Work, Power &amp; Energy</h1>
+    <p>20 questions — Work by variable force · Work-Energy Theorem · Conservation of Energy · JEE Main PYQs</p>
+  </div>
+</div>
+
+<div class="score-strip">
+  <div class="score-inner">
+    <div class="score-stat"><span class="score-num correct" id="sc-correct">0</span><span style="color:var(--ink3);font-size:.82rem">correct</span></div>
+    <div class="score-stat"><span class="score-num wrong" id="sc-wrong">0</span><span style="color:var(--ink3);font-size:.82rem">wrong</span></div>
+    <div class="score-stat"><span class="score-num total" id="sc-total">0</span><span style="color:var(--ink3);font-size:.82rem">/ 20 attempted</span></div>
+    <div class="score-bar-wrap"><div class="score-bar" id="score-bar"></div></div>
+    <button class="btn-reset" onclick="resetAll()">↺ Reset</button>
+  </div>
+</div>
+
+<div class="filter-bar">
+  <div class="filter-inner">
+    <div class="filter-tab active" data-filter="all" onclick="setFilter('all',this)">All <span class="badge">20</span></div>
+    <div class="filter-tab" data-filter="work" onclick="setFilter('work',this)">Work <span class="badge">8</span></div>
+    <div class="filter-tab" data-filter="wet" onclick="setFilter('wet',this)">Work-Energy Theorem <span class="badge">7</span></div>
+    <div class="filter-tab" data-filter="coe" onclick="setFilter('coe',this)">Conservation of Energy <span class="badge">5</span></div>
+    <div class="filter-tab" data-filter="pyq" onclick="setFilter('pyq',this)">PYQ Only <span class="badge">5</span></div>
+  </div>
+</div>
+
+<div class="main" id="main-content"></div>
+
+<script>
+const QUESTIONS = [
+
+  /* ─── WORK ─── */
+  {
+    id:1, section:'work', difficulty:'medium', pyq:null,
+    text:'A force of magnitude 30 N acts along \\(\\hat{i}+\\hat{j}+\\hat{k}\\), displacing a particle from point (2, 4, 1) to (3, 5, 2). The work done during this displacement is:',
+    options:['90 J','30 J','\\(30\\sqrt{3}\\) J','\\(30/\\sqrt{3}\\) J'],
+    answer:2,
+    explanation:'Unit vector along \\(\\hat{i}+\\hat{j}+\\hat{k}\\) is \\(\\dfrac{\\hat{i}+\\hat{j}+\\hat{k}}{\\sqrt{3}}\\). So \\(\\vec{F} = \\dfrac{30}{\\sqrt{3}}(\\hat{i}+\\hat{j}+\\hat{k})\\). Displacement \\(\\Delta\\vec{r} = (1,1,1)\\).<br>\\[W = \\vec{F}\\cdot\\Delta\\vec{r} = \\frac{30}{\\sqrt{3}}(1+1+1) = \\frac{30\\times 3}{\\sqrt{3}} = 30\\sqrt{3}\\text{ J}\\]'
+  },
+
+  {
+    id:2, section:'work', difficulty:'foundation', pyq:'AIEEE 2002',
+    text:'A spring of force constant 800 N/m has an extension of 5 cm. The work done in extending it from 5 cm to 15 cm is:',
+    options:['16 J','8 J','32 J','24 J'],
+    answer:1,
+    explanation:'Work done in stretching a spring: \\(W = \\dfrac{1}{2}k(x_2^2 - x_1^2)\\)<br>\\(x_1 = 0.05\\) m, \\(x_2 = 0.15\\) m, \\(k = 800\\) N/m<br>\\[W = \\frac{1}{2}\\times 800\\times(0.15^2 - 0.05^2) = 400\\times(0.0225 - 0.0025) = 400\\times 0.02 = \\mathbf{8\\text{ J}}\\]'
+  },
+
+  {
+    id:3, section:'work', difficulty:'medium', pyq:null,
+    text:'A rope is used to lower a block of mass \\(M\\) by a distance \\(x\\) with a constant downward acceleration \\(g/2\\). The work done by the rope on the block is:',
+    options:['\\(Mgx\\)','\\(\\frac{1}{2}Mgx\\)','\\(-\\frac{1}{2}Mgx\\)','\\(Mgx^2\\)'],
+    answer:2,
+    explanation:'Newton\'s 2nd law (taking down as positive): \\(Mg - T = Ma = M\\cdot\\dfrac{g}{2}\\)<br>\\(T = Mg - \\dfrac{Mg}{2} = \\dfrac{Mg}{2}\\)<br>The rope tension acts upward on the block, displacement is downward (distance \\(x\\)):<br>\\[W_{\\text{rope}} = -T\\cdot x = -\\frac{Mg}{2}\\cdot x = -\\frac{1}{2}Mgx\\]<br>Negative because force and displacement are opposite.'
+  },
+
+  {
+    id:4, section:'work', difficulty:'foundation', pyq:null,
+    text:'A bucket full of water is drawn up by a person. The work done by the gravitational force is:',
+    options:['Negative because force and displacement are in opposite directions','Positive because force and displacement are in the same direction','Negative because force and displacement are in the same direction','Positive because force and displacement are in opposite directions'],
+    answer:0,
+    explanation:'Gravity acts downward (\\(-mg\\hat{j}\\)), displacement is upward. They are in <strong>opposite</strong> directions.<br>\\(W_g = \\vec{F}_g \\cdot \\vec{s} = Fs\\cos 180° = -mgs < 0\\)<br>Gravity always does negative work when an object is lifted upward.'
+  },
+
+  {
+    id:5, section:'work', difficulty:'foundation', pyq:null,
+    text:'A ball is thrown vertically upwards from the ground. The work done by air resistance during its time of flight is:',
+    options:['Positive during ascent and negative during descent','Positive during ascent and descent','Negative during ascent and positive during descent','Negative during ascent and descent'],
+    answer:3,
+    explanation:'Air resistance always opposes motion:<br>• <strong>Ascent:</strong> ball moves up, air drag acts down → work by air resistance = <em>negative</em><br>• <strong>Descent:</strong> ball moves down, air drag acts up → work by air resistance = <em>negative</em><br>In both cases, drag force and displacement are in opposite directions, so work is always negative.',
+    diagram:`<svg viewBox="0 0 200 140" width="200" height="140">
+      <text x="100" y="14" text-anchor="middle" font-size="10" fill="#64748b" font-weight="600">Air drag always opposes motion</text>
+      <!-- Ascent -->
+      <text x="50" y="35" text-anchor="middle" font-size="10" fill="#0f766e" font-weight="600">Ascent</text>
+      <line x1="50" y1="120" x2="50" y2="55" stroke="#0f766e" stroke-width="2" marker-end="url(#ua)"/>
+      <text x="60" y="90" font-size="9" fill="#0f766e">v↑</text>
+      <line x1="50" y1="80" x2="50" y2="100" stroke="#dc2626" stroke-width="2" marker-end="url(#da)"/>
+      <text x="57" y="95" font-size="9" fill="#dc2626">F_air↓</text>
+      <text x="50" y="132" text-anchor="middle" font-size="9" fill="#dc2626">W_air &lt; 0</text>
+      <!-- Descent -->
+      <text x="150" y="35" text-anchor="middle" font-size="10" fill="#1d4ed8" font-weight="600">Descent</text>
+      <line x1="150" y1="55" x2="150" y2="120" stroke="#1d4ed8" stroke-width="2" marker-end="url(#db)"/>
+      <text x="158" y="90" font-size="9" fill="#1d4ed8">v↓</text>
+      <line x1="150" y1="95" x2="150" y2="75" stroke="#dc2626" stroke-width="2" marker-end="url(#ub)"/>
+      <text x="157" y="82" font-size="9" fill="#dc2626">F_air↑</text>
+      <text x="150" y="132" text-anchor="middle" font-size="9" fill="#dc2626">W_air &lt; 0</text>
+      <defs>
+        <marker id="ua" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#0f766e"/></marker>
+        <marker id="da" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#dc2626"/></marker>
+        <marker id="db" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#1d4ed8"/></marker>
+        <marker id="ub" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#dc2626"/></marker>
+      </defs>
+    </svg>`
+  },
+
+  {
+    id:6, section:'work', difficulty:'foundation', pyq:null,
+    text:'A force of 1200 N acting on a stone by means of a rope slides the stone through a distance of 10 m in a direction inclined at 60° to the force. The work done by the force is:',
+    options:['\\(6000\\sqrt{3}\\) J','6000 J','12000 J','8000 J'],
+    answer:1,
+    explanation:'\\(W = F\\cdot s\\cdot\\cos\\theta = 1200\\times 10\\times\\cos 60° = 12000\\times 0.5 = \\mathbf{6000\\text{ J}}\\)<br>The angle between force and displacement is 60°.'
+  },
+
+  {
+    id:7, section:'work', difficulty:'foundation', pyq:null,
+    text:'A force \\(F\\) is applied on a lawn mower at an angle of 60° with the horizontal. If it moves through a distance \\(x\\), the work done by the force is:',
+    options:['\\(Fx/2\\)','\\(F/2x\\)','\\(2Fx\\)','\\(2x/F\\)'],
+    answer:0,
+    explanation:'The force has a horizontal component \\(F\\cos 60° = F/2\\) which does work over displacement \\(x\\):<br>\\[W = F\\cos 60°\\cdot x = \\frac{F}{2}\\cdot x = \\frac{Fx}{2}\\]<br>The vertical component of F does no work (perpendicular to displacement).'
+  },
+
+  {
+    id:8, section:'work', difficulty:'medium', pyq:null,
+    text:'A force \\(F = (2+x)\\) N acts on a particle in the x-direction where \\(x\\) is in metres. The work done by this force during a displacement from \\(x = 1\\) m to \\(x = 2\\) m is:',
+    options:['2 J','3.5 J','4.5 J','5 J'],
+    answer:1,
+    explanation:'Variable force requires integration:<br>\\[W = \\int_1^2 F\\,dx = \\int_1^2(2+x)\\,dx = \\left[2x + \\frac{x^2}{2}\\right]_1^2\\]<br>\\[= \\left(4 + 2\\right) - \\left(2 + \\frac{1}{2}\\right) = 6 - 2.5 = \\mathbf{3.5\\text{ J}}\\]'
+  },
+
+  /* ─── WORK-ENERGY THEOREM ─── */
+  {
+    id:9, section:'wet', difficulty:'medium', pyq:'AIEEE 2012',
+    text:'If two springs \\(S_1\\) and \\(S_2\\) of force constants \\(k_1\\) and \\(k_2\\) are stretched by the same force, more work is done on \\(S_1\\) than on \\(S_2\\).<br><strong>Statement 1:</strong> If stretched by the same amount, work done on \\(S_1\\) will be more than on \\(S_2\\).<br><strong>Statement 2:</strong> \\(k_1 < k_2\\)<br>Choose the correct option:',
+    options:['S1 true, S2 true, S2 is the correct explanation of S1','S1 is false, S2 is true','S1 is true, S2 is false','S1 true, S2 true, S2 is NOT the correct explanation of S1'],
+    answer:1,
+    explanation:'Same force \\(F\\) on both springs: work done \\(= \\dfrac{F^2}{2k}\\). More work on \\(S_1\\) means \\(\\dfrac{1}{k_1} > \\dfrac{1}{k_2}\\), so \\(k_1 < k_2\\). ✓ <strong>Statement 2 is TRUE.</strong><br><br>Same extension \\(x\\): \\(W = \\dfrac{1}{2}kx^2\\). Larger \\(k\\) → more work. Since \\(k_1 < k_2\\), work on \\(S_1 <\\) work on \\(S_2\\). So <strong>Statement 1 is FALSE.</strong><br>Answer: S1 false, S2 true.'
+  },
+
+  {
+    id:10, section:'wet', difficulty:'medium', pyq:null,
+    text:'The KE of a freely falling body:',
+    options:['Is directly proportional to height of its fall','Is inversely proportional to height of its fall','Is directly proportional to the square of time of its fall','Both (A) and (C) are true'],
+    answer:3,
+    explanation:'For free fall (from rest): \\(v^2 = 2gh\\), so \\(KE = \\frac{1}{2}mv^2 = mgh\\) → <strong>KE ∝ h</strong> ✓ (A is true)<br>Also \\(v = gt\\), so \\(KE = \\frac{1}{2}m(gt)^2 = \\frac{1}{2}mg^2t^2\\) → <strong>KE ∝ t²</strong> ✓ (C is true)<br>Therefore both A and C are correct → <strong>Answer D</strong>.'
+  },
+
+  {
+    id:11, section:'wet', difficulty:'medium', pyq:null,
+    text:'A body starts from rest and is acted on by a constant force. The ratio of kinetic energy gained in the first five seconds to that gained in the next five seconds is:',
+    options:['2 : 1','1 : 1','3 : 1','1 : 3'],
+    answer:3,
+    explanation:'Constant force → constant acceleration \\(a\\).<br>At \\(t=5\\): \\(v_1 = 5a\\), \\(KE_1 = \\frac{1}{2}m(5a)^2 = \\frac{25ma^2}{2}\\)<br>At \\(t=10\\): \\(v_2 = 10a\\), \\(KE_2 = \\frac{1}{2}m(10a)^2 = \\frac{100ma^2}{2} = 50ma^2\\)<br>KE in next 5s \\(= KE_2 - KE_1 = 50ma^2 - \\frac{25ma^2}{2} = \\frac{75ma^2}{2}\\)<br>\\[\\text{Ratio} = \\frac{25ma^2/2}{75ma^2/2} = \\frac{25}{75} = \\mathbf{1:3}\\]'
+  },
+
+  {
+    id:12, section:'wet', difficulty:'foundation', pyq:null,
+    text:'The speed of a car changes from 0 to 5 m/s (phase 1), from 5 to 10 m/s (phase 2), and from 10 to 15 m/s (phase 3). In which phase is the increase in kinetic energy the greatest?',
+    options:['First phase','Second phase','Third phase','Same in all three phases'],
+    answer:2,
+    explanation:'\\(\\Delta KE = \\frac{1}{2}m(v_2^2 - v_1^2)\\)<br>Phase 1: \\(\\frac{1}{2}m(25-0) = 12.5m\\)<br>Phase 2: \\(\\frac{1}{2}m(100-25) = 37.5m\\)<br>Phase 3: \\(\\frac{1}{2}m(225-100) = 62.5m\\)<br><strong>Third phase</strong> has the maximum \\(\\Delta KE\\). KE increases quadratically with speed!'
+  },
+
+  {
+    id:13, section:'wet', difficulty:'medium', pyq:'AIEEE 2011',
+    text:'At time \\(t = 0\\), a particle starts moving along the x-axis. If its kinetic energy increases uniformly with time \\(t\\), the net force acting on it must be proportional to:',
+    options:['\\(\\sqrt{t}\\)','constant','\\(t\\)','\\(1/\\sqrt{t}\\)'],
+    answer:3,
+    explanation:'\\(KE = ct \\Rightarrow \\frac{1}{2}mv^2 = ct \\Rightarrow v = \\sqrt{\\frac{2c}{m}}\\cdot\\sqrt{t} \\propto \\sqrt{t}\\)<br>Net force: \\(F = ma = m\\dfrac{dv}{dt} = m\\cdot\\dfrac{d}{dt}\\left(\\sqrt{\\frac{2c}{m}\\cdot t}\\right) = m\\cdot\\frac{1}{2}\\sqrt{\\frac{2c}{m}}\\cdot t^{-1/2}\\)<br>\\[F \\propto \\frac{1}{\\sqrt{t}}\\]'
+  },
+
+  {
+    id:14, section:'wet', difficulty:'medium', pyq:null,
+    text:'For the same kinetic energy, the momentum shall be maximum for which of the following particles?',
+    options:['Electron','Proton','Deuteron','Alpha particle'],
+    answer:3,
+    explanation:'\\(KE = \\dfrac{p^2}{2m} \\Rightarrow p = \\sqrt{2m \\cdot KE}\\). For same \\(KE\\), larger mass → larger momentum.<br>Masses: \\(m_e \\ll m_p < m_d < m_\\alpha\\). Here \\(m_\\alpha = 4m_p\\), \\(m_d = 2m_p\\).<br>Maximum momentum for maximum mass → <strong>Alpha particle</strong>.'
+  },
+
+  {
+    id:15, section:'wet', difficulty:'medium', pyq:null,
+    text:'By applying the brakes without causing a skid, a driver stops a car in 5 m if going at 36 km/h. Using the same brakes, the stopping distance from 72 km/h is:',
+    options:['10 m','2.5 m','20 m','40 m'],
+    answer:2,
+    explanation:'Braking force \\(F\\) is constant. Work-energy theorem: \\(F \\cdot s = \\frac{1}{2}mv^2\\), so \\(s \\propto v^2\\).<br>\\(v_2/v_1 = 72/36 = 2\\), so \\(s_2/s_1 = (v_2/v_1)^2 = 4\\)<br>\\[s_2 = 4\\times 5 = \\mathbf{20\\text{ m}}\\]<br>Verify: \\(F = \\frac{1}{2}m(10)^2/5 = 10m\\). At 20 m/s: \\(10m\\times 20 = \\frac{1}{2}m(400)\\) ✓'
+  },
+
+  /* ─── CONSERVATION OF ENERGY ─── */
+  {
+    id:16, section:'coe', difficulty:'medium', pyq:null,
+    text:'A shot is fired at 30° with the vertical from a point on the ground with kinetic energy \\(K\\). If air resistance is ignored, the kinetic energy at the top of the trajectory is:',
+    options:['\\(3K/4\\)','\\(K/2\\)','\\(K\\)','\\(K/4\\)'],
+    answer:3,
+    explanation:'Initial speed \\(v\\), angle 30° with vertical (= 60° with horizontal).<br>Horizontal component: \\(v_x = v\\sin 30° = v/2\\) (unchanged throughout)<br>At the top: only horizontal velocity remains.<br>\\[KE_{\\text{top}} = \\frac{1}{2}m v_x^2 = \\frac{1}{2}m\\left(\\frac{v}{2}\\right)^2 = \\frac{1}{4}\\cdot\\frac{1}{2}mv^2 = \\frac{K}{4}\\]',
+    diagram:`<svg viewBox="0 0 200 120" width="200" height="120">
+      <text x="100" y="12" text-anchor="middle" font-size="10" fill="#64748b">30° from vertical</text>
+      <!-- trajectory parabola -->
+      <path d="M20,100 Q100,20 180,100" fill="none" stroke="#0f766e" stroke-width="2"/>
+      <!-- initial velocity -->
+      <line x1="20" y1="100" x2="45" y2="55" stroke="#1d4ed8" stroke-width="2" marker-end="url(#va)"/>
+      <text x="48" y="55" font-size="9" fill="#1d4ed8">v</text>
+      <!-- angle -->
+      <path d="M20,82 A18,18 0 0,1 29,70" fill="none" stroke="#334155" stroke-width="1.2"/>
+      <text x="32" y="82" font-size="8" fill="#334155">30°</text>
+      <line x1="20" y1="100" x2="20" y2="55" stroke="#9ca3af" stroke-width="1" stroke-dasharray="3,2"/>
+      <!-- At top -->
+      <circle cx="100" cy="20" r="4" fill="#d97706"/>
+      <line x1="100" y1="20" x2="125" y2="20" stroke="#dc2626" stroke-width="2" marker-end="url(#vb)"/>
+      <text x="128" y="24" font-size="9" fill="#dc2626">v/2</text>
+      <text x="100" y="10" text-anchor="middle" font-size="9" fill="#d97706">KE = K/4</text>
+      <!-- ground -->
+      <line x1="10" y1="102" x2="190" y2="102" stroke="#334155" stroke-width="1.5"/>
+      <defs>
+        <marker id="va" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#1d4ed8"/></marker>
+        <marker id="vb" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#dc2626"/></marker>
+      </defs>
+    </svg>`
+  },
+
+  {
+    id:17, section:'coe', difficulty:'medium', pyq:null,
+    text:'AB is a frictionless inclined surface at 30° with horizontal. A is 6.3 m above the ground while B is 3.8 m above the ground. A block slides from A (starting from rest). Its velocity on reaching B is:',
+    options:['7 m s\\(^{-1}\\)','14 m s\\(^{-1}\\)','7.4 m s\\(^{-1}\\)','4.9 m s\\(^{-1}\\)'],
+    answer:0,
+    explanation:'Using conservation of energy (frictionless): \\(\\frac{1}{2}mv^2 = mg(h_A - h_B)\\)<br>\\[v = \\sqrt{2g(h_A - h_B)} = \\sqrt{2\\times 10\\times(6.3-3.8)} = \\sqrt{2\\times 10\\times 2.5} = \\sqrt{50} \\approx \\mathbf{7\\text{ m/s}}\\]',
+    diagram:`<svg viewBox="0 0 200 130" width="200" height="130">
+      <polygon points="20,110 180,110 180,50" fill="#e2e8f0" stroke="none"/>
+      <line x1="20" y1="110" x2="180" y2="50" stroke="#0f766e" stroke-width="2.5"/>
+      <text x="18" y="107" font-size="11" fill="#1d4ed8" font-weight="700">A</text>
+      <text x="182" y="53" font-size="11" fill="#dc2626" font-weight="700">B</text>
+      <!-- Heights -->
+      <line x1="20" y1="110" x2="20" y2="20" stroke="#9ca3af" stroke-width="1" stroke-dasharray="3,2"/>
+      <text x="4" y="68" font-size="9" fill="#64748b">6.3m</text>
+      <line x1="180" y1="110" x2="180" y2="30" stroke="#9ca3af" stroke-width="1" stroke-dasharray="3,2"/>
+      <text x="185" y="83" font-size="9" fill="#64748b">3.8m</text>
+      <!-- angle -->
+      <path d="M170,110 A10,10 0 0,0 165,103" fill="none" stroke="#334155" stroke-width="1"/>
+      <text x="155" y="110" font-size="8" fill="#334155">30°</text>
+      <!-- ground -->
+      <line x1="10" y1="112" x2="195" y2="112" stroke="#334155" stroke-width="1.5"/>
+      <text x="100" y="128" text-anchor="middle" font-size="9" fill="#0f766e">h_A - h_B = 2.5 m</text>
+    </svg>`
+  },
+
+  {
+    id:18, section:'coe', difficulty:'medium', pyq:null,
+    text:'A block of mass 4 kg slides on a horizontal frictionless surface with a speed of 2 m/s. It is brought to rest by compressing a spring in its path. If the force constant of the spring is 400 N/m, the spring will be compressed by:',
+    options:['\\(2\\times 10^{-2}\\) m','0.2 m','20 m','200 m'],
+    answer:1,
+    explanation:'All KE converts to spring PE at maximum compression:<br>\\[\\frac{1}{2}mv^2 = \\frac{1}{2}kx^2\\]<br>\\[x = v\\sqrt{\\frac{m}{k}} = 2\\times\\sqrt{\\frac{4}{400}} = 2\\times\\sqrt{0.01} = 2\\times 0.1 = \\mathbf{0.2\\text{ m}}\\]'
+  },
+
+  {
+    id:19, section:'coe', difficulty:'hard', pyq:null,
+    text:'A block of mass \\(m\\) is hung vertically from an elastic thread of force constant \\(k = mg/a\\). Initially the thread is at its natural length. The block is allowed to fall freely. The kinetic energy of the block at the equilibrium position will be:',
+    options:['\\(mga\\)','\\(mga/2\\)','zero','\\(2mga\\)'],
+    answer:1,
+    explanation:'Equilibrium extension: \\(kx_0 = mg \\Rightarrow x_0 = \\dfrac{mg}{k} = \\dfrac{mg}{mg/a} = a\\)<br>At equilibrium, the block has fallen a distance \\(a\\) from natural length. Using energy conservation:<br>\\[KE = W_{\\text{gravity}} - W_{\\text{spring}} = mga - \\frac{1}{2}ka^2 = mga - \\frac{1}{2}\\cdot\\frac{mg}{a}\\cdot a^2 = mga - \\frac{mga}{2} = \\frac{mga}{2}\\]<br>The equilibrium position is <em>not</em> where KE is maximum — it\'s where \\(v\\) is maximum, but KE here is \\(mga/2\\).'
+  },
+
+  {
+    id:20, section:'coe', difficulty:'hard', pyq:null,
+    text:'The work done to accelerate a body from 30 m/s to 60 m/s is three times the work done to accelerate it from 10 m/s to \\(v\\) m/s. The value of \\(v\\) in m/s is:',
+    options:['30','\\(20\\sqrt{2}\\)','\\(30\\sqrt{3}\\)','\\(10\\sqrt{10}\\)'],
+    answer:3,
+    explanation:'\\(W_1 = \\frac{1}{2}m(60^2-30^2) = \\frac{1}{2}m(3600-900) = 1350m\\)<br>\\(W_2 = \\frac{1}{2}m(v^2-10^2)\\)<br>Given \\(W_1 = 3W_2\\):<br>\\[1350m = 3\\times\\frac{1}{2}m(v^2-100)\\]<br>\\[900 = v^2 - 100 \\Rightarrow v^2 = 1000 \\Rightarrow v = \\sqrt{1000} = 10\\sqrt{10}\\text{ m/s}\\]'
+  }
+
+]; /* end QUESTIONS */
+
+const SECTION_META = {
+  'work':{ label:'A. Work (W = F·d·cosθ)', icon:'💼' },
+  'wet': { label:'B. Work-Energy Theorem', icon:'⚡' },
+  'coe': { label:'C. Conservation of Energy', icon:'🔄' }
+};
+
+let state = {};
+
+function buildPage(filterKey) {
+  const container = document.getElementById('main-content');
+  container.innerHTML = '';
+  let lastSection = null, shown = 0;
+
+  QUESTIONS.forEach(q => {
+    const pyqMatch = filterKey === 'pyq' && q.pyq;
+    if (filterKey !== 'all' && filterKey !== 'pyq' && q.section !== filterKey) return;
+    if (filterKey === 'pyq' && !pyqMatch) return;
+    shown++;
+
+    if (filterKey === 'all' || filterKey === 'pyq') {
+      const sm = SECTION_META[q.section];
+      if (sm && q.section !== lastSection) {
+        lastSection = q.section;
+        const h = document.createElement('div');
+        h.className = 'section-heading';
+        h.innerHTML = `${sm.icon} &nbsp; ${sm.label}`;
+        container.appendChild(h);
+      }
+    }
+
+    const s = state[q.id] || {};
+    const answered = s.chosen !== undefined;
+    const correct = answered && s.chosen === q.answer;
+    const letters = ['A','B','C','D'];
+
+    let tagHtml = '';
+    if (q.pyq) tagHtml += `<span class="q-tag tag-pyq">${q.pyq}</span>`;
+    const diffClass = { foundation:'tag-foundation', medium:'tag-medium', hard:'tag-hard' }[q.difficulty];
+    const diffLabel = { foundation:'Foundation', medium:'Medium', hard:'Hard' }[q.difficulty];
+    tagHtml += `<span class="q-tag ${diffClass}">${diffLabel}</span>`;
+
+    let optsHtml = '<div class="q-options">';
+    q.options.forEach((opt, i) => {
+      let cls = 'opt';
+      if (answered) {
+        cls += ' disabled';
+        if (i === q.answer) cls += ' correct';
+        else if (i === s.chosen) cls += ' wrong-sel';
+      }
+      optsHtml += `<div class="${cls}" onclick="chooseOption(${q.id},${i})">
+        <span class="opt-letter">${letters[i]}</span>
+        <span class="opt-text">${opt}</span>
+      </div>`;
+    });
+    optsHtml += '</div>';
+
+    const aVisible = s.revealed ? 'visible' : '';
+    const numClass = answered ? (correct ? 'correct-num' : 'wrong-num') : '';
+    const cardClass = answered ? (correct ? 'answered-correct' : 'answered-wrong') : '';
+
+    const card = document.createElement('div');
+    card.className = `q-card ${cardClass}`;
+    card.id = `card-${q.id}`;
+    card.innerHTML = `
+      <div class="q-header">
+        <div class="q-num ${numClass}">${q.id}</div>
+        <div style="flex:1"><div class="q-meta">${tagHtml}</div></div>
+      </div>
+      <div class="q-body">
+        <div class="q-text">${q.text}</div>
+        ${q.diagram ? `<div class="q-diagram">${q.diagram}</div>` : ''}
+        ${optsHtml}
+      </div>
+      <div class="q-footer">
+        <button class="btn-reveal" id="btn-${q.id}" onclick="revealAnswer(${q.id})"
+          ${s.revealed ? 'disabled' : ''}>${s.revealed ? '✓ Shown' : 'Reveal Answer'}</button>
+        <div class="answer-box ${aVisible}" id="ans-${q.id}">
+          <div class="answer-correct-label">✓ Correct Answer: ${letters[q.answer]}</div>
+          <div>${q.explanation}</div>
+        </div>
+      </div>`;
+    container.appendChild(card);
+  });
+
+  if (shown === 0) container.innerHTML = '<p style="color:var(--ink3);padding:2rem;text-align:center">No questions in this filter.</p>';
+  if (window.MathJax && MathJax.typesetPromise) MathJax.typesetPromise([container]).catch(console.warn);
+}
+
+function chooseOption(qId, idx) {
+  if (state[qId] && state[qId].chosen !== undefined) return;
+  state[qId] = state[qId] || {};
+  state[qId].chosen = idx;
+  updateScore();
+  const active = document.querySelector('.filter-tab.active');
+  buildPage(active ? active.dataset.filter : 'all');
+  const card = document.getElementById(`card-${qId}`);
+  if (card) card.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+
+function revealAnswer(qId) {
+  state[qId] = state[qId] || {};
+  state[qId].revealed = true;
+  const box = document.getElementById(`ans-${qId}`);
+  const btn = document.getElementById(`btn-${qId}`);
+  if (box) box.classList.add('visible');
+  if (btn) { btn.disabled = true; btn.textContent = '✓ Shown'; }
+  if (window.MathJax && MathJax.typesetPromise) MathJax.typesetPromise([box]).catch(console.warn);
+}
+
+function updateScore() {
+  let correct = 0, wrong = 0;
+  QUESTIONS.forEach(q => {
+    const s = state[q.id];
+    if (!s || s.chosen === undefined) return;
+    if (s.chosen === q.answer) correct++;
+    else wrong++;
+  });
+  const total = correct + wrong;
+  document.getElementById('sc-correct').textContent = correct;
+  document.getElementById('sc-wrong').textContent = wrong;
+  document.getElementById('sc-total').textContent = total;
+  document.getElementById('score-bar').style.width = (total / QUESTIONS.length * 100) + '%';
+}
+
+function setFilter(key, el) {
+  document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+  el.classList.add('active');
+  buildPage(key);
+}
+
+function resetAll() {
+  if (!confirm('Reset all answers?')) return;
+  state = {};
+  updateScore();
+  const active = document.querySelector('.filter-tab.active');
+  buildPage(active ? active.dataset.filter : 'all');
+}
+
+buildPage('all');
+updateScore();
+</script>
+</body>
+</html>
