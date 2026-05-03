@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Practice Questions | JEE 2027</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --math:#1d4ed8; --math-l:#eff6ff;
+      --phys:#0f766e; --phys-l:#f0fdfa; --phys-m:#ccfbf1;
+      --chem:#b45309; --chem-l:#fffbeb;
+      --ink:#0f172a; --ink2:#334155; --ink3:#64748b;
+      --line:#e2e8f0; --bg:#f8fafc; --white:#ffffff;
+      --radius:10px; --shadow:0 2px 12px rgba(15,23,42,.08);
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth;font-size:16px}
+    body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--ink);line-height:1.6}
+    h1,h2,h3{font-family:'DM Serif Display',serif;line-height:1.2}
+    a{color:inherit;text-decoration:none}
+
+    .nav{position:sticky;top:0;z-index:100;background:var(--white);border-bottom:1px solid var(--line);box-shadow:0 1px 8px rgba(15,23,42,.06)}
+    .nav-inner{max-width:1100px;margin:0 auto;padding:0 1.5rem;display:flex;align-items:center;gap:1.5rem;height:58px}
+    .nav-brand{font-family:'DM Serif Display',serif;font-size:1.15rem;white-space:nowrap}
+    .nav-links{display:flex;gap:.25rem}
+    .nav-links a{padding:.35rem .75rem;border-radius:6px;font-size:.85rem;font-weight:500;color:var(--ink2);transition:background .15s}
+    .nav-links a:hover,.nav-links a.active{background:var(--bg);color:var(--ink)}
+
+    .hero{background:var(--ink);color:#fff;padding:2rem 1.5rem 1.75rem}
+    .hero-inner{max-width:1100px;margin:0 auto}
+    .hero-tag{display:inline-flex;align-items:center;gap:.4rem;background:rgba(255,255,255,.12);border-radius:4px;font-size:.75rem;font-weight:600;letter-spacing:.05em;text-transform:uppercase;padding:.2rem .6rem;margin-bottom:.6rem}
+    .hero h1{font-size:1.75rem;margin-bottom:.4rem}
+    .hero p{font-size:.95rem;opacity:.8;max-width:560px}
+
+    .main{max-width:1100px;margin:0 auto;padding:2rem 1.5rem 4rem}
+
+    .subject-section{margin-bottom:2.5rem}
+    .subject-label{font-size:.72rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:.4rem 0;margin-bottom:1rem;border-bottom:2px solid var(--line);display:flex;align-items:center;gap:.5rem}
+    .subject-label.math-label{color:var(--math);border-color:#bfdbfe}
+    .subject-label.phys-label{color:var(--phys);border-color:var(--phys-m)}
+    .subject-label.chem-label{color:var(--chem);border-color:#fde68a}
+
+    .cards-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1rem}
+
+    .practice-card{
+      background:var(--white);border:1px solid var(--line);border-radius:var(--radius);
+      padding:1.1rem 1.25rem;box-shadow:var(--shadow);
+      display:flex;flex-direction:column;gap:.5rem;
+      transition:box-shadow .2s,transform .15s;cursor:pointer;
+    }
+    .practice-card:hover{box-shadow:0 6px 20px rgba(15,23,42,.12);transform:translateY(-2px)}
+    .practice-card.phys{border-left:3px solid var(--phys)}
+    .practice-card.math{border-left:3px solid var(--math)}
+    .practice-card.chem{border-left:3px solid var(--chem)}
+    .practice-card.locked{opacity:.55;cursor:not-allowed;transform:none!important}
+
+    .card-unit{font-size:.72rem;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:var(--ink3)}
+    .card-unit.phys{color:var(--phys)}
+    .card-unit.math{color:var(--math)}
+    .card-unit.chem{color:var(--chem)}
+    .card-title{font-size:1rem;font-weight:600;color:var(--ink)}
+    .card-meta{display:flex;align-items:center;gap:.75rem;font-size:.8rem;color:var(--ink3);margin-top:.2rem}
+    .card-badge{
+      display:inline-flex;align-items:center;gap:.3rem;
+      padding:.15rem .5rem;border-radius:3px;font-size:.72rem;font-weight:600;
+    }
+    .badge-live{background:#dcfce7;color:#15803d}
+    .badge-coming{background:var(--bg);color:var(--ink3);border:1px solid var(--line)}
+
+    .card-stats{display:flex;gap:.75rem;font-size:.8rem;color:var(--ink3)}
+
+    @media(max-width:600px){.hero h1{font-size:1.35rem}.main{padding:1.25rem 1rem 3rem}}
+  </style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="../index.html" class="nav-brand">JEE 2027</a>
+    <div class="nav-links">
+      <a href="../index.html">Home</a>
+      <a href="../subjects/physics.html">Physics</a>
+      <a href="../subjects/math.html">Maths</a>
+      <a href="../subjects/chemistry.html">Chemistry</a>
+      <a href="index.html" class="active">Practice</a>
+    </div>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-tag">📝 Practice Bank</div>
+    <h1>Practice Questions</h1>
+    <p>Chapter-wise MCQs sourced from Allen DLP · JEE Main PYQs 2010–2023 · JEE Advanced PYQs. Click a chapter to begin.</p>
+  </div>
+</div>
+
+<div class="main">
+
+  <!-- PHYSICS -->
+  <div class="subject-section">
+    <div class="subject-label phys-label">⚛ Physics</div>
+    <div class="cards-grid">
+
+      <a href="p0-units.html" class="practice-card phys locked" title="Coming soon">
+        <div class="card-unit phys">P0 · Units &amp; Dimensions</div>
+        <div class="card-title">Units, Dimensions &amp; Basic Maths</div>
+        <div class="card-meta">
+          <span class="card-badge badge-coming">Coming Soon</span>
+        </div>
+      </a>
+
+      <a href="p1-kinematics.html" class="practice-card phys locked" title="Coming soon">
+        <div class="card-unit phys">P1 · Kinematics</div>
+        <div class="card-title">Kinematics 1D &amp; 2D</div>
+        <div class="card-meta">
+          <span class="card-badge badge-coming">Coming Soon</span>
+        </div>
+      </a>
+
+      <a href="p2-newtons.html" class="practice-card phys locked" title="Coming soon">
+        <div class="card-unit phys">P2 · Newton's Laws</div>
+        <div class="card-title">NLM &amp; Friction</div>
+        <div class="card-meta">
+          <span class="card-badge badge-coming">Coming Soon</span>
+        </div>
+      </a>
+
+      <a href="p3-work.html" class="practice-card phys locked" title="Coming soon">
+        <div class="card-unit phys">P3 · Work &amp; Energy</div>
+        <div class="card-title">Work, Power &amp; Energy</div>
+        <div class="card-meta">
+          <span class="card-badge badge-coming">Coming Soon</span>
+        </div>
+      </a>
+
+      <a href="p4-rotation.html" class="practice-card phys locked" title="Coming soon">
+        <div class="card-unit phys">P4 · Rotational Motion</div>
+        <div class="card-title">Rotational Dynamics</div>
+        <div class="card-meta">
+          <span class="card-badge badge-coming">Coming Soon</span>
+        </div>
+      </a>
+
+      <a href="p5-current.html" class="practice-card phys locked" title="Coming soon">
+        <div class="card-unit phys">P5 · Current Electricity</div>
+        <div class="card-title">Current Electricity</div>
+        <div class="card-meta">
+          <span class="card-badge badge-coming">Coming Soon</span>
+        </div>
+      </a>
+
+      <a href="p6-magnetism.html" class="practice-card phys">
+        <div class="card-unit phys">P6 · Magnetism</div>
+        <div class="card-title">Magnetic Effect of Current</div>
+        <div class="card-meta">
+          <span class="card-badge badge-live">✓ Live</span>
+          <span>20 questions</span>
+        </div>
+        <div class="card-stats">
+          <span>Biot-Savart · Ampere · Forces · Materials</span>
+        </div>
+        <div class="card-stats" style="margin-top:.2rem">
+          <span>12 JEE Main PYQs (2005–2022)</span>
+        </div>
+      </a>
+
+      <a href="p7-emi.html" class="practice-card phys locked" title="Coming soon">
+        <div class="card-unit phys">P7 · EMI &amp; AC</div>
+        <div class="card-title">Electromagnetic Induction &amp; AC Circuits</div>
+        <div class="card-meta">
+          <span class="card-badge badge-coming">Coming Soon</span>
+        </div>
+      </a>
+
+      <a href="p8-optics.html" class="practice-card phys locked" title="Coming soon">
+        <div class="card-unit phys">P8 · Ray Optics</div>
+        <div class="card-title">Ray Optics &amp; Wave Optics</div>
+        <div class="card-meta">
+          <span class="card-badge badge-coming">Coming Soon</span>
+        </div>
+      </a>
+
+    </div>
+  </div>
+
+  <!-- MATHEMATICS -->
+  <div class="subject-section">
+    <div class="subject-label math-label">∑ Mathematics</div>
+    <div class="cards-grid">
+
+      <a href="m1-trig.html" class="practice-card math locked" title="Coming soon">
+        <div class="card-unit math">M1 · Trigonometry</div>
+        <div class="card-title">Trigonometry &amp; Identities</div>
+        <div class="card-meta"><span class="card-badge badge-coming">Coming Soon</span></div>
+      </a>
+
+      <a href="m2-algebra.html" class="practice-card math locked" title="Coming soon">
+        <div class="card-unit math">M2 · Algebra</div>
+        <div class="card-title">Quadratics, Sequences &amp; Series</div>
+        <div class="card-meta"><span class="card-badge badge-coming">Coming Soon</span></div>
+      </a>
+
+      <a href="m3-coordinate.html" class="practice-card math locked" title="Coming soon">
+        <div class="card-unit math">M3 · Coordinate Geometry</div>
+        <div class="card-title">Straight Lines, Circles &amp; Conics</div>
+        <div class="card-meta"><span class="card-badge badge-coming">Coming Soon</span></div>
+      </a>
+
+      <a href="m4-calculus.html" class="practice-card math locked" title="Coming soon">
+        <div class="card-unit math">M4 · Calculus</div>
+        <div class="card-title">Limits, Derivatives &amp; Integration</div>
+        <div class="card-meta"><span class="card-badge badge-coming">Coming Soon</span></div>
+      </a>
+
+    </div>
+  </div>
+
+  <!-- CHEMISTRY -->
+  <div class="subject-section">
+    <div class="subject-label chem-label">⚗ Chemistry</div>
+    <div class="cards-grid">
+
+      <a href="c1-mole.html" class="practice-card chem locked" title="Coming soon">
+        <div class="card-unit chem">C1 · Mole Concept</div>
+        <div class="card-title">Mole Concept &amp; Stoichiometry</div>
+        <div class="card-meta"><span class="card-badge badge-coming">Coming Soon</span></div>
+      </a>
+
+      <a href="c2-atomic.html" class="practice-card chem locked" title="Coming soon">
+        <div class="card-unit chem">C2 · Atomic Structure</div>
+        <div class="card-title">Atomic Structure &amp; Quantum Numbers</div>
+        <div class="card-meta"><span class="card-badge badge-coming">Coming Soon</span></div>
+      </a>
+
+      <a href="c3-bonding.html" class="practice-card chem locked" title="Coming soon">
+        <div class="card-unit chem">C3 · Chemical Bonding</div>
+        <div class="card-title">Chemical Bonding &amp; Molecular Structure</div>
+        <div class="card-meta"><span class="card-badge badge-coming">Coming Soon</span></div>
+      </a>
+
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

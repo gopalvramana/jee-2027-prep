@@ -1,0 +1,975 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Practice: Magnetism &amp; Magnetic Effect of Current | JEE 2027</title>
+
+  <!-- MathJax -->
+  <script>
+    MathJax = {
+      tex: { inlineMath: [['\\(','\\)']], displayMath: [['\\[','\\]']],
+             packages: {'[+]': ['boldsymbol']} },
+      options: { skipHtmlTags: ['script','noscript','style','textarea','pre'] }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" async></script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --phys:   #0f766e;
+      --phys-l: #f0fdfa;
+      --phys-m: #ccfbf1;
+      --phys-d: #0d5f58;
+      --ink:    #0f172a;
+      --ink2:   #334155;
+      --ink3:   #64748b;
+      --line:   #e2e8f0;
+      --bg:     #f8fafc;
+      --white:  #ffffff;
+      --green:  #15803d;
+      --green-l:#f0fdf4;
+      --red:    #b91c1c;
+      --red-l:  #fef2f2;
+      --amber:  #b45309;
+      --radius: 10px;
+      --shadow: 0 2px 12px rgba(15,23,42,.08);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--ink); line-height: 1.65; }
+    h1,h2,h3 { font-family: 'DM Serif Display', serif; line-height: 1.2; }
+    a { color: inherit; text-decoration: none; }
+
+    /* NAV */
+    .nav {
+      position: sticky; top: 0; z-index: 100;
+      background: var(--white); border-bottom: 1px solid var(--line);
+      box-shadow: 0 1px 8px rgba(15,23,42,.06);
+    }
+    .nav-inner {
+      max-width: 1100px; margin: 0 auto; padding: 0 1.5rem;
+      display: flex; align-items: center; gap: 1.5rem; height: 58px;
+    }
+    .nav-brand { font-family: 'DM Serif Display', serif; font-size: 1.15rem; white-space: nowrap; }
+    .nav-links { display: flex; gap: .25rem; }
+    .nav-links a {
+      padding: .35rem .75rem; border-radius: 6px;
+      font-size: .85rem; font-weight: 500; color: var(--ink2);
+      transition: background .15s, color .15s;
+    }
+    .nav-links a:hover { background: var(--bg); }
+    .nav-links a.active { color: var(--phys); background: var(--phys-l); }
+    .nav-back {
+      margin-left: auto;
+      display: flex; align-items: center; gap: .4rem;
+      font-size: .85rem; font-weight: 500; color: var(--ink3);
+      padding: .35rem .75rem; border-radius: 6px;
+      transition: background .15s, color .15s;
+    }
+    .nav-back:hover { background: var(--bg); color: var(--ink); }
+
+    /* HERO */
+    .hero {
+      background: linear-gradient(135deg, var(--phys) 0%, var(--phys-d) 100%);
+      color: #fff; padding: 2rem 1.5rem 1.5rem;
+    }
+    .hero-inner { max-width: 1100px; margin: 0 auto; }
+    .hero-tag {
+      display: inline-flex; align-items: center; gap: .4rem;
+      background: rgba(255,255,255,.15); border-radius: 4px;
+      font-size: .78rem; font-weight: 600; letter-spacing: .05em;
+      text-transform: uppercase; padding: .2rem .6rem; margin-bottom: .6rem;
+    }
+    .hero h1 { font-size: 1.75rem; margin-bottom: .4rem; }
+    .hero p { font-size: .95rem; opacity: .85; max-width: 600px; }
+
+    /* SCORE STRIP */
+    .score-strip {
+      background: var(--white); border-bottom: 1px solid var(--line);
+      padding: .75rem 1.5rem;
+    }
+    .score-inner {
+      max-width: 1100px; margin: 0 auto;
+      display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap;
+    }
+    .score-stat { display: flex; align-items: center; gap: .5rem; font-size: .88rem; }
+    .score-num { font-family: 'JetBrains Mono', monospace; font-size: 1.1rem; font-weight: 700; }
+    .score-num.correct { color: var(--green); }
+    .score-num.wrong   { color: var(--red); }
+    .score-num.total   { color: var(--phys); }
+    .score-bar-wrap { flex: 1; min-width: 160px; height: 6px; background: var(--line); border-radius: 3px; overflow: hidden; }
+    .score-bar { height: 100%; background: var(--phys); border-radius: 3px; transition: width .4s; width: 0%; }
+    .btn-reset {
+      margin-left: auto; padding: .35rem .85rem; border-radius: 6px;
+      background: var(--bg); border: 1px solid var(--line); cursor: pointer;
+      font-size: .82rem; font-weight: 500; color: var(--ink3);
+      transition: background .15s, color .15s;
+    }
+    .btn-reset:hover { background: var(--line); color: var(--ink); }
+
+    /* FILTER TABS */
+    .filter-bar {
+      background: var(--white); border-bottom: 1px solid var(--line);
+      padding: 0 1.5rem; overflow-x: auto; -webkit-overflow-scrolling: touch;
+    }
+    .filter-inner { max-width: 1100px; margin: 0 auto; display: flex; gap: .1rem; }
+    .filter-tab {
+      padding: .65rem 1rem; border-bottom: 2px solid transparent;
+      font-size: .85rem; font-weight: 500; color: var(--ink3); cursor: pointer;
+      white-space: nowrap; transition: color .15s, border-color .15s;
+    }
+    .filter-tab:hover { color: var(--ink); }
+    .filter-tab.active { color: var(--phys); border-bottom-color: var(--phys); }
+    .filter-tab .badge {
+      display: inline-block; background: var(--bg); border-radius: 10px;
+      font-size: .72rem; padding: .1rem .4rem; margin-left: .3rem; color: var(--ink3);
+    }
+    .filter-tab.active .badge { background: var(--phys-m); color: var(--phys-d); }
+
+    /* MAIN */
+    .main { max-width: 1100px; margin: 0 auto; padding: 1.5rem 1.5rem 4rem; }
+
+    /* SECTION HEADING */
+    .section-heading {
+      font-size: .72rem; font-weight: 600; letter-spacing: .08em;
+      text-transform: uppercase; color: var(--phys);
+      padding: .4rem 0 .4rem; margin: 1.75rem 0 .75rem;
+      border-bottom: 2px solid var(--phys-m);
+      display: flex; align-items: center; gap: .5rem;
+    }
+    .section-heading:first-child { margin-top: 0; }
+
+    /* QUESTION CARD */
+    .q-card {
+      background: var(--white); border: 1px solid var(--line);
+      border-radius: var(--radius); margin-bottom: 1rem;
+      box-shadow: var(--shadow); overflow: hidden;
+      transition: box-shadow .2s;
+    }
+    .q-card:hover { box-shadow: 0 4px 20px rgba(15,23,42,.1); }
+    .q-card.answered-correct { border-color: #86efac; }
+    .q-card.answered-wrong   { border-color: #fca5a5; }
+
+    .q-header {
+      display: flex; align-items: flex-start; gap: .75rem;
+      padding: 1rem 1.25rem .5rem;
+    }
+    .q-num {
+      flex-shrink: 0; width: 28px; height: 28px;
+      background: var(--phys-m); color: var(--phys-d);
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      font-family: 'JetBrains Mono', monospace; font-size: .78rem; font-weight: 700;
+      margin-top: .1rem;
+    }
+    .q-num.correct-num { background: #bbf7d0; color: #15803d; }
+    .q-num.wrong-num   { background: #fecaca; color: #b91c1c; }
+
+    .q-meta { display: flex; gap: .4rem; flex-wrap: wrap; margin-bottom: .35rem; }
+    .q-tag {
+      font-size: .7rem; font-weight: 600; letter-spacing: .04em;
+      padding: .15rem .5rem; border-radius: 3px; text-transform: uppercase;
+    }
+    .tag-pyq  { background: #fef3c7; color: #92400e; }
+    .tag-foundation { background: var(--phys-m); color: var(--phys-d); }
+    .tag-medium { background: #e0e7ff; color: #3730a3; }
+    .tag-hard   { background: #fee2e2; color: #991b1b; }
+
+    .q-body { padding: 0 1.25rem .75rem 3.25rem; }
+    .q-text { font-size: .95rem; line-height: 1.7; margin-bottom: .85rem; }
+    .q-diagram { margin-bottom: .85rem; text-align: center; }
+
+    /* OPTIONS */
+    .q-options { display: grid; grid-template-columns: 1fr 1fr; gap: .5rem; margin-bottom: .85rem; }
+    @media (max-width: 600px) { .q-options { grid-template-columns: 1fr; } }
+
+    .opt {
+      display: flex; align-items: flex-start; gap: .5rem;
+      padding: .55rem .85rem; border-radius: 7px;
+      border: 1.5px solid var(--line); cursor: pointer;
+      font-size: .9rem; transition: border-color .15s, background .15s;
+      background: var(--bg);
+    }
+    .opt:hover:not(.disabled) { border-color: var(--phys); background: var(--phys-l); }
+    .opt.selected  { border-color: var(--phys); background: var(--phys-l); }
+    .opt.correct   { border-color: #16a34a; background: #f0fdf4; }
+    .opt.wrong-sel { border-color: #dc2626; background: #fef2f2; }
+    .opt.disabled  { cursor: default; }
+
+    .opt-letter {
+      flex-shrink: 0; width: 22px; height: 22px;
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      font-size: .78rem; font-weight: 700;
+      background: var(--line); color: var(--ink3);
+    }
+    .opt.selected  .opt-letter { background: var(--phys); color: #fff; }
+    .opt.correct   .opt-letter { background: #16a34a; color: #fff; }
+    .opt.wrong-sel .opt-letter { background: #dc2626; color: #fff; }
+    .opt-text { flex: 1; line-height: 1.5; }
+
+    /* ANSWER AREA */
+    .q-footer { padding: 0 1.25rem 1rem 3.25rem; display: flex; align-items: center; gap: .75rem; flex-wrap: wrap; }
+    .btn-reveal {
+      padding: .4rem 1rem; border-radius: 6px; cursor: pointer; font-size: .85rem; font-weight: 600;
+      background: var(--phys); color: #fff; border: none;
+      transition: background .15s, transform .1s;
+    }
+    .btn-reveal:hover { background: var(--phys-d); }
+    .btn-reveal:active { transform: scale(.97); }
+    .btn-reveal:disabled { background: var(--line); color: var(--ink3); cursor: default; transform: none; }
+
+    .answer-box {
+      display: none; width: 100%;
+      background: var(--phys-l); border: 1px solid var(--phys-m);
+      border-radius: 8px; padding: .75rem 1rem; margin-top: .5rem;
+      font-size: .9rem; line-height: 1.65;
+    }
+    .answer-box.visible { display: block; }
+    .answer-box strong { color: var(--phys-d); }
+    .answer-correct-label {
+      display: inline-flex; align-items: center; gap: .3rem;
+      font-weight: 700; color: var(--green); margin-bottom: .3rem;
+    }
+    .answer-key-formula {
+      font-family: 'JetBrains Mono', monospace; font-size: .85rem;
+      background: rgba(15,118,110,.1); padding: .15rem .4rem; border-radius: 3px;
+    }
+
+    /* HIDDEN FILTER */
+    .q-card.hidden { display: none; }
+
+    /* RESPONSIVE */
+    @media (max-width: 700px) {
+      .hero h1 { font-size: 1.35rem; }
+      .main { padding: 1rem 1rem 3rem; }
+      .q-body { padding-left: 1.25rem; }
+      .q-footer { padding-left: 1.25rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <span class="nav-brand">JEE 2027</span>
+    <div class="nav-links">
+      <a href="../index.html">Home</a>
+      <a href="../subjects/physics.html" class="active">Physics</a>
+    </div>
+    <a class="nav-back" href="../topics/magnetism.html">
+      ← Theory
+    </a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-tag">⚛ Physics · Unit P6</div>
+    <h1>Magnetism &amp; Magnetic Effect of Current</h1>
+    <p>20 questions — Single &amp; Multiple Correct · JEE Main PYQs 2010–2022 · Allen DLP</p>
+  </div>
+</div>
+
+<!-- SCORE STRIP -->
+<div class="score-strip">
+  <div class="score-inner">
+    <div class="score-stat">
+      <span class="score-num correct" id="sc-correct">0</span>
+      <span style="color:var(--ink3);font-size:.82rem">correct</span>
+    </div>
+    <div class="score-stat">
+      <span class="score-num wrong" id="sc-wrong">0</span>
+      <span style="color:var(--ink3);font-size:.82rem">wrong</span>
+    </div>
+    <div class="score-stat">
+      <span class="score-num total" id="sc-total">0</span>
+      <span style="color:var(--ink3);font-size:.82rem">/ 20 attempted</span>
+    </div>
+    <div class="score-bar-wrap"><div class="score-bar" id="score-bar"></div></div>
+    <button class="btn-reset" onclick="resetAll()">↺ Reset</button>
+  </div>
+</div>
+
+<!-- FILTER TABS -->
+<div class="filter-bar">
+  <div class="filter-inner">
+    <div class="filter-tab active" data-filter="all" onclick="setFilter('all',this)">
+      All <span class="badge">20</span>
+    </div>
+    <div class="filter-tab" data-filter="biot-savart" onclick="setFilter('biot-savart',this)">
+      Biot-Savart &amp; Ampere <span class="badge">5</span>
+    </div>
+    <div class="filter-tab" data-filter="force-particle" onclick="setFilter('force-particle',this)">
+      Force on Particle <span class="badge">3</span>
+    </div>
+    <div class="filter-tab" data-filter="force-wire" onclick="setFilter('force-wire',this)">
+      Force on Wire &amp; Torque <span class="badge">4</span>
+    </div>
+    <div class="filter-tab" data-filter="dipole-earth" onclick="setFilter('dipole-earth',this)">
+      Dipole &amp; Earth <span class="badge">4</span>
+    </div>
+    <div class="filter-tab" data-filter="materials" onclick="setFilter('materials',this)">
+      Magnetic Materials <span class="badge">4</span>
+    </div>
+    <div class="filter-tab" data-filter="pyq" onclick="setFilter('pyq',this)">
+      PYQ Only <span class="badge">12</span>
+    </div>
+  </div>
+</div>
+
+<!-- MAIN CONTENT -->
+<div class="main" id="main-content">
+  <!-- Questions rendered by JS -->
+</div>
+
+<script>
+/* ═══════════════════════════════════════════════
+   QUESTION DATA
+   answer: 0-indexed (0=A, 1=B, 2=C, 3=D)
+   section: used for filter tabs
+   pyq: null or year string
+═══════════════════════════════════════════════ */
+const QUESTIONS = [
+
+  /* ─── BIOT-SAVART + AMPERE'S LAW ─── */
+  {
+    id: 1,
+    section: 'biot-savart',
+    difficulty: 'foundation',
+    pyq: null,
+    text: 'A circular loop of radius \\(R\\) carries a current \\(I\\). The magnetic field at the centre of the loop is:',
+    options: [
+      '\\(\\dfrac{\\mu_0 I}{R}\\)',
+      '\\(\\dfrac{\\mu_0 I}{2R}\\)',
+      '\\(\\dfrac{\\mu_0 I}{4R}\\)',
+      '\\(\\dfrac{2\\mu_0 I}{R}\\)'
+    ],
+    answer: 1,
+    explanation: 'From Biot-Savart law, integrate \\(d\\boldsymbol{B} = \\dfrac{\\mu_0 I}{4\\pi}\\dfrac{d\\boldsymbol{\\ell}\\times\\hat{r}}{r^2}\\) around the full loop of radius \\(R\\). Every element \\(d\\ell\\) is perpendicular to \\(\\hat{r}\\) and contributes in the same direction: \\[B = \\frac{\\mu_0 I}{4\\pi R^2}\\cdot 2\\pi R = \\frac{\\mu_0 I}{2R}\\]'
+  },
+
+  {
+    id: 2,
+    section: 'biot-savart',
+    difficulty: 'foundation',
+    pyq: null,
+    text: 'An infinitely long straight wire carries current \\(I\\). The magnetic field at a perpendicular distance \\(d\\) from the wire is:',
+    options: [
+      '\\(\\dfrac{\\mu_0 I}{d}\\)',
+      '\\(\\dfrac{\\mu_0 I}{2\\pi d}\\)',
+      '\\(\\dfrac{\\mu_0 I}{4\\pi d}\\)',
+      '\\(\\dfrac{2\\mu_0 I}{\\pi d}\\)'
+    ],
+    answer: 1,
+    explanation: 'Using Ampere\'s law with a circular Amperian loop of radius \\(d\\): \\(B \\cdot 2\\pi d = \\mu_0 I\\), giving \\[B = \\frac{\\mu_0 I}{2\\pi d}\\] Direction: given by right-hand rule (curl fingers in direction of B, thumb → current).'
+  },
+
+  {
+    id: 3,
+    section: 'biot-savart',
+    difficulty: 'foundation',
+    pyq: null,
+    text: 'A long solenoid has \\(n\\) turns per unit length and carries current \\(I\\). The magnetic field deep inside the solenoid (far from ends) is:',
+    options: [
+      '\\(\\dfrac{\\mu_0 nI}{2}\\)',
+      '\\(\\mu_0 nI\\)',
+      '\\(\\mu_0 n^2 I\\)',
+      '\\(\\dfrac{\\mu_0 I}{n}\\)'
+    ],
+    answer: 1,
+    explanation: 'Apply Ampere\'s law to a rectangular loop of length \\(L\\) inside and outside the solenoid. Outside field ≈ 0. Number of turns enclosed = \\(nL\\). Therefore: \\[B \\cdot L = \\mu_0 (nL)I \\implies B = \\mu_0 nI\\]'
+  },
+
+  {
+    id: 4,
+    section: 'biot-savart',
+    difficulty: 'medium',
+    pyq: 'JEE Main 2016',
+    text: 'Two identical wires A and B of length \\(\\ell\\) each carry the same current \\(I\\). Wire A is bent into a circle of radius \\(R\\) and wire B into a square of side \\(a\\). If \\(B_A\\) and \\(B_B\\) are the magnetic fields at the centres of the circle and square respectively, then \\(\\dfrac{B_A}{B_B}\\) is:',
+    options: [
+      '\\(\\dfrac{\\pi^2}{8\\sqrt{2}}\\)',
+      '\\(\\dfrac{\\pi^2}{8}\\)',
+      '\\(\\dfrac{\\pi^2}{16\\sqrt{2}}\\)',
+      '\\(\\dfrac{\\pi^2}{16}\\)'
+    ],
+    answer: 0,
+    explanation: '<strong>Circle (A):</strong> \\(2\\pi R = \\ell \\Rightarrow R = \\ell/2\\pi\\). Field: \\(B_A = \\dfrac{\\mu_0 I}{2R} = \\dfrac{\\mu_0 I \\pi}{\\ell}\\).<br><br><strong>Square (B):</strong> \\(4a = \\ell \\Rightarrow a = \\ell/4\\). Distance from centre to a side: \\(d = a/2 = \\ell/8\\). Field from 4 sides: \\(B_B = 4 \\cdot \\dfrac{\\mu_0 I}{4\\pi d}\\cdot 2\\sin 45° = \\dfrac{8\\sqrt{2}\\,\\mu_0 I}{\\pi\\ell}\\).<br><br>Ratio: \\[\\frac{B_A}{B_B} = \\frac{\\mu_0 I\\pi/\\ell}{8\\sqrt{2}\\,\\mu_0 I/\\pi\\ell} = \\frac{\\pi^2}{8\\sqrt{2}}\\]',
+    diagram: `<svg viewBox="0 0 280 110" width="280" height="110" style="font-family:DM Sans">
+      <!-- Circle -->
+      <circle cx="70" cy="55" r="38" fill="none" stroke="#0f766e" stroke-width="2"/>
+      <text x="70" y="60" text-anchor="middle" font-size="11" fill="#0f766e" font-weight="600">A</text>
+      <text x="70" y="106" text-anchor="middle" font-size="10" fill="#334155">Circle r=ℓ/2π</text>
+      <!-- Arrow on circle -->
+      <path d="M70,17 L74,25 L66,25 Z" fill="#0f766e"/>
+      <!-- Square -->
+      <rect x="162" y="17" width="76" height="76" fill="none" stroke="#0284c7" stroke-width="2"/>
+      <text x="200" y="60" text-anchor="middle" font-size="11" fill="#0284c7" font-weight="600">B</text>
+      <text x="200" y="106" text-anchor="middle" font-size="10" fill="#334155">Square a=ℓ/4</text>
+      <!-- Arrow on square -->
+      <path d="M200,17 L207,24 L193,24 Z" fill="#0284c7"/>
+    </svg>`
+  },
+
+  {
+    id: 5,
+    section: 'biot-savart',
+    difficulty: 'medium',
+    pyq: 'JEE Main 2021 Aug',
+    text: 'A coaxial cable consists of an inner wire of radius \\(a\\) surrounded by an outer shell of inner and outer radii \\(b\\) and \\(c\\). The inner wire carries current \\(i_0\\) uniformly distributed, and the outer shell carries an equal current in the opposite direction, also distributed uniformly. The ratio of the magnetic field at distance \\(x\\) from the axis when (i) \\(x < a\\) and (ii) \\(a < x < b\\) is:',
+    options: [
+      '\\(\\dfrac{x^2}{a^2}\\)',
+      '\\(\\dfrac{a^2}{x^2}\\)',
+      '\\(\\dfrac{x^2}{b^2-a^2}\\)',
+      '\\(\\dfrac{b^2-a^2}{x^2}\\)'
+    ],
+    answer: 0,
+    explanation: '<strong>Region (i) \\(x < a\\):</strong> Current enclosed \\(= i_0 \\cdot \\dfrac{x^2}{a^2}\\). By Ampere: \\(B_1 = \\dfrac{\\mu_0 i_0 x}{2\\pi a^2}\\), so \\(B_1 \\propto x\\).<br><br><strong>Region (ii) \\(a < x < b\\):</strong> Full inner current enclosed. \\(B_2 = \\dfrac{\\mu_0 i_0}{2\\pi x}\\), so \\(B_2 \\propto 1/x\\).<br><br>\\[\\frac{B_1}{B_2} = \\frac{\\mu_0 i_0 x/2\\pi a^2}{\\mu_0 i_0/2\\pi x} = \\frac{x^2}{a^2}\\]'
+  },
+
+  /* ─── FORCE ON CHARGED PARTICLE ─── */
+  {
+    id: 6,
+    section: 'force-particle',
+    difficulty: 'foundation',
+    pyq: null,
+    text: 'A charged particle of charge \\(q\\) and mass \\(m\\) enters a uniform magnetic field \\(B\\) with speed \\(v\\) perpendicular to the field. The radius of the circular path traced by the particle is:',
+    options: [
+      '\\(\\dfrac{qvB}{m}\\)',
+      '\\(\\dfrac{mv}{qB}\\)',
+      '\\(\\dfrac{mv^2}{qB}\\)',
+      '\\(\\dfrac{qB}{mv}\\)'
+    ],
+    answer: 1,
+    explanation: 'The magnetic force provides centripetal acceleration: \\(qvB = \\dfrac{mv^2}{r}\\). Solving: \\[r = \\frac{mv}{qB}\\] This is the Larmor radius. Note: the period \\(T = 2\\pi m/qB\\) is independent of speed.'
+  },
+
+  {
+    id: 7,
+    section: 'force-particle',
+    difficulty: 'foundation',
+    pyq: 'AIEEE 2005',
+    text: 'A moving coil galvanometer has 150 equal divisions. Its current sensitivity is 10 divisions per milliampere and voltage sensitivity is 2 divisions per millivolt. In order that each division reads 1 V, the resistance (in ohm) needed to be connected in series with the coil will be:',
+    options: [
+      '\\(10^3\\)',
+      '\\(10^5\\)',
+      '\\(99995\\)',
+      '\\(9995\\)'
+    ],
+    answer: 3,
+    explanation: '<strong>Step 1 – Find galvanometer resistance:</strong><br>Full-scale current: \\(I_g = \\dfrac{150\\text{ div}}{10\\text{ div/mA}} = 15\\text{ mA}\\)<br>Full-scale voltage: \\(V_g = \\dfrac{150\\text{ div}}{2\\text{ div/mV}} = 75\\text{ mV}\\)<br>\\(R_g = \\dfrac{V_g}{I_g} = \\dfrac{75}{15} = 5\\;\\Omega\\)<br><br><strong>Step 2 – Series resistance for 1 V per division:</strong><br>Current per division = 15 mA/150 = 0.1 mA = 10⁻⁴ A<br>For 1 V to deflect one division: \\(R_{\\text{total}} = \\dfrac{1\\text{ V}}{10^{-4}\\text{ A}} = 10{,}000\\;\\Omega\\)<br>\\[R_s = 10000 - R_g = 10000 - 5 = \\mathbf{9995\\;\\Omega}\\]'
+  },
+
+  {
+    id: 8,
+    section: 'force-particle',
+    difficulty: 'medium',
+    pyq: 'JEE Main 2018',
+    text: 'An electron, a proton and an alpha particle having the same kinetic energy are moving in circular orbits of radii \\(r_e\\), \\(r_p\\), \\(r_\\alpha\\) respectively in a uniform magnetic field \\(B\\). The relation between \\(r_e\\), \\(r_p\\) and \\(r_\\alpha\\) is:',
+    options: [
+      '\\(r_e < r_p = r_\\alpha\\)',
+      '\\(r_e < r_p < r_\\alpha\\)',
+      '\\(r_e < r_\\alpha < r_p\\)',
+      '\\(r_e > r_p = r_\\alpha\\)'
+    ],
+    answer: 0,
+    explanation: 'Same KE: \\(K = \\dfrac{p^2}{2m} \\Rightarrow p = mv = \\sqrt{2mK}\\).<br>Larmor radius: \\(r = \\dfrac{mv}{qB} = \\dfrac{\\sqrt{2mK}}{qB}\\).<br><ul style="margin:.4rem 0 .4rem 1rem"><li>\\(r_e = \\dfrac{\\sqrt{2m_e K}}{eB}\\) &nbsp;→ very small (\\(m_e\\) tiny)</li><li>\\(r_p = \\dfrac{\\sqrt{2m_p K}}{eB}\\)</li><li>\\(r_\\alpha = \\dfrac{\\sqrt{2\\cdot 4m_p\\cdot K}}{2eB} = \\dfrac{2\\sqrt{2m_p K}}{2eB} = \\dfrac{\\sqrt{2m_p K}}{eB} = r_p\\)</li></ul>Therefore \\(r_e < r_p = r_\\alpha\\).'
+  },
+
+  /* ─── FORCE ON WIRE + TORQUE ─── */
+  {
+    id: 9,
+    section: 'force-wire',
+    difficulty: 'foundation',
+    pyq: null,
+    text: 'Two infinitely long parallel wires separated by distance \\(d\\) carry currents \\(I_1\\) and \\(I_2\\) in the same direction. The force per unit length on each wire is:',
+    options: [
+      'Repulsive, magnitude \\(\\dfrac{\\mu_0 I_1 I_2}{2\\pi d}\\)',
+      'Attractive, magnitude \\(\\dfrac{\\mu_0 I_1 I_2}{2\\pi d}\\)',
+      'Repulsive, magnitude \\(\\dfrac{\\mu_0 I_1 I_2}{\\pi d}\\)',
+      'Zero'
+    ],
+    answer: 1,
+    explanation: 'Wire 1 creates field \\(B = \\dfrac{\\mu_0 I_1}{2\\pi d}\\) at wire 2. Force on wire 2: \\(F/L = I_2 B = \\dfrac{\\mu_0 I_1 I_2}{2\\pi d}\\). Direction: by \\(\\boldsymbol{F} = I\\boldsymbol{L}\\times\\boldsymbol{B}\\), same-direction currents attract. Opposite-direction currents repel.'
+  },
+
+  {
+    id: 10,
+    section: 'force-wire',
+    difficulty: 'foundation',
+    pyq: null,
+    text: 'A rectangular coil of \\(N\\) turns, area \\(A\\) carrying current \\(I\\) is placed in a uniform field \\(B\\). The angle between the plane of the coil and \\(\\boldsymbol{B}\\) is \\(\\theta\\). The torque experienced by the coil is:',
+    options: [
+      '\\(NIAB\\sin\\theta\\)',
+      '\\(NIAB\\cos\\theta\\)',
+      '\\(NIAB\\)',
+      '\\(NIAB\\tan\\theta\\)'
+    ],
+    answer: 1,
+    explanation: 'Torque \\(\\boldsymbol{\\tau} = \\boldsymbol{m}\\times\\boldsymbol{B}\\), where \\(m = NIA\\) (magnetic moment). \\(|\\tau| = mB\\sin\\alpha\\), where \\(\\alpha\\) is the angle between \\(\\hat{n}\\) (normal to coil) and \\(\\boldsymbol{B}\\).<br>Since \\(\\theta\\) here is the angle between the <em>plane</em> and \\(\\boldsymbol{B}\\), we have \\(\\alpha = 90°-\\theta\\), so \\(\\sin\\alpha = \\cos\\theta\\). Thus \\[\\tau = NIAB\\cos\\theta\\]<br>Maximum torque occurs when coil plane is parallel to \\(\\boldsymbol{B}\\) (\\(\\theta = 0°\\)).'
+  },
+
+  {
+    id: 11,
+    section: 'force-wire',
+    difficulty: 'medium',
+    pyq: 'JEE Main 2015',
+    text: 'Two coaxial solenoids of different radii carry current \\(I\\) in the same direction. Let \\(\\boldsymbol{F}_1\\) be the magnetic force on the inner solenoid due to the outer one and \\(\\boldsymbol{F}_2\\) be the magnetic force on the outer solenoid due to the inner one. Then:',
+    options: [
+      '\\(\\boldsymbol{F}_1\\) is radially inwards and \\(\\boldsymbol{F}_2 = 0\\)',
+      '\\(\\boldsymbol{F}_1\\) is radially outwards and \\(\\boldsymbol{F}_2 = 0\\)',
+      '\\(\\boldsymbol{F}_1 = \\boldsymbol{F}_2 = 0\\)',
+      '\\(\\boldsymbol{F}_1\\) is radially inwards and \\(\\boldsymbol{F}_2\\) is radially outwards'
+    ],
+    answer: 2,
+    explanation: 'The magnetic field of a solenoid is <em>axially directed</em> (along the axis), both inside and outside. The force on a current element is \\(d\\boldsymbol{F} = I\\,d\\boldsymbol{\\ell}\\times\\boldsymbol{B}\\). Since \\(d\\boldsymbol{\\ell}\\) is also axial (along solenoid length), \\(d\\boldsymbol{\\ell}\\times\\boldsymbol{B}_{\\text{axial}} = 0\\). Therefore the net force on each solenoid due to the other is zero: \\(\\boldsymbol{F}_1 = \\boldsymbol{F}_2 = \\boldsymbol{0}\\).'
+  },
+
+  {
+    id: 12,
+    section: 'force-wire',
+    difficulty: 'medium',
+    pyq: 'JEE Main 2014',
+    text: 'The coercivity of a small magnet where the ferromagnet gets demagnetised is \\(3\\times 10^3\\) A m\\(^{-1}\\). The current required to be passed in a solenoid of length 10 cm and number of turns 100, so that the magnet gets demagnetised when inside the solenoid, is:',
+    options: [
+      '3 A',
+      '6 A',
+      '30 mA',
+      '60 mA'
+    ],
+    answer: 0,
+    explanation: 'Coercivity \\(H = 3\\times 10^3\\) A/m is the field required to demagnetise the magnet.<br>For the solenoid: \\(H = nI = \\dfrac{N}{L}\\cdot I\\)<br>\\[I = \\frac{H \\cdot L}{N} = \\frac{3\\times10^3 \\times 0.10}{100} = \\frac{300}{100} = \\mathbf{3\\text{ A}}\\]'
+  },
+
+  /* ─── MAGNETIC DIPOLE + EARTH ─── */
+  {
+    id: 13,
+    section: 'dipole-earth',
+    difficulty: 'medium',
+    pyq: null,
+    text: 'A steel wire of length \\(L\\) has a magnetic moment \\(M\\). It is then bent into a semi-circular arc. The new magnetic moment will be:',
+    options: [
+      '\\(M\\)',
+      '\\(\\dfrac{2M}{\\pi}\\)',
+      '\\(\\dfrac{M}{L}\\)',
+      '\\(M \\times L\\)'
+    ],
+    answer: 1,
+    explanation: 'Original magnetic moment \\(M = m \\cdot L\\) (pole strength × length).<br>When bent into a semicircle: \\(\\pi R = L \\Rightarrow R = L/\\pi\\).<br>New "length" (straight-line distance between poles) \\(= 2R = 2L/\\pi\\).<br>New magnetic moment \\[M\' = m \\cdot 2R = m \\cdot \\frac{2L}{\\pi} = \\frac{2M}{\\pi}\\]',
+    diagram: `<svg viewBox="0 0 240 110" width="240" height="110">
+      <!-- Straight wire -->
+      <line x1="10" y1="30" x2="110" y2="30" stroke="#334155" stroke-width="3" stroke-linecap="round"/>
+      <circle cx="10" cy="30" r="5" fill="#b91c1c"/>
+      <circle cx="110" cy="30" r="5" fill="#1d4ed8"/>
+      <text x="10" y="22" font-size="10" fill="#b91c1c" font-weight="600">S</text>
+      <text x="105" y="22" font-size="10" fill="#1d4ed8" font-weight="600">N</text>
+      <text x="60" y="48" text-anchor="middle" font-size="10" fill="#64748b">M = mL</text>
+      <!-- Arrow -->
+      <text x="118" y="34" font-size="14" fill="#64748b">→</text>
+      <!-- Semicircle -->
+      <path d="M150,30 A40,40 0 0,1 230,30" fill="none" stroke="#334155" stroke-width="3"/>
+      <circle cx="150" cy="30" r="5" fill="#b91c1c"/>
+      <circle cx="230" cy="30" r="5" fill="#1d4ed8"/>
+      <text x="140" y="22" font-size="10" fill="#b91c1c" font-weight="600">S</text>
+      <text x="225" y="22" font-size="10" fill="#1d4ed8" font-weight="600">N</text>
+      <line x1="150" y1="30" x2="230" y2="30" stroke="#0f766e" stroke-width="1.5" stroke-dasharray="4,3"/>
+      <text x="190" y="80" text-anchor="middle" font-size="10" fill="#0f766e">2R = 2L/π</text>
+      <text x="190" y="95" text-anchor="middle" font-size="10" fill="#64748b">M′ = 2M/π</text>
+    </svg>`
+  },
+
+  {
+    id: 14,
+    section: 'dipole-earth',
+    difficulty: 'medium',
+    pyq: null,
+    text: 'The magnetic field at a point on the axis of a dipole is 20 Wb/m² directed northwards. If the dipole is rotated anticlockwise by 90°, the magnetic induction at that point will be:',
+    options: [
+      '10 Wb/m² Eastwards',
+      '10 Wb/m² Southwards',
+      '10 Wb/m² Northwards',
+      '20 Wb/m² Southwards'
+    ],
+    answer: 0,
+    explanation: '<strong>Before rotation:</strong> The point is on the axis of the dipole. Dipole must point north (axial field is along dipole). \\(B_{\\text{axis}} = \\dfrac{\\mu_0}{4\\pi}\\dfrac{2m}{r^3} = 20\\) Wb/m².<br><br><strong>After 90° anticlockwise rotation:</strong> The dipole now points West. The observation point is now on the <em>equatorial</em> plane of the dipole. \\[B_{\\text{equatorial}} = \\frac{\\mu_0}{4\\pi}\\frac{m}{r^3} = \\frac{B_{\\text{axis}}}{2} = 10\\text{ Wb/m²}\\] Equatorial field is antiparallel to dipole moment → dipole is West, so equatorial field points <strong>East</strong>.',
+    diagram: `<svg viewBox="0 0 260 130" width="260" height="130">
+      <!-- Before -->
+      <text x="65" y="14" text-anchor="middle" font-size="10" fill="#64748b" font-weight="600">Before</text>
+      <text x="65" y="26" text-anchor="middle" font-size="9" fill="#64748b">Dipole → N</text>
+      <!-- Dipole arrow North -->
+      <line x1="65" y1="100" x2="65" y2="45" stroke="#0f766e" stroke-width="2.5" marker-end="url(#arr)"/>
+      <text x="78" y="50" font-size="9" fill="#0f766e">m→N</text>
+      <!-- Point P on axis -->
+      <circle cx="65" cy="35" r="4" fill="#1d4ed8"/>
+      <text x="75" y="38" font-size="9" fill="#1d4ed8">P (axis)</text>
+      <!-- B arrow at P (North) -->
+      <line x1="65" y1="32" x2="65" y2="18" stroke="#dc2626" stroke-width="2" marker-end="url(#arr2)"/>
+      <text x="70" y="20" font-size="8" fill="#dc2626">B=20N</text>
+      <!-- After -->
+      <text x="195" y="14" text-anchor="middle" font-size="10" fill="#64748b" font-weight="600">After 90°</text>
+      <text x="195" y="26" text-anchor="middle" font-size="9" fill="#64748b">Dipole → W</text>
+      <!-- Dipole arrow West -->
+      <line x1="230" y1="72" x2="165" y2="72" stroke="#0f766e" stroke-width="2.5" marker-end="url(#arr)"/>
+      <text x="162" y="68" font-size="9" fill="#0f766e">m→W</text>
+      <!-- Point P now on equatorial -->
+      <circle cx="195" cy="40" r="4" fill="#1d4ed8"/>
+      <text x="200" y="43" font-size="9" fill="#1d4ed8">P (equatorial)</text>
+      <!-- B arrow at P (East) -->
+      <line x1="198" y1="40" x2="218" y2="40" stroke="#dc2626" stroke-width="2" marker-end="url(#arr2)"/>
+      <text x="220" y="44" font-size="8" fill="#dc2626">B=10E</text>
+      <defs>
+        <marker id="arr" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+          <path d="M0,0 L6,3 L0,6 Z" fill="#0f766e"/>
+        </marker>
+        <marker id="arr2" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+          <path d="M0,0 L6,3 L0,6 Z" fill="#dc2626"/>
+        </marker>
+      </defs>
+    </svg>`
+  },
+
+  {
+    id: 15,
+    section: 'dipole-earth',
+    difficulty: 'medium',
+    pyq: null,
+    text: 'The total intensity of the earth\'s magnetic field at the magnetic equator is 5 units. What is its value at a magnetic latitude of 37°? (Use \\(\\sin 37° = 0.6\\))',
+    options: [
+      '\\(\\sqrt{73}\\) units',
+      '\\(\\sqrt{52}\\) units',
+      '4 units',
+      '3 units'
+    ],
+    answer: 1,
+    explanation: 'For a magnetic dipole, the total field at magnetic latitude \\(\\lambda\\) is: \\[B = B_0\\sqrt{1 + 3\\sin^2\\lambda}\\] where \\(B_0 = 5\\) units (value at equator).<br>At \\(\\lambda = 37°\\): \\(\\sin 37° = 0.6\\), \\(\\sin^2 37° = 0.36\\)<br>\\[B = 5\\sqrt{1 + 3(0.36)} = 5\\sqrt{1.08 + 1} = 5\\sqrt{2.08}\\] Check: \\(5^2 \\times 2.08 = 52\\), so \\(B = \\sqrt{52}\\) units.'
+  },
+
+  {
+    id: 16,
+    section: 'dipole-earth',
+    difficulty: 'medium',
+    pyq: null,
+    text: 'Curie temperature is the temperature above which:',
+    options: [
+      'A paramagnetic material becomes diamagnetic',
+      'A ferromagnetic material becomes diamagnetic',
+      'A paramagnetic material becomes ferromagnetic',
+      'A ferromagnetic material becomes paramagnetic'
+    ],
+    answer: 3,
+    explanation: 'Above the Curie temperature, the thermal energy disrupts the alignment of magnetic domains in a ferromagnet. The material loses its long-range magnetic order and behaves like a paramagnet (susceptibility \\(\\chi \\propto 1/(T-T_C)\\) — the Curie-Weiss law). Well below \\(T_C\\), domains are ordered → ferromagnetic.'
+  },
+
+  /* ─── MAGNETIC MATERIALS ─── */
+  {
+    id: 17,
+    section: 'materials',
+    difficulty: 'medium',
+    pyq: null,
+    text: 'The figure represents a B-H curve for commercial iron. As H is increased from zero, the permeability \\(\\mu = B/H\\):',
+    options: [
+      'increases and becomes constant',
+      'increases, reaches a maximum and then decreases',
+      'decreases continuously till it becomes very small',
+      'decreases, reaches a minimum and then increases'
+    ],
+    answer: 1,
+    explanation: 'For a ferromagnet, the B-H curve is non-linear (sigmoidal). Initially B rises slowly (domains reluctant), then rapidly (domains aligning), then saturates. Since \\(\\mu = B/H\\), the slope of the line from origin to the operating point: first increases as B/H rises steeply, then falls as B saturates while H keeps increasing. Hence \\(\\mu\\) <strong>first increases to a peak, then decreases</strong>.',
+    diagram: `<svg viewBox="0 0 180 130" width="180" height="130">
+      <line x1="20" y1="115" x2="160" y2="115" stroke="#334155" stroke-width="1.5" marker-end="url(#bhx)"/>
+      <line x1="25" y1="120" x2="25" y2="12" stroke="#334155" stroke-width="1.5" marker-end="url(#bhy)"/>
+      <text x="163" y="119" font-size="10" fill="#334155">H</text>
+      <text x="22" y="10" font-size="10" fill="#334155">B</text>
+      <path d="M25,115 C35,114 45,108 65,80 C85,50 105,28 140,22" fill="none" stroke="#0f766e" stroke-width="2.5"/>
+      <!-- μ curve (dashed, different color) -->
+      <path d="M35,95 C55,60 75,40 95,48 C110,54 130,70 150,88" fill="none" stroke="#d97706" stroke-width="1.5" stroke-dasharray="4,3"/>
+      <text x="140" y="100" font-size="8" fill="#d97706">μ = B/H</text>
+      <defs>
+        <marker id="bhx" markerWidth="5" markerHeight="5" refX="4" refY="2.5" orient="auto"><path d="M0,0 L5,2.5 L0,5 Z" fill="#334155"/></marker>
+        <marker id="bhy" markerWidth="5" markerHeight="5" refX="2.5" refY="4" orient="auto"><path d="M0,5 L2.5,0 L5,5 Z" fill="#334155"/></marker>
+      </defs>
+    </svg>`
+  },
+
+  {
+    id: 18,
+    section: 'materials',
+    difficulty: 'medium',
+    pyq: 'JEE Main 2016',
+    text: 'Hysteresis loops for two magnetic materials A and B are given below. These materials are used to make magnets for electric generators, transformer cores and electromagnet cores. Which is the proper choice?',
+    options: [
+      'B for electric generators and transformers',
+      'A for electric generators and transformers',
+      'A for electric generators; B for transformers and electromagnets',
+      'A for transformers; B for electric generators'
+    ],
+    answer: 2,
+    explanation: '<strong>Material A (wide loop):</strong> High retentivity + high coercivity → hard magnetic material → retains magnetism, resists demagnetisation → <strong>permanent magnets for electric generators</strong>.<br><br><strong>Material B (narrow loop):</strong> Low coercivity + low hysteresis loss (small loop area) → soft magnetic material → easy to magnetise/demagnetise → <strong>transformer cores and electromagnet cores</strong> (must reverse many times per second).',
+    diagram: `<svg viewBox="0 0 280 120" width="280" height="120">
+      <!-- A: wide loop -->
+      <text x="70" y="12" text-anchor="middle" font-size="11" fill="#334155" font-weight="600">(A) Wide loop</text>
+      <line x1="15" y1="65" x2="125" y2="65" stroke="#9ca3af" stroke-width="1"/>
+      <line x1="70" y1="105" x2="70" y2="18" stroke="#9ca3af" stroke-width="1"/>
+      <path d="M30,65 C30,30 55,18 70,18 C85,18 110,30 110,65 C110,100 85,112 70,112 C55,112 30,100 30,65" fill="none" stroke="#0f766e" stroke-width="2.5"/>
+      <path d="M30,65 L50,65" stroke="#dc2626" stroke-width="1.5" stroke-dasharray="3,2"/>
+      <path d="M90,65 L110,65" stroke="#dc2626" stroke-width="1.5" stroke-dasharray="3,2"/>
+      <text x="70" y="115" text-anchor="middle" font-size="9" fill="#64748b">Hard • High retentivity</text>
+      <!-- B: narrow loop -->
+      <text x="210" y="12" text-anchor="middle" font-size="11" fill="#334155" font-weight="600">(B) Narrow loop</text>
+      <line x1="155" y1="65" x2="265" y2="65" stroke="#9ca3af" stroke-width="1"/>
+      <line x1="210" y1="105" x2="210" y2="18" stroke="#9ca3af" stroke-width="1"/>
+      <path d="M190,65 C190,45 198,28 210,28 C222,28 230,45 230,65 C230,85 222,102 210,102 C198,102 190,85 190,65" fill="none" stroke="#d97706" stroke-width="2.5"/>
+      <text x="210" y="115" text-anchor="middle" font-size="9" fill="#64748b">Soft • Low hysteresis loss</text>
+    </svg>`
+  },
+
+  {
+    id: 19,
+    section: 'materials',
+    difficulty: 'medium',
+    pyq: 'JEE Main 2020 Jan',
+    text: 'The figure gives experimentally measured B vs. H variation in a ferromagnetic material. The retentivity, coercivity and saturation, respectively, of the material are:',
+    options: [
+      '150 A/m, 1.0 T and 1.5 T',
+      '1.0 T, 50 A/m and 1.5 T',
+      '1.5 T, 50 A/m and 1.0 T',
+      '1.5 T, 50 A/m and 1.0 T'
+    ],
+    answer: 1,
+    explanation: '<strong>Reading from the hysteresis graph:</strong><ul style="margin:.4rem 0 .4rem 1rem"><li><strong>Retentivity</strong> = B when H = 0 (on return curve) ≈ <strong>1.0 T</strong></li><li><strong>Coercivity</strong> = H when B = 0 (on return curve) ≈ <strong>50 A/m</strong></li><li><strong>Saturation</strong> = maximum B achieved ≈ <strong>1.5 T</strong></li></ul>Order as asked (retentivity, coercivity, saturation) = 1.0 T, 50 A/m, 1.5 T.',
+    diagram: `<svg viewBox="0 0 200 160" width="200" height="160">
+      <line x1="20" y1="80" x2="190" y2="80" stroke="#9ca3af" stroke-width="1" marker-end="url(#hax)"/>
+      <line x1="100" y1="155" x2="100" y2="10" stroke="#9ca3af" stroke-width="1" marker-end="url(#hay)"/>
+      <!-- Axis labels -->
+      <text x="188" y="90" font-size="9" fill="#334155">H(A/m)</text>
+      <text x="104" y="14" font-size="9" fill="#334155">B(T)</text>
+      <!-- Scale marks -->
+      <text x="80" y="91" font-size="8" fill="#334155">-50</text>
+      <text x="113" y="91" font-size="8" fill="#334155">50</text>
+      <text x="152" y="91" font-size="8" fill="#334155">150</text>
+      <text x="103" y="46" font-size="8" fill="#334155">1.5</text>
+      <text x="103" y="68" font-size="8" fill="#334155">1.0</text>
+      <text x="96" y="98" font-size="8" fill="#334155">-1.0</text>
+      <text x="96" y="118" font-size="8" fill="#334155">-1.5</text>
+      <!-- Hysteresis loop (simplified) -->
+      <path d="M100,80 C120,78 160,60 170,42 C175,34 170,34 170,42" fill="none" stroke="#0f766e" stroke-width="2"/>
+      <path d="M170,42 C170,36 160,36 100,65 C85,70 55,75 55,80 C55,85 60,84 100,80" fill="none" stroke="#0f766e" stroke-width="2" stroke-dasharray="4,2"/>
+      <path d="M100,80 C80,82 40,100 30,118 C25,126 30,126 30,118" fill="none" stroke="#0f766e" stroke-width="2"/>
+      <path d="M30,118 C30,124 40,124 100,95 C115,90 145,85 145,80 C145,75 140,76 100,80" fill="none" stroke="#0f766e" stroke-width="2" stroke-dasharray="4,2"/>
+      <!-- Retentivity point -->
+      <circle cx="100" cy="65" r="3" fill="#dc2626"/>
+      <line x1="100" y1="65" x2="78" y2="65" stroke="#dc2626" stroke-width="1" stroke-dasharray="2,2"/>
+      <text x="40" y="63" font-size="8" fill="#dc2626">1.0T→</text>
+      <!-- Coercivity point -->
+      <circle cx="87" cy="80" r="3" fill="#1d4ed8"/>
+      <line x1="87" y1="80" x2="87" y2="93" stroke="#1d4ed8" stroke-width="1" stroke-dasharray="2,2"/>
+      <text x="70" y="102" font-size="8" fill="#1d4ed8">50 A/m</text>
+      <!-- Saturation -->
+      <circle cx="170" cy="42" r="3" fill="#d97706"/>
+      <text x="152" y="40" font-size="8" fill="#d97706">1.5T</text>
+      <defs>
+        <marker id="hax" markerWidth="5" markerHeight="5" refX="4" refY="2.5" orient="auto"><path d="M0,0 L5,2.5 L0,5 Z" fill="#9ca3af"/></marker>
+        <marker id="hay" markerWidth="5" markerHeight="5" refX="2.5" refY="4" orient="auto"><path d="M0,5 L2.5,0 L5,5 Z" fill="#9ca3af"/></marker>
+      </defs>
+    </svg>`
+  },
+
+  {
+    id: 20,
+    section: 'materials',
+    difficulty: 'medium',
+    pyq: 'JEE Main 2020 Sep',
+    text: 'Magnetic materials used for making permanent magnets (P) and magnets for a transformer (T) have different hysteresis properties. Which of the following best matches the type of magnet required?',
+    options: [
+      'T: Large retentivity, small coercivity',
+      'P: Small retentivity, large coercivity',
+      'T: Large retentivity, large coercivity',
+      'P: Large retentivity, large coercivity'
+    ],
+    answer: 3,
+    explanation: '<strong>Permanent magnets (P):</strong> Need to remain magnetised permanently → high retentivity. Must resist external demagnetising fields → high coercivity. Wide hysteresis loop (hard magnetic material, e.g., Alnico, neodymium).<br><br><strong>Transformer core (T):</strong> Must be easily magnetised and demagnetised (cycle 50/100 times per second) → <em>low</em> coercivity. Also needs low hysteresis loss → narrow loop. Retentivity is less critical; low coercivity matters most (soft iron, silicon steel).<br><br>Answer: P needs <strong>large retentivity + large coercivity</strong>.'
+  }
+
+]; /* end QUESTIONS */
+
+
+/* ═══════════════════════════════════════════════
+   RENDER + INTERACTION
+═══════════════════════════════════════════════ */
+
+const SECTION_META = {
+  'biot-savart':    { label: 'A. Biot-Savart Law &amp; Ampere\'s Law', icon: '⟳' },
+  'force-particle': { label: 'B. Force on a Charged Particle',          icon: '⚡' },
+  'force-wire':     { label: 'C. Force on Wire &amp; Torque on Loop',   icon: '↕' },
+  'dipole-earth':   { label: 'D. Magnetic Dipole &amp; Earth\'s Field', icon: '🧭' },
+  'materials':      { label: 'E. Magnetic Materials',                    icon: '◈' }
+};
+
+let state = {}; // { qId: { chosen: int, revealed: bool } }
+
+function buildPage(filterKey) {
+  const container = document.getElementById('main-content');
+  container.innerHTML = '';
+
+  let lastSection = null;
+  let shown = 0;
+
+  QUESTIONS.forEach(q => {
+    // Filter
+    const pyqMatch = filterKey === 'pyq' && q.pyq;
+    if (filterKey !== 'all' && filterKey !== 'pyq' && q.section !== filterKey) return;
+    if (filterKey === 'pyq' && !pyqMatch) return;
+    shown++;
+
+    // Section heading
+    if (filterKey === 'all' || filterKey === 'pyq') {
+      const sm = SECTION_META[q.section];
+      if (sm && q.section !== lastSection) {
+        lastSection = q.section;
+        const h = document.createElement('div');
+        h.className = 'section-heading';
+        h.innerHTML = `${sm.icon} &nbsp; ${sm.label}`;
+        container.appendChild(h);
+      }
+    }
+
+    const s = state[q.id] || {};
+    const answered = s.chosen !== undefined;
+    const correct  = answered && s.chosen === q.answer;
+
+    // Tags
+    let tagHtml = '';
+    if (q.pyq) tagHtml += `<span class="q-tag tag-pyq">${q.pyq}</span>`;
+    const diffLabel = { foundation: 'Foundation', medium: 'Medium', hard: 'Hard' }[q.difficulty];
+    const diffClass = { foundation: 'tag-foundation', medium: 'tag-medium', hard: 'tag-hard' }[q.difficulty];
+    tagHtml += `<span class="q-tag ${diffClass}">${diffLabel}</span>`;
+
+    // Options HTML
+    const letters = ['A','B','C','D'];
+    let optsHtml = '<div class="q-options">';
+    q.options.forEach((opt, i) => {
+      let cls = 'opt';
+      if (answered) {
+        cls += ' disabled';
+        if (i === q.answer) cls += ' correct';
+        else if (i === s.chosen) cls += ' wrong-sel';
+      }
+      optsHtml += `<div class="${cls}" onclick="chooseOption(${q.id},${i})">
+        <span class="opt-letter">${letters[i]}</span>
+        <span class="opt-text">${opt}</span>
+      </div>`;
+    });
+    optsHtml += '</div>';
+
+    // Answer box
+    const aVisible = s.revealed ? 'visible' : '';
+    const answerHtml = `
+      <div class="answer-box ${aVisible}" id="ans-${q.id}">
+        <div class="answer-correct-label">✓ Correct Answer: ${letters[q.answer]}</div>
+        <div>${q.explanation}</div>
+      </div>`;
+
+    // Card
+    const numClass = answered ? (correct ? 'correct-num' : 'wrong-num') : '';
+    const cardClass = answered ? (correct ? 'answered-correct' : 'answered-wrong') : '';
+
+    const card = document.createElement('div');
+    card.className = `q-card ${cardClass}`;
+    card.id = `card-${q.id}`;
+    card.innerHTML = `
+      <div class="q-header">
+        <div class="q-num ${numClass}">${q.id}</div>
+        <div style="flex:1">
+          <div class="q-meta">${tagHtml}</div>
+        </div>
+      </div>
+      <div class="q-body">
+        <div class="q-text">${q.text}</div>
+        ${q.diagram ? `<div class="q-diagram">${q.diagram}</div>` : ''}
+        ${optsHtml}
+      </div>
+      <div class="q-footer">
+        <button class="btn-reveal" id="btn-${q.id}" onclick="revealAnswer(${q.id})"
+          ${s.revealed ? 'disabled' : ''}>
+          ${s.revealed ? '✓ Shown' : 'Reveal Answer'}
+        </button>
+        ${answerHtml}
+      </div>`;
+    container.appendChild(card);
+  });
+
+  if (shown === 0) {
+    container.innerHTML = '<p style="color:var(--ink3);padding:2rem;text-align:center">No questions in this filter.</p>';
+  }
+
+  // Trigger MathJax re-typeset
+  if (window.MathJax && MathJax.typesetPromise) {
+    MathJax.typesetPromise([container]).catch(e => console.warn(e));
+  }
+}
+
+function chooseOption(qId, idx) {
+  if (state[qId] && state[qId].chosen !== undefined) return; // already answered
+  state[qId] = state[qId] || {};
+  state[qId].chosen = idx;
+  updateScore();
+  // Re-render current filter
+  const activeTab = document.querySelector('.filter-tab.active');
+  buildPage(activeTab ? activeTab.dataset.filter : 'all');
+  // Scroll to keep card visible
+  const card = document.getElementById(`card-${qId}`);
+  if (card) card.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+
+function revealAnswer(qId) {
+  state[qId] = state[qId] || {};
+  state[qId].revealed = true;
+  const box = document.getElementById(`ans-${qId}`);
+  const btn = document.getElementById(`btn-${qId}`);
+  if (box) { box.classList.add('visible'); }
+  if (btn) { btn.disabled = true; btn.textContent = '✓ Shown'; }
+  if (window.MathJax && MathJax.typesetPromise) {
+    MathJax.typesetPromise([box]).catch(e => console.warn(e));
+  }
+}
+
+function updateScore() {
+  let correct = 0, wrong = 0;
+  QUESTIONS.forEach(q => {
+    const s = state[q.id];
+    if (!s || s.chosen === undefined) return;
+    if (s.chosen === q.answer) correct++;
+    else wrong++;
+  });
+  const total = correct + wrong;
+  document.getElementById('sc-correct').textContent = correct;
+  document.getElementById('sc-wrong').textContent = wrong;
+  document.getElementById('sc-total').textContent = total;
+  document.getElementById('score-bar').style.width = (total / QUESTIONS.length * 100) + '%';
+}
+
+function setFilter(key, el) {
+  document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+  el.classList.add('active');
+  buildPage(key);
+}
+
+function resetAll() {
+  if (!confirm('Reset all answers and progress?')) return;
+  state = {};
+  updateScore();
+  const active = document.querySelector('.filter-tab.active');
+  buildPage(active ? active.dataset.filter : 'all');
+}
+
+// Init
+buildPage('all');
+updateScore();
+</script>
+
+</body>
+</html>
