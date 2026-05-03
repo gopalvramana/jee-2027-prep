@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Practice: Rotational Dynamics | JEE 2027</title>
+
+  <!-- MathJax -->
+  <script>
+    MathJax = {
+      tex: { inlineMath: [['\\(','\\)']], displayMath: [['\\[','\\]']],
+             packages: {'[+]': ['boldsymbol']} },
+      options: { skipHtmlTags: ['script','noscript','style','textarea','pre'] }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" async></script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --phys:   #0f766e;
+      --phys-l: #f0fdfa;
+      --phys-m: #ccfbf1;
+      --phys-d: #0d5f58;
+      --ink:    #0f172a;
+      --ink2:   #334155;
+      --ink3:   #64748b;
+      --line:   #e2e8f0;
+      --bg:     #f8fafc;
+      --white:  #ffffff;
+      --green:  #15803d;
+      --green-l:#f0fdf4;
+      --red:    #b91c1c;
+      --red-l:  #fef2f2;
+      --amber:  #b45309;
+      --radius: 10px;
+      --shadow: 0 2px 12px rgba(15,23,42,.08);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--ink); line-height: 1.65; }
+    h1,h2,h3 { font-family: 'DM Serif Display', serif; line-height: 1.2; }
+    a { color: inherit; text-decoration: none; }
+
+    /* NAV */
+    .nav {
+      position: sticky; top: 0; z-index: 100;
+      background: var(--white); border-bottom: 1px solid var(--line);
+      box-shadow: 0 1px 8px rgba(15,23,42,.06);
+    }
+    .nav-inner {
+      max-width: 1100px; margin: 0 auto; padding: 0 1.5rem;
+      display: flex; align-items: center; gap: 1.5rem; height: 58px;
+    }
+    .nav-brand { font-family: 'DM Serif Display', serif; font-size: 1.15rem; white-space: nowrap; }
+    .nav-links { display: flex; gap: .25rem; }
+    .nav-links a {
+      padding: .35rem .75rem; border-radius: 6px;
+      font-size: .85rem; font-weight: 500; color: var(--ink2);
+      transition: background .15s, color .15s;
+    }
+    .nav-links a:hover { background: var(--bg); }
+    .nav-links a.active { color: var(--phys); background: var(--phys-l); }
+    .nav-back {
+      margin-left: auto;
+      display: flex; align-items: center; gap: .4rem;
+      font-size: .85rem; font-weight: 500; color: var(--ink3);
+      padding: .35rem .75rem; border-radius: 6px;
+      transition: background .15s, color .15s;
+    }
+    .nav-back:hover { background: var(--bg); color: var(--ink); }
+
+    /* HERO */
+    .hero {
+      background: linear-gradient(135deg, var(--phys) 0%, var(--phys-d) 100%);
+      color: #fff; padding: 2rem 1.5rem 1.5rem;
+    }
+    .hero-inner { max-width: 1100px; margin: 0 auto; }
+    .hero-tag {
+      display: inline-flex; align-items: center; gap: .4rem;
+      background: rgba(255,255,255,.15); border-radius: 4px;
+      font-size: .78rem; font-weight: 600; letter-spacing: .05em;
+      text-transform: uppercase; padding: .2rem .6rem; margin-bottom: .6rem;
+    }
+    .hero h1 { font-size: 1.75rem; margin-bottom: .4rem; }
+    .hero p { font-size: .95rem; opacity: .85; max-width: 600px; }
+
+    /* SCORE STRIP */
+    .score-strip {
+      background: var(--white); border-bottom: 1px solid var(--line);
+      padding: .75rem 1.5rem;
+    }
+    .score-inner {
+      max-width: 1100px; margin: 0 auto;
+      display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap;
+    }
+    .score-stat { display: flex; align-items: center; gap: .5rem; font-size: .88rem; }
+    .score-num { font-family: 'JetBrains Mono', monospace; font-size: 1.1rem; font-weight: 700; }
+    .score-num.correct { color: var(--green); }
+    .score-num.wrong   { color: var(--red); }
+    .score-num.total   { color: var(--phys); }
+    .score-bar-wrap { flex: 1; min-width: 160px; height: 6px; background: var(--line); border-radius: 3px; overflow: hidden; }
+    .score-bar { height: 100%; background: var(--phys); border-radius: 3px; transition: width .4s; width: 0%; }
+    .btn-reset {
+      margin-left: auto; padding: .35rem .85rem; border-radius: 6px;
+      background: var(--bg); border: 1px solid var(--line); cursor: pointer;
+      font-size: .82rem; font-weight: 500; color: var(--ink3);
+      transition: background .15s, color .15s;
+    }
+    .btn-reset:hover { background: var(--line); color: var(--ink); }
+
+    /* FILTER TABS */
+    .filter-bar {
+      background: var(--white); border-bottom: 1px solid var(--line);
+      padding: 0 1.5rem; overflow-x: auto; -webkit-overflow-scrolling: touch;
+    }
+    .filter-inner { max-width: 1100px; margin: 0 auto; display: flex; gap: .1rem; }
+    .filter-tab {
+      padding: .65rem 1rem; border-bottom: 2px solid transparent;
+      font-size: .85rem; font-weight: 500; color: var(--ink3); cursor: pointer;
+      white-space: nowrap; transition: color .15s, border-color .15s;
+    }
+    .filter-tab:hover { color: var(--ink); }
+    .filter-tab.active { color: var(--phys); border-bottom-color: var(--phys); }
+    .filter-tab .badge {
+      display: inline-block; background: var(--bg); border-radius: 10px;
+      font-size: .72rem; padding: .1rem .4rem; margin-left: .3rem; color: var(--ink3);
+    }
+    .filter-tab.active .badge { background: var(--phys-m); color: var(--phys-d); }
+
+    /* MAIN */
+    .main { max-width: 1100px; margin: 0 auto; padding: 1.5rem 1.5rem 4rem; }
+
+    /* SECTION HEADING */
+    .section-heading {
+      font-size: .72rem; font-weight: 600; letter-spacing: .08em;
+      text-transform: uppercase; color: var(--phys);
+      padding: .4rem 0 .4rem; margin: 1.75rem 0 .75rem;
+      border-bottom: 2px solid var(--phys-m);
+      display: flex; align-items: center; gap: .5rem;
+    }
+    .section-heading:first-child { margin-top: 0; }
+
+    /* QUESTION CARD */
+    .q-card {
+      background: var(--white); border: 1px solid var(--line);
+      border-radius: var(--radius); margin-bottom: 1rem;
+      box-shadow: var(--shadow); overflow: hidden;
+      transition: box-shadow .2s;
+    }
+    .q-card:hover { box-shadow: 0 4px 20px rgba(15,23,42,.1); }
+    .q-card.answered-correct { border-color: #86efac; }
+    .q-card.answered-wrong   { border-color: #fca5a5; }
+
+    .q-header {
+      display: flex; align-items: flex-start; gap: .75rem;
+      padding: 1rem 1.25rem .5rem;
+    }
+    .q-num {
+      flex-shrink: 0; width: 28px; height: 28px;
+      background: var(--phys-m); color: var(--phys-d);
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      font-family: 'JetBrains Mono', monospace; font-size: .78rem; font-weight: 700;
+      margin-top: .1rem;
+    }
+    .q-num.correct-num { background: #bbf7d0; color: #15803d; }
+    .q-num.wrong-num   { background: #fecaca; color: #b91c1c; }
+
+    .q-meta { display: flex; gap: .4rem; flex-wrap: wrap; margin-bottom: .35rem; }
+    .q-tag {
+      font-size: .7rem; font-weight: 600; letter-spacing: .04em;
+      padding: .15rem .5rem; border-radius: 3px; text-transform: uppercase;
+    }
+    .tag-pyq  { background: #fef3c7; color: #92400e; }
+    .tag-foundation { background: var(--phys-m); color: var(--phys-d); }
+    .tag-medium { background: #e0e7ff; color: #3730a3; }
+    .tag-hard   { background: #fee2e2; color: #991b1b; }
+
+    .q-body { padding: 0 1.25rem .75rem 3.25rem; }
+    .q-text { font-size: .95rem; line-height: 1.7; margin-bottom: .85rem; }
+    .q-diagram { margin-bottom: .85rem; text-align: center; }
+
+    /* OPTIONS */
+    .q-options { display: grid; grid-template-columns: 1fr 1fr; gap: .5rem; margin-bottom: .85rem; }
+    @media (max-width: 600px) { .q-options { grid-template-columns: 1fr; } }
+
+    .opt {
+      display: flex; align-items: flex-start; gap: .5rem;
+      padding: .55rem .85rem; border-radius: 7px;
+      border: 1.5px solid var(--line); cursor: pointer;
+      font-size: .9rem; transition: border-color .15s, background .15s;
+      background: var(--bg);
+    }
+    .opt:hover:not(.disabled) { border-color: var(--phys); background: var(--phys-l); }
+    .opt.selected  { border-color: var(--phys); background: var(--phys-l); }
+    .opt.correct   { border-color: #16a34a; background: #f0fdf4; }
+    .opt.wrong-sel { border-color: #dc2626; background: #fef2f2; }
+    .opt.disabled  { cursor: default; }
+
+    .opt-letter {
+      flex-shrink: 0; width: 22px; height: 22px;
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      font-size: .78rem; font-weight: 700;
+      background: var(--line); color: var(--ink3);
+    }
+    .opt.selected  .opt-letter { background: var(--phys); color: #fff; }
+    .opt.correct   .opt-letter { background: #16a34a; color: #fff; }
+    .opt.wrong-sel .opt-letter { background: #dc2626; color: #fff; }
+    .opt-text { flex: 1; line-height: 1.5; }
+
+    /* ANSWER AREA */
+    .q-footer { padding: 0 1.25rem 1rem 3.25rem; display: flex; align-items: center; gap: .75rem; flex-wrap: wrap; }
+    .btn-reveal {
+      padding: .4rem 1rem; border-radius: 6px; cursor: pointer; font-size: .85rem; font-weight: 600;
+      background: var(--phys); color: #fff; border: none;
+      transition: background .15s, transform .1s;
+    }
+    .btn-reveal:hover { background: var(--phys-d); }
+    .btn-reveal:active { transform: scale(.97); }
+    .btn-reveal:disabled { background: var(--line); color: var(--ink3); cursor: default; transform: none; }
+
+    .answer-box {
+      display: none; width: 100%;
+      background: var(--phys-l); border: 1px solid var(--phys-m);
+      border-radius: 8px; padding: .75rem 1rem; margin-top: .5rem;
+      font-size: .9rem; line-height: 1.65;
+    }
+    .answer-box.visible { display: block; }
+    .answer-box strong { color: var(--phys-d); }
+    .answer-correct-label {
+      display: inline-flex; align-items: center; gap: .3rem;
+      font-weight: 700; color: var(--green); margin-bottom: .3rem;
+    }
+    .answer-key-formula {
+      font-family: 'JetBrains Mono', monospace; font-size: .85rem;
+      background: rgba(15,118,110,.1); padding: .15rem .4rem; border-radius: 3px;
+    }
+
+    /* HIDDEN FILTER */
+    .q-card.hidden { display: none; }
+
+    /* RESPONSIVE */
+    @media (max-width: 700px) {
+      .hero h1 { font-size: 1.35rem; }
+      .main { padding: 1rem 1rem 3rem; }
+      .q-body { padding-left: 1.25rem; }
+      .q-footer { padding-left: 1.25rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <span class="nav-brand">JEE 2027</span>
+    <div class="nav-links">
+      <a href="../index.html">Home</a>
+      <a href="../subjects/physics.html" class="active">Physics</a>
+    </div>
+    <a class="nav-back" href="../subjects/physics.html">
+      ← Theory
+    </a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-tag">⚛ Physics · Unit P4</div>
+    <h1>Rotational Dynamics</h1>
+    <p>20 questions — Single Correct · JEE Main PYQs · Allen DLP</p>
+  </div>
+</div>
+
+<!-- SCORE STRIP -->
+<div class="score-strip">
+  <div class="score-inner">
+    <div class="score-stat">
+      <span class="score-num correct" id="sc-correct">0</span>
+      <span style="color:var(--ink3);font-size:.82rem">correct</span>
+    </div>
+    <div class="score-stat">
+      <span class="score-num wrong" id="sc-wrong">0</span>
+      <span style="color:var(--ink3);font-size:.82rem">wrong</span>
+    </div>
+    <div class="score-stat">
+      <span class="score-num total" id="sc-total">0</span>
+      <span style="color:var(--ink3);font-size:.82rem">/ 20 attempted</span>
+    </div>
+    <div class="score-bar-wrap"><div class="score-bar" id="score-bar"></div></div>
+    <button class="btn-reset" onclick="resetAll()">↺ Reset</button>
+  </div>
+</div>
+
+<!-- FILTER TABS -->
+<div class="filter-bar">
+  <div class="filter-inner">
+    <div class="filter-tab active" data-filter="all" onclick="setFilter('all',this)">All <span class="badge">20</span></div>
+    <div class="filter-tab" data-filter="moi" onclick="setFilter('moi',this)">Moment of Inertia <span class="badge">8</span></div>
+    <div class="filter-tab" data-filter="torque" onclick="setFilter('torque',this)">Torque &amp; Dynamics <span class="badge">7</span></div>
+    <div class="filter-tab" data-filter="ang-momentum" onclick="setFilter('ang-momentum',this)">Angular Momentum &amp; Rolling <span class="badge">5</span></div>
+    <div class="filter-tab" data-filter="pyq" onclick="setFilter('pyq',this)">PYQ Only <span class="badge">7</span></div>
+  </div>
+</div>
+
+<!-- MAIN CONTENT -->
+<div class="main" id="main-content">
+  <!-- Questions rendered by JS -->
+</div>
+
+<script>
+/* ═══════════════════════════════════════════════
+   QUESTION DATA
+   answer: 0-indexed (0=A, 1=B, 2=C, 3=D)
+   section: used for filter tabs
+   pyq: null or year string
+═══════════════════════════════════════════════ */
+const QUESTIONS = [
+
+  /* ─── MOMENT OF INERTIA ─── */
+  {
+    id: 1, section: 'moi', difficulty: 'foundation', pyq: null,
+    text: 'The moment of inertia of a uniform disc of mass \\(M\\) and radius \\(R\\) about an axis through its centre perpendicular to its plane is:',
+    options: [
+      '\\(\\dfrac{MR^2}{4}\\)',
+      '\\(\\dfrac{MR^2}{2}\\)',
+      '\\(MR^2\\)',
+      '\\(2MR^2\\)'
+    ],
+    answer: 1,
+    explanation: 'Standard result: \\[I_{\\text{disc, centre}} = \\frac{MR^2}{2}\\] Derivation: treat disc as concentric rings. \\(dI = r^2\\,dm = r^2\\cdot\\dfrac{2M}{R^2}r\\,dr\\). Integrate 0 to R: \\(I = \\dfrac{MR^2}{2}\\).'
+  },
+
+  {
+    id: 2, section: 'moi', difficulty: 'foundation', pyq: null,
+    text: 'The moment of inertia of a thin uniform ring of mass \\(M\\) and radius \\(R\\) about an axis through its centre perpendicular to its plane is:',
+    options: [
+      '\\(\\dfrac{MR^2}{4}\\)',
+      '\\(\\dfrac{MR^2}{2}\\)',
+      '\\(MR^2\\)',
+      '\\(2MR^2\\)'
+    ],
+    answer: 2,
+    explanation: 'For a thin ring, all mass is at distance \\(R\\) from the axis:<br>\\[I_{\\text{ring}} = MR^2\\]Compare with disc: \\(I_{\\text{disc}} = \\dfrac{MR^2}{2}\\) (mass distributed from 0 to R).'
+  },
+
+  {
+    id: 3, section: 'moi', difficulty: 'foundation', pyq: null,
+    text: 'The moment of inertia of a uniform thin rod of mass \\(M\\) and length \\(L\\) about an axis through its <strong>centre</strong> perpendicular to its length is:',
+    options: [
+      '\\(\\dfrac{ML^2}{12}\\)',
+      '\\(\\dfrac{ML^2}{6}\\)',
+      '\\(\\dfrac{ML^2}{3}\\)',
+      '\\(\\dfrac{ML^2}{4}\\)'
+    ],
+    answer: 0,
+    explanation: 'Using integration: \\(I = \\int_{-L/2}^{L/2} x^2 \\cdot \\dfrac{M}{L}\\,dx = \\dfrac{M}{L}\\cdot\\dfrac{2(L/2)^3}{3} = \\dfrac{ML^2}{12}\\).'
+  },
+
+  {
+    id: 4, section: 'moi', difficulty: 'foundation', pyq: null,
+    text: 'The moment of inertia of a uniform rod of mass \\(M\\) and length \\(L\\) about an axis through one <strong>end</strong> perpendicular to its length is:',
+    options: [
+      '\\(\\dfrac{ML^2}{12}\\)',
+      '\\(\\dfrac{ML^2}{3}\\)',
+      '\\(\\dfrac{ML^2}{6}\\)',
+      '\\(ML^2\\)'
+    ],
+    answer: 1,
+    explanation: 'By the parallel-axis theorem, with \\(d = L/2\\):<br>\\[I_{\\text{end}} = I_{\\text{cm}} + Md^2 = \\frac{ML^2}{12} + M\\left(\\frac{L}{2}\\right)^2 = \\frac{ML^2}{12} + \\frac{ML^2}{4} = \\frac{ML^2}{3}\\]'
+  },
+
+  {
+    id: 5, section: 'moi', difficulty: 'medium', pyq: 'JEE Main 2018',
+    text: 'The moment of inertia of a disc of mass \\(M\\) and radius \\(R\\) about an axis <strong>tangent to its rim and perpendicular to its plane</strong> is:',
+    options: [
+      '\\(\\dfrac{MR^2}{2}\\)',
+      '\\(MR^2\\)',
+      '\\(\\dfrac{3MR^2}{2}\\)',
+      '\\(2MR^2\\)'
+    ],
+    answer: 2,
+    explanation: 'Apply the parallel-axis theorem. The axis is at perpendicular distance \\(d = R\\) from the centre axis:<br>\\[I = I_{\\text{cm}} + Md^2 = \\frac{MR^2}{2} + MR^2 = \\frac{3MR^2}{2}\\]'
+  },
+
+  {
+    id: 6, section: 'moi', difficulty: 'medium', pyq: null,
+    text: 'Two point masses \\(m\\) each are connected by a massless rod of length \\(2a\\). The moment of inertia about an axis through the midpoint perpendicular to the rod is:',
+    options: [
+      '\\(2ma^2\\)',
+      '\\(4ma^2\\)',
+      '\\(ma^2\\)',
+      '\\(8ma^2\\)'
+    ],
+    answer: 0,
+    explanation: 'Each mass is at distance \\(a\\) from the midpoint. Moment of inertia:<br>\\[I = m\\cdot a^2 + m\\cdot a^2 = 2ma^2\\]'
+  },
+
+  {
+    id: 7, section: 'moi', difficulty: 'medium', pyq: 'JEE Main 2016',
+    text: 'The moment of inertia of a disc of mass \\(M\\) and radius \\(R\\) about an axis tangent to the disc in the <strong>plane of the disc</strong> is:',
+    options: [
+      '\\(\\dfrac{MR^2}{4}\\)',
+      '\\(\\dfrac{MR^2}{2}\\)',
+      '\\(\\dfrac{5MR^2}{4}\\)',
+      '\\(\\dfrac{3MR^2}{2}\\)'
+    ],
+    answer: 2,
+    explanation: 'The axis is tangent in-plane, i.e., parallel to the diameter at distance \\(R\\).<br>First find \\(I_{\\text{diameter}} = \\dfrac{MR^2}{4}\\) (perpendicular axis theorem: \\(I_z = I_x + I_y\\), with \\(I_x = I_y\\) → \\(I_{\\text{diameter}} = \\dfrac{MR^2}{4}\\)).<br>Then apply parallel axis with \\(d = R\\):<br>\\[I = \\frac{MR^2}{4} + MR^2 = \\frac{5MR^2}{4}\\]'
+  },
+
+  {
+    id: 8, section: 'moi', difficulty: 'medium', pyq: null,
+    text: 'A uniform solid sphere of mass \\(M\\) and radius \\(R\\). The ratio of its moment of inertia about an axis through its centre to that of a hollow spherical shell of the same mass and radius about a similar axis is:',
+    options: [
+      '\\(2:3\\)',
+      '\\(3:5\\)',
+      '\\(5:3\\)',
+      '\\(3:2\\)'
+    ],
+    answer: 1,
+    explanation: '\\(I_{\\text{solid sphere}} = \\dfrac{2}{5}MR^2\\), \\(I_{\\text{hollow shell}} = \\dfrac{2}{3}MR^2\\).<br>\\[\\frac{I_{\\text{solid}}}{I_{\\text{shell}}} = \\frac{2/5}{2/3} = \\frac{3}{5}\\] So the ratio solid : shell = \\(3:5\\).'
+  },
+
+  /* ─── TORQUE & DYNAMICS ─── */
+  {
+    id: 9, section: 'torque', difficulty: 'foundation', pyq: null,
+    text: 'A disc of moment of inertia \\(0.5\\) kg·m² is acted on by a net torque of \\(2\\) N·m. The angular acceleration of the disc is:',
+    options: [
+      '\\(1\\) rad/s²',
+      '\\(2\\) rad/s²',
+      '\\(4\\) rad/s²',
+      '\\(8\\) rad/s²'
+    ],
+    answer: 2,
+    explanation: '\\(\\tau = I\\alpha \\Rightarrow \\alpha = \\dfrac{\\tau}{I} = \\dfrac{2}{0.5} = \\mathbf{4}\\) rad/s².'
+  },
+
+  {
+    id: 10, section: 'torque', difficulty: 'foundation', pyq: null,
+    text: 'A flywheel of moment of inertia \\(2\\) kg·m² spins at \\(10\\) rad/s. Its angular momentum is:',
+    options: [
+      '\\(5\\) kg·m²/s',
+      '\\(10\\) kg·m²/s',
+      '\\(20\\) kg·m²/s',
+      '\\(40\\) kg·m²/s'
+    ],
+    answer: 2,
+    explanation: '\\(L = I\\omega = 2 \\times 10 = \\mathbf{20}\\) kg·m²/s.'
+  },
+
+  {
+    id: 11, section: 'torque', difficulty: 'medium', pyq: 'JEE Main 2015',
+    text: 'A net torque of \\(2\\) N·m acts on a rigid body for \\(5\\) s. The change in angular momentum of the body is:',
+    options: [
+      '\\(2.5\\) kg·m²/s',
+      '\\(5\\) kg·m²/s',
+      '\\(10\\) kg·m²/s',
+      '\\(20\\) kg·m²/s'
+    ],
+    answer: 2,
+    explanation: 'By the angular impulse-momentum theorem: \\(\\Delta L = \\tau \\cdot \\Delta t = 2 \\times 5 = \\mathbf{10}\\) kg·m²/s.<br>(Rotational analogue of linear impulse \\(J = F\\Delta t = \\Delta p\\).)'
+  },
+
+  {
+    id: 12, section: 'torque', difficulty: 'medium', pyq: null,
+    text: 'A uniform horizontal rod of mass \\(M\\) and length \\(L\\) is pivoted at one end. A vertical force \\(F\\) at the free end supports it horizontal. For equilibrium, \\(F\\) equals:',
+    options: [
+      '\\(\\dfrac{Mg}{4}\\)',
+      '\\(\\dfrac{Mg}{2}\\)',
+      '\\(Mg\\)',
+      '\\(2Mg\\)'
+    ],
+    answer: 1,
+    explanation: 'Taking torques about the pivot:<br>\\(\\tau_{F} = F \\cdot L\\) (anticlockwise, upward force at distance \\(L\\)).<br>\\(\\tau_{\\text{gravity}} = Mg \\cdot \\dfrac{L}{2}\\) (clockwise, weight acts at centre).<br>Equilibrium: \\(F \\cdot L = Mg \\cdot \\dfrac{L}{2} \\Rightarrow F = \\dfrac{Mg}{2}\\).',
+    diagram: `<svg viewBox="0 0 260 90" width="260" height="90">
+      <line x1="30" y1="50" x2="220" y2="50" stroke="#334155" stroke-width="4" stroke-linecap="round"/>
+      <!-- Pivot -->
+      <polygon points="30,50 22,68 38,68" fill="#64748b"/>
+      <line x1="15" y1="68" x2="45" y2="68" stroke="#64748b" stroke-width="2"/>
+      <!-- Weight Mg at centre -->
+      <line x1="125" y1="50" x2="125" y2="76" stroke="#dc2626" stroke-width="2" marker-end="url(#wa)"/>
+      <text x="130" y="80" font-size="10" fill="#dc2626">Mg</text>
+      <!-- Force F at end -->
+      <line x1="220" y1="74" x2="220" y2="54" stroke="#0f766e" stroke-width="2" marker-end="url(#fa)"/>
+      <text x="224" y="80" font-size="10" fill="#0f766e">F</text>
+      <!-- L/2 label -->
+      <line x1="30" y1="40" x2="125" y2="40" stroke="#64748b" stroke-width="1" stroke-dasharray="3,3"/>
+      <text x="68" y="37" font-size="9" fill="#64748b">L/2</text>
+      <defs>
+        <marker id="wa" markerWidth="6" markerHeight="6" refX="3" refY="5" orient="auto"><path d="M0,0 L6,0 L3,6 Z" fill="#dc2626"/></marker>
+        <marker id="fa" markerWidth="6" markerHeight="6" refX="3" refY="1" orient="auto"><path d="M0,6 L6,6 L3,0 Z" fill="#0f766e"/></marker>
+      </defs>
+    </svg>`
+  },
+
+  {
+    id: 13, section: 'torque', difficulty: 'medium', pyq: 'JEE Main 2017',
+    text: 'A uniform beam of mass 20 kg and length 4 m rests on two supports at its ends. A load of 60 kg is placed 1 m from the left support. The reaction at the left support is: (\\(g = 10\\) m/s²)',
+    options: [
+      '\\(250\\) N',
+      '\\(400\\) N',
+      '\\(550\\) N',
+      '\\(800\\) N'
+    ],
+    answer: 2,
+    explanation: 'Take moments about the right support. Let \\(R_L\\) = left reaction.<br>Clockwise torques: \\(R_L \\times 4\\).<br>Anticlockwise torques: \\(60g \\times 3 + 20g \\times 2 = 1800 + 400 = 2200\\) N·m.<br>\\[R_L = \\frac{2200}{4} = 550\\text{ N}\\]Check: \\(R_R = (80 \\times 10) - 550 = 800 - 550 = 250\\) N. Sum = 800 N = total weight ✓'
+  },
+
+  {
+    id: 14, section: 'torque', difficulty: 'medium', pyq: 'JEE Main 2019',
+    text: 'A solid sphere rolls without slipping. The fraction of its total kinetic energy that is rotational is:',
+    options: [
+      '\\(\\dfrac{2}{5}\\)',
+      '\\(\\dfrac{2}{7}\\)',
+      '\\(\\dfrac{5}{7}\\)',
+      '\\(\\dfrac{5}{2}\\)'
+    ],
+    answer: 1,
+    explanation: 'For rolling without slipping (\\(v = \\omega R\\)):<br>\\(KE_{\\text{rot}} = \\dfrac{1}{2}I\\omega^2 = \\dfrac{1}{2}\\cdot\\dfrac{2}{5}MR^2\\cdot\\dfrac{v^2}{R^2} = \\dfrac{Mv^2}{5}\\)<br>\\(KE_{\\text{trans}} = \\dfrac{1}{2}Mv^2\\)<br>\\(KE_{\\text{total}} = \\dfrac{Mv^2}{2} + \\dfrac{Mv^2}{5} = \\dfrac{7Mv^2}{10}\\)<br>\\[\\text{Fraction} = \\frac{Mv^2/5}{7Mv^2/10} = \\frac{2}{7}\\]'
+  },
+
+  {
+    id: 15, section: 'torque', difficulty: 'medium', pyq: null,
+    text: 'A ring and a disc of the same mass and radius start from rest and roll down a fixed inclined plane. Which reaches the bottom first?',
+    options: [
+      'Ring',
+      'Disc',
+      'Both simultaneously',
+      'Cannot be determined'
+    ],
+    answer: 1,
+    explanation: 'Acceleration while rolling: \\(a = \\dfrac{g\\sin\\theta}{1 + I/MR^2}\\).<br>Ring: \\(I = MR^2 \\Rightarrow a_{\\text{ring}} = \\dfrac{g\\sin\\theta}{2}\\)<br>Disc: \\(I = \\dfrac{MR^2}{2} \\Rightarrow a_{\\text{disc}} = \\dfrac{2g\\sin\\theta}{3}\\)<br>Since \\(\\dfrac{2}{3} > \\dfrac{1}{2}\\), the <strong>disc accelerates more</strong> and reaches the bottom first.'
+  },
+
+  /* ─── ANGULAR MOMENTUM & ROLLING ─── */
+  {
+    id: 16, section: 'ang-momentum', difficulty: 'foundation', pyq: null,
+    text: 'A disc of MI \\(I_1 = 3\\) kg·m² spins at \\(\\omega_1 = 10\\) rad/s. Another disc with \\(I_2 = 2\\) kg·m² (initially at rest) is dropped onto it. The final angular velocity is:',
+    options: [
+      '\\(4\\) rad/s',
+      '\\(6\\) rad/s',
+      '\\(10\\) rad/s',
+      '\\(15\\) rad/s'
+    ],
+    answer: 1,
+    explanation: 'No external torque → angular momentum conserved:<br>\\[I_1\\omega_1 = (I_1 + I_2)\\omega_2\\]\\[\\omega_2 = \\frac{3 \\times 10}{3 + 2} = \\frac{30}{5} = \\mathbf{6}\\text{ rad/s}\\]'
+  },
+
+  {
+    id: 17, section: 'ang-momentum', difficulty: 'medium', pyq: 'AIEEE 2004',
+    text: 'A disc spinning at \\(\\omega\\) has a person sitting at the rim (distance \\(R\\) from centre). The person moves to the centre. If the disc\'s MI is \\(I_0\\) and the person\'s mass is \\(m\\), the new angular velocity is:',
+    options: [
+      '\\(\\dfrac{I_0\\omega}{I_0+mR^2}\\)',
+      '\\(\\dfrac{(I_0+mR^2)\\omega}{I_0}\\)',
+      '\\(\\omega\\)',
+      '\\(\\dfrac{I_0\\omega}{I_0-mR^2}\\)'
+    ],
+    answer: 1,
+    explanation: 'Initial angular momentum: \\(L_i = (I_0 + mR^2)\\omega\\).<br>Final (person at centre, contributing 0): \\(L_f = I_0\\omega\'\\).<br>Conservation: \\[\\omega\' = \\frac{(I_0 + mR^2)\\omega}{I_0}\\] Angular velocity <em>increases</em> — analogous to a spinning skater pulling arms in.'
+  },
+
+  {
+    id: 18, section: 'ang-momentum', difficulty: 'medium', pyq: 'JEE Main 2016',
+    text: 'A uniform rod of length \\(L\\) and mass \\(M\\) is freely pivoted at one end. It is held horizontal and released. The angular velocity when it reaches the vertical position is:',
+    options: [
+      '\\(\\sqrt{\\dfrac{g}{L}}\\)',
+      '\\(\\sqrt{\\dfrac{2g}{L}}\\)',
+      '\\(\\sqrt{\\dfrac{3g}{L}}\\)',
+      '\\(\\sqrt{\\dfrac{6g}{L}}\\)'
+    ],
+    answer: 2,
+    explanation: 'Energy conservation: loss in PE = gain in rotational KE.<br>Centre of mass falls \\(L/2\\): \\(Mg\\dfrac{L}{2} = \\dfrac{1}{2}I\\omega^2 = \\dfrac{1}{2}\\cdot\\dfrac{ML^2}{3}\\cdot\\omega^2\\)<br>\\[\\frac{MgL}{2} = \\frac{ML^2\\omega^2}{6} \\Rightarrow \\omega^2 = \\frac{3g}{L} \\Rightarrow \\omega = \\sqrt{\\frac{3g}{L}}\\]',
+    diagram: `<svg viewBox="0 0 200 130" width="200" height="130">
+      <!-- Pivot -->
+      <circle cx="60" cy="40" r="5" fill="#334155"/>
+      <!-- Horizontal rod -->
+      <line x1="60" y1="40" x2="180" y2="40" stroke="#0f766e" stroke-width="4" stroke-linecap="round"/>
+      <text x="120" y="32" font-size="10" fill="#0f766e">Horizontal (initial)</text>
+      <!-- Vertical rod -->
+      <line x1="60" y1="40" x2="60" y2="120" stroke="#d97706" stroke-width="4" stroke-linecap="round"/>
+      <text x="66" y="115" font-size="10" fill="#d97706">Vertical (final)</text>
+      <!-- Arrow showing rotation -->
+      <path d="M75,40 A25,25 0 0,1 60,65" fill="none" stroke="#64748b" stroke-width="1.5" marker-end="url(#ra)"/>
+      <!-- Height drop label -->
+      <line x1="180" y1="40" x2="180" y2="80" stroke="#dc2626" stroke-width="1" stroke-dasharray="3,3"/>
+      <text x="183" y="65" font-size="9" fill="#dc2626">L/2↓</text>
+      <defs><marker id="ra" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#64748b"/></marker></defs>
+    </svg>`
+  },
+
+  {
+    id: 19, section: 'ang-momentum', difficulty: 'medium', pyq: null,
+    text: 'A solid cylinder rolls without slipping on a horizontal surface with speed \\(v\\). The total kinetic energy of the cylinder is:',
+    options: [
+      '\\(\\dfrac{1}{2}Mv^2\\)',
+      '\\(\\dfrac{3}{4}Mv^2\\)',
+      '\\(Mv^2\\)',
+      '\\(\\dfrac{5}{4}Mv^2\\)'
+    ],
+    answer: 1,
+    explanation: 'Rolling: \\(v = \\omega R\\). For solid cylinder \\(I = \\dfrac{MR^2}{2}\\).<br>\\(KE = \\dfrac{1}{2}Mv^2 + \\dfrac{1}{2}I\\omega^2 = \\dfrac{1}{2}Mv^2 + \\dfrac{1}{2}\\cdot\\dfrac{MR^2}{2}\\cdot\\dfrac{v^2}{R^2}\\)<br>\\[= \\frac{1}{2}Mv^2 + \\frac{1}{4}Mv^2 = \\frac{3}{4}Mv^2\\]'
+  },
+
+  {
+    id: 20, section: 'ang-momentum', difficulty: 'hard', pyq: 'JEE Main 2020 Jan',
+    text: 'A disc of mass \\(M\\) and radius \\(R\\) rotating at \\(\\omega\\) rad/s. A small mass \\(m\\) is placed at the rim. The new angular velocity is: (no external torque)',
+    options: [
+      '\\(\\dfrac{M\\omega}{M+m}\\)',
+      '\\(\\dfrac{M\\omega}{M+2m}\\)',
+      '\\(\\dfrac{(M+m)\\omega}{M}\\)',
+      '\\(\\omega\\)'
+    ],
+    answer: 1,
+    explanation: 'Initial \\(L = I_0\\omega = \\dfrac{MR^2}{2}\\cdot\\omega\\).<br>After mass \\(m\\) placed at rim: \\(I_f = \\dfrac{MR^2}{2} + mR^2 = R^2\\left(\\dfrac{M}{2}+m\\right)\\).<br>Conservation: \\(\\dfrac{MR^2}{2}\\omega = R^2\\left(\\dfrac{M}{2}+m\\right)\\omega\'\\)<br>\\[\\omega\' = \\frac{M\\omega/2}{M/2+m} = \\frac{M\\omega}{M+2m}\\]'
+  }
+
+]; /* end QUESTIONS */
+
+
+/* ═══════════════════════════════════════════════
+   RENDER + INTERACTION
+═══════════════════════════════════════════════ */
+
+const SECTION_META = {
+  'moi':          { label: 'A. Moment of Inertia',                       icon: '⊙' },
+  'torque':       { label: 'B. Torque, Angular Acceleration &amp; Work', icon: 'τ' },
+  'ang-momentum': { label: 'C. Angular Momentum &amp; Rolling',          icon: '🌀' }
+};
+
+let state = {}; // { qId: { chosen: int, revealed: bool } }
+
+function buildPage(filterKey) {
+  const container = document.getElementById('main-content');
+  container.innerHTML = '';
+
+  let lastSection = null;
+  let shown = 0;
+
+  QUESTIONS.forEach(q => {
+    // Filter
+    const pyqMatch = filterKey === 'pyq' && q.pyq;
+    if (filterKey !== 'all' && filterKey !== 'pyq' && q.section !== filterKey) return;
+    if (filterKey === 'pyq' && !pyqMatch) return;
+    shown++;
+
+    // Section heading
+    if (filterKey === 'all' || filterKey === 'pyq') {
+      const sm = SECTION_META[q.section];
+      if (sm && q.section !== lastSection) {
+        lastSection = q.section;
+        const h = document.createElement('div');
+        h.className = 'section-heading';
+        h.innerHTML = `${sm.icon} &nbsp; ${sm.label}`;
+        container.appendChild(h);
+      }
+    }
+
+    const s = state[q.id] || {};
+    const answered = s.chosen !== undefined;
+    const correct  = answered && s.chosen === q.answer;
+
+    // Tags
+    let tagHtml = '';
+    if (q.pyq) tagHtml += `<span class="q-tag tag-pyq">${q.pyq}</span>`;
+    const diffLabel = { foundation: 'Foundation', medium: 'Medium', hard: 'Hard' }[q.difficulty];
+    const diffClass = { foundation: 'tag-foundation', medium: 'tag-medium', hard: 'tag-hard' }[q.difficulty];
+    tagHtml += `<span class="q-tag ${diffClass}">${diffLabel}</span>`;
+
+    // Options HTML
+    const letters = ['A','B','C','D'];
+    let optsHtml = '<div class="q-options">';
+    q.options.forEach((opt, i) => {
+      let cls = 'opt';
+      if (answered) {
+        cls += ' disabled';
+        if (i === q.answer) cls += ' correct';
+        else if (i === s.chosen) cls += ' wrong-sel';
+      }
+      optsHtml += `<div class="${cls}" onclick="chooseOption(${q.id},${i})">
+        <span class="opt-letter">${letters[i]}</span>
+        <span class="opt-text">${opt}</span>
+      </div>`;
+    });
+    optsHtml += '</div>';
+
+    // Answer box
+    const aVisible = s.revealed ? 'visible' : '';
+    const answerHtml = `
+      <div class="answer-box ${aVisible}" id="ans-${q.id}">
+        <div class="answer-correct-label">✓ Correct Answer: ${letters[q.answer]}</div>
+        <div>${q.explanation}</div>
+      </div>`;
+
+    // Card
+    const numClass = answered ? (correct ? 'correct-num' : 'wrong-num') : '';
+    const cardClass = answered ? (correct ? 'answered-correct' : 'answered-wrong') : '';
+
+    const card = document.createElement('div');
+    card.className = `q-card ${cardClass}`;
+    card.id = `card-${q.id}`;
+    card.innerHTML = `
+      <div class="q-header">
+        <div class="q-num ${numClass}">${q.id}</div>
+        <div style="flex:1">
+          <div class="q-meta">${tagHtml}</div>
+        </div>
+      </div>
+      <div class="q-body">
+        <div class="q-text">${q.text}</div>
+        ${q.diagram ? `<div class="q-diagram">${q.diagram}</div>` : ''}
+        ${optsHtml}
+      </div>
+      <div class="q-footer">
+        <button class="btn-reveal" id="btn-${q.id}" onclick="revealAnswer(${q.id})"
+          ${s.revealed ? 'disabled' : ''}>
+          ${s.revealed ? '✓ Shown' : 'Reveal Answer'}
+        </button>
+        ${answerHtml}
+      </div>`;
+    container.appendChild(card);
+  });
+
+  if (shown === 0) {
+    container.innerHTML = '<p style="color:var(--ink3);padding:2rem;text-align:center">No questions in this filter.</p>';
+  }
+
+  // Trigger MathJax re-typeset
+  if (window.MathJax && MathJax.typesetPromise) {
+    MathJax.typesetPromise([container]).catch(e => console.warn(e));
+  }
+}
+
+function chooseOption(qId, idx) {
+  if (state[qId] && state[qId].chosen !== undefined) return; // already answered
+  state[qId] = state[qId] || {};
+  state[qId].chosen = idx;
+  updateScore();
+  // Re-render current filter
+  const activeTab = document.querySelector('.filter-tab.active');
+  buildPage(activeTab ? activeTab.dataset.filter : 'all');
+  // Scroll to keep card visible
+  const card = document.getElementById(`card-${qId}`);
+  if (card) card.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+
+function revealAnswer(qId) {
+  state[qId] = state[qId] || {};
+  state[qId].revealed = true;
+  const box = document.getElementById(`ans-${qId}`);
+  const btn = document.getElementById(`btn-${qId}`);
+  if (box) { box.classList.add('visible'); }
+  if (btn) { btn.disabled = true; btn.textContent = '✓ Shown'; }
+  if (window.MathJax && MathJax.typesetPromise) {
+    MathJax.typesetPromise([box]).catch(e => console.warn(e));
+  }
+}
+
+function updateScore() {
+  let correct = 0, wrong = 0;
+  QUESTIONS.forEach(q => {
+    const s = state[q.id];
+    if (!s || s.chosen === undefined) return;
+    if (s.chosen === q.answer) correct++;
+    else wrong++;
+  });
+  const total = correct + wrong;
+  document.getElementById('sc-correct').textContent = correct;
+  document.getElementById('sc-wrong').textContent = wrong;
+  document.getElementById('sc-total').textContent = total;
+  document.getElementById('score-bar').style.width = (total / QUESTIONS.length * 100) + '%';
+}
+
+function setFilter(key, el) {
+  document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+  el.classList.add('active');
+  buildPage(key);
+}
+
+function resetAll() {
+  if (!confirm('Reset all answers and progress?')) return;
+  state = {};
+  updateScore();
+  const active = document.querySelector('.filter-tab.active');
+  buildPage(active ? active.dataset.filter : 'all');
+}
+
+// Init
+buildPage('all');
+updateScore();
+</script>
+
+</body>
+</html>

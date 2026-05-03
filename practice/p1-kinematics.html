@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Practice: Kinematics 1D &amp; Calculus | JEE 2027</title>
+
+  <!-- MathJax -->
+  <script>
+    MathJax = {
+      tex: { inlineMath: [['\\(','\\)']], displayMath: [['\\[','\\]']],
+             packages: {'[+]': ['boldsymbol']} },
+      options: { skipHtmlTags: ['script','noscript','style','textarea','pre'] }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" async></script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --phys:   #0f766e;
+      --phys-l: #f0fdfa;
+      --phys-m: #ccfbf1;
+      --phys-d: #0d5f58;
+      --ink:    #0f172a;
+      --ink2:   #334155;
+      --ink3:   #64748b;
+      --line:   #e2e8f0;
+      --bg:     #f8fafc;
+      --white:  #ffffff;
+      --green:  #15803d;
+      --green-l:#f0fdf4;
+      --red:    #b91c1c;
+      --red-l:  #fef2f2;
+      --amber:  #b45309;
+      --radius: 10px;
+      --shadow: 0 2px 12px rgba(15,23,42,.08);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--ink); line-height: 1.65; }
+    h1,h2,h3 { font-family: 'DM Serif Display', serif; line-height: 1.2; }
+    a { color: inherit; text-decoration: none; }
+
+    /* NAV */
+    .nav {
+      position: sticky; top: 0; z-index: 100;
+      background: var(--white); border-bottom: 1px solid var(--line);
+      box-shadow: 0 1px 8px rgba(15,23,42,.06);
+    }
+    .nav-inner {
+      max-width: 1100px; margin: 0 auto; padding: 0 1.5rem;
+      display: flex; align-items: center; gap: 1.5rem; height: 58px;
+    }
+    .nav-brand { font-family: 'DM Serif Display', serif; font-size: 1.15rem; white-space: nowrap; }
+    .nav-links { display: flex; gap: .25rem; }
+    .nav-links a {
+      padding: .35rem .75rem; border-radius: 6px;
+      font-size: .85rem; font-weight: 500; color: var(--ink2);
+      transition: background .15s, color .15s;
+    }
+    .nav-links a:hover { background: var(--bg); }
+    .nav-links a.active { color: var(--phys); background: var(--phys-l); }
+    .nav-back {
+      margin-left: auto;
+      display: flex; align-items: center; gap: .4rem;
+      font-size: .85rem; font-weight: 500; color: var(--ink3);
+      padding: .35rem .75rem; border-radius: 6px;
+      transition: background .15s, color .15s;
+    }
+    .nav-back:hover { background: var(--bg); color: var(--ink); }
+
+    /* HERO */
+    .hero {
+      background: linear-gradient(135deg, var(--phys) 0%, var(--phys-d) 100%);
+      color: #fff; padding: 2rem 1.5rem 1.5rem;
+    }
+    .hero-inner { max-width: 1100px; margin: 0 auto; }
+    .hero-tag {
+      display: inline-flex; align-items: center; gap: .4rem;
+      background: rgba(255,255,255,.15); border-radius: 4px;
+      font-size: .78rem; font-weight: 600; letter-spacing: .05em;
+      text-transform: uppercase; padding: .2rem .6rem; margin-bottom: .6rem;
+    }
+    .hero h1 { font-size: 1.75rem; margin-bottom: .4rem; }
+    .hero p { font-size: .95rem; opacity: .85; max-width: 600px; }
+
+    /* SCORE STRIP */
+    .score-strip {
+      background: var(--white); border-bottom: 1px solid var(--line);
+      padding: .75rem 1.5rem;
+    }
+    .score-inner {
+      max-width: 1100px; margin: 0 auto;
+      display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap;
+    }
+    .score-stat { display: flex; align-items: center; gap: .5rem; font-size: .88rem; }
+    .score-num { font-family: 'JetBrains Mono', monospace; font-size: 1.1rem; font-weight: 700; }
+    .score-num.correct { color: var(--green); }
+    .score-num.wrong   { color: var(--red); }
+    .score-num.total   { color: var(--phys); }
+    .score-bar-wrap { flex: 1; min-width: 160px; height: 6px; background: var(--line); border-radius: 3px; overflow: hidden; }
+    .score-bar { height: 100%; background: var(--phys); border-radius: 3px; transition: width .4s; width: 0%; }
+    .btn-reset {
+      margin-left: auto; padding: .35rem .85rem; border-radius: 6px;
+      background: var(--bg); border: 1px solid var(--line); cursor: pointer;
+      font-size: .82rem; font-weight: 500; color: var(--ink3);
+      transition: background .15s, color .15s;
+    }
+    .btn-reset:hover { background: var(--line); color: var(--ink); }
+
+    /* FILTER TABS */
+    .filter-bar {
+      background: var(--white); border-bottom: 1px solid var(--line);
+      padding: 0 1.5rem; overflow-x: auto; -webkit-overflow-scrolling: touch;
+    }
+    .filter-inner { max-width: 1100px; margin: 0 auto; display: flex; gap: .1rem; }
+    .filter-tab {
+      padding: .65rem 1rem; border-bottom: 2px solid transparent;
+      font-size: .85rem; font-weight: 500; color: var(--ink3); cursor: pointer;
+      white-space: nowrap; transition: color .15s, border-color .15s;
+    }
+    .filter-tab:hover { color: var(--ink); }
+    .filter-tab.active { color: var(--phys); border-bottom-color: var(--phys); }
+    .filter-tab .badge {
+      display: inline-block; background: var(--bg); border-radius: 10px;
+      font-size: .72rem; padding: .1rem .4rem; margin-left: .3rem; color: var(--ink3);
+    }
+    .filter-tab.active .badge { background: var(--phys-m); color: var(--phys-d); }
+
+    /* MAIN */
+    .main { max-width: 1100px; margin: 0 auto; padding: 1.5rem 1.5rem 4rem; }
+
+    /* SECTION HEADING */
+    .section-heading {
+      font-size: .72rem; font-weight: 600; letter-spacing: .08em;
+      text-transform: uppercase; color: var(--phys);
+      padding: .4rem 0 .4rem; margin: 1.75rem 0 .75rem;
+      border-bottom: 2px solid var(--phys-m);
+      display: flex; align-items: center; gap: .5rem;
+    }
+    .section-heading:first-child { margin-top: 0; }
+
+    /* QUESTION CARD */
+    .q-card {
+      background: var(--white); border: 1px solid var(--line);
+      border-radius: var(--radius); margin-bottom: 1rem;
+      box-shadow: var(--shadow); overflow: hidden;
+      transition: box-shadow .2s;
+    }
+    .q-card:hover { box-shadow: 0 4px 20px rgba(15,23,42,.1); }
+    .q-card.answered-correct { border-color: #86efac; }
+    .q-card.answered-wrong   { border-color: #fca5a5; }
+
+    .q-header {
+      display: flex; align-items: flex-start; gap: .75rem;
+      padding: 1rem 1.25rem .5rem;
+    }
+    .q-num {
+      flex-shrink: 0; width: 28px; height: 28px;
+      background: var(--phys-m); color: var(--phys-d);
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      font-family: 'JetBrains Mono', monospace; font-size: .78rem; font-weight: 700;
+      margin-top: .1rem;
+    }
+    .q-num.correct-num { background: #bbf7d0; color: #15803d; }
+    .q-num.wrong-num   { background: #fecaca; color: #b91c1c; }
+
+    .q-meta { display: flex; gap: .4rem; flex-wrap: wrap; margin-bottom: .35rem; }
+    .q-tag {
+      font-size: .7rem; font-weight: 600; letter-spacing: .04em;
+      padding: .15rem .5rem; border-radius: 3px; text-transform: uppercase;
+    }
+    .tag-pyq  { background: #fef3c7; color: #92400e; }
+    .tag-foundation { background: var(--phys-m); color: var(--phys-d); }
+    .tag-medium { background: #e0e7ff; color: #3730a3; }
+    .tag-hard   { background: #fee2e2; color: #991b1b; }
+
+    .q-body { padding: 0 1.25rem .75rem 3.25rem; }
+    .q-text { font-size: .95rem; line-height: 1.7; margin-bottom: .85rem; }
+    .q-diagram { margin-bottom: .85rem; text-align: center; }
+
+    /* OPTIONS */
+    .q-options { display: grid; grid-template-columns: 1fr 1fr; gap: .5rem; margin-bottom: .85rem; }
+    @media (max-width: 600px) { .q-options { grid-template-columns: 1fr; } }
+
+    .opt {
+      display: flex; align-items: flex-start; gap: .5rem;
+      padding: .55rem .85rem; border-radius: 7px;
+      border: 1.5px solid var(--line); cursor: pointer;
+      font-size: .9rem; transition: border-color .15s, background .15s;
+      background: var(--bg);
+    }
+    .opt:hover:not(.disabled) { border-color: var(--phys); background: var(--phys-l); }
+    .opt.selected  { border-color: var(--phys); background: var(--phys-l); }
+    .opt.correct   { border-color: #16a34a; background: #f0fdf4; }
+    .opt.wrong-sel { border-color: #dc2626; background: #fef2f2; }
+    .opt.disabled  { cursor: default; }
+
+    .opt-letter {
+      flex-shrink: 0; width: 22px; height: 22px;
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      font-size: .78rem; font-weight: 700;
+      background: var(--line); color: var(--ink3);
+    }
+    .opt.selected  .opt-letter { background: var(--phys); color: #fff; }
+    .opt.correct   .opt-letter { background: #16a34a; color: #fff; }
+    .opt.wrong-sel .opt-letter { background: #dc2626; color: #fff; }
+    .opt-text { flex: 1; line-height: 1.5; }
+
+    /* ANSWER AREA */
+    .q-footer { padding: 0 1.25rem 1rem 3.25rem; display: flex; align-items: center; gap: .75rem; flex-wrap: wrap; }
+    .btn-reveal {
+      padding: .4rem 1rem; border-radius: 6px; cursor: pointer; font-size: .85rem; font-weight: 600;
+      background: var(--phys); color: #fff; border: none;
+      transition: background .15s, transform .1s;
+    }
+    .btn-reveal:hover { background: var(--phys-d); }
+    .btn-reveal:active { transform: scale(.97); }
+    .btn-reveal:disabled { background: var(--line); color: var(--ink3); cursor: default; transform: none; }
+
+    .answer-box {
+      display: none; width: 100%;
+      background: var(--phys-l); border: 1px solid var(--phys-m);
+      border-radius: 8px; padding: .75rem 1rem; margin-top: .5rem;
+      font-size: .9rem; line-height: 1.65;
+    }
+    .answer-box.visible { display: block; }
+    .answer-box strong { color: var(--phys-d); }
+    .answer-correct-label {
+      display: inline-flex; align-items: center; gap: .3rem;
+      font-weight: 700; color: var(--green); margin-bottom: .3rem;
+    }
+    .answer-key-formula {
+      font-family: 'JetBrains Mono', monospace; font-size: .85rem;
+      background: rgba(15,118,110,.1); padding: .15rem .4rem; border-radius: 3px;
+    }
+
+    /* HIDDEN FILTER */
+    .q-card.hidden { display: none; }
+
+    /* RESPONSIVE */
+    @media (max-width: 700px) {
+      .hero h1 { font-size: 1.35rem; }
+      .main { padding: 1rem 1rem 3rem; }
+      .q-body { padding-left: 1.25rem; }
+      .q-footer { padding-left: 1.25rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <span class="nav-brand">JEE 2027</span>
+    <div class="nav-links">
+      <a href="../index.html">Home</a>
+      <a href="../subjects/physics.html" class="active">Physics</a>
+    </div>
+    <a class="nav-back" href="../subjects/physics.html">
+      ← Theory
+    </a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-tag">⚛ Physics · Unit P1</div>
+    <h1>Kinematics 1D &amp; Calculus</h1>
+    <p>20 questions — Single Correct · JEE Main PYQs · Allen DLP</p>
+  </div>
+</div>
+
+<!-- SCORE STRIP -->
+<div class="score-strip">
+  <div class="score-inner">
+    <div class="score-stat">
+      <span class="score-num correct" id="sc-correct">0</span>
+      <span style="color:var(--ink3);font-size:.82rem">correct</span>
+    </div>
+    <div class="score-stat">
+      <span class="score-num wrong" id="sc-wrong">0</span>
+      <span style="color:var(--ink3);font-size:.82rem">wrong</span>
+    </div>
+    <div class="score-stat">
+      <span class="score-num total" id="sc-total">0</span>
+      <span style="color:var(--ink3);font-size:.82rem">/ 20 attempted</span>
+    </div>
+    <div class="score-bar-wrap"><div class="score-bar" id="score-bar"></div></div>
+    <button class="btn-reset" onclick="resetAll()">↺ Reset</button>
+  </div>
+</div>
+
+<!-- FILTER TABS -->
+<div class="filter-bar">
+  <div class="filter-inner">
+    <div class="filter-tab active" data-filter="all" onclick="setFilter('all',this)">All <span class="badge">20</span></div>
+    <div class="filter-tab" data-filter="rectilinear" onclick="setFilter('rectilinear',this)">Rectilinear Motion <span class="badge">8</span></div>
+    <div class="filter-tab" data-filter="variable-acc" onclick="setFilter('variable-acc',this)">Variable Acceleration <span class="badge">7</span></div>
+    <div class="filter-tab" data-filter="graphs" onclick="setFilter('graphs',this)">Graphical Analysis <span class="badge">5</span></div>
+    <div class="filter-tab" data-filter="pyq" onclick="setFilter('pyq',this)">PYQ Only <span class="badge">6</span></div>
+  </div>
+</div>
+
+<!-- MAIN CONTENT -->
+<div class="main" id="main-content">
+  <!-- Questions rendered by JS -->
+</div>
+
+<script>
+/* ═══════════════════════════════════════════════
+   QUESTION DATA
+   answer: 0-indexed (0=A, 1=B, 2=C, 3=D)
+   section: used for filter tabs
+   pyq: null or year string
+═══════════════════════════════════════════════ */
+const QUESTIONS = [
+
+  /* ─── RECTILINEAR MOTION ─── */
+  {
+    id:1, section:'rectilinear', difficulty:'foundation', pyq:null,
+    text:'A particle starts from rest and undergoes uniform acceleration \\(a\\). The ratio of distances covered in the 1st, 2nd and 3rd seconds of its motion is:',
+    options:['\\(1:2:3\\)','\\(1:4:9\\)','\\(1:3:5\\)','\\(2:3:4\\)'],
+    answer:2,
+    explanation:'Distance in the \\(n\\)th second from rest (\\(u=0\\)): \\(S_n = \\dfrac{a}{2}(2n-1)\\).<br>\\[S_1 = \\frac{a}{2},\\quad S_2 = \\frac{3a}{2},\\quad S_3 = \\frac{5a}{2}\\]Ratio \\(= 1:3:5\\). General result: distances in successive seconds from rest are in the ratio of odd numbers 1, 3, 5, 7, …'
+  },
+  {
+    id:2, section:'rectilinear', difficulty:'foundation', pyq:null,
+    text:'A particle has initial velocity \\(u = 10\\) m/s and decelerates uniformly at \\(2\\) m/s². The distance travelled in the <strong>5th second</strong> of its motion is:',
+    options:['\\(1\\) m','\\(3\\) m','\\(5\\) m','\\(0\\) m'],
+    answer:0,
+    explanation:'Distance in \\(n\\)th second: \\(S_n = u + \\dfrac{a}{2}(2n-1)\\).<br>With \\(u = 10\\) m/s, \\(a = -2\\) m/s², \\(n = 5\\):<br>\\[S_5 = 10 + \\frac{-2}{2}(2\\times5-1) = 10 - 1\\times9 = 1\\text{ m}\\]Check: particle stops when \\(v = u+at = 10-2t = 0 \\Rightarrow t = 5\\) s. So during the 5th second it is just about to stop — only 1 m is covered.'
+  },
+  {
+    id:3, section:'rectilinear', difficulty:'foundation', pyq:null,
+    text:'A ball is dropped from rest. One second later, another ball is dropped from the same point. When the first ball has been falling for 3 s, the separation between the two balls is: (\\(g = 10\\) m/s²)',
+    options:['\\(15\\) m','\\(20\\) m','\\(25\\) m','\\(30\\) m'],
+    answer:2,
+    explanation:'Ball 1 (fallen 3 s): \\(h_1 = \\dfrac{1}{2}g t^2 = \\dfrac{1}{2}(10)(9) = 45\\) m.<br>Ball 2 (fallen 2 s): \\(h_2 = \\dfrac{1}{2}(10)(4) = 20\\) m.<br>Separation \\(= h_1 - h_2 = 45 - 20 = \\mathbf{25}\\) m.<br><small>Note: separation increases linearly with time once both are in motion, because relative velocity = \\(g\\Delta t = 10\\times1 = 10\\) m/s (constant).</small>'
+  },
+  {
+    id:4, section:'rectilinear', difficulty:'foundation', pyq:null,
+    text:'A ball is thrown vertically upward with initial speed \\(20\\) m/s. What is its velocity 3 s after projection? (\\(g = 10\\) m/s², upward positive)',
+    options:['\\(-10\\) m/s (downward)','\\(+10\\) m/s (upward)','\\(-20\\) m/s (downward)','\\(0\\) m/s'],
+    answer:0,
+    explanation:'\\(v = u + at = 20 + (-10)(3) = 20 - 30 = -10\\) m/s.<br>The negative sign means the ball is moving <strong>downward</strong> at 10 m/s. It reached maximum height at \\(t = 2\\) s and has been falling for 1 s when \\(t = 3\\) s.'
+  },
+  {
+    id:5, section:'rectilinear', difficulty:'medium', pyq:'AIEEE 2002',
+    text:'A bus starts from rest with acceleration \\(1\\) m/s². A man, who is 48 m behind the bus, starts simultaneously and runs at a constant speed of \\(10\\) m/s. The man just catches the bus after time:',
+    options:['\\(4\\) s','\\(8\\) s','\\(10\\) s','\\(12\\) s'],
+    answer:1,
+    explanation:'Let the man catch the bus at time \\(t\\).<br>Man\'s distance: \\(10t\\). Bus\'s distance: \\(\\dfrac{1}{2}t^2\\). Man starts 48 m behind:<br>\\[10t = 48 + \\frac{t^2}{2} \\Rightarrow t^2 - 20t + 96 = 0\\]\\[(t-8)(t-12) = 0 \\Rightarrow t = 8 \\text{ s or } 12 \\text{ s}\\]At \\(t=8\\): bus speed \\(= 8\\) m/s \\(< 10\\) m/s (man still faster — just touches). At \\(t=12\\): bus has already passed the man. The man <strong>just</strong> catches at \\(t = 8\\) s.'
+  },
+  {
+    id:6, section:'rectilinear', difficulty:'medium', pyq:null,
+    text:'Two particles A and B start from the same point. A has initial speed \\(5\\) m/s and acceleration \\(2\\) m/s². B has initial speed \\(10\\) m/s and deceleration \\(2\\) m/s². After how many seconds do they have the same speed?',
+    options:['\\(1.25\\) s','\\(1.5\\) s','\\(2.0\\) s','\\(2.5\\) s'],
+    answer:0,
+    explanation:'\\(v_A = 5 + 2t\\), \\(v_B = 10 - 2t\\).<br>Setting equal: \\(5 + 2t = 10 - 2t \\Rightarrow 4t = 5 \\Rightarrow t = \\mathbf{1.25}\\) s.'
+  },
+  {
+    id:7, section:'rectilinear', difficulty:'medium', pyq:null,
+    text:'A train moving at 72 km/h applies brakes giving a retardation of \\(0.5\\) m/s². The distance (in metres) it travels before stopping is:',
+    options:['\\(400\\) m','\\(500\\) m','\\(600\\) m','\\(800\\) m'],
+    answer:0,
+    explanation:'Convert: \\(u = 72\\) km/h \\(= 20\\) m/s, \\(v = 0\\), \\(a = -0.5\\) m/s².<br>\\[v^2 = u^2 + 2as \\Rightarrow 0 = 400 + 2(-0.5)s \\Rightarrow s = \\frac{400}{1} = \\mathbf{400}\\text{ m}\\]'
+  },
+  {
+    id:8, section:'rectilinear', difficulty:'medium', pyq:'JEE Main 2014',
+    text:'A particle has initial velocity \\(16\\) m/s and decelerates uniformly at \\(4\\) m/s². The distance traveled before it stops is:',
+    options:['\\(16\\) m','\\(32\\) m','\\(48\\) m','\\(64\\) m'],
+    answer:1,
+    explanation:'\\(u = 16\\) m/s, \\(v = 0\\), \\(a = -4\\) m/s².<br>\\[s = \\frac{v^2-u^2}{2a} = \\frac{0-256}{2(-4)} = \\frac{256}{8} = \\mathbf{32}\\text{ m}\\]Alternatively: time to stop \\(t = u/a = 16/4 = 4\\) s. Average velocity \\(= 8\\) m/s. Distance \\(= 8\\times4 = 32\\) m ✓'
+  },
+
+  /* ─── VARIABLE ACCELERATION ─── */
+  {
+    id:9, section:'variable-acc', difficulty:'foundation', pyq:null,
+    text:'The position of a particle is given by \\(x = 3t^2 + 2t + 1\\) (in SI units). The velocity of the particle at \\(t = 2\\) s is:',
+    options:['\\(10\\) m/s','\\(12\\) m/s','\\(14\\) m/s','\\(16\\) m/s'],
+    answer:2,
+    explanation:'\\(v = \\dfrac{dx}{dt} = 6t + 2\\).<br>At \\(t = 2\\) s: \\(v = 6(2) + 2 = \\mathbf{14}\\) m/s.'
+  },
+  {
+    id:10, section:'variable-acc', difficulty:'foundation', pyq:null,
+    text:'A particle moves with velocity \\(v = 4t - 2\\) m/s. The displacement from \\(t = 1\\) s to \\(t = 3\\) s is:',
+    options:['\\(8\\) m','\\(12\\) m','\\(16\\) m','\\(20\\) m'],
+    answer:1,
+    explanation:'\\[x = \\int_1^3 (4t-2)\\,dt = \\Big[2t^2 - 2t\\Big]_1^3\\]\\[= (2\\times9-2\\times3) - (2\\times1-2\\times1) = (18-6)-(2-2) = 12 - 0 = \\mathbf{12}\\text{ m}\\]'
+  },
+  {
+    id:11, section:'variable-acc', difficulty:'foundation', pyq:null,
+    text:'A particle starts from rest at \\(t=0\\) and has acceleration \\(a = 4t\\) m/s². Its velocity at \\(t = 3\\) s is:',
+    options:['\\(9\\) m/s','\\(12\\) m/s','\\(18\\) m/s','\\(24\\) m/s'],
+    answer:2,
+    explanation:'Integrate acceleration: \\(v = \\int_0^t 4t\\,dt = 2t^2 + C\\). Since \\(v = 0\\) at \\(t = 0\\), \\(C = 0\\).<br>\\[v(3) = 2(3)^2 = 2\\times9 = \\mathbf{18}\\text{ m/s}\\]'
+  },
+  {
+    id:12, section:'variable-acc', difficulty:'medium', pyq:'JEE Main 2019',
+    text:'The velocity of a particle is related to its position by \\(v^2 = 4x\\) (SI units). The acceleration of the particle is:',
+    options:['\\(1\\) m/s²','\\(2\\) m/s²','\\(4\\) m/s²','Depends on \\(x\\)'],
+    answer:1,
+    explanation:'\\(a = v\\dfrac{dv}{dx}\\). Differentiate \\(v^2 = 4x\\) with respect to \\(x\\):<br>\\[2v\\frac{dv}{dx} = 4 \\Rightarrow v\\frac{dv}{dx} = 2\\]Therefore \\(a = \\mathbf{2}\\) m/s² — it is constant and independent of \\(x\\)!<br><small>Alternatively: \\(v = 2\\sqrt{x}\\), so \\(x = v^2/4 = t^2\\) (for motion from rest) → uniform acceleration of 2 m/s².</small>'
+  },
+  {
+    id:13, section:'variable-acc', difficulty:'medium', pyq:null,
+    text:'The position of a particle undergoing SHM is \\(x = 2\\sin(2t)\\) metres. The maximum speed of the particle is:',
+    options:['\\(2\\) m/s','\\(4\\) m/s','\\(8\\) m/s','\\(2\\pi\\) m/s'],
+    answer:1,
+    explanation:'\\(v = \\dfrac{dx}{dt} = 2 \\times 2\\cos(2t) = 4\\cos(2t)\\) m/s.<br>Maximum speed \\(= |v|_{\\max} = 4\\times1 = \\mathbf{4}\\) m/s (when \\(\\cos(2t) = \\pm1\\), i.e., at equilibrium position).<br><small>In general for SHM \\(x = A\\sin(\\omega t)\\): \\(v_{\\max} = A\\omega\\). Here \\(A = 2\\), \\(\\omega = 2\\), so \\(v_{\\max} = 4\\) m/s.</small>'
+  },
+  {
+    id:14, section:'variable-acc', difficulty:'medium', pyq:null,
+    text:'A particle moves with velocity \\(v = (2 + 3t)\\) m/s. The displacement from \\(t = 1\\) s to \\(t = 3\\) s is:',
+    options:['\\(12\\) m','\\(16\\) m','\\(20\\) m','\\(24\\) m'],
+    answer:1,
+    explanation:'\\[s = \\int_1^3 (2+3t)\\,dt = \\Big[2t + \\frac{3t^2}{2}\\Big]_1^3\\]\\[= \\left(6 + \\frac{27}{2}\\right) - \\left(2 + \\frac{3}{2}\\right) = 19.5 - 3.5 = \\mathbf{16}\\text{ m}\\]'
+  },
+  {
+    id:15, section:'variable-acc', difficulty:'hard', pyq:'JEE Main 2015',
+    text:'The position of a particle is \\(x = t^3 - 6t^2 + 9t + 5\\) (metres, seconds). The total distance traveled from \\(t = 0\\) to \\(t = 3\\) s is:',
+    options:['\\(4\\) m','\\(6\\) m','\\(8\\) m','\\(12\\) m'],
+    answer:2,
+    explanation:'Find when velocity is zero: \\(v = 3t^2 - 12t + 9 = 3(t-1)(t-3) = 0\\) at \\(t = 1\\) and \\(t = 3\\) s.<br><br>Positions: \\(x(0) = 5\\), \\(x(1) = 1-6+9+5 = 9\\), \\(x(3) = 27-54+27+5 = 5\\).<br><br>\\(t = 0 \\to 1\\): particle moves from 5 → 9 (4 m rightward).<br>\\(t = 1 \\to 3\\): particle moves from 9 → 5 (4 m leftward).<br><br>Total distance \\(= 4 + 4 = \\mathbf{8}\\) m. Displacement \\(= 0\\) m.'
+  },
+
+  /* ─── GRAPHICAL ANALYSIS ─── */
+  {
+    id:16, section:'graphs', difficulty:'foundation', pyq:null,
+    text:'A particle accelerates uniformly from rest for 5 s, reaching a speed of 20 m/s. The total distance covered during these 5 s (area under the \\(v\\)-\\(t\\) graph) is:',
+    options:['\\(25\\) m','\\(50\\) m','\\(100\\) m','\\(200\\) m'],
+    answer:1,
+    explanation:'The \\(v\\)-\\(t\\) graph is a straight line from (0, 0) to (5, 20) — a right triangle.<br>Area \\(= \\dfrac{1}{2} \\times base \\times height = \\dfrac{1}{2} \\times 5 \\times 20 = \\mathbf{50}\\) m.',
+    diagram:`<svg viewBox="0 0 180 120" width="180" height="120">
+      <line x1="25" y1="100" x2="165" y2="100" stroke="#334155" stroke-width="1.5" marker-end="url(#kx)"/>
+      <line x1="30" y1="105" x2="30" y2="15" stroke="#334155" stroke-width="1.5" marker-end="url(#ky)"/>
+      <text x="163" y="110" font-size="10" fill="#334155">t(s)</text>
+      <text x="33" y="14" font-size="10" fill="#334155">v(m/s)</text>
+      <line x1="30" y1="100" x2="130" y2="25" stroke="#0f766e" stroke-width="2.5"/>
+      <polygon points="30,100 130,100 130,25" fill="#ccfbf1" opacity="0.5"/>
+      <!-- Labels -->
+      <text x="128" y="112" font-size="9" fill="#334155">5</text>
+      <text x="6" y="28" font-size="9" fill="#334155">20</text>
+      <text x="65" y="90" font-size="9" fill="#0f766e" font-style="italic">Area = 50 m</text>
+      <defs>
+        <marker id="kx" markerWidth="5" markerHeight="5" refX="4" refY="2.5" orient="auto"><path d="M0,0 L5,2.5 L0,5 Z" fill="#334155"/></marker>
+        <marker id="ky" markerWidth="5" markerHeight="5" refX="2.5" refY="4" orient="auto"><path d="M0,5 L2.5,0 L5,5 Z" fill="#334155"/></marker>
+      </defs>
+    </svg>`
+  },
+  {
+    id:17, section:'graphs', difficulty:'foundation', pyq:null,
+    text:'A particle\'s position-time graph is a parabola (\\(x \\propto t^2\\)). This indicates the particle has:',
+    options:['Zero acceleration','Uniform (constant) acceleration','Increasing acceleration','Zero velocity throughout'],
+    answer:1,
+    explanation:'If \\(x = \\frac{1}{2}at^2\\) (starting from rest), then \\(v = at\\) (linearly increasing) and \\(a = \\text{const}\\). A parabolic \\(x\\)-\\(t\\) graph indicates <strong>uniform acceleration</strong>.<br><br>Key slope facts: slope of \\(x\\)-\\(t\\) = velocity; slope of \\(v\\)-\\(t\\) = acceleration.',
+    diagram:`<svg viewBox="0 0 180 120" width="180" height="120">
+      <line x1="25" y1="100" x2="165" y2="100" stroke="#334155" stroke-width="1.5" marker-end="url(#px)"/>
+      <line x1="30" y1="105" x2="30" y2="15" stroke="#334155" stroke-width="1.5" marker-end="url(#py)"/>
+      <text x="163" y="110" font-size="10" fill="#334155">t</text>
+      <text x="33" y="14" font-size="10" fill="#334155">x</text>
+      <path d="M30,100 C50,98 80,85 160,22" fill="none" stroke="#0f766e" stroke-width="2.5"/>
+      <text x="85" y="60" font-size="10" fill="#334155" font-style="italic">x = ½at²</text>
+      <text x="40" y="85" font-size="9" fill="#64748b">slope increases → v increases</text>
+      <defs>
+        <marker id="px" markerWidth="5" markerHeight="5" refX="4" refY="2.5" orient="auto"><path d="M0,0 L5,2.5 L0,5 Z" fill="#334155"/></marker>
+        <marker id="py" markerWidth="5" markerHeight="5" refX="2.5" refY="4" orient="auto"><path d="M0,5 L2.5,0 L5,5 Z" fill="#334155"/></marker>
+      </defs>
+    </svg>`
+  },
+  {
+    id:18, section:'graphs', difficulty:'medium', pyq:'JEE Main 2019',
+    text:'An \\(a\\)-\\(t\\) graph shows acceleration linearly increasing from 0 to \\(6\\) m/s² over 4 s (triangle shape). If the particle starts from rest, the velocity at \\(t = 4\\) s is:',
+    options:['\\(6\\) m/s','\\(10\\) m/s','\\(12\\) m/s','\\(24\\) m/s'],
+    answer:2,
+    explanation:'Change in velocity \\(= \\int_0^4 a\\,dt =\\) area under \\(a\\)-\\(t\\) graph.<br>The graph is a triangle with base 4 s and height 6 m/s²:<br>\\[\\Delta v = \\frac{1}{2} \\times 4 \\times 6 = \\mathbf{12}\\text{ m/s}\\]Since initial velocity = 0, final velocity \\(= 12\\) m/s.',
+    diagram:`<svg viewBox="0 0 180 120" width="180" height="120">
+      <line x1="25" y1="100" x2="165" y2="100" stroke="#334155" stroke-width="1.5" marker-end="url(#ax)"/>
+      <line x1="30" y1="105" x2="30" y2="15" stroke="#334155" stroke-width="1.5" marker-end="url(#ay)"/>
+      <text x="163" y="110" font-size="10" fill="#334155">t(s)</text>
+      <text x="33" y="14" font-size="10" fill="#334155">a(m/s²)</text>
+      <!-- Triangle -->
+      <polygon points="30,100 130,100 130,28" fill="#ccfbf1" opacity="0.6"/>
+      <line x1="30" y1="100" x2="130" y2="28" stroke="#0f766e" stroke-width="2.5"/>
+      <line x1="130" y1="100" x2="130" y2="28" stroke="#0f766e" stroke-width="1.5" stroke-dasharray="4,3"/>
+      <text x="128" y="112" font-size="9" fill="#334155">4</text>
+      <text x="7" y="32" font-size="9" fill="#334155">6</text>
+      <text x="55" y="88" font-size="9" fill="#0f766e">Area = 12 m/s</text>
+      <defs>
+        <marker id="ax" markerWidth="5" markerHeight="5" refX="4" refY="2.5" orient="auto"><path d="M0,0 L5,2.5 L0,5 Z" fill="#334155"/></marker>
+        <marker id="ay" markerWidth="5" markerHeight="5" refX="2.5" refY="4" orient="auto"><path d="M0,5 L2.5,0 L5,5 Z" fill="#334155"/></marker>
+      </defs>
+    </svg>`
+  },
+  {
+    id:19, section:'graphs', difficulty:'medium', pyq:null,
+    text:'A \\(v\\)-\\(t\\) graph shows velocity increasing linearly from 0 to 15 m/s over some interval. The slope of the graph is 3 m/s². The acceleration of the particle is:',
+    options:['\\(3\\) m/s²','\\(5\\) m/s²','\\(15\\) m/s²','\\(45\\) m/s²'],
+    answer:0,
+    explanation:'The slope of the \\(v\\)-\\(t\\) graph gives the instantaneous acceleration:<br>\\[a = \\frac{\\Delta v}{\\Delta t} = \\text{slope} = \\mathbf{3}\\text{ m/s}^2\\]'
+  },
+  {
+    id:20, section:'graphs', difficulty:'medium', pyq:'JEE Main 2020 Sep',
+    text:'A particle\'s displacement-time graph is a <em>horizontal straight line</em> (\\(x = \\text{constant}\\)). This means:',
+    options:['The particle is at rest','The particle moves with uniform velocity','The particle has uniform acceleration','The particle has maximum displacement'],
+    answer:0,
+    explanation:'If \\(x = \\text{constant}\\), then \\(v = \\dfrac{dx}{dt} = 0\\). The particle is <strong>at rest</strong> — not moving.<br><br>Compare: <ul style="margin:.4rem 0 .4rem 1rem"><li>Horizontal \\(x\\)-\\(t\\): at rest (\\(v=0\\))</li><li>Straight line (non-horizontal) \\(x\\)-\\(t\\): uniform velocity (\\(a=0\\))</li><li>Parabola \\(x\\)-\\(t\\): uniform acceleration</li><li>Horizontal \\(v\\)-\\(t\\): uniform velocity (\\(a=0\\))</li></ul>'
+  }
+
+]; /* end QUESTIONS */
+
+
+/* ═══════════════════════════════════════════════
+   RENDER + INTERACTION
+═══════════════════════════════════════════════ */
+
+const SECTION_META = {
+  'rectilinear':  { label: 'A. Rectilinear Motion (Constant Acceleration)', icon: '→' },
+  'variable-acc': { label: 'B. Variable Acceleration &amp; Calculus',        icon: '∫' },
+  'graphs':       { label: 'C. Graphical Analysis',                          icon: '📈' }
+};
+
+let state = {}; // { qId: { chosen: int, revealed: bool } }
+
+function buildPage(filterKey) {
+  const container = document.getElementById('main-content');
+  container.innerHTML = '';
+
+  let lastSection = null;
+  let shown = 0;
+
+  QUESTIONS.forEach(q => {
+    // Filter
+    const pyqMatch = filterKey === 'pyq' && q.pyq;
+    if (filterKey !== 'all' && filterKey !== 'pyq' && q.section !== filterKey) return;
+    if (filterKey === 'pyq' && !pyqMatch) return;
+    shown++;
+
+    // Section heading
+    if (filterKey === 'all' || filterKey === 'pyq') {
+      const sm = SECTION_META[q.section];
+      if (sm && q.section !== lastSection) {
+        lastSection = q.section;
+        const h = document.createElement('div');
+        h.className = 'section-heading';
+        h.innerHTML = `${sm.icon} &nbsp; ${sm.label}`;
+        container.appendChild(h);
+      }
+    }
+
+    const s = state[q.id] || {};
+    const answered = s.chosen !== undefined;
+    const correct  = answered && s.chosen === q.answer;
+
+    // Tags
+    let tagHtml = '';
+    if (q.pyq) tagHtml += `<span class="q-tag tag-pyq">${q.pyq}</span>`;
+    const diffLabel = { foundation: 'Foundation', medium: 'Medium', hard: 'Hard' }[q.difficulty];
+    const diffClass = { foundation: 'tag-foundation', medium: 'tag-medium', hard: 'tag-hard' }[q.difficulty];
+    tagHtml += `<span class="q-tag ${diffClass}">${diffLabel}</span>`;
+
+    // Options HTML
+    const letters = ['A','B','C','D'];
+    let optsHtml = '<div class="q-options">';
+    q.options.forEach((opt, i) => {
+      let cls = 'opt';
+      if (answered) {
+        cls += ' disabled';
+        if (i === q.answer) cls += ' correct';
+        else if (i === s.chosen) cls += ' wrong-sel';
+      }
+      optsHtml += `<div class="${cls}" onclick="chooseOption(${q.id},${i})">
+        <span class="opt-letter">${letters[i]}</span>
+        <span class="opt-text">${opt}</span>
+      </div>`;
+    });
+    optsHtml += '</div>';
+
+    // Answer box
+    const aVisible = s.revealed ? 'visible' : '';
+    const answerHtml = `
+      <div class="answer-box ${aVisible}" id="ans-${q.id}">
+        <div class="answer-correct-label">✓ Correct Answer: ${letters[q.answer]}</div>
+        <div>${q.explanation}</div>
+      </div>`;
+
+    // Card
+    const numClass = answered ? (correct ? 'correct-num' : 'wrong-num') : '';
+    const cardClass = answered ? (correct ? 'answered-correct' : 'answered-wrong') : '';
+
+    const card = document.createElement('div');
+    card.className = `q-card ${cardClass}`;
+    card.id = `card-${q.id}`;
+    card.innerHTML = `
+      <div class="q-header">
+        <div class="q-num ${numClass}">${q.id}</div>
+        <div style="flex:1">
+          <div class="q-meta">${tagHtml}</div>
+        </div>
+      </div>
+      <div class="q-body">
+        <div class="q-text">${q.text}</div>
+        ${q.diagram ? `<div class="q-diagram">${q.diagram}</div>` : ''}
+        ${optsHtml}
+      </div>
+      <div class="q-footer">
+        <button class="btn-reveal" id="btn-${q.id}" onclick="revealAnswer(${q.id})"
+          ${s.revealed ? 'disabled' : ''}>
+          ${s.revealed ? '✓ Shown' : 'Reveal Answer'}
+        </button>
+        ${answerHtml}
+      </div>`;
+    container.appendChild(card);
+  });
+
+  if (shown === 0) {
+    container.innerHTML = '<p style="color:var(--ink3);padding:2rem;text-align:center">No questions in this filter.</p>';
+  }
+
+  // Trigger MathJax re-typeset
+  if (window.MathJax && MathJax.typesetPromise) {
+    MathJax.typesetPromise([container]).catch(e => console.warn(e));
+  }
+}
+
+function chooseOption(qId, idx) {
+  if (state[qId] && state[qId].chosen !== undefined) return; // already answered
+  state[qId] = state[qId] || {};
+  state[qId].chosen = idx;
+  updateScore();
+  // Re-render current filter
+  const activeTab = document.querySelector('.filter-tab.active');
+  buildPage(activeTab ? activeTab.dataset.filter : 'all');
+  // Scroll to keep card visible
+  const card = document.getElementById(`card-${qId}`);
+  if (card) card.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+
+function revealAnswer(qId) {
+  state[qId] = state[qId] || {};
+  state[qId].revealed = true;
+  const box = document.getElementById(`ans-${qId}`);
+  const btn = document.getElementById(`btn-${qId}`);
+  if (box) { box.classList.add('visible'); }
+  if (btn) { btn.disabled = true; btn.textContent = '✓ Shown'; }
+  if (window.MathJax && MathJax.typesetPromise) {
+    MathJax.typesetPromise([box]).catch(e => console.warn(e));
+  }
+}
+
+function updateScore() {
+  let correct = 0, wrong = 0;
+  QUESTIONS.forEach(q => {
+    const s = state[q.id];
+    if (!s || s.chosen === undefined) return;
+    if (s.chosen === q.answer) correct++;
+    else wrong++;
+  });
+  const total = correct + wrong;
+  document.getElementById('sc-correct').textContent = correct;
+  document.getElementById('sc-wrong').textContent = wrong;
+  document.getElementById('sc-total').textContent = total;
+  document.getElementById('score-bar').style.width = (total / QUESTIONS.length * 100) + '%';
+}
+
+function setFilter(key, el) {
+  document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+  el.classList.add('active');
+  buildPage(key);
+}
+
+function resetAll() {
+  if (!confirm('Reset all answers and progress?')) return;
+  state = {};
+  updateScore();
+  const active = document.querySelector('.filter-tab.active');
+  buildPage(active ? active.dataset.filter : 'all');
+}
+
+// Init
+buildPage('all');
+updateScore();
+</script>
+
+</body>
+</html>

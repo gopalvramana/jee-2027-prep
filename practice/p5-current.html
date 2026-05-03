@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Practice: Current Electricity | JEE 2027</title>
+
+  <!-- MathJax -->
+  <script>
+    MathJax = {
+      tex: { inlineMath: [['\\(','\\)']], displayMath: [['\\[','\\]']],
+             packages: {'[+]': ['boldsymbol']} },
+      options: { skipHtmlTags: ['script','noscript','style','textarea','pre'] }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" async></script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --phys:   #0f766e;
+      --phys-l: #f0fdfa;
+      --phys-m: #ccfbf1;
+      --phys-d: #0d5f58;
+      --ink:    #0f172a;
+      --ink2:   #334155;
+      --ink3:   #64748b;
+      --line:   #e2e8f0;
+      --bg:     #f8fafc;
+      --white:  #ffffff;
+      --green:  #15803d;
+      --green-l:#f0fdf4;
+      --red:    #b91c1c;
+      --red-l:  #fef2f2;
+      --amber:  #b45309;
+      --radius: 10px;
+      --shadow: 0 2px 12px rgba(15,23,42,.08);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--ink); line-height: 1.65; }
+    h1,h2,h3 { font-family: 'DM Serif Display', serif; line-height: 1.2; }
+    a { color: inherit; text-decoration: none; }
+
+    /* NAV */
+    .nav {
+      position: sticky; top: 0; z-index: 100;
+      background: var(--white); border-bottom: 1px solid var(--line);
+      box-shadow: 0 1px 8px rgba(15,23,42,.06);
+    }
+    .nav-inner {
+      max-width: 1100px; margin: 0 auto; padding: 0 1.5rem;
+      display: flex; align-items: center; gap: 1.5rem; height: 58px;
+    }
+    .nav-brand { font-family: 'DM Serif Display', serif; font-size: 1.15rem; white-space: nowrap; }
+    .nav-links { display: flex; gap: .25rem; }
+    .nav-links a {
+      padding: .35rem .75rem; border-radius: 6px;
+      font-size: .85rem; font-weight: 500; color: var(--ink2);
+      transition: background .15s, color .15s;
+    }
+    .nav-links a:hover { background: var(--bg); }
+    .nav-links a.active { color: var(--phys); background: var(--phys-l); }
+    .nav-back {
+      margin-left: auto;
+      display: flex; align-items: center; gap: .4rem;
+      font-size: .85rem; font-weight: 500; color: var(--ink3);
+      padding: .35rem .75rem; border-radius: 6px;
+      transition: background .15s, color .15s;
+    }
+    .nav-back:hover { background: var(--bg); color: var(--ink); }
+
+    /* HERO */
+    .hero {
+      background: linear-gradient(135deg, var(--phys) 0%, var(--phys-d) 100%);
+      color: #fff; padding: 2rem 1.5rem 1.5rem;
+    }
+    .hero-inner { max-width: 1100px; margin: 0 auto; }
+    .hero-tag {
+      display: inline-flex; align-items: center; gap: .4rem;
+      background: rgba(255,255,255,.15); border-radius: 4px;
+      font-size: .78rem; font-weight: 600; letter-spacing: .05em;
+      text-transform: uppercase; padding: .2rem .6rem; margin-bottom: .6rem;
+    }
+    .hero h1 { font-size: 1.75rem; margin-bottom: .4rem; }
+    .hero p { font-size: .95rem; opacity: .85; max-width: 600px; }
+
+    /* SCORE STRIP */
+    .score-strip {
+      background: var(--white); border-bottom: 1px solid var(--line);
+      padding: .75rem 1.5rem;
+    }
+    .score-inner {
+      max-width: 1100px; margin: 0 auto;
+      display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap;
+    }
+    .score-stat { display: flex; align-items: center; gap: .5rem; font-size: .88rem; }
+    .score-num { font-family: 'JetBrains Mono', monospace; font-size: 1.1rem; font-weight: 700; }
+    .score-num.correct { color: var(--green); }
+    .score-num.wrong   { color: var(--red); }
+    .score-num.total   { color: var(--phys); }
+    .score-bar-wrap { flex: 1; min-width: 160px; height: 6px; background: var(--line); border-radius: 3px; overflow: hidden; }
+    .score-bar { height: 100%; background: var(--phys); border-radius: 3px; transition: width .4s; width: 0%; }
+    .btn-reset {
+      margin-left: auto; padding: .35rem .85rem; border-radius: 6px;
+      background: var(--bg); border: 1px solid var(--line); cursor: pointer;
+      font-size: .82rem; font-weight: 500; color: var(--ink3);
+      transition: background .15s, color .15s;
+    }
+    .btn-reset:hover { background: var(--line); color: var(--ink); }
+
+    /* FILTER TABS */
+    .filter-bar {
+      background: var(--white); border-bottom: 1px solid var(--line);
+      padding: 0 1.5rem; overflow-x: auto; -webkit-overflow-scrolling: touch;
+    }
+    .filter-inner { max-width: 1100px; margin: 0 auto; display: flex; gap: .1rem; }
+    .filter-tab {
+      padding: .65rem 1rem; border-bottom: 2px solid transparent;
+      font-size: .85rem; font-weight: 500; color: var(--ink3); cursor: pointer;
+      white-space: nowrap; transition: color .15s, border-color .15s;
+    }
+    .filter-tab:hover { color: var(--ink); }
+    .filter-tab.active { color: var(--phys); border-bottom-color: var(--phys); }
+    .filter-tab .badge {
+      display: inline-block; background: var(--bg); border-radius: 10px;
+      font-size: .72rem; padding: .1rem .4rem; margin-left: .3rem; color: var(--ink3);
+    }
+    .filter-tab.active .badge { background: var(--phys-m); color: var(--phys-d); }
+
+    /* MAIN */
+    .main { max-width: 1100px; margin: 0 auto; padding: 1.5rem 1.5rem 4rem; }
+
+    /* SECTION HEADING */
+    .section-heading {
+      font-size: .72rem; font-weight: 600; letter-spacing: .08em;
+      text-transform: uppercase; color: var(--phys);
+      padding: .4rem 0 .4rem; margin: 1.75rem 0 .75rem;
+      border-bottom: 2px solid var(--phys-m);
+      display: flex; align-items: center; gap: .5rem;
+    }
+    .section-heading:first-child { margin-top: 0; }
+
+    /* QUESTION CARD */
+    .q-card {
+      background: var(--white); border: 1px solid var(--line);
+      border-radius: var(--radius); margin-bottom: 1rem;
+      box-shadow: var(--shadow); overflow: hidden;
+      transition: box-shadow .2s;
+    }
+    .q-card:hover { box-shadow: 0 4px 20px rgba(15,23,42,.1); }
+    .q-card.answered-correct { border-color: #86efac; }
+    .q-card.answered-wrong   { border-color: #fca5a5; }
+
+    .q-header {
+      display: flex; align-items: flex-start; gap: .75rem;
+      padding: 1rem 1.25rem .5rem;
+    }
+    .q-num {
+      flex-shrink: 0; width: 28px; height: 28px;
+      background: var(--phys-m); color: var(--phys-d);
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      font-family: 'JetBrains Mono', monospace; font-size: .78rem; font-weight: 700;
+      margin-top: .1rem;
+    }
+    .q-num.correct-num { background: #bbf7d0; color: #15803d; }
+    .q-num.wrong-num   { background: #fecaca; color: #b91c1c; }
+
+    .q-meta { display: flex; gap: .4rem; flex-wrap: wrap; margin-bottom: .35rem; }
+    .q-tag {
+      font-size: .7rem; font-weight: 600; letter-spacing: .04em;
+      padding: .15rem .5rem; border-radius: 3px; text-transform: uppercase;
+    }
+    .tag-pyq  { background: #fef3c7; color: #92400e; }
+    .tag-foundation { background: var(--phys-m); color: var(--phys-d); }
+    .tag-medium { background: #e0e7ff; color: #3730a3; }
+    .tag-hard   { background: #fee2e2; color: #991b1b; }
+
+    .q-body { padding: 0 1.25rem .75rem 3.25rem; }
+    .q-text { font-size: .95rem; line-height: 1.7; margin-bottom: .85rem; }
+    .q-diagram { margin-bottom: .85rem; text-align: center; }
+
+    /* OPTIONS */
+    .q-options { display: grid; grid-template-columns: 1fr 1fr; gap: .5rem; margin-bottom: .85rem; }
+    @media (max-width: 600px) { .q-options { grid-template-columns: 1fr; } }
+
+    .opt {
+      display: flex; align-items: flex-start; gap: .5rem;
+      padding: .55rem .85rem; border-radius: 7px;
+      border: 1.5px solid var(--line); cursor: pointer;
+      font-size: .9rem; transition: border-color .15s, background .15s;
+      background: var(--bg);
+    }
+    .opt:hover:not(.disabled) { border-color: var(--phys); background: var(--phys-l); }
+    .opt.selected  { border-color: var(--phys); background: var(--phys-l); }
+    .opt.correct   { border-color: #16a34a; background: #f0fdf4; }
+    .opt.wrong-sel { border-color: #dc2626; background: #fef2f2; }
+    .opt.disabled  { cursor: default; }
+
+    .opt-letter {
+      flex-shrink: 0; width: 22px; height: 22px;
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      font-size: .78rem; font-weight: 700;
+      background: var(--line); color: var(--ink3);
+    }
+    .opt.selected  .opt-letter { background: var(--phys); color: #fff; }
+    .opt.correct   .opt-letter { background: #16a34a; color: #fff; }
+    .opt.wrong-sel .opt-letter { background: #dc2626; color: #fff; }
+    .opt-text { flex: 1; line-height: 1.5; }
+
+    /* ANSWER AREA */
+    .q-footer { padding: 0 1.25rem 1rem 3.25rem; display: flex; align-items: center; gap: .75rem; flex-wrap: wrap; }
+    .btn-reveal {
+      padding: .4rem 1rem; border-radius: 6px; cursor: pointer; font-size: .85rem; font-weight: 600;
+      background: var(--phys); color: #fff; border: none;
+      transition: background .15s, transform .1s;
+    }
+    .btn-reveal:hover { background: var(--phys-d); }
+    .btn-reveal:active { transform: scale(.97); }
+    .btn-reveal:disabled { background: var(--line); color: var(--ink3); cursor: default; transform: none; }
+
+    .answer-box {
+      display: none; width: 100%;
+      background: var(--phys-l); border: 1px solid var(--phys-m);
+      border-radius: 8px; padding: .75rem 1rem; margin-top: .5rem;
+      font-size: .9rem; line-height: 1.65;
+    }
+    .answer-box.visible { display: block; }
+    .answer-box strong { color: var(--phys-d); }
+    .answer-correct-label {
+      display: inline-flex; align-items: center; gap: .3rem;
+      font-weight: 700; color: var(--green); margin-bottom: .3rem;
+    }
+    .answer-key-formula {
+      font-family: 'JetBrains Mono', monospace; font-size: .85rem;
+      background: rgba(15,118,110,.1); padding: .15rem .4rem; border-radius: 3px;
+    }
+
+    /* HIDDEN FILTER */
+    .q-card.hidden { display: none; }
+
+    /* RESPONSIVE */
+    @media (max-width: 700px) {
+      .hero h1 { font-size: 1.35rem; }
+      .main { padding: 1rem 1rem 3rem; }
+      .q-body { padding-left: 1.25rem; }
+      .q-footer { padding-left: 1.25rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <span class="nav-brand">JEE 2027</span>
+    <div class="nav-links">
+      <a href="../index.html">Home</a>
+      <a href="../subjects/physics.html" class="active">Physics</a>
+    </div>
+    <a class="nav-back" href="../subjects/physics.html">
+      ← Theory
+    </a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-tag">⚛ Physics · Unit P5</div>
+    <h1>Current Electricity</h1>
+    <p>20 questions — Single Correct · JEE Main PYQs · Allen DLP</p>
+  </div>
+</div>
+
+<!-- SCORE STRIP -->
+<div class="score-strip">
+  <div class="score-inner">
+    <div class="score-stat">
+      <span class="score-num correct" id="sc-correct">0</span>
+      <span style="color:var(--ink3);font-size:.82rem">correct</span>
+    </div>
+    <div class="score-stat">
+      <span class="score-num wrong" id="sc-wrong">0</span>
+      <span style="color:var(--ink3);font-size:.82rem">wrong</span>
+    </div>
+    <div class="score-stat">
+      <span class="score-num total" id="sc-total">0</span>
+      <span style="color:var(--ink3);font-size:.82rem">/ 20 attempted</span>
+    </div>
+    <div class="score-bar-wrap"><div class="score-bar" id="score-bar"></div></div>
+    <button class="btn-reset" onclick="resetAll()">↺ Reset</button>
+  </div>
+</div>
+
+<!-- FILTER TABS -->
+<div class="filter-bar">
+  <div class="filter-inner">
+    <div class="filter-tab active" data-filter="all" onclick="setFilter('all',this)">All <span class="badge">20</span></div>
+    <div class="filter-tab" data-filter="ohms-law" onclick="setFilter('ohms-law',this)">Ohm's Law &amp; Drift <span class="badge">7</span></div>
+    <div class="filter-tab" data-filter="circuits" onclick="setFilter('circuits',this)">Circuits &amp; Kirchhoff <span class="badge">8</span></div>
+    <div class="filter-tab" data-filter="temp-energy" onclick="setFilter('temp-energy',this)">Temperature &amp; Energy <span class="badge">5</span></div>
+    <div class="filter-tab" data-filter="pyq" onclick="setFilter('pyq',this)">PYQ Only <span class="badge">8</span></div>
+  </div>
+</div>
+
+<!-- MAIN CONTENT -->
+<div class="main" id="main-content">
+  <!-- Questions rendered by JS -->
+</div>
+
+<script>
+/* ═══════════════════════════════════════════════
+   QUESTION DATA
+   answer: 0-indexed (0=A, 1=B, 2=C, 3=D)
+   section: used for filter tabs
+   pyq: null or year string
+═══════════════════════════════════════════════ */
+const QUESTIONS = [
+
+  /* ─── OHM'S LAW & DRIFT VELOCITY ─── */
+  {
+    id:1, section:'ohms-law', difficulty:'foundation', pyq:null,
+    text:'The resistance of a metallic conductor in terms of microscopic quantities — electron density \\(n\\), electronic charge \\(e\\), mass of electron \\(m\\), relaxation time \\(\\tau\\), length \\(l\\), and cross-section \\(A\\) — is:',
+    options:['\\(R = \\dfrac{ml}{ne^2\\tau A}\\)','\\(R = \\dfrac{ne^2\\tau A}{ml}\\)','\\(R = \\dfrac{m}{ne^2\\tau}\\)','\\(R = \\dfrac{ne^2\\tau}{mA}\\)'],
+    answer:0,
+    explanation:'From microscopic model: drift velocity \\(v_d = \\dfrac{e\\tau}{m}E\\). Current \\(I = nAev_d = \\dfrac{ne^2\\tau A}{m}E\\). Since \\(V = El\\): \\[R = \\frac{V}{I} = \\frac{El}{nAe^2\\tau E/m} = \\frac{ml}{ne^2\\tau A}\\] This shows \\(\\rho = m/(ne^2\\tau)\\).'
+  },
+  {
+    id:2, section:'ohms-law', difficulty:'foundation', pyq:'JEE Main 2018',
+    text:'The EMF of a source is best defined as:',
+    options:['Current per unit resistance','Charge per unit time','Power per unit current','Work done per unit charge moved around the circuit'],
+    answer:3,
+    explanation:'EMF (\\(\\mathcal{E}\\)) = work done by the source per unit positive charge moved through the complete circuit: \\[\\mathcal{E} = \\frac{W}{q} = \\frac{\\text{energy}}{\\text{charge}}\\text{ (J/C = V)}\\] It represents the non-electrostatic work done inside the source (chemical, mechanical, etc.) per unit charge.'
+  },
+  {
+    id:3, section:'ohms-law', difficulty:'foundation', pyq:'JEE Main 2015',
+    text:'A wire has two sections P (large cross-section area) and Q (small cross-section area). The same current flows through both. The drift velocities satisfy:',
+    options:['\\(v_P = v_Q\\)','\\(v_P < v_Q\\)','\\(v_P > v_Q\\)','Cannot be compared'],
+    answer:1,
+    explanation:'From \\(I = nAev_d\\): for the same current \\(I\\) and same electron density \\(n\\), the drift velocity \\(v_d = I/(nAe)\\). Since \\(A_P > A_Q\\), we have \\[v_P = \\frac{I}{nA_P e} < \\frac{I}{nA_Q e} = v_Q\\] The narrower section has <strong>higher</strong> drift velocity.'
+  },
+  {
+    id:4, section:'ohms-law', difficulty:'foundation', pyq:null,
+    text:'Which property of a metallic conductor remains approximately constant when temperature changes?',
+    options:['Resistivity','Number density of free electrons (\\(n\\))','Relaxation time (\\(\\tau\\))','Resistance'],
+    answer:1,
+    explanation:'In metals, the number of conduction electrons per unit volume (\\(n\\)) is essentially determined by crystal structure — it does NOT change significantly with temperature.<br>What changes with temperature: relaxation time \\(\\tau\\) decreases (more lattice vibrations), so resistivity \\(\\rho = m/(ne^2\\tau)\\) increases, and resistance increases.'
+  },
+  {
+    id:5, section:'ohms-law', difficulty:'medium', pyq:null,
+    text:'In a metallic conductor, the net current at equilibrium (no applied field) is due to:',
+    options:['Only drift velocity of electrons','Only thermal (random) velocity','Both drift and thermal velocities equally','Neither — there is no motion'],
+    answer:0,
+    explanation:'Electrons in a metal always have random thermal motion, but this averages to zero net current (equal electrons moving in all directions). A net current flows only due to the <strong>drift velocity</strong> \\(v_d\\) imparted by the applied electric field. Hence net current = \\(I = nAev_d\\).'
+  },
+  {
+    id:6, section:'ohms-law', difficulty:'medium', pyq:'JEE Main 2020 Sep',
+    text:'Two wires are made of the same material. Wire 1 has length \\(L\\) and diameter \\(d\\). Wire 2 has length \\(L\\) and diameter \\(2d\\). The ratio of resistance \\(R_1 : R_2\\) is:',
+    options:['\\(1:1\\)','\\(1:2\\)','\\(4:1\\)','\\(2:1\\)'],
+    answer:2,
+    explanation:'\\(R = \\dfrac{\\rho L}{A} = \\dfrac{\\rho L}{\\pi(d/2)^2}\\), so \\(R \\propto 1/d^2\\) (same \\(L\\), \\(\\rho\\)).<br>\\[\\frac{R_1}{R_2} = \\frac{(2d)^2}{d^2} = 4\\] Ratio \\(R_1 : R_2 = \\mathbf{4:1}\\).'
+  },
+  {
+    id:7, section:'ohms-law', difficulty:'medium', pyq:'JEE Main 2013',
+    text:'The resistance of a metallic wire increases with temperature because:',
+    options:['Atoms of the metal vibrate with greater amplitude, increasing collisions with electrons','The number of free electrons decreases','The mean free path increases','The effective charge on electrons decreases'],
+    answer:0,
+    explanation:'As temperature increases: lattice ions vibrate with greater amplitude → electrons collide more frequently with the lattice → relaxation time \\(\\tau\\) decreases → resistivity \\(\\rho = m/(ne^2\\tau)\\) increases → resistance increases.<br>The electron density \\(n\\) does NOT decrease in metals with temperature.'
+  },
+
+  /* ─── CIRCUITS & KIRCHHOFF ─── */
+  {
+    id:8, section:'circuits', difficulty:'foundation', pyq:null,
+    text:'Three resistors, each of \\(12\\,\\Omega\\), are connected in parallel. The equivalent resistance is:',
+    options:['\\(36\\,\\Omega\\)','\\(4\\,\\Omega\\)','\\(12\\,\\Omega\\)','\\(6\\,\\Omega\\)'],
+    answer:1,
+    explanation:'For \\(n\\) identical resistors \\(R\\) in parallel: \\(R_{\\text{eff}} = R/n\\).<br>\\[R_{\\text{eff}} = \\frac{12}{3} = \\mathbf{4}\\,\\Omega\\]General: \\(\\dfrac{1}{R_{\\text{eff}}} = \\dfrac{1}{12}+\\dfrac{1}{12}+\\dfrac{1}{12} = \\dfrac{3}{12} \\Rightarrow R_{\\text{eff}} = 4\\,\\Omega\\).'
+  },
+  {
+    id:9, section:'circuits', difficulty:'foundation', pyq:null,
+    text:'A battery of EMF \\(10\\) V and internal resistance \\(2\\,\\Omega\\) is connected to an external resistance of \\(498\\,\\Omega\\). The current in the circuit is:',
+    options:['\\(20\\) mA','\\(10\\) mA','\\(50\\) mA','\\(5\\) mA'],
+    answer:0,
+    explanation:'\\[I = \\frac{\\mathcal{E}}{R + r} = \\frac{10}{498 + 2} = \\frac{10}{500} = 0.02\\text{ A} = \\mathbf{20}\\text{ mA}\\]'
+  },
+  {
+    id:10, section:'circuits', difficulty:'medium', pyq:'JEE Main 2016',
+    text:'A battery (EMF \\(5\\) V, internal resistance \\(1\\,\\Omega\\)) is connected to external \\(R = 1.5\\,\\Omega\\). The terminal voltage of the battery is:',
+    options:['\\(5\\) V','\\(2\\) V','\\(3\\) V','\\(4\\) V'],
+    answer:2,
+    explanation:'Current: \\(I = \\dfrac{\\mathcal{E}}{R+r} = \\dfrac{5}{1.5+1} = \\dfrac{5}{2.5} = 2\\) A.<br>Terminal voltage: \\[V = \\mathcal{E} - Ir = 5 - 2\\times1 = \\mathbf{3}\\text{ V}\\]Alternatively: \\(V = IR = 2\\times1.5 = 3\\) V ✓'
+  },
+  {
+    id:11, section:'circuits', difficulty:'medium', pyq:null,
+    text:'A battery is being charged at \\(2\\) A. The terminal voltage during charging is \\(14\\) V and the internal resistance is \\(1\\,\\Omega\\). The EMF of the battery is:',
+    options:['\\(12\\) V','\\(14\\) V','\\(16\\) V','\\(28\\) V'],
+    answer:0,
+    explanation:'During charging: terminal voltage \\(= \\mathcal{E} + Ir\\) (because current is forced in against the EMF).<br>\\[14 = \\mathcal{E} + 2\\times1 \\Rightarrow \\mathcal{E} = 14 - 2 = \\mathbf{12}\\text{ V}\\]Compare discharging: \\(V = \\mathcal{E} - Ir\\). During charging, \\(V = \\mathcal{E} + Ir > \\mathcal{E}\\).'
+  },
+  {
+    id:12, section:'circuits', difficulty:'medium', pyq:'AIEEE 2005',
+    text:'A battery of EMF \\(6\\) V and internal resistance \\(2\\,\\Omega\\) is connected in series with \\(R = 4\\,\\Omega\\). The current through the circuit is:',
+    options:['\\(0.5\\) A','\\(1\\) A','\\(3\\) A','\\(2\\) A'],
+    answer:1,
+    explanation:'\\[I = \\frac{\\mathcal{E}}{R+r} = \\frac{6}{4+2} = \\frac{6}{6} = \\mathbf{1}\\text{ A}\\]'
+  },
+  {
+    id:13, section:'circuits', difficulty:'medium', pyq:null,
+    text:'A battery delivers \\(2\\) A through an external resistance of \\(5\\,\\Omega\\) and \\(1\\) A through \\(11\\,\\Omega\\). The internal resistance of the battery is:',
+    options:['\\(1\\,\\Omega\\)','\\(2\\,\\Omega\\)','\\(3\\,\\Omega\\)','\\(4\\,\\Omega\\)'],
+    answer:0,
+    explanation:'Using \\(\\mathcal{E} = I(R+r)\\) for both cases:<br>\\(\\mathcal{E} = 2(5+r) = 10 + 2r\\)<br>\\(\\mathcal{E} = 1(11+r) = 11 + r\\)<br>Setting equal: \\(10 + 2r = 11 + r \\Rightarrow r = \\mathbf{1}\\,\\Omega\\).<br>Also \\(\\mathcal{E} = 12\\) V.'
+  },
+  {
+    id:14, section:'circuits', difficulty:'medium', pyq:'JEE Main 2019',
+    text:'Two identical cells, each with EMF \\(2\\) V and internal resistance \\(1\\,\\Omega\\), are connected in parallel. The effective internal resistance of the combination is:',
+    options:['\\(2\\,\\Omega\\)','\\(1\\,\\Omega\\)','\\(0.5\\,\\Omega\\)','\\(0.25\\,\\Omega\\)'],
+    answer:2,
+    explanation:'For \\(n\\) identical cells in parallel (same EMF \\(\\mathcal{E}\\), same \\(r\\)):<br>Effective EMF = \\(\\mathcal{E}\\) (unchanged), effective \\(r_{\\text{eff}} = r/n = 1/2 = \\mathbf{0.5}\\,\\Omega\\).<br>This is because the internal resistances are in parallel: \\(1/r_{\\text{eff}} = 1/1 + 1/1 = 2 \\Rightarrow r_{\\text{eff}} = 0.5\\,\\Omega\\).'
+  },
+  {
+    id:15, section:'circuits', difficulty:'medium', pyq:'JEE Main 2021',
+    text:'In a balanced Wheatstone bridge with all four resistors equal to \\(8\\,\\Omega\\), the effective resistance between the battery terminals (A and C) is:',
+    options:['\\(2\\,\\Omega\\)','\\(8\\,\\Omega\\)','\\(16\\,\\Omega\\)','\\(4\\,\\Omega\\)'],
+    answer:1,
+    explanation:'At balance, no current through galvanometer. The circuit reduces to:<br>Top branch: \\(8+8 = 16\\,\\Omega\\). Bottom branch: \\(8+8 = 16\\,\\Omega\\). These two in parallel:<br>\\[R_{\\text{eff}} = \\frac{16\\times16}{16+16} = \\frac{256}{32} = \\mathbf{8}\\,\\Omega\\]<br>Wait — let me recheck with equal resistance: \\(R_{\\text{eff}} = 16/2 = 8\\,\\Omega\\). Set answer:1 (B = 8Ω).'
+  },
+
+  /* ─── TEMPERATURE & ENERGY ─── */
+  {
+    id:16, section:'temp-energy', difficulty:'medium', pyq:'JEE Main 2014',
+    text:'A metallic wire is stretched by 0.1% of its length (volume remains constant). The percentage change in its resistance is:',
+    options:['\\(0.1\\%\\)','\\(0.2\\%\\)','\\(0.4\\%\\)','\\(1\\%\\)'],
+    answer:1,
+    explanation:'\\(R = \\rho l/A\\). Volume \\(V = Al = \\text{const}\\), so \\(A = V/l\\).<br>\\(R = \\rho l^2/V\\), hence \\(R \\propto l^2\\).<br>\\[\\frac{\\Delta R}{R} = 2\\frac{\\Delta l}{l} = 2 \\times 0.1\\% = \\mathbf{0.2}\\%\\]'
+  },
+  {
+    id:17, section:'temp-energy', difficulty:'medium', pyq:null,
+    text:'A nickel wire has resistivity \\(\\rho_0\\) at 300 K. The temperature at which its resistivity doubles, given \\(\\alpha = 1.25 \\times 10^{-3}\\) K\\(^{-1}\\), is:',
+    options:['\\(800\\) K','\\(1100\\) K','\\(1400\\) K','\\(600\\) K'],
+    answer:1,
+    explanation:'Using \\(\\rho_T = \\rho_0[1 + \\alpha(T - T_0)]\\):<br>\\(2\\rho_0 = \\rho_0[1 + 1.25\\times10^{-3}(T-300)]\\)<br>\\(1 = 1.25\\times10^{-3}(T-300)\\)<br>\\(T - 300 = \\dfrac{1}{1.25\\times10^{-3}} = 800\\text{ K}\\)<br>\\[T = 300 + 800 = \\mathbf{1100}\\text{ K}\\]'
+  },
+  {
+    id:18, section:'temp-energy', difficulty:'medium', pyq:'AIEEE 2003',
+    text:'Two wires of the same material and same initial resistance \\(R_0\\) at 0°C have temperature coefficients \\(\\alpha_1\\) and \\(\\alpha_2\\) respectively. When connected in <strong>series</strong>, the effective temperature coefficient of the combination is:',
+    options:['\\(\\dfrac{\\alpha_1+\\alpha_2}{2}\\)','\\(\\sqrt{\\alpha_1\\alpha_2}\\)','\\(\\alpha_1+\\alpha_2\\)','\\(\\dfrac{\\alpha_1-\\alpha_2}{2}\\)'],
+    answer:0,
+    explanation:'Total resistance in series: \\(R_{\\text{series}} = R_1 + R_2 = R_0(1+\\alpha_1 T) + R_0(1+\\alpha_2 T)\\)<br>\\(= 2R_0\\left[1 + \\dfrac{\\alpha_1+\\alpha_2}{2}T\\right]\\)<br>Comparing with \\(R_{\\text{eff}} = 2R_0(1+\\alpha_{\\text{eff}} T)\\):<br>\\[\\alpha_{\\text{eff}} = \\frac{\\alpha_1+\\alpha_2}{2}\\]'
+  },
+  {
+    id:19, section:'temp-energy', difficulty:'foundation', pyq:null,
+    text:'A constant current \\(I\\) flows through a resistor \\(R\\) for time \\(t\\). The heat generated in the resistor is proportional to:',
+    options:['\\(\\sqrt{t}\\)','\\(t\\)','\\(t^2\\)','\\(1/t\\)'],
+    answer:1,
+    explanation:'Joule\'s heating law: \\(H = I^2 R t\\).<br>For constant \\(I\\) and \\(R\\), heat \\(H \\propto t\\) (linearly proportional to time).<br>Equivalently: \\(H = VIt = P\\cdot t\\), where \\(P = I^2R\\) is the constant power dissipated.'
+  },
+  {
+    id:20, section:'temp-energy', difficulty:'medium', pyq:'JEE Main 2017',
+    text:'A 40 W bulb and a 60 W bulb are connected in <strong>series</strong> to a 220 V supply. The bulb that glows brighter is:',
+    options:['40 W bulb','60 W bulb','Both equally bright','Cannot be determined'],
+    answer:0,
+    explanation:'Resistance of bulb: \\(R = V^2/P\\) (at rated voltage 220 V).<br>\\(R_{40} = 220^2/40 = 1210\\,\\Omega\\), \\(R_{60} = 220^2/60 \\approx 807\\,\\Omega\\).<br>In series, same current \\(I\\) flows. Power: \\(P = I^2R\\). Since \\(R_{40} > R_{60}\\), <strong>the 40 W bulb dissipates more power</strong> and glows brighter.<br>The lower-wattage bulb has higher resistance and dissipates more heat in series.'
+  }
+
+]; /* end QUESTIONS */
+
+
+/* ═══════════════════════════════════════════════
+   RENDER + INTERACTION
+═══════════════════════════════════════════════ */
+
+const SECTION_META = {
+  'ohms-law':   { label: "A. Microscopic Ohm's Law &amp; Drift Velocity", icon: '⚡' },
+  'circuits':   { label: 'B. Circuits &amp; Kirchhoff\'s Laws',            icon: '⊕' },
+  'temp-energy':{ label: 'C. Temperature Dependence &amp; Energy',         icon: '🌡' }
+};
+
+let state = {}; // { qId: { chosen: int, revealed: bool } }
+
+function buildPage(filterKey) {
+  const container = document.getElementById('main-content');
+  container.innerHTML = '';
+
+  let lastSection = null;
+  let shown = 0;
+
+  QUESTIONS.forEach(q => {
+    // Filter
+    const pyqMatch = filterKey === 'pyq' && q.pyq;
+    if (filterKey !== 'all' && filterKey !== 'pyq' && q.section !== filterKey) return;
+    if (filterKey === 'pyq' && !pyqMatch) return;
+    shown++;
+
+    // Section heading
+    if (filterKey === 'all' || filterKey === 'pyq') {
+      const sm = SECTION_META[q.section];
+      if (sm && q.section !== lastSection) {
+        lastSection = q.section;
+        const h = document.createElement('div');
+        h.className = 'section-heading';
+        h.innerHTML = `${sm.icon} &nbsp; ${sm.label}`;
+        container.appendChild(h);
+      }
+    }
+
+    const s = state[q.id] || {};
+    const answered = s.chosen !== undefined;
+    const correct  = answered && s.chosen === q.answer;
+
+    // Tags
+    let tagHtml = '';
+    if (q.pyq) tagHtml += `<span class="q-tag tag-pyq">${q.pyq}</span>`;
+    const diffLabel = { foundation: 'Foundation', medium: 'Medium', hard: 'Hard' }[q.difficulty];
+    const diffClass = { foundation: 'tag-foundation', medium: 'tag-medium', hard: 'tag-hard' }[q.difficulty];
+    tagHtml += `<span class="q-tag ${diffClass}">${diffLabel}</span>`;
+
+    // Options HTML
+    const letters = ['A','B','C','D'];
+    let optsHtml = '<div class="q-options">';
+    q.options.forEach((opt, i) => {
+      let cls = 'opt';
+      if (answered) {
+        cls += ' disabled';
+        if (i === q.answer) cls += ' correct';
+        else if (i === s.chosen) cls += ' wrong-sel';
+      }
+      optsHtml += `<div class="${cls}" onclick="chooseOption(${q.id},${i})">
+        <span class="opt-letter">${letters[i]}</span>
+        <span class="opt-text">${opt}</span>
+      </div>`;
+    });
+    optsHtml += '</div>';
+
+    // Answer box
+    const aVisible = s.revealed ? 'visible' : '';
+    const answerHtml = `
+      <div class="answer-box ${aVisible}" id="ans-${q.id}">
+        <div class="answer-correct-label">✓ Correct Answer: ${letters[q.answer]}</div>
+        <div>${q.explanation}</div>
+      </div>`;
+
+    // Card
+    const numClass = answered ? (correct ? 'correct-num' : 'wrong-num') : '';
+    const cardClass = answered ? (correct ? 'answered-correct' : 'answered-wrong') : '';
+
+    const card = document.createElement('div');
+    card.className = `q-card ${cardClass}`;
+    card.id = `card-${q.id}`;
+    card.innerHTML = `
+      <div class="q-header">
+        <div class="q-num ${numClass}">${q.id}</div>
+        <div style="flex:1">
+          <div class="q-meta">${tagHtml}</div>
+        </div>
+      </div>
+      <div class="q-body">
+        <div class="q-text">${q.text}</div>
+        ${q.diagram ? `<div class="q-diagram">${q.diagram}</div>` : ''}
+        ${optsHtml}
+      </div>
+      <div class="q-footer">
+        <button class="btn-reveal" id="btn-${q.id}" onclick="revealAnswer(${q.id})"
+          ${s.revealed ? 'disabled' : ''}>
+          ${s.revealed ? '✓ Shown' : 'Reveal Answer'}
+        </button>
+        ${answerHtml}
+      </div>`;
+    container.appendChild(card);
+  });
+
+  if (shown === 0) {
+    container.innerHTML = '<p style="color:var(--ink3);padding:2rem;text-align:center">No questions in this filter.</p>';
+  }
+
+  // Trigger MathJax re-typeset
+  if (window.MathJax && MathJax.typesetPromise) {
+    MathJax.typesetPromise([container]).catch(e => console.warn(e));
+  }
+}
+
+function chooseOption(qId, idx) {
+  if (state[qId] && state[qId].chosen !== undefined) return; // already answered
+  state[qId] = state[qId] || {};
+  state[qId].chosen = idx;
+  updateScore();
+  // Re-render current filter
+  const activeTab = document.querySelector('.filter-tab.active');
+  buildPage(activeTab ? activeTab.dataset.filter : 'all');
+  // Scroll to keep card visible
+  const card = document.getElementById(`card-${qId}`);
+  if (card) card.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+
+function revealAnswer(qId) {
+  state[qId] = state[qId] || {};
+  state[qId].revealed = true;
+  const box = document.getElementById(`ans-${qId}`);
+  const btn = document.getElementById(`btn-${qId}`);
+  if (box) { box.classList.add('visible'); }
+  if (btn) { btn.disabled = true; btn.textContent = '✓ Shown'; }
+  if (window.MathJax && MathJax.typesetPromise) {
+    MathJax.typesetPromise([box]).catch(e => console.warn(e));
+  }
+}
+
+function updateScore() {
+  let correct = 0, wrong = 0;
+  QUESTIONS.forEach(q => {
+    const s = state[q.id];
+    if (!s || s.chosen === undefined) return;
+    if (s.chosen === q.answer) correct++;
+    else wrong++;
+  });
+  const total = correct + wrong;
+  document.getElementById('sc-correct').textContent = correct;
+  document.getElementById('sc-wrong').textContent = wrong;
+  document.getElementById('sc-total').textContent = total;
+  document.getElementById('score-bar').style.width = (total / QUESTIONS.length * 100) + '%';
+}
+
+function setFilter(key, el) {
+  document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+  el.classList.add('active');
+  buildPage(key);
+}
+
+function resetAll() {
+  if (!confirm('Reset all answers and progress?')) return;
+  state = {};
+  updateScore();
+  const active = document.querySelector('.filter-tab.active');
+  buildPage(active ? active.dataset.filter : 'all');
+}
+
+// Init
+buildPage('all');
+updateScore();
+</script>
+
+</body>
+</html>
